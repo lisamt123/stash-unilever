@@ -83,7 +83,10 @@
         public static final String MARKETING_EVENT= 'MarketingEvent';
         public static final String Qulon= ':';
         public static final String UK_SO = 'UK SO';
+        public static final String Ireland_SO = 'Ireland SO';
         public static final String LTA = 'LTA';
+        public static final String PARENT_PROMOTION = 'Parent Promotion';
+        public static final String ACCOUNT_SPECIFIC_PROMOTION = 'Account Specific Promotion';
         
         //Boolean flags for Bypassing Triggers
         public static boolean bypassAccountTrigger = false;
@@ -100,7 +103,7 @@
         public static boolean bypassUserCustomerPromFundShareTriggerTrigger = false;
         
         //Heroku webservice setup
-        public static final String END_POINT= 'callout: ACSF_Service_Url/ACSF/GetPromotionKPIs';
+        public static final String END_POINT= 'callout:ACSF_Service_Url/ACSF/GetPromotionKPIs';
         public static final Integer SERVICE_TIMEOUT = 12000;
         public static final String REQUEST_TYPE = 'POST';
         public static final String CONTENT_TYPE = 'application/json';
@@ -124,14 +127,14 @@
         public static final String STATUS_PENDING = 'Pending';
         public static final String STATUS_PLANNING = 'Planning';
         public static final String STATUS_FINANCE_CHECK = 'Finance Check';
-        public static final String STATUS_MANAGER_CHECK = 'Manager Check'; 
+        public static final String STATUS_MANAGER_CHECK = 'Manager Check';
+		public static final String STATUS_SUBMITTED_FOR_APPROVAL = 'Submitted for Approval';		
                
         //User Org Role
         public static final String ROLE_CATEGORY_MANAGER = 'category manager';
         public static final String ROLE_FINANCE_MANAGER = 'finance manager';
         public static final String ROLE_ACCOUNT_MANAGER = 'account manager';
-        public static final String UKI_SALESORG_UK= 'UK SO';
-        public static final String UKI_SALESORG_IRELAND= 'Ireland SO';
+       
 
         //Exception Status Codes
         public static final String FIELD_CUSTOM_VALIDATION_EXCEPTION = 'FIELD_CUSTOM_VALIDATION_EXCEPTION';

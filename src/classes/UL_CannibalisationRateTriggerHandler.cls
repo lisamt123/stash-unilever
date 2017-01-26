@@ -20,7 +20,7 @@ public with sharing class UL_CannibalisationRateTriggerHandler{
     Throws: None
     ********************************************************************/
     public static void beforeInsert(List<UL_Cannibalisation_Rate__c> cannibalisationRateList){
-        try{
+        try{ 
             Date smallestFromDate = UL_Utility.NULL_DATE;
             Date largestThruDate = UL_Utility.NULL_DATE;
             Set<Id> customerIdSet = new Set<Id>();

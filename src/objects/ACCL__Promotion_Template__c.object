@@ -184,7 +184,7 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-	<fields>
+    <fields>
         <fullName>ACCL__Creation_Platform__c</fullName>
         <deprecated>false</deprecated>
         <description>Indicates, on which platform this template can be used for new creation of promotions.</description>
@@ -522,6 +522,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>LTA_Days_Counter__c</fullName>
+        <defaultValue>TEXT(0)</defaultValue>
+        <description>Stores the max no of days to be considered between From and Thru Dates for LTA...</description>
+        <externalId>false</externalId>
+        <label>LTA Max Duration</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>UL_Allow_past_Promotions__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -556,7 +568,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SoCo - Parent Past-Dated/Urgent Workflow</fullName> 
+                <fullName>SoCo - Parent Past-Dated/Urgent Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Account Level / Child Banded Pack</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SoCo - Account Level Past-Dated/Urgent</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -600,6 +620,15 @@
         <description>In case the setting is ticked by creation of Promotion it IIBB tax from anchor or hierarchy above will be prepopulated to the promotion field.</description>
         <externalId>false</externalId>
         <label>Consider IIBB Tax</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UL_Is_Tactic_Fund_Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>While promotion is set for approval process, this flag triggers a validation to check if all tactic is aligned with at least one fund</description>
+        <externalId>false</externalId>
+        <label>UL Is Tactic Fund Required</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -724,6 +753,21 @@
             <value>AR01</value>
         </filters>
         <label>AR01</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>socoo</fullName>
+        <columns>NAME</columns>
+        <columns>ACCL__Sales_Org__c</columns>
+        <columns>UL_Promotion_Template_Type__c</columns>
+        <columns>ACCL__Promotion_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>AR01,CL01,CL03</value>
+        </filters>
+        <label>soco</label>
         <language>en_US</language>
     </listViews>
     <nameField>
@@ -1160,6 +1204,14 @@
         <picklistValues>
             <picklist>UL_Approval_Process_Identifier__c</picklist>
             <values>
+                <fullName>SoCo - Account Level %2F Child Banded Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SoCo - Account Level Past-Dated%2FUrgent</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SoCo - Account Specific Workflow</fullName>
                 <default>false</default>
             </values>
@@ -1287,22 +1339,12 @@
         <fullName>ACCL__Update_Product_Filter_Cache</fullName>
         <availability>online</availability>
         <displayType>massActionButton</displayType>
-        <linkType>javascript</linkType>
+        <height>600</height>
+        <linkType>page</linkType>
         <masterLabel>Update Product Filter Cache</masterLabel>
-        <openType>onClickJavaScript</openType>
+        <openType>sidebar</openType>
+        <page>ACCL__RefreshBackendCache</page>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/37.0/connection.js&quot;)}
-      {!REQUIRESCRIPT(&quot;/soap/ajax/37.0/apex.js&quot;)}
-      sforce.connection.query(&apos;SELECT NamespacePrefix FROM ApexClass WHERE Name = \&apos;HerokuCacheRefresh\&apos;&apos;, {
-      onSuccess: function(data) {
-      var prefix = data.records.NamespacePrefix? data.records.NamespacePrefix+&apos;.&apos;: &apos;&apos;;
-      var result = &apos;&apos;+sforce.apex.execute(prefix+&apos;HerokuCacheRefresh&apos;, &apos;cacheFlushStatus&apos;, {});
-      window.alert(result);
-      },
-      onFailure: function(err) {
-      window.alert(err);
-      }
-      });</url>
     </webLinks>
 </CustomObject>

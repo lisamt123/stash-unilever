@@ -984,12 +984,13 @@ Throws : N/A
     public static void validateDummyProdsonTactics(string txid,string Content){
      boolean containsDummyProd = false;
      boolean isTacticOffinvoice = false;
-     final string offinvoice = 'Off-Invoice';
+     final string offinvoice = 'OffInvoice';
      final string materialType = 'ZFIN';
      Map<id,ACCL__Tactic__c> tacticMap = new Map<id,ACCL__Tactic__c>();
      Map<id,ACCL__Product__c> productMap = new Map<id,ACCL__Product__c>();
      Map<string,string> tacticidProdId = new Map<string,string>();
       List<Map<String, Object> > herokuProducts = new List<Map<String, Object>>();
+      Map<String, Set<String>> tacticidProdSet = new Map<String, Set<String>>();
      Map<id,id> prodIdTacticID = new Map<id,id>(); 
        Set<String> tacticSet;
         Set<Id> productIdSet;
@@ -1013,38 +1014,52 @@ Throws : N/A
                             }
                         }
                         prodIdTacticSet.put((string)prods.get(UtilityEnum.productid.Name()),tacticSet);
-                        //prodIdTacticID.put();
+                        
                     }
                     }
+                       if(prodIdTacticSet!=null){
+                                          for(String prod : prodIdTacticSet.keySet()){
+                                                         for(String tac : prodIdTacticSet.get(prod))
+                                                         {
+                                                                    if(!tacticidProdSet.containskey(tac))
+                                                                    {
+                                                                          tacticidProdSet.put(tac, new Set<String>());
+                                                                     }
+                                                                   tacticidProdSet.get(tac).add(prod);
+                                                            }
+                                                         }
+                                                         }
+
                    if(prodIdTacticSet!=null && prodIdTacticSet.keyset().size()>0){ 
-                    for(ACCL__Tactic__c tacticObj : [select id,ACCL__Payment_Method__c from ACCL__Tactic__c where id in:tacticSet]){
+                    for(ACCL__Tactic__c tacticObj : [select id,ACCL__Payment_Method__c,ACCL__Tactic_Template__r.UL_Validate_Dummy_Products__c from ACCL__Tactic__c where id in:tacticidProdSet.keyset()]){
                      tacticMap.put(tacticObj.id,tacticObj);
-                     if(tacticObj.ACCL__Payment_Method__c!=null && tacticObj.ACCL__Payment_Method__c==offinvoice){
-                       isTacticOffinvoice  = true;
-                     }
                      
                     }
                     for(ACCL__Product__c prodObj : [select id,UL_Material_Type__c from ACCL__Product__c where id in: prodIdTacticSet.keyset()]){
-                      containsDummyProd = false;
-                     if(prodObj.UL_Material_Type__c!=null && prodIdTacticSet.containskey(prodObj.id)){
-                        for(string tacticid : prodIdTacticSet.get(prodObj.id)){
-                          if(tacticMap.get(tacticid).ACCL__Payment_Method__c==offinvoice && prodObj.UL_Material_Type__c==materialType){
-                            containsDummyProd = true;
-                            break;
-                          }
+                      productMap.put(prodObj.id,prodObj);
+                    }
+                    }
+                    String materialTypeString = UL_Utility.STRING_NULL;
+                    for(String tacticID : tacticidProdSet.keyset()){
+                        if(tacticID!=null && tacticMap.get(tacticID).ACCL__Payment_Method__c!=null && tacticMap.get(tacticID).ACCL__Payment_Method__c.containsignorecase(offinvoice) && tacticMap.get(tacticID).ACCL__Tactic_Template__r.UL_Validate_Dummy_Products__c){
+                           
+                           for(String productId : tacticidProdSet.get(tacticID)){
+                             if(materialTypeString==null){
+                              materialTypeString = productMap.get(productId).UL_Material_Type__c;
+                              }
+                              else
+                              {
+                                materialTypeString += productMap.get(productId).UL_Material_Type__c;
+                              }
+                           }
+                          
+                           if(materialTypeString !=null && !materialTypeString.containsIgnorecase(materialType)){
+                             throw new CustomException(label.UL_DummyProdonTactic);
+                           }
                         }
-                     }
-                     
+                        materialTypeString = UL_Utility.STRING_NULL;
                     }
-                    }
-                    if(prodIdTacticSet==null && isTacticOffinvoice) {
-                      throw new CustomException(label.UL_DummyProdonTactic);
-                    }
-                    if(prodIdTacticSet!=null && prodIdTacticSet.keyset().size()>0 && !containsDummyProd) {
-                      throw new CustomException(label.UL_DummyProdonTactic);
-                    }
-                    
-    
+                  
     }
      
      

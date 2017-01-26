@@ -29,6 +29,13 @@
         <shortDescription>use in Workflow Threshold Engine</shortDescription>
         <value>Planner or Self can&apos;t be approve. Only assignee of this Promotion to advance it to next Workflow State</value>
     </labels>
+	<labels>
+        <fullName>Maximum_LTA_Duration</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Maximum_LTA_Duration</shortDescription>
+        <value>LTA duration is exceeding maximum permissible value</value>
+    </labels>
     <labels>
         <fullName>Duplicate_for_Delivery_profile</fullName>
         <language>en_GB</language>
@@ -125,13 +132,6 @@
         <protected>false</protected>
         <shortDescription>Shipment_Instore_validation</shortDescription>
         <value>Shipment Start Date should be on or before In-Store Start Date!</value>
-    </labels>
-	<labels>
-        <fullName>UL_Duplicate_Record_Found</fullName>
-        <language>en_GB</language>
-        <protected>false</protected>
-        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
-        <value>Dates are overlapping with existing records for same deliver profile.</value>
     </labels>
     <labels>
         <fullName>UL_ADD_CUSTOMER_TO</fullName>
@@ -943,7 +943,7 @@
         <shortDescription>Approval Workflow Service</shortDescription>
         <value>You can put Promotion back in Planning only if it is future dated</value>
     </labels>
-   <labels>
+	 <labels>
         <fullName>UL_Multiple_Categories</fullName>
         <language>en_US</language>
         <protected>true</protected>  
@@ -957,93 +957,149 @@
 		<shortDescription>UL_Multiple_Brands</shortDescription>		
         <value>Multiple Brands</value>
     </labels>
-<labels>
-        <fullName>BaseRevenue</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>BaseRevenue</shortDescription>
-        <value>BaseRevenue</value>
+	 <labels>
+        <fullName>UL_Off_Shelf</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Off_Shelf</shortDescription>
+        <value>Off-Shelf</value>
     </labels>
-    <labels>
-        <fullName>BaselineVolume</fullName>
-        <categories>KPI</categories>
+	 <labels>
+        <fullName>Select_one_record</fullName>
+        <categories>Promotions_Closing</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Baseline</shortDescription>
-        <value>Baseline</value>
+        <shortDescription>Select one record</shortDescription>
+        <value>Please select at least one record.</value>
     </labels>
-    <labels>
-        <fullName>CLEAR_FILTER</fullName>
-        <categories>Label</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Clear Filter label.</shortDescription>
-        <value>Clear Filter</value>
+	<labels>
+        <fullName>UL_Shelf</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Shelf</shortDescription>
+        <value>Shelf</value>
     </labels>
-    <labels>
-        <fullName>EffectiveRevenue</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>EffectiveRevenue</shortDescription>
-        <value>EffectiveRevenue</value>
-    </labels>
-    <labels>
-        <fullName>GSV</fullName>
-        <categories>KPI</categories>
+	     <labels>
+        <fullName>Close_Promotion_Initiated</fullName>
+        <categories>Promotions_Closing</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>GSV</shortDescription>
-        <value>GSV</value>
+        <shortDescription>Close Promotion Initiated</shortDescription>
+        <value>The closing of the promotions is initiated.</value>
     </labels>
     <labels>
-        <fullName>INCLUSIVE</fullName>
-        <categories>Label</categories>
+        <fullName>Close_Promotion_Missing_Sharing</fullName>
+        <categories>Promotions_Closing</categories>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Inclusive label</shortDescription>
-        <value>Inclusive</value>
+        <protected>false</protected>
+        <shortDescription>Close Promotion Missing Sharing</shortDescription>
+        <value>You can not close the following promotions due to missing sharing access.</value>
     </labels>
     <labels>
-        <fullName>LTACosts</fullName>
+        <fullName>Close_Promotions_Confirmation</fullName>
+        <categories>Promotions_Closing</categories>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>LTACosts</shortDescription>
-        <value>LTACosts</value>
+        <protected>false</protected>
+        <shortDescription>Close Promotions Confirmation</shortDescription>
+        <value>Are you sure you want to close the selected promotions?</value>
+    </labels>
+	<labels>
+        <fullName>UL_Duplicate_Record_Found</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
+        <value>Dates are overlapping with existing records for same deliver profile.</value>
+    </labels>
+	<labels>
+        <fullName>UL_TACTIC_FUND_ASSOCIATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Promotion approval validation message</shortDescription>
+        <value>Each tactic must have at least one related fund</value>
+    </labels>
+ <labels>
+        <fullName>UL_DummyProdonTactic</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Check atleast one dummy product on each tactic</shortDescription>
+        <value>All Off-Invoice tactics must contain a dummy product</value>
+    </labels>
+  <labels>
+        <fullName>UL_UserNotSetup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Users data not setup properly</shortDescription>
+        <value>Finance analyst/Finance managers not setup properly</value>
+    </labels>
+	<labels>
+        <fullName>Requires_All_Mandatory_Tactic_for_Promotion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requires_All_Mandatory_Tactic_for_Promotion</shortDescription>
+        <value>Please add,before proceeding for approval</value>
+    </labels>
+	<labels>
+        <fullName>UL_Fund_Open_Promotion_Error</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Fund Open Promotion Error</shortDescription>
+        <value>This fund is present in a open promotion and cannot be closed</value>
     </labels>
     <labels>
-        <fullName>NO_SEARCH_CRITERIA</fullName>
-        <categories>UL_AddCustomer</categories>
+        <fullName>UL_Fund_Open_Transaction_Error</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Fund Open Transaction Error</shortDescription>
+        <value>This fund is present in a transaction which is pending for Approval and cannot be closed</value>
+    </labels>
+	<labels>
+        <fullName>UL_ACTIVITY_SECTOR</fullName>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Provide Search Criteria</shortDescription>
-        <value>Please enter at least one search criteria</value>
+        <protected>false</protected>
+        <shortDescription>Activity sector label for add customer page</shortDescription>
+        <value>Sector de Actividad</value>
+    </labels>
+    <labels>
+        <fullName>UL_TERRITORY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Territory label for add customer page</shortDescription>
+        <value>Territorio</value>
     </labels>
     <labels>
         <fullName>PP_BTN_ADD</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_ADD</shortDescription>
-        <value>sdf</value>
+        <value>Add</value>
     </labels>
     <labels>
         <fullName>PP_BTN_ADD2</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_ADD2</shortDescription>
         <value>myadd</value>
     </labels>
     <labels>
         <fullName>PP_BTN_APPLY_FILTER</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_APPLY_FILTER</shortDescription>
         <value>Apply Filter</value>
     </labels>
     <labels>
-        <fullName>PP_BTN_APPLY_TIERS</fullName>
-        <categories>PromotionUI</categories>
+        <fullName>PP_BTN_APPLY_FUND</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_APPLY_FUND</shortDescription>
+        <value>Apply Fund</value>
+    </labels>
+    <labels>
+        <fullName>PP_BTN_APPLY_TIERS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
         <shortDescription>PP_BTN_APPLY_TIERS</shortDescription>
         <value>Apply Tiers</value>
     </labels>
@@ -1056,73 +1112,129 @@
         <value>Approve</value>
     </labels>
     <labels>
+        <fullName>PP_BTN_AUDITTRAIL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_AUDITTRAIL</shortDescription>
+        <value>Audit Trail</value>
+    </labels>
+    <labels>
         <fullName>PP_BTN_CANCEL</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_CANCEL</shortDescription>
         <value>Cancel</value>
     </labels>
     <labels>
+        <fullName>PP_BTN_CANCELLED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_CANCELLED</shortDescription>
+        <value>Cancelled</value>
+    </labels>
+    <labels>
+        <fullName>PP_BTN_CLOSE</fullName>
+        <categories>PromotionUI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_CLOSE</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
         <fullName>PP_BTN_DELETE</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_DELETE</shortDescription>
         <value>Delete</value>
     </labels>
     <labels>
         <fullName>PP_BTN_DONE</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_DONE</shortDescription>
         <value>Done</value>
     </labels>
     <labels>
         <fullName>PP_BTN_DUPLICATE</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_DUPLICATE</shortDescription>
         <value>Duplicate</value>
     </labels>
     <labels>
         <fullName>PP_BTN_EDIT</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_EDIT</shortDescription>
         <value>Edit</value>
     </labels>
     <labels>
+        <fullName>PP_BTN_ENDDATE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_ENDDATE</shortDescription>
+        <value>End Date</value>
+    </labels>
+    <labels>
+        <fullName>PP_BTN_FINALISED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_FINALISED</shortDescription>
+        <value>Finalised</value>
+    </labels>
+    <labels>
         <fullName>PP_BTN_INVOKETHRESHOLD</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_INVOKETHRESHOLD</shortDescription>
-        <value>Invoke Threshold</value>
+        <value>Threshold</value>
+    </labels>
+    <labels>
+        <fullName>PP_BTN_MANAGE_FUND</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_MANAGE_FUND</shortDescription>
+        <value>Manage Funds</value>
     </labels>
     <labels>
         <fullName>PP_BTN_MANAGE_PRODS</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_MANAGE_PRODS</shortDescription>
         <value>Manage Products</value>
     </labels>
     <labels>
         <fullName>PP_BTN_MANAGE_TIERS</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_MANAGE_TIERS</shortDescription>
         <value>Manage Tiers</value>
     </labels>
     <labels>
+        <fullName>PP_BTN_MENAGE_FUND</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_MENAGE_FUND</shortDescription>
+        <value>Menage Funds</value>
+    </labels>
+    <labels>
         <fullName>PP_BTN_MENAGE_TIERS</fullName>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PP_BTN_APPLY_TIERS</shortDescription>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_MENAGE_TIERS</shortDescription>
         <value>Apply Tiers</value>
     </labels>
     <labels>
-        <fullName>PP_BTN_NEW</fullName>
-        <categories>PromotionUI</categories>
+        <fullName>PP_BTN_MODEL</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_MODEL</shortDescription>
+        <value>Model</value>
+    </labels>
+    <labels>
+        <fullName>PP_BTN_NEW</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
         <shortDescription>PP_BTN_NEW</shortDescription>
         <value>New</value>
     </labels>
@@ -1134,9 +1246,16 @@
         <value>Ok</value>
     </labels>
     <labels>
+        <fullName>PP_BTN_PLANNED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_PLANNED</shortDescription>
+        <value>Planned</value>
+    </labels>
+    <labels>
         <fullName>PP_BTN_PUSH</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_PUSH</shortDescription>
         <value>Push</value>
     </labels>
@@ -1149,9 +1268,16 @@
         <value>Reject</value>
     </labels>
     <labels>
+        <fullName>PP_BTN_REJECTED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_REJECTED</shortDescription>
+        <value>Rejected</value>
+    </labels>
+    <labels>
         <fullName>PP_BTN_RELEASE</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_RELEASE</shortDescription>
         <value>Release</value>
     </labels>
@@ -1165,24 +1291,52 @@
     <labels>
         <fullName>PP_BTN_SAVE_REFRESH</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_SAVE_REFRESH</shortDescription>
         <value>Save &amp; Refresh</value>
     </labels>
     <labels>
         <fullName>PP_BTN_SEARCH</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_BTN_SEARCH</shortDescription>
         <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>PP_BTN_SIMULATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_SIMULATION</shortDescription>
+        <value>Simulation</value>
+    </labels>
+    <labels>
+        <fullName>PP_BTN_STOPPED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_STOPPED</shortDescription>
+        <value>Stopped</value>
     </labels>
     <labels>
         <fullName>PP_BTN_SUBMIT</fullName>
         <categories>PromotionUI</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>#PP_BTN_SUBMIT</shortDescription>
+        <shortDescription>PP_BTN_SUBMIT</shortDescription>
         <value>Submit Workflow</value>
+    </labels>
+    <labels>
+        <fullName>PP_BTN_SUBMITTEDFORAPPROVAL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_SUBMITTEDFORAPPROVAL</shortDescription>
+        <value>Sumitted for Approval</value>
+    </labels>
+    <labels>
+        <fullName>PP_DELETE_VALIDATION_ERROR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_DELETE_VALIDATION_ERROR</shortDescription>
+        <value>You cannot delete the promotion product if phase is Cancelled or Committed.</value>
     </labels>
     <labels>
         <fullName>PP_LBL_AMOUNT</fullName>
@@ -1190,6 +1344,13 @@
         <protected>true</protected>
         <shortDescription>PP_LBL_AMOUNT</shortDescription>
         <value>Amount</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_AMOUNT_ALLOCATED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_LBL_AMOUNT_ALLOCATED</shortDescription>
+        <value>Amount Allocated</value>
     </labels>
     <labels>
         <fullName>PP_LBL_ANCHOR_CUSTOMER</fullName>
@@ -1206,9 +1367,16 @@
         <value>Anchor Product</value>
     </labels>
     <labels>
+        <fullName>PP_LBL_AVAILABLE_TO_SPEND</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_LBL_AVAILABLE_TO_SPEND</shortDescription>
+        <value>Available to Spend</value>
+    </labels>
+    <labels>
         <fullName>PP_LBL_CLEAN_PUSH_ERROR</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_CLEAN_PUSH_ERROR</shortDescription>
         <value>An error occurred while trying to clean the child promotions account</value>
     </labels>
@@ -1264,7 +1432,7 @@
     <labels>
         <fullName>PP_LBL_DATES</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_DATES</shortDescription>
         <value>Dates</value>
     </labels>
@@ -1292,7 +1460,7 @@
     <labels>
         <fullName>PP_LBL_DURATION</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_DURATION</shortDescription>
         <value>Duration</value>
     </labels>
@@ -1383,7 +1551,7 @@
     <labels>
         <fullName>PP_LBL_INCLUDED</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_INCLUDED</shortDescription>
         <value>Included</value>
     </labels>
@@ -1402,11 +1570,42 @@
         <value>Last Update Date</value>
     </labels>
     <labels>
+        <fullName>PP_LBL_MAIN_DATES</fullName>
+        <categories>PromotionUI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_LBL_MAIN_DATES</shortDescription>
+        <value>Promotion Dates</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_MAIN_DETAILS</fullName>
+        <categories>PromotionUI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_LBL_MAIN_DETAILS</shortDescription>
+        <value>Promotion Details</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_MAIN_ID</fullName>
+        <categories>PromotionUI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_LBL_MAIN_ID</shortDescription>
+        <value>Promotion ID</value>
+    </labels>
+    <labels>
         <fullName>PP_LBL_MAIN_INFO</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_MAIN_INFO</shortDescription>
         <value>Main Information</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_MODAL_MSG</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_LBL_MODAL_MSG</shortDescription>
+        <value>&lt;Modal Msg&gt;</value>
     </labels>
     <labels>
         <fullName>PP_LBL_NAME_ATTACHMENT</fullName>
@@ -1418,7 +1617,7 @@
     <labels>
         <fullName>PP_LBL_NODATA</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_NODATA</shortDescription>
         <value>No data</value>
     </labels>
@@ -1439,21 +1638,28 @@
     <labels>
         <fullName>PP_LBL_NO_FUNDS</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_NO_FUNDS</shortDescription>
         <value>No Funds associated to this tactic</value>
     </labels>
     <labels>
         <fullName>PP_LBL_NO_TIERS</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_NO_TIERS</shortDescription>
         <value>No Tiers associated to this tactic</value>
     </labels>
     <labels>
+        <fullName>PP_LBL_PERCENTAGE_ALLOCATED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_LBL_PERCENTAGE_ALLOCATED</shortDescription>
+        <value>% Allocated</value>
+    </labels>
+    <labels>
         <fullName>PP_LBL_PLANNED</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_PLANNED</shortDescription>
         <value>Planned</value>
     </labels>
@@ -1488,7 +1694,7 @@
     <labels>
         <fullName>PP_LBL_PUSH_ERROR</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_PUSH_ERROR</shortDescription>
         <value>An error occurred while trying to push the child promotion account</value>
     </labels>
@@ -1509,14 +1715,14 @@
     <labels>
         <fullName>PP_LBL_RELEASE_ERROR</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_RELEASE_ERROR</shortDescription>
         <value>An error occurred while trying to release the child promotions account</value>
     </labels>
     <labels>
         <fullName>PP_LBL_SELECT</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_SELECT</shortDescription>
         <value>Select</value>
     </labels>
@@ -1532,14 +1738,14 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>PP_LBL_STATUS</shortDescription>
-        <value>Status</value>
+        <value>test lable</value>
     </labels>
     <labels>
         <fullName>PP_LBL_TACTIC</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_LBL_TACTIC</shortDescription>
-        <value>Tactics</value>
+        <value>Tactic</value>
     </labels>
     <labels>
         <fullName>PP_LBL_TACTICS</fullName>
@@ -1607,7 +1813,7 @@
     <labels>
         <fullName>PP_TIT_AMOUNT</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_AMOUNT</shortDescription>
         <value>Amount</value>
     </labels>
@@ -1621,35 +1827,35 @@
     <labels>
         <fullName>PP_TIT_CHART_COSTS</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_CHART_COSTS</shortDescription>
         <value>COSTS</value>
     </labels>
     <labels>
         <fullName>PP_TIT_CHART_INCREMENTAL_COSTS</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_CHART_INCREMENTAL_COSTS</shortDescription>
         <value>Incremental Costs (Tactic)</value>
     </labels>
     <labels>
         <fullName>PP_TIT_CHART_INCREMENTAL_SALES</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_CHART_INCREMENTAL_SALES</shortDescription>
         <value>Incremental Sales (Tactic)</value>
     </labels>
     <labels>
         <fullName>PP_TIT_CHART_ROI</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_CHART_ROI</shortDescription>
         <value>ROI</value>
     </labels>
     <labels>
         <fullName>PP_TIT_CHART_VOLUME_VS_BASELINE</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_CHART_VOLUME_VS_BASELINE</shortDescription>
         <value>Planned Tactic Volume vs. Baseline</value>
     </labels>
@@ -1663,7 +1869,7 @@
     <labels>
         <fullName>PP_TIT_CLEAN_PUSH_ERROR</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_CLEAN_PUSH_ERROR</shortDescription>
         <value>Error cleaning child promotions</value>
     </labels>
@@ -1684,15 +1890,14 @@
     <labels>
         <fullName>PP_TIT_FUND_LOOKUP</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_FUND_LOOKUP</shortDescription>
         <value>Fund Lookup</value>
     </labels>
     <labels>
         <fullName>PP_TIT_INCLUDE_EXCLUDE_ALL</fullName>
-        <categories>Promotion UI</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_INCLUDE_EXCLUDE_ALL</shortDescription>
         <value>Include/Exclude All</value>
     </labels>
@@ -1706,28 +1911,28 @@
     <labels>
         <fullName>PP_TIT_KPI</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_KPI</shortDescription>
         <value>KPIs</value>
     </labels>
     <labels>
         <fullName>PP_TIT_MEASURE</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_MEASURE</shortDescription>
         <value>Measure</value>
     </labels>
     <labels>
         <fullName>PP_TIT_NOCONTENT</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_NOCONTENT</shortDescription>
         <value>NO CONTENT</value>
     </labels>
     <labels>
         <fullName>PP_TIT_PROD_LOOKUP</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_PROD_LOOKUP</shortDescription>
         <value>Product Lookup</value>
     </labels>
@@ -1741,14 +1946,14 @@
     <labels>
         <fullName>PP_TIT_PROMO_SUMMARY</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_PROMO_SUMMARY</shortDescription>
         <value>Promotion Summary</value>
     </labels>
     <labels>
         <fullName>PP_TIT_PUSH_ERROR</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_PUSH_ERROR</shortDescription>
         <value>Error pushing child promotion</value>
     </labels>
@@ -1762,28 +1967,28 @@
     <labels>
         <fullName>PP_TIT_RELEASE_ERROR</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_RELEASE_ERROR</shortDescription>
         <value>Error updating child promotions</value>
     </labels>
     <labels>
         <fullName>PP_TIT_SELECT</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_SELECT</shortDescription>
         <value>SELECT</value>
     </labels>
     <labels>
         <fullName>PP_TIT_TACTIC_INFO</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_TACTIC_INFO</shortDescription>
         <value>Tactic Information</value>
     </labels>
     <labels>
         <fullName>PP_TIT_TIERED_INFORMATION</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_TIERED_INFORMATION</shortDescription>
         <value>Tiered Information</value>
     </labels>
@@ -1804,52 +2009,418 @@
     <labels>
         <fullName>PP_TIT_VOLUME_MAX</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_VOLUME_MAX</shortDescription>
         <value>Volume Max</value>
     </labels>
     <labels>
         <fullName>PP_TIT_VOLUME_MIN</fullName>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>PP_TIT_VOLUME_MIN</shortDescription>
         <value>Volume Min</value>
     </labels>
     <labels>
-        <fullName>PhasedBaseVolume</fullName>
-        <categories>KPI</categories>
+        <fullName>PSAR_Chatter</fullName>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PhasedBaseVolume</shortDescription>
-        <value>Phased Base Volume</value>
+        <protected>false</protected>
+        <shortDescription>PSAR_CollaborateOnChatter</shortDescription>
+        <value>Collaborate on PR Supply Chain Metrics</value>
     </labels>
     <labels>
-        <fullName>PlannedCosts</fullName>
+        <fullName>PS_OBJ_NAME</fullName>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PlannedCosts</shortDescription>
-        <value>PlannedCosts</value>
+        <protected>false</protected>
+        <shortDescription>PS_OBJ_NAME</shortDescription>
+        <value>a4R</value>
     </labels>
     <labels>
-        <fullName>PromoRevenue</fullName>
+        <fullName>Project_Name_Contains_Brand_Name_Target_Launch_Date</fullName>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>PromoRevenue</shortDescription>
-        <value>PromoRevenue</value>
+        <protected>false</protected>
+        <shortDescription>Project Name Contains Brand Name Target Launch Date</shortDescription>
+        <value>Project Name Should not Contain Brand Name and Target Launch Date</value>
     </labels>
     <labels>
-        <fullName>TotalCost</fullName>
+        <fullName>Promotion_Access_Edit</fullName>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>TotalCost</shortDescription>
-        <value>TotalCost</value>
+        <shortDescription>Promotion Access Edit</shortDescription>
+        <value>Edit</value>
     </labels>
     <labels>
-        <fullName>TotalVolume</fullName>
+        <fullName>Promotion_Access_Read</fullName>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>TotalVolume</shortDescription>
-        <value>TotalVolume</value>
+        <shortDescription>Promotion Access Read</shortDescription>
+        <value>Read</value>
+    </labels>
+    <labels>
+        <fullName>Promotion_Closure_Failed</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Promotion Closure Failed</shortDescription>
+        <value>The following promotions can not be closed as the closing conditions are not fulfilled (end date must be passed and workflow state must be approved). Please deselect these items:</value>
+    </labels>
+    <labels>
+        <fullName>Promotion_Closure_Internal_Error</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Promotion Closure Internal Error</shortDescription>
+        <value>An error occured while closing the promotion, please contact the administrator.</value>
+    </labels>
+    <labels>
+        <fullName>Promotions_Closed_Successfully</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Promotions Closed Successfully</shortDescription>
+        <value>All promotions have been closed successfully.</value>
+    </labels>
+    <labels>
+        <fullName>Requires_All_Mandatory_Tactic_for_Promotion</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Requires All Mandatory Tactic for Promotion</shortDescription>
+        <value>Please add,before proceeding for approval</value>
+    </labels>
+    <labels>
+        <fullName>Rollout_No_Records_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rollout No Records Msg</shortDescription>
+        <value>No Rollouts exist for this project, Please select one from the above.</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Answer_Accepted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Answer Accepted</shortDescription>
+        <value>Answer Accepted</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Answer_Rejected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Need More Info ( earlier Answer Rejected )</shortDescription>
+        <value>Need More Info</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Awaiting_CC_details_Pending_with_ULEMP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Awaiting CC details (Pending with ULEMP)</shortDescription>
+        <value>Awaiting CC details (Pending with ULEMP)</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Awaiting_CC_details_Pending_with_ULSMT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Awaiting CC details (Pending with ULSMT)</shortDescription>
+        <value>Awaiting CC details (Pending with ULSMT)</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Awaiting_Charge</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Awaiting Charge</shortDescription>
+        <value>Awaiting Charge</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Awaiting_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Awaiting Information</shortDescription>
+        <value>Awaiting Information</value>
+    </labels>
+    <labels>
+        <fullName>SAM_CC_Details_Provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM CC Details Provided</shortDescription>
+        <value>CC details provided (By ULEMP)</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Charging_Completed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Charging Completed</shortDescription>
+        <value>Charging Completed</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Charging_In_Progress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Charging In Progress</shortDescription>
+        <value>Charging In Progress</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Charging_Rejected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Charging Rejected</shortDescription>
+        <value>Charging Rejected</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Closed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Closed</shortDescription>
+        <value>Closed</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Cross_Charge_Applicable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Cross Charge Applicable</shortDescription>
+        <value>Cross Charge Applicable (X)</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Default_URL</fullName>
+        <categories>SAM_Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM_Default_URL</shortDescription>
+        <value>https://unilever.my.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Details_Pending</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Details Pending</shortDescription>
+        <value>Details Pending</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Details_Provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Details Provided</shortDescription>
+        <value>Details Provided</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Draft_Quote_Provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Draft Quote Provided</shortDescription>
+        <value>Draft Quote Provided</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Finance_Queue_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Finance Queue Id</shortDescription>
+        <value>00G0L0000041dMNUAY</value>
+    </labels>
+    <labels>
+        <fullName>SAM_In_Progress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM In Progress</shortDescription>
+        <value>In Progress</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Information_Provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Information Provided</shortDescription>
+        <value>Information Provided</value>
+    </labels>
+    <labels>
+        <fullName>SAM_NewLine</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM NewLine</shortDescription>
+        <value>.
+.</value>
+    </labels>
+    <labels>
+        <fullName>SAM_No_Software_Spend</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM No Software Spend</shortDescription>
+        <value>No Software Spend</value>
+    </labels>
+    <labels>
+        <fullName>SAM_On_Hold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM On Hold</shortDescription>
+        <value>On Hold</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Open</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Open</shortDescription>
+        <value>Open</value>
+    </labels>
+    <labels>
+        <fullName>SAM_QLI_NewBtn_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM QLI NewBtn URL</shortDescription>
+        <value>CF00N0L000006A2Js</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Query_Answered</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Query Answered</shortDescription>
+        <value>Query Answered</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Quote_Approved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Quote Approved</shortDescription>
+        <value>Quote Approved</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Quote_Provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Quote Provided</shortDescription>
+        <value>Quote Provided</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Quote_Rejected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Quote Rejected</shortDescription>
+        <value>Quote Rejected</value>
+    </labels>
+    <labels>
+        <fullName>SAM_RLI_NewBtn_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM RLI NewBtn URL</shortDescription>
+        <value>CF00N0L000006A2Jt</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Request_Object_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Request Object name</shortDescription>
+        <value>aCw</value>
+    </labels>
+    <labels>
+        <fullName>SAM_SaveStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM_SaveStatus</shortDescription>
+        <value>Saved</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Team_Queue_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Team Queue Id</shortDescription>
+        <value>00G0L0000041dMOUAY</value>
+    </labels>
+    <labels>
+        <fullName>SAM_from_address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM from address</shortDescription>
+        <value>sam.demandmanagement@unilever.com</value>
+    </labels>
+    <labels>
+        <fullName>SAM_from_address_display_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM from address display name</shortDescription>
+        <value>DemandManagement, SAM</value>
+    </labels>
+    <labels>
+        <fullName>SAM_mandatory_fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM mandatory fields</shortDescription>
+        <value>Below field(s) are mandatory to Submit the record.</value>
+    </labels>
+    <labels>
+        <fullName>SAVE</fullName>
+        <categories>CreatePromotion_SOCO</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SAVE</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>Select_one_record</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select one record</shortDescription>
+        <value>Please select at least one record.</value>
+    </labels>
+    <labels>
+        <fullName>Shipment_Instore_validation</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Shipment_Instore_validation</shortDescription>
+        <value>Shipment Start Date should be on or before In-Store Start Date!</value>
+    </labels>
+    <labels>
+        <fullName>TASK_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TASK_OBJ_NAME</shortDescription>
+        <value>a4a</value>
+    </labels>
+    <labels>
+        <fullName>TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TLD After Charter Contract and Market Ready Milestone Dates</shortDescription>
+        <value>Target Launch Date must be after Charter, Contract and Market Ready mandatory milestones.</value>
+    </labels>
+    <labels>
+        <fullName>TO_CaseIdentifier</fullName>
+        <categories>TO - Case Idenifier Constant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TO_CaseIdentifier</shortDescription>
+        <value>George</value>
+    </labels>
+    <labels>
+        <fullName>TermsOfUseTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TermsOfUseTitle</shortDescription>
+        <value>Terms Of Use</value>
+    </labels>
+    <labels>
+        <fullName>Total_Accepted_Final_Cost_PC_PPC_CA</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total_Accepted_Final_Cost_PC_PPC_CA</shortDescription>
+        <value>Total Accepted Final Cost (CA/PC/PPC) Euro Amount</value>
+    </labels>
+    <labels>
+        <fullName>UL_ACTIVITY_SECTOR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Activity sector label for add customer page</shortDescription>
+        <value>Sector de Actividad</value>
+    </labels>
+    <labels>
+        <fullName>UL_ADD_CUSTOMER_TO</fullName>
+        <categories>Add Customer Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add customer page header</shortDescription>
+        <value>Add Customer(s) to</value>
+    </labels>
+    <labels>
+        <fullName>UL_Approval_Threshold_duplicate_error_message</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval Threshold duplicate error message</shortDescription>
+        <value>The Career Level for this Sales Org already Exists</value>
     </labels>
     <labels>
         <fullName>UL_CANCEL</fullName>
@@ -1857,6 +2428,20 @@
         <protected>true</protected>
         <shortDescription>UL_CANCEL</shortDescription>
         <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>UL_CUCUQuantityError</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>ErrorMessage</shortDescription>
+        <value>An Error occurred while updating CUQuantity value</value>
+    </labels>
+    <labels>
+        <fullName>UL_CURRENCY_DISCREPANCY</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Customer default sold to</shortDescription>
+        <value>Error: A planning level cannot be created for a customer that has sold-to&apos;s with multiple currencies. Please choose a customer node with a single currency to create a planning level.</value>
     </labels>
     <labels>
         <fullName>UL_CUSTOMER_GROUP</fullName>
@@ -1873,12 +2458,68 @@
         <value>Cliente</value>
     </labels>
     <labels>
+        <fullName>UL_Cannibalisation_Error</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Cannibalisation_Error</shortDescription>
+        <value>Dates are overlapping with existing records for same product/customer/feature combination</value>
+    </labels>
+    <labels>
+        <fullName>UL_Cannibalisation_Error_Msg</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Cannibalisation_Error_Msg</shortDescription>
+        <value>An Error occured on Cannibalisation Rate insert</value>
+    </labels>
+    <labels>
+        <fullName>UL_Cannibalisation_beforeInsert</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Cannibalisation_beforeInsert</shortDescription>
+        <value>beforeInsert</value>
+    </labels>
+    <labels>
         <fullName>UL_Cross_Category_Error</fullName>
         <categories>UL TPM Messages</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Cross Category Error</shortDescription>
         <value>For Cross Category Transfer transaction the product category in funds cannot be same</value>
+    </labels>
+    <labels>
+        <fullName>UL_DELETE</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_DELETE</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>UL_Default_Sold_To</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>Default Sold To</shortDescription>
+        <value>Default Sold To</value>
+    </labels>
+    <labels>
+        <fullName>UL_Delivery_Profile_section</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Delivery Profile section</shortDescription>
+        <value>Note: All days are defined in relation to In-Store Start Date</value>
+    </labels>
+    <labels>
+        <fullName>UL_DummyProdonTactic</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Check atleast one dummy product on each tactic</shortDescription>
+        <value>All Off-Invoice tactics must contain a dummy product</value>
+    </labels>
+    <labels>
+        <fullName>UL_Duplicate_Record_Found</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Duplicate_Record_Found</shortDescription>
+        <value>Valid From and Valid Through Dates are overlapping with an existing Delivery Profile</value>
     </labels>
     <labels>
         <fullName>UL_EDIT</fullName>
@@ -1888,11 +2529,32 @@
         <value>Edit</value>
     </labels>
     <labels>
+        <fullName>UL_ERROR_MESSAGE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generic error message</shortDescription>
+        <value>An error occurred, please contact system administrator.</value>
+    </labels>
+    <labels>
+        <fullName>UL_Edit_Keyword</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Edit_Keyword</shortDescription>
+        <value>/e</value>
+    </labels>
+    <labels>
         <fullName>UL_EligibleAnchor</fullName>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>refere in class-UL_PromotionCopyExtension</shortDescription>
         <value>You are not manager for the selected Anchor Customer</value>
+    </labels>
+    <labels>
+        <fullName>UL_LTA_ATTACHMENT_REQ_MESSAGE</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_LTA_ATTACHMENT_REQ_MESSAGE</shortDescription>
+        <value>This Long Term Agreement cannot move to this status as there is no Attachment attached to this Long Term Agreement</value>
     </labels>
     <labels>
         <fullName>UL_MARKET</fullName>
@@ -1916,11 +2578,60 @@
         <value>91</value>
     </labels>
     <labels>
+        <fullName>UL_Multiple_Brands</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Multiple_Brands</shortDescription>
+        <value>Multiple Brands</value>
+    </labels>
+    <labels>
+        <fullName>UL_Multiple_Categories</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Multiple_Categories</shortDescription>
+        <value>Multiple Categories</value>
+    </labels>
+    <labels>
+        <fullName>UL_Multiple_Markets</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Multiple_Markets</shortDescription>
+        <value>Multiple Markets</value>
+    </labels>
+    <labels>
         <fullName>UL_NEW</fullName>
         <language>en_GB</language>
         <protected>true</protected>
         <shortDescription>UL_NEW</shortDescription>
         <value>New</value>
+    </labels>
+    <labels>
+        <fullName>UL_Name</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>UL_Off_Shelf</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Off_Shelf</shortDescription>
+        <value>Off-Shelf</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_APPROVAL_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval Workflow Service</shortDescription>
+        <value>You can approve a Promotion if it is not in Planning and not in Approved state</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_ASSIGNE_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval Workflow Service</shortDescription>
+        <value>You are not assigne for Approver</value>
     </labels>
     <labels>
         <fullName>UL_PROMOTION_DETAILS</fullName>
@@ -1930,21 +2641,48 @@
         <value>Promotion Details</value>
     </labels>
     <labels>
+        <fullName>UL_PROMOTION_LOCKEDOUT</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Promotion submit request</shortDescription>
+        <value>If you are trying to submit Promotion for Workflow Approval, please check that the Promotion is Active and is in Planning state</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_PLANNING_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval Workflow Service</shortDescription>
+        <value>You can put Promotion back in Planning only if it is future dated</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_REJECT_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval Workflow Service</shortDescription>
+        <value>You can not reject Promotion which is in Planning state</value>
+    </labels>
+    <labels>
+        <fullName>UL_PROMOTION_SUBMIT_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Approval workflow Service</shortDescription>
+        <value>You can submit workflow for approval, only if you are creator and promotion is in Planning state and is Active.</value>
+    </labels>
+    <labels>
         <fullName>UL_PlanningLevelAndCurrency</fullName>
         <categories>UL TPM Messages</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Planning Level And Currency</shortDescription>
-        <value>Planning Level is already set on other level customer with overlapping Validity From/To dates OR 
-there is a different Currency on lower level customer(s)</value>
+        <value>There is already a planning level defined within the same branch of the customer hierarchy for the dates selected. Please end-date that planning level before establishing a new level at this node.</value>
     </labels>
     <labels>
         <fullName>UL_PlanningLevelBetween3To7</fullName>
         <categories>UL TPM Messages</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>Planning Level Between 3 To 7</shortDescription>
-        <value>Planning Level can only be set between levels 3 to 7</value>
+        <value>Planning Level can only be set between levels 3 to 8</value>
     </labels>
     <labels>
         <fullName>UL_PlanningStartEndDate</fullName>
@@ -1955,11 +2693,32 @@ there is a different Currency on lower level customer(s)</value>
         <value>Please enter Planning Start and End Dates, then set Planning Level</value>
     </labels>
     <labels>
+        <fullName>UL_Pomotion_URL</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Promotion URL after copy</shortDescription>
+        <value>/apex/MyPromotionPlanning?id=</value>
+    </labels>
+    <labels>
         <fullName>UL_ProductsMandatory</fullName>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>refer in class-UL_TacticsValidate</shortDescription>
-        <value>Products are mandatory at Tactics level</value>
+        <value>Each investment must have at least one product</value>
+    </labels>
+    <labels>
+        <fullName>UL_PromTemplateActive</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>Promotion is not Active</shortDescription>
+        <value>Promotion template is not active please active it.</value>
+    </labels>
+    <labels>
+        <fullName>UL_PromotionDeleteError</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>Promotion Delete Error Message</shortDescription>
+        <value>User can not delete record in</value>
     </labels>
     <labels>
         <fullName>UL_Promotion_Success</fullName>
@@ -1967,6 +2726,13 @@ there is a different Currency on lower level customer(s)</value>
         <protected>true</protected>
         <shortDescription>Refer in VF page on promotion created</shortDescription>
         <value>Promotion Created Successfully</value>
+    </labels>
+    <labels>
+        <fullName>UL_SALES_ORG_DUPLICATE_CAREER_LEVEL</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Duplicate career level in same sales org</shortDescription>
+        <value>The Career Level for this Sales Org already Exists.</value>
     </labels>
     <labels>
         <fullName>UL_SAVE</fullName>
@@ -1987,7 +2753,57 @@ there is a different Currency on lower level customer(s)</value>
         <language>en_GB</language>
         <protected>true</protected>
         <shortDescription>UL_SOLD_TO</shortDescription>
-        <value>Default SoldTo</value>
+        <value>Sold To</value>
+    </labels>
+    <labels>
+        <fullName>UL_SaveAndNew</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>SaveAndNew</shortDescription>
+        <value>Save &amp; New</value>
+    </labels>
+    <labels>
+        <fullName>UL_Save_New</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Save&amp;New</shortDescription>
+        <value>Save &amp; New</value>
+    </labels>
+    <labels>
+        <fullName>UL_Shelf</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Shelf</shortDescription>
+        <value>Shelf</value>
+    </labels>
+    <labels>
+        <fullName>UL_Slash_Char</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>UL_Slash_Char</shortDescription>
+        <value>/</value>
+    </labels>
+    <labels>
+        <fullName>UL_TACTIC_FUND_ASSOCIATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Promotion approval validation message</shortDescription>
+        <value>Each tactic must have at least one related fund</value>
+    </labels>
+    <labels>
+        <fullName>UL_TERRITORY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Territory label for add customer page</shortDescription>
+        <value>Territorio</value>
+    </labels>
+    <labels>
+        <fullName>UL_Tactic_Fund_Amount_Error</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Tactic Fund Amount Error</shortDescription>
+        <value>Tactic Amount is more than the available amount in the Fund</value>
     </labels>
     <labels>
         <fullName>UL_TacticsOverlap</fullName>
@@ -1995,6 +2811,13 @@ there is a different Currency on lower level customer(s)</value>
         <protected>true</protected>
         <shortDescription>Tactics Overlap in My Promtion Planning page</shortDescription>
         <value>Dates range overlapped with existing Tactics</value>
+    </labels>
+    <labels>
+        <fullName>UL_Template_Error</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Template Error</shortDescription>
+        <value>Please select Promotion Template!</value>
     </labels>
     <labels>
         <fullName>UL_Transfer_Error</fullName>
@@ -2012,6 +2835,295 @@ there is a different Currency on lower level customer(s)</value>
         <value>Update</value>
     </labels>
     <labels>
+        <fullName>UL_UserNotSetup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Users data not setup properly</shortDescription>
+        <value>Finance analyst/Finance managers not setup properly</value>
+    </labels>
+    <labels>
+        <fullName>UW_ASSET_IN_TOOLKIT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_ASSET_IN_TOOLKIT</shortDescription>
+        <value>This file is viewable in the toolkit</value>
+    </labels>
+    <labels>
+        <fullName>UW_ASSET_NOT_IN_TOOLKIT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_ASSET_NOT_IN_TOOLKIT</shortDescription>
+        <value>This file is not viewable in the toolkit</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_AddMembers_Save_Success</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_AddMembers_Save_Success</shortDescription>
+        <value>Successfully added selected users to this BET</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_AddSelectedButton</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_AddSelectedButton</shortDescription>
+        <value>View Selected</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Add_Internal_Members</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Add_Internal_Members</shortDescription>
+        <value>Add Internal Members</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_BackButton</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_BackButton</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_ConfirmMembers_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_ConfirmMembers_Button</shortDescription>
+        <value>Add Selected</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_External_Chatter_Profile_Name</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_External_Chatter_Profile_Name</shortDescription>
+        <value>Chatter External User</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_GoToPageCommandLink</fullName>
+        <categories>BET 2.0 - TabHomePage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_GoToPageCommandLink</shortDescription>
+        <value>View Site</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Groups_Radio_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Groups_Radio_Button</shortDescription>
+        <value>Groups</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_Button</shortDescription>
+        <value>HELP &amp; GUIDANCE</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_Id</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_Id</shortDescription>
+        <value>a0CE0000002iLITMA2</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_Text</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_Text</shortDescription>
+        <value>&lt;br/&gt;&lt;br/&gt;
+This is the place where Marketers collaborate together to deliver exceptional brand experiences in market.  If you need some help to get you started, or to access templates and materials click in the box below.&lt;br/&gt;&lt;br/&gt;</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_WelcomeText</fullName>
+        <categories>BET 2.0 - TabHomePage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_WelcomeText</shortDescription>
+        <value>Welcome to Brand Experience</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_MANAGER_REQUIRED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_MANAGER_REQUIRED</shortDescription>
+        <value>A BET Team must have at least one manager.</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_MembersAccesslevel_HelpText</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_MembersAccesslevel_HelpText</shortDescription>
+        <value>Full Brand Experience (Toolkit &amp; Studio) has access to both the toolkit and studio, Toolkit Experience (Toolkit only) has access to only the toolkit and External View (Chatter group only) has access to the Chatter Group only</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_MembersSelected_Count</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_MembersSelected_Count</shortDescription>
+        <value>Members selected:</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Members_Radio_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Members_Radio_Button</shortDescription>
+        <value>Members</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Next_Page</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Next_Page</shortDescription>
+        <value>Next Page&gt;&gt;</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_NoAccess_HelpText</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_NoAccess_HelpText</shortDescription>
+        <value>Not all Chatter users have access to this Brand Experience App, if a member is already added they won&apos;t be displayed here</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Previous_Page</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Previous_Page</shortDescription>
+        <value>&lt;&lt;Previous Page</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_ReadMoreCommandLink</fullName>
+        <categories>BET 2.0 - TabHomePage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_ReadMoreCommandLink</shortDescription>
+        <value>Read more...</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_SearchText_Error_MSG</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_SearchText_Error_MSG</shortDescription>
+        <value>Search term must contain at least 2 characters</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Search_NoResult_Message</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Search_NoResult_Message</shortDescription>
+        <value>No matching search results</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_TabHome_Heading</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_TabHome_Heading</shortDescription>
+        <value>BRAND &lt;span style=&quot;font:16px&quot;&gt;E&lt;/span&gt;XPERIENCE</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Users_To_Show_In_List</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Users_To_Show_In_List</shortDescription>
+        <value>20</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_membersRoleName_HelpText</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_membersRoleName_HelpText</shortDescription>
+        <value>Manager: Has full control of the toolkit, able to add users to the studio/toolkit, label &amp; promote files from studio. Member: Able to view toolkit and contribute to the studio.</value>
+    </labels>
+    <labels>
+        <fullName>UW_CANNOT_LAUNCH_WALL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_CANNOT_LAUNCH_WALL</shortDescription>
+        <value>You must be group owner or System Admin to launch the wall!</value>
+    </labels>
+    <labels>
+        <fullName>UW_CANNOT_MODIFY_PREFS</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_CANNOT_MODIFY_PREFS</shortDescription>
+        <value>You are not authorised to modify preferences</value>
+    </labels>
+    <labels>
+        <fullName>UW_CANNOT_PIN</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_CANNOT_PIN</shortDescription>
+        <value>You must be the chatter post owner to pin a video to the wall</value>
+    </labels>
+    <labels>
+        <fullName>UW_ERR_DUPE_BET_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_ERR_DUPE_BET_NAME</shortDescription>
+        <value>BET Name already used and caused a  duplicate Studio Group Name!</value>
+    </labels>
+    <labels>
+        <fullName>UW_OPEN_STUDIO_FROM_GROUP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_OPEN_STUDIO_FROM_GROUP</shortDescription>
+        <value>This is the external view of the studio.
+For Unilever Internal users, use the links below to open the toolkit, brand &amp; studio.</value>
+    </labels>
+    <labels>
+        <fullName>UW_PINNOVATE_ALREADY_LAUNCHED</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_PINNOVATE_ALREADY_LAUNCHED</shortDescription>
+        <value>Pinnovate Wall already launched</value>
+    </labels>
+    <labels>
+        <fullName>UW_PINNOVATE_LAUNCHED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_PINNOVATE_LAUNCHED</shortDescription>
+        <value>has launched the pinnovate wall. See the Link in the information section.</value>
+    </labels>
+    <labels>
+        <fullName>UW_SET_BACKGROUND_CMD</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_SET_BACKGROUND_CMD</shortDescription>
+        <value>#setbackground</value>
+    </labels>
+    <labels>
+        <fullName>UW_SET_HEADER_CMD</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_SET_HEADER_CMD</shortDescription>
+        <value>#setheader</value>
+    </labels>
+    <labels>
         <fullName>Ul_EmptyAccounts</fullName>
         <language>en_GB</language>
         <protected>true</protected>
@@ -2019,32 +3131,1055 @@ there is a different Currency on lower level customer(s)</value>
         <value>you do not have valid planning period Accounts!</value>
     </labels>
     <labels>
-        <fullName>Ul_MinStoreDate</fullName>
-        <language>en_GB</language>
+        <fullName>User_Profile_No_Right</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Ul_MinStoreDate</shortDescription>
-        <value>2</value>
+        <shortDescription>User Profile No Right</shortDescription>
+        <value>You do not have the necessary Object or Field Level Security rights to close promotions.</value>
     </labels>
     <labels>
-        <fullName>UnitsPerCase</fullName>
+        <fullName>VEP_Access_Err</fullName>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>UnitsPerCase</shortDescription>
-        <value>UnitsPerCase</value>
+        <protected>false</protected>
+        <shortDescription>VEP_Access_Err</shortDescription>
+        <value>You do not have sufficient access to the record</value>
     </labels>
     <labels>
-        <fullName>incrVolume</fullName>
+        <fullName>VEP_Approve_Reject_Status_Error</fullName>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>incrVolume</shortDescription>
-        <value>incrVolume</value>
+        <protected>false</protected>
+        <shortDescription>VEP Approve/Reject Status Error</shortDescription>
+        <value>Please click on the Approve/Reject link that you have received in Email</value>
     </labels>
     <labels>
-        <fullName>let_me_know_when_you_are_available</fullName>
+        <fullName>VEP_ApproverAccess_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP_ApproverAccess_Err</shortDescription>
+        <value>You cannot be the approver for your request</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Factory_Name_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Factory Name Id</shortDescription>
+        <value>00NE0000006DMJ0</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Quiz_Correcturl_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Quiz Correcturl Err</shortDescription>
+        <value>Please click on the correct Url of Safety Quiz</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Quiz_Pass_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Quiz Pass Err</shortDescription>
+        <value>Visitor Pass has already been generated for this request</value>
+    </labels>
+    <labels>
+        <fullName>VEP_SafetyQuiz_Url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP_SafetyQuiz_Url</shortDescription>
+        <value>https://unilever.mc.eu1.kontiki.com/global2/content?moid=ca878396-6bc7-41b3-8715-86a4c46bf9b8</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Status_ERR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP_Status_ERR</shortDescription>
+        <value>Please click on the correct URL that you have received</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Visitor_Contact_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Visitor Contact Id</shortDescription>
+        <value>00NE0000006DMIr</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Visitor_Department_id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Visitor Department id</shortDescription>
+        <value>00NE0000006DMIv</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Visitor_Email_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Visitor Email Id</shortDescription>
+        <value>00NE0000006DMIz</value>
+    </labels>
+    <labels>
+        <fullName>WINatPOS_Empty_Param</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WINatPOS Empty Param</shortDescription>
+        <value>Method get an empyt value please pass non null value.</value>
+    </labels>
+    <labels>
+        <fullName>WINatPOS_Salesforce_Base_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WINatPOS_Salesforce_Base_URL</shortDescription>
+        <value>https://unilever.my.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>WP_Download_Item_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Download Item Text</shortDescription>
+        <value>Download image of this item with description</value>
+    </labels>
+    <labels>
+        <fullName>WP_Download_Range_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Download Range Text</shortDescription>
+        <value>Download image range with descriptions</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Download</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Download</shortDescription>
+        <value>Download</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Generated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Generated</shortDescription>
+        <value>Generated</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Image</shortDescription>
+        <value>Image</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Toolkit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Toolkit</shortDescription>
+        <value>Toolkit</value>
+    </labels>
+    <labels>
+        <fullName>WP_In_Store_Executions_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP In Store Executions Mode</shortDescription>
+        <value>In Store Execution</value>
+    </labels>
+    <labels>
+        <fullName>WP_In_Store_Executions_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP In Store Executions Page</shortDescription>
+        <value>WINatPOS_InStoreExecutions</value>
+    </labels>
+    <labels>
+        <fullName>WP_Innovations_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Innovations Mode</shortDescription>
+        <value>Innovation</value>
+    </labels>
+    <labels>
+        <fullName>WP_Innovations_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Innovations Page</shortDescription>
+        <value>WINatPOS_Innovations</value>
+    </labels>
+    <labels>
+        <fullName>WP_Masterbrand_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Masterbrand Mode</shortDescription>
+        <value>Masterbrand</value>
+    </labels>
+    <labels>
+        <fullName>WP_Masterbrand_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Masterbrand Page</shortDescription>
+        <value>WINatPOS_Masterbrand</value>
+    </labels>
+    <labels>
+        <fullName>WP_No_File_Specified</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP No File Specified</shortDescription>
+        <value>No upload file was specified</value>
+    </labels>
+    <labels>
+        <fullName>WP_Repeatable_Models_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Repeatable Models Mode</shortDescription>
+        <value>Repeatable Model</value>
+    </labels>
+    <labels>
+        <fullName>WP_Repeatable_Models_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Repeatable Models Page</shortDescription>
+        <value>WINatPOS_RepeatableModels</value>
+    </labels>
+    <labels>
+        <fullName>WP_Search_String_Too_Short</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Search String Too Short</shortDescription>
+        <value>Search term must be longer than 2 characters. Please update and try again.</value>
+    </labels>
+    <labels>
+        <fullName>WP_Select_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Select Brand</shortDescription>
+        <value>Select a Brand</value>
+    </labels>
+    <labels>
+        <fullName>WP_Select_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Select Category</shortDescription>
+        <value>Select a Category</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Error_Saving_Changes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Error Saving Changes</shortDescription>
+        <value>One or more errors occurred while applying these updates. Please refresh your search results and try again.</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Help_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Help Text</shortDescription>
+        <value>Search for active Salesforce Platform users and apply permission sets using the lower pane.</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Too_Many_Results_Part_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Too Many Results Part 1</shortDescription>
+        <value>Your search returned more than</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Too_Many_Results_Part_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Too Many Results Part 2</shortDescription>
+        <value>results. Please refine your search criteria and try again.</value>
+    </labels>
+    <labels>
+        <fullName>WU_Category</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Category</shortDescription>
+        <value>Network</value>
+    </labels>
+    <labels>
+        <fullName>WU_City</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>WU_Country</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>WU_DuplicateCapacityDetailWhileInsert</fullName>
+        <categories>WU_Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_DuplicateCapacityDetailWhileInsert</shortDescription>
+        <value>Warehouse Capacity Detail record already exists with the provided Utilization Start Date and Utilization End Date. If you want to edit the existing Warehouse Capacity Detail record, edit it from the list.</value>
+    </labels>
+    <labels>
+        <fullName>WU_EndDate</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU EndDate</shortDescription>
+        <value>Utilization End Date</value>
+    </labels>
+    <labels>
+        <fullName>WU_MCO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU MCO</shortDescription>
+        <value>Cluster</value>
+    </labels>
+    <labels>
+        <fullName>WU_Region</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Region</shortDescription>
+        <value>Region</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_City</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_City</shortDescription>
+        <value>00NE0000006KO58</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Country</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Country</shortDescription>
+        <value>00NE0000006KO5B</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Id</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Id</shortDescription>
+        <value>00OE0000002s0GT</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_MCO</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_MCO</shortDescription>
+        <value>00NE0000006KO5Q</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Network</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Network</shortDescription>
+        <value>00NE0000006KO5S</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Region</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Region</shortDescription>
+        <value>00NE0000006KO5X</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_SAP_Code</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_SAP_Code</shortDescription>
+        <value>00NE0000006KO5Y</value>
+    </labels>
+    <labels>
+        <fullName>WU_SAPCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU SAPCode</shortDescription>
+        <value>SAP Code</value>
+    </labels>
+    <labels>
+        <fullName>WU_StartDate</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU StartDate</shortDescription>
+        <value>Utilization Start Date</value>
+    </labels>
+    <labels>
+        <fullName>WU_utilizationTypeCannotChange</fullName>
+        <categories>WU_Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_utilizationTypeCannotChange</shortDescription>
+        <value>Utilization Type for this month has been set.You cannot change it.</value>
+    </labels>
+    <labels>
+        <fullName>WWP_NocodeAssigned_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_NocodeAssigned_Err</shortDescription>
+        <value>You have not been assigned to any Plant Code. Please contact Administrator</value>
+    </labels>
+    <labels>
+        <fullName>WWP_Norecords_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_Norecords_Err</shortDescription>
+        <value>No records meeting the criteria</value>
+    </labels>
+    <labels>
+        <fullName>WWP_RecordsUpdated_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_RecordsUpdated_Msg</shortDescription>
+        <value>Records Updated</value>
+    </labels>
+    <labels>
+        <fullName>WWP_RequiredFeilds_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_RequiredFeilds_Err</shortDescription>
+        <value>Please fill the required fields</value>
+    </labels>
+    <labels>
+        <fullName>WWP_selectRecord_Err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_selectRecord_Err</shortDescription>
+        <value>Please select atleast one record</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_AssetGroupName_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS AssetGroupName help text</shortDescription>
+        <value>The name of the asset group as it will be displayed to the user in the front-end</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_AssetName_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS AssetName help text</shortDescription>
+        <value>The name of the asset as it will be displayed to the user in the front-end.</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_Asset_Group_Info_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS Asset Group Info message</shortDescription>
+        <value>Please ensure that Category or Brand or both are selected</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_FileName_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS FileName help text</shortDescription>
+        <value>The name of the file as it will be displayed to the user in the front-end.</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_File_Upload_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS File Upload msg</shortDescription>
+        <value>To upload your file -- click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value> 
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_Helper_link_tooltip</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS Helper link tooltip</shortDescription>
+        <value>Click on the link to launch Help Manual</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_Asset_Delete_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS Asset Delete Status</shortDescription>
+        <value>ToDelete</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_File_Error_primary_image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS File Error primary image</shortDescription>
+        <value>There is already another file existing for this asset which is classified as the primary image.</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_File_empty_file_type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS  File empty file type</shortDescription>
+        <value>File Type: You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_Upload_Error_No_Chatter_File</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS Upload Error No Chatter File</shortDescription>
+        <value>No File has been uploaded. Please ensure that you upload your file – click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>Write</fullName>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>PP_TIT_TIERED_INFORMATION</shortDescription>
-        <value>Tiered Information</value>
+        <shortDescription>Write</shortDescription>
+        <value>Write</value>
+    </labels>
+    <labels>
+        <fullName>af_lp_AgencyFeeTarget</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>af_lp_AgencyFeeTarget</shortDescription>
+        <value>This is the sum of the latest base fee matrix for the category</value>
+    </labels>
+    <labels>
+        <fullName>af_lp_UnileverBaseFee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>af_lp_UnileverBaseFee</shortDescription>
+        <value>This is the sum of annual base fee targets for the category</value>
+    </labels>
+    <labels>
+        <fullName>button_cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Button cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>close</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>close button</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>cp_DefaultSubmitWarning</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default submit warning</shortDescription>
+        <value>Oops...
+Please action the following to continue:</value>
+    </labels>
+    <labels>
+        <fullName>cp_DeleteConfirm</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete confirm message</shortDescription>
+        <value>Your Planner event has been deleted.</value>
+    </labels>
+    <labels>
+        <fullName>cp_DeleteWarning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete warning message</shortDescription>
+        <value>Oops…&lt;br/&gt;
+You don&apos;t have permission to delete this event. Get in contact with the project lead.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EditWarning</fullName>
+        <categories>Visualforce</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit warning message</shortDescription>
+        <value>Oops…&lt;br/&gt;
+You don&apos;t have permission to edit this event. Get in contact with the project lead.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EventAlreadyActivatedWarning</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Event Already Activated Warning</shortDescription>
+        <value>Oops…&lt;br/&gt;
+This event has already been activated, no action required.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EventTriggerHandler_General_Exception</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EventTriggerHandler_General_Exception</shortDescription>
+        <value>Exception occurred during creation of Event Participants. 
+Please contact with your Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EventTriggerHandler_not_central_statuses</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Tier 1 - Big Moment,Tier 1 - External,Tier 1 - Internal,Enabler - Operational Activity,Enabler - Capability Building</value>
+    </labels>
+    <labels>
+        <fullName>cp_GlobalApprovalError</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Global Approval Error</shortDescription>
+        <value>Your local event does not require global approval. Exit this message and click the ‘LOCAL save and exit’ button.</value>
+    </labels>
+    <labels>
+        <fullName>cp_LocalSaveError</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Local Save Error</shortDescription>
+        <value>Your global event requires approval (re-approval is also required if you have updated the activation dates or event status). Exit this message and click the ‘GLOBAL save and submit’ button.</value>
+    </labels>
+    <labels>
+        <fullName>cp_NoPlannerSelected</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No planner selected</shortDescription>
+        <value>Who is activating this event? Please select the relevant Planners.
+
+If you are representing a Central team, don’t forget to select the respective Central Planners too.</value>
+    </labels>
+    <labels>
+        <fullName>cp_OptOutNoReason</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opt out no reason</shortDescription>
+        <value>Oops…&lt;br/&gt;
+Please leave a few words explaining why you are opting out of this Planner event.</value>
+    </labels>
+    <labels>
+        <fullName>cp_OptOutWarning</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opt Out Warning Message</shortDescription>
+        <value>Oops…&lt;br/&gt;
+You can’t opt out of this event as your Planner has not been invited to activate.</value>
+    </labels>
+    <labels>
+        <fullName>cp_Planner_Code_AT_I_Approced_Statuses</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Tentative,Confirmed</value>
+    </labels>
+    <labels>
+        <fullName>cp_Planner_Code_AT_I_Global</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Global</value>
+    </labels>
+    <labels>
+        <fullName>cp_Planner_Code_AT_I_Statuses</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Tier 1 - Big Moment,Tier 1 - External,Tier 1 - Internal,Tier 2 - Integrated (external &amp; internal),Tier 2 - External,Tier 2 - Internal,Enabler - Operational Activity,Enabler - Capability Building</value>
+    </labels>
+    <labels>
+        <fullName>cp_UserPreferenceValidationMessage</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Preference Validation Message</shortDescription>
+        <value>Oops…
+Which Communications team do you represent? You must be associated to one Planner.</value>
+    </labels>
+    <labels>
+        <fullName>delete_milestone_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation messages displayed while deleting milestone</shortDescription>
+        <value>You are about to remove this milestone from the milestone list. It cannot be restored at a later time. Are you sure to continue</value>
+    </labels>
+    <labels>
+        <fullName>delete_task_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation messages displayed while deleting task</shortDescription>
+        <value>You are about to remove this task from the task list. It cannot be restored at a later time. Are you sure to continue?</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_New</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_New</shortDescription>
+        <value>You must submit this issue before any further action is taken</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_NewTagline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_NewTagline</shortDescription>
+        <value>You may continue adding to and refining this issue if you are the owner. However once submitted you will have limited access to some areas of this issue.</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_Reviewed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_Reviewed</shortDescription>
+        <value>Issue Reviewed</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_ReviewedTagline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_ReviewedTagline</shortDescription>
+        <value>This issue is reviewed by CIMT</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_Submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_Submitted</shortDescription>
+        <value>Issue Submitted</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_SubmittedTagline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_SubmittedTagline</shortDescription>
+        <value>The issue has been submitted by the issue reporter</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryBIC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryBIC</shortDescription>
+        <value>BIC</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryCAPEX</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryCAPEX</shortDescription>
+        <value>CAPEX</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryGMbps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryGMbps</shortDescription>
+        <value>GM Y1 vs Av Cannibalised GM bps</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryGMbpsHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryGMbpsHelp</shortDescription>
+        <value>This is the difference between the Y1 GM of the project, compared against the average GM of the products (CUs) that are being replaced on shelf. Calculation: GM Y1 – DNDS GM Y1</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryIRR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryIRR</shortDescription>
+        <value>IRR</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryNPV</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryNPV</shortDescription>
+        <value>NPV</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryPBObps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryPBObps</shortDescription>
+        <value>PBO Y1 bps vs DNDS</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryPayback</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryPayback</shortDescription>
+        <value>Payback</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableAPofTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableAPofTO</shortDescription>
+        <value>BMI (% of T/O)</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableASIncrementalValueShare</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableASIncrementalValueShare</shortDescription>
+        <value>Incremental Value Share</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableASInnovationValueShare</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableASInnovationValueShare</shortDescription>
+        <value>Innovation Value Share</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableAdvertisingPromotions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableAdvertisingPromotions</shortDescription>
+        <value>BMI</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGDgTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGDgTO</shortDescription>
+        <value>gTO</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGDiAP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGDiAP</shortDescription>
+        <value>iBMI</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGDiTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGDiTO</shortDescription>
+        <value>iTO</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGMofTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGMofTO</shortDescription>
+        <value>GM (% of T/O)</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGrossProfit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGrossProfit</shortDescription>
+        <value>Gross Profit</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTablePBOofTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTablePBOofTO</shortDescription>
+        <value>PBO (% of T/O)</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableProfitBeforeOverheads</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableProfitBeforeOverheads</shortDescription>
+        <value>Profit Before Overheads</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableTurnover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableTurnover</shortDescription>
+        <value>Turnover</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableValueMarketShare</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableValueMarketShare</shortDescription>
+        <value>Value Market Share</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableVolume</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableVolume</shortDescription>
+        <value>Volume</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_ClearAndFindMore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_ClearAndFindMore</shortDescription>
+        <value>Clear and find more</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_FindMore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_FindMore</shortDescription>
+        <value>Find More</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_First</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_First</shortDescription>
+        <value>First</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Last</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Last</shortDescription>
+        <value>Last</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Loading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Next_Batch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Next_Batch</shortDescription>
+        <value>Next Batch</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Previous</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Previous_Batch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Previous_Batch</shortDescription>
+        <value>Previous batch</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_StartOver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_StartOver</shortDescription>
+        <value>Start Over</value>
+    </labels>
+    <labels>
+        <fullName>isll_ChatterGroupMissingForEventMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isll_ChatterGroupMissingForEventMsg</shortDescription>
+        <value>Chatter Group is missed for current event. Please contact moderator to add Group to event.</value>
+    </labels>
+    <labels>
+        <fullName>isll_ContentMissingMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isll_ContentMissingMsg</shortDescription>
+        <value>Edit link is not visible: please add content</value>
+    </labels>
+    <labels>
+        <fullName>modal_info_heading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Heading text for information dialogs</shortDescription>
+        <value>Information:</value>
+    </labels>
+    <labels>
+        <fullName>page_title_chatter_feed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Page title for the Chatter page</shortDescription>
+        <value>My Chatter</value>
+    </labels>
+    <labels>
+        <fullName>pull_to_refresh_loading_text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Display text when loading data via pull to refresh</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>pull_to_refresh_release_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Display text for pull to refresh release state</shortDescription>
+        <value>Release to refresh...</value>
+    </labels>
+    <labels>
+        <fullName>pull_to_refresh_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Display text for pull to refresh</shortDescription>
+        <value>Pull down to refresh...</value>
+    </labels>
+    <labels>
+        <fullName>refresh</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Refresh</shortDescription>
+        <value>Refresh</value>
+    </labels>
+    <labels>
+        <fullName>secondsOblix_Lbl_UIUX_Audio_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Full creative development and production of audio content, 30-60</value>
+    </labels>
+    <labels>
+        <fullName>toolbar_app_top_nav_lbl_title_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text for the link in the upper left corner</shortDescription>
+        <value>My chatter app</value>
+    </labels>
+    <labels>
+        <fullName>uw_BET_Chattergrouparchived</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>uw_BET_Chattergrouparchived</shortDescription>
+        <value>This chatter group has been archived.Please contact your groupowner/manager for reactivation</value>
+    </labels>
+    <labels>
+        <fullName>uw_BET_Chattergrouplimit</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>uw_BET_Chattergrouplimit</shortDescription>
+        <value>Bet cannot be created because you are at the chatter group limit. To Join new group please leave/withdraw request from atleast 1 group</value>
+    </labels>
+    <labels>
+        <fullName>uw_BET_standardchatterlimitmessage</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>uw_BET_standardchatterlimitmessage</shortDescription>
+        <value>Maximum per user collaboration group limit reached.</value>
+    </labels>
+    <labels>
+        <fullName>uw_Inoplan_error_duplicateValue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User enters a project name which is already associated to another BET</shortDescription>
+        <value>Another BET is already linked to the Inoplan Project &apos;projectName&apos;. Every Inoplan project should have only one BET. The BET already associated to this project is &apos;BetName&apos;</value>
+    </labels>
+    <labels>
+        <fullName>uw_Inoplan_error_nullvalue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
+        <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
     <labels>
         <fullName>weekShare</fullName>
@@ -2054,16 +4189,4 @@ there is a different Currency on lower level customer(s)</value>
         <shortDescription>Weekly Split</shortDescription>
         <value>Weekly Split</value>
     </labels>
-        <fullName>UL_TACTIC_FUND_ASSOCIATION</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Promotion approval validation message</shortDescription>
-        <value>Each tactic must have at least one related fund</value>
-    </labels>
-	<labels>
-        <fullName>UL_DummyProdonTactic</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Check atleast one dummy product on each tactic</shortDescription>
-        <value>All Off-Invoice tactics must contain a dummy product</value>
-    </labels>
+</CustomLabels>

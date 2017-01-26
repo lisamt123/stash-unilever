@@ -97,86 +97,86 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Category Code</label>
+        <label>Category Group Code</label>
         <name>ACCL__Criterion_1_Product_Code__c</name>
     </fields>
     <fields>
-        <label>Category Description</label>
+        <label>Category Group Description</label>
         <name>ACCL__Criterion_1_Product_Description__c</name>
     </fields>
     <fields>
         <help><!-- Only product with &apos;Category&apos; product level can be selected --></help>
-        <label>Category</label>
+        <label>Category Group</label>
         <name>ACCL__Criterion_1_Product__c</name>
         <relationshipLabel><!-- Products (Criterion 1 Product) --></relationshipLabel>
     </fields>
     <fields>
-        <label>Sub Category Code</label>
+        <label>Category Code</label>
         <name>ACCL__Criterion_2_Product_Code__c</name>
     </fields>
     <fields>
-        <label>Sub Category Description</label>
+        <label>Category Description</label>
         <name>ACCL__Criterion_2_Product_Description__c</name>
     </fields>
     <fields>
         <help><!-- Only product with &apos;Sub Category&apos; product level can be selected --></help>
-        <label>Sub Category</label>
+        <label>Category</label>
         <name>ACCL__Criterion_2_Product__c</name>
         <relationshipLabel><!-- Products (Criterion 2 Product) --></relationshipLabel>
     </fields>
     <fields>
-        <label>Brand Code</label>
+        <label>Market Code</label>
         <name>ACCL__Criterion_3_Product_Code__c</name>
     </fields>
     <fields>
-        <label>Brand Description</label>
+        <label>Market Description</label>
         <name>ACCL__Criterion_3_Product_Description__c</name>
     </fields>
     <fields>
         <help><!-- Only product with &apos;Brand&apos; product level can be selected --></help>
-        <label>Brand</label>
+        <label>Market</label>
         <name>ACCL__Criterion_3_Product__c</name>
         <relationshipLabel><!-- Products (Criterion 3 Product) --></relationshipLabel>
     </fields>
     <fields>
-        <label>Brand Form Code</label>
+        <label>Brand Code</label>
         <name>ACCL__Criterion_4_Product_Code__c</name>
     </fields>
     <fields>
-        <label>Brand Form Description</label>
+        <label>Brand Description</label>
         <name>ACCL__Criterion_4_Product_Description__c</name>
     </fields>
     <fields>
         <help><!-- Only product with &apos;Flavor&apos; product level can be selected --></help>
-        <label>Brand Form</label>
+        <label>Brand</label>
         <name>ACCL__Criterion_4_Product__c</name>
         <relationshipLabel><!-- Products (Criterion 4 Product) --></relationshipLabel>
     </fields>
     <fields>
-        <label>SPF Code</label>
+        <label>Brand Form Code</label>
         <name>ACCL__Criterion_5_Product_Code__c</name>
     </fields>
     <fields>
-        <label>SPF Description</label>
+        <label>Brand Form Description</label>
         <name>ACCL__Criterion_5_Product_Description__c</name>
     </fields>
     <fields>
         <help><!-- Only product with &apos;Package&apos; product level can be selected --></help>
-        <label>SPF</label>
+        <label>Brand Form</label>
         <name>ACCL__Criterion_5_Product__c</name>
         <relationshipLabel><!-- Products (Criterion 5 Product) --></relationshipLabel>
     </fields>
     <fields>
-        <label>SPFV Code</label>
+        <label>SPF Code</label>
         <name>ACCL__Criterion_6_Product_Code__c</name>
     </fields>
     <fields>
-        <label>SPFV Description</label>
+        <label>SPF Description</label>
         <name>ACCL__Criterion_6_Product_Description__c</name>
     </fields>
     <fields>
         <help><!-- Only product with &apos;Product&apos; product level can be selected --></help>
-        <label>SPFV</label>
+        <label>SPF</label>
         <name>ACCL__Criterion_6_Product__c</name>
         <relationshipLabel><!-- Products (Criterion 6 Product) --></relationshipLabel>
     </fields>
@@ -515,28 +515,28 @@
     </fields>
     
     <fields>
-        <label>TU GTIN Code</label>
+        <label>SPFV Code</label>
         <name>UL_Criterion_7_Product_Code__c</name>
     </fields>
     <fields>
-        <label>TU GTIN Description</label>
+        <label>SPFV Description</label>
         <name>UL_Criterion_7_Product_Description__c</name>
     </fields>
     <fields>
-        <label>TU GTIN</label>
+        <label>SPFV</label>
         <name>UL_Criterion_7_Product__c</name>
         <relationshipLabel><!-- Products (UL_Criterion 7 Product) --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Criterion 8 Product Code --></label>
+        <label>TU GTIN Code</label>
         <name>UL_Criterion_8_Product_Code__c</name>
     </fields>
     <fields>
-        <label><!-- Criterion 8 Product Description --></label>
+        <label>TU GTIN Description</label>
         <name>UL_Criterion_8_Product_Description__c</name>
     </fields>
     <fields>
-        <label><!-- Criterion 8 Product --></label>
+        <label>TU GTIN</label>
         <name>UL_Criterion_8_Product__c</name>
         <relationshipLabel><!-- Products (UL_Criterion 8 Product) --></relationshipLabel>
     </fields>

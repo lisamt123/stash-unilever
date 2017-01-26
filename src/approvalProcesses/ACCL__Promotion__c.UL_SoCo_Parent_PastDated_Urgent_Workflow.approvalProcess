@@ -85,7 +85,6 @@
         </rejectionActions>
     </approvalStep>
     <description>SoCo Parent Past Dated/Urgent Workflow</description>
-    <emailTemplate>unfiled$public/UL_Promotion_Approval</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <formula>ACCL__Active__c == true &amp;&amp; TEXT(  UL_Current_Status__c)==&apos;Planning&apos;</formula>

@@ -5,11 +5,18 @@
  * @date            06/12/2016
  * @description     trigger to share Fund record with User.
  */
-trigger UL_FundShareTrigger on ACCL__Fund__c (after insert) {
-    List<Id> fundId = new List<Id>();
-    for(ACCL__Fund__c fundObj : trigger.new){
-        fundId.add(fundObj.id);
+trigger UL_FundShareTrigger on ACCL__Fund__c (after insert, Before Update) {
+    if(trigger.isafter && trigger.isInsert){
+        List<Id> fundId = new List<Id>();
+        for(ACCL__Fund__c fundObj : trigger.new){
+            fundId.add(fundObj.id);
+        }
+        /*Future Class callout*/
+        UL_FundShareTriggerHandler.enableApexSharing(fundId);
     }
-    /*Future Class callout*/
-    UL_FundShareTriggerHandler.enableApexSharing(fundId);
+    else if(trigger.isbefore && trigger.isupdate){
+    
+        UL_fundCloseStatusHandler.openTransactionCheck(trigger.new);
+        UL_fundCloseStatusHandler.openPromotionCheck(trigger.new);
+    }
 }
