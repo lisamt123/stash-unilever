@@ -244,6 +244,9 @@ src/permissionsets/BFM_View_All_Data_User.permissionset
 src/profiles/BFM Partner Community User.profile
 src/queues/BFM_User_Creation_Request_Approvers.queue
 src/quickActions/BFM_Shipment__c.Mark_6th_Flag.quickAction
+src/reportTypes
+src/reportTypes/BFM_OccurrencexOccuSESxNFe.reportType
+src/reportTypes/BFM_ShipmentxStagexDeliveryxNFe.reportType
 src/reports
 src/reports/Relatorios_BFM
 src/reports/Relatorios_BFM-meta.xml

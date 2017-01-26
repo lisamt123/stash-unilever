@@ -88,6 +88,7 @@
         <name>co</name>
         <value>1</value>
     </params>
+	<reportType>BFM_ShipmentxStagexDeliveryxNFe</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
