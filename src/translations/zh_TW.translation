@@ -9049,25 +9049,6 @@
         <name>im_Issues</name>
     </customTabs>
     <globalPicklists>
-        <name>VPM_ECC</name>
-        <picklistValues>
-            <masterLabel>Cordillera</masterLabel>
-            <translation><!-- Cordillera --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Fusion</masterLabel>
-            <translation><!-- Fusion --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Sirius</masterLabel>
-            <translation><!-- Sirius --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U2K2</masterLabel>
-            <translation><!-- U2K2 --></translation>
-        </picklistValues>
-    </globalPicklists>
-    <globalPicklists>
         <name>Country</name>
         <picklistValues>
             <masterLabel>CAM</masterLabel>
@@ -9088,6 +9069,25 @@
         <picklistValues>
             <masterLabel>Venezuela</masterLabel>
             <translation><!-- Venezuela --></translation>
+        </picklistValues>
+    </globalPicklists>
+    <globalPicklists>
+        <name>VPM_ECC</name>
+        <picklistValues>
+            <masterLabel>Cordillera</masterLabel>
+            <translation><!-- Cordillera --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fusion</masterLabel>
+            <translation><!-- Fusion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sirius</masterLabel>
+            <translation><!-- Sirius --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U2K2</masterLabel>
+            <translation><!-- U2K2 --></translation>
         </picklistValues>
     </globalPicklists>
     <quickActions>
@@ -10321,24 +10321,6 @@
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Course with Course Occurence and Occurence Member --></description>
-        <label><!-- Course with Course Occurence and Occurence Member --></label>
-        <name>Course_with_Course_Occurence_and_Occurence_Member</name>
-        <sections>
-            <label><!-- Courses --></label>
-            <name>Courses</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Courses with Course Occurence with Feedback with Feedback Questionnaire --></description>
-        <label><!-- Courses with Course Occurence with Feedback with Feedback Questionnaire --></label>
-        <name>Courses_with_Course_Occurence_with_Feedback_with_Feedback_Questionnaire</name>
-        <sections>
-            <label><!-- Courses --></label>
-            <name>Courses</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
         <description><!-- Custom Objects Usage --></description>
         <label><!-- Custom Objects Usage --></label>
         <name>Custom_Objects_Usage</name>
@@ -10358,24 +10340,6 @@
         <sections>
             <label><!-- Dashboards --></label>
             <name>Dashboards</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Detailed Report of Course Occurrence --></description>
-        <label><!-- Detailed Report of Course Occurrence --></label>
-        <name>Detailed_Report_of_Course_Occurrence</name>
-        <sections>
-            <label><!-- Course Occurence --></label>
-            <name>Course Occurence</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Detailed Report of Occurence Member Tasks --></description>
-        <label><!-- Detailed Report of Occurence Member Tasks --></label>
-        <name>Detailed_Report_of_Occurence_Member_Tasks</name>
-        <sections>
-            <label><!-- Course Occurence --></label>
-            <name>Course Occurence</name>
         </sections>
     </reportTypes>
     <reportTypes>

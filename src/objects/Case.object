@@ -4294,17 +4294,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
             <value>1</value>
-        </filters>
-        <filters>
-            <field>CASES.CLOSED_DATE</field>
-            <operation>equals</operation>
-            <value>LAST_N_DAYS:30</value>
         </filters>
         <filters>
             <field>Case_ISO_Country_Code__c</field>
@@ -4315,6 +4310,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.SUBJECT</field>
             <operation>notContain</operation>
             <value>spam</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notContain</operation>
+            <value>Closed as Duplicate</value>
         </filters>
         <label>CEC ANZ All closed cases</label>
         <language>en_US</language>
