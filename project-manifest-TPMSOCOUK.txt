@@ -284,6 +284,7 @@ src/workflows/ACCL__Promotion__c.workflow
 src/workflows/ACCL__Tactic__c.workflow
 src/workflows/ACCL__Fund_Transaction__c.workflow
 src/workflows/ACCL__Promotion_Template__c.workflow
+src/workflows/UL_Planning_Level__c.workflow
 src/tabs
 src/tabs/UL_Approval_Threshold__c.tab
 src/tabs/UL_Workflow_Threshold_Template__c.tab
