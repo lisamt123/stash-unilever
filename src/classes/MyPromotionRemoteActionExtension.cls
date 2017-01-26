@@ -282,7 +282,7 @@ Throws : N/A
                 
                 if(!THViolate){
                 UL_PromotionWorkflowService.submitForApproval(promoId,promoLst,promoLst[0].createdby.UL_Finance_Manager__c,false) ;
-                    if(!THViolate){
+                    if(promoLst[0].UL_Threshold_Window_Result__c != null){
                         do{ 
                             apprFuncRet = UL_PromotionWorkflowService.approveWorkflow(promoId,promoLst,null,false) ;
                             promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name,CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c,  ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c  FROM ACCL__Promotion__c WHERE Id =: promoId] ;        

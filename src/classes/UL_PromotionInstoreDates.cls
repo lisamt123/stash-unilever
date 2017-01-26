@@ -90,37 +90,8 @@ Throws N/A
         catch(Exception Ex){
             UL_Utility.logError(Ex, UserInfo.getUserId());
         }
-    }
+    }   
     
-    /*******************************************************************
-Purpose: this method checks whether a promotion has Attachments or not if template type is LTA and status is Submit for Approval 
-Version: 1.0
-Parameters: List,
-Returns: Void
-Request: TPM-1762
-Throws N/A
-********************************************************************/
-    public static void checkPromotionAttachmentCount(List<ACCL__Promotion__c> newPromotions, Map<Id,ACCL__Promotion__c> newPromotionsMap, Map<Id,ACCL__Promotion__c> oldPromotionsMap){
-        Set<Id> promotionIds = new Set<Id>();
-        for (ACCL__Promotion__c newPromotion : newPromotions) {
-            if(newPromotion.UL_WorkflowState__c.equals(SUBMITTED_FOR_APPROVAL) 
-               && !newPromotion.UL_WorkflowState__c.equals(oldPromotionsMap.get(newPromotion.Id).UL_WorkflowState__c)
-               && newPromotion.UL_PromotionTemplateType__c.equals(LTA)){
-                   promotionIds.add(newPromotion.Id); 
-               }
-        }
-        if(!promotionIds.isEmpty()){
-            Map<Id, Integer> promotionAttachmentCountValues = new Map<Id, Integer>();
-            for(AggregateResult agr : [SELECT Count(Id)attCount, ParentId FROM Attachment WHERE ParentId IN :promotionIds GROUP By ParentId]){
-                promotionAttachmentCountValues.put(String.valueOf(agr.get(PARENTID)), Integer.valueOf(agr.get(ATTCOUNT)));
-            }
-            for(ACCL__Promotion__c newPromotion : newPromotions){
-                if(!promotionAttachmentCountValues.containsKey(newPromotion.Id)){
-                    newPromotion.addError(Label.UL_LTA_ATTACHMENT_REQ_MESSAGE);                    
-                }
-            }
-        }
-    }
 
 	public static void check_LTA_Duration(List<ACCL__Promotion__c> newPromotions){
       String userRegion = [SELECT ACCL__Sales_Org__c FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1].ACCL__Sales_Org__c;
