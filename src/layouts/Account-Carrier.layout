@@ -277,14 +277,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Company_Code__c</fields>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_Bank_Information__c.Carrier_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>BFM_Email_Information__c.Carrier_Account__c</relatedList>
     </relatedLists>
     <relatedLists>

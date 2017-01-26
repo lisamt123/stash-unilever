@@ -274,30 +274,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>BFM_Payment_Method__c.Unilever_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_Payment_Method__c.Carrier_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_Withhold_Tax__c.Unilever_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Company_Code__c</fields>
-        <fields>Withholding_Tax_Type__c</fields>
-        <fields>Withholding_Tax_Code__c</fields>
-        <fields>Withholding_Tax_Flag__c</fields>
-        <relatedList>BFM_Withhold_Tax__c.Carrier_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BFM_Bank_Information__c.Carrier_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>BFM_Email_Information__c.Carrier_Account__c</relatedList>
     </relatedLists>
     <relatedLists>
