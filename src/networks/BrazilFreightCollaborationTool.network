@@ -27,6 +27,8 @@
     <networkMemberGroups>
         <permissionSet>BFM_Carriers_Administrative</permissionSet>
         <permissionSet>BFM_Carrier_Operational_User</permissionSet>
+		<permissionSet>BFM_Internal_Super_User</permissionSet>
+        <permissionSet>BFM_Unilever_Operational_User</permissionSet>
         <profile>admin</profile>
         <profile>BFM Partner Community User</profile>
     </networkMemberGroups>
