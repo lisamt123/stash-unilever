@@ -56,6 +56,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>ACCL__Active__c</fullName>
         <defaultValue>true</defaultValue>
@@ -173,6 +174,32 @@ ACCL__Description_Language_1__c)</formula>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Fund_Type__c</fullName>
+        <description>Identifies the type of Fund</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Identifies the type of Fund</inlineHelpText>
+        <label>Fund Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>A&amp;P Budget</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Special Budget</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standard Trade Budget</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>UL_Template_in_Use__c</fullName>

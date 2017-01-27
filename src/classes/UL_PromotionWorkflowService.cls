@@ -84,7 +84,7 @@
                             if(promotionLst[0].UL_Threshold_Window_Result__c == null){                        
                                 listNextapprover = UL_PromotionWorkflowService.getApproverIds(promoId,'Finance User');
                                 if(listNextapprover !=null && listNextapprover.isempty()){
-                                  throw new UL_CustomException('Finance analyst/managers not setup properly');
+                                  throw new UL_CustomException('role-Finance User '+label.UL_UserNotSetup);
                                 }
                                 queueId = UL_PromotionWorkflowService.addApproverstoQueue(promoId,listNextapprover,'finance'); 
                                 req1.setNextApproverIds(new list<id> {queueid});
@@ -93,6 +93,10 @@
                                 req1.setNextApproverIds(new list<id> {UserInfo.getUserId()});
                             }
                         }
+                        else {
+                          req1.setNextApproverIds(new list<id> {queueid});
+                        }
+                       
                         // Submit the approval request for the account
                         Approval.ProcessResult result = Approval.process(req1);
                         
@@ -156,14 +160,20 @@
             if((promotionLst[0].UL_ThresholdViolated__c || (!promotionLst[0].UL_ThresholdViolated__c && promotionLst[0].UL_Threshold_Window_Result__c == null))){
                 //processInstanceNodeLst = [SELECT ProcessNodeName, ProcessNodeid, ProcessInstanceId,NodeStatus FROM ProcessInstanceNode WHERE Processinstance.targetobjectid =: promoId 
                   //                  AND ProcessNode.DeveloperName =: UtilityEnum.UL_Finance_Check.Name() AND NodeStatus =: UL_Utility.STATUS_PENDING LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
-                processInstanceNodeLst = [SELECT ProcessNodeName, ProcessNodeid, ProcessNode.DeveloperName,ProcessInstanceId,NodeStatus FROM ProcessInstanceNode WHERE Processinstance.targetobjectid =: promoId 
+                processInstanceNodeLst = [SELECT ProcessNodeName, ProcessNodeid, ProcessNode.DeveloperName,ProcessInstanceId,NodeStatus,ProcessInstance.ProcessDefinition.DeveloperName
+                FROM ProcessInstanceNode WHERE Processinstance.targetobjectid =: promoId 
                                     AND NodeStatus =: UL_Utility.STATUS_PENDING LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
                                     
                 if(processInstanceNodeLst.size() > 0){  
-                    for(ProcessInstanceNode procInstNode : processInstanceNodeLst) {
+                    for(ProcessInstanceNode procInstNode : processInstanceNodeLst) {                        
                         if(procInstNode.ProcessNode.DeveloperName.equalsIgnoreCase(UtilityEnum.UL_Finance_Check.Name())){
-                            if(currentStatus!=null && currentStatus.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase())){        
-                               nextApproverId = getApproverIds(promoId, UL_Utility.ROLE_ACCOUNT_MANAGER);
+                            if(currentStatus!=null && currentStatus.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase())){
+                                if(!procInstNode.ProcessInstance.ProcessDefinition.DeveloperName.containsIgnoreCase('Urgent')){
+                                    nextApproverId = getApproverIds(promoId, UL_Utility.ROLE_ACCOUNT_MANAGER);
+                                }
+                                else{
+                                    nextApproverId = getApproverIds(promoId, 'TPM');
+                                }
                                 if(nextApproverId==null || nextApproverId.isempty()){
                                     throw new ul_customexception(label.UL_UserNotSetup );
                                 }
@@ -306,17 +316,14 @@
                 system.debug('promuser.CreatedBy.UL_Finance_Analyst__r.userrole.name '+promuser.CreatedBy.UL_Finance_Analyst__r.userrole.name) ;
                 if(promuser.CreatedBy.UL_Finance_Analyst__r.userrole.name.containsIgnorecase(userRole)){
                     approverIds.add(promuser.CreatedBy.UL_Finance_Analyst__c);
-                    //sendEmail(promotionId,promuser.CreatedBy.UL_Finance_Analyst__c, UL_Utility.STATUS_SUBMIT.toLowerCase()) ;
                 }
                 system.debug('promuser.CreatedBy.UL_Finance_manager__r.userrole.name '+promuser.CreatedBy.UL_Finance_manager__r.userrole.name) ;
                 if(promuser.CreatedBy.UL_Finance_manager__r.userrole.name.containsIgnorecase(userRole)){
                     approverIds.add(promuser.CreatedBy.UL_Finance_Manager__c);
-                    //sendEmail(promotionId,promuser.CreatedBy.UL_Finance_Manager__c, UL_Utility.STATUS_SUBMIT.toLowerCase()) ;
                 }
                 system.debug('promuser.CreatedBy.manager.userrole.name '+promuser.CreatedBy.manager.userrole.name) ;
                 if(promuser.CreatedBy.manager.userrole.name.containsIgnorecase(userRole)){
                     approverIds.add(promuser.CreatedBy.managerid);
-                    //sendEmail(promotionId,promuser.CreatedBy.manager, UL_Utility.STATUS_SUBMIT.toLowerCase()) ;
                 }
             }
             system.debug('approverIds '+approverIds) ;

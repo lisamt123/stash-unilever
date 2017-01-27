@@ -309,7 +309,7 @@ Throws : N/A
                     procInstLst = [SELECT Id,TargetObjectId,ProcessDefinition.Name From ProcessInstance Where TargetObjectId =: promoId] ;
                     
                     if(promoObj.UL_Current_Status__c == 'Approved' && promoObj.ACCL__Date_From__c <= system.Today() && promoObj.ACCL__Date_Thru__c >= system.Today()
-                        && procInstLst[0].ProcessDefinition.Name.containsIgnoreCase('parent')){
+                        && !procInstLst[0].ProcessDefinition.Name.containsIgnoreCase('parent')){
                         promoObj.UL_Current_Status__c = 'End Date';
                         update promoObj ;
                     }
@@ -1001,7 +1001,7 @@ Returns: N/A
 Throws : N/A 
 ********************************************************************/     
     @RemoteAction
-    global static String invokePromotionThresholdCheckBOPromotion(String txId, String objectId, String Mode){
+    global static String invokePromotionThresholdCheckBOPromotion(String txId, String objectId){
         String result=UL_Utility.EMPTY_STRING;
         try{
             UL_ThresholdEngine.getThresholdKPI(txId,id.valueof(objectId),UtilityEnum.save.Name());
@@ -1012,7 +1012,7 @@ Throws : N/A
             }
         }catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
-			throw ex;
+            throw ex;
         }
         return result;
     }

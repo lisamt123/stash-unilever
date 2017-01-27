@@ -198,6 +198,7 @@
     </fields>
     <fields>
         <fullName>UL_Valid_From__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
         <description>Enter the start date for the cannibalisation rate.</description>
         <externalId>false</externalId>
         <inlineHelpText>Enter the start date for the cannibalisation rate.</inlineHelpText>
@@ -208,6 +209,7 @@
     </fields>
     <fields>
         <fullName>UL_Valid_Thru__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
         <description>Enter the end date for the cannibalisation rate.</description>
         <externalId>false</externalId>
         <inlineHelpText>Enter the end date for the cannibalisation rate.</inlineHelpText>
