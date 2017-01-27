@@ -169,6 +169,8 @@ src/flows/BFM_Free_Freight_update_CTE-1.flow
 src/flows/BFM_Update_Shipment_in_CTe-1.flow
 src/groups/BFM_Governance.group
 src/homePageLayouts/BFM Home Page.homePageLayout
+src/layouts/Account-BFM Unilever Account.layout
+src/layouts/Account-Carrier.layout
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
 src/layouts/BFM_Bank_Information__c-BFM Bank Information Layout.layout
 src/layouts/BFM_Company_Code__c-Company Code Layout.layout
@@ -239,11 +241,17 @@ src/permissionsets/BFM_Tax_Unilever.permissionset
 src/permissionsets/BFM_Unilever_Operational_User.permissionset
 src/permissionsets/BFM_Unilever_Tester.permissionset
 src/permissionsets/BFM_View_All_Data_User.permissionset
-src/profiles/BFM Internal User.profile
 src/profiles/BFM Partner Community User.profile
 src/queues/BFM_User_Creation_Request_Approvers.queue
 src/quickActions/BFM_Shipment__c.Mark_6th_Flag.quickAction
-src/sites/BrazilFreightCollaborationTool.site
+src/reportTypes
+src/reportTypes/BFM_Shipment_Stage_Delivery_and_NFe.reportType
+src/reportTypes/BFM_OccurrenceSESNFe.reportType
+src/reports
+src/reports/BFM_Reports
+src/reports/BFM_Reports-meta.xml
+src/reports/BFM_Reports/BFM_CT_e_Issueing.report
+src/reports/BFM_Reports/BFM_CT_e_Issuing_Occurrence.report
 src/staticresources/BFM_Bootstrap.resource
 src/staticresources/BFM_Bootstrap.resource-meta.xml
 src/staticresources/BFM_Green.resource
@@ -279,6 +287,8 @@ src/triggers/BFM_UserCreationRequest.trigger
 src/triggers/BFM_UserCreationRequest.trigger-meta.xml
 src/triggers/BFM_NFEvalidation.trigger
 src/triggers/BFM_NFEvalidation.trigger-meta.xml
+src/sites/BrazilFreightCollaborationTool.site
+src/networks/BrazilFreightCollaborationTool.network
 src/workflows
 src/workflows/BFM_AccountAccessRequest__c.workflow
 src/workflows/BFM_Bank_Information__c.workflow

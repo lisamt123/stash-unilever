@@ -55,7 +55,7 @@
                <h4>Select format to parse the excel </h4>
               <div class = "pull-right">
                   <apex:outputPanel id="ipfile">
-                  <apex:selectList value="{!selectedfile}" size="1" styleClass="selectedFile" onchange="fileChange();">
+                  <apex:selectList value="{!selectedfile}" size="1" styleClass="selectedFile" onchange="fileChange(this.value);">
                       <apex:selectOptions value="{!filetype}"/>
                   </apex:selectList>
                   </apex:outputPanel>
@@ -70,6 +70,12 @@
                 </div>
                 
                 <br/>
+                <br/>
+                
+                <div id="warningId" class="alert alert-warning" style="display:none;">
+                    <strong>Warning!</strong> Please refresh the page for new file import.... 
+                </div>
+                
                 <br/>
                 
                 <div class="loader" id="loaderDiv" style="display:none;"></div>
@@ -280,6 +286,8 @@
             <script>
                 var loopCount=0;totalloopCount=1;
                 function getImportData(){
+                    $("#importBtnId").hide();
+                    //$("#warningId").show();                    
                     $("#loaderDiv").show();
                     var timeepoch = (new Date).getTime();
                     var timeStamp = Math.floor(timeepoch/ 1000);                    
@@ -300,10 +308,8 @@
                         callImportPQNObj(0, rem,timeStamp);
                    
                     }
-
                     $("#exportSuccess").attr('href','{!$page.PQN_Export_Excel}?filestatus=success&timestamp='+timeStamp);
-                    $("#exportError").attr('href','{!$page.PQN_Export_Excel}?filestatus=error&timestamp='+timeStamp);
-                    
+                    $("#exportError").attr('href','{!$page.PQN_Export_Excel}?filestatus=error&timestamp='+timeStamp);    
                 }
             </script>        
             <script>
@@ -485,13 +491,16 @@
             </script>
            
             <script>
-               function fileChange(){
+               function fileChange(fileType){
                   $("#exportSuccess").hide();
-                    $("#exportError").hide();
+                  $("#exportError").hide();
+                  //document.location.href = window.location.origin+ '?fileType=' + fileType;
+                  //alert(window.location);
               }
             
             </script>
             <script>
+            alert(window.location);
             function initiateInsertion(){ passStringToUploadDataTosObject(document.getElementById('out').innerText); }
             function saveexceldata(){ saveexceldatainapex(); }
             var xlf = document.getElementById('xlf');

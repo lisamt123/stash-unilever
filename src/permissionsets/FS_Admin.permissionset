@@ -181,6 +181,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FS_UpdateChildAccounts</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FS_UpdateChildAccountsTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FS_UtilMABETool</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -15566,11 +15574,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.WorkIt2__Total_Seconds__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.agf__ADM_Work__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

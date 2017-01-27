@@ -199,6 +199,105 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Complement_Goods_Sender__c</fullName>
+        <externalId>false</externalId>
+        <label>Complement Goods Sender</label>
+        <length>72</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Country_Code_Goods_Sender__c</fullName>
+        <externalId>false</externalId>
+        <label>Country Code Goods Sender</label>
+        <length>3</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Country_Name_Goods_Sender__c</fullName>
+        <externalId>false</externalId>
+        <label>Country Name Goods Sender</label>
+        <length>15</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Name_Taker__c</fullName>
+        <externalId>false</externalId>
+        <label>Name Taker</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Phone_Goods_Sender__c</fullName>
+        <externalId>false</externalId>
+        <label>Phone Goods Sender</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Postal_Goods_Sender__c</fullName>
+        <externalId>false</externalId>
+        <label>Phone Goods Sender</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Postal_Code_Goods_Sender__c</fullName>
+        <externalId>false</externalId>
+        <label>Postal Code Goods Sender</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>State_Registration_Goods_Sender__c</fullName>
+        <externalId>false</externalId>
+        <label>State Registration Goods Sender</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>SUFRAMA_Registration_Goods_Sender__c</fullName>
+        <externalId>false</externalId>
+        <label>SUFRAMA Registration Goods Sender</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>City_Cargo_Dispatcher__c</fullName>
         <externalId>false</externalId>
@@ -703,17 +802,6 @@
         <externalId>false</externalId>
         <label>Postal Code Taker</label>
         <length>8</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Postal_Goods_Sender__c</fullName>
-        <externalId>false</externalId>
-        <label>Postal Goods Sender</label>
-        <length>10</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

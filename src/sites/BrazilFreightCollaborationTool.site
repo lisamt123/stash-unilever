@@ -13,7 +13,7 @@
     <genericErrorPage>Exception</genericErrorPage>
     <inMaintenancePage>CommunitiesLogin</inMaintenancePage>
     <indexPage>BFM_SearchShipmentCTe_VF</indexPage>
-    <masterLabel>Brazil Freight Collaboration Tool</masterLabel>
+    <masterLabel>BrazilFreightCollaborationTool</masterLabel>
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>BFM_CommunitiesSelfReg_VF</selfRegPage>

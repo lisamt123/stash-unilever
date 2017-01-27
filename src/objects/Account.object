@@ -6006,6 +6006,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
 	<fields>
+        <fullName>BFM_Active_CNPJ__c</fullName>
+        <externalId>true</externalId>
+        <label>BFM_Active_CNPJ</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+	<fields>
         <fullName>BFM_CNPJ__c</fullName>
         <externalId>true</externalId>
         <label>CNPJ</label>
@@ -25355,6 +25366,30 @@ Shipping Country</errorMessage>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
         <url>http://www.google.com/news?&amp;q={!Account_Name}&amp;btnG=Search+News</url>
+    </webLinks>
+	<webLinks>
+        <fullName>FS_Update_Child_Accounts</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Update Child Accounts</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+
+
+
+if( (&apos;{!$Profile.Name}&apos;==&apos;Unilever Food Solution - Russia&apos; &amp;&amp; &apos;{!$Permission.FS_Admin}&apos;==&quot;true&quot;) ||  &apos;{!$Profile.Name}&apos;==&apos;System Administrator&apos;)
+{
+
+var result = sforce.apex.execute(&quot;FS_UpdateChildAccounts&quot;,&quot;updateChildAccounts&quot;,{accountID:&quot;{!Account.Id}&quot;});
+alert(result);
+window.location.reload();
+}
+else
+{
+alert(&apos;You dont have the permission to update the record &apos;);
+}</url>
     </webLinks>
     <webLinks>
         <fullName>GoogleSearch</fullName>
