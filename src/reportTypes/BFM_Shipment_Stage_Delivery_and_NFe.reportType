@@ -439,27 +439,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Address_destination__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Number_destination__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Complement_destination__c</field>
             <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>District_destination__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Municipal_code_destination__c</field>
             <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
         </columns>
         <columns>
