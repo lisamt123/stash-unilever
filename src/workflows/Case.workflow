@@ -396,7 +396,7 @@
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
-            <value>Email Turkey</value>
+            <value>Email Turkey,Email China</value>
         </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
         <triggerType>onAllChanges</triggerType>

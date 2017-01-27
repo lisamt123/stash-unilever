@@ -124,7 +124,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-     <fields>
+    <fields>
         <fullName>Country_Name__c</fullName>
         <description>CEC -  Country Name used to filter Enclosure details</description>
         <externalId>false</externalId>
@@ -172,6 +172,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Chile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>China</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -263,7 +267,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Korea</fullName>
+                <fullName>Korea, Republic Of</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

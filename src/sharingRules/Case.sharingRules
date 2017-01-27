@@ -10,7 +10,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>New Zealand,Australia</value>
+            <value>Australia,New Zealand</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -23,7 +23,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Estonia,Latvia,Lithuania</value>
+            <value>Lithuania,Estonia,Latvia</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -53,6 +53,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_China</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals China</label>
+        <sharedTo>
+            <role>CEC_User_China</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>China</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Case_Country_Equals_Czech_Republic</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Case Country Equals Czech Republic</label>
@@ -75,7 +88,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Austria,Switzerland,Germany</value>
+            <value>Switzerland,Austria,Germany</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -197,7 +210,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Korea</value>
+            <value>&quot;Korea, Republic Of&quot;</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -210,7 +223,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Finland,Denmark,Norway,Sweden</value>
+            <value>Denmark,Finland,Norway,Sweden</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -494,6 +507,17 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_Brazil</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_China_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals China - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_China</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_China</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

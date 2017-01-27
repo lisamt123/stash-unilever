@@ -76,6 +76,13 @@
         <shortDescription>CEC_CBM_NotificationSubject</shortDescription>
         <value>CEC Alert : Missing CaseBrandMapping value</value>
     </labels>
+	<labels>
+        <fullName>CEC_CategorySelectAlert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CategorySelectAlert</shortDescription>
+        <value>Please select a value for Category</value>
+    </labels>
     <labels>
         <fullName>CEC_CaseAccountMissing</fullName>
         <categories>CEC:Case_Error</categories>
