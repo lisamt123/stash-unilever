@@ -44,6 +44,11 @@
             <runTest>CEC_FulfilmentHelperTest</runTest>
             <runTest>CEC_CaseInlineControllerTest</runTest>
             <runTest>CEC_AlertActionHelperTest</runTest>
+			<runTest>CEC_FufilmentProductInlineControllerTest</runTest>
+			<runTest>CEC_Test_FulfilmentQualityCheckHelper</runTest>
+			<runTest>CEC_FulfilmentHelperExtensionTest</runTest>
+			<runTest>CEC_TestAlertActionBatchScheduler</runTest>
+			<runTest>CEC_TestAlertActionTriggerHelper</runTest>
         </sf:deploy>
     </target>
 </project>
