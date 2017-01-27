@@ -7947,7 +7947,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>UL_Planning_Level__c.UL_Sales_Organisation__c</field>
+        <field>UL_Planning_Level__c.UL_Sales_Organisation__c</field> 
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7964,11 +7964,6 @@
         <editable>false</editable>
         <field>UL_UserCustomerProduct__c.AccessType__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>UL_UserCustomerProduct__c.Account__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
