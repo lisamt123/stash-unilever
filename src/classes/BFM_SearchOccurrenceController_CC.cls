@@ -28,7 +28,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         recordsize.add(new SelectOption('50','50'));
         recordsize.add(new SelectOption('100','100'));
         recordsize.add(new SelectOption('200','200')); 
-            List<Report> reportsList = [SELECT Id FROM Report WHERE DeveloperName = 'BFM_Ct_e_Issuing_Occurrence'];
+            List<Report> reportsList = [SELECT Id FROM Report WHERE DeveloperName = 'BFM_CT_e_Issuing_Occurrence'];
         if(reportsList.size() == 1){
             cteIssuingReport = reportsList[0];
         }
@@ -88,11 +88,11 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         }
         
         if(String.isNotEmpty(occFromAccount)){
-            searchClauses += ' Carrier_Account__r.BFM_CNPJ__c Like \'%' +occFromAccount +'%\' AND ';
+            searchClauses += ' Carrier_Account__r.CNPJ__c Like \'%' +occFromAccount +'%\' AND ';
         }
         system.debug('===>'+occurStart);
         if(occurStart!=null){
-			searchClauses += ' Created_date__c >:occurStart AND Created_date__c <:occurTo AND ';            
+            searchClauses += ' Created_date__c >=:occurStart AND Created_date__c <=:occurTo AND ';            
         }
         
         searchClauses = searchClauses.trim().removeEndIgnoreCase('AND');
@@ -112,7 +112,7 @@ public with sharing class BFM_SearchOccurrenceController_CC{
             OccurenceString += '  AND ' + conditions[i];
         }
         OccurenceString += ' ORDER BY CreatedDate';
-		*/
+        */
         try{
             system.debug('occ string is '+OccurenceString);
        // OccList = Database.Query(OccurenceString);
@@ -121,7 +121,9 @@ public with sharing class BFM_SearchOccurrenceController_CC{
         }catch(QueryException ex){
             String errorMessage = ex.getMessage() + ' ' + ex.getStackTraceString()+' /n \n'+OccurenceString;
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
-            }         
+            system.debug(errorMessage);
+            } 
+        
         con.setPageSize(10);
         }
     public pageReference redirectPage(){
