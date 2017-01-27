@@ -9796,7 +9796,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>IPM_Project_CC_Alignment_Snapshot__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
 	<objectPermissions>
         <allowCreate>false</allowCreate>
