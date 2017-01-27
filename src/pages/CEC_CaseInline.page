@@ -99,15 +99,15 @@ and Missing Information to new case or an existed case-->
                         <apex:outputLabel value="{!$Label.CEC_isPacksizeKnown}"/>
                         <apex:actionRegion immediate="false">
                             <apex:inputCheckbox selected="{!caseRecord.isPacksizeKnown__c}" label="PACK SIZE" value="{!caseRecord.isPacksizeKnown__c}">
-                                <apex:actionSupport event="onchange" action="{!updatePacksizeAvailabilityDetails}" reRender="ProductHierarchy"/>
+                                <apex:actionSupport event="onchange" action="{!updatePacksizeAvailabilityDetails}" reRender="ProductHierarchy, MissingInfoSectionOuter"/>
                             </apex:inputCheckbox>
                         </apex:actionRegion>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.CEC_isFormKnown}"/>
                         <apex:actionRegion immediate="false">
-                            <apex:inputCheckbox selected="{!caseRecord.isFormKnown__c}" label="FORM" value="{!caseRecord.isFormKnown__c}" >
-                                <apex:actionSupport event="onchange" action="{!updateFormAvailabilityDetails}" reRender="ProductHierarchy, MissingInfoSectionOuter"/>
+                            <apex:inputCheckbox selected="{!caseRecord.isFormKnown__c}" label="FORM" value="{!caseRecord.isFormKnown__c}" styleClass="selectedForm">
+                                <apex:actionSupport event="onchange" action="{!updateFormAvailabilityDetails}" reRender="ProductHierarchy, MissingInfoSectionOuter" oncomplete="displayFormWarningMsg();"/>
                             </apex:inputCheckbox>
                         </apex:actionRegion>
                     </apex:pageBlockSectionItem>
@@ -115,7 +115,7 @@ and Missing Information to new case or an existed case-->
                         <apex:outputLabel value="{!$Label.CEC_isVariantKnown}"/>
                         <apex:actionRegion immediate="false">
                             <apex:inputCheckbox selected="{!caseRecord.isVariantKnown__c}" label="VARIANT" value="{!caseRecord.isVariantKnown__c}" >
-                                <apex:actionSupport event="onchange" action="{!updateVariantAvailabilityDetails}" reRender="ProductHierarchy"/>
+                                <apex:actionSupport event="onchange" action="{!updateVariantAvailabilityDetails}" reRender="ProductHierarchy, MissingInfoSectionOuter"/>
                             </apex:inputCheckbox>
                         </apex:actionRegion>
                     </apex:pageBlockSectionItem>
@@ -204,6 +204,14 @@ and Missing Information to new case or an existed case-->
             exceptionMsg = '{!$Label.CEC_CaseCountryVerbitimMessage}'; 
             checkAlertAction(true, false, exceptionMsg);          
         }
+    }
+    function displayFormWarningMsg() {
+    
+        var inputForm = document.getElementsByClassName('selectedForm');
+        if(inputForm[0].checked==false){
+            checkAlertAction(true, false, '{!$Label.CEC_CategorySelectAlert}');
+        }
+        
     }
     // Open Knowledge Article in primary tab
     function openArticleinPrimarytab(articleIdentity) {
