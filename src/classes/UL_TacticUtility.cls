@@ -459,8 +459,11 @@ Throws : N/A
         Datetime lastModified = Datetime.now();
         Boolean active = Boolean.valueOf(boPromotion.get('ACCL__Active__c'));
         String phase = (String)boPromotion.get('ACCL__Phase__c');
-        system.debug('account--'+(String)boPromotion.get('ACCL__Anchor_Account__c'));
-        Id anchorAccountId = Id.valueOf((String)boPromotion.get('ACCL__Anchor_Account__c'));
+        Id anchorAccountId;
+        if((String)boPromotion.get('ACCL__Anchor_Account__c')!=null){
+        //system.debug('account--'+(String)boPromotion.get('ACCL__Anchor_Account__c'));
+        anchorAccountId = Id.valueOf((String)boPromotion.get('ACCL__Anchor_Account__c'));
+        }
         String salesOrgName = (String)boPromotion.get('ACCL__Sales_Org__c');
         Object manualCalculationInput = JSON.deserializeUntyped((string)boPromotion.get('ACCL__Manual_Calculation_Input__c'));
         System.debug(manualCalculationInput);
