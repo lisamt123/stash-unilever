@@ -246,10 +246,12 @@ src/queues/BFM_User_Creation_Request_Approvers.queue
 src/quickActions/BFM_Shipment__c.Mark_6th_Flag.quickAction
 src/reportTypes
 src/reportTypes/BFM_Shipment_Stage_Delivery_and_NFe.reportType
+src/reportTypes/BFM_OccurrencexOccuSESxNFe.reportType
 src/reports
 src/reports/BFM_Reports
 src/reports/BFM_Reports-meta.xml
 src/reports/BFM_Reports/BFM_CT_e_Issueing.report
+src/reports/BFM_Reports/BFM_CT_e_Issuing_Occurrence.report
 src/staticresources/BFM_Bootstrap.resource
 src/staticresources/BFM_Bootstrap.resource-meta.xml
 src/staticresources/BFM_Green.resource
