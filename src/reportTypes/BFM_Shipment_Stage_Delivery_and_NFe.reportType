@@ -110,11 +110,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Action_Code__c</field>
-            <table>BFM_Shipment__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Company_Code__c</field>
             <table>BFM_Shipment__c</table>
         </columns>
