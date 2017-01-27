@@ -121,6 +121,16 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>UL_Lift__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Volume_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Calculation Variables</label>
     </fieldSets>
     <fieldSets>
@@ -913,6 +923,11 @@
         </displayedFields>
         <displayedFields>
             <field>ACCL__Order_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -4092,17 +4107,14 @@ Id=VLOOKUP
     </validationRules>
     <validationRules>
         <fullName>UL_End_Date_Validation</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Validates End Date workflow state conditions.</description>
-        <errorConditionFormula>IF((ACCL__Sales_Org__c == &apos;AR01&apos; || ACCL__Sales_Org__c == &apos;CL01&apos; || ACCL__Sales_Org__c == &apos;CL03&apos;)
-&amp;&amp; ACCL__Date_From__c &lt;=  TODAY() 
-&amp;&amp; ACCL__Date_Thru__c &gt;=  TODAY()
-&amp;&amp;  TEXT(PRIORVALUE(UL_Current_Status__c )) == &apos;Approved&apos; 
-&amp;&amp;  TEXT( UL_Current_Status__c ) != &apos;End Date&apos; 
-,true
+        <errorConditionFormula>IF((ACCL__Sales_Org__c == &apos;AR01&apos; || ACCL__Sales_Org__c == &apos;CL01&apos; || ACCL__Sales_Org__c == &apos;CL03&apos;) 
+&amp;&amp; TEXT( UL_Current_Status__c ) == &apos;End Date&apos; 
+&amp;&amp; (ACCL__Date_Thru__c &lt; TODAY() || ACCL__Date_Thru__c &gt; PRIORVALUE(ACCL__Date_Thru__c )) 
+,true 
 ,false )</errorConditionFormula>
-        <errorDisplayField>ACCL__Active__c</errorDisplayField>
-        <errorMessage>You can set Workflow State to &apos;End Date&apos; only if the Promotion is currently running</errorMessage>
+        <errorMessage>For an End Dated promotion, Thru Date can&apos;t be a date in the past OR can&apos;t be extended beyond the original Thru Date.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_FromDate_Planning</fullName>
@@ -4129,6 +4141,7 @@ Id=VLOOKUP
         <active>false</active>
         <description>(TPM 1759) - If a time period of longer than a year is defined within the date fields then a validation should be returned and the user is warned that a LTA cannot be created which is longer than one year.</description>
         <errorConditionFormula>AND(VALUE(ACCL__Promotion_Template__r.LTA_Days_Counter__c)  &lt;&gt; 0, ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;),ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), (ACCL__Date_Thru__c - ACCL__Date_From__c) + 1 &gt; VALUE(ACCL__Promotion_Template__r.LTA_Days_Counter__c))</errorConditionFormula>
+        <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>LTA duration is exceeding maximum permissible value</errorMessage>
     </validationRules>
     <validationRules>
@@ -4174,6 +4187,13 @@ Id=VLOOKUP
         <errorConditionFormula>IF( NOT(ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;)) &amp;&amp; ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;)&amp;&amp;(ACCL__Date_From__c &gt;= TODAY() || ACCL__Date_Thru__c &lt;= TODAY()),TRUE,FALSE )</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>From date must be in the past, Thru date must be in the future for Past Dated/Urgent Promotion</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_Promotion_Dates</fullName>
+        <active>true</active>
+        <description>Promotion dates should be with in from and thru dates.</description>
+        <errorConditionFormula>IF(ACCL__Placement_Date_From__c	&lt; ACCL__Date_From__c ||ACCL__Placement_Date_Thru__c	&gt; ACCL__Date_Thru__c || ACCL__Delivery_Date_From__c &lt; ACCL__Date_From__c || ACCL__Delivery_Date_Thru__c &gt; ACCL__Date_Thru__c, true, false)</errorConditionFormula>
+        <errorMessage>Dates(Shipment or Instore) are not with in Promotion dates range.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>in_store_date_from_validation</fullName>
