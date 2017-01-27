@@ -5,7 +5,6 @@
         <application>IPM_NG</application>
         <visible>true</visible>
     </applicationVisibilities>
- 
     <classAccesses>
         <apexClass>IPM_AddManageSection</apexClass>
         <enabled>true</enabled>
@@ -9805,7 +9804,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>IPM_Project_Rollout_Snapshot__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
         <apexPage>IPM_AddManageSections</apexPage>
