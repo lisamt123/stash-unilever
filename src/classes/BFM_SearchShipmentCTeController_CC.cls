@@ -51,7 +51,7 @@ public with sharing class BFM_SearchShipmentCTeController_CC{
         recordsize.add(new SelectOption('50','50'));
         recordsize.add(new SelectOption('100','100'));
         recordsize.add(new SelectOption('200','200'));
-        List<Report> reportsList = [SELECT Id FROM Report WHERE DeveloperName = 'BFM_Ct_e_Issuing'];
+        List<Report> reportsList = [SELECT Id FROM Report WHERE DeveloperName = 'BFM_CT_e_Issueing'];
         if(reportsList.size() == 1){
             cteIssuingReport = reportsList[0];
         }
