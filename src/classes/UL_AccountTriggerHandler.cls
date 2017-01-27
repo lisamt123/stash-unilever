@@ -253,10 +253,12 @@ Date: 22/01/2017
     private static void updateExternalId(List<Account> accList){ 
         try{
             for(Account acc : accList){
+                String accNum = (String.isBlank(acc.AccountNumber)? '' : acc.AccountNumber);
+                String accSalesOrg = (String.isBlank(acc.ACCL__Sales_Org__c)? '' : acc.ACCL__Sales_Org__c);
+                String accDistChannel = (String.isBlank(acc.UL_Distribution_Channel_Code__c)? '' : acc.UL_Distribution_Channel_Code__c);
+                String accDivision = (String.isBlank(acc.Division__c)? '' : acc.Division__c); 
                 if(String.isBlank(acc.ACCL__ExternalId__c)){
-                    System.debug('acc.ACCL__ExternalId__c'+acc.ACCL__ExternalId__c);
-                    //acc.ACCL__ExternalId__c = acc.AccountNumber + '-' +acc.ACCL__Sales_Org__c+ '-' +acc.UL_Activity_Sector_Division_Code__c+ '-' +acc.UL_Distribution_Channel_Code__c;
-                    acc.ACCL__ExternalId__c = acc.AccountNumber + '-' +acc.ACCL__Sales_Org__c + acc.UL_Distribution_Channel_Code__c + acc.Division__c;
+                    acc.ACCL__ExternalId__c = accNum  + '-' +accSalesOrg;
                 }
             }
         }
