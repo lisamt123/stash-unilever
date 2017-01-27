@@ -158,11 +158,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>CurrencyIsoCode</field>
-            <table>BFM_Occurrence__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Occurrence_Number__c</field>
             <table>BFM_Occurrence__c</table>
         </columns>
