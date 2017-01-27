@@ -1,3 +1,13 @@
 src
-src/workflows/OpportunityLineItem.workflow
-src/objects/Opportunity.object
+src/classes/FS_UpdateChildAccounts.cls
+src/classes/FS_UpdateChildAccounts.cls-meta.xml
+src/classes/FS_UpdateChildAccountsTest.cls
+src/classes/FS_UpdateChildAccountsTest.cls-meta.xml
+src/classes/FS_CHDUtilityTest.cls
+src/classes/FS_CHDUtilityTest.cls-meta.xml
+src/objects/Account.object
+src/layouts/Account-Feed Based Distributor Russia.layout
+src/permissionsets/FS_Admin.permissionset
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/classes/FS_Utility.cls
+src/classes/FS_Utility.cls-meta.xml

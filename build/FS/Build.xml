@@ -111,7 +111,8 @@
 	  <runTest>FS_ContactExtend_CX_Test</runTest>
 	  <runTest>FS_ClaimedCasesForeCastingSchedule_Test</runTest>
 	  <runTest>FS_CentrallyLedChildAccountTest</runTest>
-	  <runTest>FS_MABETest</runTest>	  
+	  <runTest>FS_MABETest</runTest>	
+	  <runTest>FS_UpdateChildAccountsTest</runTest>
   </sf:deploy>
   <!--<antcall target="generatePackage"/>-->
   </target>

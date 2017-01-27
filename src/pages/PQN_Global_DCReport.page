@@ -57,6 +57,10 @@
             float: left!important;
         }
         
+        tr.headerRow{
+            width:104%!important;
+        }
+        
 </style>*/
 <style>
 
