@@ -20,6 +20,7 @@ Public with sharing class UL_PromotionInstoreDates{
 	public static final string UKSO = 'UK SO';
     public static final string IRELANDSO = 'Ireland SO';
     public static final string ZERO= '0';
+	public static final string DAYS = 'days';
     /*******************************************************************
 Purpose: this method update the instore dates 
 Version: 1.0
@@ -109,7 +110,7 @@ Throws N/A
              promotionTemplates.containsKey(newPromotion.ACCL__Promotion_Template__c) && 
              !promotionTemplates.get(newPromotion.ACCL__Promotion_Template__c).LTA_Days_Counter__c.equals(ZERO)){
               if((newPromotion.ACCL__Date_From__c.daysBetween(newPromotion.ACCL__Date_Thru__c) + 1) > Integer.valueOf(promotionTemplates.get(newPromotion.ACCL__Promotion_Template__c).LTA_Days_Counter__c)){
-                newPromotion.addError(Label.Maximum_LTA_Duration+UL_Utility.SPACE+promotionTemplates.get(newPromotion.ACCL__Promotion_Template__c).LTA_Days_Counter__c);
+                newPromotion.addError(Label.Maximum_LTA_Duration+UL_Utility.SPACE+promotionTemplates.get(newPromotion.ACCL__Promotion_Template__c).LTA_Days_Counter__c+UL_Utility.SPACE+DAYS);
               }
             }
           }
