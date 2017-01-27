@@ -2,7 +2,7 @@
 Name: UL_ProductTriggerHandler
 Copyright © 2015 Salesforce
 ======================================================
-Purpose:
+Purpose: 
 Handle Product object trigger events
 ======================================================
 History
@@ -80,7 +80,10 @@ Date: 22/01/2017
         try{
             for(ACCL__Product__c product: productList){
                 if(String.isBlank(product.ACCL__ExternalId__c)){
-                    product.ACCL__ExternalId__c = product.ACCL__Product_Code__c + '-' + product.ACCL__Sales_Org__c+ '-' +product.UL_Division__c;
+                    String productDivision = (String.isBlank(product.UL_Division__c)? '' : product.UL_Division__c);
+                    String productCode = (String.isBlank(product.ACCL__Product_Code__c)? '' : product.ACCL__Product_Code__c);
+                    String prodSalesOrg = (String.isBlank(product.ACCL__Sales_Org__c)? '' : product.ACCL__Sales_Org__c);
+                    product.ACCL__ExternalId__c = productCode + '-' + prodSalesOrg;
                 }
             }
         }
