@@ -55,7 +55,7 @@
  
             <div align="center">
                 <apex:commandButton value="Procurar ocorrência" action="{!searchoccurs}" status="status" reRender="pgoccurance"/>&nbsp; <!-- todo : Add custom label -->
-                <apex:commandButton action="{!redirectPage}" value="Limpar"/>
+                <apex:commandButton action="{!redirectPage}" value="Clear"/>
                 <button class="btnSearch" style="padding:4px;">Atualizar Ocorrência</button>
                 <button class="btnRep" style="padding:4px;">Gerar Prévia de Custo</button>
             </div>
@@ -80,6 +80,9 @@
                     <apex:column value="{!Occ.Occurrence_Code__c}"/>
                     <apex:column value="{!Occ.Status__c}"/>
                     <apex:column value="{!Occ.Last_Occurrence_Update__c}"/>
+                    <apex:column value="{!Occ.Carrier_Vendor_Code__c}"/>
+                    <apex:column value="{!Occ.Carrier_Account__r.Name}"/>
+                    <apex:column value="{!Occ.Carrier_Account__r.BFM_CNPJ__c}"/>
                     <apex:column value="{!Occ.Created_date__c}"/>
                 </apex:pageBlockTable>
             </apex:outputPanel>
