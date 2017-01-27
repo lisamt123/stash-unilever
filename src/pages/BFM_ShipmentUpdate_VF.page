@@ -1,0 +1,5 @@
+<apex:page standardController="Account" extensions="BFM_ShipmentUpdate_CC">
+    <apex:form >
+        <apex:commandButton value="do update" action="{!updateAcc}" />
+    </apex:form>
+</apex:page>

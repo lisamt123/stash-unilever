@@ -102,7 +102,7 @@
                                     <!--<a href="javascript:void(0)" onclick="{!c.navigateToComment}" > 
                                         <img src="/resource/NewsCenterIcons/Comment_active.svg" class="LinkImageStyle"/>&nbsp;Comment1
                                     </a>-->
-                                    <div> 
+                                      <div onclick="{!c.navigateToMiddleElement}">  
                                     	<img src="/resource/NewsCenterIcons/Comment_active.svg" class="LinkImageStyle"/>&nbsp;Comment
 									</div>
                                     
@@ -147,7 +147,7 @@
                                     </aura:if>
                                 </td>
                                 <td class="centerAlign">
-                                    <div> 
+                                    <div onclick="{!c.navigateToMiddleElement}"> 
                                     	<img src="/resource/NewsCenterIcons/Comment_active.svg" class="LinkImageStyle"/>&nbsp;Comment
 									</div>
                                 </td>

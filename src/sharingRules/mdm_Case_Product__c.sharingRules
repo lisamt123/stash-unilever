@@ -79,6 +79,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Market_Equals_China_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals China - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_China</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country_Code__c</field>
+            <operation>equals</operation>
+            <value>CN</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Market_Equals_Cyprus_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Cyprus – Manager</label>

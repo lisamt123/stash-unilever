@@ -607,6 +607,7 @@
             <picklistValues>
                 <fullName>Chinese</fullName>
                 <default>false</default>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Hong Kong</controllingFieldValues>
                 <controllingFieldValues>Taiwan</controllingFieldValues>
             </picklistValues>
@@ -990,7 +991,7 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
-    <fields>
+     <fields>
         <fullName>Market__c</fullName>
         <externalId>false</externalId>
         <label>Market</label>
@@ -1013,6 +1014,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Brazil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>China</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1229,6 +1234,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1265,6 +1271,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1301,6 +1308,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1337,6 +1345,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1373,6 +1382,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1409,6 +1419,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1445,6 +1456,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1481,6 +1493,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1517,6 +1530,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1553,6 +1567,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1589,6 +1604,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1625,6 +1641,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1661,6 +1678,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1697,6 +1715,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1733,6 +1752,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1769,6 +1789,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1805,6 +1826,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1841,6 +1863,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1877,6 +1900,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1913,6 +1937,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1949,6 +1974,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1985,6 +2011,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2021,6 +2048,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2057,6 +2085,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2093,6 +2122,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2129,6 +2159,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2165,6 +2196,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2201,6 +2233,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2237,6 +2270,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2273,6 +2307,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2309,6 +2344,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2345,6 +2381,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2381,6 +2418,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2417,6 +2455,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2453,6 +2492,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>

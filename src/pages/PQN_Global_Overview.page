@@ -88,7 +88,6 @@
                            dataArray.push(obj);
                        }
                        });
-              
                     callback1(dataArray);
                     RemotingstackCatDosingChart.show();
                 }else if (event.type === 'exception') { document.getElementById("remoteResponseErrors").innerHTML = event.message +'<br/>' + event.where; }
@@ -97,7 +96,67 @@
            {escape: true, buffer: false,timeout: 120000}
         );}     
      </script>
-     
+     <script>
+        j$ = jQuery.noConflict();
+        j$(document).ready( function (){
+            callTable();
+            callTableCat();
+        });            
+        function callTable(){
+             j$("table.pageblockTableCls th").each(function() {
+                  if(j$( this ).attr("class")=="headerRow Gray"){ j$( this ).attr("style","background-color:#7F7F7F;") }
+                  if(j$( this ).attr("class")=="headerRow Cyan"){ j$( this ).attr("style","background-color:#00A1DA;") }
+                  if(j$( this ).attr("class")=="headerRow Pink"){ j$( this ).attr("style","background-color:#EA00AD;") }
+                  if(j$( this ).attr("class")=="headerRow Blue"){ j$( this ).attr("style","background-color:#3C44E8;") }                      
+            });
+            j$("table.pageblockTableCls td").each(function(){
+                  if(j$( this ).attr("class")=="dataCell  GreenBack"){ j$( this ).attr("style","background-color:#00B050;") }
+                  if(j$( this ).attr("class")=="dataCell  RedBack"){ j$( this ).attr("style","background-color:#FF0000;") }
+                  if(j$( this ).attr("class")=="dataCell  Amber"){ j$( this ).attr("style","background-color:#FFC000;") }
+            });
+        }
+      </script>
+      <script>
+          function callTableCat(){
+             j$("table.pageblockTableClsCAT th").each(function() {
+                  if(j$( this ).attr("class")=="headerRow Gray"){ j$( this ).attr("style","background-color:#7F7F7F;") }
+                  if(j$( this ).attr("class")=="headerRow Cyan"){ j$( this ).attr("style","background-color:#00A1DA;") }
+                  if(j$( this ).attr("class")=="headerRow Pink"){ j$( this ).attr("style","background-color:#EA00AD;") }
+                  if(j$( this ).attr("class")=="headerRow Blue"){ j$( this ).attr("style","background-color:#3C44E8;") }                      
+            });
+            j$("table.pageblockTableClsCAT td").each(function(){
+                  if(j$( this ).attr("class")=="dataCell  GreenBack"){ j$( this ).attr("style","background-color:#00B050;") }
+                  if(j$( this ).attr("class")=="dataCell  RedBack"){ j$( this ).attr("style","background-color:#FF0000;") }
+                  if(j$( this ).attr("class")=="dataCell  Amber"){ j$( this ).attr("style","background-color:#FFC000;") }
+            });
+        }
+      </script>
+      
+      <script>
+        
+        var tableToExcel = (function() {
+          var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+          return function(table, name, filename) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+            document.getElementById("dlink").href = uri + base64(format(template, ctx));
+            document.getElementById("dlink").download = filename;
+            document.getElementById("dlink").click();
+          }
+         
+         } )()
+             
+         function exporttable(){
+                       
+             tableToExcel(j$("table.pageblockTableCls").attr("id"), 'Data Collection','PQN_Global_Geography_Report');
+             tableToExcel(j$("table.pageblockTableClsCAT").attr("id"), 'Data Collection','PQN_Global_Category_Report');
+             
+         
+         }
+    </script>
 </head>
 <div class="panel panel-default" style="padding-left:200px;">
     <div class="panel-heading" style="text-align: center!important;"><h3 class="panel-title" style="font-size: large; color: #b41955!important;">
@@ -266,9 +325,14 @@
         <div class="container-fluid">
          
  <apex:form >
+            
+            
       <apex:pageBlock >
+          <a id="dlink"  style="display:none;"></a>
+          <button type="button" onclick="exporttable();">Export Report</button>
+            
           <apex:pageBlockSection columns="1">
-              <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" columnsWidth="22%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6% 6%" rowClasses="even,odd" >
+              <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" styleclass="pageblockTableCls" id="pageblockTableId" columnsWidth="22%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6% 6%" rowClasses="even,odd" >
               <apex:column headerClass="Gray" headerValue="Geography(All categories)" style="font-weight:200">
                   <apex:outputText value="{!xD.Glo}" style="font-weight:800" rendered="{!xD.child}"/>
                   <apex:outputText value="{!empty}" rendered="{!xD.child}" />
@@ -337,7 +401,7 @@
           </apex:pageBlockSection>
           
           <apex:pageBlockSection columns="1">
-              <apex:pageblockTable value="{!xSUWRAPLISTGC}" var="xD" columnsWidth="22%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%,6%" >
+              <apex:pageblockTable value="{!xSUWRAPLISTGC}" styleclass="pageblockTableClsCAT" id="pageblockTableIdCAT" var="xD" columnsWidth="22%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%,6%" >
                   <apex:column headerValue="Categories" headerClass="Gray" style="font-weight:200">
                       <apex:outputText value="{!xD.Product_Group}" style="font-weight:800" rendered="{!xD.child}" />
                       <apex:outputText value="{!empty}" rendered="{!xD.child}"/>
