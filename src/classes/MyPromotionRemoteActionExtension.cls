@@ -72,6 +72,7 @@ Throws : N/A
         String result = UL_Utility.STRING_NULL;
         Map<string,set<string>> prodIdTacticSet = new Map<string,set<string>>();
         Set<String> tacticSet;
+        Set<Id> productIdSet; 
         try{
             /*Remove namespace from the custom fields.*/ 
             //content=content.replace('ACCL__UL_','UL_');
@@ -108,6 +109,8 @@ Throws : N/A
                 System.Debug ('Ashish Test Heroku Product' + herokuProducts);
                 
                 if(herokuProducts.size()>0){
+                   
+                    prodIdTacticSet = new Map<string,set<string>>();
                     for(Map<String,Object> prods : herokuProducts){
                         list<UL_TacticUtility.TacticWrapper> tacwrap = (list<UL_TacticUtility.TacticWrapper>)prods.get(UtilityEnum.Tactics.Name());
                         tacticSet = new Set<String>();
@@ -133,7 +136,7 @@ Throws : N/A
                 
                 
                 //Insert record to Promotion Category
-                Set<Id> productIdSet = null;
+                //Set<Id> productIdSet = null;
                 if(prodIdTacticSet != null){
                     productIdSet = new Set<Id>();
                     for(String strProductId : prodIdTacticSet.keySet()){ 
@@ -175,8 +178,18 @@ Throws : N/A
                 
             }
             else{
-                result = null;
+                 result = ACCL.PromotionRemoteActionExtension.writeBOPromotion(txId,objectId,content);
             }
+            
+            //Insert record to Promotion Category
+            if(!prodIdTacticSet.isEmpty()){
+                productIdSet = new Set<Id>(); 
+                for(String productId : prodIdTacticSet.keySet()){
+                    productIdSet.add(productId);
+                }
+                UL_PromotionUtility.updatePromotionProduct(objectId, productIdSet);
+            }
+            
         }catch(Exception ex){
             System.debug('@@@@Exception ex: ' + ex.getMessage());
             throw ex;
