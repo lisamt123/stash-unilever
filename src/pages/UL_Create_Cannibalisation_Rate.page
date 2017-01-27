@@ -1,6 +1,11 @@
 <apex:page standardController="UL_Cannibalisation_Rate__c" extensions="UL_CannibalisationRateController" 
     title="{!$ObjectType.UL_Cannibalisation_Rate__c.label} {!$Label.UL_EDIT}: {!$Label.UL_NEW}  {!$ObjectType.UL_Cannibalisation_Rate__c.label}" id="d_prof_page">
     <apex:sectionHeader title="{!$ObjectType.UL_Cannibalisation_Rate__c.label} {!$Label.UL_EDIT}" subtitle="{!$Label.UL_NEW} {!$ObjectType.UL_Cannibalisation_Rate__c.label}"/>
+    <style>
+        .dateFormat {
+            display: none;
+        }
+    </style>
     <apex:form >
         <apex:pageBlock title="{!$ObjectType.UL_Cannibalisation_Rate__c.label} {!$Label.UL_EDIT}" mode="edit">
             <apex:pagemessages ></apex:pagemessages>
