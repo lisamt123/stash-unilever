@@ -1,5 +1,6 @@
 <aura:component implements="force:appHostable" >
     <aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+    <aura:attribute name='actionBarHide' type='Boolean' default="true"/>
     <div  class="events-cards" aura:id="eventCard">
         <div class="slds-text-heading--small" onclick="{!c.getEventDetail}">{!v.event.eventName}</div>
         <span class="num-attendees">{!v.event.numberOfAttendees} Attending </span>
@@ -15,6 +16,12 @@
             <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
             <span class="date-adress">{!v.event.Location}</span>
         </div>
+    <aura:if isTrue="{!v.actionBarHide}">
         <c:CORE_LA_CommonActionBar event="{!v.event}" userRegistrationStatus="{!v.event.userRegistrationStatus}"/>
+     <aura:set attribute="else">
+      <ui:button aura:id="button" buttonTitle="Show More" class="button slds-button slds-button--neutral show-more" label="Manage Event" press="{!c.navigateToCreatePage}"/>
+    </aura:set>
+  </aura:if> 
+  
     </div>
 </aura:component>

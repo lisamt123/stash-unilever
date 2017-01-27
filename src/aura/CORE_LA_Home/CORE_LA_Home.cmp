@@ -1,7 +1,6 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
     <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" />
     <aura:handler name="init" value="{!this}" action="{!c.defaultPanel}" />
-    <!-- <aura:handler event="c:LA_HandleEvent" action="{!c.navigateWithinComponent}" /> -->
     <!-- <aura:attribute name="showspinner" type="boolean" default="true"/> -->
     <aura:attribute name="isFeedbackPopup" type="boolean"/>
     <aura:attribute name="isFromFeedback" type="boolean"/> 
@@ -31,7 +30,7 @@
                 <div class="profile-parent">
                     <c:CORE_LA_Profile />
                 </div>
-                <c:CORE_LA_EventCardListComponent filterType="Registered" sortType="Date" limitRecords="2" offsetValue="0" />
+                <c:CORE_LA_EventCardListComponent filterType="Registered" sortType="Date" limitRecords="2" offsetValue="0" eventStatus="null" showMoreStatus="true" />
                 
             </div>
             <div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item" aura:id="upcomingContent">

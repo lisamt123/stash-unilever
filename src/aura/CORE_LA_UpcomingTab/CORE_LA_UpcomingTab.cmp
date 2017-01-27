@@ -72,5 +72,5 @@
             </aura:if>   
         </div>
     </div>   
-    <c:CORE_LA_EventCardListComponent filterType="All Events" sortType="Date"/>
+    <c:CORE_LA_EventCardListComponent filterType="All Events" sortType="Date"  eventStatus="null" showMoreStatus="true" />
 </aura:component>

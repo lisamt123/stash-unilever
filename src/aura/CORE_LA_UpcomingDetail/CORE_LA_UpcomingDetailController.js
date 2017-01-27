@@ -71,7 +71,7 @@
             "componentName": "c:CORE_LA_TrainerProfile",
             "event": component.get("v.event")
         }).fire();
-
+ 
     },
     feedDisplay: function(component, event, helper) {
         var defaultTarget = component.find('tab-upcoming');

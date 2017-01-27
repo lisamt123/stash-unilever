@@ -60,7 +60,7 @@
                                  <!--***********Attendee List Starts**************-->
         <div aura:id="listAttende" class="event-attendediv">
             <aura:iteration items="{!v.attendees}" var="attendeeList">	
-                <article class="slds-post" data-aura-rendered-by="48:289;a">
+                <article data-record="{!attendeeList.Participant_Name__c }" class="slds-post" onclick="{!c.attendeeStandardDetails}">
                     <header class="slds-post__header slds-media slds-media--center" data-aura-rendered-by="49:289;a">
                         <div class="slds-media__figure" data-aura-rendered-by="50:289;a">
                             <a class="slds-avatar slds-avatar--circle slds-avatar--medium" href="javascript:void(0);"  data-aura-rendered-by="51:289;a">

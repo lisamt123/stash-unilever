@@ -56,4 +56,15 @@
         selectEvent.setParams({"componentName":"c:CORE_LA_TrainerDetail","externalEmail":trainerEmail,"trainers":component.get("v.trainers"),"event":component.get("v.event")}).fire();
     },
     
+    
+	 attendeeStandardDetails : function(component, event, helper) {  
+        var attendeeId=event.currentTarget.dataset.record;
+        var navToSObjEvt = $A.get("e.force:navigateToSObject");
+        navToSObjEvt.setParams({
+            recordId: attendeeId,
+            slideDevName: "detail"
+        }); 
+        navToSObjEvt.fire();      
+    },
+    
 })

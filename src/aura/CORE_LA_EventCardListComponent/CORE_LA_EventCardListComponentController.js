@@ -10,7 +10,8 @@
                           sortType :component.get("v.sortType") ,
                           limitRecords:component.get("v.limitRecords") ,
                           offsetValue: component.get("v.offsetValue"),
-                          trainerId:null});
+                          trainerId:null,
+                          showMoreStatus:component.get("v.showMoreStatus")});
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
