@@ -7966,11 +7966,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>UL_UserCustomerProduct__c.Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>UL_UserCustomerProduct__c.Account__c</field>
         <readable>true</readable>
