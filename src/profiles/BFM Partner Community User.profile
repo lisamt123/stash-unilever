@@ -1659,7 +1659,7 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
-        <object>BFM_Stages__c</object>
+        <object>BFM_Stage__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
 	<objectPermissions>

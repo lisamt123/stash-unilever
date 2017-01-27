@@ -36,7 +36,7 @@
         <name>co</name>
         <value>1</value>
     </params>
-	<reportType>CustomEntity$BFM_Occurrence__c</reportType>
+	<reportType></reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>

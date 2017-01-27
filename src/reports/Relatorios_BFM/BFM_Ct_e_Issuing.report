@@ -88,7 +88,7 @@
         <name>co</name>
         <value>1</value>
     </params>
-	<reportType>CustomEntity$BFM_Shipment__c</reportType>
+	<reportType></reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
