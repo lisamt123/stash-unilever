@@ -450,7 +450,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_NF_e__c.Billing_Document__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -520,7 +520,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_NF_e__c.City_Destination__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -605,7 +605,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_NF_e__c.Gross_weight__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -625,7 +625,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_NF_e__c.NF_e_Total_Value__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -940,7 +940,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_Occurrence__c.Occurrence_Value__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -955,7 +955,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_Occurrence__c.Plate_Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -990,7 +990,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_Occurrence__c.Shipment_Document_Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1025,7 +1025,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_Occurrence__c.Tax__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1400,7 +1400,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_Stage__c.Delivery_system__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1510,7 +1510,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_Stage__c.Toll_from_cost_preview__c</field>
         <readable>true</readable>
     </fieldPermissions>
