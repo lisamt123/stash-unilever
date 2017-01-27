@@ -104,7 +104,7 @@
                      maxPoll="${sfdc.maxPoll}"/>
         <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
-<target name="retrieve3" description="Recreate the deployment directory and retrieve part 2 all metadata from your org">
+<target name="retrieve3" description="Recreate the deployment directory and retrieve part 3 all metadata from your org">
         <echo level="info">Performing a retrieve</echo>     
         <mkdir dir="${basedir}/${sfdc.retrieveTarget}"/>
         <sf:retrieve username="${sf.username}"
