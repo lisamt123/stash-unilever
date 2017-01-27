@@ -41,22 +41,14 @@
     <target name="validate">
         <echo level="info">Agent App Lightning Deployment</echo>
         <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" checkOnly="true" logType="Debugonly" testLevel="RunSpecifiedTests" allowMissingFiles="true" autoUpdatePackage="true" ignoreWarnings="true" deployRoot="src" pollWaitMillis="${sfdc.pollWaitMillis}" maxPoll="${sfdc.maxPoll}">
-            <runTest>CommunitiesLandingControllerTest</runTest>
-            <runTest>CommunitiesLoginControllerTest</runTest>
-            <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
-            <runTest>CommunitiesSelfRegControllerTest</runTest>
-            <runTest>ExceptionLoggingHelper_Test</runTest>
-            <runTest>ExceptionsTest</runTest>
-            <runTest>TriggerFactoryTest</runTest>
-            <runTest>TestDataFactory</runTest>
-            <runTest>UserTestUtil</runTest>
-            <runTest>UserTrigger_Test</runTest>
-            <runTest>CEC_AnonymiseConsumerBatchScheduler_Test</runTest>
-			<runTest>CEC_AlertActionHelperTest</runTest>
-			<runTest>CEC_CaseActionControllerTest</runTest>
-			<runTest>CEC_IRIProductLocatorControllerTest</runTest>
-			<runTest>CEC_IRIProductLocator_CalloutMock</runTest>
-			<runTest>CEC_RetrievalRequestTriggerHelperTest</runTest>
+            <runTest>CEC_FulfilmentHelperTest</runTest>
+            <runTest>CEC_CaseInlineControllerTest</runTest>
+            <runTest>CEC_AlertActionHelperTest</runTest>
+			<runTest>CEC_FufilmentProductInlineControllerTest</runTest>
+			<runTest>CEC_Test_FulfilmentQualityCheckHelper</runTest>
+			<runTest>CEC_FulfilmentHelperExtensionTest</runTest>
+			<runTest>CEC_TestAlertActionBatchScheduler</runTest>
+			<runTest>CEC_TestAlertActionTriggerHelper</runTest>
         </sf:deploy>
     </target>
 </project>
