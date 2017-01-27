@@ -16,6 +16,11 @@
             <field>Name</field>
             <table>BFM_Occurrence__c</table>
         </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>BFM_Occurrence__c</table>
+        </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedBy</field>
