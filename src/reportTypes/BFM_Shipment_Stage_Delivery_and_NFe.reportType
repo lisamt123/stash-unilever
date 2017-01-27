@@ -75,11 +75,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Shipping_type__c</field>
-            <table>BFM_Shipment__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Carrier_Account_Vendor_Code__c</field>
             <table>BFM_Shipment__c</table>
         </columns>
@@ -125,11 +120,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Shipping_Process__c</field>
-            <table>BFM_Shipment__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Last_Shipment_Update__c</field>
             <table>BFM_Shipment__c</table>
         </columns>
@@ -151,11 +141,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Unilever_Company__c</field>
-            <table>BFM_Shipment__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Origin_Plant_Code__c</field>
             <table>BFM_Shipment__c</table>
         </columns>
         <masterLabel>Shipments</masterLabel>
@@ -309,11 +294,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Stage_Number__c</field>
-            <table>BFM_Shipment__c.Stages__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Unilever_Account__c</field>
             <table>BFM_Shipment__c.Stages__r</table>
         </columns>
         <columns>
