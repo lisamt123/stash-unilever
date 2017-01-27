@@ -60,11 +60,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Warehouse__c</field>
-            <table>BFM_Shipment__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Pricing_Calculation_Date__c</field>
             <table>BFM_Shipment__c</table>
         </columns>
@@ -366,21 +361,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Total_weight__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Number_of_Volumes__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Place_of_Departure__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Delivery_Number__c</field>
             <table>BFM_Shipment__c.Stages__r.Deliveries__r</table>
         </columns>
@@ -529,11 +509,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Occurrence_SES__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Incoterms__c</field>
             <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
         </columns>
@@ -579,22 +554,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Municipal_Name_Destination__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Material_Usage__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CT_e__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>NFS__c</field>
             <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
         </columns>
         <columns>
@@ -604,67 +564,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>CNPJ_Destination_Account__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>NF55_Created__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Annulment_Pdf_Reference__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Annulment_Xml_Reference__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>NF_Writer_Document__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>NF_Writer_Posting_Date__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>NF_Writer_Acc_Document__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>NF_Writer_Acc_Doc_Posting_Date__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Annulment_Access_Key__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Annulment_Fiscal_Doc_No__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Annulment_Fiscal_Posting_Date__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Status_Code__c</field>
-            <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Annulment_NF_e_Cancellation_Date__c</field>
             <table>BFM_Shipment__c.Stages__r.Deliveries__r.NF_es__r</table>
         </columns>
         <columns>
