@@ -141,8 +141,7 @@
         var str='';
         $("input[type=checkbox]:checked").each(function() {if($(this).val()!='0' && $(this).val()!=null){str+=$(this).val()+',';}});
         str=str.slice(0,-1);
-        //alert('str'+str);
-        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.BFM_SearchOccurrenceController_CC.updateOccurences}',str,function(result, event){//alert('result'+result);},{escape: true});
+        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.BFM_SearchOccurrenceController_CC.updateOccurences}',str,function(result, event){},{escape: true});
     }); 
     $('.btnRep').click(function(){
         var str='';
