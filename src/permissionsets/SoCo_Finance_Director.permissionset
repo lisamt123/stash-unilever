@@ -7,7 +7,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ACCL__Account_Bill_To__c.ACCL__Bill_To__c</field>
+        <field>ACCL__Account_Bill_To__c.ACCL__Bill_To__c</field> 
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
