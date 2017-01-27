@@ -210,7 +210,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>55</value>
+            <value>&quot;Korea, Republic Of&quot;</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
