@@ -392,6 +392,11 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Active__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -708,6 +713,11 @@
         </displayedFields>
         <displayedFields>
             <field>ACCL__Active__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -1052,6 +1062,11 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Parent_Promotion__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1237,6 +1252,11 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>UL_ThresholdViolated__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1413,6 +1433,11 @@
         </displayedFields>
         <displayedFields>
             <field>ACCL__Placement_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
