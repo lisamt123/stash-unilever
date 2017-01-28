@@ -11,7 +11,7 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
-        <fullName>UL_Update Active Policy</fullName>
+        <fullName>UL_Promotion Template Update Active Policy</fullName>
         <actions>
             <name>UpdateActivePolicy</name>
             <type>FieldUpdate</type>
@@ -25,7 +25,7 @@
         <criteriaItems>
             <field>ACCL__Promotion_Template__c.ACCL__Sales_Org__c</field>
             <operation>equals</operation>
-            <value>AR01,CL01,CL03</value>
+            <value>AR01,CL01,CL03,UK SO,Ireland SO</value>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>

@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>UL_Components__c</field>
-        <value xsi:type="xsd:string">TILE_PROMO_MAIN_UKI;TILE_TACTIC_MAIN_UKI;TILE_TACTIC_MAIN_CORE;TILE_PROMO_MAIN_CORE</value>
+        <value xsi:type="xsd:string">TILE_PROMO_MAIN_UKI;TILE_TACTIC_MAIN_UKI;TILE_PROMO_MAIN_CORE;TILE_TACTIC_MAIN_CORE</value>
     </values>
     <values>
         <field>UL_Sales_Org__c</field>
