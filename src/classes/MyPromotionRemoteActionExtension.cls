@@ -1963,31 +1963,35 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         
         if(promotionId != null){        
             //Get promotion sales org
-            ACCL__Promotion__c promotion = [SELECT ACCL__Sales_Org__c, (SELECT id FROM ACCL__Tactics__r) FROM ACCL__Promotion__c WHERE id=:promotionId AND ACCL__Promotion_Template__r.UL_Is_Tactic_Fund_Required__c = true];
+            List<ACCL__Promotion__c> promotionList = [SELECT ACCL__Sales_Org__c, (SELECT id FROM ACCL__Tactics__r) FROM ACCL__Promotion__c WHERE id=:promotionId AND ACCL__Promotion_Template__r.UL_Is_Tactic_Fund_Required__c = true];
             
-            //Get parent sales org. E.g for AR01, parent sales org is SoCo
-            String parentSalesOrg = UL_Utility.getParentSalesOrg(promotion.ACCL__Sales_Org__c);
-            
-            //Validate only for SoCo org
-            if(promotion != null && String.isNotEmpty(promotion.ACCL__Sales_Org__c) && UL_Utility.SalesOrg.SoCo.Name().equalsIgnoreCase(parentSalesOrg)){    
-                Set<id> tacticIdSet = null;
-                if(promotion.ACCL__Tactics__r != null){
-                    tacticIdSet = new Set<id>();
-                    for(ACCL__Tactic__c tactic: promotion.ACCL__Tactics__r){
-                        tacticIdSet.add(tactic.id);
-                    }
-                }
-                else{
-                    result = UL_Utility.BOOLEAN_FALSE;
-                }
+            if(!promotionList.isEmpty()){
+                ACCL__Promotion__c promotion = promotionList[0];
                 
-                if(tacticIdSet != null && tacticIdSet.size() > 0){
-                    for(ACCL__Tactic_Fund__c tacticFund : [SELECT ACCL__Tactic__c FROM ACCL__Tactic_Fund__c WHERE ACCL__Tactic__c IN :tacticIdSet]){
-                        tacticIdSet.remove(tacticFund.ACCL__Tactic__c);
-                    }
+                //Get parent sales org. E.g for AR01, parent sales org is SoCo
+                String parentSalesOrg = UL_Utility.getParentSalesOrg(promotion.ACCL__Sales_Org__c);
                 
-                    if(tacticIdSet.size() == 0){
+                //Validate only for SoCo org
+                if(promotion != null && String.isNotEmpty(promotion.ACCL__Sales_Org__c) && UL_Utility.SalesOrg.SoCo.Name().equalsIgnoreCase(parentSalesOrg)){    
+                    Set<id> tacticIdSet = null;
+                    if(promotion.ACCL__Tactics__r != null){
+                        tacticIdSet = new Set<id>();
+                        for(ACCL__Tactic__c tactic: promotion.ACCL__Tactics__r){
+                            tacticIdSet.add(tactic.id);
+                        }
+                    }
+                    else{
                         result = UL_Utility.BOOLEAN_FALSE;
+                    }
+                    
+                    if(tacticIdSet != null && tacticIdSet.size() > 0){
+                        for(ACCL__Tactic_Fund__c tacticFund : [SELECT ACCL__Tactic__c FROM ACCL__Tactic_Fund__c WHERE ACCL__Tactic__c IN :tacticIdSet]){
+                            tacticIdSet.remove(tacticFund.ACCL__Tactic__c);
+                        }
+                    
+                        if(tacticIdSet.size() == 0){
+                            result = UL_Utility.BOOLEAN_FALSE;
+                        }
                     }
                 }
             }
