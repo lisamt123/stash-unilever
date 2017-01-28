@@ -5,10 +5,6 @@
         <fullName>ParentOrigin</fullName>
         <picklist>
             <picklistValues>
-                <fullName>Agent</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Chat</fullName>
                 <default>false</default>
             </picklistValues>
@@ -202,10 +198,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Web North America</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Web Shop</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

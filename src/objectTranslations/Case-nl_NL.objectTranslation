@@ -719,10 +719,6 @@
     <fields>
         <name>Origin</name>
         <picklistValues>
-            <masterLabel>Agent</masterLabel>
-            <translation><!-- Agent --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Chat</masterLabel>
             <translation><!-- Chat --></translation>
         </picklistValues>
@@ -917,10 +913,6 @@
         <picklistValues>
             <masterLabel>Web North America</masterLabel>
             <translation><!-- Web North America --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Web Shop</masterLabel>
-            <translation><!-- Web Shop --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>White Mail</masterLabel>
@@ -1330,10 +1322,6 @@
             <translation><!-- Praise --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Sample Request</masterLabel>
-            <translation><!-- Sample Request --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Suggestion</masterLabel>
             <translation><!-- Suggestion --></translation>
         </picklistValues>
@@ -1478,10 +1466,6 @@
     <fields>
         <name>Status</name>
         <picklistValues>
-            <masterLabel>Approved</masterLabel>
-            <translation><!-- Approved --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Awaiting Factory Response</masterLabel>
             <translation><!-- Awaiting Factory Response --></translation>
         </picklistValues>
@@ -1542,170 +1526,6 @@
         <label>Winkel</label>
         <name>Store__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- City --></label>
-        <name>TEL_City__c</name>
-    </fields>
-    <fields>
-        <label><!-- House Number --></label>
-        <name>TEL_House_Number__c</name>
-    </fields>
-    <fields>
-        <label><!-- Job Title --></label>
-        <name>TEL_Job_Title__c</name>
-        <picklistValues>
-            <masterLabel>Catering manager</masterLabel>
-            <translation><!-- Catering manager --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Chef</masterLabel>
-            <translation><!-- Chef --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Food &amp; beverage manager</masterLabel>
-            <translation><!-- Food &amp; beverage manager --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>General manager</masterLabel>
-            <translation><!-- General manager --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Head chef</masterLabel>
-            <translation><!-- Head chef --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Owner</masterLabel>
-            <translation><!-- Owner --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Purchasing</masterLabel>
-            <translation><!-- Purchasing --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Sales</masterLabel>
-            <translation><!-- Sales --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Newsletter --></label>
-        <name>TEL_Newsletter__c</name>
-    </fields>
-    <fields>
-        <label><!-- Number of covers --></label>
-        <name>TEL_Number_of_covers__c</name>
-    </fields>
-    <fields>
-        <label><!-- Postal code --></label>
-        <name>TEL_Postal_code__c</name>
-    </fields>
-    <fields>
-        <label><!-- Primary Distributor --></label>
-        <name>TEL_Primary_Distributor__c</name>
-    </fields>
-    <fields>
-        <label><!-- Product --></label>
-        <name>TEL_Product__c</name>
-    </fields>
-    <fields>
-        <label><!-- Street --></label>
-        <name>TEL_Street__c</name>
-    </fields>
-    <fields>
-        <label><!-- Type of Business --></label>
-        <name>TEL_Type_of_Business__c</name>
-        <picklistValues>
-            <masterLabel>Burger Joint</masterLabel>
-            <translation><!-- Burger Joint --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Cafeteria / Take away</masterLabel>
-            <translation><!-- Cafeteria / Take away --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Cash &amp; Carry</masterLabel>
-            <translation><!-- Cash &amp; Carry --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Catering</masterLabel>
-            <translation><!-- Catering --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>College &amp; University</masterLabel>
-            <translation><!-- College &amp; University --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Distributor</masterLabel>
-            <translation><!-- Distributor --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Elderly Care</masterLabel>
-            <translation><!-- Elderly Care --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Healthcare</masterLabel>
-            <translation><!-- Healthcare --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Home cook</masterLabel>
-            <translation><!-- Home cook --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Hospital</masterLabel>
-            <translation><!-- Hospital --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Hotel / Pub chain</masterLabel>
-            <translation><!-- Hotel / Pub chain --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Hotel / Resort / Lodging</masterLabel>
-            <translation><!-- Hotel / Resort / Lodging --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Journalist / Marketing</masterLabel>
-            <translation><!-- Journalist / Marketing --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Limited Services / Quick service restaurants</masterLabel>
-            <translation><!-- Limited Services / Quick service restaurants --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Potential</masterLabel>
-            <translation><!-- Potential --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Pub Restaurants</masterLabel>
-            <translation><!-- Pub Restaurants --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>School</masterLabel>
-            <translation><!-- School --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Travel / Leisure</masterLabel>
-            <translation><!-- Travel / Leisure --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Wholesaler</masterLabel>
-            <translation><!-- Wholesaler --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Workplace / Contract caterer</masterLabel>
-            <translation><!-- Workplace / Contract caterer --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Web Surname --></label>
-        <name>TEL_Web_Surname__c</name>
     </fields>
     <fields>
         <label><!-- Tag --></label>
@@ -2002,10 +1822,6 @@
     <recordTypes>
         <label><!-- Spam --></label>
         <name>Spam</name>
-    </recordTypes>
-    <recordTypes>
-        <label><!-- Sample Requests --></label>
-        <name>TEL_Sample_Requests</name>
     </recordTypes>
     <validationRules>
         <errorMessage><!-- Case cannot be closed unless symptoms are resolved --></errorMessage>
