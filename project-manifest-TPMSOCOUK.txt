@@ -548,5 +548,8 @@ src/permissionsets/SoCo_Finance_Admin.permissionset
 src/permissionsets/SoCo_Finance_Director.permissionset
 src/permissionsets/SoCo_Process_Officer.permissionset
 src/permissionsets/SoCo_System_Admin.permissionset
+src/permissionsets/UK_Admin.permissionset
+src/permissionsets/UK_Authoriser.permissionset
+src/permissionsets/UK_Planner_CAM.permissionset
 src/sharingRules
 src/sharingRules/ACCL__Fund_Template__c.sharingRules

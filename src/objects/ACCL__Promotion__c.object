@@ -4244,6 +4244,14 @@ Id=VLOOKUP
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>Dates range should be more than 1 day or below 91 days</errorMessage>
     </validationRules>
+	<validationRules>
+        <fullName>UL_WithIn_DateFrom_DateThru</fullName>
+        <active>true</active>
+        <description>Promotion dates should be with in from and thru dates.</description>
+        <errorConditionFormula>IF(NOT(ISNEW()) &amp;&amp; (ACCL__Placement_Date_From__c	&lt; ACCL__Date_From__c ||ACCL__Placement_Date_Thru__c	&gt; ACCL__Date_Thru__c || ACCL__Delivery_Date_From__c &lt; ACCL__Date_From__c || ACCL__Delivery_Date_Thru__c &gt; ACCL__Date_Thru__c), true, false)</errorConditionFormula>
+        <errorDisplayField>ACCL__Active__c</errorDisplayField>
+        <errorMessage>Dates(Shipment or Instore) are not with in Promotion dates range.</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>ACCL__Derive</fullName>
         <availability>online</availability>
