@@ -5984,6 +5984,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Checkbox</type>
     </fields>
 	<fields>
+        <fullName>BFM_Address_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Address No</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
         <fullName>BFM_Carrier_Name__c</fullName>
         <externalId>false</externalId>
         <label>Carrier Name</label>
@@ -6063,7 +6074,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
 	<fields>
         <fullName>BFM_Carrier_Region__c</fullName>
         <externalId>false</externalId>
-        <label>Region1</label>
+        <label>Carrier Region</label>
         <length>3</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
