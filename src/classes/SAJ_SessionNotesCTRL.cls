@@ -69,6 +69,7 @@ public class SAJ_SessionNotesCTRL {
     }
     
     public List<ddWrap> decisions {get{
+        System.debug('decisons get: ' + decisions);
         if(decisions == null){
             decisions = new List<ddWrap>();
             for(Design_Decision__c d : DesignDecisions){
@@ -77,7 +78,7 @@ public class SAJ_SessionNotesCTRL {
                 decisions.add(tempWrap);
             }
         }
-        
+         System.debug('before return: ' + decisions);
         return decisions;
     }set;}
     

@@ -56,7 +56,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Active__c</fullName>
         <defaultValue>false</defaultValue>
@@ -87,6 +87,32 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>DeliveryPartner__c</fullName>
+        <externalId>false</externalId>
+        <label>Delivery Partner</label>
+        <picklist>
+            <picklistValues>
+                <fullName>a</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>b</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Description__c</fullName>
@@ -161,6 +187,32 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>OrgType__c</fullName>
+        <externalId>false</externalId>
+        <label>Org Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>a</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>b</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Org_ID__c</fullName>
         <description>Unique Salesforce Org Identifier (15 Digit)</description>
         <externalId>true</externalId>
@@ -172,20 +224,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Org_Type__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Org Type</label>
-        <referenceTo>Org_Type__c</referenceTo>
-        <relationshipLabel>Environment (Org Type)</relationshipLabel>
-        <relationshipName>Environment</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Org_URL__c</fullName>
@@ -358,20 +396,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Salesforce_Instance__c</fullName>
-        <externalId>false</externalId>
-        <label>Salesforce Instance</label>
-        <referenceTo>Instance__c</referenceTo>
-        <relationshipName>Org</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>true</reparentableMasterDetail>
-        <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
         <fullName>Tier__c</fullName>
         <externalId>false</externalId>
         <label>Tier</label>
@@ -421,8 +445,6 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>Org_Type__c</columns>
-        <columns>Salesforce_Instance__c</columns>
         <columns>Org_ID__c</columns>
         <columns>Last_Refresh__c</columns>
         <columns>Description__c</columns>
@@ -440,9 +462,7 @@
     <listViews>
         <fullName>All_Cognizant</fullName>
         <columns>NAME</columns>
-        <columns>Org_Type__c</columns>
         <columns>Primary_Use__c</columns>
-        <columns>Salesforce_Instance__c</columns>
         <columns>Initial_Allocation_End_Date__c</columns>
         <columns>Updated_Allocation_End_date__c</columns>
         <columns>Lead_Admin__c</columns>
@@ -462,22 +482,19 @@
         <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Lead_Admin__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Org_ID__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Salesforce_Instance__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Tier__c</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Org_ID__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Tier__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Salesforce_Instance__c</lookupDialogsAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>Active__c</searchFilterFields>
         <searchFilterFields>Description__c</searchFilterFields>
-        <searchFilterFields>Salesforce_Instance__c</searchFilterFields>
         <searchFilterFields>Tier__c</searchFilterFields>
         <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Org_ID__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Tier__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

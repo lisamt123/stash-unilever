@@ -70,31 +70,6 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>Architecture__c</fullName>
-        <externalId>false</externalId>
-        <label>Alternative Target Architecture</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Possible</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>Assumptions__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>State any assumptions e.g. resource availability, dependency on other projects, standards, precedents</inlineHelpText>
@@ -105,218 +80,6 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Back_End_System__c</fullName>
-        <externalId>false</externalId>
-        <label>Back End System</label>
-        <picklist>
-            <picklistValues>
-                <fullName>AD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Addison Lee</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ADP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Airsweb</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>APT</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ariba</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>AvisOnline</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Chatter</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Citrix</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DCIW</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>eLearning</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>H&amp;S</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>HRG</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ICM</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Kontiki</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>LMS Layering</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lotus Notes</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lync</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MyBusinessInfo</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>N/A</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PeopleSoft</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PRIME</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PSO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>pwregistration</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>pwreset</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ResourceBooking</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Salesforce</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SelfService</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sharepoint</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Talent Plus Online</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TaleoJobSearch</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TaleoRecruit</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TRS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>u-conference</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unileverconferencing</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>WCM</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>GTES</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Budget_Score__c</fullName>
-        <externalId>false</externalId>
-        <formula>6</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Budget Score</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Budget__c</fullName>
-        <externalId>false</externalId>
-        <label>Budget</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Funded</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Required</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Run Costs</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No Budget</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Charitable</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TBC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>BusinessInternalOwner__c</fullName>
@@ -346,37 +109,9 @@
     </fields>
     <fields>
         <fullName>Business_Platform__c</fullName>
-        <description>Names of Unilever Business Platforms</description>
         <externalId>false</externalId>
+        <globalPicklist>Business_Platforms</globalPicklist>
         <label>Business Platform</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Consumer Services and Operations</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Frontier</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CD SAP &amp; O2C</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Global Supply Chain</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Global Finance</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Collaboration</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -419,20 +154,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>CSAT__c</fullName>
-        <externalId>false</externalId>
-        <formula>7</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>CSAT</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>CTO_Owner__c</fullName>
@@ -479,73 +200,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Cloud__c</fullName>
-        <externalId>false</externalId>
-        <label>Cloud</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Sales</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Service</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Marketing</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Analytics</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Community</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Chatter</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Force</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Heroku</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Corporate Tool</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TBC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <visibleLines>6</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Complete__c</fullName>
-        <externalId>false</externalId>
-        <formula>If(Open_Tasks__c+Completed_Tasks__c != 0, Completed_Tasks__c  / (Open_Tasks__c+Completed_Tasks__c),0 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>% Complete</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
     </fields>
     <fields>
         <fullName>Completed_Design_Challenge__c</fullName>
@@ -612,57 +266,6 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Current_View__c</fullName>
-        <externalId>false</externalId>
-        <label>Current View</label>
-        <length>80</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Days_to_Go__c</fullName>
-        <externalId>false</externalId>
-        <formula>Target_Date__c - Today()</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Days to Go</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Degree_Of_Change__c</fullName>
-        <externalId>false</externalId>
-        <label>Degree Of Change</label>
-        <picklist>
-            <picklistValues>
-                <fullName>High</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Medium</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Low</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>DeliveryInternalPartnerLead__c</fullName>
@@ -760,130 +363,6 @@
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
-        <fullName>Dev_Ops_Prototyped__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Have the DevOps team created a prototype</description>
-        <externalId>false</externalId>
-        <label>DevOps Prototyped</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Discount_Factor__c</fullName>
-        <description>Either the annual or monthly discount factor, depending on periodicity of cash flows. Default is annual.</description>
-        <externalId>false</externalId>
-        <formula>IF (ISPICKVAL( Cash_Flow_Period__c ,&quot;Month&quot;), 1+ (Discount_Rate__c / 12), 1+ Discount_Rate__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Discount Factor</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>6</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Discount_Rate__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <inlineHelpText>Annual discount rate for this project.</inlineHelpText>
-        <label>Discount Rate</label>
-        <precision>5</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>Duration_Saved__c</fullName>
-        <externalId>false</externalId>
-        <label>Duration Saved</label>
-        <precision>4</precision>
-        <required>false</required>
-        <scale>1</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Estimated_Duration__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>The estimated elapsed time in days to deliver this business solution</inlineHelpText>
-        <label>Estimated Duration</label>
-        <precision>4</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Estimated_Effort__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>The estimated effort in person days needed to deliver this business solution</inlineHelpText>
-        <label>Estimated Effort</label>
-        <precision>6</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>External_Users__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>How many external users are expected to access this business solution?</inlineHelpText>
-        <label>External Users</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Focus__c</fullName>
-        <externalId>false</externalId>
-        <label>Focus</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Employee</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Customer</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Consumer</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>Force_com_Suitability__c</fullName>
         <externalId>false</externalId>
         <label>Platform Fit</label>
@@ -907,33 +386,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Frequency_per_Year__c</fullName>
-        <externalId>false</externalId>
-        <label>Frequency per Year</label>
-        <precision>6</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Function__c</fullName>
-        <deleteConstraint>Restrict</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Function</label>
-        <referenceTo>Programme__c</referenceTo>
-        <relationshipLabel>Business Solution</relationshipLabel>
-        <relationshipName>Business_Solution</relationshipName>
-        <required>true</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Geographies_Impacted__c</fullName>
@@ -964,36 +416,6 @@
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>6</visibleLines>
-    </fields>
-    <fields>
-        <fullName>ICA__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>Information Criticality Assessment</inlineHelpText>
-        <label>ICA</label>
-        <picklist>
-            <picklistValues>
-                <fullName>1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>4</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPIX_Funded__c</fullName>
@@ -1047,51 +469,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Integration_Available__c</fullName>
-        <externalId>false</externalId>
-        <label>Integration Available</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Integration_Method__c</fullName>
-        <description>What method does the application use to integrate with other applications? Example: Mulesoft, AWS</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Eg: Mulesoft, AWS</inlineHelpText>
-        <label>Integration Method</label>
-        <length>200</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Integration_Requirement__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Integration Requirement</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Internal_Users__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>How many internal users are expected to access this business solution?</inlineHelpText>
@@ -1104,116 +481,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Likely_Cost__c</fullName>
-        <externalId>false</externalId>
-        <label>Likely Cost</label>
-        <picklist>
-            <picklistValues>
-                <fullName>High</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Medium</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Low</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Master_Data_Requirement__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Master Data Requirement</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Master_Data__c</fullName>
-        <externalId>false</externalId>
-        <label>Master Data Available</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Mobile_Requirement__c</fullName>
-        <externalId>false</externalId>
-        <label>Mobile Requirement</label>
-        <picklist>
-            <picklistValues>
-                <fullName>SF1 Mobile</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Native</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Custom (Salesforce SDK)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>N/A (Web Only)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unknown</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>New_License_Demand__c</fullName>
-        <externalId>false</externalId>
-        <label>New License Demand</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Onboarding_Step_created__c</fullName>
@@ -1362,27 +629,6 @@
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
-        <fullName>Programme__c</fullName>
-        <externalId>false</externalId>
-        <label>Programme</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Mobile 2020 Employee</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Frontier CD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>ProjectInternalSponsor__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1430,20 +676,6 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Quality__c</fullName>
-        <externalId>false</externalId>
-        <formula>4</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Quality</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>RAG_Status__c</fullName>
@@ -1503,86 +735,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Required_Timescales__c</fullName>
-        <externalId>false</externalId>
-        <label>Required Timescales</label>
-        <picklist>
-            <picklistValues>
-                <fullName>&lt;1 month</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>1-3 months</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3-6 months</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&gt;6 months</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unknown</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Risks__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>Identify what is the risk foreseen in implementing this project.</inlineHelpText>
-        <label>Risks</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Salesforce_Remarks__c</fullName>
-        <externalId>false</externalId>
-        <label>Salesforce Remarks &amp; Actions</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Security_Implications__c</fullName>
-        <externalId>false</externalId>
-        <label>Security Implications</label>
-        <picklist>
-            <picklistValues>
-                <fullName>High</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Medium</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Low</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>ServiceInternalOwner__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1633,18 +785,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>SolutionID__c</fullName>
-        <externalId>true</externalId>
-        <label>SolutionID</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Stage__c</fullName>
@@ -1728,93 +868,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Success_Definition__c</fullName>
-        <description>Measures of success</description>
-        <externalId>false</externalId>
-        <label>Success Definition</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>5</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Support_Partner_L2__c</fullName>
-        <externalId>false</externalId>
-        <label>Support Partner L2</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Accenture IDC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Functional Spoke</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Support_Partner_L3__c</fullName>
-        <externalId>false</externalId>
-        <label>Support Partner L3</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Accenture IDC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cap Gemini</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cognizant</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MindTree</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Support_partner_L3_contact__c</fullName>
-        <description>Partner L3 support contact</description>
-        <externalId>false</externalId>
-        <label>Support partner L3 contact</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Tags__c</fullName>
-        <description>Holds tags on separate lines</description>
-        <externalId>false</externalId>
-        <label>Tags</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
         <fullName>Target_Date__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Business Go-live date</inlineHelpText>
@@ -1847,150 +900,22 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>Timeliness_Score__c</fullName>
-        <externalId>false</externalId>
-        <formula>8</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Timeliness Score</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Total_Saved__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Saved hours</label>
-        <precision>10</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Unilever_Decision__c</fullName>
-        <externalId>false</externalId>
-        <label>Unilever Decision</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Park</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Needs Review</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Proceed</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cancel</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Need to Keep</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unknown</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Can be Decommissioned</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Prepare to Migrate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Unilever_Remarks__c</fullName>
-        <externalId>false</externalId>
-        <label>Unilever Remarks &amp; Actions</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Use_Classification__c</fullName>
-        <externalId>false</externalId>
-        <label>Improvement Focus</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Efficiency (Processes)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Productivity (Users)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Engagement (Organisational Collaboration)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>User_Scope__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>Describe who will use the application within Unilever (and/or externally)</inlineHelpText>
-        <label>User Scope</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Vendor_Id__c</fullName>
-        <externalId>false</externalId>
-        <label>Vendor Id</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>Business Solution</label>
+    <listViews>
+        <fullName>All_Active</fullName>
+        <columns>NAME</columns>
+        <columns>Approximate_Budget__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Active</label>
+        <language>en_US</language>
+    </listViews>
     <listViews>
         <fullName>All_Audit</fullName>
         <columns>NAME</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Audit</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2004,13 +929,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Communications</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2029,15 +948,9 @@
         <columns>Internal_Users__c</columns>
         <columns>Start_Date__c</columns>
         <columns>Target_Date__c</columns>
-        <columns>Function__c</columns>
         <columns>Project_Manager__c</columns>
         <columns>Delivery_Partner__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Customer Development</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>equals</operation>
@@ -2051,13 +964,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Finance</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2071,13 +978,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Human Resources</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2091,13 +992,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>IT</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2111,13 +1006,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Information Analytics</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2131,13 +1020,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Legal</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2151,13 +1034,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Marketing</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2171,13 +1048,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Research/Development</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2191,13 +1062,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Security</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2211,13 +1076,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Supply Chain</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2231,13 +1090,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Sustainability</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2251,13 +1104,7 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
-        <columns>Function__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Function__c</field>
-            <operation>equals</operation>
-            <value>Workplace Services</value>
-        </filters>
         <filters>
             <field>Phase__c</field>
             <operation>contains</operation>
@@ -2268,7 +1115,6 @@
     <listViews>
         <fullName>All_in_Salesforce</fullName>
         <columns>NAME</columns>
-        <columns>Function__c</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
@@ -2284,7 +1130,6 @@
     <listViews>
         <fullName>All_in_Salesforce_Production</fullName>
         <columns>NAME</columns>
-        <columns>Function__c</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
@@ -2305,7 +1150,6 @@
     <listViews>
         <fullName>All_with_Target_Go_Live</fullName>
         <columns>NAME</columns>
-        <columns>Function__c</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
@@ -2326,7 +1170,6 @@
     <listViews>
         <fullName>Lotus_Notes</fullName>
         <columns>NAME</columns>
-        <columns>Function__c</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
@@ -2336,7 +1179,6 @@
     <listViews>
         <fullName>MSL_MCo</fullName>
         <columns>NAME</columns>
-        <columns>Function__c</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Project_Scope__c</columns>
@@ -2347,7 +1189,6 @@
         <fullName>Pipeline_Project_Portfolio</fullName>
         <columns>Internal_Users__c</columns>
         <columns>NAME</columns>
-        <columns>Function__c</columns>
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
@@ -2382,7 +1223,7 @@
         <searchFilterFields>Status__c</searchFilterFields>
         <searchFilterFields>Phase__c</searchFilterFields>
         <searchFilterFields xsi:nil="true"/>
-        <searchResultsAdditionalFields>Tags__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Complexity__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Phase__c</searchResultsAdditionalFields>
