@@ -277,6 +277,13 @@ src/groups/SoCo_Account_Manager_CL03.group
 src/groups/SoCo_Category_Manager_AR01.group
 src/groups/SoCo_Category_Manager_CL01.group
 src/groups/SoCo_Category_Manager_CL03.group
+src/groups/UL_SoCo_Category_Group_AR01.group
+src/groups/UL_SoCo_Category_Group_CL01.group
+src/groups/UL_SoCo_Category_Group_CL03.group
+src/roles
+src/roles/TPM_Argentina_AR01_Finance_Admin_Manager.role
+src/roles/TPM_Chile_HPF_Finance_Admin_Manager.role
+src/roles/TPM_Chile_Ice_Cream_Finance_Admin_Manager.role
 src/queues
 src/queues/Finance_Check_Dynamic_Queue.queue
 src/queues/Manager_Check_Dynamic_Queue.queue
@@ -548,5 +555,6 @@ src/permissionsets/SoCo_Finance_Admin.permissionset
 src/permissionsets/SoCo_Finance_Director.permissionset
 src/permissionsets/SoCo_Process_Officer.permissionset
 src/permissionsets/SoCo_System_Admin.permissionset
+src/permissionsets/UK_Admin.permissionset
 src/sharingRules
 src/sharingRules/ACCL__Fund_Template__c.sharingRules

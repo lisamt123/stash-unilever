@@ -58,6 +58,21 @@
         public static final String LEVEL8= 'Level 8';
         public static final String LEVEL9= 'Level 9';
         
+        //Product Levels
+        public enum ProductLevel{
+            Level0,
+            Level1,
+            Level2,
+            Level3,
+            Level4,
+            Level5,
+            Level6,
+            Level7,
+            Level8,
+            Level9,
+            Product
+        }
+        
         // The API Name of the Permission Set
         public static final String ACSF_FM_PERMISSION_SET = 'ACSF_FM';    
         public static final String ACSF_FA_PERMISSION_SET = 'ACSF_FA';    
@@ -127,8 +142,8 @@
         public static final String STATUS_PENDING = 'Pending';
         public static final String STATUS_PLANNING = 'Planning';
         public static final String STATUS_FINANCE_CHECK = 'Finance Check';
-        public static final String STATUS_MANAGER_CHECK = 'Manager Check';
-		public static final String STATUS_SUBMITTED_FOR_APPROVAL = 'Submitted for Approval';		
+        public static final String STATUS_MANAGER_CHECK = 'Manager Check'; 
+        public static final String STATUS_SUBMITTED_FOR_APPROVAL = 'Submitted for Approval'; 
                
         //User Org Role
         public static final String ROLE_CATEGORY_MANAGER = 'category manager';
@@ -147,6 +162,30 @@
             SoCo
         }
         
+        //edo Promotion Picklists for ACCL__Promotion__c.UL_Promotion_Template_Type OR  ACCL__Promotion_Template__c:UL_Promo_Type_ControlView__c
+        public static final String PROMOTION_TEMPLATE_TYPE_ACCOUNT_PLAN = 'Account Plan';
+        public static final String PROMOTION_TEMPLATE_TYPE_ACCOUNT_SPECIFIC_PROMOTION = 'Account Specific Promotion';
+        public static final String PROMOTION_TEMPLATE_TYPE_CUSTOMEREVENT = 'CustomerEvent';
+        public static final String PROMOTION_TEMPLATE_TYPE_LTA = 'LTA';
+        public static final String PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT = 'MarketingEvent';
+        public static final String PROMOTION_TEMPLATE_TYPE_PARENT_PROMOTION = 'Parent Promotion';
+        public static final String PROMOTION_TEMPLATE_TYPE_PAST_DATED_URGENT = 'Past Dated/Urgent';
+        public static final String PROMOTION_TEMPLATE_TYPE_SPECIALHOLIDAY = 'SpecialHoliday';
+
+
+        //edo Promotion Picklists for ACCL__Promotion_Template__c.ACCL__Anchor_Type__c
+        public static final String PROMOTION_TEMPLATE_ANCHOR_TYPE_CUSTOMER = 'Customer';        
+        public static final String PROMOTION_TEMPLATE_ANCHOR_TYPE_CUSTOMERSET = 'CustomerSet';  
+
+        //edo Promotion Picklists for ACCL__Promotion_Template__c.ACCL__Trade_Calendar_Relevant__c 
+        public static final String PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_YES = 'Yes';
+        public static final String PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_NO = 'No';
+        public static final String PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_DEFAULT = 'Default';   
+
+        //edo Promotion Picklists for ACCL__Promotion_Template__c.ACCL__Promotion_Type
+        public static final String PROMOTION_TEMPLATE_PROMOTION_TYPE_PROMOTION = 'Promotion';  
+        public static final String PROMOTION_TEMPLATE_PROMOTION_TYPE_SELLABLEPROMOTION = 'SellablePromotion'; 
+
     /** ------------------------------------------------------------------ Public methods Section  ------------------------------------------------------------------/** 
     
     /*******************************************************************

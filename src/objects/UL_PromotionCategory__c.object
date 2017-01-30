@@ -55,6 +55,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Account__c</fullName>
         <externalId>false</externalId>
@@ -68,17 +69,16 @@
     </fields>
     <fields>
         <fullName>Heroku_Product_Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>The product id received from Heroku system.</description>
         <externalId>false</externalId>
         <label>Heroku Product Id</label>
         <referenceTo>ACCL__Product__c</referenceTo>
         <relationshipLabel>PromotionCategories (Heroku Product Id)</relationshipLabel>
         <relationshipName>HerokuPromotion</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Product__c</fullName>
@@ -94,28 +94,32 @@
     </fields>
     <fields>
         <fullName>Promotion__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <description>Promotion lookup</description>
         <externalId>false</externalId>
         <label>Promotion</label>
         <referenceTo>ACCL__Promotion__c</referenceTo>
         <relationshipLabel>PromotionCategories</relationshipLabel>
         <relationshipName>PromotionCategories</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <label>PromotionCategory</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>Heroku_Product_Id__c</columns>
-        <columns>Product__c</columns>
         <columns>Promotion__c</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_GB</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
     </listViews>
     <nameField>
         <label>PromotionCategory Name</label>
@@ -123,5 +127,5 @@
     </nameField>
     <pluralLabel>PromotionCategories</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

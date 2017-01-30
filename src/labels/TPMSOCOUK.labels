@@ -26,6 +26,13 @@
         <shortDescription>AF_Adaptation_Value</shortDescription>
         <value>Adaptation:</value>
     </labels>
+	<labels>
+        <fullName>Attachment_Count_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attachment_Count_Error_Message</shortDescription>
+        <value>This Long Term Agreement cannot move to this status as there is no Attachment attached to this Long Term Agreement</value>
+    </labels>
     <labels>
         <fullName>AF_Add_Comment</fullName>
         <language>en_US</language>

@@ -2,6 +2,46 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
         <label><!-- Category --></label>
+		<fields>
+        <label><!-- Product Level --></label>
+        <name>ACCL__Product_Level__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation>Compañia Operativa</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation>Comodity/Division</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation>Categoria/Sub-division</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation>Grupo de Producto/Categoría</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation>Grupo de Marca</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation>Producto</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation>Variante</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation>Size</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product</masterLabel>
+            <translation>SKU</translation>
+        </picklistValues>
+    </fields>
         <name>ACCL__Category__c</name>
         <picklistValues>
             <masterLabel>Accumulators</masterLabel>

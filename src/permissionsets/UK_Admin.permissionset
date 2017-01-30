@@ -14991,7 +14991,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <label>UK-Admin</label>
-    <license>Salesforce Platform</license>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -15598,7 +15597,7 @@
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Account</object>
@@ -16517,4 +16516,5 @@
         <tab>standard-UserProvisioningRequest</tab>
         <visibility>None</visibility>
     </tabSettings>
+    <userLicense>Salesforce Platform</userLicense>
 </PermissionSet>

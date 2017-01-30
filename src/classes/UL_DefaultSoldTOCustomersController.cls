@@ -11,7 +11,7 @@ VERSION     AUTHOR             DATE              DETAIL            Description
 1.0         Vinod Thupakula    05/12/2016        INITIAL DEV       Create planning level customers
 *****************************************************************/
 public with sharing class UL_DefaultSoldTOCustomersController{
-    public UL_Planning_Level__c relatedRecord{private set;get;}
+    public UL_Planning_Level__c relatedRecord{set;get;}
     public String defaultsoldto{set;get;}
     public list<SelectOption> defultsoldtocustomers{set;get;}
     public String redirectUrl{set;get;}
@@ -20,7 +20,7 @@ public with sharing class UL_DefaultSoldTOCustomersController{
     private ApexPages.StandardController ctr;
     private Boolean isCustomerDifferentCurrency {set;get;} 
     private string currentCustomerLevel; 
-    
+    private Id recId;
     /*******************************************************************
     Purpose: Default constructor fetch planning level records
     Version: 1.0
@@ -29,10 +29,13 @@ public with sharing class UL_DefaultSoldTOCustomersController{
     Throws N/A
     ********************************************************************/
     public UL_DefaultSoldTOCustomersController(ApexPages.StandardController controller) {
-          this.relatedRecord = (UL_Planning_Level__c ) controller.getRecord();           
+           controller.addFields(new List<String>{'UL_Planning_Level_End_Date__c', 'UL_Planning_Level_Start_Date__c','UL_Account__c'});
+           this.relatedRecord = (UL_Planning_Level__c) controller.getRecord();    
           //Assign default start & end date. Temporary solution to read defult field value. 
-          this.relatedRecord.UL_Planning_Level_End_Date__c = Date.newInstance(2099, 12, 31);
-          this.relatedRecord.UL_Planning_Level_Start_Date__c = Date.Today();
+          if(this.relatedRecord.UL_Planning_Level_End_Date__c == null && this.relatedRecord.UL_Planning_Level_Start_Date__c == null){
+              this.relatedRecord.UL_Planning_Level_End_Date__c = Date.newInstance(2099, 12, 31);
+              this.relatedRecord.UL_Planning_Level_Start_Date__c = Date.Today();
+          }          
           this.ctr = controller;   
           showSaveButton = true ; 
           buttonLab = Label.ACCL.CANCEL; 
@@ -49,6 +52,7 @@ public with sharing class UL_DefaultSoldTOCustomersController{
         try{
         isCustomerDifferentCurrency = UL_Utility.BOOLEAN_FALSE;
         defultsoldtocustomers = new list<SelectOption>();
+        system.debug('----->'+relatedRecord);
         if(relatedRecord.UL_Planning_Level_Start_Date__c != null && relatedRecord.UL_Planning_Level_End_Date__c!= null){
             
             if(relatedRecord.UL_Customer__c != null){
@@ -113,10 +117,10 @@ public with sharing class UL_DefaultSoldTOCustomersController{
                 ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, System.Label.UL_PlanningLevelBetween3To7);
                 ApexPages.addMessage(msg);
             }
-        }
+        }        
+        
         
         loadDefaultSoldCustomers() ;
-        
         }
         catch(Exception ex){
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.UL_ERROR_MESSAGE);
@@ -166,8 +170,9 @@ public with sharing class UL_DefaultSoldTOCustomersController{
             }
         }        
         if(custHierAccPLLst.size() > 0){
+        system.debug('custHierAccPL---'+custHierAccPLLst);
             for(UL_Planning_Level__c custHierAccPL : custHierAccPLLst){
-                if((custHierAccPL.Id != relatedRecord.Id)&&((currPLRecStartDt == custHierAccPL.UL_Planning_Level_Start_Date__c) || (currPLRecEndDt == custHierAccPL.UL_Planning_Level_End_Date__c)
+                if((custHierAccPL.Id != relatedRecord.Id)&&((currPLRecEndDt == custHierAccPL.UL_Planning_Level_Start_Date__c||currPLRecStartDt == custHierAccPL.UL_Planning_Level_Start_Date__c) || (currPLRecEndDt == custHierAccPL.UL_Planning_Level_End_Date__c)
                 || (currPLRecStartDt > custHierAccPL.UL_Planning_Level_Start_Date__c && currPLRecStartDt < custHierAccPL.UL_Planning_Level_End_Date__c)
                 || (currPLRecEndDt > custHierAccPL.UL_Planning_Level_Start_Date__c && currPLRecEndDt < custHierAccPL.UL_Planning_Level_End_Date__c)
                 || (custHierAccPL.UL_Planning_Level_Start_Date__c > currPLRecStartDt && custHierAccPL.UL_Planning_Level_Start_Date__c < currPLRecEndDt)
@@ -182,16 +187,23 @@ public with sharing class UL_DefaultSoldTOCustomersController{
             ApexPages.addMessage(msg);           
         }
         else{
-            pref  = new PageReference('/'+relatedRecord.UL_Customer__c);
             Database.upsert(relatedRecord);
+            pref  = new PageReference('/'+relatedRecord.UL_Customer__c);            
             pref.setRedirect(true);           
         }
        }
     catch(Exception ex){
-           ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.UL_ERROR_MESSAGE);
-            ApexPages.addMessage(msg);
+        ApexPages.Message msg;
+        if(ex.getMessage().contains(UL_Utility.FIELD_CUSTOM_VALIDATION_EXCEPTION)){
+              msg = new ApexPages.Message(ApexPages.Severity.ERROR,UL_UtilityController.errorMessage(ex.getMessage()));
+        }
+        else{
+              msg = new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.UL_ERROR_MESSAGE);
+        }           
+           ApexPages.addMessage(msg);
             UL_Utility.logError(Ex, UserInfo.getUserId());
           }
        return pref;
     }
+   
 }

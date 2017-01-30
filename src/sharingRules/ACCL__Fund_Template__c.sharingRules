@@ -1,48 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingCriteriaRules>
-        <fullName>UL_Sharing_rule_for_AR01</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>Sharing rule for AR01</label>
+        <fullName>UL_SoCo_Category_Sharing_rule_for_AR01</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to only create Standard Trade budget fund for Category planner and Manage</description>
+        <label>SoCo_Category Sharing rule for AR01</label>
         <sharedTo>
-            <group>Argentina_SO</group>
+            <group>UL_SoCo_Category_Group_AR01</group>
         </sharedTo>
         <criteriaItems>
             <field>ACCL__Sales_Org__c</field>
             <operation>equals</operation>
             <value>AR01</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>UL_Fund_Type__c</field>
+            <operation>equals</operation>
+            <value>Standard Trade Budget</value>
+        </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
-        <fullName>UL_Sharing_rule_for_CL01</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>Sharing rule for CL01</label>
+        <fullName>UL_SoCo_Category_Sharing_rule_for_CL01</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to only create Standard Trade budget fund for Category planner and Manage</description>
+        <label>SoCo_Category Sharing rule for CL01</label>
         <sharedTo>
-            <group>Chile_HPF_SO</group>
+            <group>UL_SoCo_Category_Group_CL01</group>
         </sharedTo>
         <criteriaItems>
             <field>ACCL__Sales_Org__c</field>
             <operation>equals</operation>
             <value>CL01</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>UL_Fund_Type__c</field>
+            <operation>equals</operation>
+            <value>Standard Trade Budget</value>
+        </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
-        <fullName>UL_Sharing_rule_for_CL03</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>Sharing rule for CL03</label>
+        <fullName>UL_SoCo_Category_Sharing_rule_for_CL03</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to only create Standard Trade budget fund for Category planner and Manage</description>
+        <label>SoCo_Category Sharing rule for CL03</label>
         <sharedTo>
-            <group>Chile_Ice_Cream_SO</group>
+            <group>UL_SoCo_Category_Group_CL03</group>
         </sharedTo>
         <criteriaItems>
             <field>ACCL__Sales_Org__c</field>
             <operation>equals</operation>
             <value>CL03</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>UL_Fund_Type__c</field>
+            <operation>equals</operation>
+            <value>Standard Trade Budget</value>
+        </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
         <fullName>UL_SoCo_Finance_Sharing_rule_for_AR01</fullName>
         <accessLevel>Read</accessLevel>
-        <description>Sharing rule to only create A&amp;P budget fund</description>
+        <description>Sharing rule for the Finance users</description>
         <label>SoCo_Finance Sharing rule for AR01</label>
         <sharedTo>
             <group>UL_SoCo_Finance_Group_AR01</group>
@@ -52,16 +70,11 @@
             <operation>equals</operation>
             <value>AR01</value>
         </criteriaItems>
-        <criteriaItems>
-            <field>UL_Fund_Type__c</field>
-            <operation>equals</operation>
-            <value>A&amp;P Budget</value>
-        </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
         <fullName>UL_SoCo_Finance_Sharing_rule_for_CL01</fullName>
         <accessLevel>Read</accessLevel>
-        <description>Sharing rule to only create A&amp;P budget fund</description>
+        <description>Sharing rule for the Finance users</description>
         <label>SoCo_Finance Sharing rule for CL01</label>
         <sharedTo>
             <group>UL_SoCo_Finance_Group_CL01</group>
@@ -71,16 +84,11 @@
             <operation>equals</operation>
             <value>CL01</value>
         </criteriaItems>
-        <criteriaItems>
-            <field>UL_Fund_Type__c</field>
-            <operation>equals</operation>
-            <value>A&amp;P Budget</value>
-        </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
         <fullName>UL_SoCo_Finance_Sharing_rule_for_CL03</fullName>
         <accessLevel>Read</accessLevel>
-        <description>Sharing rule to only create A&amp;P budget fund</description>
+        <description>Sharing rule for the Finance users</description>
         <label>SoCo_Finance Sharing rule for CL03</label>
         <sharedTo>
             <group>UL_SoCo_Finance_Group_CL03</group>
@@ -89,11 +97,6 @@
             <field>ACCL__Sales_Org__c</field>
             <operation>equals</operation>
             <value>CL03</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>UL_Fund_Type__c</field>
-            <operation>equals</operation>
-            <value>A&amp;P Budget</value>
         </criteriaItems>
     </sharingCriteriaRules>
 </SharingRules>
