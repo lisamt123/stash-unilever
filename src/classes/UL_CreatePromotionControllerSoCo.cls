@@ -264,8 +264,10 @@ public with sharing class UL_CreatePromotionControllerSoCo{
             pr.setRedirect(true);
         } 
         catch(Exception ex) {
-            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, ex.getMessage());
-            ApexPages.addMessage(msg);
+            //ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, ex.getMessage());
+            //ApexPages.addMessage(msg);
+            //Commented above line to display only the generic exception messages
+            ApexPages.addMessages(ex);
         }        
         return pr;
     }  
