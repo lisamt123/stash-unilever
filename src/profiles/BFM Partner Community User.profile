@@ -1599,6 +1599,14 @@
         <field>BFM_User_Creation_Request_Error__c.Error_Message__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<layoutAssignments>
+		<layout>Account-BFM Unilever Account</layout>
+		<recordType>Account.BFM_Unilever_Account</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+		<layout>Account-Carrier</layout>
+		<recordType>Account.BFM_Carrier</recordType>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>BFM_AccountAccessRequest__c-BFM Account Access Request Layout</layout>
     </layoutAssignments>
