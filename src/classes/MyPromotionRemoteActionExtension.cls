@@ -2326,8 +2326,25 @@ Throws : N/A
      */
     @RemoteAction
     global static List<ACCL__Product__c> readLOFilteredProducts(String txId,String promotionContent) {
-    promotionContent = UL_PromotionContentReplace.replaceFieldContent(promotionContent);
-    return ACCL.PromotionRemoteActionExtension.readLOFilteredProducts(txId,promotionContent);
+        
+        List<ACCL__Product__c> result = null;
+        promotionContent = UL_PromotionContentReplace.replaceFieldContent(promotionContent);
+        System.debug('promotionContent::::::::'+promotionContent);
+        result = ACCL.PromotionRemoteActionExtension.readLOFilteredProducts(txId,promotionContent);
+        
+        //Display only least level products.
+        if(!result.isEmpty()){
+            List<ACCL__Product__c> internalProductList = new List<ACCL__Product__c>();
+            for(ACCL__Product__c product : result){
+                if(UL_Utility.ProductLevel.Product.name().equalsIgnoreCase(product.ACCL__Product_Level__c)){
+                    internalProductList.add(product);
+                }
+            }
+            result.clear();
+            result.addAll(internalProductList);
+         }
+        
+        return result;
     }
     private class updateException extends Exception{}
     
