@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>FS 55050 Sysco/Pure Player Region Sales Rep</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>FS 55050 Sysco/Pure Player Region Sales Rep</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>FS_55050_Sysco_Pure_Player_Region_Manager</parentRole>
+</Role>
