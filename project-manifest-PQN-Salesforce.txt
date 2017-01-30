@@ -42,6 +42,8 @@ src/classes/PQN_GlobalGeographyReport.cls
 src/classes/PQN_GlobalGeographyReport.cls-meta.xml
 src/classes/PQN_GlobalGeographyReportTest.cls
 src/classes/PQN_GlobalGeographyReportTest.cls-meta.xml
+src/classes/PQN_GlobalCategoryReporttest.cls
+src/classes/PQN_GlobalCategoryReporttest.cls-meta.xml
 src/classes/PQN_GlobalSUReport.cls
 src/classes/PQN_GlobalSUReport.cls-meta.xml
 src/classes/PQN_DC_Voulmes.cls
@@ -96,8 +98,6 @@ src/classes/PQNScheduleDeteleOfRecords.cls
 src/classes/PQNScheduleDeteleOfRecords.cls-meta.xml
 src/classes/PQNScheduleDeteleOfRecordsTest.cls
 src/classes/PQNScheduleDeteleOfRecordsTest.cls-meta.xml
-src/classes/PQN_GlobalCategoryReporttest.cls
-src/classes/PQN_GlobalCategoryReporttest.cls-meta.xml
 src/components/PQN_Navigation.component
 src/components/PQN_Navigation.component-meta.xml
 src/layouts/PQN_DC_Volumes__c-PQN_DC_Volumes Layout.layout
