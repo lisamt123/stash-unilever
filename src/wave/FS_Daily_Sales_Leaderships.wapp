@@ -10,8 +10,8 @@
     </shares>
     <shares>
         <accessLevel>Manage</accessLevel>
-        <sharedTo>pamela.carbonara@accenture.com</sharedTo>
-        <sharedToType>User</sharedToType>
+        <sharedTo>FS_DailySales_Admin</sharedTo>
+        <sharedToType>Group</sharedToType>
     </shares>
     <shares>
         <accessLevel>View</accessLevel>

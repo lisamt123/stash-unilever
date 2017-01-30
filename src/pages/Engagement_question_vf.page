@@ -181,7 +181,7 @@
       </div>
     </div> 
     <script>
-    function showdet(){     
+    function showdet(){    
     var value1 = '';
     var value2 = '';
     if (document.getElementById('rad1').checked) { value1 = "{!ans.Answer1__c}";value2 = 9;   }
@@ -196,12 +196,12 @@
     return null;    }
     else   {
     jQuery('[id$=myHiddenField]').val(value1);
-    passStringToController();
     jQuery('[id$=myHiddenField1]').val(value2);
-    passStringToController1();   }
+    }
     document.getElementById('opaque').style.display='block';
        var popUp = document.getElementById('spinner');     
-       popUp.style.display = 'block';    }
+       popUp.style.display = 'block';
+     }
     </script>
     </apex:repeat>
     
@@ -216,13 +216,13 @@
   <apex:outputText value="Upload pics if any" style="color:white;font-size:16px"></apex:outputText>
   </div>  
   <div align="center"> 
-  <apex:inputfile id="filecount" value="{!file}" tabindex="-1"/>   
+   <apex:inputfile id="filecount" value="{!file}" tabindex="-1"/>   
    <apex:inputfile id="upload1" value="{!file2}" tabindex="-1"/>
    <apex:inputfile id="upload2" value="{!file3}" tabindex="-1"/>
    </div>
    <br/>  
     <p class="butn">           
-         <apex:commandButton value="Save and Next" action="{!save}" onclick="showdet();"/>
+         <apex:commandButton value="Save and Next" onClick="showdet();" action="{!save}" />
     </p> 
      <div id="opaque"/>
    <div id="spinner">
@@ -231,10 +231,9 @@
     </div>
     </div>
  </apex:repeat>
+
   <apex:inputHidden value="{!val1}" id="myHiddenField" />
-  <apex:actionFunction name="passStringToController" />
   <apex:inputHidden value="{!val2}" id="myHiddenField1" />
-  <apex:actionFunction name="passStringToController1" />
 </div>
 
     <!-- Bootstrap core JavaScript
@@ -247,7 +246,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/assets/js/ie10-viewport-bug-workaround.js')}"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/js/bootstrap-filestyle.min.js')}"></script>
+    <!--<script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/js/bootstrap-filestyle.min.js')}"></script>-->
  <script>
     $('input').on('click', function(){
   var valeur = 0;
@@ -277,7 +276,7 @@
         submenuClass = '.pushy-submenu',
         submenuOpenClass = 'pushy-submenu-open',
         submenuClosedClass = 'pushy-submenu-closed',
-        submenu = $(submenuClass);
+        submenu = $(submenuClass); })
    </script>
   </body>
 </html>
