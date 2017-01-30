@@ -98,6 +98,8 @@ src/classes/PQNScheduleDeteleOfRecords.cls
 src/classes/PQNScheduleDeteleOfRecords.cls-meta.xml
 src/classes/PQNScheduleDeteleOfRecordsTest.cls
 src/classes/PQNScheduleDeteleOfRecordsTest.cls-meta.xml
+src/classes/PQN_GlobalCategoryReporttest.cls
+src/classes/PQN_GlobalCategoryReporttest.cls-meta.xml
 src/components/PQN_Navigation.component
 src/components/PQN_Navigation.component-meta.xml
 src/layouts/PQN_DC_Volumes__c-PQN_DC_Volumes Layout.layout
@@ -115,6 +117,7 @@ src/objects/PQN_Targets__c.object
 src/objects/PQN_Sourcing_Unit__c.object
 src/objects/PQN_User_Account_Request__c.object
 src/objects/PQN_User_Creation_Request__c.object
+src/objects/PQN_DC_Hierarchy__c.object
 src/objects/Account.object
 src/objects/PQNFreezeDate__c.object
 src/pages/PQN_CommunitiesSelfReg_VF.page
