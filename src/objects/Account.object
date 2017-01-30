@@ -11645,67 +11645,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>TEL_Account_Contract_Strategy__c</picklist>
-            <values>
-                <fullName>Renew every Quarter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renew every Semester</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renew every Year</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>TEL_OTM__c</picklist>
-            <values>
-                <fullName>A</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A%2B%2B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>D</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>F</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>N</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not Assigned</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>TEL_Sub_Status__c</picklist>
-            <values>
-                <fullName>Pending Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Return Customer</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Territory__c</picklist>
             <values>
                 <fullName>53011</fullName>
@@ -15544,67 +15483,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>TEL_Account_Contract_Strategy__c</picklist>
-            <values>
-                <fullName>Renew every Quarter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renew every Semester</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renew every Year</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>TEL_OTM__c</picklist>
-            <values>
-                <fullName>A</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A%2B%2B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>D</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>F</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>N</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not Assigned</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>TEL_Sub_Status__c</picklist>
-            <values>
-                <fullName>Pending Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Return Customer</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
