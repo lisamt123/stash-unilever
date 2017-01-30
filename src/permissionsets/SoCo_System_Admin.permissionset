@@ -3,7 +3,7 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__ACSF_Service_Schedule__c.ACCL__Promotion_Loader__c</field>
-        <readable>true</readable> 
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4416,6 +4416,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>ACCL__Promotion_Template__c.UL_Is_Tactic_Fund_Required__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Promotion_Template__c.UL_Is_Tactic_Fund_Required__c</field>
         <readable>true</readable>
@@ -5534,6 +5539,11 @@
         <editable>true</editable>
         <field>ACCL__Tactic__c.UL_Investment_Method__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ACCL__Tactic__c.UL_IsPushed__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -7953,16 +7963,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>UL_PromotionCategory__c.Account__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>UL_PromotionCategory__c.Product__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>UL_UserCustomerProduct__c.AccessType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>UL_UserCustomerProduct__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>UL_UserCustomerProduct__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9335,6 +9355,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>UL_Condition_Codes__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>UL_PromotionCategory__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
