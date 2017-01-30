@@ -51,7 +51,8 @@ public with sharing class WU_TestFactory_Helper{
             WU_Country__c='Turkey',
             WU_CityName__c='Kocaeli',
             WU_SAPCode_s__c=String.valueof(1+i),
-            OwnerId =ur.Id
+            OwnerId =ur.Id,
+             WU_Active_WH__c='Yes'
             );
             warehouseList.add(w);
         }
@@ -60,7 +61,7 @@ public with sharing class WU_TestFactory_Helper{
                 
                                    
             List<WU_Master_Warehouse__c> lstWRHSCU = new List<WU_Master_Warehouse__c>();
-            lstWRHSCU = [Select Id, WU_Current_Utilization__c, WU_WarehousePOC_Email__c, WU_Committed_Max_PalletStorage__c,
+            lstWRHSCU = [Select Id,WU_Active_WH__c, WU_Current_Utilization__c, WU_WarehousePOC_Email__c, WU_Committed_Max_PalletStorage__c,
                          WU_Network__c,WU_Region__c, WU_MCO__c, WU_Country__c, WU_CityName__c, WU_SAPCode_s__c,WU_FromDate__c,WU_ToDate__c              
                          from WU_Master_Warehouse__c 
                          where Id in:warehouseList];            

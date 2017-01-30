@@ -1,0 +1,48 @@
+src
+src/permissionsets/FS_Admin.permissionset
+src/permissionsets/FS_AFM.permissionset
+src/permissionsets/FS_Sales_Rep.permissionset
+src/classes/FS_CHDUtilityTest.cls
+src/classes/FS_CHDUtilityTest.cls-meta.xml
+src/classes/FS_CreateContact_CC.cls
+src/classes/FS_CreateContact_CC.cls-meta.xml
+src/classes/FS_ContactDetail_CC.cls
+src/classes/FS_ContactDetail_CC.cls-meta.xml
+src/pages/FS_ContactDetailPage.page
+src/pages/FS_ContactDetailPage.page-meta.xml
+src/objects/Account.object
+src/objects/FS_Account_Plan__c.object
+src/objects/FS_CHD_GFCCode__c.object
+src/workflows/Account.workflow
+src/classes/FS_Utility.cls
+src/classes/FS_Utility.cls-meta.xml
+src/objects/Product2.object
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
+src/classes/FS_TPRCalculationHelper.cls
+src/classes/FS_TPRCalculationHelper.cls-meta.xml
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout ReadOnly.layout
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
+src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
+src/layouts/Account-Feed Based Distributor Russia.layout
+src/layouts/Account-Operator Russia Read Only.layout
+src/layouts/Account-Operators Russia.layout
+src/objects/Opportunity.object
+src/objects/OpportunityLineItem.object
+src/roles/Junior_Key_Account_manager.role
+src/roles/Office_Distributors_Executive_SLABCO.role
+src/roles/Cash_Carry_Business_Development_Manager.role
+src/permissionsets/FS_Admin.permissionset
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/classes/FS_TPRUtil.cls
+src/classes/FS_TPRUtil.cls-meta.xml
+src/objects/Account_Relationship__c.object
+src/roles/UFS_Admin.role
+src/roles/Independent_Manager.role
+src/roles/National_Development_Manager.role
+src/roles/National_Chains_Manager.role
+src/layouts/Account-Feed Based Operator.layout
+src/workflows/OpportunityLineItem.workflow
+src/classes/FS_UpdateChildAccounts.cls
+src/classes/FS_UpdateChildAccounts.cls-meta.xml
+src/classes/FS_UpdateChildAccountsTest.cls
+src/classes/FS_UpdateChildAccountsTest.cls-meta.xml

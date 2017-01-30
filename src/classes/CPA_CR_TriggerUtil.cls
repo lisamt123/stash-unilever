@@ -65,7 +65,7 @@ public with sharing class CPA_CR_TriggerUtil{
             req.setComments('Submitted for approval. Please approve.');
             req.setObjectId(newCRList[i].Id);
             // submit the approval request for processing
-            //Approval.ProcessResult result = Approval.process(req);
+            Approval.ProcessResult result = Approval.process(req);
             //27/09/2016 - chandru commented it as an Unused variable
             // display if the reqeust was successful
 

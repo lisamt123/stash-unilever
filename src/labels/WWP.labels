@@ -40,3 +40,17 @@
         <shortDescription>WWp_selectedrecord_disabled</shortDescription>
         <value>Select records are above target and disabled</value>
     </labels>
+	<labels>
+        <fullName>WWP_Ultimate_vendor_err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_Ultimate_vendor_err</shortDescription>
+        <value>Ultimate Vendor code is not assigned</value>
+    </labels>
+	<labels>
+        <fullName>WWP_SAP_vendor_err</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWP_SAP_vendor_err</shortDescription>
+        <value>Select records are above target and disabled</value>
+    </labels>

@@ -68,8 +68,35 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	  <runTest>GSurveysController_Test</runTest>
+	  <!-- <runTest>GSurveysController_Test</runTest>
 	  <runTest>SurveyManagerController_Test</runTest>
+	  <runTest>AF_Agency_EstimateHandler_Test</runTest>
+	  <runTest>AF_RaisenewPO_Homepage_lightbox_Test</runTest>
+	  <runTest>AF_FieldHistoryCompController_Test</runTest>
+	  <runTest>AF_AgencyHomePageController_Test</runTest>
+	  <runTest>AF_BonusMatrixOverrideController_Test</runTest>
+	  <runTest>AR_Test_AgencyGridView</runTest>
+	  <runTest>AR_Test_RateReviewPopup</runTest>
+	  <runTest>AR_Test_AgencyMyProfileEditGeography</runTest>	  
+	  <runTest>ICB_CalculatePlanDistaance_Batch_Test</runTest>
+	  <runTest>ICB_CalculatePlanDistance_BatchSch_Test</runTest>
+	  <runTest>ICB_CheckInCheckOut_CC_Test</runTest>
+	  <runTest>ICB_Cockpit_CC_Test</runTest>
+	  <runTest>ICB_ContactPartnerUserCreation_Test	</runTest>
+	  <runTest>ICB_InventoryProducts_CC_Test</runTest>
+	  <runTest>ICB_PartnerUserCreation_BatchSch_Test</runTest>	  
+	  <runTest>ICB_PhotoMobileChannel_BatchSch_Test</runTest>
+	  <runTest>ICB_PhotoMobileChannel_Batch_Test</runTest>
+	  <runTest>ICB_PriceBook_Creation_Test</runTest>
+	  <runTest>ICB_RecordTypeMemory_Test</runTest>
+	  <runTest>ICB_ReturnStock_Batch_Test</runTest>
+	  <runTest>ICB_ReturnStock_BatchSch_Test</runTest>
+	  <runTest>ICB_SetupMobileChannel_Test</runTest>
+	  <runTest>ICB_SetupPhotoMobileChannel_Test</runTest>
+	  <runTest>ICB_SobjectInstance_SP2_Test</runTest>
+	  <runTest>ICB_SobjectInstance_Test</runTest>
+	  <runTest>SurveyManagerController_Test</runTest> -->
+	  <runTest>FS_CHDUtilityTest</runTest>
 	  <runTest>FS_AccountPlanningTest</runTest>
 	  <runTest>FS_ContactDetail_Test</runTest>
 	  <runTest>FS_CreateContact_CC_Test</runTest>
@@ -84,7 +111,8 @@
 	  <runTest>FS_ContactExtend_CX_Test</runTest>
 	  <runTest>FS_ClaimedCasesForeCastingSchedule_Test</runTest>
 	  <runTest>FS_CentrallyLedChildAccountTest</runTest>
-	  <runTest>FS_MABETest</runTest>	  
+	  <runTest>FS_MABETest</runTest>	
+	  <runTest>FS_UpdateChildAccountsTest</runTest>
   </sf:deploy>
   <!--<antcall target="generatePackage"/>-->
   </target>

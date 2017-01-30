@@ -17,7 +17,7 @@
                 <ul class="nav navbar-nav">
                     <li class="tabOdd {!IF(activeItem=='overview', 'active', '')}"><a href="{!$Page.IPM_ProjectOverview}?id={!projID}"><span>{!$Label.IPM_Overview}</span></a></li>
                     <li class="tabEven {!IF(activeItem=='milestonesAndTasks', 'active', '')}"><a href="{!$Page.IPM_Tasklist}?id={!projID}"><span>{!$Label.IPM_MilestoneAndTodo}</span></a></li>
-                    <li class="tabOdd {!IF(activeItem=='gateDocument', 'active', '')}"><a href="{!$Page.IPM_Bcc_Document}?id={!projID}"><span>{!$Label.IPM_BB} {!$Label.IPM_Document}</span></a></li>
+                    <li class="tabOdd {!IF(activeItem=='gateDocument', 'active', '')}"><a href="{!$Page.IPM_Bcc_Document}?id={!projID}"><span>{!$Label.IPM_BB} {!$Label.IPM_Doc}</span></a></li>
                     <li role="presentation" class="tabEven dropdown {!IF(activeItem=='coreParameters', 'active', '')}{!IF(activeItem=='rolloutPlan', 'active', '')}{!IF(activeItem=='financials', 'active', '')}">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                           <span>{!$Label.IPM_Essentials}<div class="caret"></div></span>

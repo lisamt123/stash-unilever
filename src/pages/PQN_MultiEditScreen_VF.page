@@ -159,18 +159,16 @@
                                 <thead>
                                 <tr>
                                     <th>Error Msg</th>
-                                    <th>Delivery Note Number</th>
-                                    <th>SKU</th>
-                                    <th>Supplier</th>
-                                    <th>Reason Code</th>
-                                    <th>No. Of pallets per SKU NC</th>
+                                    <th>Cluster__c</th>
+                                    <th>Non_compliance_reason_code__c</th>
+                                    <th>Description__c</th>
+                                    <th>Delivery_Note_Number__c</th>
+                                    <th>DC_Country__c</th>
+                                    <th>Supplier_type__c</th>
+                                    <th>SKU__c</th>
+                                    <th>Reporting_DC__c</th>
+                                    <th>Date_Pallet_Received__c</th>
                                     
-                                    <th>MCO</th>
-                                    <th>Cluster</th>
-                                    <th>Sub Cluster</th>
-                                    <th>Description</th>
-                                    <th>DC Country</th>
-                                    <th>Supplier Type</th>
                                     
                                 </tr>
                                 </thead>
@@ -178,20 +176,15 @@
                                 <apex:repeat value="{!forInsertWrapper}" var="nc">
                                     <tr>
                                         <td>{!nc.errorMessage}</td>
-                                        <td>{!nc.pqn.Delivery_Note_Number__c}</td>
-                                        <td>{!nc.pqn.SKU__c}</td>
-                                        <td>{!nc.pqn.Supplier__c}</td>
-                                        <td>{!nc.pqn.Non_compliance_reason_code__c}</td>
-                                        <td>{!nc.pqn.Number_of_Pallets_Per_SKU_Non_Compliant__c}</td>
-                                        
-                                        <td>{!nc.pqn.MCO__c}</td>
-                                        <td>{!nc.pqn.SKU__c}</td>
                                         <td>{!nc.pqn.Cluster__c}</td>
-                                        <td>{!nc.pqn.Sub_Cluster__c}</td>
+                                        <td>{!nc.pqn.Non_compliance_reason_code__c}</td>
                                         <td>{!nc.pqn.Description__c}</td>
+                                        <td>{!nc.pqn.Delivery_Note_Number__c}</td>
                                         <td>{!nc.pqn.DC_Country__c}</td>
                                         <td>{!nc.pqn.Supplier_type__c}</td>
-                                                                              
+                                        <td>{!nc.pqn.SKU__c}</td>
+                                        <td>{!nc.pqn.Reporting_DC__c}</td>
+                                        <td>{!nc.pqn.Date_Pallet_Received__c}</td>
                                     </tr>
                                 </apex:repeat>
                                 </tbody>
@@ -225,16 +218,19 @@
                        <!-- <apex:column headerValue="Date Pallet received" >
                             <apex:inputField value="{!nc.pqn.Date_Pallet_Received__c}"/>
                         </apex:column>-->
-                       
-                        <apex:column headerValue="MCO" >
-                            <apex:inputField value="{!nc.pqn.MCO__c}"/>
-                        </apex:column>   
+                       <apex:column headerValue="Region" >
+                            <apex:inputField value="{!nc.pqn.Region__c}"/>
+                        </apex:column>
+                         
                         <apex:column headerValue="Cluster" >
                             <apex:inputField value="{!nc.pqn.Cluster__c}"/>
                         </apex:column>
                         <apex:column headerValue="Sub Cluster" >
                             <apex:inputField value="{!nc.pqn.Sub_Cluster__c}"/>
                         </apex:column>
+                        <apex:column headerValue="MCO" >
+                            <apex:inputField value="{!nc.pqn.MCO__c}"/>
+                        </apex:column>  
                            <apex:column headerValue="Description" >
                             <apex:inputField value="{!nc.pqn.Description__c}"/>
                         </apex:column>
@@ -246,6 +242,7 @@
                               <apex:column headerValue="Supplier Type" >
                                         <apex:inputField value="{!nc.pqn.Supplier_type__c}"/>
                              </apex:column>
+                             
 
                         </apex:pageBlockTable>
                                              
@@ -347,14 +344,14 @@
                         var roa = X.utils.sheet_to_row_object_array(workbook.Sheets[sheetName],b);
                         var roaHeader = X.utils.sheet_Header_json(workbook.Sheets[sheetName],b);
                         console.log(roaHeader);
-                        checkHeader(roaHeader);
+                        checkHeader(roaHeader,selectedFile);
                         if(roa.length > 0){ result[sheetName] = roa; }
                     }
                 return result;
             }
             </script>
             <script>
-            function checkHeader(roaHeader){
+            function checkHeader(roaHeader,selectedFile){
                 if(roaHeader.length>0){
                             
                     if(selectedFile =="Unilever"){

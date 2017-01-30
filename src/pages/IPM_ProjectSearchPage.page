@@ -736,12 +736,12 @@
                         <apex:param name="selectedStoppedProject" assignTo="{!selectedStoppedProject}" value=""/>
                         <apex:param name="unassigned" assignTo="{!unassigned}" value=""/>
                     </apex:actionFunction>
-                    <apex:actionFunction name="toggleSortProjects" action="{!toggleSortProjects}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();"/>
-                    <apex:actionFunction name="toggleSortPhases" action="{!toggleSortPhases}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();" />
-                    <apex:actionFunction name="toggleSortPLs" action="{!toggleSortPLs}" rerender="prjPanel,paginationSec" status="myStatus"  oncomplete="sortProjectsJsFunc();"/>
-                    <apex:actionFunction name="toggleSortGKs" action="{!toggleSortGKs}" rerender="prjPanel,paginationSec" status="myStatus"  oncomplete="sortProjectsJsFunc();"/>
-                    <apex:actionFunction name="toggleSortITOs" action="{!toggleSortITOs}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();"/>
-                    <apex:actionFunction name="toggleSortTLDs" action="{!toggleSortTLDs}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();"/>
+                    <apex:actionFunction name="toggleSortProjects" action="{!toggleSortProjects}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();applyFilter();"/>
+                    <apex:actionFunction name="toggleSortPhases" action="{!toggleSortPhases}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();applyFilter();" />
+                    <apex:actionFunction name="toggleSortPLs" action="{!toggleSortPLs}" rerender="prjPanel,paginationSec" status="myStatus"  oncomplete="sortProjectsJsFunc();applyFilter();"/>
+                    <apex:actionFunction name="toggleSortGKs" action="{!toggleSortGKs}" rerender="prjPanel,paginationSec" status="myStatus"  oncomplete="sortProjectsJsFunc();applyFilter();"/>
+                    <apex:actionFunction name="toggleSortITOs" action="{!toggleSortITOs}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();applyFilter();"/>
+                    <apex:actionFunction name="toggleSortTLDs" action="{!toggleSortTLDs}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();applyFilter();"/>
                     <apex:actionFunction name="securityCheckFunc" action="{!getusertype}" reRender="securityPanel" />
                     <apex:actionFunction name="getGeoClustersFunction" action="{!getGeoInfoAndCount}" reRender="filterSideBarGeoClusters" oncomplete="chkAll();chkSub();rerenderAccordion();"/>
                     <apex:actionFunction name="getFiltersCountFunc" action="{!getFiltersCount}" reRender="filterSideBarTypeStatusPhasePanel,filterSideBarMainType" oncomplete="chkAll();chkSub();projectTypeCheck();"/>

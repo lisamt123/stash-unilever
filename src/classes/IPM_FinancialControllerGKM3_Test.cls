@@ -227,8 +227,7 @@ public class IPM_FinancialControllerGKM3_Test {
      static testMethod void testGlobalOriginalNONConsolidate()
      {
 
-        Test.startTest();
-
+      
         User globalProjectLeader = [Select Id,email from User where email =:GLOBAL_PL_EMAIL_ID];   
 
         System.runAs(globalProjectLeader)
@@ -238,12 +237,15 @@ public class IPM_FinancialControllerGKM3_Test {
              IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c,IPM_GateKeeping_Model__c,IPM_Phase__c, IPM_ProjectGKM__c, IPM_CompanyCardText__c from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original'  and Name=:TEST_COMMENTS limit 1];
              system.assert(globalOriginal!=null, 'Global original project not created');
              system.assertEquals(globalOriginal.name, TEST_COMMENTS, INVALID_PROJECT_NAME);
+            
+             IPM_TestFactory_Helper.createIPMProjectResource(globalOriginal.id, true);
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c globFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
              Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='GKM3TestComments1_LA_BR'];
              system.assert(globFin!=null,'Finance record for global project not created.');
              system.assertEquals(globFin.Financial_External_ID__c, 'GKM3TestComments1_LA_BR');
+                Test.startTest();
              
              setPage(globalOriginal.id);
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
@@ -266,6 +268,12 @@ public class IPM_FinancialControllerGKM3_Test {
              
              //private method testCatch has ASSERTS statements so no duplicates here
              testCatch(ipmFinCon);
+             
+             IPM_Project_Rollout__c projectRollout = [SELECT Id, Target_Launch_Date__c,IPM_Rollout_Project__c,MCO_Name__c FROM IPM_Project_Rollout__c WHERE IPM_Project__c =: globalOriginal.id limit 1];
+             map<Id, IPM_Project_Rollout__c> ProjectIdRollout =  new Map<Id,IPM_Project_Rollout__c>();
+             ProjectIdRollout.put(globalOriginal.id,projectRollout);
+             IPM_RolloutPlanTLDSync rolloutSync = new IPM_RolloutPlanTLDSync();
+             rolloutSync.notifyProjectFinanceAboutFinanceLeaderConfirmation(ProjectIdRollout);
  
         }
 
@@ -555,6 +563,11 @@ public class IPM_FinancialControllerGKM3_Test {
                  ipmFinCon.getRenderMapGlobal();
                  
                  System.assertEquals(ipmFinCon.getRenderMapGlobal(),true,'Map not Rendered on global');
+                 
+                 List<IPM_Financial_Year__c> listFinYr = [select id from IPM_Financial_Year__c where Financial_External_Id__c =: globFin.Financial_External_Id__c ];
+                 delete listFinYr; 
+                 
+                 delete globFin; 
               
               Test.stopTest();
                 

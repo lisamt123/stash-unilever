@@ -6,7 +6,10 @@ VERSION AUTHOR         DATE         DETAIL Description
 ***********************************************************************/
 
 public with sharing class FS_MonthlyPlanningRussia_CX {
-    Private List<FS_MonthlyPlanner> listMonthlyPlanner;
+    Public List<FS_MonthlyPlanner> listMonthlyPlanner {set;get;}
+    Public List<FS_MonthlyPlanner> listMonthlyPlanner1 {set;get;}
+     Public List<FS_MonthlyPlanner> listMonthlyPlannerNCM {set;get;}
+    Public List<FS_MonthlyPlanner> listMonthlyPlannerNDM {set;get;}
     Private List<User> listRussiaUsers;
     Private List<Event> listEvents;
     Private List<Event> tempEvents;
@@ -24,10 +27,21 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
     Public Boolean isVisible{get;set;}
     Public Integer noofHolidaysTillDate{get;set;}
     Public integer i{get;set;}
+    Public Decimal ActualAverage{set;get;}
+    Public Decimal criticalTargetaverage{set;get;}
+    Public Decimal ActualAverageNCM{set;get;}
+    Public Decimal criticalTargetaverageNCM{set;get;}
     Public Integer workingDaysTillDate{get;set;}
     Public decimal achiveToday{get;set;}
+    Public FS_MonthlyPlanner monthly_PlannerFinal{get;set;}
     Public void FS_Monthly_Planning_Russia_CX(){
        isVisible=false; 
+         listMonthlyPlannerNCM =new List<FS_MonthlyPlanner> ();
+      listMonthlyPlannerNDM =new  List<FS_MonthlyPlanner> ();
+         ActualAverage=0;
+              criticalTargetaverage=0;
+              ActualAverageNCM=0;
+              criticalTargetaverageNCM=0;
     }
     // Get working hour details for selected month
     Public pagereference refreshPage(){
@@ -43,7 +57,6 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
         While(txnDate!=monthEndDate){
         Datetime now = Datetime.newInstance(txnDate.year(), txnDate.month(), txnDate.day(), 0, 0, 0);        
         Boolean isHoliday = !BusinessHours.isWithin(bh.Id, now);
-        //System.debug('The value of now is : '+isHoliday);
         if (isHoliday) {
             weekend_Count++;
             if(txnDate<=dateName)
@@ -53,7 +66,6 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
         }
         txnDate = txnDate.addDays(1);
         }
-        //system.debug(weekend_Count);
         noofWeekends=weekend_Count;
         weekend_Count=0;
         txnDate = monthStartDate;
@@ -61,19 +73,29 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
         noofDays=monthStartDate.daysBetween(monthEndDate)+1;
         workingDays=noofDays-noofWeekends;
          
+        listMonthlyPlannerNCM=monthalyPlanner('Field_Sales_Rep_NCM');
+      listMonthlyPlannerNDM = monthalyPlanner('Field_Sales_Rep_NDM');
+        
         return page.FS_MonthlyPlanningRussiaDetail;
     }
     // Get details of monthly activites for subordinators of currently logged in user
+    Public FS_MonthlyPlanningRussia_CX(){   
+               listMonthlyPlanner=new List<FS_MonthlyPlanner>(); 
+   listMonthlyPlanner1=new List<FS_MonthlyPlanner>();     
+    }
     Public List<FS_MonthlyPlanner> getlistMonthlyPlanner(){       
-       tempEvents=new List<Event>();
-       listMonthlyPlanner=new List<FS_MonthlyPlanner>();         
-       listRussiaUsers=[select id,name from user  where managerId=:userInfo.getUserId()];
-       
-       listEvents=[select id,Ownerid,ActivityDate from event where Ownerid in : listRussiaUsers and ActivityDate>=:monthStartDate and ActivityDate<=:dateName];  
-       tempEvents=new List<Event>();
+      return monthalyPlanner('Field_Sales_Rep_NDM');
+    }
+    Public List<FS_MonthlyPlanner> getlistMonthlyPlanner1(){       
+   return monthalyPlanner('Field_Sales_Rep_NCM');
+    }   
+    Public List<FS_MonthlyPlanner> monthalyPlanner(String Role){ 
+        listMonthlyPlanner=new List<FS_MonthlyPlanner>();
+         tempEvents=new List<Event>();
+       listRussiaUsers=[select id,name from user where userrole.DeveloperName =:Role AND isActive=:true];
+       listEvents=[select id,Ownerid,ActivityDate from event where Ownerid in : listRussiaUsers  and ActivityDate>=:monthStartDate and ActivityDate<=:dateName];  
+        tempEvents=new List<Event>();
        Set<String> tempDates=new Set<String>();
-       
-       //system.debug(listEvents);
        For(Event eventRecord : listEvents){
             tempEvents=new List<Event>();
             If(userEventsMap.containsKey(eventRecord.OwnerId)){
@@ -90,7 +112,6 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
             userActivityDateMap.put(eventRecord.OwnerId, tempDates);
         }
        For(User userRecord : listRussiaUsers){
-            //system.debug(userRecord);
             tempEvents=new list<Event>();
             tempDates=new Set<String>();
             monthly_Planner=new FS_MonthlyPlanner();
@@ -111,11 +132,38 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
             If(tempDates.size()>0){
               monthly_Planner.average=(Decimal.valueOf(monthly_Planner.actual)/tempDates.size()).setScale(2);
               monthly_Planner.criticalTarget=((Decimal.valueOf(monthly_Planner.actual)*100)/monthly_Planner.plan).setScale(2);
-            }           
-            IF(monthly_Planner!=null){
+            }    
+           else{
+               monthly_Planner.average=0;
+               monthly_Planner.criticalTarget=0;
+       
+           }
+            IF(monthly_Planner!=null)
             listMonthlyPlanner.add(monthly_Planner);
-           }            
-        }       
-       return listMonthlyPlanner;
-    }
+        } 
+        decimal sumofAverage=0;
+        decimal sumofcriticalTarget=0;
+        for(FS_MonthlyPlanner lisM: listMonthlyPlanner)
+        {
+           
+            sumofAverage=sumofAverage+lisM.average;
+           sumofcriticalTarget =sumofcriticalTarget+LisM.criticalTarget;
+            
+        } 
+        if(!listMonthlyPlanner.isEmpty())
+        {
+             if(Role=='Field_Sales_Rep_NCM')
+            {
+            ActualaverageNCM=(sumofAverage/Decimal.valueOf(listMonthlyPlanner.size())).setScale(2);
+            criticalTargetaverageNCM=(sumofcriticalTarget/Decimal.valueOf(listMonthlyPlanner.size())).setScale(2);
+            }
+            else
+            {
+                Actualaverage=(sumofAverage/Decimal.valueOf(listMonthlyPlanner.size())).setScale(2);
+            criticalTargetaverage=(sumofcriticalTarget/Decimal.valueOf(listMonthlyPlanner.size())).setScale(2);
+            }
+            
+        } 
+        return listMonthlyPlanner;
+    } 
 }

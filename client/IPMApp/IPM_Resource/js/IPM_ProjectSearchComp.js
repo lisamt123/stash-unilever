@@ -1,3 +1,4 @@
+
 /*  
  *************************************************************************
  *@Description:This script is used for project search page specific interaction
@@ -32,19 +33,28 @@ jq(document).ready(function() {
     });
     dropDownFilter();
     chkAll();
-    chkSub();
-   
+    chkSub();   
 });
 
 function chkAll() {
     /* Below script works on click event. When the check all is checked all the child checkboxes will be checked. */
     jq(".docFilter").on("click", ".checkAll", function() {
+        if(jq(this).hasClass('mcoCheck')){
         if (jq(this).is(":checked")) {
-            jq(this).closest("ul.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", true);
-            jq(this).closest("ul").find("input[type=checkbox]:not('[disabled]')").next().addClass("selected");
-        } else {
-            jq(this).closest("ul.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", false);
-            jq(this).closest("ul").find("input[type=checkbox]:not('[disabled]')").next().removeClass("selected");
+                jq(this).closest("blockquote.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", true);
+                jq(this).closest("blockquote").find("input[type=checkbox]:not('[disabled]')").next().addClass("selected");
+            } else {
+                jq(this).closest("blockquote.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", false);
+                jq(this).closest("blockquote").find("input[type=checkbox]:not('[disabled]')").next().removeClass("selected");
+            }
+        }else{
+            if (jq(this).is(":checked")) {
+                jq(this).closest("ul.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", true);
+                jq(this).closest("ul").find("input[type=checkbox]:not('[disabled]')").next().addClass("selected");
+            } else {
+                jq(this).closest("ul.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", false);
+                jq(this).closest("ul").find("input[type=checkbox]:not('[disabled]')").next().removeClass("selected");
+            }
         }
     });
 
@@ -75,40 +85,66 @@ function chkAll() {
 function chkSub() {
     /* Below script works on click event. It reloads the current page. */
     jq(document).on('click', '#resetFilterBtnNew', function() {
-        window.location.href = window.location.href;
+        var topLoc = window.top.location;
+		window.top.location = topLoc;
     });
     /* Below script works on click event. Based on condition it checks for a specific class in below conditions.
 Also if the checkbox is checked it will check its own related child checkboxes. */
     jq(".docFilter").on("click", ".checkSub", function() {
-        var checkSub = jq(this).closest("ul").find(".checkSub:checked").closest("li").length;
-        var checkNot = jq(this).closest("ul").find(".checkSub").closest("li").length;
         if (jq(this).hasClass('countryCheck')) {
+            checkSub = jq(this).closest("blockquote").find(".checkSub:checked:not('.mcoCheck')").closest("li").length;
+            checkNot = jq(this).closest("blockquote").find(".checkSub:not('.mcoCheck')").closest("li").length;
+            checkmco = jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find(".mcoCheck.checkSub:checked").length;
+            checkNotmco = jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find(".mcoCheck.checkSub").length;
+            checkgeo = jq(this).closest("li.subCheckLi").closest("ul.clusterListUl").find('.clusterCheckLi').find(".clusterCheck.checkSub:checked").length;
+            checkNotgeo = jq(this).closest("li.subCheckLi").closest("ul.clusterListUl").find('.clusterCheckLi').find(".clusterCheck.checkSub").length;
             if (jq(this).is(':checked')) {
-                jq(this).closest("ul").find("li input.checkAll").prop("checked", true);
-                jq(this).closest("ul").find("li input.checkAll").next("label").addClass("selected");
+                if (checkSub === checkNot) {
+                    jq(this).closest("blockquote").find("li input.checkAll").prop("checked", true);
+                    jq(this).closest("blockquote").find("li input.checkAll").next("label").addClass("selected");
+                }
+                if (checkmco === checkNotmco){
+                    jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find('li.clusterCheckLi').find('input.clusterCheck').prop("checked", true);
+                    jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find('li.clusterCheckLi').find('input.clusterCheck').next("label").addClass("selected");
+                }
+                if (checkgeo === checkNotgeo){
+                    jq(this).closest("li.clusterLi").closest('ul.geographyAllUl').find('li.geographyAllLi').find('input.geographyAllLevel1').prop("checked", true);
+                    jq(this).closest("li.clusterLi").closest('ul.geographyAllUl').find('li.geographyAllLi').find('input.geographyAllLevel1').next("label").addClass("selected");
+                }
             } else {
-                checkSub = jq(this).closest("ul").find(".checkSub:checked:not('.mcoCheck')").closest("li").length;
-                if (checkSub === 0) {
-                    jq(this).closest("ul").find("li input.checkAll").prop("checked", false);
-                    jq(this).closest("ul").find("li input.checkAll").next("label").removeClass("selected");
+                if (checkSub !== checkNot) {
+                    jq(this).closest("blockquote").find("li input.checkAll").prop("checked", false);
+                    jq(this).closest("blockquote").find("li input.checkAll").next("label").removeClass("selected");
+                    jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find('li.clusterCheckLi').find('input.clusterCheck').prop("checked", false);
+                    jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find('li.clusterCheckLi').find('input.clusterCheck').next("label").removeClass("selected");
+                    jq(this).closest("li.clusterLi").closest('ul.geographyAllUl').find('li.geographyAllLi').find('input.geographyAllLevel1').prop("checked", false);
+                    jq(this).closest("li.clusterLi").closest('ul.geographyAllUl').find('li.geographyAllLi').find('input.geographyAllLevel1').next("label").removeClass("selected");
                 }
             }
         } else if (jq(this).hasClass('mcoCheck')) {
+                checkSub = jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find(".mcoCheck.checkSub:checked").length;
+                checkNot = jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find(".mcoCheck.checkSub").length;
+                checkgeo = jq(this).closest("li.subCheckLi").closest("ul.clusterListUl").find('.clusterCheckLi').find(".clusterCheck.checkSub:checked").length;
+                checkNotgeo = jq(this).closest("li.subCheckLi").closest("ul.clusterListUl").find('.clusterCheckLi').find(".clusterCheck.checkSub").length;
             if (jq(this).is(':checked')) {
-                jq(this).closest("li.subCheck").closest('ul').find('li.clusterCheckLi').find('input.clusterCheck').prop("checked", true);
-                jq(this).closest("li.subCheck").closest('ul').find('li.clusterCheckLi').find('input.clusterCheck').next("label").addClass("selected");
-
+                if (checkSub === checkNot) {
                 jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find('li.clusterCheckLi').find('input.clusterCheck').prop("checked", true);
                 jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find('li.clusterCheckLi').find('input.clusterCheck').next("label").addClass("selected");
+                } 
+                if (checkgeo === checkNotgeo){
+                    jq(this).closest("li.clusterLi").closest('ul.geographyAllUl').find('li.geographyAllLi').find('input.geographyAllLevel1').prop("checked", true);
+                    jq(this).closest("li.clusterLi").closest('ul.geographyAllUl').find('li.geographyAllLi').find('input.geographyAllLevel1').next("label").addClass("selected");
+                }
             } else {
-                checkSub = jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find(".mcoCheck.checkSub:checked").length;
 
-                if (checkSub === 0) {
+                if (checkSub !== checkNot) {
                     jq(this).closest("li.subCheck").closest('ul').find('li.clusterCheckLi').find('input.clusterCheck').prop("checked", false);
                     jq(this).closest("li.subCheck").closest('ul').find('li.clusterCheckLi').find('input.clusterCheck').next("label").removeClass("selected");
 
                     jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find('li.clusterCheckLi').find('input.clusterCheck').prop("checked", false);
                     jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find('li.clusterCheckLi').find('input.clusterCheck').next("label").removeClass("selected");
+                    jq(this).closest("li.clusterLi").closest('ul.geographyAllUl').find('li.geographyAllLi').find('input.geographyAllLevel1').prop("checked", false);
+                    jq(this).closest("li.clusterLi").closest('ul.geographyAllUl').find('li.geographyAllLi').find('input.geographyAllLevel1').next("label").removeClass("selected");
                 }
             }
         } else if (jq(this).hasClass('clusterCheck')) {
@@ -164,9 +200,6 @@ function unCheckParent(str) {
         }
     });
 }
-
-
-
 
 function wrapGeography() {
         geoAll = jq('#geographyAll').is(":checked");

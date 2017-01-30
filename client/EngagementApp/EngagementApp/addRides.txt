@@ -1,0 +1,470 @@
+<apex:page standardStylesheets="false"   showHeader="false" sidebar="false">
+<head>
+<title>Upool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	 <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfiHFgQxP4wU5SUJ4rqNlm-AIOPso-CoE&libraries=places">  </script>
+    <apex:stylesheet value="{!URLFOR($Resource.Upool, '/css/bootstrap.min.css')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.Upool, '/css/style.css')}"/>
+
+    <apex:stylesheet value="{!URLFOR($Resource.Upool, '/css/font-awesome.css')}"/>
+
+    
+<apex:stylesheet value="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+     <apex:includeScript value="{!URLFOR($Resource.Upool, '/js/jquery-1.10.2.min.js')}"/> 
+    
+    <apex:stylesheet value="{!URLFOR($Resource.Upool, '/css/normalize.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Upool, '/css/foundation.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Upool, '/css/custom.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Upool, '/css/horizontal.css')}"/>
+
+
+
+	
+</head> 
+<body onload="load()" >
+   <div class="page-container">
+   <!--/content-inner-->
+	<div class="left-content">
+	   <div class="inner-content">
+		<!-- header-starts -->
+
+											<div class="outter-wp">
+										
+                                            </div>
+                                            <div>
+													<div class="forms-main">
+														<h2 class="inner-tittle">Your Profile</h2>
+															<div class="graph-form">
+																	<div class="validation-form">
+																				<!---->
+																					
+																					
+																						<div class="vali-form">
+																						<div class="col-md-6 form-group1">
+																						  <label class="control-label">From</label>
+                                                                                          <input type="text" name="From" id="From" data-provide="typeahead" class="typeahead" placeholder="From"  required=""/>
+																						</div>
+																						<div class="col-md-6 form-group1 form-last">
+																						  <label class="control-label">To</label>
+                                                                                          <input type="text" name="To" id ="To" data-provide="typeahead" class="typeahead" placeholder="To"  required=""/>
+																						</div>
+																						<div class="clearfix"> </div>
+																						</div>
+																						 <div class="vali-form vali-form1">
+																						 <div class="col-md-12 form-group2 group-mail">
+																						  	<label class="control-label">Vehicle Type</label>
+                                                                                                <select>
+                                                                                                    <option value="">4 Wheeler</option>
+                                                                                                    <option value="">2 Wheller</option>
+                                                                                                    <option value="">Bicycle</option>
+                                                                                                </select>
+																						</div>
+																						<div class="col-md-12 form-group2 group-mail">
+																						  	<label class="control-label">Car Model</label>
+                                                                                                <select>
+                                                                                                    <option value="">Maruthi</option>
+                                                                                                    <option value="">BMW</option>
+                                                                                                    <option value="">Mercedes</option>
+                                                                                                    <option value="">XUV</option>
+                                                                                                </select>
+																						</div>
+																						<div class="clearfix"> </div>
+																						</div>
+																						 <div class="col-md-12 form-group1 group-mail">
+																						  <label class="control-label">Number of Available Seats</label>
+                                                                                          <input type="text" placeholder="Number" required=""/>
+																						   <p class=" hint-block check">Numeric values from 0-***</p>
+																						</div>
+																						 <div class="clearfix"> </div>
+																					   
+																				<div class="btn-group">
+                                                                                        <button class="btn" id ="add">Add Via Routes</button>
+                                                                                        <button class="btn" id="remove">Delete Via</button>
+                                                                                        <button class="btn" id="reset">Reset Via </button>
+                                                                                        <button class="btn" id="CheckOnMap" onclick="RefreshMap()">Refresh Map</button>
+         																	 </div>
+		
+																						 
+																						 <div class="clearfix"> </div>
+                                                                                         
+                                                                                        
+                                                                                         <div class="span5" id="map" style="width: 100%; height: 200px"/>
+																						
+																					  
+																						<div class="col-md-12 form-group button-2">
+																						  <button type="submit" class="btn btn-primary">Submit</button>
+																						  <button type="reset" class="btn btn-default">Reset</button>
+																						</div>
+																					  <div class="clearfix"> </div>
+																					
+																				
+																				<!---->
+																			 </div>
+
+																		</div>
+																</div> 
+											
+												<!--//outer-wp-->
+									 <!--footer section start-->
+										
+									<!--footer section end-->
+								</div>		</div>
+				<!--//content-inner-->
+			<!--/sidebar-menu-->
+				<div class="sidebar-menu">
+					<header class="logo">
+                        <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> 
+					<a href="index.html"> <span id="logo"> <h1>UPool</h1></span> </a> 
+					<!--<img id="logo" src="" alt="Logo"/>--> 
+				  
+				</header>
+			<div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
+			<!--/down-->
+							<div class="down">	
+                                <a href="index.html"><img src="https://scontent.fblr1-1.fna.fbcdn.net/v/t1.0-9/19972_221199522091_7601293_n.jpg?oh=a6f0382f6aac6b9eecb276e3b1d6a2cf&oe=584A2A7D"/></a>
+									  <a href="index.html"><span class=" name-caret">Welcome {!$User.FirstName}</span></a>
+									<ul>
+									<li><a class="tooltips" href="index.html"><span>Profile</span><i class="lnr lnr-user"></i></a></li>
+										<li><a class="tooltips" href="index.html"><span>Settings</span><i class="lnr lnr-cog"></i></a></li>
+										<li><a class="tooltips" href="index.html"><span>Log out</span><i class="lnr lnr-power-switch"></i></a></li>
+										</ul>
+									</div>
+							   <!--//down-->
+							<div class="menu">
+									<ul id="menu" >
+										<li><a href="/apex/Upool"><i class="fa fa-home"></i> <span>Home</span></a></li>
+										 <li id="menu-academico" ><a href="/apex/Upool_Profile"><i class="fa fa-user"></i> <span> Profile</span> </a>
+										</li>
+										 <li id="menu-academico" ><a href="/apex/ShareRide"><i class="fa fa-car"></i> <span>Share your ride</span> </a>
+										 </li>
+									<li><a href="/apex/Upool_GetRides"><i class="fa fa-search-plus"></i> <span>Get Ride</span></a></li>
+									<li id="menu-academico" ><a href="#"><i class="fa fa-tachometer"></i> <span>Leader Board</span> </a>
+									 </li>
+								  </ul>
+								</div>
+							  </div>
+							  <div class="clearfix"></div>		
+							</div>
+							<script>
+							var toggle = true;
+										
+							$(".sidebar-icon").click(function() {  
+							  if (toggle)
+							  {
+                                  
+								$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+								$("#menu span").css({"position":"absolute"});
+                              
+							  }
+							  else
+							  {
+								$(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+								setTimeout(function() {
+								  $("#menu span").css({"position":"relative"});
+								}, 400);
+							  }
+											
+											toggle = !toggle;
+										});
+							</script>
+<!--js -->
+		 
+
+    <!-- javascript files
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+        <apex:includeScript value="{!URLFOR($Resource.Upool, '/js/jquery.nicescroll.js')}"/>
+     <apex:includeScript value="{!URLFOR($Resource.Upool, '/js/bootstrap.min.js')}"/>
+
+
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var customIcons = {
+      restaurant: {
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
+        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+      },
+      bar: {
+        icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png',
+        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+      }
+    };
+    
+    var dummy="hello";
+    var directionDisplay;
+    var directionsService = new google.maps.DirectionsService();
+
+
+	
+    function load() {
+      var map = new google.maps.Map(document.getElementById("map"), {
+        center: new google.maps.LatLng(23.6145, 72.3418),
+        zoom: 6,
+        mapTypeId: 'roadmap'
+      });
+      directionsDisplay = new google.maps.DirectionsRenderer();
+      directionsDisplay.setMap(map);
+      var infoWindow = new google.maps.InfoWindow;
+	  initialize11();
+	  initialize12();
+	  
+    }
+	
+	
+	
+	
+	function initialize11() {
+    var input = document.getElementById('From');
+	
+   // var options = {componentRestrictions: {country: 'all'}};
+                 
+   var autocomplete =  new google.maps.places.Autocomplete(input);
+	google.maps.event.addListener(autocomplete, 'place_changed', function() {
+		
+		var data = $('#From').val();
+			geocoder = new google.maps.Geocoder();	
+			 
+			geocoder.geocode( { 'address': data}, function(results, status) {	
+			if (status == google.maps.GeocoderStatus.OK) {
+			 //alert(results[0].geometry.location.lat());
+				 source=results[0].geometry.location.lat()+","+results[0].geometry.location.lng();	 
+				 $('#formlatlng').val(source);
+				
+			}
+			else
+			{
+				alert('Latitude and longitude not found for your input please try different(near by) location');
+				$("#formlatlng").val('');
+			}			
+		
+			});	
+	 });
+}
+
+	function initialize12() {
+    var input = document.getElementById('To');
+	
+   // var options = {componentRestrictions: {country: 'all'}};
+                 
+   var autocomplete =  new google.maps.places.Autocomplete(input);
+	google.maps.event.addListener(autocomplete, 'place_changed', function() {
+		
+		var data = $('#To').val();
+		var data = $('#To').val();
+			geocoder = new google.maps.Geocoder();	
+			 
+			geocoder.geocode( { 'address': data}, function(results, status) {	
+			if (status == google.maps.GeocoderStatus.OK) {
+			 //alert(results[0].geometry.location.lat());
+				 source=results[0].geometry.location.lat()+","+results[0].geometry.location.lng();	 
+				 $('#formlatlng').val(source);
+				
+			}
+			else
+			{
+				alert('Latitude and longitude not found for your input please try different(near by) location');
+				$("#formlatlng").val('');
+			}			
+		
+			});	
+	 });
+}
+
+
+	function initialize13() {
+    var input = document.getElementById('Hop');
+	
+   // var options = {componentRestrictions: {country: 'all'}};
+                 
+   var autocomplete =  new google.maps.places.Autocomplete(input);
+	google.maps.event.addListener(autocomplete, 'place_changed', function() {
+		
+		var data = $('#Hop').val();
+		var data = $('#Hop').val();
+			geocoder = new google.maps.Geocoder();	
+			 
+			geocoder.geocode( { 'address': data}, function(results, status) {	
+			if (status == google.maps.GeocoderStatus.OK) {
+			 //alert(results[0].geometry.location.lat());
+				 source=results[0].geometry.location.lat()+","+results[0].geometry.location.lng();	 
+				 $('#formlatlng').val(source);
+				
+			}
+			else
+			{
+				alert('Latitude and longitude not found for your input please try different(near by) location');
+				$("#formlatlng").val('');
+			}			
+		
+			});	
+	 });
+}
+
+		
+	function initialize1() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 23.6145, lng: 72.3418},
+          zoom: 8,
+          mapTypeId: 'roadmap'
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('From');
+        var searchBox = new google.maps.places.SearchBox(input);
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+}
+	
+	
+	
+
+    function calcRoute(start, end, waypts) {
+        var request = {
+            origin:start, 
+            destination:end,
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          }
+        });
+  }
+
+    function bindInfoWindow(marker, map, infoWindow, html) {
+      google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.setContent(html);
+        infoWindow.open(map, marker);
+      });
+    }
+
+    function downloadUrl(url, callback) {
+      var request = window.ActiveXObject ?
+          new ActiveXObject('Microsoft.XMLHTTP') :
+          new XMLHttpRequest;
+
+      request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+          request.onreadystatechange = doNothing;
+          callback(request, request.status);
+        }
+      };
+
+      request.open('GET', url, true);
+      request.send(null);
+    }
+
+    function doNothing() {}
+
+    			i = $('.inputs').size();	
+					
+				$('#add').click(function() {
+					var nameName = "dynamic" + i;
+						$('<div><input type="text"data-provide="typeahead" id="Hop"  class="field" placeholder="Hop " +"' +i+'" name="'+ nameName+'"   value="" /></div>').fadeIn('slow').appendTo('.inputs');
+                        
+                      /*  $(".field").typeahead({source : city});
+                        i++;
+						var fields= Number($("#total").val())+Number(1);
+						$("#total").val(fields);*/
+                        
+						initialize13();
+				});
+				
+				
+				$('#remove').click(function() {
+				if(i > 1) {
+						$('.field:last').remove();
+						var fields= Number($("#total").val())-Number(1);
+						i--;
+				}
+				});
+				
+				$('#reset').click(function() {
+				while(i >= 1) {
+						$('.field:last').remove();
+						var fields= Number($("#total").val())-Number(1);
+						i--;
+				}
+				});
+				
+
+        function RefreshMap(){
+                waypts =[];
+                var start = $('#From').val();
+                var end = $('#To').val();
+                divs = $('.inputs');
+                //alert(start);
+                $('.field').each(function(){
+                    waypts.push({
+                    location:this.value,
+                     stopover:true
+                     });
+              
+
+                });
+                    
+                calcRoute(start, end, waypts);
+ 
+        }
+
+  </script>
+	</div>
+</body>
+</apex:page>

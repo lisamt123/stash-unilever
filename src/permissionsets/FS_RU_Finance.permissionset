@@ -5120,19 +5120,10 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account_Relationship__c.External_ID__c</field>
+        <field>Account_Relationship__c.FS_UniqueAccountID__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Secondary_Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+
     <fieldPermissions>
         <editable>false</editable>
         <field>Agency_Fee_Field_History__c.Amended_By__c</field>
@@ -32125,6 +32116,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Opportunity.FS_amountCasePiece__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Opportunity.FS_Indicator__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -32634,11 +32630,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>OpportunityLineItem.FS_UniqueProduct__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_additionalDiscount__c</field>
         <readable>true</readable>
@@ -32666,6 +32657,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_necessaryTPR__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_listPriceCasePiece__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_totalListPrice__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

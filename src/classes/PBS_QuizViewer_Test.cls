@@ -104,7 +104,7 @@ public class PBS_QuizViewer_Test {
             pageRef.getParameters().put(AID, lassignment.get(0).Id);
             PBS_QuizViewerController_CC controller = new PBS_QuizViewerController_CC();
             controller.initializeQuestions();
-
+            //controller.previousNoSave();
             //first section
             List<PBS_QuizItem_CC> lqi = controller.quizItemList;
 
@@ -206,6 +206,11 @@ public class PBS_QuizViewer_Test {
 
             controller.next();
             controller.previous();
+            boolean isShow=controller.showStartButton;
+            boolean isDone=controller.showDoneButton;
+            boolean isNext=controller.showNextButton;
+            boolean ispre=controller.showPreviousButton;
+            boolean ismsg=controller.hasMessages;
             PageReference redirect = controller.backToTrainingPlan();
             System.assert(redirect.getParameters().get('id') == tplanId, 'backToTrainingPlan is not adding params properly');
 
@@ -493,6 +498,7 @@ public class PBS_QuizViewer_Test {
             for(PBS_QuizItem_CC qi : lqi3){
                 qi.response   = mResponses.get(qi.question.Id);
             }
+            controller.previousNoSave();
             controller.done();
         }
     } 

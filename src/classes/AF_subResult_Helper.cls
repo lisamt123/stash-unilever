@@ -127,7 +127,10 @@ public with sharing class AF_subResult_Helper{
         }
       }
     public static void subResultCalcExt(List<AF_Sub_Result__c> queryListofSubResult){
+        QualBonusAnnualMap = new Map<Id,Decimal>();
+        totalBonusAnnualMap = new Map<Id,Decimal>();
         for(AF_Sub_Result__c subResult:queryListofSubResult){
+        system.debug('----subResult--'+subResult);
             if(subResult.AF_Period__c == null){
                 Decimal BonusableFeesAnnual=0;
                 if(subResult.AF_Bonusable_Fees__c!=null){
@@ -154,16 +157,22 @@ public with sharing class AF_subResult_Helper{
                     }
                 }
                 Decimal QualBonus=0;
-                if(subResult.AF_Qual_Bonus_Value__c!=null){
+                if(subResult.AF_Qual_Bonus_Value__c!=null && subResult.AF_Qual_Bonus_Value__c!=0){
                     if(!QualBonusAnnualMap.containsKey(subResult.AF_Bonus_Threshold__c)){
+                        system.debug(QualBonus+'-not-containkey--'+subResult.AF_Qual_Bonus_Value__c);
                         QualBonus = QualBonus + subResult.AF_Qual_Bonus_Value__c;
                         QualBonusAnnualMap.put(subResult.AF_Bonus_Threshold__c,QualBonus);
+                        system.debug(QualBonusAnnualMap+'--if QualBonusAnnualMap--');
                     }
-                    else{
+                    
+                    else if(QualBonusAnnualMap.containsKey(subResult.AF_Bonus_Threshold__c)){
+                        system.debug(QualBonus+'-containskey--'+subResult.AF_Qual_Bonus_Value__c);
                         QualBonus = QualBonusAnnualMap.get(subResult.AF_Bonus_Threshold__c);
                         QualBonus = QualBonus + subResult.AF_Qual_Bonus_Value__c;
                         QualBonusAnnualMap.put(subResult.AF_Bonus_Threshold__c,QualBonus);
+                        system.debug(QualBonusAnnualMap+'--else QualBonusAnnualMap--');
                     }
+                    
                 }
                 Decimal QuantBonusAnnual=0;
                 if(subResult.AF_Quant_Bonus_Value__c!=null){

@@ -246,7 +246,7 @@ public class MB_Controller_Charts_Test{
            if(!lstCustSet.isEmpty()){
             insert lstCustSet;  
         } 
-        Integer Year= Date.Today().Year()+1;
+       Integer Year= Date.Today().Year()+1;
         String YearCurrent=String.valueof(Year);
         String scheduleTime=DATE_EXP+' '+ YearCurrent;
   System.schedule('ScheduleApexClassTest',scheduleTime,new MB_Scheduler());

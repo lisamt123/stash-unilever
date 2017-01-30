@@ -10,6 +10,7 @@
     <tab>standard-Product2</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
+	<tab>standard-WaveHome</tab>
     <tab>FS_Account_Plan__c</tab>
     <tab>FS_Defined_Objective__c</tab>
     <tab>E2F__Search_on_FIND_API</tab>

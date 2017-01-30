@@ -75,6 +75,17 @@ private class IPM_Gate_Milestones_Test {
         System.runAs(globalUser)
         { 
             Test.startTest();
+            PageReference pageRef = Page.IPM_MilestoneList_PDFPage;            
+            Test.setCurrentPageReference(pageRef);  
+            IPM_Gate_Milestones gateMilestones4= new IPM_Gate_Milestones();
+            Id projectId = gateMilestones4.projectId;
+            string gateType = gateMilestones4.gateType;
+            string gateDocumentStatus = gateMilestones4.gateDocumentStatus;
+            
+            ApexPages.CurrentPage().getparameters().put('pId', projectList[0].Id);
+            ApexPages.CurrentPage().getparameters().put('gateDocType', IPM_ConstantUtils.CHARTER_GATE);
+            ApexPages.CurrentPage().getparameters().put('gateDocStatus', IPM_ConstantUtils.STATUS_APPROVED);            
+            
             IPM_Gate_Milestones gateMilestones= new IPM_Gate_Milestones();
             gateMilestones.projectId = projectList[0].Id;
             gateMilestones.gateType=IPM_ConstantUtils.CHARTER_GATE;
@@ -84,23 +95,35 @@ private class IPM_Gate_Milestones_Test {
             System.assertEquals(true, gateMilestones.isIdeaSnapShot, MILESTONE_IDEA);//Positive Test
             System.assertEquals(false, gateMilestones.isCurrentDueDate, MILESTONE_CURRENT_DUE_DATE); // Positive Test
             
-            gateMilestones.gateType=IPM_ConstantUtils.CONTRACT_GATE;
-            gateMilestones.projectId = projectList[0].Id;
+            PageReference pageRef2 = Page.IPM_MilestoneList_PDFPage;            
+            Test.setCurrentPageReference(pageRef2);  
+            ApexPages.CurrentPage().getparameters().put('pId', projectList[0].Id);
+            ApexPages.CurrentPage().getparameters().put('gateDocType', IPM_ConstantUtils.CONTRACT_GATE);
+            ApexPages.CurrentPage().getparameters().put('gateDocStatus', IPM_ConstantUtils.STATUS_APPROVED);
+            IPM_Gate_Milestones gateMilestones1= new IPM_Gate_Milestones();
             
-            System.assertEquals(true, gateMilestones.isFeasibilitySnapShot, MILESTONE_FEASIBILITY);// Positive Test
-            System.assertEquals(false, gateMilestones.isCurrentDueDate, MILESTONE_CURRENT_DUE_DATE);// Positive Test
+            System.assertEquals(true, gateMilestones1.isFeasibilitySnapShot, MILESTONE_FEASIBILITY);// Positive Test
+            System.assertEquals(false, gateMilestones1.isCurrentDueDate, MILESTONE_CURRENT_DUE_DATE);// Positive Test
             
-            gateMilestones.gateType=IPM_ConstantUtils.MARKET_READY_GATE;
-            gateMilestones.projectId = projectList[0].Id;
+            PageReference pageRef3 = Page.IPM_MilestoneList_PDFPage;            
+            Test.setCurrentPageReference(pageRef3);  
+            ApexPages.CurrentPage().getparameters().put('pId', projectList[0].Id);
+            ApexPages.CurrentPage().getparameters().put('gateDocType', IPM_ConstantUtils.MARKET_READY_GATE);
+            ApexPages.CurrentPage().getparameters().put('gateDocStatus', IPM_ConstantUtils.STATUS_APPROVED);
+            IPM_Gate_Milestones gateMilestones2= new IPM_Gate_Milestones();
             
-            System.assertEquals(true, gateMilestones.isCapabilitySnapShot, MILESTONE_CAPABILITY);// Positive Test
-            System.assertEquals(false, gateMilestones.isCurrentDueDate, MILESTONE_CURRENT_DUE_DATE);// Positive Test
+            System.assertEquals(true, gateMilestones2.isCapabilitySnapShot, MILESTONE_CAPABILITY);// Positive Test
+            System.assertEquals(false, gateMilestones2.isCurrentDueDate, MILESTONE_CURRENT_DUE_DATE);// Positive Test
             
-            gateMilestones.gateType=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
-            gateMilestones.projectId = projectList[0].Id;
+            PageReference pageRef4 = Page.IPM_MilestoneList_PDFPage;            
+            Test.setCurrentPageReference(pageRef4);  
+            ApexPages.CurrentPage().getparameters().put('pId', projectList[0].Id);
+            ApexPages.CurrentPage().getparameters().put('gateDocType', IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE);
+            ApexPages.CurrentPage().getparameters().put('gateDocStatus', IPM_ConstantUtils.STATUS_APPROVED);
+            IPM_Gate_Milestones gateMilestones3= new IPM_Gate_Milestones();
             
-            System.assertEquals(true, gateMilestones.isMarketReadySnapShot, MILESTONE_MARKETREADY);// Positive Test
-            System.assertEquals(false, gateMilestones.isCurrentDueDate, MILESTONE_CURRENT_DUE_DATE);// Positive Test
+            System.assertEquals(true, gateMilestones3.isMarketReadySnapShot, MILESTONE_MARKETREADY);// Positive Test
+            System.assertEquals(false, gateMilestones3.isCurrentDueDate, MILESTONE_CURRENT_DUE_DATE);// Positive Test
             
             // assert to check Component is displaying the milestones related to that particular project 
             List<IPM_Milestone__c>milestoneList=[Select Id from IPM_Milestone__c WHERE IPM_Project__c =: gateMilestones.projectId];

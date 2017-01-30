@@ -632,6 +632,17 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_LocalRolloutBrand__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Country__r.Local_Rollout__r.IPM_Brand__c</formula>
+        <label>Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_New_SKU_Greenhouse__c</fullName>
         <description>Stores new SKU GHG Values</description>
         <externalId>false</externalId>

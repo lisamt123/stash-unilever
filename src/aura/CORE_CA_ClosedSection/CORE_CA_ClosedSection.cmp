@@ -56,6 +56,12 @@
                                     {!v.ApprovalData.ProjectBug} 
                                 </div>
                             </aura:if>
+                            <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='CLM')}">
+                                <div class="slds-text-body--small requestedBy">
+                                    {!v.ApprovalData.Currencies}&nbsp;
+                                    {!v.ApprovalData.Amount} 
+                                </div>
+                            </aura:if>
                             <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Purchase Request' || v.ApprovalData.ExpenseType =='Expense')}">
                                 <div class="slds-text-body--small requestedBy">
                                     {!v.ApprovalData.Currencies}&nbsp;
@@ -74,7 +80,9 @@
                             <aura:if isTrue="{!v.ApprovalData.Req_Status =='Rework'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_REWORK_CAPS} </span></aura:if>
                             
                             
-                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='RETOAP'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> <!--{!$Label.c.CORE_LBL_RETURN_TO_AP_CAPS}--> {!$Label.c.CORE_LBL_RETURN_UPPER} </span></aura:if>
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='RETOAP'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_RETURN_UPPER} </span></aura:if>
+                            
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='NA'}"><span type="button" class="requestedBy reworkText queryWithVendorTextWidth"> {!$Label.c.CORE_LBL_NA} </span></aura:if>
                             <br/>
                         </div>
                     </div>

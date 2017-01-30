@@ -11,63 +11,66 @@
   
     <table width="85%">
          <tr> 
-             <td vertical-align="center">
-                <apex:outputLabel value="{!$Label.WU_SAPCode}"></apex:outputLabel>
+             <td>
+                <apex:outputLabel value="{!$Label.WU_SAPCode}"></apex:outputLabel><br/>
                 <apex:inputfield value="{!warehouseCapacity.WU_SAPCode_s__c}" id="ipSAP"/>
             </td>
-            <td>&nbsp;&nbsp;</td>
+            
             <td >
-                <apex:outputLabel value="{!$Label.WU_Region}"></apex:outputLabel>&nbsp;&nbsp;
-                 <apex:inputfield value="{!warehouseCapacity.WU_Region__c}" id="ipregion"  >
+                <apex:outputLabel value="{!$Label.WU_Region}"></apex:outputLabel><br/>
+                 <apex:inputfield value="{!warehouseCapacity.WU_Region__c}" id="ipregion">
                     <apex:actionsupport event="onchange" rerender="wareList"/>
                 </apex:inputfield>
             </td>
             
-             <td align="center">
-                 <apex:outputLabel value="{!$Label.WU_MCO}"></apex:outputLabel>&nbsp;&nbsp;
+             <td>
+                 <apex:outputLabel value="{!$Label.WU_MCO}"></apex:outputLabel><br/>
                  <apex:inputfield value="{!warehouseCapacity.WU_MCO__c}" id="ipMCO">
                      <apex:actionsupport event="onchange" rerender="wareList"/>
                  </apex:inputfield>
              </td>
              
             <td>
-                 <apex:outputLabel value="{!$Label.WU_Category}"></apex:outputLabel>&nbsp;&nbsp;
+                 <apex:outputLabel value="{!$Label.WU_Category}"></apex:outputLabel><br/>
                  <apex:inputfield value="{!warehouseCapacity.WU_Network__c}" id="ipCategory">
                      <apex:actionsupport event="onchange" rerender="wareList"/>
                  </apex:inputfield>
              </td>
-            <td>&nbsp;&nbsp;</td>
+          
              <td>
-                 <apex:outputLabel value="{!$Label.WU_Country}"></apex:outputLabel>&nbsp;&nbsp;
+                 <apex:outputLabel value="{!$Label.WU_Country}"></apex:outputLabel><br/>
                  <apex:inputfield value="{!warehouseCapacity.WU_Country__c}" id="ipCountry" >
                      <apex:actionsupport event="onchange" rerender="wareList"/>
                  </apex:inputfield>
              </td>
-             <td>&nbsp;&nbsp;</td>
+             
              <td>
-                 <apex:outputLabel value="{!$Label.WU_City}"></apex:outputLabel>&nbsp;&nbsp;
-                 <apex:inputfield value="{!warehouseCapacity.WU_CityName__c}" id="ipCity">
+                 <apex:outputLabel value="{!$Label.WU_City}"></apex:outputLabel><br/>
+                 <apex:inputfield value="{!warehouseCapacity.WU_CityName__c}" id="ipCity" style="width: 96px" >
                      <apex:actionsupport event="onchange" rerender="wareList"/>
                  </apex:inputfield>
             </td>
-           
-           <td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td>
+            
+            <td>
+                 <apex:outputLabel value="{!$Label.WU_Active_WH}"></apex:outputLabel><br/>
+                 <apex:inputfield value="{!warehouseCapacity.WU_Active_WH__c}" id="ipActiveWH">
+                     <apex:actionsupport event="onchange" rerender="wareList"/>
+                 </apex:inputfield>
+            </td>
+          
             <td>
                 <br></br>
                 <apex:commandButton value="Search" action="{!SearchRecords}" style="height:20px;width:70px;text-align:center;"/>
             </td>
-            <td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td>
+            <td/>
             <td>
                 <br></br>
                 <apex:commandButton value="Export Report" action="{!redirectToReport}" />
             </td>
-            <td>&nbsp;&nbsp;</td>
-           
+            <td/>
         </tr>
-       
-        <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-        </tr>
+        
+        <tr></tr>
     </table>
    
     <apex:pageBlockSection > 
@@ -117,10 +120,17 @@
                  </apex:pageBlockSectionItem>
              </td>
            
-             <td>
+             <td width="20"%>
              <apex:pageBlockSectionItem >
                 <apex:outputLabel value="{!$Label.WU_City}"></apex:outputLabel>
                 <apex:inputfield value="{!warehouseCapacityLookup.Master_city__c}" id="ipCity1" />
+                </apex:pageBlockSectionItem>
+            </td>
+            
+            <td width="30"%>
+             <apex:pageBlockSectionItem >
+                <apex:outputLabel value="{!$Label.WU_Active_WH}"></apex:outputLabel>
+                <apex:inputfield value="{!warehouseCapacityLookup.WU_Active_WH__c}" id="ipActiveWH1" />
                 </apex:pageBlockSectionItem>
             </td>
            
@@ -169,6 +179,9 @@
                         <!-- <apex:column value="{!item.WU_Network__c }"/>  -->
                         <apex:column value="{!item.WU_Country__c}"/>
                         <apex:column value="{!item.WU_CityName__c}"/>
+                        <apex:column value="{!item.WU_CityName__c}"/>
+                        <apex:column value="{!item.WU_Active_WH__c}"/>
+                        
                        <!-- <apex:column value="{!item.WU_FromDate__c}"/>
                         <apex:column value="{!item.WU_ToDate__c}"/>-->
                         <apex:column headerValue="Committed/Max Pallet Utilization">

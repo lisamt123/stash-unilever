@@ -93,10 +93,15 @@ private class IPM_ProjectRolloutHandler_Test
             insert projectList; 
             
             set<Id> projId = new set<Id>();
+            Id projectId;
             for(IPM_Project__c proj : projectList)
             {
                projId.add(proj.id); 
+               projectId = proj.id;
             }
+            
+            IPM_TestFactory_Helper.createIPMProjectResource(projectId, true);
+            
             
             List<IPM_Project__c> projectAssertList = [select Name from IPM_Project__c where id in : projId];
             system.assertEquals(3,projectAssertList.size(),'Number of Project is not 3');

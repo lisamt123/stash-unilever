@@ -330,6 +330,7 @@ jq(document).ready(function() {
     });
 });
 function chdropdown(valx) {
+    jq(".cust-overlay").show();
     if (globalchanges === '') {
         alert(IPMAppFin.FinancialGrid_MSG4);
         return;
@@ -337,17 +338,41 @@ function chdropdown(valx) {
     Visualforce.remoting.Manager.invokeAction(IPMAppFin.GetFinancialYearRA,
         JSON.stringify(globalchanges), valx, IPMAppFin.span, IPMAppFin.projectType,
         function(result, event) {
+            
             if (event.type === 'exception') {
-                document.getElementById("responseErrors").innerHTML = event.message + ":" + event.where;
-            } else {
-                document.getElementById("responseErrors").innerHTML = event.message;
+ 
+                jq(".cust-overlay").hide(); // hide the loader
+                
+                openModal(); // open a dialog box to show a pop up message that error has occured
+                
+                jq("#DivButton").css("display", "inline"); // show submit button
+            } 
+            else {
+                
+                jq(".cust-overlay").hide(); // hide the loader
+				
+				//code for non error scenario
+				//refresh the page
+                globalchanges = [];
+                document.getElementById("Clrbtn").click();
+                clearAll();
+                
             }
         }, {
             escape: true
         });
-    globalchanges = [];
-    document.getElementById("Clrbtn").click();
-    clearAll();
+        
+
+        function openModal(){
+            jq('#ipmModalException').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            jq('#ipmModalException').modal('show');               
+            jq('#ipmModalException .modal-dialog').width('600px');
+            jq('#ipmModalException .modal-dialog').height('170px');               
+            jq('#ipmModalException .modal-dialog').css({'margin-top':'10%','z-index':'999'});
+        }
 }
 /* Below code is for the clear all functionality */
 function clearAll() {

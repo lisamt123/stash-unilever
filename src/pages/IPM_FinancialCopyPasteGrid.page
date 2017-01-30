@@ -15,14 +15,16 @@
      <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_FinancialCopyPasteGrid.css')}"/>
        <apex:composition template="IPM_TemplateRevamp">
         <apex:define name="body">
-              <apex:form id="Fom">                
+              <apex:form id="Fom">            
+                <apex:actionStatus id="loader" startStyleClass="proInitLoader"></apex:actionStatus>    
+                <div class="cust-overlay" style = "opacity: 0.5;"></div>
                 <div class="gradientbg">                    
                      <c:IPM_ProjectDetails project="{!project}" activeItem="rolloutPlan"/>                                        
                 </div>
                 <!-- Page Head & Toolbar -->
                 <div class="finwrapper">
                     <div class="col-sm-12 noPadleft noPadright">
-                        <div class="panel-group pageHeadToolbar clearfix">
+                        <div class="panel-group pageHeadToolbar clearfix tit_head">
                                 <!-- To place the help symbol in the top right hand corner of page -->
                                 <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
                                     <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
@@ -40,9 +42,6 @@
               </apex:outputpanel>
               <!-- check if the code is editable this value comes from Controller. -->
             <apex:outputPanel rendered="{!isEditable}">                   
-            <table style="IPM_Table" class="ipmTable table">
-              <tr>
-                <td class="TDwidth1">
                    <div class="divStyle gridBtnContainer" Id = "div1">
                      <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MCO} " styleClass="gridMcoLabel pull-left" style="MCOStyle" id="outlabel" />
                        <apex:outputpanel layout="block" styleClass="" id="C">
@@ -61,6 +60,9 @@
                             </apex:outputPanel>
                         </apex:outputpanel> 
                       </div> 
+            <table style="IPM_Table" class="ipmTable table">
+              <tr>
+                <td class="TDwidth1">
     <apex:outputpanel id="grid">
     <div id="FinancialGrid">
     </div>
@@ -78,11 +80,38 @@
      </td>                
   </tr>
 </table>
-</apex:outputPanel>   
+</apex:outputPanel> 
+<div id="ipmModalException" class="modal fade ipmModalException">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-title">{!$Label.IPM_Fin_CopyPaste_ErrorMsg_Header}</div>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">    
+                        <div class="col-sm-12">
+                            <span class="skipDesc">{!$Label.IPM_Fin_CopyPaste_Error_Message}</span>
+                        </div>
+                        <div class="deleteButtoncontainer txtAlignright pull-right"> 
+                            <apex:outputPanel id="SkipBossC">
+                                <div class="fleft noPadright">
+                                    <input type="button" class="confirmAction ipmButton primary" value="Ok" onclick="resetPage();" data-dismiss="modal"/>
+                                </div> 
+                            </apex:outputPanel>
+                        </div>  
+                    </div>  
+                </div>          
+            </div>
+        </div>
+    </div>
+            </div> 
+<apex:actionFunction name="resetPage" action="{!ResetOnError}" rerender="selist,outdata,CValue,message"/> 
 <script> 
     var IPMAppFin = {BI: '{!BI}', projectId:'{!projectId}',wmessage:'{!$Label.IPM_Unsaved_Alert}',projectType: '{!projectType}' ,Sustainability:'{!Sustainability}',IPM_CopyPastevolumevalid: '{!$Label.IPM_CopyPastevolumevalid}', FinancialGrid_MSG3:'{!$Label.IPM_FinancialGrid_MSG3}', FinancialGrid_MSG4:'{!$Label.IPM_FinancialGrid_MSG4}', IPM_AandP: '{!$Label.IPM_AandP}', IPM_AdvertisingCP: '{!$Label.IPM_AdvertisingCP}',IPM_ITOCalValidation:'{!$Label.IPM_ITOCalValidation}',IPM_GMCP:'{!$Label.IPM_GMCP}',IPM_GrossProfitCP:'{!$Label.IPM_GrossProfitCP}',IPM_ITOValidation: '{!$Label.IPM_ITOValidation}',IPM_PBOPCP: '{!$Label.IPM_PBOPCP}', IPM_PBOCP: '{!$Label.IPM_PBOCP}', IPM_TurnOverCP: '{!$Label.IPM_TurnOverCP}', GetFinancialYearRA:'{!$RemoteAction.IPM_FinancialCopyPasteGrid.GetFinancialYear}', span:'{!span}', UploadBusinessCase:'{!URLFOR($Page.IPM_UploadBusinessCase)}'};
 </script>
-<script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}"></script> 
+
 <script src="{!URLFOR($Resource.IPM_FinancialGrid, 'NewGridDemo/handsontable.full.min.js')}"></script>
 <script src="{!URLFOR($Resource.IPM_FinancialGrid, 'NewGridDemo/ruleJS/dist/full/ruleJS.all.full.js')}"></script>
 <script src="{!URLFOR($Resource.IPM_FinancialGrid, 'NewGridDemo/handsontable.formula.js')}"></script> 

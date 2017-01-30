@@ -1,0 +1,13 @@
+<div>
+Vendor <strong>{!VPM_PurchasingRequests__c.VPM_VendorName1__c}</strong>  has updated request <Insert Request ID> via the web form with the below details:
+</div><br>
+
+<div>
+<a href="{!VPM_PurchasingRequests__c.VPM_VendorWebformURL__c}">Completed Vendor Web Form</a>
+</div>
+<br>
+
+<div>Request {!VPM_PurchasingRequests__c.Name} has already been submitted for approval and cannot be amended. Should any of the information be an update to the details submitted previously, please raise a new Vendor request</div>
+<br>
+
+<footer><strong>Disclaimer: Please do not reply to this mail, the sending mail box is not monitored.</strong></footer>

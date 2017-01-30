@@ -1,3 +1,6 @@
+src
+src/applications
+src/applications/PACV.app
 src/classes
 src/classes/PACV_Questionnaire_StatusUpdate_Test.cls
 src/classes/PACV_Questionnaire_StatusUpdate_Test.cls-meta.xml
@@ -37,3 +40,22 @@ src/labels/PACV.labels
 src/staticresources
 src/staticresources/PACVStaticResource.resource
 src/staticresources/PACVStaticResource.resource-meta.xml
+src/layouts
+src/layouts/PACV_Answers__c-PACV Answer Layout.layout
+src/layouts/PACV_Case_Study__c-Case Study Layout.layout
+src/layouts/PACV_Questions__c-PACV Question Layout.layout
+src/layouts/PACV_Responses__c-PACV Response Layout.layout
+src/layouts/PACV_Risk_Assessment__c-PACV Risk Assessment Layout.layout
+src/layouts/PACV_Risk_Assessment_Questionnaire__c-PACV Risk Assessment Not Published Questionnaire Layout.layout
+src/layouts/PACV_Risk_Assessment_Questionnaire__c-PACV Risk Assessment Published Questionnaire Layout.layout
+src/layouts/PACV_Solutions__c-PACV Solution Layout.layout
+src/tabs
+src/tabs/PACV_Answers__c.tab
+src/tabs/PACV_Questions__c.tab
+src/tabs/PACV_Responses__c.tab
+src/tabs/PACV_Risk_Assessment__c.tab
+src/tabs/PACV_Risk_Assessment_Questionnaire__c.tab
+src/tabs/PACV_Solutions__c.tab
+src/tabs/PACV_Case_Study__c.tab
+src/sharingRules
+src/sharingRules/PACV_Risk_Assessment_Questionnaire__c.sharingRules

@@ -619,17 +619,6 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;SI – External&apos;), (text(YEAR(today()
                 <controllingFieldValues>Account Reconciliation</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Niraj Kothari</fullName>
-                <default>false</default>
-                <controllingFieldValues>Direct Tax</controllingFieldValues>
-                <controllingFieldValues>FX Revaluation</controllingFieldValues>
-                <controllingFieldValues>GL MDM</controllingFieldValues>
-                <controllingFieldValues>Journal Entries</controllingFieldValues>
-                <controllingFieldValues>Period-End</controllingFieldValues>
-                <controllingFieldValues>SAP Roles</controllingFieldValues>
-                <controllingFieldValues>SI – External</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Padma Prasad</fullName>
                 <default>false</default>
                 <controllingFieldValues>Fixed Assets</controllingFieldValues>
@@ -656,6 +645,7 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;SI – External&apos;), (text(YEAR(today()
             <picklistValues>
                 <fullName>Nikoletta Pinter</fullName>
                 <default>false</default>
+                <controllingFieldValues>Direct Tax</controllingFieldValues>
                 <controllingFieldValues>Financial Reporting</controllingFieldValues>
                 <controllingFieldValues>Indirect Tax</controllingFieldValues>
             </picklistValues>
@@ -668,9 +658,8 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;SI – External&apos;), (text(YEAR(today()
             <picklistValues>
                 <fullName>Veerabhadran VK</fullName>
                 <default>false</default>
-                <controllingFieldValues>FX Revaluation</controllingFieldValues>
+                <controllingFieldValues>Account Reconciliation</controllingFieldValues>
                 <controllingFieldValues>GL MDM</controllingFieldValues>
-                <controllingFieldValues>Journal Entries</controllingFieldValues>
                 <controllingFieldValues>Period-End</controllingFieldValues>
                 <controllingFieldValues>SAP Roles</controllingFieldValues>
                 <controllingFieldValues>SI – External</controllingFieldValues>
@@ -678,7 +667,12 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;SI – External&apos;), (text(YEAR(today()
             <picklistValues>
                 <fullName>Ashwathi Upalakkal</fullName>
                 <default>false</default>
+                <controllingFieldValues>FX Revaluation</controllingFieldValues>
                 <controllingFieldValues>Journal Entries</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Niraj Kothari</fullName>
+                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1278,10 +1272,6 @@ IF(ISPICKVAL(Currency__c , &apos;GBP&apos;) , &apos;GBP&apos; &amp; &apos; &apos
                 <default>false</default>
             </values>
             <values>
-                <fullName>Niraj Kothari</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Padma Prasad</fullName>
                 <default>false</default>
             </values>
@@ -1783,10 +1773,6 @@ IF(ISPICKVAL(Currency__c , &apos;GBP&apos;) , &apos;GBP&apos; &amp; &apos; &apos
             </values>
             <values>
                 <fullName>Nikoletta Pinter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Niraj Kothari</fullName>
                 <default>false</default>
             </values>
             <values>

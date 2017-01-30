@@ -424,5 +424,13 @@ jq(document).on('click', '.pdlCheckbox input[type="checkbox"]:not(:disabled)', f
         }  
     });
 	
+	jq(document).on('click', '.ipmDropresetcc', function(e){
+        e.stopPropagation();
+        jq(".pdlCheckbox input:checkbox").each(function() {
+             jq(this).prop('checked', false);
+           jq(this).next('label').removeClass('selected');
+        });
+        e.stopPropagation();
+    }); 
 	
 	

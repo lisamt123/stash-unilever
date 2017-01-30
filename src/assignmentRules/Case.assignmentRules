@@ -588,7 +588,7 @@
             </criteriaItems>
         </ruleEntry>
         <ruleEntry>
-            <assignedTo>CEC_North_America_Creative_Solutions</assignedTo>
+            <assignedTo>CEC_North_America_Queue</assignedTo>
             <assignedToType>Queue</assignedToType>
             <criteriaItems>
                 <field>Case.Origin</field>
@@ -937,5 +937,149 @@
                 <value>False</value>
             </criteriaItems>
         </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Korea_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>Korea</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Korea_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email Korea</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Taiwan_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>Taiwan</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Taiwan_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email Taiwan</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Hong_Kong_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>Hong Kong</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_China_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email China</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_China_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>China</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Hong_Kong_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email Hong Kong</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Turkey_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>Turkey</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_Turkey_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email Turkey</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+    </assignmentRule>
+    <assignmentRule>
+        <fullName>Test</fullName>
+        <active>false</active>
     </assignmentRule>
 </AssignmentRules>

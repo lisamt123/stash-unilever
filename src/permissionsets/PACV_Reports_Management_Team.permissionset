@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
-        <apexClass>PACVRiskAssesmentRecords_CC</apexClass>
+        <apexClass>PACV_Questionnaire_StatusUpdate_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PACV_Questions_AnswerCreation_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PACV_ShowPopUp_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <fieldPermissions>
@@ -199,16 +195,44 @@
     </fieldPermissions>
     <label>PACV Reports Management Team</label>
     <pageAccesses>
-        <apexPage>PACVRiskAssesmentView</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>PACVRiskAssessmentView</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>PACVSolutionPDF</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
+    <recordTypeVisibilities>
+        <recordType>PACV_Risk_Assessment_Questionnaire__c.Not_Published</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>PACV_Risk_Assessment_Questionnaire__c.Published</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <tabSettings>
+        <tab>PACV_Answers__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PACV_Case_Study__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PACV_Questions__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PACV_Responses__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PACV_Risk_Assessment_Questionnaire__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PACV_Risk_Assessment__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PACV_Solutions__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
     <userLicense>Salesforce Platform</userLicense>
 </PermissionSet>

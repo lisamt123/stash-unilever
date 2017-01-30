@@ -3,7 +3,12 @@
 @Description:GPL/BD/SC/TL user can create source plan for global GKM3 project after Ideas phase 
 ************************************************************************************************/
 
-public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermediateController { 
+public with sharing class IPM_SourcePlanController { 
+    public static IPM_Project__c project {
+        get {
+            return IPM_Utils.getProjectFullInfo(ApexPages.currentPage().getParameters().get('Id'));
+        }
+    }
 	public String docType ;
     public map<integer,sourcePlanWrapper> sourcePlanMap{get;set;}//map of wrapper class to store product and product plan data 
     public map<integer,list<sourceUnitWrapper>> sourceUnitMap{get;set;}//map wrapper class to store source plan data
@@ -38,10 +43,12 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     public string sSortOrder{get;set;}
     public List<SelectOption> SourcingUnits{get;set;}
     public integer sourceUnitIndex{get;set;}
+    public boolean isLocalView;
     /********************************************************************************************
     @Description-Constructor  
     *********************************************************************************************/
     public IPM_SourcePlanController(){
+    	isLocalView=false;
         totalRowsInTable = 0;
         wrapperPosition = 0;
         row_Index = null;
@@ -98,10 +105,8 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         sourceUnitsList = new list<IPM_SourcingUnit__c>();
         sourceUnitsList =[SELECT Source_Unit_Name__c FROM IPM_SourcingUnit__c WHERE Source_Unit_Name__c Like: '%'+searchUnit_STR +'%' AND Status__c = true order by Source_Unit_Name__c ASC LIMIT 1000];
         bIsPDLApproved=false;
-        if(docType!='PDF'){
-        	getPDLApprovedStatus();
-        	isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember(); 
-        }
+    	getPDLApprovedStatus();
+    	isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember(); 
     }
     public pageReference updateSourcinngUnit()
     {
@@ -120,7 +125,15 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     {       
         bIsPDLApproved = false;
         List<IPM_Project_Document__c> lstPDlDocument  = new List<IPM_Project_Document__c>();
-        lstPDlDocument = [Select id,IPM_Document_Status__c From IPM_Project_Document__c Where IPM_GateDocuments__c =: IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT and IPM_Project__c=: projectId and IPM_Document_Status__c=:IPM_ConstantUtils.STATUS_APPROVED limit 1];
+        Id projID;
+        if(project.IPM_Parent_Project__c == Null)
+        {    	
+        	projID = project.id;
+        }else if(project.IPM_Parent_Project__c != Null)
+        {
+        	projID = project.IPM_Parent_Project__c;
+        }
+        lstPDlDocument = [Select id,IPM_Document_Status__c From IPM_Project_Document__c Where IPM_GateDocuments__c =: IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT and IPM_Project__c=: projID and IPM_Document_Status__c=:IPM_ConstantUtils.STATUS_APPROVED limit 1];
         if(!lstPDlDocument.isEmpty())
         {
             bIsPDLApproved = true;        
@@ -318,7 +331,9 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
                 parentProId = project.IPM_Parent_Project__c;
             }
             projectProductList = [SELECT IPM_Of_gTO__c,IPM_Format__c,IPM_Formulation__c,IPM_GoldenPrototype__c,IPM_Project__c,IPM_Packing__c,IPM_Product_Name__c,IPM_ProductSize__c,IPM_ProductSizeMetrics__c,(SELECT IPM_Country__r.Country_Name__c,IPM_Project_Product__c FROM IPM_ProductPlans__r WHERE IPM_Country_Null__c = false and IPM_Country__r.isActive__c = true AND IPM_Country__c IN : lstCountryIDs) FROM IPM_Project_Product__c WHERE  IPM_Project__c =:parentProId order by IPM_Product_Name__c asc limit 1000];
-              
+            if(projectProductList.size()>0){
+            	isLocalView =true;
+            }
         } 
         sourcePlanMap.clear();     
         IF(projectProductList.isEmpty())
@@ -361,7 +376,8 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
             }
         }
         for(IPM_Project_Product__c product:projectProductList)
-        {
+        {        	
+        	boolean bIsSourcingUnitBlank = false;
             String country_STR = IPM_ConstantUtils.BLANK;
             List<string> lstCountry = new list<string>();
             if(productNCountryMap.containsKey(product.id)){
@@ -381,12 +397,13 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
                 IPM_SourcingPlan__c sourcePlan = new IPM_SourcingPlan__c();
                 sourceUnitMap.put(wrapperPosition, new list<sourceUnitWrapper>());
                 sourceUnitMap.get(wrapperPosition).add(new sourceUnitWrapper(sourcePlan,countryStr));
+                bIsSourcingUnitBlank = true;
                 
             }else{
                 sourceUnitMap.put(wrapperPosition, productWrapperMap.get(product.id));
             }
-            
-            sourcePlanMap.put(wrapperPosition,new sourcePlanWrapper(wrapperPosition,false,false,product,country_STR,sourceIntoList));
+            if((isLocalView && !bIsSourcingUnitBlank) || !isLocalView)
+            	sourcePlanMap.put(wrapperPosition,new sourcePlanWrapper(wrapperPosition,false,false,product,country_STR,sourceIntoList));
             wrapperPosition++;
         }
         totalRowsInTable = sourcePlanMap.size(); 

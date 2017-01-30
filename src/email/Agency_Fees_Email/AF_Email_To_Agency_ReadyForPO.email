@@ -1,9 +1,0 @@
-<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
-<tr valign="top" height="400" >
-<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
-<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 12pt;"><font face="Arial, sans-serif" size="2"><span style="color: rgb(33, 33, 33);">Dear Agency,</span><span style="color: rgb(33, 33, 33);"><o:p></o:p></span></font></p>
-
-<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2"><font style="color: rgb(0, 0, 0);"><span style="color: rgb(33, 33, 33);">Annual Bonus for&nbsp;</span></font><font color="#212121">{!AF_Bonus_Summary__c.Brand_Name__c}</font><span style="color: rgb(33, 33, 33);">&nbsp;is now ready for a Purchase Order to be
-issued.</span></font></p><p class="MsoNormal"><font face="Arial, sans-serif" size="2">{!AF_Bonus_Summary__c.AF_Community_Link__c}</font></p><font size="2" style="color: rgb(0, 0, 0);" face="Arial, sans-serif"><span style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"><div><font size="2" style="color: rgb(0, 0, 0);" face="Arial, sans-serif"><span style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"><br></span></font></div>From,</span><br><span style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">CMCO Finance</span></font>]]></td>
-</tr>
-</table>

@@ -94,20 +94,26 @@
             alert('Bonus unallocated value should be zero,Please check and confirm');
            }
           }
-        }
-        
-        function confirmAction() 
-        {
-            return confirm('Are you sure you want to proceed?');
         } 
         
-        // Redirect on rejection
-        function redirect()
-        {
-            location.reload();   
-        }
-  
+        
+        
         </script>
+        <apex:outputpanel id="panel1">
+            <script>
+               // Redirect on rejection
+               function redirect()
+               {
+                    location.reload();   
+               }
+               function redirectSubmit()
+                {
+                    if({!isRedirect}){
+                        location.reload();   
+                    }
+                }
+            </script>
+        </apex:outputpanel>
     <!-- Optionally add helpers - button, thumbnail and/or media -->
     <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
@@ -191,7 +197,7 @@
                                            <div class="bonusTargetCont">
                                                  <apex:outputlabel value="Bonus Target"/></div>
                                                  <div class="bonusTargetValue">
-                                                €
+                                                
                                                  <apex:outputText value="{0,number,###,###,###}">
                                                      <apex:param value="{!BonusTarget}"/>
                                                  </apex:outputText>    
@@ -202,7 +208,7 @@
                                                           <apex:outputlabel value="Bonus Unallocated" /></div>
                                                   <div class="bonusUnallocatedValue">
                                                      <apex:outputText value="{0,number,###,###,###}">
-                                                          €<apex:param value="{!remainingAllowances}"/>
+                                                          <apex:param value="{!remainingAllowances}"/>
                                                           </apex:outputText> 
                                                     </div>
                                       </div>    
@@ -212,7 +218,7 @@
                                            </div>
                                        <div class="bonusableFeeValue">
                                               <apex:outputText value="{0,number,###,###,###}">
-                                              €<apex:param value="{!bonusablefees}"/>
+                                              <apex:param value="{!bonusablefees}"/>
                                               </apex:outputText>
                                            </div>
                                     </div> 
@@ -222,7 +228,7 @@
                                    <div class="overallBonusPercentChatLable"> {!$Label.AF_OverAll_Bonus}</div >
                                    <canvas id="mycrosscanvas" height="100" width="100" class="overallBonusPercentChatDonut"></canvas>
                                      <span class="overallBonusPercentChatDonutLableValue">   <apex:outputText styleclass="overallText" value="{0,number,###,###,###}">
-                                             €<apex:param value="{!totalquant_qual}"/>
+                                             <apex:param value="{!totalquant_qual}"/>
                                               </apex:outputText>     
                                      </span>
                              </div>
@@ -232,7 +238,7 @@
                                    <canvas id="mycrosscanvasQuant" height="100" width="100" class="quantitativeBonusDonut"></canvas>
                                  <span class="quantitativeBonusValue"> 
                                     <apex:outputText styleclass="quantText" value="{0,number,###,###,###}">
-                                       €<apex:param value="{!quant}"/>
+                                       <apex:param value="{!quant}"/>
                                     </apex:outputText>   
                                  </span>  
                              </div>
@@ -241,7 +247,7 @@
                                    <canvas id="mycrosscanvasQual" height="100" width="100" class="qualitativeBonusDonut"></canvas>
                                   <span class="qualitativeBonusValue"> 
                                     <apex:outputText styleclass="qualText" value="{0,number,###,###,###}">
-                                      €<apex:param value="{!qualValue}"/>
+                                      <apex:param value="{!qualValue}"/>
                                   </apex:outputText>    
                                   </span>  
                              </div>
@@ -253,17 +259,20 @@
 <!--End of summary code -->
 <body class="dt-example">
     <apex:form >
+   
       <div class="row">
     <div class="col-lg-12 charttable1">
         <table class="buttonsCont">
+         
            <tr>
-                                <td id="first">
-                            <select multiple="multiple"  id="advFltr" >
+          
+                            <td id="first">
+                                <select multiple="multiple"  id="advFltr" >
                                 <option value="all">All Currency</option>
                                 <option value="l">Local</option>
                                 <option value="e">Euro</option>
-                            </select>
-                        </td>
+                                </select>
+                            </td>
                                    <td class="buttonBg"> 
                                            <a onClick="commentsToggleOpen('commentAddTable');window.location.hash='commentAddTable';return false;" title="{!$Label.AF_BFMX_General_feedback}" data-toggle="tooltip" Id="addCommentButton" styleClass="custom-link222 label_tooltip" >Add Comment</a>
                                       </td> 
@@ -274,7 +283,7 @@
                                            <a href="" data-src="apex/AF_AnnualBonus?Brandid={!brandid}&Agencyid={!agencyId}&Year={!Fyear}" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal3" class="modalButton3">Annual Bonus</a>
                                       </td>
                                      <td > 
-                                       <apex:pagemessages id="pgm1"/>
+                                         <apex:pagemessages id="pgm1"/>
                                         <apex:outputPanel rendered="{!isCatFinance}">
                                           <apex:commandButton value="Submit" rerender="pgm1,Approvepopup" action="{!SubmitApprovalPopup}" styleClass="submit_btn_screen1_bonus" 
                                           rendered="{! IF(AND(IsReadyForPO==false,IsWithCatfin==true),true,false)}" />
@@ -315,41 +324,43 @@
                                       </td>
                                   </tr>
         </table>
-            <!-- Popup block-->
-            <apex:outputPanel id="Approvepopup">
-              <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!Approvalpopup}"/>
-              <apex:outputPanel styleClass="customPopup_SubitforApproval" layout="block" rendered="{!Approvalpopup}">
-                 <div class="approval_floatR">
-                    <apex:commandButton value="X" action="{!closeApprovalPopup}" rerender="Approvepopup" styleClass="approval_closeButton1"/> 
-                 </div>
-                 <div class="approval_margin20PX">
-                    <h2>
-                       <apex:outputLabel value="{!$Label.AF_Bonus_Submit}" styleClass="approval_fontS16PX"/>
-                    </h2>
-                    <br/><br/>
-                    <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!SubmitforStatus}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup,pgm1"  oncomplete="displaymessage();" />
-                 </div>
-              </apex:outputPanel>
-            </apex:outputPanel>
+        <!-- Popup Submit-->
+        <apex:outputPanel id="Approvepopup">
+          <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!Approvalpopup}"/>
+          <apex:outputPanel styleClass="customPopup_SubitforApproval" layout="block" rendered="{!Approvalpopup}">
+          
+             <div class="approval_floatR">
+                <apex:commandButton value="X" action="{!closeApprovalPopup}" rerender="Approvepopup" styleClass="approval_closeButton1"/> 
+             </div>
+             <div class="approval_margin20PX">
+                <h2>
+                   <apex:outputLabel value="{!$Label.AF_Bonus_Submit}" styleClass="approval_fontS16PX"/>
+                </h2>
+                <br/><br/>
+                <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!SubmitforStatus}" 
+                oncomplete="redirectSubmit();" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup,pgm1,panel1"/>
+             </div>
+          </apex:outputPanel>
+        </apex:outputPanel>
            
-           
-             <apex:outputPanel id="popup">
-              <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopUp}"/>
-              <apex:outputPanel styleClass="customPopup_ApproveRecord" layout="block" rendered="{!displayPopUp}">
-                 <div class="approval_floatR">
-                    <apex:commandButton value="X" action="{!closePopup}" rerender="popup" styleClass="approval_closeButton2"/>
-                 </div>
-                 <div class="approval_margin20PX">
-                    <h2>
-                        <apex:outputLabel value="{!$Label.AF_OOPS_Approval}" styleClass="approval_fontS16PX"/>
-                    </h2>
-                    <br/><br/>
-                    <apex:commandButton value="Confirm" action="{!ApproveRejectStatus}" styleClass="continue_btn_ApproveRecord approval_wid70P" rerender="popup" oncomplete="displaymessage();"/>
-                 </div>
-              </apex:outputPanel>
-            </apex:outputPanel>
+        <!-- Popup Approve--> 
+        <apex:outputPanel id="popup">
+          <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopUp}"/>
+          <apex:outputPanel styleClass="customPopup_ApproveRecord" layout="block" rendered="{!displayPopUp}">
+             <div class="approval_floatR">
+                <apex:commandButton value="X" action="{!closePopup}" rerender="popup" styleClass="approval_closeButton2"/>
+             </div>
+             <div class="approval_margin20PX">
+                <h2>
+                    <apex:outputLabel value="{!$Label.AF_OOPS_Approval}" styleClass="approval_fontS16PX"/>
+                </h2>
+                <br/><br/>
+                <apex:commandButton value="Confirm" action="{!ApproveRejectStatus}" styleClass="continue_btn_ApproveRecord approval_wid70P" rerender="popup" oncomplete="displaymessage();"/>
+             </div>
+          </apex:outputPanel>
+        </apex:outputPanel>
             
-            
+        <!-- Popup Reject-->    
         <apex:outputPanel id="popuprejcomm">
           <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopupRejComment}"/>
           <apex:outputPanel styleClass="customPopup_RejectComment" layout="block" rendered="{!displayPopupRejComment}">

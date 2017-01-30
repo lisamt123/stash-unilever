@@ -70,7 +70,7 @@ public with sharing class PBS_TrainingPlansSearchController_CC extends PBS_LMSBa
                                 ,Description__c
                                 ,Enable_Self_Registration__c
                                 ,Self_Registration_Access__c
-                                ,New_Until__c
+                                ,New_Until__c,Training_Plan_URLs_Name__c
                                 ,Start_Date__c
                                 ,End_Date__c
                                 ,Hide_After_End_Date__c
@@ -176,7 +176,7 @@ public with sharing class PBS_TrainingPlansSearchController_CC extends PBS_LMSBa
         return tPlans;
 
     }
-
+	@TestVisible
     private without sharing class WithoutSharingOps{
         public ApexPages.StandardSetController getSetCon(String searchTerm){
             PBS_LMSCommunitiesService_CC.WithoutSharingOps wsops = new PBS_LMSCommunitiesService_CC.WithoutSharingOps();

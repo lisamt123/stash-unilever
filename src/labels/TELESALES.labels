@@ -1,0 +1,476 @@
+<labels>
+	<fullName>TEL_Account_Name</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Account Name</shortDescription>
+	<value>ACCOUNT NAME</value>
+</labels>
+<labels>
+	<fullName>TEL_Account</fullName>
+	<categories>TEL account standard account.</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Account</shortDescription>
+	<value>Account</value>
+</labels>
+<labels>
+	<fullName>TEL_Account_Record_Type</fullName>
+	<categories>OppGenn standard record type account.</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Account Record Type</shortDescription>
+	<value>Standard</value>
+</labels>
+<labels>
+	<fullName>TEL_Associate_Button</fullName>
+	<categories>Associate Account Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Associate Button</shortDescription>
+	<value>Associate</value>
+</labels>
+<labels>
+	<fullName>TEL_Campaign</fullName>
+	<categories>Table Header for telesales project</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Campaign</shortDescription>
+	<value>Campaign</value>
+</labels>
+<labels>
+	<fullName>TEL_Close_Date</fullName>
+	<categories>Table Header for telesales project</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Close Date</shortDescription>
+	<value>Close Date</value>
+</labels>
+<labels>
+	<fullName>TEL_Closed_Lost_Opp_Message</fullName>
+	<categories>Status Message</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Closed Lost Opp Message</shortDescription>
+	<value>No related products.</value>
+</labels>
+<labels>
+	<fullName>TEL_Enrichment_Type</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Enrichment Type</shortDescription>
+	<value>Enrichment</value>
+</labels>
+<labels>
+	<fullName>TEL_Fail_Proccess</fullName>
+	<categories>error message</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Fail Proccess</shortDescription>
+	<value>Fail</value>
+</labels>
+<labels>
+	<fullName>TEL_Family</fullName>
+	<categories>Associate Product Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Family</shortDescription>
+	<value>Family</value>
+</labels>
+<labels>
+	<fullName>TEL_Family_List</fullName>
+	<categories>Associate Product Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Family</shortDescription>
+	<value>FAMILY</value>
+</labels>
+<labels>
+	<fullName>TEL_For</fullName>
+	<categories>Associate Account Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>For</shortDescription>
+	<value>For</value>
+</labels>
+<labels>
+	<fullName>TEL_Frenquency</fullName>
+	<categories>Associate Account Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Frenquency</shortDescription>
+	<value>FREQUENCY</value>
+</labels>
+<labels>
+	<fullName>TEL_Last_Order_Quantity</fullName>
+	<categories>Table Header for telesales project</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Last Order Quantity</shortDescription>
+	<value>Last Order Quantity</value>
+</labels>
+<labels>
+	<fullName>TEL_OTM</fullName>
+	<categories>OTM category</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>OTM</shortDescription>
+	<value>OTM</value>
+</labels>
+<labels>
+	<fullName>TEL_OppGen</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL OppGen</shortDescription>
+	<value>OPPGEN</value>
+</labels>
+<labels>
+	<fullName>TEL_OppGen_H2</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL OppGen H2</shortDescription>
+	<value>Call List Generation</value>
+</labels>
+<labels>
+	<fullName>TEL_OppStageCanceled</fullName>
+	<categories>Opportunity Stage</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Opp Stage Canceled</shortDescription>
+	<value>Canceled</value>
+</labels>
+<labels>
+	<fullName>TEL_OppStageClosedLost</fullName>
+	<categories>Opportunity Stage</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Opp Stage Closed Lost</shortDescription>
+	<value>Closed Lost</value>
+</labels>
+<labels>
+	<fullName>TEL_OppStagePendingCall</fullName>
+	<categories>Opportunity Stage</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Opp Stage Pending Call</shortDescription>
+	<value>Pending Call</value>
+</labels>
+<labels>
+	<fullName>TEL_OppStageReleased</fullName>
+	<categories>Opportunity Stage</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Opp Stage Released</shortDescription>
+	<value>Released</value>
+</labels>
+<labels>
+	<fullName>TEL_OppStageScheduled</fullName>
+	<categories>Opportunity Stage</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Opp Stage Scheduled</shortDescription>
+	<value>Scheduled</value>
+</labels>
+<labels>
+	<fullName>TEL_OppStageTransmitted</fullName>
+	<categories>Opportunity Stage</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Opp Stage Transmitted</shortDescription>
+	<value>Transmitted</value>
+</labels>
+<labels>
+	<fullName>TEL_Opportunity</fullName>
+	<categories>Indicate the opportunity object name to retrieve related
+		info from object as record type id.
+	</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Opportunity</shortDescription>
+	<value>Opportunity</value>
+</labels>
+<labels>
+	<fullName>TEL_Opportunity_Status</fullName>
+	<categories>Telesales</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Opportunity Status</shortDescription>
+	<value>Pending Call</value>
+</labels>
+<labels>
+	<fullName>TEL_Price</fullName>
+	<categories>Table Header for telesales project</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Price</shortDescription>
+	<value>Price</value>
+</labels>
+<labels>
+	<fullName>TEL_Product_Name</fullName>
+	<categories>Associate Product Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Product Name</shortDescription>
+	<value>PRODUCT NAME</value>
+</labels>
+<labels>
+	<fullName>TEL_Products</fullName>
+	<categories>Associate Product Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Products</shortDescription>
+	<value>Products</value>
+</labels>
+<labels>
+	<fullName>TEL_Quantity</fullName>
+	<categories>Table Header for telesales project</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Quantity</shortDescription>
+	<value>Quantity</value>
+</labels>
+<labels>
+	<fullName>TEL_Sales_Call_Opp</fullName>
+	<categories>Opportunity Call List Name</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Sales Call Opp</shortDescription>
+	<value>Sales Call Quarter</value>
+</labels>
+<labels>
+	<fullName>TEL_Sales_Call_Type</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Sales Call Type</shortDescription>
+	<value>Sales Call</value>
+</labels>
+<labels>
+	<fullName>TEL_Sales_Drive_Type</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Sales Drive Type</shortDescription>
+	<value>Sales Drive</value>
+</labels>
+<labels>
+	<fullName>TEL_Sales_ORG</fullName>
+	<categories>Telesales project</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Sales ORG</shortDescription>
+	<value>UK</value>
+</labels>
+<labels>
+	<fullName>TEL_Sample_Request</fullName>
+	<categories>Opportunity Name</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Sample Request</shortDescription>
+	<value>Sample Request Approved</value>
+</labels>
+<labels>
+	<fullName>TEL_Sample_Request_Status</fullName>
+	<categories>Sample request status</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Sample Request Status</shortDescription>
+	<value>Approved</value>
+</labels>
+<labels>
+	<fullName>TEL_Scheduled_Day</fullName>
+	<categories>Associate Account Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Scheduled Day</shortDescription>
+	<value>Scheduled Day(s)</value>
+</labels>
+<labels>
+	<fullName>TEL_Search_Button</fullName>
+	<categories>Associate Account Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Search Button</shortDescription>
+	<value>Search</value>
+</labels>
+<labels>
+	<fullName>TEL_Segment</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Segment</shortDescription>
+	<value>Segment</value>
+</labels>
+<labels>
+	<fullName>TEL_Select_All</fullName>
+	<categories>Associate Account Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Select All</shortDescription>
+	<value>Select All</value>
+</labels>
+<labels>
+	<fullName>TEL_Send_Button</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Send Button</shortDescription>
+	<value>Send</value>
+</labels>
+<labels>
+	<fullName>TEL_Sub_segment</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Sub-segment</shortDescription>
+	<value>Sub-Segment</value>
+</labels>
+<labels>
+	<fullName>TEL_Success_Process</fullName>
+	<categories>error message</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Success Process</shortDescription>
+	<value>Success</value>
+</labels>
+<labels>
+	<fullName>TEL_Telesales_Record_Type</fullName>
+	<categories>Used to retrieve the opportunity telesales record type.
+	</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Telesales Record Type</shortDescription>
+	<value>TEL_Telesales</value>
+</labels>
+<labels>
+	<fullName>TEL_Opportunity_Name</fullName>
+	<categories>TEL opportunity name.</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Opportunity Name</shortDescription>
+	<value>Telesales Call</value>
+</labels>
+<labels>
+	<fullName>TEL_Telesales_UK_Price_Book</fullName>
+	<categories>OppGenn price book.</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Telesales UK Price Book</shortDescription>
+	<value>Telesales UK</value>
+</labels>
+<labels>
+	<fullName>TEL_Type</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Type</shortDescription>
+	<value>TYPE</value>
+</labels>
+<labels>
+	<fullName>TEL_Type_OppGen</fullName>
+	<categories>OppGenn</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Type OppGen</shortDescription>
+	<value>Type</value>
+</labels>
+<labels>
+	<fullName>TEL_Assign_Owner_Message</fullName>
+	<categories>TEL Assign opportunity owner message success.</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Assign Owner Message</shortDescription>
+	<value>The opportunity ownership was changed successfully!</value>
+</labels>
+<labels>
+	<fullName>Tel_Associate_Campaign</fullName>
+	<categories>Associate Account Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Tel Associate Campaign</shortDescription>
+	<value>CAMPAIGN</value>
+</labels>
+<labels>
+	<fullName>Tel_Product_Code</fullName>
+	<categories>Associate Product Campaign</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Tel Product Code</shortDescription>
+	<value>PRODUCT CODE</value>
+</labels>
+<labels>
+	<fullName>TEL_Stage_Recheduled</fullName>
+	<categories>TEL Stage Name to indicate when the stage name is
+		scheduled.</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Stage Recheduled</shortDescription>
+	<value>Scheduled</value>
+</labels>
+<labels>
+	<fullName>TEL_Subject_Close_Lost</fullName>
+	<categories>TEL Event Subject</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Subject Close Lost</shortDescription>
+	<value>Opportunity Close Lost on</value>
+</labels>
+<labels>
+	<fullName>TEL_Subject_Close_Won</fullName>
+	<categories>TEL Event Subject</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Subject Close Won</shortDescription>
+	<value>Opportunity Won on</value>
+</labels>
+<labels>
+	<fullName>TEL_Subject_Rescheduled_Call</fullName>
+	<categories>TEL Event Subject</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>TEL Subject Rescheduled Call</shortDescription>
+	<value>Call Rescheduled on</value>
+</labels>
+    <labels>
+        <fullName>TEL_Task_Telesales</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Task Telesales</shortDescription>
+        <value>TEL_Task_Telesales</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Biweekly</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Biweekly</shortDescription>
+        <value>Biweekly</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Monthly</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Monthly</shortDescription>
+        <value>Monthly</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Completed_Task</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Completed Task</shortDescription>
+        <value>Completed</value>
+    </labels>
+        <labels>
+        <fullName>TEL_Task_Type_Call</fullName>
+        <categories>Telesales</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Task Type Call</shortDescription>
+        <value>Call</value>
+    </labels>

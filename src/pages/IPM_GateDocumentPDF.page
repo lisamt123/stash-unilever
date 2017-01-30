@@ -623,7 +623,7 @@
                 .goldenCheckcontainer label.goldbox {width: 80%;background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 8px !important;}
                 .goldenCheckcontainer label {width:100%;background: #999;padding:4px 18px;height: 29px;}  
                 .alignCenter{text-align:center;}
-            .srcbrkWord{word-wrap:break-word;word-break: break-word;background:#000;}
+                .srcbrkWord{word-wrap:break-word;word-break: break-word;background:#000;}
             </style>
         </head>
     
@@ -752,22 +752,10 @@
                             <td class="label">
                                 {!$Label.IPM_BusinessImpact}{!$Label.IPM_COLON}
                             </td> 
-                            
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">     
-                                <td>
-                                    <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Product Design Lock' , projectDoc.IPM_Document_Status__c=='Approved'),globalbusinessImpactStr,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.IPM_Business_Impact_MD__c,globalbusinessImpactStr)))))}"/>
-                                </td>
-                            </apex:outputText>
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">     
-                                <td>
-                                    <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),finLocal.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),finLocal.IPM_Business_Impact_MD__c,globalbusinessImpactStr))))}"/> 
-                                </td>
-                            </apex:outputText>
-                            <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">     
-                                <td>
-                                    <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),finRegional.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),finRegional.IPM_Business_Impact_MD__c,globalbusinessImpactStr))))}"/>
-                                </td>
-                            </apex:outputText>
+                              
+                            <td>
+                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),financialForPdf.IPM_Business_Impact_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),financialForPdf.IPM_Business_Impact_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Product Design Lock' , projectDoc.IPM_Document_Status__c=='Approved'),globalbusinessImpactStr,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),financialForPdf.IPM_Business_Impact_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),financialForPdf.IPM_Business_Impact_MD__c,globalbusinessImpactStr)))))}"/>
+                            </td>
                             
                         </tr>
                         
@@ -776,7 +764,7 @@
                                 {!$Label.IPM_Market_Place_Activity}{!$Label.IPM_COLON}
                             </td>      
                             <td>                   
-                                <apex:outputText value="{!project.IPM_ProjectSubType__c}"/>
+                                <apex:outputText value="{!project.IPM_Answer_of_Q1__c}"/>
                             </td>
                             
                             <td class="label">
@@ -885,7 +873,7 @@
                                 {!$Label.IPM_Market_Place_Activity}{!$Label.IPM_COLON}
                             </td>      
                             <td >                   
-                                <apex:outputText value="{!project.IPM_ProjectSubType__c}"/>
+                                <apex:outputText value="{!project.IPM_Answer_of_Q1__c}"/>
                             </td>  
                             
                             <td class="label" width="20%">
@@ -997,10 +985,11 @@
                     <c:IPM_BCC_ConsolidateView gateType="{!projectDoc.IPM_GateDocuments__c}" projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" showBccTab="{!showBBCtable}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_ConsolidateView>
                     <c:IPM_Assumptions projId="{!projectId}" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!apxSec.Id}" rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="false"></c:IPM_Assumptions>
                     <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
-                    <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && (project.IPMProject_Span__c='Regional' || project.IPM_ProjectGKM__c='GKM3') && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
+                    <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && (project.IPMProject_Span__c='Regional' || AND(project.IPM_ProjectGKM__c='GKM3',project.IPMProject_Span__c!='Local' )) && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
                     <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown>
                     <c:IPM_GlobalClaimPDL projId="{!projectId}" isAppendix="true" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Final_Global_Claims'}"></c:IPM_GlobalClaimPDL>
                     <c:IPM_SourcePlanInPDF projId="{!projectId}" rendered="{!AND(projectDoc.IPM_GateDocuments__c=='Product Design Lock')}"></c:IPM_SourcePlanInPDF> 
+		      <c:IPM_Local_Sourcing_Table rendered="{!project.IPMProject_Span__c=='Local' && project.IPM_ProjectGKM__c=='GKM3' && apxSec.IPM_Master_Section_External_Id__c=='Technical'}" projId="{!projectId}"></c:IPM_Local_Sourcing_Table>
                 </apex:repeat> 
                 
             </div>

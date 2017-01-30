@@ -56,13 +56,13 @@ public class AR_Test_AgencyGridView {
         // Let's create a few agencies with related information
         Account agency = TestDataFactory.getAccount('Agency');
         agency.Agency_Expertise__c = 'Behaviour Design';
-        agency.Discipline__c = 'Design';
+        agency.Agency_Discipline__c = 'Advertising';
         insert agency;
         
         Account agency1 = TestDataFactory.getAccount('Agency');
         agency1.Featured__c = false;
         agency1.Agency_Expertise__c = 'Digital Build';
-        agency1.Discipline__c = 'Design';
+        agency1.Agency_Discipline__c = 'Advertising';
         insert agency1;
         
         ar_Geography__c agencyGeo = TestDataFactory.getGeography();

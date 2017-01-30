@@ -70,7 +70,9 @@
       <runTest>WU_WarehouseSearchController_test</runTest>
       <runTest>WU_SetCurrentMonthBatch_Test</runTest>
       <runTest>WU_SetCurrentMonthBatch_Scheduler_Test</runTest>
-      <runTest>WU_LeadershipPermission_test</runTest>  
+      <runTest>WU_LeadershipPermission_test</runTest>
+      <runTest>WU_SetWareHousePOCHandlerTest</runTest>
+	 <runTest>WU_WarehouseSearchGooglemapController_TC</runTest>
     </sf:deploy>
   </target>  
 
