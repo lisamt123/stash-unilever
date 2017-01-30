@@ -34,8 +34,6 @@ src/classes/PQN_Export_Excel_Test.cls
 src/classes/PQN_Export_Excel_Test.cls-meta.xml
 src/classes/PQN_Global_DCReport.cls
 src/classes/PQN_Global_DCReport.cls-meta.xml
-src/classes/PQN_Global_Overview_Category_Report.cls
-src/classes/PQN_Global_Overview_Category_Report.cls-meta.xml
 src/classes/PQN_Global_Overview_Geography.cls
 src/classes/PQN_Global_Overview_Geography.cls-meta.xml
 src/classes/PQN_GlobalCategoryReport.cls
