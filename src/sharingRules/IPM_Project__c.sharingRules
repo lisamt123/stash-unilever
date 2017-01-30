@@ -65,32 +65,7 @@
             <value>Spreads</value>
         </criteriaItems>
     </sharingCriteriaRules>
-    <sharingCriteriaRules>
-        <fullName>IPM_HC_HHC_Business_Partners</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>IPM_HC_HHC_Business_Partners</label>
-        <sharedTo>
-            <group>IPM_HC_HHC_Business_Partners</group>
-        </sharedTo>
-        <criteriaItems>
-            <field>IPM_Category_Text__c</field>
-            <operation>equals</operation>
-            <value>Household Care</value>
-        </criteriaItems>
-    </sharingCriteriaRules>
-    <sharingCriteriaRules>
-        <fullName>IPM_HC_Laundry_Business_Partners</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>IPM_HC_Laundry_Business_Partners</label>
-        <sharedTo>
-            <group>IPM_HC_Laundry_Business_Partners</group>
-        </sharedTo>
-        <criteriaItems>
-            <field>IPM_Category_Text__c</field>
-            <operation>equals</operation>
-            <value>Laundry</value>
-        </criteriaItems>
-    </sharingCriteriaRules>
+    
     <sharingCriteriaRules>
         <fullName>IPM_Home_Care_FB_Parent_and_Finance_Category</fullName>
         <accessLevel>Read</accessLevel>
