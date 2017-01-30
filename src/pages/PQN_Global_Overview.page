@@ -165,7 +165,7 @@
     <div >
    <div class="panel-body">
   
-        <apex:chart data="RemotingstackDosingChart" name="RemotingstackDosingChart" height="500" width="1200">
+        <apex:chart data="RemotingstackDosingChart" name="RemotingstackDosingChart" height="500" width="100%">
             <apex:legend position="bottom" font="bold 14px Calibri"/>
             <apex:axis type="Numeric" position="left" title="NC events {!cuYear}" grid="true" fields="{!dosingKey}" dashSize="2">
              <apex:chartLabel />
@@ -180,7 +180,7 @@
         </div>
         <div>
             
-            <table style="width:1200px;" class="table table-bordered">
+            <table style="width:96%;" class="table table-bordered">
                 <thead>
                 <tr>
                     <th Class="Cyan"></th>
@@ -221,7 +221,7 @@
             </h3></div>  
     <div >
    <div class="panel-body">
-        <apex:chart data="RemotingstackCatDosingChart" name="RemotingstackCatDosingChart" height="500" width="1200">
+        <apex:chart data="RemotingstackCatDosingChart" name="RemotingstackCatDosingChart" height="500" width="100%">
             <apex:legend position="bottom" font="bold 14px Calibri"/>
             <apex:axis type="Numeric" position="left" title="NC events {!cuYear}" grid="true" fields="{!catKey}" dashSize="2">
              <apex:chartLabel />
@@ -237,7 +237,7 @@
          
          <div>
         
-            <table id="CAT_Product" style="width:1200px;" class="table table-bordered">
+            <table id="CAT_Product" style="width:96%;" class="table table-bordered">
                 <thead>
                 <tr>
                     <th Class="Cyan"></th>

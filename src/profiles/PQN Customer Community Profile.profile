@@ -94,6 +94,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PQN_GlobalCategoryReporttest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PQN_GlobalGeographyReport</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -107,10 +111,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_Global_DCReport</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PQN_Global_Overview_Category_Report</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
