@@ -338,12 +338,21 @@ Throws : N/A
             List<ACCL__Promotion__c> promoLst = new List<ACCL__Promotion__c>() ;
             List<Id> approverIdsLst = new List<Id>() ;
                     
-            promoLst = [SELECT UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c, ACCL__Promotion_Template__c FROM ACCL__Promotion__c WHERE Id =: promoId] ;
+            promoLst = [SELECT UL_PromotionTemplateType__c, UL_Threshold_Window_Result__c,Id, Name, CreatedById,createdby.UL_Finance_Manager__c,UL_Current_Status__c,UL_ThresholdViolated__c, UL_Finance_Check_Approvers__c,UL_Manager_Check_Approvers__c,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Promotion_Template__r.UL_Approval_Process_Identifier__c, ACCL__Sales_Org__c, ACCL__Active__c, ACCL__Promotion_Template__c FROM ACCL__Promotion__c WHERE Id =: promoId] ;
             approverIdsLst.add(promoLst[0].createdbyid) ;
             THViolate = promoLst[0].UL_ThresholdViolated__c ; 
              
-             /*****TPM 1599 STARTS*****/
-            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMITTED_FOR_APPROVAL)){
+            /*****TPM 1599 STARTS*****/
+            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMITTED_FOR_APPROVAL) || Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMIT)){
+				
+				if(Mode.equalsIgnoreCase(UL_Utility.STATUS_SUBMITTED_FOR_APPROVAL) && promoLst[0].UL_PromotionTemplateType__c.equalsIgnoreCase(UL_Utility.LTA)){
+					AggregateResult attCountAgrResult = [SELECT Count(Id)attCount FROM Promotion_Attachment_Link__c WHERE Promotion__c = :promoId];
+					Integer attCount = Integer.valueOf(attCountAgrResult.get('attCount'));
+					if(attCount == 0){
+						throw new UL_CustomException(Label.Attachment_Count_Error_Message);
+					}					
+				}
+                
                 Set<String> tacticMandatory = new Set<String>();
                 for(ACCL__Tactic__c tctic : [SELECT ACCL__Tactic_Template__c FROM ACCL__Tactic__c WHERE ACCL__Promotion__c = :promoId]){
                         tacticMandatory.add(promoLst[0].ACCL__Promotion_Template__c+UL_Utility.HYPHEN+tctic.ACCL__Tactic_Template__c);
