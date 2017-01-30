@@ -2323,13 +2323,16 @@ Throws : N/A
      *  @return : List<String>       List of string
      *  @throws :
      *  @author :sudharsan.shanmugam@accenture.com
+     
+     *  @author: Ketan Mehta
+     *  @desc: Filter products based on level and show only SKU products 
      */
     @RemoteAction
     global static List<ACCL__Product__c> readLOFilteredProducts(String txId,String promotionContent) {
         
         List<ACCL__Product__c> result = null;
         promotionContent = UL_PromotionContentReplace.replaceFieldContent(promotionContent);
-        System.debug('promotionContent::::::::'+promotionContent);
+
         result = ACCL.PromotionRemoteActionExtension.readLOFilteredProducts(txId,promotionContent);
         
         //Display only least level products.
