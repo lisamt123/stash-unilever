@@ -55,9 +55,9 @@ public class IPM_ConstantUtils {
     public static final String PRODUCT_DESIGN_LOCK_DOCUMENT='Product Design Lock';
     //used across classes to get the Section Status
     public static final String GATE='Gate';
-    public static final String GATEKEEPING_MODEL_GCLT='GCLT';
-    public static final String GATEKEEPING_MODEL_RCLT='RCLT';
-    public static final String GATEKEEPING_MODEL_BOTH='GCLT & RCLT';
+    public static final String GATEKEEPING_MODEL_GCLT='GCLT Leader';
+    public static final String GATEKEEPING_MODEL_RCLT='CCVP';
+    public static final String GATEKEEPING_MODEL_BOTH='GCLT Leader & CCVP';
     
     // Added for GKM3 changes
     public static String GATE_KEEPING_MODEL_3 = 'GKM3';
@@ -69,6 +69,7 @@ public class IPM_ConstantUtils {
     
     public static final String SECTION_TYPE_HEADER='Header';
     public static final String SECTION_TYPE_SUBHEADER='Sub Header';
+    public static final String SECTION_TYPE_TOPIC='Topic';
     
     public static final String PROJECT_SPAN_GLOBAL='Global';
     public static final String PROJECT_SPAN_REGIONAL='Regional';
@@ -238,13 +239,13 @@ public class IPM_ConstantUtils {
     public static String IPMDIFFERENCE = 'Difference';
     
     public static String FUNCTIONAL_ROLE_ALL='All';
-    public static String FUNCTIONAL_ROLE_BD='BD';
+    public static String FUNCTIONAL_ROLE_BD='MKTG DEV';
     public static String FUNCTIONAL_ROLE_CMI='CMI';
     public static String FUNCTIONAL_ROLE_CD='CD';
     public static String FUNCTIONAL_ROLE_RD='R&D';
     public static String FUNCTIONAL_ROLE_RnD='RnD';
     public static String FUNCTIONAL_ROLE_FINANCE='Finance';
-    public static String FUNCTIONAL_ROLE_BB='BB';
+    public static String FUNCTIONAL_ROLE_BB='MKTG LOCAL';
     public static String FUNCTIONAL_ROLE_SC='SC';
     public static String FUNCTIONAL_ROLE_PL='PL';
     
@@ -261,13 +262,13 @@ public class IPM_ConstantUtils {
     //CoreParameter field variables ends
     
     //Functional Variable for role type starts
-    public static final String IPM_ROLE_BD='BD';
+    public static final String IPM_ROLE_BD='MKTG DEV';
     public static final String IPM_ROLE_CMI='CMI';
     public static final String IPM_ROLE_CD='CD';
     public static final String IPM_ROLE_RD='R&D';
     public static final String IPM_ROLE_SUPPLY_CHAIN='Supply Chain';
     public static final String IPM_ROLE_FINANCE='Finance';
-    public static final String IPM_ROLE_BB='BB';
+    public static final String IPM_ROLE_BB='MKTG LOCAL';
     public static final String IPM_ROLE_GUEST='Guest';
     public static final String IPM_ROLE_BD_MARKETING='BD Marketing';
     public static String RND_SECTION='R&D Initial Outline (Product/Pack)';
@@ -369,7 +370,7 @@ public class IPM_ConstantUtils {
     //Regional
     public static final String TAB_CHARTER_LABEL = 'Charter';
     public static final String TAB_GLOBALCHARTER_LABEL = 'Global Charter';
-    public static final String TAB_LOCALBBROLLUP_LABEL = 'Local BB rollup';
+    public static final String TAB_LOCALBBROLLUP_LABEL = 'Local Rollup';
     //Local
     public static final String TAB_MYVIEW_LABEL = 'My View'; 
      
@@ -466,7 +467,8 @@ public class IPM_ConstantUtils {
     
     
     public static final String IDEAS_SEQUENCE='1.1';
-     
+    public static final String TRADE_STORY_SEQUENCE='2.2.2';  
+       
     //Delimitor
     public static final String Delimiter=';';
      
@@ -1301,8 +1303,8 @@ public class IPM_ConstantUtils {
     public static final String PDL_FINACIAL_GLOBAL_CLAIMS = 'Final_Global_Claims';
     public static final String PDL_GOLDEN_PROTOTYPE = 'Golden_Prototype';
     public static final String PDL_QUALITY_STANDARDS = 'Quality_Standards';
-	public static final String SELECT_CLAIM = 'Select Claim';
-	
-	public static final String REGIONAL_PROJECT = ' Regional Project,';
+    public static final String SELECT_CLAIM = 'Select Claim';
+    
+    public static final String REGIONAL_PROJECT = ' Regional Project,';
     public static final String GLOBAL_PROJECT = ' Global Project,';
 }

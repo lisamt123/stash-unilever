@@ -19,7 +19,8 @@ private class IPM_NewTask_Test{
     private static final String PROJ_ID_STR = 'projectId';
     private static final String PROJDOCSEC_ID_STR='projDocSecId';
     private static final String  USER_NAME ='PLATFORM_USER';
-	private static final String  TASK_NAME ='Test task modified';
+    private static final String  TASK_NAME ='Test task modified';
+    private static final String GKM_CCVP = 'CCVP';
     private static final Id PROJECT_TASK_ID = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
     private static final Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8'};
     
@@ -99,7 +100,10 @@ private class IPM_NewTask_Test{
        list<IPM_Project_Document_Section__c> projDocSecList = [SELECT Id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Project_ID__c,IPM_Section__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c 
                                                                 FROM IPM_Project_Document_Section__c 
                                                                 WHERE IPM_Project_Document__c IN:projDocId and IPM_Project_Document__r.IPM_Project__c=:projectDetailList[0].Id and IPM_Gate_Document__c='Charter' and (IPM_FunctionalRole__c='PL' OR IPM_FunctionalRole__c=:IPM_ConstantUtils.FUNCTIONAL_ROLE_BD)];
-      
+       
+       projDocSecList[0].IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
+       update projDocSecList[0];
+        
        for(IPM_Project_Document_Section__c projDocSec: projDocSecList)
        {
             if(projDocSec.IPM_FunctionalRole__c=='PL' && projDocSecPL == null )
@@ -536,7 +540,7 @@ private class IPM_NewTask_Test{
                  task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
                  task.IPM_TaskSpan__c = 'Regional';
                  task.IPM_Section__c = ipmSection.id;
-                 task.IPM_Function__c = 'BD';
+                 task.IPM_Function__c = 'MKTG DEV';
                  task.RecordTypeId = PROJECT_TASK_ID;
                  
                  putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
@@ -583,6 +587,8 @@ private class IPM_NewTask_Test{
             system.runAs(userBD)
             {
                  list<IPM_Project__c> projDetailList11 = [SELECT id,IPM_Complexity__c,IPM_GateKeeping_Model__c,IPM_Project_Type__c,IPM_SourceProjectType__c,IPM_CompanyCardText__c,IPMProject_Span__c,Name,IPM_Phase__c, IPM_Company_Card__c, IPM_Category_Text__c, IPM_ProjectSubType__c FROM IPM_Project__c WHERE Name='TestComments1'];
+                 projDetailList11[0].IPM_GateKeeping_Model__c = GKM_CCVP;
+                 update projDetailList11[0];
                  IPM_Section__c ipmSection = IPM_TestFactory_Helper.createIPMSection(true);
                  IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projDetailList11[0].Id, false);
                  task.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
@@ -590,7 +596,7 @@ private class IPM_NewTask_Test{
                  task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
                  task.IPM_TaskSpan__c = 'Regional';
                  task.IPM_Section__c = ipmSection.id;
-                 task.IPM_Function__c = 'BD';
+                 task.IPM_Function__c = 'MKTG LOCAL';
                  task.RecordTypeId = PROJECT_TASK_ID;
                  
                  putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
@@ -642,7 +648,7 @@ private class IPM_NewTask_Test{
                  task.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
                  task.IPM_Task_Name__c = 'Current Task';
                  task.IPM_Section__c = ipmSection.id;
-                 task.IPM_Function__c = 'BD';
+                 task.IPM_Function__c = 'MKTG DEV';
                  task.RecordTypeId = PROJECT_TASK_ID;
                  task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
                  
@@ -656,7 +662,7 @@ private class IPM_NewTask_Test{
                  task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD; 
                  newTask.getPhaselist();
                  system.assertEquals(task.IPM_Phase__c!= null,true,'Task Phase List for standard tasks not populated as expected');
-            }	  
+            }     
         Test.stopTest();      
     }
     
@@ -714,7 +720,7 @@ private class IPM_NewTask_Test{
                  task.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
                  task.IPM_Task_Name__c = 'Current Task';
                  task.IPM_Section__c = ipmSection.id;
-                 task.IPM_Function__c = 'BD';
+                 task.IPM_Function__c = 'MKTG DEV';
                  task.RecordTypeId = PROJECT_TASK_ID;
                  task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
                  
@@ -728,14 +734,15 @@ private class IPM_NewTask_Test{
                  task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD; 
                  
                  List<SelectOption> optionSectionList = newTask.getListSections();
-             	 system.assertEquals(!optionSectionList.isEmpty(),true,'Task section List for standard tasks not populated as expected'); 
-             	 
-             	 newTask.sectionWiseFunctionalRoleList();
-             	 newTask.selectedSectionId = ipmSection.id;
-             	 newTask.SectionToExtenalIdSectionMap.put(ipmSection.id,'Idea_Graphic');
-             	 List<SelectOption> optionFunctionalRoleList = newTask.getListFunctionalRole(); 
-             	 system.assertEquals(!optionFunctionalRoleList.isEmpty(),true,'Task functional List for standard tasks not populated as expected'); 
-                 task.IPM_Function__c = 'BD';
+                 system.assertEquals(!optionSectionList.isEmpty(),true,'Task section List for standard tasks not populated as expected'); 
+                 
+                 newTask.sectionWiseFunctionalRoleList();
+                 newTask.selectedSectionId = ipmSection.id;
+                 newTask.SectionToExtenalIdSectionMap.put(ipmSection.id,'Idea_Graphic');
+              
+                 List<SelectOption> optionFunctionalRoleList = newTask.getListFunctionalRole(); 
+                 system.assertEquals(!optionFunctionalRoleList.isEmpty(),true,'Task functional List for standard tasks not populated as expected'); 
+                 task.IPM_Function__c = 'MKTG DEV';
                  newTask.getFunctionalRoleOwner();
                  system.assertEquals(string.isNotBlank(task.IPM_Function__c),true,'Task owner List for standard tasks not populated as expected'); 
             }  
@@ -760,7 +767,7 @@ private class IPM_NewTask_Test{
                  task.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
                  task.IPM_Task_Name__c = 'Current Task';
                  task.IPM_Section__c = ipmSection.id;
-             	 task.IPM_Function__c = 'BD';
+                 task.IPM_Function__c = 'MKTG DEV';
                  task.RecordTypeId = PROJECT_TASK_ID;
                  task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
                  putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
@@ -777,7 +784,7 @@ private class IPM_NewTask_Test{
                  newTask.SectionToExtenalIdSectionMap.put(ipmSection.id,'Idea_Graphic');
                  List<SelectOption> optionFunctionalRoleList = newTask.getListFunctionalRole(); 
                  system.assertEquals(!optionFunctionalRoleList.isEmpty(),true,'Task functional List for standard tasks not populated as expected'); 
-                 task.IPM_Function__c = 'BD';
+                 task.IPM_Function__c = 'MKTG DEV';
                  newTask.getFunctionalRoleOwner();
              	 system.assertEquals(string.isNotBlank(task.IPM_Function__c),true,'Task owner List for standard tasks not populated as expected'); 
             }  

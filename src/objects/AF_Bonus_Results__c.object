@@ -182,6 +182,20 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>AF_Qual_BonusValue__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_Bonus_Thresholds__r.AF_Qual_Value__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AF_Qual_BonusValue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Qual_Bonus_Value__c</fullName>
         <description>Stores the Qual Bonus Value</description>
         <externalId>false</externalId>
@@ -314,6 +328,20 @@
         <externalId>false</externalId>
         <label>Sum of Bounsable fees</label>
         <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Total_Bonus_Sub__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_Bonus_Thresholds__r.AF_Total_Bonus__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AF_Total_Bonus_Sub</label>
+        <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>

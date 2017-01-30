@@ -1,0 +1,117 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<!--[if gte mso 9]><xml>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black;mso-bidi-font-weight:
+bold">Dear&nbsp;{!FAU_Participant__c.FAU_First_Name__c},</span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center;line-height:normal" align="center"><u><span style="font-size:10.0pt;
+font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black;mso-bidi-font-weight:bold">{!FAU_Participant__c.FAU_Program_Wave__c}</span></u><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"></span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center;line-height:normal" align="center"><u><span style="font-size:10.0pt;
+font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black;mso-bidi-font-weight:bold">Travel Details</span></u></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center;line-height:normal" align="center"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"></span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">Your residential
+programme will be from&nbsp;<span style="mso-bidi-font-weight:bold">{!FAU_Module_Participant__c.FAU_Module_Start_Date__c}
+</span>to <span style="mso-bidi-font-weight:bold">{!FAU_Module_Participant__c.FAU_Module_End_Date__c}.</span></span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"></span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-family: Arial, sans-serif; font-size: 10pt;">In order for us to prepare for your arrival, please provide your travel and accommodation details. Kindly do so even if you are not flying in or staying at Four Acres, so that we can plan accordingly.</span><i style="font-size: 12pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></i></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"></span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black;mso-bidi-font-weight:
+bold">Immediate Action Required:</span><span style="font-size:12.0pt;
+font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black"></span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">Please fill out your
+travel details here:&nbsp;{!FAU_Module_Participant__c.FAU_Module_Form__c} on
+before&nbsp;{!FAU_Module_Participant__c.FAU_Travel_Details_Deadline__c}</span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black;mso-bidi-font-weight:
+bold">To see your progress, check out your:&nbsp;</span><span style="font-size:
+10.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">{!FAU_Participant__c.FAU_Participants_Workbook__c}</span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black;mso-bidi-font-weight:
+bold">UL2020 Chatter group:&nbsp;{!FAU_Participant__c.FAU_Chatter_Group__c}</span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"></span></p>
+
+<p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black;mso-bidi-font-weight:
+bold">PII Class Chatter group:&nbsp;</span><span style="font-size:10.0pt;
+font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-weight:bold">{!FAU_Participant__c.PII_Chatter_Group_Link__c}</span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;"></span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black;mso-bidi-font-weight:
+bold">PII Chatter group:&nbsp;</span><span style="font-size:10.0pt;font-family:
+&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-weight:
+bold">{!FAU_Participant__c.PII_Table_Chatter_Group_Link__c}</span></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">Kind regards,</span></p>
+
+<p class="MsoNormal" style="margin-top:2.0pt;margin-right:0in;margin-bottom:2.0pt;
+margin-left:0in;line-height:normal"><span style="font-size:10.0pt;font-family:
+&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">{!FAU_Participant__c.OwnerFullName}</span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"></span></p>
+
+<p class="MsoNormal" style="margin-top:2.0pt;margin-right:0in;margin-bottom:2.0pt;
+margin-left:0in;line-height:normal"><span style="font-size:10.0pt;font-family:
+&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">{!FAU_Participant__c.OwnerTitle}</span></p>
+
+<p class="MsoNormal" style="margin-top:2.0pt;margin-right:0in;margin-bottom:2.0pt;
+margin-left:0in;line-height:normal"><span style="font-size:10.0pt;font-family:
+&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black;
+mso-bidi-font-weight:bold">Ph:</span><span style="font-size:10.0pt;font-family:
+&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;{!FAU_Participant__c.OwnerPhone}</span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"></span></p>
+
+<p class="MsoNormal" style="margin-top:2.0pt;margin-right:0in;margin-bottom:2.0pt;
+margin-left:0in;line-height:normal"><span style="font-size:10.0pt;font-family:
+&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;color:black;
+mso-bidi-font-weight:bold">Email:</span><span style="font-size:10.0pt;
+font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:black">&nbsp;{!FAU_Participant__c.OwnerEmail}</span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"></span></p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[]]></td>
+</tr>
+</table>

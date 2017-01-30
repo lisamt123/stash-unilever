@@ -14,6 +14,8 @@ trigger VPM_SetGlobalOrRegionalFieldUpdate on VPM_PurchasingRequests__c (before 
        VPM_RegionalMaintainVendor.InsertVendor(trigger.New , trigger.OldMap);
        //user for reports and to make comments as mandatory 
        VPM_RegionalMaintainVendor.requireRejectionComment(trigger.New , trigger.OldMap);
+       //used to show updated fields in chatter 
+       VPM_RegionalMaintainVendor.updateChatterFeed(trigger.New , trigger.OldMap);
        
 
     }

@@ -20,7 +20,6 @@
     }
     </style>
 </head>
-
 <body>
     <div id="wrapper">
     <c:PQN_Navigation navigationName="target"/>
@@ -29,14 +28,19 @@
                <apex:form id="frm">
 <!--                    <apex:sectionHeader title="Targets" subtitle="New Targets"/>
                     <apex:pageMessages ></apex:pageMessages> -->
+                    <apex:pageMessages ></apex:pageMessages>
                     <apex:pageBlock title="Target Edit" mode="edit">
                     <apex:pageblockbuttons >
                         <apex:commandButton value="Save" action="{!saveTarget}"/>
-                        <apex:commandButton value="Cancel" action="{!cancel}" immediate="true"/>    
+                        <apex:commandButton value="Cancel" action="{!cancelTarget}" immediate="true"/>    
                     </apex:pageblockbuttons>
                     <apex:pageBlockSection title="Information" columns="2" collapsible="false">
-                        <apex:inputField value="{!targets.Year__c}" required="true"/>
-                        <apex:inputField value="{!targets.Region_Geography__c}" required="true"/>
+                        <!--<apex:inputField id="year" value="{!targets.Year__c}" required="true"/>-->
+                        <apex:selectList id="chooseYear" value="{!targets.Year__c}" size="1" rendered="true">
+                        <apex:selectOptions value="{!yearOptions}"/>
+                        </apex:selectList>
+                        <apex:inputField value="{!targets.Region__c}" required="true"/>
+                       <!-- <apex:inputField value="{!targets.Geography__c  }" required="true"/>-->
                         <apex:inputField value="{!targets.Target_Reduction__c}" required="true" />
                         <apex:inputField value="{!targets.Notes__c}"/>
                     </apex:pageBlockSection>

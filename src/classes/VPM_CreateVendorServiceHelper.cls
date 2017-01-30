@@ -110,7 +110,7 @@ global class VPM_CreateVendorServiceHelper {
                 VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             }
         } while ((res.getStatusCode() == 504 || res.getStatusCode() == 0) && numTimes <=4 && !Test.isRunningTest());
-        VPM_HttpUtil.sendEmail('deepak.moudekar@capgemini.com','Global Create Response from service',responseString + '\n' + '--response body--' + res.getBody() + '\n' + '--response code--'+ res.getStatusCode() + '\n' + reqBodyJson + '\n' + vendorId);
+        
         return responseString;
     }
 }

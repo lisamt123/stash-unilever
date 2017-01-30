@@ -1,5 +1,10 @@
 src/applications/Win_With_Planning.app
 src/tabs/Loss_Tree.tab
+src/tabs/LossTree_Supplier.tab
+src/email/WinWithPlanning/WWP_Supplier_Notification_Temp.email
+src/email/WinWithPlanning/WWP_Supplier_Notification_Temp.email-meta.xml
+src/email/WinWithPlanning
+src/email/WinWithPlanning-meta.xml
 src/workflows/WWP_Loss_Tree__c.workflow
 src/classes/WWP_LossTree_CC.cls
 src/classes/WWP_LossTree_CC.cls-meta.xml
@@ -10,8 +15,16 @@ src/objects/WWP_Loss_Tree__c.object
 src/objects/WWP_LossTree__c.object
 src/objects/WWP_Master_Table__c.object
 src/objects/WWP_PlantCode_User_Mapping__c.object
+src/objects/WWP_losslevel_code_maping__c.object
+src/objects/WWP_Last_job_run_record__c.object
+src/objects/WWP_Uvendor_code_mapping__c.object
+src/objects/WWP_LossTree_Suppliers__c.object
+src/objects/Account.object
+src/objects/Contact.object
 src/pages/WWP_LossTreeUpdate_VF.page
 src/pages/WWP_LossTreeUpdate_VF.page-meta.xml
+src/pages/wwp_LosstreeSupplier_update.page
+src/pages/wwp_LosstreeSupplier_update.page-meta.xml
 src/permissionsets/WWP_User_Permissions.permissionset
 src/permissionsets/WWP_Admin_Permissions.permissionset
 src/permissionsets/WWP_Super_Admin_Permissions.permissionset
@@ -22,11 +35,16 @@ src/classes/WWP_Losstree_Copy_Component_Ctrl_test.cls
 src/classes/WWP_Losstree_Copy_Component_Ctrl_test.cls-meta.xml
 src/classes/WWP_Losstree_Copy_Component_Ctrl.cls
 src/classes/WWP_Losstree_Copy_Component_Ctrl.cls-meta.xml
+src/classes/WWP_LossTree_CC21.cls
+src/classes/WWP_LossTree_CC21.cls-meta.xml
+src/classes/WWP_LossTree_CC21_Test.cls
+src/classes/WWP_LossTree_CC21_Test.cls-meta.xml
 src/components/WWP_Losstree_Copy_Component.component
 src/components/WWP_Losstree_Copy_Component.component-meta.xml
 src/labels/WWP.labels
 src/classes/WWP_Losstree_EXt.cls
 src/classes/WWP_Losstree_EXt.cls-meta.xml
-src/permissionsets/WWP_Admin_Permissions.permissionset
-src/permissionsets/WWP_Super_Admin_Permissions.permissionset
-src/permissionsets/WWP_User_Permissions.permissionset
+src/permissionsets/WWP_User_Permissions_for_supplier.permissionset
+src/sites/WinWithPlanning.site
+src/networks/WinWithPlanning.network
+src/profiles/WWP Supplier Profile.profile

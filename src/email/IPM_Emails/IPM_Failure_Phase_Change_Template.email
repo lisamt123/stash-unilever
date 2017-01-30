@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div><br></div><div><br></div><div><font face="arial" style="font-size: 12pt;">This is to inform you that your Request could not be processed.&nbsp;</font><span style="font-size: 12pt;">Get in touch with your System admin for more details.</span><div><div style="font-size: 12pt; background-color: rgb(255, 255, 255);"><br></div><div style="font-size: 12pt; background-color: rgb(255, 255, 255);">Please find the project specific details</div><div style="font-size: 12pt; background-color: rgb(255, 255, 255);"><br></div><div style="font-size: 12pt; background-color: rgb(255, 255, 255);">Project Name :&nbsp;{!IPM_Project__c.Name}</div><div style="font-size: 12pt; background-color: rgb(255, 255, 255);"><br></div><div style="background-color: rgb(255, 255, 255);"><font face="arial">{!IPM_Project__c.IPMProjectBaseURL__c}</font></div><div style="font-size: 12pt; background-color: rgb(255, 255, 255);"><font face="arial" style="font-size: 12pt;"><br></font></div></div></div>]]></td>
+</tr>
+</table>

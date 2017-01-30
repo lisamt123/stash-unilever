@@ -1,0 +1,31 @@
+@isTest
+public class BFM_CreateUserQueueable_Test {
+  private static testMethod void BFM_CreateUserQueueable_TestMethod(){
+        BFM_UserCreationRequest__c bfmuser = new BFM_UserCreationRequest__c();
+        bfmuser.userName__c = 'TestUsername';
+        bfmuser.email__c = 'Testuseremail@test.com';
+        bfmuser.firstName__c = 'first';
+        bfmuser.cnpj__c = '';
+        bfmuser.Operational_User__c = True;
+        bfmuser.lastName__c = 'last';
+        bfmuser.communityNickname__c = '';
+        insert bfmuser;
+        
+        Account acc = new Account();
+        acc.Name = 'TestAccount';
+        insert acc;
+        
+        BFM_AccountAccessRequest__c accReq = new BFM_AccountAccessRequest__c();
+        accReq.Account__c = acc.Id;
+        accReq.UserCreationRequest__c = bfmuser.Id;
+        insert accReq;
+                
+        BFM_UserCreationRequest__c userRequest = [SELECT userName__c, email__c,firstName__c,cnpj__c,Operational_User__c,
+                                                  lastName__c, communityNickname__c, (SELECT Account__c,Account__r.parentid FROM BFM_Access_Requests__r)
+                                                  FROM BFM_UserCreationRequest__c WHERE Id = :bfmuser.Id];
+        Test.startTest();       
+        System.enqueueJob(new BFM_CreateUserQueueable(bfmuser.Id));
+        Test.stopTest();
+        //BFM_CreateUserQueueable.createUser(userRequest);
+    }
+}

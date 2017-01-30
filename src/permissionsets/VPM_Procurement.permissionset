@@ -1273,6 +1273,21 @@
         <field>VPM_PurchasingRequests__c.VPM_Fax__c</field>
         <readable>false</readable>
     </fieldPermissions>
+	 <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ThirdPartyCountry__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_SAPInsertUpdateStatusMessage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_CreatorIsCurrentUser__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_Fieldtype__c</field>

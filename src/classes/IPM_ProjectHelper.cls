@@ -265,7 +265,13 @@ public with sharing class IPM_ProjectHelper
         {
             projectMasterMap = projectDetailMap;
         }
-        
+        setCategoryString();
+    }
+    
+    /**************************************************************
+    * @description: Used for setting category string.
+    */
+    private static void setCategoryString(){
         Set<String> categorySet = new Set<String>();
         
         for(IPM_Project__c project : projectMasterMap.values())
@@ -334,9 +340,6 @@ public with sharing class IPM_ProjectHelper
                 }
             }
             
-             
-            
-            
             if(String.isNotEmpty( whereCondition) )
             {
                 templateWhereClause = ' WHERE ' + whereCondition;
@@ -375,28 +378,7 @@ public with sharing class IPM_ProjectHelper
                 
                 complexitySpecificTaskMap.put(task.IPM_Project_Template__c,templateTaskList);   
             }
-
-            if(complexityTemplateMap!=null && !complexityTemplateMap.isEmpty())
-            {
-                List<IPM_Project_Template__c> projectTemplates  = complexityTemplateMap.values();
-                // Get Document template Type information (this would include document Template Sections as well)
-                String documentTemplateQuery = IPM_Utils.prepareSOQLQuery('IPM_Document_Template__c',true,new Set<String>{'IPM_Section__c'},true);
-                String documentTemplateWhereClause = 'WHERE IPM_Project_Template__c in :projectTemplates '+LIMIT_CLAUSE_STR;
-                documentTemplateQuery = documentTemplateQuery + documentTemplateWhereClause;
-                documentTemplateMap = new Map<Id,IPM_Document_Template__c>( (List<IPM_Document_Template__c>) database.query(documentTemplateQuery) );
-                
-                for(IPM_Document_Template__c documentTemplate : documentTemplateMap.values())
-                {
-                    
-                    documentTemplateSpecificSectionMap.put(documentTemplate.Id,documentTemplate.IPM_Sections__r);
-                }
-            }
-        
-            // Get Master Questionnaire information
-            String masterQuestionnaireQuery = IPM_Utils.prepareSOQLQuery('IPM_Questionnaire__c',false,null,true);
-            String masterQuestionnaireWhereClause = 'WHERE Is_Master__c=true '+LIMIT_CLAUSE_STR;
-            masterQuestionnaireQuery = masterQuestionnaireQuery + masterQuestionnaireWhereClause;
-            masterQuestionnaireMap = new Map<Id,IPM_Questionnaire__c>( (List<IPM_Questionnaire__c>) database.query(masterQuestionnaireQuery) );
+            getMasterQuestionnaireMap();
         }
         
         // Get Copy Over Custom Setting information.
@@ -405,6 +387,34 @@ public with sharing class IPM_ProjectHelper
         // Get OTIF Specific information
         gateToOTIFCustomSetting = IPM_Utils.getOTIFMapping();   
     }
+    
+    /**************************************************************
+    * @description: Used for putting Document Template Specific Section and getting Master Questionnaire Map 
+    */
+    private static void getMasterQuestionnaireMap(){
+        if(complexityTemplateMap!=null && !complexityTemplateMap.isEmpty())
+        {
+            List<IPM_Project_Template__c> projectTemplates  = complexityTemplateMap.values();
+            // Get Document template Type information (this would include document Template Sections as well)
+            String documentTemplateQuery = IPM_Utils.prepareSOQLQuery('IPM_Document_Template__c',true,new Set<String>{'IPM_Section__c'},true);
+            String documentTemplateWhereClause = 'WHERE IPM_Project_Template__c in :projectTemplates '+LIMIT_CLAUSE_STR;
+            documentTemplateQuery = documentTemplateQuery + documentTemplateWhereClause;
+            documentTemplateMap = new Map<Id,IPM_Document_Template__c>( (List<IPM_Document_Template__c>) database.query(documentTemplateQuery) );
+            
+            for(IPM_Document_Template__c documentTemplate : documentTemplateMap.values())
+            {
+                
+                documentTemplateSpecificSectionMap.put(documentTemplate.Id,documentTemplate.IPM_Sections__r);
+            }
+        }
+    
+        // Get Master Questionnaire information
+        String masterQuestionnaireQuery = IPM_Utils.prepareSOQLQuery('IPM_Questionnaire__c',false,null,true);
+        String masterQuestionnaireWhereClause = 'WHERE Is_Master__c=true '+LIMIT_CLAUSE_STR;
+        masterQuestionnaireQuery = masterQuestionnaireQuery + masterQuestionnaireWhereClause;
+        masterQuestionnaireMap = new Map<Id,IPM_Questionnaire__c>( (List<IPM_Questionnaire__c>) database.query(masterQuestionnaireQuery) );
+    }
+    
     
      /**************************************************************
     * @description: Used for Getting Project Specific related information which includes Documents,Sections,Section Content and Questionnaire
@@ -479,7 +489,24 @@ public with sharing class IPM_ProjectHelper
                     DBprojectSectionSpecificContentMap.put(projectDocSecContent.IPM_Project_Document_Section__c,projectDocSectionContentList);
                 }
             }
-            
+            getQuestionnaireSpecificinfo();
+            getResourceSpecificinfo();
+            getCMIGateSpecificinfo();
+        }
+        
+        if(associatedBosscards!=null && !associatedBosscards.isEmpty())
+        {
+            String bosscardQuery = IPM_Utils.prepareSOQLQuery('IPM_Bosscard__c',false,null,true);
+            String bosscardWhereClause = ' WHERE Id in :associatedBosscards '+LIMIT_CLAUSE_STR;
+            bosscardQuery = bosscardQuery + bosscardWhereClause;
+            bossCardMap = new Map<Id,IPM_Bosscard__c>( (List<IPM_Bosscard__c>) database.query(bosscardQuery) );
+        }
+    }
+    
+    /**************************************************************
+    * @description: Used for Getting Questionnaire Specific information.
+    */
+    private static void getQuestionnaireSpecificinfo(){
             // Get Questionnaire Specific information
              
             String projectQuestionnaireQuery = IPM_Utils.prepareSOQLQuery('IPM_Questionnaire__c',false,null,true);
@@ -497,6 +524,12 @@ public with sharing class IPM_ProjectHelper
                 projectQuestionList.add(projectQuestion);
                 DBprojectSpecificQuestionareMap.put(projectQuestion.IPM_Project__c,projectQuestionList);
             }
+    }
+    
+    /**************************************************************
+    * @description: Used for Getting Resource Specific information.
+    */
+    private static void getResourceSpecificinfo(){
             // Get Resource Specific Information
             
             String projectResourceQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Resource__c',false,null,true);
@@ -514,7 +547,12 @@ public with sharing class IPM_ProjectHelper
                 projectResourceList.add(projectResource);
                 DBprojectSpecificResourceMap.put(projectResource.IPM_Project__c,projectResourceList);
             } 
-            
+    }
+    
+    /**************************************************************
+    * @description: Used for Getting CMI Gate Specific information.
+    */
+    private static void getCMIGateSpecificinfo(){
             // Get CMI Gate Specific information
             String projectCMIGateQuery = IPM_Utils.prepareSOQLQuery('IPM_Gate_CMI__c',false,null,true);
             String projectCMIGateWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR;
@@ -530,15 +568,6 @@ public with sharing class IPM_ProjectHelper
                 }
                 projectCMIGateList.add(projectCMIGate);
                 DBprojectSpecificCMIGateMap.put(projectCMIGate.IPM_Project__c,projectCMIGateList);
-            } 
-        }
-        
-        if(associatedBosscards!=null && !associatedBosscards.isEmpty())
-        {
-            String bosscardQuery = IPM_Utils.prepareSOQLQuery('IPM_Bosscard__c',false,null,true);
-            String bosscardWhereClause = ' WHERE Id in :associatedBosscards '+LIMIT_CLAUSE_STR;
-            bosscardQuery = bosscardQuery + bosscardWhereClause;
-            bossCardMap = new Map<Id,IPM_Bosscard__c>( (List<IPM_Bosscard__c>) database.query(bosscardQuery) );
         }
     }
     
@@ -780,25 +809,7 @@ public with sharing class IPM_ProjectHelper
                                 }
                                 
                                 // Update Country References.
-                                if(sourceRollOutToCountryListMap.containsKey(localRollout.Id) && sourceRollOutToCountryListMap.get(localRollout.Id) !=null && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
-                                {
-                                    Map<Id,IPM_Country__c> associatedCountryMap =  sourceRollOutToCountryListMap.get(localRollout.Id);
-                                    for(IPM_Country__c associatedCountry : associatedCountryMap.values())
-                                    {
-                                        Boolean updateCountry = false;
-                                        
-                                        if(associatedCountry.IPM_Regional_Project__c != project.Id)
-                                        {
-                                            associatedCountry.IPM_Regional_Project__c = project.Id; 
-                                            updateCountry = true;
-                                        }
-                                        
-                                        if(updateCountry)
-                                        {
-                                            updateCountriesMap.put(associatedCountry.Id,associatedCountry);
-                                        }
-                                    }
-                                }
+                                updateCountriesMap = updateCountriesLocalRollout(project, localRollout, updateCountriesMap);
                             }
                         } 
                     }
@@ -815,34 +826,7 @@ public with sharing class IPM_ProjectHelper
                     	}
                         
                         // Update Country References.
-                        if(sourceRollOutToCountryListMap.containsKey(sourceRollout.Id) && sourceRollOutToCountryListMap.get(sourceRollout.Id) !=null)
-                        {
-                            Map<Id,IPM_Country__c> associatedCountryMap =  sourceRollOutToCountryListMap.get(sourceRollout.Id);
-                            for(IPM_Country__c associatedCountry : associatedCountryMap.values())
-                            {
-                                Boolean updateCountry= false;
-   
-                                if(associatedCountry.IPM_Local_Project__c != project.Id)
-                                {
-                                    associatedCountry.IPM_Local_Project__c = project.Id;
-                                    updateCountry = true;
-                                }
-                                
-                                if(project.IPM_Parent_Project__c !=null && associatedCountry.IPM_Regional_Project__c != project.IPM_Parent_Project__c && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
-                                {
-                                    if(associatedCountry.IPM_Regional_Project__c != project.IPM_Parent_Project__c)
-                                    {
-                                        associatedCountry.IPM_Regional_Project__c = project.IPM_Parent_Project__c;
-                                        updateCountry = true;
-                                    }
-                                }
-                                
-                                if(updateCountry)
-                                {
-                                    updateCountriesMap.put(associatedCountry.Id,associatedCountry);
-                                }
-                            }
-                        }
+                        updateCountriesMap = updateCountriesSourceRollout(project, sourceRollout, updateCountriesMap);
                     }
                 }
             }
@@ -860,6 +844,62 @@ public with sharing class IPM_ProjectHelper
             update updateCountriesMap.values();
         }
     }
+    
+    private static Map<Id,IPM_Country__c> updateCountriesLocalRollout(IPM_Project__c project, IPM_Project_Rollout__c localRollout, Map<Id,IPM_Country__c> updateCountriesMap){
+        if(sourceRollOutToCountryListMap.containsKey(localRollout.Id) && sourceRollOutToCountryListMap.get(localRollout.Id) !=null && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
+        {
+            Map<Id,IPM_Country__c> associatedCountryMap =  sourceRollOutToCountryListMap.get(localRollout.Id);
+            for(IPM_Country__c associatedCountry : associatedCountryMap.values())
+            {
+                Boolean updateCountry = false;
+                
+                if(associatedCountry.IPM_Regional_Project__c != project.Id)
+                {
+                    associatedCountry.IPM_Regional_Project__c = project.Id; 
+                    updateCountry = true;
+                }
+                
+                if(updateCountry)
+                {
+                    updateCountriesMap.put(associatedCountry.Id,associatedCountry);
+                }
+            }
+        }
+        return updateCountriesMap;
+    }
+    
+    private static Map<Id,IPM_Country__c> updateCountriesSourceRollout(IPM_Project__c project, IPM_Project_Rollout__c sourceRollout, Map<Id,IPM_Country__c> updateCountriesMap){
+        if(sourceRollOutToCountryListMap.containsKey(sourceRollout.Id) && sourceRollOutToCountryListMap.get(sourceRollout.Id) !=null)
+        {
+            Map<Id,IPM_Country__c> associatedCountryMap =  sourceRollOutToCountryListMap.get(sourceRollout.Id);
+            for(IPM_Country__c associatedCountry : associatedCountryMap.values())
+            {
+                Boolean updateCountry= false;
+
+                if(associatedCountry.IPM_Local_Project__c != project.Id)
+                {
+                    associatedCountry.IPM_Local_Project__c = project.Id;
+                    updateCountry = true;
+                }
+                
+                if(project.IPM_Parent_Project__c !=null && associatedCountry.IPM_Regional_Project__c != project.IPM_Parent_Project__c && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
+                {
+                    if(associatedCountry.IPM_Regional_Project__c != project.IPM_Parent_Project__c)
+                    {
+                        associatedCountry.IPM_Regional_Project__c = project.IPM_Parent_Project__c;
+                        updateCountry = true;
+                    }
+                }
+                
+                if(updateCountry)
+                {
+                    updateCountriesMap.put(associatedCountry.Id,associatedCountry);
+                }
+            }
+        }
+        return updateCountriesMap;
+    }
+    
     
     /**************************************************************
     * @description: Used for populating References on Financials,Creating financials based on certain Criteria.
@@ -1004,7 +1044,7 @@ public with sharing class IPM_ProjectHelper
         {   
             // Get financial information based on Provided values.  
             String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',false,null,true);
-            String financialWhereClause = ' WHERE Financial_External_ID__c in :completeFinancialUniqueKeySet '+LIMIT_CLAUSE_STR;
+            String financialWhereClause = ' WHERE Financial_External_ID__c in :completeFinancialUniqueKeySet  AND isActive__c = true '+LIMIT_CLAUSE_STR;
             financialQuery = financialQuery + financialWhereClause;
             
             Map<Id,IPM_Financial__c> financialRecords = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery) );
@@ -1545,7 +1585,11 @@ public with sharing class IPM_ProjectHelper
                 localCountries.put(country.Country_Code__c,country);
                 projectToCountryMap.put(localProjectID,localCountries);
             }
-            
+            updateProjectRolloutMap(projectPhaseChange, oldProjectMap);
+        }
+    }
+    
+    private static void updateProjectRolloutMap(Map<Id,IPM_Project__c> projectPhaseChange,Map<Id,IPM_Project__c> oldProjectMap){
             Map<Id,IPM_Project_Rollout__c> updateProjectRollout = new Map<Id,IPM_Project_Rollout__c>();
             Map<Id,IPM_Country__c> updateProjectCountry = new Map<Id,IPM_Country__c>();
             
@@ -1625,7 +1669,6 @@ public with sharing class IPM_ProjectHelper
 	                IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
 	            }
             
-            }
         }
     }
     
@@ -1743,13 +1786,18 @@ public with sharing class IPM_ProjectHelper
            if(bosscardList!=null && !bosscardList.isEmpty()){
                delete bosscardList;
             }
-           List<IPM_Project_Document_Section_Content__c>gateDocSecConList=[SELECT ID FROM IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c IN:projectIdSetToBeDeleted LIMIT 5000];
-           if(gateDocSecConList!=null && !gateDocSecConList.isEmpty()){
-               delete gateDocSecConList;        
-            }
             List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted OR Local_Project__c in:projectIdSetToBeDeleted OR Regional_Project__c in:projectIdSetToBeDeleted OR IPM_Project_Rollout__c in:associatedRolloutIds  Limit 5000];
             if(projFinList != null && !projFinList.isEmpty()){
                 delete projFinList;
+            }
+            deleteProjectWithIds(projectIdSetToBeDeleted);
+        } 
+    }
+    
+    private static void deleteProjectWithIds(Set<Id> projectIdSetToBeDeleted){
+        List<IPM_Project_Document_Section_Content__c>gateDocSecConList=[SELECT ID FROM IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c IN:projectIdSetToBeDeleted LIMIT 5000];
+        if(gateDocSecConList!=null && !gateDocSecConList.isEmpty()){
+            delete gateDocSecConList;        
             }
             List<IPM_Project_Rollout__c> projRolloutList=[Select Id From IPM_Project_Rollout__c where IPM_Project__c in:projectIdSetToBeDeleted OR Local_Project__c in :projectIdSetToBeDeleted OR Regional_Project__c in :projectIdSetToBeDeleted limit 5000];
             if(projRolloutList != null && !projRolloutList.isEmpty()){
@@ -1761,11 +1809,9 @@ public with sharing class IPM_ProjectHelper
             }
             List<IPM_Project__c> projList=[Select Id From IPM_Project__c where Id in:projectIdSetToBeDeleted Limit 5000];
             
-            if(projList != null && !projList.isEmpty())
-            {
+        if(projList != null && !projList.isEmpty()){
                 delete projList;
             }
-        } 
     }
 
     
@@ -1785,50 +1831,6 @@ public with sharing class IPM_ProjectHelper
             SKIP_TRIGGER_EXECUTION = false;
         }
     }
-		
-		
-			
-
-			
-			
-		
-		
-		
-
-		
-
-	
-
-
-
-
-				
-							
-				
-
-
-					
-				
-
-		
-            
-                
-                
-                
-                
-        
-        
-            
-                
-            
-            
-                
-            
-            
-        
-        
-    
-        
     
     // for copying over the MPA value from parent project to its child project
     

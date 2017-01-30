@@ -9,11 +9,14 @@ src/classes/FS_TPRUtil.cls
 src/classes/FS_TPRUtil.cls-meta.xml
 src/classes/FS_ContactExtend_CX.cls
 src/classes/FS_ContactExtend_CX.cls-meta.xml
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper.cls-meta.xml
 src/labels/FS.labels
 src/layouts/Account-Feed Based Distributor Russia.layout
 src/layouts/Account-Operators Russia.layout
 src/layouts/Account-Operator Russia Read Only.layout
 src/layouts/Account-Feed Based Distributor.layout
+src/layouts/Account-Feed Based Operator.layout
 src/layouts/Opportunity-Opportunity with TPR Calculation Layout ReadOnly.layout
 src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
 src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
@@ -34,6 +37,7 @@ src/permissionsets/FS_Admin.permissionset
 src/permissionsets/FS_RU_Finance.permissionset
 src/permissionsets/FS_RussiaSalesRep.permissionset
 src/profiles/Unilever Food Solution - Russia.profile
+src/profiles/Unilever Food Solution - NA.profile
 src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
 src/workflows/Account.workflow
 src/roles/UFS_Admin.role
@@ -44,9 +48,62 @@ src/roles/Field_Sales_Rep_NDM.role
 src/roles/National_Chains_Manager.role
 src/roles/National_Development_Manager.role
 src/roles/UFS_Admin.role
-
-
-
-
-
-
+src/roles/RFS_Regional_Chef.role
+src/objects/FS_Account_Plan__c.object
+src/objects/FS_Defined_Objective__c.object
+src/objects/Task.object
+src/objects/Risk__c.object
+src/objects/Product2.object
+src/objects/Activity.object
+src/layouts/FS_Account_Plan__c-Distributor Account Plan Feed Based.layout
+src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
+src/layouts/FS_Account_Plan__c-Operator Account Plan Feed Based.layout
+src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
+src/layouts/FS_Defined_Objective__c-Distributor Objective Feed Based.layout
+src/layouts/FS_Defined_Objective__c-Distributor Objective.layout
+src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
+src/layouts/FS_Defined_Objective__c-Operator Objective.layout
+src/layouts/Risk__c-Risk Layout.layout
+src/permissionsets/FS_AFM.permissionset
+src/permissionsets/FS_Marketing.permissionset
+src/permissionsets/FS_Sales_Rep.permissionset
+src/permissionsets/FS_SCP_And_Corp.permissionset
+src/permissionsets/FS_NA_Non_DDM.permissionset
+src/classes/FS_MonthlyPlanner.cls
+src/classes/FS_MonthlyPlanner.cls-meta.xml
+src/classes/FS_MonthlyPlanningRussia_CX.cls
+src/classes/FS_MonthlyPlanningRussia_CX.cls-meta.xml
+src/classes/FS_MonthlyPlanningRussia_CX_Test.cls
+src/classes/FS_MonthlyPlanningRussia_CX_Test.cls-meta.xml
+src/pages/FS_MonthlyPlanningRussiaDetail.page
+src/pages/FS_MonthlyPlanningRussiaDetail.page-meta.xml
+src/pages/FS_MonthlyPlanningRussiaReport.page
+src/pages/FS_MonthlyPlanningRussiaReport.page-meta.xml
+src/objects/FS_CHD_GFCCode__c.object
+src/classes/FS_CHDUtility.cls
+src/classes/FS_CHDUtility.cls-meta.xml
+src/classes/FS_CHDUtilityTest.cls
+src/classes/FS_CHDUtilityTest.cls-meta.xml
+src/flows/FS_CHD_Segemetation_Call_Apex-10.flow
+src/classes/FS_AccountPlanningTest.cls
+src/classes/FS_AccountPlanningTest.cls-meta.xml
+src/quickActions/FS_Defined_Objective__c.Create_Risk.quickAction
+src/quickActions/FS_Defined_Objective__c.New_Opportunity.quickAction
+src/quickActions/FS_Account_Plan__c.New_Distributor_Objective.quickAction
+src/quickActions/FS_Account_Plan__c.New_Operator_Objective.quickAction
+src/quickActions/Account.New_Dist_Account_Plan.quickAction
+src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
+src/roles/RFS_Distributor_Account_Executive_DAE_MR.role
+src/roles/Senior_Distributor_Account_Executive.role
+src/roles/RFS_Regional_Chef_S.role
+src/roles/Sales_Development_Manager.role
+src/roles/Sales_Development_Executive_NCM.role
+src/roles/Sales_Development_Executive_NDM.role
+src/roles/Specnaz.role
+src/roles/Independent_Manager.role
+src/objects/Account_Relationship__c.object
+src/layouts/Account_Relationship__c-External PoP ID Layout.layout
+src/workflows/Account_Relationship__c.workflow
+src/permissionsets/FS_Integration_User.permissionset
+src/permissionsets/FS_Operator_Russia.permissionset
+src/permissionsets/FS_RU_Corporate.permissionset

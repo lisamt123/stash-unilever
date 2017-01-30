@@ -72,42 +72,7 @@ select
 }
 </style> 
     
-    
-<script>
-function tablerender(){
-alert('ssss');
-    updatetable();
-}
-</script> 
-<script>
-function callFunCop(){
-   
-    
-    var lossname = document.getElementById('j_id0:frm1:ccomp:j_id23:v1').value;
-    var subfam = document.getElementById('j_id0:frm1:ccomp:j_id23:v2').value;
-    var lossDesc = document.getElementById('j_id0:frm1:ccomp:j_id23:v3').value;
-    copyfn(lossname,subfam,lossDesc);
-}
-</script> 
  
-<script>
-function callAct(){
-
-var ptCode = document.getElementById('j_id0:frm1:p1').value;
-
-showpan(ptCode);
-
-
-}
-</script>
-<script>
-function executeThisOnLoad(){
-
-document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
-}
-</script>
-    
-    
     
     
     
@@ -127,9 +92,11 @@ document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
         <div class="form-group">
           <label class="col-lg-2" >Report Type  </label>
           <div class="col-lg-4">
+         <fieldset >
           <apex:inputField value="{!lossTree.Loss_Type__c}" id="lossT" styleclass="form-control">
-          <apex:actionSupport event="onchange" action="{!refreshFullPage}"  rerender="frm1,massComp,pan2" oncomplete="executeThisOnLoad();return false;"/>
-           </apex:inputField>             
+          <apex:actionSupport event="onchange" action="{!refreshFullPage}"  rerender="frm1,pan2,ccomp,ccc"   oncomplete="executeThisOnLoad();"/>
+           </apex:inputField>
+           </fieldset>             
           </div>
         </div>
         <div class="clearfix" style="height: 10px;clear: both;"></div>
@@ -137,7 +104,7 @@ document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
         <div class="form-group">
           <label class="col-lg-2" >Plant Code  </label>
           <div class="col-lg-4"> 
-              <apex:selectList value="{!lossTree.Plant_Code__c}" styleclass="form-control" size="1" id="p1" onchange="callAct();">
+              <apex:selectList value="{!lossTree.Plant_Code__c}" styleclass="form-control" size="1" id="p1" onchange="callAct();" >
                <!--<apex:actionSupport event="onchange" action="{!showPanelsDiv}"  />-->
                 <apex:selectOptions value="{!listPlantCodes}" />
               </apex:selectList>
@@ -145,9 +112,9 @@ document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
                          
           </div>
         </div>
-        
+        <apex:outputPanel rendered="{!if( lossTree.Loss_Type__c='Dispatch Compliance' || lossTree.Loss_Type__c='Output Reliability',true,false)}">
         <apex:outputpanel rendered="{!showingPanel}" id="tpan">Tolerance level  for {!code1} = {!plantCode}</apex:outputpanel>
-        
+        </apex:outputPanel>
         
         
         
@@ -210,9 +177,10 @@ document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
            <div class = "panel-heading">Loss Tree Details</div>   
             <div class="panel-body">
             
-           <div align="center">
-
+           <div align="center" >
+            <apex:outputpanel id="ccc" >
                <c:WWP_Losstree_Copy_Component rendered="{!if( lossTree.Loss_Type__c='Dispatch Compliance' || lossTree.Loss_Type__c='Output Reliability',true,false)}"   selectType="{!lossTree.Loss_Type__c}" id="ccomp" />
+          </apex:outputpanel>
           </div>
            <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c='Output Reliability',true,false)}"  >
              <div class="table-responsive" >
@@ -290,26 +258,37 @@ document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
            
            
                                  
-               <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c=='MRP Compliance',true,false)}">
-             
+               <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c=='Supplier OTIF',true,false)}">
+             <div class="table-responsive" >
                     <table id="myTable" class="display table" width="100%" >
 
  
                         <thead>  
                         <tr> 
                             <th><input type="checkbox"  onclick="selectAllCheckboxes(this,'inputId')" value=""/></th> 
-                            <th>PR</th>  
-                            <th>SKU</th> 
-                            <th>SKU Description</th> 
-                            <th>Plant Code</th>  
-                            <th>Week</th>  
-                            <th>Planned Recipt</th>
-                            <th>Actual receipt</th>
+                            <th>PLANT CODE</th>  
+                            <th>DELIVERY WEEK NUMBER</th> 
+                            <th>Supplier description </th>
+                            <th>SAP vendor Description</th>
+                            <th>MATERIAL</th> 
+                            <th>MATERIAL DESCRIPTION</th>  
+                            <th>MATERIAL TYPE</th>  
+                            <th>MATERIAL GROUP</th>
+                            <th>PO NUMBER</th>
                             
-                            <th>ABS value</th>
+                            <th>PO Line Item Number</th>
+                            <th>PO Schedule Line Item Number</th>
+                           <th>PO Latest delivery Date</th>
+                            <th>PO QTY</th>
+                            <th>GR Posting Date</th>
+                            <th>GR Posting Quantity</th>
+                            <th>SUPPLIER OTIF TIME COMPLIANCE</th>
+                            <th>SUPPLIER OTIF QTY COMPLIANCE</th>
+                            <th>OVERALL SUPPLIER OTIF COMPLIANCE</th>
+                            
                             <th class="col-md-2">Loss Level 1</th>
                             <th class="col-md-2">Loss Level 2</th>
-                            <th>Remarks</th>
+                            <th class="col-md-2">Loss Level 3</th>
                             <th> Reset </th>
                             
                         </tr>  
@@ -319,19 +298,33 @@ document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
                             <apex:repeat value="{!listLossTreeW}" var="w" id="resetm">
                             
                                 <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'#ff9999','')};">
-                                    <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId1" />  </td>
-                                    <td>{!w.wlt.PR__c}</td>
-                                    <td>{!w.wlt.SKU__c}</td>
-                                    <td>{!w.wlt.SKU_Description__c}</td>
+                                    <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId1"/>  </td>
                                     <td>{!w.wlt.Plant_Code__c}</td>
                                     <td>{!w.wlt.Week__c}</td>
-                                    <td>{!w.wlt.Planned_Receipt__c}</td>
-                                    <td>{!w.wlt.Actual_Receipt__c}</td> 
-                                    <td>{!w.wlt.MRP_Loss_Value__c}</td>
+                                    <td>{!w.wlt.Ultimate_Supplier_code__c}</td>
+                                    <td>{!w.wlt.SAP_vendor_code__c}</td>
+                                    <td>{!w.wlt.Material__c}</td>
+                                    <td>{!w.wlt.material_Description__c}</td>
+                                    <td>{!w.wlt.Material_Type__c}</td>
+                                    <td>{!w.wlt.Material_Group__c}</td>
+                                    <td>{!w.wlt.PO__c}</td>
+                                    <td>{!w.wlt.PO_Line_Item_Number__c}</td> 
+                                    <td>{!w.wlt.PO_Schedule_Line_Item_Number__c}</td>
+                                   <td>{!w.wlt.PO_Delivery_Date_as_per_Current_PO__c}</td>
+                                    <td>{!w.wlt.PO_QTY__c}</td>
+                                   <td>{!w.wlt.GR_Date__c}</td>
+                                    <td>{!w.wlt.GR_QTY__c}</td>
+                                    <td>{!w.wlt.SUPPLIER_OTIF_TIME_COMPLIANCE__c}</td>
+                                    <td>{!w.wlt.SUPPLIER_OTIF_QTY_COMPLIANCE__c}</td>
+                                    <td>{!w.wlt.OVERALL_SUPPLIER_OTIF_COMPLIANCE__c}</td>
+                                   <!-- <td><apex:selectList value="{!w.selectbox1}" size="1" onchange="change12('{!w.i}',this);" id="mrp1"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox2}" size="1" onchange="change21('{!w.i}',this);" id="mrp2"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
+                                    -->
+                                    <td><apex:selectList value="{!w.selectbox1}" style="height:30px;width:100px" size="1" onchange="change1213('{!w.i}',this);" id="mrp1" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox2}" size="1" style="height:30px;width:100px" onchange="change2123('{!w.i}',this);" id="mrp2" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox3}" size="1" style="height:30px;width:100px" onchange="change3132('{!w.i}',this);" id="mrp3" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox3}"/></apex:selectList></td>
                                     
-                                    <td><apex:selectList value="{!w.selectbox1}" size="1" style="height:30px;width:100px"  id="mrp1"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
-                                    <td><apex:selectList value="{!w.selectbox2}" size="1" style="height:30px;width:100px"  id="mrp2"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
-                                    <td><apex:inputtext value="{!w.Remarks}" id="rem1"/></td>
+                                    
                                     <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}" value="Reset" onclick="resetAll('{!w.i}');" rerender="resetm"/>  </td>
                                     
                                 </tr>
@@ -340,6 +333,7 @@ document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
                             
                         </tbody>
                     </table>
+               </div>
                     <apex:commandButton styleclass="buttonstyle" value="Update" action="{!updateLossTree}" rerender="frm" oncomplete="refreshdata()"/>
            </apex:outputPanel>
            
@@ -408,17 +402,17 @@ document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
            
            
            </div>
-           <apex:actionFunction action="{!control1213}" rerender="or1,or2,or3,dc1,dc2,dc3,rem,rem2" name="AFchange1213">          
+           <apex:actionFunction action="{!control1213}" rerender="or1,or2,or3,dc1,dc2,dc3,rem,rem2,mrp1,mrp2,mrp3" name="AFchange1213">          
            <apex:param name="firstParam" value="" />
            <apex:param name="secondParam" value="" />           
            </apex:actionFunction>
            
-           <apex:actionFunction action="{!control2123}" rerender="or1,or2,or3,dc1,dc2,dc3,rem,rem2" name="AFchange2123">
+           <apex:actionFunction action="{!control2123}" rerender="or1,or2,or3,dc1,dc2,dc3,rem,rem2,mrp1,mrp2,mrp3" name="AFchange2123">
            <apex:param name="firstParam2" value="" />
            <apex:param name="secondParam2" value="" />           
            </apex:actionFunction>
            
-           <apex:actionFunction action="{!control3132}" rerender="or1,or2,or3,dc1,dc2,dc3,rem,rem2,inputId,inputId2" name="AFchange3132">
+           <apex:actionFunction action="{!control3132}" rerender="or1,or2,or3,dc1,dc2,dc3,rem,rem2,inputId,inputId1,inputId2,mrp1,mrp2,mrp3" name="AFchange3132">
            <apex:param name="firstParam3" value="" />
            <apex:param name="secondParam3" value="" />           
            </apex:actionFunction>
@@ -430,7 +424,7 @@ document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
            <apex:param name="mrpfirstParam2" value="" />
            <apex:param name="mrpsecondParam2" value="" />           
            </apex:actionFunction>-->
-           <apex:actionFunction action="{!resetline}" rerender="or1,or2,or3,mrp1,mrp2,dc1,dc2,dc3,rem,rem1,rem2" name="resetvalues" status="dcstatus">
+           <apex:actionFunction action="{!resetline}" rerender="or1,or2,or3,mrp1,mrp2,dc1,dc2,dc3,rem,rem1,rem2,,mrp1,mrp2,mrp3,inputId,inputId1,inputId2" name="resetvalues" status="dcstatus">
            <apex:param name="resetite" value="" />                   
            </apex:actionFunction>
             <apex:actionFunction action="{!copyline}" rerender="frm1,pan2" name="copyfn" status="dcstatus" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')">
@@ -439,7 +433,7 @@ document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
             <apex:param name="losssecondParam3" value="" />
             </apex:actionfunction>
             
-           <apex:actionFunction action="{!showPanelsDiv1}" rerender="tpan,frm1" name="showpan">          
+           <apex:actionFunction action="{!showPanelsDiv1}" rerender="tpan,frm1" name="showpan" >          
            <apex:param name="firstParams1" value="" />           
            </apex:actionFunction>
            
@@ -544,16 +538,58 @@ j$('#myTable1').on( 'page.dt', function () {
 
 </script>
 
+   
+<script>
+function tablerender(){
+alert('ssss');
+    updatetable();
+}
+</script> 
+<script>
+function callFunCop(){
+  
+    
+    var lossname = document.getElementById('j_id0:frm1:ccomp:j_id24:v1').value;
+    var subfam = document.getElementById('j_id0:frm1:ccomp:j_id24:v2').value;
+    var lossDesc = document.getElementById('j_id0:frm1:ccomp:j_id24:v3').value;
+    copyfn(lossname,subfam,lossDesc);
+}
+</script> 
+ 
+<script>
+function callAct(){
+
+var ptCode = document.getElementById('j_id0:frm1:p1').value;
+
+showpan(ptCode);
+
+
+}
+</script>
+<script>
+function executeThisOnLoad(){
+
+
+document.getElementById('j_id0:frm1:ccomp:j_id24:check').value = false;
+
+}
+</script>
+   
+  
+    
+
+
+
 <script>
 function refreshdata(){
 
 
 var losstype = j$('[id$="lossT"]').val();
-    if(losstype == 'MRP Compliance'){
+    if(losstype == 'Supplier OTIF'){
     j$('[id$="myTable"]').dataTable({
-        "paging":   true, "ordering": true,"info":false,"bStateSave": true,"bFilter": false, "bSearchable":false,
-        "fixedColumns": true, "bLengthChange": true,"scrollY": 300,"scrollX":300,"order": [[ 4, "asc"],[8,"asc"],[1,"asc"]],
-        "columnDefs": [ { "orderable": false, "targets": [0,9,10]} ] });}   
+        "paging":   true, "ordering": true,"info":false,"bFilter": false, "bSearchable":false,
+        "fixedColumns": true, "bLengthChange": true,"scrollY": 300,"scrollX":300,"order": [[ 7, "asc"],[8,"asc"],[2,"asc"]],
+        "columnDefs": [ { "orderable": false, "targets": [0,1,9,10,17,18,19,20]} ],"bStateSave": true});}   
      if(losstype == 'Output Reliability' ){
     j$('[id$="myTable1"]').dataTable({
         "paging":true,"ordering": true, "fixedColumns": true,"info":  false,"bFilter": false,"order": [[ 4, "asc" ], [8,"asc"],[1,"asc"]],

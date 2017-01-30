@@ -5220,21 +5220,7 @@
         <field>Account.Zone__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Secondary_Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+
     <fieldPermissions>
         <editable>false</editable>
         <field>Agency_Fee_Field_History__c.Amended_By__c</field>
@@ -15654,11 +15640,6 @@
         <editable>false</editable>
         <field>Case.WorkIt2__Total_Seconds__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.agf__ADM_Work__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32987,11 +32968,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>OpportunityLineItem.FS_UniqueProduct__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>OpportunityLineItem.FS_additionalDiscount__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -37471,46 +37447,7 @@
         <field>User.Work_Level__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__GUS_User_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Notification_Level__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Show_All_Work_Comments__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Summary__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Team_Member_Allocation__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Wall_Preference__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Work_User_Interface__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+   
     <fieldPermissions>
         <editable>false</editable>
         <field>User.dgai__active_user_settings__c</field>
@@ -48791,9 +48728,14 @@
         <recordType>uw_Links__c.Pinnovate_Wall_Link</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+	
     <tabVisibilities>
         <tab>mdm_Product_Category__c</tab>
         <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+	 <tabVisibilities>
+        <tab>standard-WaveHome</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Account</tab>
@@ -48806,6 +48748,10 @@
     <tabVisibilities>
         <tab>standard-Campaign</tab>
         <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+	 <tabVisibilities>
+        <tab>standard-WaveHome</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Case</tab>

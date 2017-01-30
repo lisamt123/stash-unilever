@@ -3,7 +3,12 @@
 @Description:GPL/BD/SC/TL user can create source plan for global GKM3 project after Ideas phase 
 ************************************************************************************************/
 
-public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermediateController { 
+public with sharing class IPM_SourcePlanController { 
+    public static IPM_Project__c project {
+        get {
+            return IPM_Utils.getProjectFullInfo(ApexPages.currentPage().getParameters().get('Id'));
+        }
+    }
 	public String docType ;
     public map<integer,sourcePlanWrapper> sourcePlanMap{get;set;}//map of wrapper class to store product and product plan data 
     public map<integer,list<sourceUnitWrapper>> sourceUnitMap{get;set;}//map wrapper class to store source plan data
@@ -100,10 +105,8 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         sourceUnitsList = new list<IPM_SourcingUnit__c>();
         sourceUnitsList =[SELECT Source_Unit_Name__c FROM IPM_SourcingUnit__c WHERE Source_Unit_Name__c Like: '%'+searchUnit_STR +'%' AND Status__c = true order by Source_Unit_Name__c ASC LIMIT 1000];
         bIsPDLApproved=false;
-        if(docType!='PDF'){
-        	getPDLApprovedStatus();
-        	isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember(); 
-        }
+    	getPDLApprovedStatus();
+    	isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember(); 
     }
     public pageReference updateSourcinngUnit()
     {
@@ -122,7 +125,15 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     {       
         bIsPDLApproved = false;
         List<IPM_Project_Document__c> lstPDlDocument  = new List<IPM_Project_Document__c>();
-        lstPDlDocument = [Select id,IPM_Document_Status__c From IPM_Project_Document__c Where IPM_GateDocuments__c =: IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT and IPM_Project__c=: projectId and IPM_Document_Status__c=:IPM_ConstantUtils.STATUS_APPROVED limit 1];
+        Id projID;
+        if(project.IPM_Parent_Project__c == Null)
+        {    	
+        	projID = project.id;
+        }else if(project.IPM_Parent_Project__c != Null)
+        {
+        	projID = project.IPM_Parent_Project__c;
+        }
+        lstPDlDocument = [Select id,IPM_Document_Status__c From IPM_Project_Document__c Where IPM_GateDocuments__c =: IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT and IPM_Project__c=: projID and IPM_Document_Status__c=:IPM_ConstantUtils.STATUS_APPROVED limit 1];
         if(!lstPDlDocument.isEmpty())
         {
             bIsPDLApproved = true;        

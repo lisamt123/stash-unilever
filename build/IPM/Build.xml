@@ -55,41 +55,17 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-      <runTest>CommunitiesLandingControllerTest</runTest>
-      <runTest>CommunitiesLoginControllerTest</runTest>
-      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
-      <runTest>CommunitiesSelfRegControllerTest</runTest>
-      <runTest>ExceptionLoggingHelper_Test</runTest>
-      <runTest>ExceptionsTest</runTest>
-      <runTest>TriggerFactoryTest</runTest>
-      <runTest>TestDataFactory</runTest>
-      <runTest>UserTestUtil</runTest>
-      <runTest>UserTrigger_Test</runTest>
-	        <runTest>IPM_BD_BB_Report_Batch_Test</runTest>
-		<runTest>IPM_ChangProjectDocStatusController_Test</runTest>
-		<runTest>IPM_ChangProjectDocStatusCntrlGKM3_Test</runTest>
-		<runTest>IPM_CoreParameters_Test</runTest>
-		<runTest>IPM_FinGateController_Test</runTest>
-		<runTest>IPM_FinancialActionStandards_Test</runTest>
-		<runTest>IPM_FinancialControllerGKM3_Test</runTest>
-		<runTest>IPM_FinancialControllerRegional_Test</runTest>
-		<runTest>IPM_FinancialControllerSoftVldtns_Test</runTest>
-		<runTest>IPM_FinancialController_Test</runTest>
-		<runTest>IPM_FinancialCopyPasteGrid_Test</runTest>
-		<runTest>IPM_FinancialMisalignment_Test</runTest>
-		<runTest>IPM_FinancialValueWrapper_Test</runTest>
-		<runTest>IPM_FinancialWrapper_Test</runTest>
-		<runTest>IPM_ProjectHandler_Test</runTest>
-		<runTest>IPM_ProjectHelper_Test</runTest>
-		<runTest>IPM_ProjectRolloutHandler_Test</runTest>
-		<runTest>IPM_ProjectSetUpController_Test</runTest>
-		<runTest>IPM_RolloutPlansAddController_Test</runTest>
-		<runTest>IPM_RolloutPlansAddControllerGKM3_Test</runTest>
-		<runTest>IPM_RolloutPlansTableController_Test</runTest>
-		<runTest>IPM_RolloutPlansTableControllerGKM3_Test</runTest>
-		<runTest>IPM_RolloutTriggerHandler_Test</runTest>
-		<runTest>IPM_SourcePlanController_Test</runTest>
-
+        <runTest>CommunitiesLandingControllerTest</runTest>
+        <runTest>CommunitiesLoginControllerTest</runTest>
+        <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+        <runTest>CommunitiesSelfRegControllerTest</runTest>
+        <runTest>ExceptionLoggingHelper_Test</runTest>
+        <runTest>ExceptionsTest</runTest>
+        <runTest>TriggerFactoryTest</runTest>
+        <runTest>TestDataFactory</runTest>
+        <runTest>UserTestUtil</runTest>
+        <runTest>UserTrigger_Test</runTest>
+	<runTest>ExceptionLoggingHelper_Test</runTest>
 	</sf:deploy>
   </target>  
 

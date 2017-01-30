@@ -1,20 +1,4 @@
 src
-src/classes
-src/layouts
 src/objects
-src/package.xml
-src/permissionsets
-src/reportTypes
-src/workflows
-src/classes/CEC_CaseTriggerHelper.cls
-src/classes/CEC_CaseTriggerHelper.cls-meta.xml
-src/classes/CEC_CaseTriggerHelperExtTest.cls
-src/classes/CEC_CaseTriggerHelperExtTest.cls-meta.xml
-src/layouts/CEC_Case_Market_Mapping__c-Case Market Mapping Layout.layout
 src/objects/Case.object
-src/objects/CEC_Case_Market_Mapping__c.object
-src/permissionsets/CEC_Business_Admin.permissionset
-src/permissionsets/CEC_CRUD.permissionset
-src/permissionsets/CEC_User.permissionset
-src/reportTypes/CEC_Live_Chat.reportType
-src/workflows/Case.workflow
+

@@ -887,15 +887,16 @@
         <label>Approver of Charter</label>
         <picklist>
             <picklistValues>
-                <fullName>RCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>GCLT</fullName>
+                <fullName>GCLT Leader</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1301,7 +1302,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Ben &amp; Jerrys</fullName>
+                <fullName>Ben &amp; Jerry's</fullName>
                 <default>false</default>
                 <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
@@ -1880,17 +1881,17 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <description>Formula field which finds the Gate Keeping Module of the project</description>
         <externalId>false</externalId>
         <formula>If(ISPICKVAL(IPM_Project_Type__c, &apos;Original&apos;), 
-   If(ISPICKVAL(IPMProject_Span__c,&apos;Global&apos;),
-	  If(ISPICKVAL(IPM_GateKeeping_Model__c,&apos;GCLT &amp; RCLT&apos;),
-	     &apos;GKM1&apos;,
-	     If(ISPICKVAL(IPM_GateKeeping_Model__c,&apos;RCLT&apos;),
-	       &apos;GKM2&apos;,
-	       &apos;Indeterminable GKM&apos;
-		 )
-	  ),
-	  If(ISPICKVAL(IPMProject_Span__c,&apos;Regional&apos;),&apos;GKM4&apos;,&apos;Indeterminable GKM&apos;)
-   ), 
-   &apos;Indeterminable GKM&apos;
+If(ISPICKVAL(IPMProject_Span__c,&apos;Global&apos;), 
+If(ISPICKVAL(IPM_GateKeeping_Model__c,&apos;GCLT Leader &amp; CCVP&apos;), 
+&apos;GKM1&apos;, 
+If(ISPICKVAL(IPM_GateKeeping_Model__c,&apos;CCVP&apos;), 
+&apos;GKM2&apos;, 
+&apos;Indeterminable GKM&apos; 
+) 
+), 
+If(ISPICKVAL(IPMProject_Span__c,&apos;Regional&apos;),&apos;GKM4&apos;,&apos;Indeterminable GKM&apos;) 
+), 
+&apos;Indeterminable GKM&apos; 
 )</formula>
         <label>IPM GateKeepingModel</label>
         <required>false</required>
@@ -1906,15 +1907,16 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <label>IPM GateKeeping Model</label>
         <picklist>
             <picklistValues>
-                <fullName>RCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>GCLT &amp; RCLT</fullName>
+                <fullName>GCLT Leader &amp; CCVP</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3973,11 +3975,11 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <picklistValues>
             <picklist>IPM_Approver_of_Charter__c</picklist>
             <values>
-                <fullName>GCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>RCLT</fullName>
+                <fullName>GCLT Leader</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4100,11 +4102,11 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <picklistValues>
             <picklist>IPM_GateKeeping_Model__c</picklist>
             <values>
-                <fullName>GCLT %26 RCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>RCLT</fullName>
+                <fullName>GCLT Leader %26 CCVP</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4514,7 +4516,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ben %26 Jerrys</fullName>
+                <fullName>Ben %26 Jerry%E2%80%99s</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4812,12 +4814,12 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <picklistValues>
             <picklist>IPM_Approver_of_Charter__c</picklist>
             <values>
-                <fullName>GCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>RCLT</fullName>
-                <default>true</default>
+                <fullName>GCLT Leader</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -4947,12 +4949,12 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <picklistValues>
             <picklist>IPM_GateKeeping_Model__c</picklist>
             <values>
-                <fullName>GCLT %26 RCLT</fullName>
+                <fullName>CCVP</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>RCLT</fullName>
-                <default>true</default>
+                <fullName>GCLT Leader %26 CCVP</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -5326,7 +5328,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ben %26 Jerrys</fullName>
+                <fullName>Ben %26 Jerry%E2%80%99s</fullName>
                 <default>false</default>
             </values>
             <values>

@@ -1,0 +1,18 @@
+src
+src/objects/OpportunityLineItem.object
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper.cls-meta.xml
+src/permissionsets/FS_AFM.permissionset
+src/permissionsets/FS_Admin.permissionset
+src/permissionsets/FS_Integration_User.permissionset
+src/permissionsets/FS_Marketing.permissionset
+src/permissionsets/FS_Operator_Russia.permissionset
+src/permissionsets/FS_RU_Corporate.permissionset
+src/permissionsets/FS_RU_Finance.permissionset
+src/permissionsets/FS_RU_SCP.permissionset
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/permissionsets/FS_SCP_And_Corp.permissionset
+src/permissionsets/FS_Sales_Rep.permissionset
+src/profiles/Unilever Food Solution - NA.profile
+src/profiles/Unilever Food Solution - Russia.profile
+src/layouts/Account-Operator Russia Read Only.layout

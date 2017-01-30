@@ -1,0 +1,110 @@
+<aura:component controller="TEL_AssociateProductsController" implements="force:lightningQuickaction,force:hasRecordId" access="global" >
+	
+    <!-- Lightning Style --> 
+    <ltng:require styles="{!$Resource.TEL_TelesalesCSS +'/assets/styles/salesforce-lightning-design-system.css'}"/>
+    
+    <!-- Attributes --> 
+    <aura:attribute name="lstProducts" 				type="TEL_TelesalesWrapper.DisplayProducts[]" 	description="Store the product info which will be selected."/>
+    <aura:attribute name="lstFamily"				type="String[]" 								description="Store the product family search param used to retrieve the product list." />
+    <aura:attribute name="spinnerEnable" 			type="Boolean" 		default="false" 			description="Enable the spinner during actions."/>	
+    <aura:attribute name="showNoRelatedProducts" 	type="Boolean" 		default="false" 			description="Enable no related products message." />
+    <aura:attribute name="produtsSeleted" 			type="Integer" 		default="0" 				description="Store the number of return search list."/>
+    <aura:attribute name="selectedAll" 				type="Boolean" 		default="false"				description="Indicate if all products of search result needs to be selected."/>
+    
+    <!-- Handlers --> 
+    <!-- <aura:handler name="init" 			value="{!this}" action="{!c.doInit}"/> -->
+    
+    <!-- Search Products Form -->    
+    <form class="slds-form--inline">
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="name">{!$Label.c.TEL_Family}</label>
+            <div class="slds-form-element__control">
+                <ui:inputSelect aura:id="family" multiple="false">
+					<ui:inputSelectOption text="None" label="-- None --" value="true"/>
+                    <ui:inputSelectOption text="Food Services" label="Food Services" value="false"/>
+                    <ui:inputSelectOption text="Impulse" label="Impulse" value="false"/>
+                </ui:inputSelect>
+            </div>
+        </div>
+        <div class="slds-form-element">
+			<ui:button class="slds-button slds-button--brand" label="{!$Label.c.TEL_Search_Button}" press="{!c.searchProducts}"/>
+        </div>
+    </form><br></br><br></br>
+    <!-- End Search Products Form --> 
+    
+    <!-- Product Result --> 
+    <aura:renderIf isTrue="{!v.showNoRelatedProducts}">
+        <article class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <c:svgIcon svgPath="/resource/TEL_TelesalesCSS/assets/icons/standard-sprite/svg/symbols.svg#product" category="standard" class="slds-icon slds-icon--medium" size="medium" name="product"/>
+                    </div>
+                    <div class="slds-media__body slds-truncate">
+                        <h2>
+                            <span class="slds-text-heading--small">{!$Label.c.TEL_Products} ({!v.produtsSeleted})</span>
+                        </h2>
+                    </div>
+                </header>
+                <div class="slds-no-flex">
+                    <ui:button class="slds-button slds-button--neutral" label="{!$Label.c.TEL_Associate_Button}" press="{!c.createProducts}"/>
+                </div>
+            </div>
+            <div class="slds-card__body">
+                <table class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th class="slds-cell-shrink" scope="col">
+                                <label class="slds-checkbox">
+                                    <ui:inputCheckBox aura:id="selectAll" change="{!c.changeSelectAll}"/>
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-assistive-text"></span>
+                                </label>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Name">{!$Label.c.TEL_Product_Name}</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Name">{!$Label.c.Tel_Product_Code}</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Name">{!$label.c.TEL_Family_List}</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.lstProducts}" var="product" indexVar="index">
+                            <tr class="slds-hint-parent">
+                                <td role="gridcell" class="slds-cell-shrink">
+                                    <label class="slds-checkbox">
+                                        <ui:inputCheckbox value="{!product.isSelected}" />
+                                        <span class="slds-checkbox--faux"></span>
+                                    </label>
+                                </td>
+                                <th scope="row">
+                                    <div class="slds-truncate" title="Product">
+                                        <ui:outputText aura:id="productName" value="{!product.productName}"/>
+                                    </div>
+                                </th>
+                                <th scope="row">
+                                    <div class="slds-truncate" title="Code">
+                                        <center>
+                                            <ui:outputText aura:id="productCode" value="{!product.productCode}"/>
+                                        </center>
+                                    </div>
+                                </th>
+                                <th scope="row">
+                                    <div class="slds-truncate" title="Family">
+                                        <ui:outputText aura:id="productFamily" value="{!product.productFamily}"/>
+                                    </div>
+                                </th>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </aura:renderIf>
+   	<!-- End Product Result --> 
+        
+</aura:component>

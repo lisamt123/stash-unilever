@@ -292,12 +292,10 @@ public with sharing class IPM_ProjectDocumentHelper
                                         
                                         
 										copyOverSummaryData(projDocSect,section,associatedGate);
-
-								    	if(currentProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && (projDocSect.IPM_Master_Section_External_Id__c == IPM_ConstantUtils.REGIONAL_BDTEAM_EXTID ||projDocSect.IPM_Master_Section_External_Id__c == IPM_ConstantUtils.REGIONAL_FEEDBACK_EXTID))
-								    	{
-								    		skipProjSec =  false;
-								    	}
-
+					if(currentProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && (projDocSect.IPM_Master_Section_External_Id__c == IPM_ConstantUtils.REGIONAL_BDTEAM_EXTID ||projDocSect.IPM_Master_Section_External_Id__c == IPM_ConstantUtils.REGIONAL_FEEDBACK_EXTID))
+					    	{
+					    		skipProjSec =  false;
+					    	}					
 										if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c) && skipProjSec ){
 											if(!(project.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG && section.IPM_Section_Sequence__c == '5.3'))
 											{
