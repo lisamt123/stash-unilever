@@ -30922,21 +30922,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>TEL_Account_Contract_Strategy__c</picklist>
-            <values>
-                <fullName>Renew every Quarter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renew every Semester</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renew every Year</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Type</picklist>
             <values>
                 <fullName>Analyst</fullName>
