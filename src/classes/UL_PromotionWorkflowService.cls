@@ -169,7 +169,8 @@
                         if(procInstNode.ProcessNode.DeveloperName.equalsIgnoreCase(UtilityEnum.UL_Finance_Check.Name())){
                             if(currentStatus!=null && currentStatus.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase())){
                                 if(!procInstNode.ProcessInstance.ProcessDefinition.DeveloperName.containsIgnoreCase('Urgent')){
-                                    nextApproverId = getApproverIds(promoId, UL_Utility.ROLE_ACCOUNT_MANAGER);
+                                    //nextApproverId = getApproverIds(promoId, UL_Utility.ROLE_ACCOUNT_MANAGER);
+									nextApproverId = getApproverIds(promoId, 'manager');
                                 }
                                 else{
                                     nextApproverId = getApproverIds(promoId, 'TPM');
