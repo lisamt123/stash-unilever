@@ -4228,13 +4228,12 @@ Id=VLOOKUP
     <validationRules>
         <fullName>validation_for_date_ranges</fullName>
         <active>true</active>
-        <errorConditionFormula>IF(ACCL__Promotion_Template__r.Calculate_In_store_Dates__c = true,
+        <errorConditionFormula>AND(  ISPICKVAL($User.ACCL__Sales_Org__c , &apos;AR01&apos;), IF(ACCL__Promotion_Template__r.Calculate_In_store_Dates__c = true,
  IF((ACCL__Placement_Date_Thru__c - ACCL__Placement_Date_From__c)&gt;ACCL__Promotion_Template__r.UL_Calculate_for_Max_Min_Dates__c || 
  (ACCL__Placement_Date_Thru__c - ACCL__Placement_Date_From__c)&lt;0 , true, false), false) || 
  IF(ACCL__Promotion_Template__r.UL_Validate_for_Max_Min_Dates__c = true, 
  IF((ACCL__Date_Thru__c - ACCL__Date_From__c)&gt; ACCL__Promotion_Template__r.UL_Calculate_for_Max_Min_Dates__c || 
- (ACCL__Date_Thru__c - ACCL__Date_From__c)&lt;0 , true, false),false)</errorConditionFormula>
-        <errorDisplayField>ACCL__Active__c</errorDisplayField>
+ (ACCL__Date_Thru__c - ACCL__Date_From__c)&lt;0 , true, false),false) )</errorConditionFormula>
         <errorMessage>Dates range should be more than 1 day or below 91 days</errorMessage>
     </validationRules>
 	<validationRules>
