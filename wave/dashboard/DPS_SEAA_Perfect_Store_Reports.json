@@ -4207,7 +4207,7 @@
             "chartDesc_diffPrevMonth": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the difference in percentage compared to previous available month for the respective P compliance or KPI score",
+                    "text": "This chart displays the difference in percentage compared to previous available month for the respective P compliance or KPI score, for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },

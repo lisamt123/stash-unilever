@@ -1087,7 +1087,7 @@
                                 "column": 4,
                                 "name": "datefilter_date",
                                 "row": 3,
-                                "rowspan": 2,
+                                "rowspan": 1,
                                 "widgetStyle": {
                                     "backgroundColor": "rgb(113, 197, 232)",
                                     "borderColor": "#000000",
@@ -3356,13 +3356,13 @@
                         "CTA_Message"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "comparisontable",
                     "options": {}
-                },
-                "selectMode": "single"
+                }
             },
             "Customer_type_13": {
                 "datasets": [
@@ -4261,13 +4261,13 @@
                         "Date_of_audit_Month"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                },
-                "selectMode": "single"
+                }
             },
             "Country_29": {
                 "datasets": [
@@ -5620,13 +5620,13 @@
                         "Date_of_audit_Year"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
-                },
-                "selectMode": "single"
+                }
             },
             "Sales_area_7": {
                 "datasets": [
@@ -6149,13 +6149,13 @@
                         "Product_Category"
                     ]
                 },
+                "selectMode": "single",
                 "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "comparisontable",
                     "options": {}
-                },
-                "selectMode": "single"
+                }
             },
             "Sales_territory_8": {
                 "datasets": [
@@ -6270,12 +6270,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6290,48 +6310,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Country_29",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -6349,12 +6349,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6369,48 +6389,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Channel_27",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -6428,12 +6428,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6448,48 +6468,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Region_33",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -6507,12 +6507,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6527,48 +6547,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Customer_28",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -6586,12 +6586,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6606,48 +6626,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Product_category_26",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -6663,26 +6663,17 @@
             },
             "chart_2": {
                 "parameters": {
-                    "fillArea": true,
                     "showPoints": true,
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
-                    "measureAxis1": {
-                        "showTitle": true,
-                        "showAxis": true,
-                        "title": "",
-                        "sqrtScale": false,
-                        "referenceLine": null
-                    },
+                    "axisMode": "multi",
                     "visualizationType": "time",
                     "missingValue": "connect",
-                    "theme": "wave",
-                    "step": "Date_of_audit_Year_Date_of_audit_Month_30",
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
@@ -6700,15 +6691,24 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "fillArea": true,
                     "showZero": true,
-                    "axisMode": "multi",
                     "measureAxis2": {
                         "sqrtScale": false,
-                        "showAxis": true,
                         "showTitle": true,
+                        "showAxis": true,
                         "title": "",
                         "referenceLine": null
-                    }
+                    },
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "theme": "wave",
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_30"
                 },
                 "type": "chart"
             },
@@ -6723,26 +6723,17 @@
             },
             "chart_1": {
                 "parameters": {
-                    "fillArea": true,
                     "showPoints": true,
                     "legend": {
                         "showHeader": true,
                         "show": true,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
-                    "measureAxis1": {
-                        "showTitle": true,
-                        "showAxis": true,
-                        "title": "",
-                        "sqrtScale": false,
-                        "referenceLine": null
-                    },
+                    "axisMode": "multi",
                     "visualizationType": "time",
                     "missingValue": "connect",
-                    "theme": "wave",
-                    "step": "Date_of_audit_Year_Date_of_audit_Month_25",
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
@@ -6760,15 +6751,24 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "fillArea": true,
                     "showZero": true,
-                    "axisMode": "multi",
                     "measureAxis2": {
                         "sqrtScale": false,
-                        "showAxis": true,
                         "showTitle": true,
+                        "showAxis": true,
                         "title": "",
                         "referenceLine": null
-                    }
+                    },
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "theme": "wave",
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_25"
                 },
                 "type": "chart"
             },
@@ -6785,12 +6785,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6805,48 +6825,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "X4P_5P_6P_31",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -6864,12 +6864,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -6884,48 +6904,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Country_20",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -6959,26 +6959,17 @@
             },
             "chart_scoreTrend": {
                 "parameters": {
-                    "fillArea": true,
                     "showPoints": true,
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
-                    "measureAxis1": {
-                        "showTitle": true,
-                        "showAxis": true,
-                        "title": "",
-                        "sqrtScale": false,
-                        "referenceLine": null
-                    },
+                    "axisMode": "multi",
                     "visualizationType": "time",
                     "missingValue": "connect",
-                    "step": "Date_of_audit_Year_Date_of_audit_Month_30",
-                    "theme": "wave",
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
@@ -6996,15 +6987,24 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "fillArea": true,
                     "showZero": false,
-                    "axisMode": "multi",
                     "measureAxis2": {
                         "sqrtScale": false,
-                        "showAxis": true,
                         "showTitle": true,
+                        "showAxis": true,
                         "title": "",
                         "referenceLine": null
-                    }
+                    },
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_30",
+                    "theme": "wave"
                 },
                 "type": "chart"
             },
@@ -7041,12 +7041,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7061,74 +7081,45 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Compliance (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "Customer_28",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
             },
             "chart_comTrend": {
                 "parameters": {
-                    "fillArea": true,
                     "showPoints": true,
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
-                    "measureAxis1": {
-                        "showTitle": true,
-                        "showAxis": true,
-                        "title": "",
-                        "sqrtScale": false,
-                        "referenceLine": null
-                    },
+                    "axisMode": "multi",
                     "visualizationType": "time",
                     "missingValue": "connect",
-                    "step": "Date_of_audit_Year_Date_of_audit_Month_25",
-                    "theme": "wave",
                     "timeAxis": {
                         "showTitle": true,
                         "showAxis": true,
@@ -7146,15 +7137,24 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "fillArea": true,
                     "showZero": false,
-                    "axisMode": "multi",
                     "measureAxis2": {
                         "sqrtScale": false,
-                        "showAxis": true,
                         "showTitle": true,
+                        "showAxis": true,
                         "title": "",
                         "referenceLine": null
-                    }
+                    },
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_25",
+                    "theme": "wave"
                 },
                 "type": "chart"
             },
@@ -7378,12 +7378,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7398,48 +7418,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Score (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "Customer_37",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -7548,12 +7548,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7568,48 +7588,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Compliance (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "Channel_27",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -7636,12 +7636,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7656,48 +7676,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Compliance (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "X4P_5P_6P_31",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -7706,12 +7706,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7726,48 +7746,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Score (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "Product_category_36",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -7790,7 +7790,7 @@
             "chartDesc_comChannel": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by channels for the country in the latest month. ",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by channels for the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -7799,7 +7799,7 @@
             "chartDesc_comCountry": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant in the latest month. ",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -7809,12 +7809,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7829,48 +7849,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Compliance (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "Region_33",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -7896,7 +7896,7 @@
             "chartDesc_comCat": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by categories for the country in the latest month.",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by categories for the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -7960,12 +7960,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -7980,48 +8000,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Score (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "Region_34",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -8227,7 +8227,7 @@
             "chartDesc_CTAAvail": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the list of percentages of CTA availability grouped by each question for the latest month, and also the percentage increase or decrease compared to the previous month.",
+                    "text": "This chart displays the list of percentages of CTA availability grouped by each question for the selected audit date, and also the percentage increase or decrease compared to the previous month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -8237,12 +8237,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -8257,48 +8277,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Score (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "X4P_5P_6P_32",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -8393,7 +8393,7 @@
             "chartDesc_scoreCountry": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of CTA availability in the latest month. ",
+                    "text": "This chart displays the percentage of CTA availability for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -8487,12 +8487,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -8507,48 +8527,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Compliance (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "Country_20",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -8557,12 +8557,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -8577,48 +8597,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Score (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "Country_29",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -8690,13 +8690,13 @@
             },
             "datefilter_date": {
                 "parameters": {
-                    "instant": false,
-                    "step": "Date_of_audit_Year_1",
-                    "title": "Date",
+                    "calendarTypeSwitchingAllowed": false,
                     "defaultAbsoluteMode": true,
                     "defaultFiscalMode": false,
+                    "instant": false,
                     "modeSwitchingAllowed": true,
-                    "calendarTypeSwitchingAllowed": false
+                    "step": "Date_of_audit_Year_1",
+                    "title": "Audit Date"
                 },
                 "type": "dateselector"
             },
@@ -8713,12 +8713,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -8733,48 +8753,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Compliance (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "Product_category_26",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -8791,7 +8791,7 @@
             "chartDesc_scoreCust": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of CTA availability grouped by top customers for the country in the latest month. ",
+                    "text": "This chart displays the percentage of CTA availability grouped by top customers for the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9088,7 +9088,7 @@
             "chartDesc_scoreChannel": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of CTA availability grouped by channels for the country in the latest month.",
+                    "text": "This chart displays the percentage of CTA availability grouped by channels for the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9128,12 +9128,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9148,48 +9168,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Customer_37",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -9198,12 +9198,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9218,48 +9238,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Product_category_36",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -9268,12 +9268,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9288,48 +9308,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Channel_35",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -9338,12 +9338,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9358,48 +9378,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "Region_34",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -9408,12 +9408,32 @@
                 "parameters": {
                     "autoFitMode": "keepLabels",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9428,48 +9448,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "theme": "wave",
                     "step": "X4P_5P_6P_32",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -9477,7 +9477,7 @@
             "chartDesc_com4p5p6p": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of 4P, 5P and 6P stores that were Proposition compliant for the country in the latest month.",
+                    "text": "This chart displays the percentage of 4P, 5P and 6P stores that were Proposition compliant for the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9625,12 +9625,32 @@
                 "parameters": {
                     "autoFitMode": "fit",
                     "showValues": true,
+                    "bins": {
+                        "breakpoints": {
+                            "high": 100,
+                            "low": 0
+                        },
+                        "bands": {
+                            "high": {
+                                "color": "#008000",
+                                "label": ""
+                            },
+                            "low": {
+                                "color": "#B22222",
+                                "label": ""
+                            },
+                            "medium": {
+                                "color": "#ffa500",
+                                "label": ""
+                            }
+                        }
+                    },
                     "legend": {
                         "showHeader": true,
                         "show": false,
+                        "customSize": "auto",
                         "position": "right-top",
-                        "inside": false,
-                        "customSize": "auto"
+                        "inside": false
                     },
                     "axisMode": "multi",
                     "visualizationType": "hbar",
@@ -9645,48 +9665,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
+                    "binValues": false,
                     "measureAxis2": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "measureAxis1": {
+                        "sqrtScale": false,
                         "showTitle": true,
                         "showAxis": true,
                         "title": "Proposition Score (%)",
-                        "sqrtScale": false,
                         "referenceLine": null
                     },
                     "step": "Channel_35",
                     "theme": "wave",
                     "dimensionAxis": {
                         "showTitle": true,
+                        "customSize": "auto",
                         "showAxis": true,
-                        "title": "",
-                        "customSize": "auto"
-                    },
-                    "binValues": false,
-                    "bins": {
-                        "breakpoints": {
-                            "low": 0,
-                            "high": 100
-                        },
-                        "bands": {
-                            "low": {
-                                "label": "",
-                                "color": "#B22222"
-                            },
-                            "medium": {
-                                "label": "",
-                                "color": "#ffa500"
-                            },
-                            "high": {
-                                "label": "",
-                                "color": "#008000"
-                            }
-                        }
+                        "title": ""
                     }
                 },
                 "type": "chart"
@@ -9760,7 +9760,7 @@
             "chartDesc_comRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by sales regions of the country in the latest month.",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by sales regions of the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9796,7 +9796,7 @@
             "chartDesc_score4p5p6p": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of CTA availability grouped by 4P, 5P and 6P stores for the country in the latest month. ",
+                    "text": "This chart displays the percentage of CTA availability grouped by 4P, 5P and 6P stores for the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9862,7 +9862,7 @@
             "chartDesc_scoreRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of CTA availability grouped by sales regions of the country in the latest month.",
+                    "text": "This chart displays the percentage of CTA availability grouped by sales regions of the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9871,7 +9871,7 @@
             "chartDesc_scoreCat": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of CTA availability grouped by categories for the country in the latest month.",
+                    "text": "This chart displays the percentage of CTA availability grouped by categories for the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9901,7 +9901,7 @@
             "chartDesc_comCust": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by top customers for the country in the latest month.",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by top customers for the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },

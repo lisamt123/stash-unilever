@@ -9235,7 +9235,7 @@
             "text_84": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the IQ KPIs for Product which will represent the KPIs required for 4P Stores.\n",
+                    "text": "This chart displays the IQ KPIs for Product which will represent the KPIs required for 4P Stores, for the selected audit date.\n",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10116,7 +10116,7 @@
             "chartDesc_comChannel": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of enrolled stores that were Product compliant across all the Channels in the country in the latest month.",
+                    "text": "This chart displays the % of enrolled stores that were Product compliant across all the Channels in the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10125,7 +10125,7 @@
             "chartDesc_comCountry": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of enrolled stores that were Product compliant for the latest month.",
+                    "text": "This chart displays the % of enrolled stores that were Product compliant for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10330,7 +10330,7 @@
             "chartDesc_comCat": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of MT enrolled stores that were Product compliant across all the Product categories in the country in the latest month.",
+                    "text": "This chart displays the % of MT enrolled stores that were Product compliant across all the Product categories in the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10429,7 +10429,7 @@
             "chartdesc_MHSKU": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart lists all the audited MH SKUs in the country, the % of enrolled stores that they were available in the latest month, and the variance in availability from the previous month.",
+                    "text": "This chart lists all the audited MH SKUs in the country, the % of enrolled stores that they were available for the selected audit date, and the variance in availability from the previous month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10648,7 +10648,7 @@
             "chartdesc_COTC": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart lists all the audited COTC SKUs in the country, the % of enrolled stores that they were available in the latest month, and the variance in availability from the previous month.",
+                    "text": "This chart lists all the audited COTC SKUs in the country, the % of enrolled stores that they were available for the selected audit date, and the variance in availability from the previous month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10674,7 +10674,7 @@
             "chartDesc_scoreCountry": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for a country in the latest month.",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for a country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -11298,7 +11298,7 @@
             "chartDesc_scoreCust": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for Top Customers within a country in the latest month.",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for Top Customers within a country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -11677,7 +11677,7 @@
             "chartDesc_scoreChannel": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores across all the Channels in the country in the latest month.",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores across all the Channels in the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -12256,7 +12256,7 @@
             "chartDesc_com4p5p6p": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of 4P, 5P and 6P stores that were Product compliant for the country in the latest month.",
+                    "text": "This chart displays the % of 4P, 5P and 6P stores that were Product compliant for the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -12857,7 +12857,7 @@
             "chartDesc_comRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of enrolled stores that were Product compliant in different sales regions of the country in the latest month.",
+                    "text": "This chart displays the % of enrolled stores that were Product compliant in different sales regions of the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -12893,7 +12893,7 @@
             "chartDesc_score4p5p6p": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in 4P, 5P and 6P stores in the country in the latest month.",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in 4P, 5P and 6P stores for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -13018,7 +13018,7 @@
             "chartDesc_scoreRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in enrolled stores in different sales regions of the country in the latest month.",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in enrolled stores in different sales regions of the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -13027,7 +13027,7 @@
             "chartDesc_scoreCat": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in MT enrolled stores across all the Product categories in the country in the latest month.",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in MT enrolled stores across all the Product categories in the country for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -13073,7 +13073,7 @@
             "chartDesc_comCust": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Product Compliant in the latest month.",
+                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Product Compliant for the selected audit date.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
