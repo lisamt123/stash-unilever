@@ -40,12 +40,12 @@ src/classes/PQN_GlobalCategoryReport.cls
 src/classes/PQN_GlobalCategoryReport.cls-meta.xml
 src/classes/PQN_GlobalGeographyReport.cls
 src/classes/PQN_GlobalGeographyReport.cls-meta.xml
+src/classes/PQN_GlobalCategoryReporttest.cls
+src/classes/PQN_GlobalCategoryReporttest.cls-meta.xml
 src/classes/PQN_GlobalGeographyReportTest.cls
 src/classes/PQN_GlobalGeographyReportTest.cls-meta.xml
 src/classes/PQN_GlobalDCCatReportTest.cls
 src/classes/PQN_GlobalDCCatReportTest.cls-meta.xml
-src/classes/PQN_GlobalCategoryReporttest.cls
-src/classes/PQN_GlobalCategoryReporttest.cls-meta.xml
 src/classes/PQN_GlobalSUReport.cls
 src/classes/PQN_GlobalSUReport.cls-meta.xml
 src/classes/PQN_DC_Voulmes.cls
