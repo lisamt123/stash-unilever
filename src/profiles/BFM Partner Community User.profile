@@ -1651,11 +1651,6 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
-        <field>BFM_Payment_Method__c.Carrier_Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
         <field>BFM_Payment_Method__c.Deletion_Flag__c</field>
         <readable>true</readable>
     </fieldPermissions>
