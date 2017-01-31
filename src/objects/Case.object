@@ -7005,6 +7005,43 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Philippines_All_Cases_FOM1</fullName>
+        <columns>L1_Product_Category__c</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CASES.CLOSED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Web,Web North America,Email</value>
+        </filters>
+        <filters>
+            <field>PII_Warning_Check__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>spam</value>
+        </filters>
+        <label>CEC Philippines - All Cases - PII check</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>CEC_User_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Philippines_All_Cases_PHONE</fullName>
         <columns>Default_From_Address__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
@@ -8633,6 +8670,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.ORIGIN</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
+        <columns>Search_Mobile__c</columns>
         <columns>NAME</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.LAST_UPDATE</columns>
