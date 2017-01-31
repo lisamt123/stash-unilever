@@ -119,50 +119,8 @@
                                             <apex:outputPanel rendered="{!IF(learningcategory.Name != 'System & Tools',true,false)}">
                                                 <h4>{!o.planName}</h4>
                                             </apex:outputPanel>
-                                            <apex:outputPanel rendered="{!IF(learningcategory.Name == 'System & Tools' && o.planName == 'Demand Planning AMS - Readiness Skills',true,false)}">
-                                                <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F4%2EReadiness%20Skills" >
-                                                    <h4>{!o.planName}</h4>
-                                                </apex:outputLink>
-                                            </apex:outputPanel>
-                                            <apex:outputPanel rendered="{!IF(learningcategory.Name == 'System & Tools' && o.planName == 'Demand Planning AMS - Framework',true,false)}">
-                                                <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F1%2EFramework" >
-                                                    <h4>{!o.planName}</h4>
-                                                </apex:outputLink>
-                                            </apex:outputPanel>
-                                            <apex:outputPanel rendered="{!IF(learningcategory.Name == 'System & Tools' && o.planName == 'Demand Planning AMS - Metrics',true,false)}">
-                                                <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F2%2EMetrics" >
-                                                    <h4>{!o.planName}</h4>
-                                                </apex:outputLink>
-                                            </apex:outputPanel>
-                                            <apex:outputPanel rendered="{!IF(learningcategory.Name == 'System & Tools' && o.planName == 'Supply Planning AMS - Network Development',true,false)}">
-                                                <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FSNP%20-%20Supply%20Network%20Planning%2F1%2EOn%20Boarding%2F5%2ENetwork%20Development" >
-                                                    <h4>{!o.planName}</h4>
-                                                </apex:outputLink>
-                                            </apex:outputPanel>
-                                            <apex:outputPanel rendered="{!IF(learningcategory.Name == 'System & Tools' && o.planName == 'Demand Planning AMS - Support Tools',true,false)}">
-                                                <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F3%2ESupport%20Tools" >
-                                                    <h4>{!o.planName}</h4>
-                                                </apex:outputLink>
-                                            </apex:outputPanel>
-                                            <apex:outputPanel rendered="{!IF(learningcategory.Name == 'System & Tools' && o.planName == 'Demand Planning AMS - Network Development',true,false)}">
-                                                <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F5%2ENetwork%20Development" >
-                                                    <h4>{!o.planName}</h4>
-                                                </apex:outputLink>
-                                            </apex:outputPanel>
-                                            <apex:outputPanel rendered="{!IF(learningcategory.Name == 'System & Tools' && o.planName == 'Demand Planning AMS - Framework ESP',true,false)}">
-                                                <apex:outputLink value="" >
-                                                    <h4>{!o.planName}</h4>
-                                                </apex:outputLink>
-                                            </apex:outputPanel>
-                                            <apex:outputPanel rendered="{!IF(learningcategory.Name == 'System & Tools' && o.planName == 'Supply Planning AMS - Readiness Skills',true,false)}">
-                                                <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FSNP%20-%20Supply%20Network%20Planning%2F1%2EOn%20Boarding%2F4%2EReadiness%20Skills" >
-                                                    <h4>{!o.planName}</h4>
-                                                </apex:outputLink>
-                                            </apex:outputPanel>
-                                            <apex:outputPanel rendered="{!IF(learningcategory.Name == 'System & Tools' && o.planName == 'Supply Planning AMS - Framework',true,false)}">
-                                                <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FSNP%20-%20Supply%20Network%20Planning%2F1%2EOn%20Boarding%2F1%2EFramework" >
-                                                    <h4>{!o.planName}</h4>
-                                                </apex:outputLink>
+                                            <apex:outputPanel rendered="{!IF(learningcategory.Name == 'System & Tools',true,false)}">
+                                                    <h4><apex:outputText value="{!o.planNameURL}" escape="false"/></h4>
                                             </apex:outputPanel>
                                             <apex:outputPanel layout="block" rendered="{!o.assignmentStatus != null}">
                                                 <label class="label {!IF(o.assignmentStatus=='Completed','label-success',IF(o.assignmentStatus=='In Progress','label-primary','label-default'))}">
