@@ -205,7 +205,18 @@ private class PQN_GlobalGeographyReportTest{
        
         
         insert losstreelst;
-     
+       /* PQN_GlobalCategoryReport category=new PQN_GlobalCategoryReport();
+          category.getcategories();
+          category.getsuppliers();
+          category.Searchby();
+        PQN_Global_DCReport reportDC=new PQN_Global_DCReport();
+          reportDC.getcategories();
+          reportDC.getsuppliers();
+          reportDC.Searchby();*/
+        PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
+          SU.getcategories();
+          SU.getsuppliers();
+          SU.Searchby();
      
         PQN_Country_Report country=new PQN_Country_Report();
       
