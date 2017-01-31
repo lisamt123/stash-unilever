@@ -55,6 +55,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>AccessType__c</fullName>
         <description>Defines user access type - Read/Write</description>
@@ -126,7 +127,7 @@
         <label>User Customer Product Category Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>User Customer Product Categorysies</pluralLabel>
+    <pluralLabel>User Customer Product Categories</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
