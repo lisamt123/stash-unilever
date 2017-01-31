@@ -91,6 +91,8 @@ src/customMetadata/IPM_Project_Metadata.UFS_GKM6.md
 src/customMetadata/IPM_Project_Metadata.UFS_GKM7.md
 src/groups
 src/groups/IPM_Food_Solutions.group
+src/labels
+src/labels/CustomLabels.labels
 src/objects
 src/objects/IPM_Company_Card__c.object
 src/objects/IPM_Milestone__c.object
