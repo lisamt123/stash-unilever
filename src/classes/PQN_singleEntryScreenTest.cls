@@ -3,6 +3,15 @@ private class PQN_singleEntryScreenTest{
     private static testMethod void testPQN_singleEntryScreen(){
     Test.startTest();
     
+    PQN_DC_Hierarchy__c pdh = new PQN_DC_Hierarchy__c();
+    pdh.name ='DC1';
+    pdh.dc__c = 'DC1';
+    pdh.region__c = 'Americas';
+    pdh.cluster__c = 'Latin America';
+    pdh.sub_cluster__c = 'Latin America';
+    pdh.mco__c ='mco';
+    insert pdh;
+    
     Id p = [select id from profile where name='Partner Community User'].id;
     
          list<PQNFreezeDate__c> freezeDateList=new list<PQNFreezeDate__c>();
@@ -99,6 +108,7 @@ insert lossCode;
         ApexPages.StandardController sc2 = new ApexPages.StandardController(pqn);
         PQN_singleEntryScreen testPQN2 = new PQN_singleEntryScreen(sc2);
         testPQN2.validate();
+        ApexPages.currentPage().getParameters().put('repDC','DC1');
         testPQN2.callRepDC();
         
               

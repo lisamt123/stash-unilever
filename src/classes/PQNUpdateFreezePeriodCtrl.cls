@@ -56,10 +56,10 @@ Public with sharing class PQNUpdateFreezePeriodCtrl{
         //Get the permission set Id
         List<PermissionSet> pSetList = [select Name , Id from PermissionSet where Name = 'PQN_Super_Set' LIMIT 1];
         
-        //Get the Id's of all the users assigned for "PQN_Admin_User"
+        //Get the Id's of all the users assigned for "PQN_Super_Set"
         list<PermissionSetAssignment> pAssignList = [select AssigneeId from PermissionSetAssignment where PermissionSetId =:pSetList[0].Id];
         
-        //Check whether the logged in user is a member of "PQN Admin User" 
+        //Check whether the logged in user is a member of "PQN_Super_Set" 
         for(PermissionSetAssignment p : pAssignList){
             if(p.AssigneeId == UserInfo.getUserId()){
                 flag = true;
