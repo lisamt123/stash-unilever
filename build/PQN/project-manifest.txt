@@ -40,12 +40,8 @@ src/classes/PQN_GlobalCategoryReport.cls
 src/classes/PQN_GlobalCategoryReport.cls-meta.xml
 src/classes/PQN_GlobalGeographyReport.cls
 src/classes/PQN_GlobalGeographyReport.cls-meta.xml
-src/classes/PQN_GlobalCategoryReporttest.cls
-src/classes/PQN_GlobalCategoryReporttest.cls-meta.xml
 src/classes/PQN_GlobalGeographyReportTest.cls
 src/classes/PQN_GlobalGeographyReportTest.cls-meta.xml
-src/classes/PQN_GlobalDCCatReportTest.cls
-src/classes/PQN_GlobalDCCatReportTest.cls-meta.xml
 src/classes/PQN_GlobalSUReport.cls
 src/classes/PQN_GlobalSUReport.cls-meta.xml
 src/classes/PQN_DC_Voulmes.cls
@@ -214,3 +210,7 @@ src/components/PQN_Navigation.component-meta.xml
 src/flows/PQN_User_Creation_Request-2.flow
 src/workflows/PQN_Pallet_Quality_Non_Conformance__c.workflow
 src/workflows/PQN_User_Creation_Request__c.workflow
+src/classes/PQN_GlobalcountryReportTest.cls
+src/classes/PQN_GlobalcountryReportTest.cls-meta.xml
+src/classes/PQN_GlobalgeoTest.cls
+src/classes/PQN_GlobalgeoTest.cls-meta.xml
