@@ -1,5 +1,5 @@
 @isTest
-private class PQN_GlobalCategoryReporttest{
+public class PQN_GlobalCategoryReporttest{
     private static testMethod void testPQN_GlobalCategoryReport(){
   
     PQN_Sourcing_Unit__c source=PQN_TestLibraryUtil.createSourcingUnit();
@@ -193,7 +193,7 @@ private class PQN_GlobalCategoryReporttest{
         insert losstreelst;
      
       
-       PQN_GlobalCategoryReport category=new PQN_GlobalCategoryReport();
+      PQN_GlobalCategoryReport category=new PQN_GlobalCategoryReport();
           category.getcategories();
           category.getsuppliers();
           category.Searchby();
@@ -201,10 +201,10 @@ private class PQN_GlobalCategoryReporttest{
           reportDC.getcategories();
           reportDC.getsuppliers();
           reportDC.Searchby();
-        PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
+       /* PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
           SU.getcategories();
           SU.getsuppliers();
-          SU.Searchby();
+          SU.Searchby();*/
        // PQN_GlobalOverview goverview=new PQN_GlobalOverview();
      
           
