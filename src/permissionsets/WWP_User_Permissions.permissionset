@@ -320,6 +320,21 @@
         <field>WWP_Loss_Tree__c.trigger_email__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Formula_OVERALL_SUPPLIER_OTIF_COMPLIANCE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.formula_SUPPLIER_OTIF_QTY_COMPLIANCE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Formula_SUPPLIER_OTIF_TIME_COMPLIANCE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <label>WWP User Permissions</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
