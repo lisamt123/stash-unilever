@@ -5,13 +5,16 @@
         $A.util.addClass(defaultTab, 'slds-active')
         var defaultDivDisplay = component.find('feedContent');
         $A.util.addClass(defaultDivDisplay, 'slds-show');
+     
 
     },
 
     detailPageLoad: function(component, event, helper) {
         var EventId = component.get("v.event");
         //alert(EventId.eventId);
+        
         var action = component.get("c.getEventDetail");
+        
         action.setParams({
             "eventId": EventId.eventId
         });
@@ -20,9 +23,13 @@
             if (state === "SUCCESS") {
                 if (response.getReturnValue() !== '') {
                     component.set("v.eventArticle", response.getReturnValue()[0]);
-                    //alert(response.getReturnValue()[0].eventName);
+                    //alert(response.getReturnValue()[0].eventId);
+                   component.set("v.eventFeedId",response.getReturnValue()[0].eventId);
+                    component.set("v.showFeed",true);
+                    
 
                 }
+                
             }
 
         });
@@ -38,6 +45,7 @@
             if (component.isValid() && state === "SUCCESS") {
                 component.set("v.trainers", response.getReturnValue());
                 //alert(response.getReturnValue()[0].Participant_Name__r.Name);
+                
             }
         });
         $A.enqueueAction(actionTrainerList);
@@ -86,12 +94,20 @@
     },
 
     upcomingEventDisplay: function(component, event, helper) {
+        
+ 
         var removeTarget1 = component.find('feedContent');
         $A.util.removeClass(removeTarget1, 'slds-show');
         var defaultTab = component.find('tab-feed');
         $A.util.removeClass(defaultTab, 'slds-active');
         var cmpTarget = component.find('upcomingTabContent');
         $A.util.addClass(cmpTarget, 'slds-show');
+        
+        //var selectEvent = $A.get("e.c:CORE_LA_HandleEvent");
+       // selectEvent.setParams({
+        //   "componentName": "c:CORE_LA_ChatterFeed",
+         // "event": component.get("v.event")
+      // }).fire();
 
     },
     showDiv: function(component, event, helper) {
@@ -139,5 +155,20 @@
         var img2 = component.find("myimg10");
         $A.util.toggleClass(img2, "slds-show");
     },
+    	getOccurenceDetail : function(component, event, helper) {
+        var selectEvent = $A.get("e.c:CORE_LA_HandleEvent");
+        selectEvent.setParams({
+            "componentName": "c:CORE_LA_OccurenceDetail",
+            "event": component.get("v.event")
+        }).fire();
+        },
+    Poll : function (component, event, helper) {
+    var navEvt = $A.get("e.force:navigateToSObject");
+    navEvt.setParams({
+      "recordId": component.get("v.event").eventId,
+      "slideDevName": "related"
+    });
+    navEvt.fire();
+},
 
 })

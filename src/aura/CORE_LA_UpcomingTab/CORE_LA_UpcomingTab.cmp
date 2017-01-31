@@ -1,4 +1,4 @@
-<aura:component implements="force:appHostable" controller="CORE_Bharath_Event">
+<aura:component implements="force:appHostable" controller="CORE_LA_Controller">
 	<aura:attribute name="eventList" type="CORE_LA_EventWrapperClass.Event[]" description="Contains detail of the event" />
     <aura:attribute name="filterType" type="String" description="the filter type applied on the page" default="All Events" />
     <aura:attribute name="sortType" type="String" description="the sort type applied on the page" default="Date" />
@@ -62,15 +62,10 @@
                                 <span class="slds-truncate">Event name</span>
                             </a>
                         </li>
-                        <!--<li class="slds-dropdown__item" role="presentation">
-                            <a href="javascript:void(0);" role="menuitem" tabindex="-1">
-                                <span class="slds-truncate">Number of attendees</span>
-                            </a>
-                        </li>-->
                     </ul>
                 </div>
             </aura:if>   
         </div>
     </div>   
-    <c:CORE_LA_EventCardListComponent filterType="All Events" sortType="Date"  eventStatus="null" showMoreStatus="true" />
+    <c:CORE_LA_EventCardListComponent filterType="All Events" sortType="Date"  eventStatus="None" showMoreStatus="true" trainerId=""/>
 </aura:component>

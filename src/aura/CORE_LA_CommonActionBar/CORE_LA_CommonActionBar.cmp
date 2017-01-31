@@ -75,16 +75,7 @@
                 </span>
             </div>
         </aura:if>
-        <div>
-            <span onclick="{!c.shareEvent}">
-                <figure>
-                    <span class="slds-icon_container slds-icon-action-share slds-icon_container--circle">
-                        <img src="/resource/Lightning_designing_style/assets/icons/action/share_60.png"></img>
-                    </span>
-                    <figcaption class="slds-p-top--x-small slds-text-body--small">Share</figcaption></figure>
-                
-            </span>
-        </div>
+
     </div>
     	<!-- Registration Popup -->
 	<aura:if isTrue="{!v.isRegistrationPopup}">

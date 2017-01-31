@@ -270,6 +270,7 @@
         <columns>Location__c</columns>
         <columns>No_of_Attendees__c</columns>
         <columns>Recurring__c</columns>
+        <columns>Status__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>

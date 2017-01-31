@@ -1,11 +1,9 @@
 <aura:component implements="force:appHostable" controller="CORE_LA_EventController">
-    <aura:attribute name="recordId" type="String" default="aDjV00000004Cv0KAE"/>
+    <aura:attribute name="recordId" type="String"  default="aDjV00000004CuvKAE"/>
     <aura:attribute name="eventRecordDetails" type="CORE_LA_Event__c"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:registerEvent name="openCreateEventLandingPage" type="c:CORE_LA_HandleCreateEvent"/>
-    
-    <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" /> 
-    <ltng:require scripts="{!$Resource.AA_Agent_LightningAppStatic + '/libs/jquery-3.0.0.min.js'}" /> 
+
     
     <div class="heading">
         <div class="slds-page-header back" data-aura-rendered-by="4:299;a" role="banner" data-aura-class="cCORE_LA_UpcomingDetail">

@@ -24,6 +24,8 @@
         $A.util.removeClass(removeTarget2, 'slds-show');
         var cmpTarget = component.find('profileContent');
         $A.util.addClass(cmpTarget, 'slds-show');
+        
+
 
     },
     upcomingDisplay: function(component, event, helper) {
@@ -36,6 +38,7 @@
         $A.util.removeClass(removeProfileactive,'slds-active');
         var cmpTarget = component.find('upcomingContent');
         $A.util.addClass(cmpTarget, 'slds-show');
+      
 
     },
 
@@ -50,6 +53,8 @@
         $A.util.addClass(cmpTarget, 'slds-show');
         var removeProfileactive=component.find('tab-profile');
         $A.util.removeClass(removeProfileactive,'slds-active');
+     
+
 
     },
     

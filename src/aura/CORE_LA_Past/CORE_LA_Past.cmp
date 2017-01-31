@@ -5,8 +5,7 @@
     <aura:attribute name="showShareList" type="boolean" default="false"/>
     <aura:attribute name="isCreateEventPopup" type="boolean" default="false" description="Flag to manage create event popup" />
     <aura:handler name="closeCreateEventPopup" event="c:CORE_LA_CloseCreatePopupEvent" action="{!c.handleCloseCreatePopupEvent}" />
-    
-    
+      <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
     
     <style>
         .slds-button--icon-border1{
@@ -14,37 +13,27 @@
         height: 1.2rem;
         }
     </style>
-    <!--button class="slds-button slds-button neutral test">Create New Event</button -->
-    <ui:button class="slds-button slds-button--neutral test" label="Create New Event" press="{!c.openCreateEventPopup}"></ui:button>
-    <div class="heading">All Past Events
-        <div>
-            <div class="slds-button-group filter-sort" role="group">
-                <button class="slds-button slds-button--icon-more" aria-haspopup="true" title="More Actions" onclick="{!c.showSortMenu}">
-                    <img class="icons_group" src="/resource/Lightning_designing_style/assets/icons/utility/sort_60.png"></img>
-                </button>
-            </div>
-            <aura:if isTrue="{!v.showSort}">
-                <div  id="sortOptions" class="slds-dropdown slds-dropdown--right events-sortdropdown">
-                    <ul class="slds-dropdown__list" role="menu" >
-                        <li class="slds-dropdown__item events-bold" role="presentation">
-                            <a href="javascript:void(0);" role="menuitem" tabindex="0">
-                                <span class="slds-truncate">Date (Chronological)</span>
-                            </a>
-                        </li>
-                        <li class="slds-dropdown__item" role="presentation">
-                            <a href="javascript:void(0);" role="menuitem" tabindex="-1">
-                                <span class="slds-truncate">Event name (A-Z)</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </aura:if>   
-        </div>
-    </div>
-    
-     <c:CORE_LA_EventCardListComponent filterType="Registered" sortType="Date" limitRecords="10" offsetValue="0" eventStatus="Posted" showMoreStatus="false" />
-    
-    
+<div class="events-create-parent">
+ <ui:button class="slds-button slds-button--neutral test" label="Create New Event" press="{!c.openCreateEventPopup}"></ui:button>  
+  <lightning:tabset >
+    <lightning:tab label="POSTED">
+     <div class="events">Events Created</div>
+     <c:CORE_LA_EventCardListComponent filterType="Saved" sortType="Date" limitRecords="10" offsetValue="0" eventStatus="Posted" showMoreStatus="false" trainerId="" />
+    </lightning:tab>
+    <lightning:tab label="DRAFTS" >
+      <lightning:buttonMenu iconName="utility:filterList" iconSize="large" >
+        <lightning:menuItem label="All Events "    value="1" onactive="{! c.handleClick }" />
+        <lightning:menuItem label="Multi-event"   value="2" onactive="{! c.handleClick }" />
+      </lightning:buttonMenu>
+      <lightning:buttonMenu iconName="utility:sort" iconSize="large" menuAlignment="right">
+        <lightning:menuItem label="Date (Chronological - default)"    value="1" onactive="{! c.handleClick }" />
+        <lightning:menuItem label="Event name (A-Z)"   value="2" onactive="{! c.handleClick }" />
+        <lightning:menuItem label="Number of attendees " value="3" onactive="{! c.handleClick }" />
+      </lightning:buttonMenu>
+    <c:CORE_LA_EventCardListComponent filterType="Saved" sortType="Date" limitRecords="10" offsetValue="0" eventStatus="Draft" showMoreStatus="false" trainerId="" />
+    </lightning:tab>
+  </lightning:tabset>
+</div>  
     
     <!-- Create Event Popup -->
     <aura:if isTrue="{!v.isCreateEventPopup}">
@@ -52,5 +41,6 @@
            <c:CORE_LA_event_popup isCreateEventPopup="{!v.isCreateEventPopup}"></c:CORE_LA_event_popup>
         </div>
     </aura:if>
+  
     <!-- Create Event Popup -->
 </aura:component>

@@ -1,23 +1,33 @@
-<aura:component controller="CORE_Bharath_Event">
+<aura:component controller="CORE_LA_Controller">
     <aura:attribute name="eventList" type="CORE_LA_EventWrapperClass.Event[]" description="Contains detail of the event" />
     <aura:attribute name="filterType" type="String" description="the filter type applied on the page" default="All Events" />
-    <aura:attribute name="eventstatus" type="String"  />
-     <aura:attribute name="showMoreStatus" type="Boolean"  Default="true"/>
+    <aura:attribute name="eventStatus" type="String"  Default="None"  Description="Posted Or Draft for create Screen"/>
+    <aura:attribute name="trainerId" type="String"  Default=""/>
+    <aura:attribute name="externalEmail" type="String" Default="" />
+    <aura:attribute name="showMoreStatus" type="Boolean"  Default="true"/>
+    <aura:attribute name="commonActionBarHide" type="Boolean"  Default="false"/>
     <aura:attribute name="sortType" type="String" description="the sort type applied on the page" default="Date" />
     <aura:attribute name="limitRecords" type="Integer" description="the number of events to be populated on the page" default="2"/>
     <aura:attribute name="offsetValue" type="Integer" description="the offset value for the page" default="0" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-  <aura:if isTrue="{!v.showMoreStatus}"> 
-     <aura:iteration items="{!v.eventList}" var="event">
-        <c:CORE_LA_EventCard event="{!event}" actionBarHide="True"/>
-     </aura:iteration>
-    <ui:button aura:id="button" buttonTitle="Show More" class="button slds-button slds-button--neutral show-more" label="Show More" press="{!c.showMoreEvents}"/>
-  <aura:set attribute="else">
-    <aura:iteration items="{!v.eventList}" var="event">
-        <c:CORE_LA_EventCard event="{!event}" actionBarHide="False"/>
-    </aura:iteration>
-    </aura:set>
- </aura:if> 
-   
+    <aura:if isTrue="{!v.showMoreStatus}"> 
+        <aura:iteration items="{!v.eventList}" var="event">
+            <c:CORE_LA_EventCard event="{!event}" actionBarHide="True"/>
+        </aura:iteration>
+        <ui:button aura:id="button" buttonTitle="Show More" class="button slds-button slds-button--neutral show-more" label="Show More" press="{!c.showMoreEvents}"/>
+     <aura:set attribute="else">
+         <aura:if isTrue="{!v.commonActionBarHide}"> 
+            <aura:iteration items="{!v.eventList}" var="event">
+                <c:CORE_LA_EventCard event="{!event}" actionBarHide="False" commonActionBarVisible="false"/>
+            </aura:iteration>
+             <aura:set attribute="else">
+                <aura:iteration items="{!v.eventList}" var="event">
+                    <c:CORE_LA_EventCard event="{!event}" actionBarHide="False" />
+                </aura:iteration>
+           </aura:set>
+        </aura:if>
+      </aura:set>
+    </aura:if> 
+    
     
 </aura:component>

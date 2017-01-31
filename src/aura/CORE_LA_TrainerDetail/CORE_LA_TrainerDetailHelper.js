@@ -10,7 +10,7 @@
         action.setCallback(this, function(response) {
             
             component.set("v.externalInfo", response.getReturnValue()[0]);	
-           
+           component.set("v.responseReceivedExternalCheck", "true");	
         });
         var hideInternalTrainerDiv = component.find('InternalTrainerSpecific');
         $A.util.addClass(hideInternalTrainerDiv, 'slds-hide');

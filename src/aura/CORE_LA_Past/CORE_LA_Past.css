@@ -80,7 +80,15 @@
 .THIS .share-dropdown{
     float: right;
 }
-.THIS.test{
+.THIS .test{
     width: 94%;
-    margin: 1px 10px 14px;
+    margin: 0px 10px;
+}
+.THIS .slds-tabs--default__nav li{
+    width: 50%;
+    text-align: center;
+}
+.THIS.events-create-parent .slds-tabs--default__content:nth-child(3){
+        text-align: right;
+    margin-right: 10px;
 }

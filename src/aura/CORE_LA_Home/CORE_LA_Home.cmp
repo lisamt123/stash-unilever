@@ -21,7 +21,7 @@
                 <li aura:id="tab-default" role="presentation" title="Upcoming Events" class="slds-tabs--default__item slds" onclick="{!c.upcomingDisplay}">
                     <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">EVENT LIST</a>
                 </li>
-                <li aura:id="tab-past" class="slds-tabs--default__item slds" title="Past Events" role="presentation" onclick="{!c.pastDisplay}">
+                <li aura:id="tab-past" class="slds-tabs--default__item slds" title="Create Event " role="presentation" onclick="{!c.pastDisplay}">
                     <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">CREATE EVENT</a>
                 </li>
             </ul>
@@ -30,7 +30,8 @@
                 <div class="profile-parent">
                     <c:CORE_LA_Profile />
                 </div>
-                <c:CORE_LA_EventCardListComponent filterType="Registered" sortType="Date" limitRecords="2" offsetValue="0" eventStatus="null" showMoreStatus="true" />
+                 <span style="margin-left: 13px;">My Events </span>
+                <c:CORE_LA_EventCardListComponent filterType="Registered" sortType="Date" limitRecords="5" offsetValue="0" eventStatus="None" showMoreStatus="true" trainerId="" />
                 
             </div>
             <div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item" aura:id="upcomingContent">

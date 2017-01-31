@@ -7,6 +7,8 @@
      <aura:attribute name="externalEmail" type="String" />
      <aura:attribute name="trainers" type="CORE_LA_EventWrapperClass.TrainerWrapper" description='Internal Trainer Data'/> 
      <aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+     <aura:attribute name="responseReceived" type="Boolean" default="false"/>
+     <aura:attribute name="responseReceivedExternalCheck" type="Boolean" default="false"/>
     <style>
     .slds-tabs--default__link:focus {
     border-bottom-width: 0px !important;
@@ -45,11 +47,11 @@
                 </p>
                 <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/call_60.png">
                 </img>
-                <a class="icon-font icon-font1" >{!v.externalInfo.ExternalContact}</a>                     
+                <a class="icon-font icon-font1" href="{!'tel:' + v.externalInfo.ExternalContact}" >{!v.externalInfo.ExternalContact}</a> 
                   <br />
                  <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/email_60.png">
                  </img>
-                <a class="icon-font icon-font1" >{!v.externalInfo.ExternalEmail}</a>
+                <a class="icon-font icon-font1" href="{!'mailto:' + v.externalInfo.ExternalEmail}">{!v.externalInfo.ExternalEmail}</a>
                 <br/>
             </div>
         </div>
@@ -71,11 +73,11 @@
                 </p>
                 <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/call_60.png">
                 </img>
-                <a class="icon-font icon-font1" >{!v.trainerInfo.MobilePhone}</a>                     
+                <a class="icon-font icon-font1" href="{!'tel:' + v.trainerInfo.MobilePhone}" >{!v.trainerInfo.MobilePhone}</a>                     
                   <br />
                  <img class="icon-d" src="/resource/Lightning_designing_style/assets/icons/utility/email_60.png">
                   </img>
-                <a class="icon-font icon-font1" >{!v.trainerInfo.Email}</a>
+                <a class="icon-font icon-font1" href="{!'mailto:' + v.trainerInfo.Email}" >{!v.trainerInfo.Email}</a>
                 <br/>
             </div>
         </div>
@@ -88,6 +90,12 @@
     </div>
     <div class="slds-tabs--default">
 	   <a style="margin-bottom: 10px;" class="slds-tabs--default__link" >Up-coming events</a>
+        <aura:if isTrue="{!v.responseReceived}">
+          <c:CORE_LA_EventCardListComponent filterType="" sortType="Date" limitRecords="10" offsetValue="0" eventStatus="None" showMoreStatus="false" trainerId="{!v.trainerInfo.Id}" commonActionBarHide="true" />   
+         </aura:if>
+       <aura:if isTrue="{!v.responseReceivedExternalCheck}">
+         <c:CORE_LA_EventCardListComponent filterType="" sortType="Date" limitRecords="10" offsetValue="0" eventStatus="None" showMoreStatus="false" externalEmail="{!v.externalInfo.ExternalEmail}" commonActionBarHide="true" />   
+         </aura:if>
 	</div>
  </div>  
 </aura:component>

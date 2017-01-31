@@ -1,13 +1,22 @@
 <aura:component implements="force:appHostable" >
     <aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
     <aura:attribute name='actionBarHide' type='Boolean' default="true"/>
+    <aura:attribute name='commonActionBarVisible' type='Boolean' default="true"/>
     <div  class="events-cards" aura:id="eventCard">
-        <div class="slds-text-heading--small" onclick="{!c.getEventDetail}">{!v.event.eventName}</div>
-        <span class="num-attendees">{!v.event.numberOfAttendees} Attending </span>
-        <div class="status-event">{!v.event.userRegistrationStatus}</div>
+      <div class="slds-text-heading--small" onclick="{!c.getEventDetail}">{!v.event.eventName}</div>
+       <span class="num-attendees">{!v.event.numberOfAttendees} Attending </span>
+       <aura:if isTrue="{!v.actionBarHide}">
+               <div class="status-event">{!v.event.userRegistrationStatus}</div>
+         <aura:set attribute="else">
+                   <aura:if isTrue="{!v.event.recurring}">
+                        <lightning:badge class="events-badges" label="Multi-Event" />
+                   </aura:if>
+         </aura:set>
+       </aura:if>  
        <!-- <img class="event-banner" src="{!v.event.contentURLBannerImage}"></img>-->
         <img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy2.png"></img>
-        <div class="slds-text-body--regular"  >{!v.event.shortDescription}</div>
+        <div class="slds-text-body--regular line-clamp"  >{!v.event.shortDescription}</div>
+        <hr></hr>
         <div>
             <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
             <span class="date-adress">{!v.event.fromDate}  from {!v.event.toDate}</span>
@@ -19,7 +28,10 @@
     <aura:if isTrue="{!v.actionBarHide}">
         <c:CORE_LA_CommonActionBar event="{!v.event}" userRegistrationStatus="{!v.event.userRegistrationStatus}"/>
      <aura:set attribute="else">
-      <ui:button aura:id="button" buttonTitle="Show More" class="button slds-button slds-button--neutral show-more" label="Manage Event" press="{!c.navigateToCreatePage}"/>
+             <aura:if isTrue="{!v.commonActionBarVisible}">
+               <lightning:button variant="neutral" label="Manage Event" iconPosition="left" onclick="{! c.navigateToCreatePage }" />
+               <lightning:buttonIcon iconClass="dark" iconName="utility:preview" class="slds-button--icon-border slds-float--right" size="large" variant="container" onclick="{! c.handleClick }" alternativeText="Feed" />
+              </aura:if> 
     </aura:set>
   </aura:if> 
   

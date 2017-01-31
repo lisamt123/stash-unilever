@@ -2,7 +2,7 @@
     <aura:attribute name="eventIdneeded" type="String" />
     <aura:attribute name="attendees" type="CORE_LA_Participant__c[]"/>
     <aura:attribute name="trainers" type="CORE_LA_EventWrapperClass.TrainerWrapper" description='Contains detail of the Trainer Based On EventId'/>
-    <aura:attribute name="limitAttendeeRecords" type="Integer" default="2" />
+    <aura:attribute name="limitAttendeeRecords" type="Integer" default="10" />
     <aura:attribute name="OffsetLimitAttendee" type="Integer" default="0"/>
     <aura:attribute name="externalTrainerExists" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.defaultSection}" />
@@ -27,7 +27,7 @@
               <div class="trainer1" >
                 <div class="trainer-photo">
                      <ul>
-                         <li aura:id="TrainerImage" data-record="{!trainerList.ExternalEmail}" onclick="{!c.goToTrainerExternalDetail}">
+                         <li style="margin-right: 19px;" aura:id="TrainerImage" data-record="{!trainerList.ExternalEmail}" onclick="{!c.goToTrainerExternalDetail}">
                              <img title="{!trainerList.ExternalName }" src="{!trainerList.ExternalImage }" ></img> 
                          </li>
                          <li style="margin-top: -24px;" data-record="{!trainerList.Participant_Id}"  onclick="{!c.goToTrainerDetail}">

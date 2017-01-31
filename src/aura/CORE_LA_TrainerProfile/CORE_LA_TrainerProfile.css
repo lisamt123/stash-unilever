@@ -38,8 +38,8 @@
 }
 .THIS .trainer-detail1{
     position: absolute;
-    left: 83px;
-    margin-top: 28px;
+    left: 65px;
+    margin-top: 9px;
 }
 .THIS .trainer-detail p {
     font-size: 10px;
@@ -56,7 +56,7 @@
 }
 .THIS .trainer-photo {
     clear:both !important;
-    width: 18%;
+    width: 50px;
     margin: 12px;
 }
 .THIS .back-button{

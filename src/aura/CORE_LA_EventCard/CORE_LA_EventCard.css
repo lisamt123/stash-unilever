@@ -40,3 +40,14 @@
     color: #4bca81;
     font-size: 12px;
 }
+.THIS .line-clamp{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.THIS .events-badges{
+    background-color:#ffb75d;
+    color:#ffffff;
+}

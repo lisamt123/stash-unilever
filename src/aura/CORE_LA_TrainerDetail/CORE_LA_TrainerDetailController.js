@@ -14,6 +14,7 @@
         trainerUserInfo.setCallback(this, function(response) {
             component.set("v.trainerInfo", response.getReturnValue());	 
             component.set("v.trainerInfoId",response.getReturnValue().Id);
+              component.set("v.responseReceived", "true");	
       
         });
             var hideExternalTrainerDiv = component.find('externalTrainerSpecific');

@@ -40,8 +40,16 @@
     color: rgb(0, 136, 255);
 }
 .THIS .date-adress{
-    font-size:11px;
+    font-size: 11px;
+    color: #afafaf;    
+}
+.THIS .date-adress1{
+    font-size: 11px;
     color: #afafaf;
+    clear: both;
+    margin-top: -17px;
+    width: 77%;
+    float: left;
 }
 .THIS .event-banner{
     height:200px;
@@ -53,7 +61,7 @@
 }
 .THIS .tabUi li{
     width: 54%;
-    margin: 5px -10px;
+    margin: 0px -10px;
     text-align: center;
 }
 .THIS .body-content{
@@ -189,7 +197,7 @@
 .THIS .trainer-detail1{
     position: absolute;
     left: 83px;
-    margin-top: 28px;
+    margin-top: 9px;
 }
 .THIS .trainer-detail p {
     font-size: 10px;
@@ -202,15 +210,18 @@
 .THIS .slds-post {
     background: #fff;
     padding: 0.5rem 1rem;
-    BORDER: 1px solid rgb(216, 221, 230);
+
 }
 .THIS .trainer-photo {
-    clear:both !important;
-    width: 18%;
-    margin: 12px;
+    float:left;
+    width: 50px;
 }
 .THIS .back-button{
     padding: 1rem .75rem;
     border-bottom: 1px solid #d8dde6;
     background: #f7f9fb;
+}
+.THIS .title1{
+        width: 80%;
+    float: left;
 }

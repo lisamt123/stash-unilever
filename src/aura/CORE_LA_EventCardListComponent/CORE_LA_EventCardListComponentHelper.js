@@ -5,8 +5,10 @@
                           sortType :component.get("v.sortType"),
                           limitRecords:component.get("v.limitRecords") ,
                           offsetValue: component.get("v.offsetValue"),
-                          trainerId:null,
-                          eventstatus:component.get("v.eventStatus"),
+                          trainerId:component.get("v.trainerId"),
+                          eventStatus:component.get("v.eventStatus"),
+                          externalEmail:component.get("v.externalEmail"),
+                          commonActionBarHide:component.get("v.commonActionBarHide"),
                           showMoreStatus:component.get("v.showMoreStatus")
                          });
         action.setCallback(this, function(response) {

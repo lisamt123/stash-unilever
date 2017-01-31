@@ -20,7 +20,7 @@
                 var upDatedEventList=response.getReturnValue();
                 for (var evt in upDatedEventList) {
                     if (upDatedEventList.hasOwnProperty(evt)) {
-                        var ob=upDatedEventList[evt]
+                        var ob=upDatedEventList[evt];
                         var singleObj=[];
                         //singleObj.CORE_LA_EventWrapperClass.Event=ob
                         singleObj=ob;

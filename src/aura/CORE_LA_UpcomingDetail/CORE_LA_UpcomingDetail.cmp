@@ -1,6 +1,9 @@
 <aura:component controller="CORE_LA_Controller" implements="flexipage:availableForAllPageTypes,force:appHostable">
 	<aura:handler name="init" value="{!this}" action="{!c.defaultAboutSection}" />
 	<aura:handler name="init" value="{!this}" action="{!c.detailPageLoad}" />
+  
+    <aura:attribute name="eventFeedId" type="String"/>
+    <aura:attribute name="showFeed" type="boolean" default="false"/>
 	<aura:attribute name="showDiv" type="boolean" default="false"/>
 	<aura:attribute name="showDiv1" type="boolean" default="false"/>
 	<aura:attribute name="showDiv2" type="boolean" default="false"/>
@@ -22,10 +25,12 @@
 		</div>
 	</div>
     
+     <div onclick="{!c.Poll}">Poll</div>
     
-	<div   class="cards">
+	<div class="cards">
+       
 		<br></br>
-		<span class="slds-text-heading--small"> {!v.eventArticle.eventName}</span>
+		<div class="slds-text-heading--small slds-truncate title1"> {!v.eventArticle.eventName}</div>
 		<div class="top-register">
 			<figure>
 				<div style="margin-bottom: -8px;" class="slds-icon_container slds-icon-action-follow slds-icon_container--circle">
@@ -34,16 +39,12 @@
 				<figcaption class="slds-p-top--x-small slds-text-body--small">Register</figcaption>
 			</figure>
 		</div>
-		<div class="date-adress"> {!v.eventArticle.fromDate}</div>
+		<div class="date-adress1"> {!v.eventArticle.fromDate}</div>
 		<img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy2.png"></img>
 		<!-- <a href= "{!v.eventArticle.contentURLBannerImage}">CLICK ME</a> -->
 		<!--<iframe href= "{!v.eventArticle.contentURLBannerImage}">CLICK ME</iframe>-->
 		<div style="margin-top:6px;">{!v.eventArticle.details}</div>
-		<aura:if isTrue="{!v.eventArticle.recurring}">
-			<div class="slds-page-header">
-				<span>Past Events</span>
-			</div>
-		</aura:if>
+		
 		<hr></hr>
 		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
 		<span class="date-adress"> {!v.eventArticle.fromDate}</span>
@@ -51,6 +52,11 @@
 		<img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
 		<span class="date-adress loc1"> {!v.eventArticle.location}</span>
 		<hr></hr>
+        <aura:if isTrue="{!v.eventArticle.recurring}">
+			<div class="slds-page-header" onclick="{!c.getOccurenceDetail}" style="margin:-9px;">
+				<span>View Occurences</span>
+			</div>
+		</aura:if>
 		<!--	<img class="icons_group1" src="/resource/Lightning_designing_style/assets/icons/utility/bookmark_60.png"></img> -->
 		<div class="slds-tabs--default ">
 			<ul class="slds-tabs--default__nav tabUi " role="tablist">
@@ -64,8 +70,10 @@
 			<div aura:id="upcomingTabContent" id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item" >
 				<article class="slds-card slds-card--narrow">
 					
-						<c:ChatterPublisherCmp subjectId="{!v.event.eventId}" feedType="Record"/>
-						<c:ChatterFeedCmp subjectId="{!v.event.eventId}" feedType="Record"/>
+						<c:ChatterPublisherCmp subjectId="{!v.event.eventId}" feedType="Record"/> 
+						<c:ChatterFeedCmp subjectId="{!v.event.eventId}" feedType="Record"/> 
+                    
+                     
 						
 					
 				</article>
@@ -93,7 +101,7 @@
 										<li>
 											<img title="{!trainerList.ExternalName}" src="{!trainerList.ExternalImage }" ></img>
 										</li>
-										<li style="margin-top: -24px;">
+										<li style="margin-top: -18px;">
 											<img title="{!trainerList.Participant_Name}" src="{!trainerList.Participant_SmallPhotoUrl}"></img>
 										</li>
 									</ul>
@@ -109,7 +117,7 @@
                             {!trainerList.ExternalTitle }
                         </span>
 								</div>
-							</div>
+							</div><DIV style="clear:both;"></DIV>
 						</aura:iteration>
 					</div>
 				</article>
@@ -127,8 +135,12 @@
 								<div   aura:id="text" class="detail detail-content" >
 									<li>{!v.eventArticle.prerequisite}</li>
                                     <div class="feedContent">
-									<c:ChatterPublisherCmp subjectId="{!v.event.eventId}" feedType="Record"/>
-									<c:ChatterFeedCmp subjectId="{!v.event.eventId}" feedType="Record"/>
+                                        <aura:if isTrue="{!v.showFeed}">
+                    
+                                       <c:CORE_LA_ChatterFeed eventFeedId="{!v.eventArticle.eventId}"/>
+                                     </aura:if>
+									<!--<c:ChatterPublisherCmp subjectId="{!v.event.eventId}" feedType="Record"/> -->
+									<!-- <c:ChatterFeedCmp subjectId="{!v.event.eventId}" feedType="Record"/> -->
                                     </div>
 								</div>
 							</aura:if>
@@ -194,7 +206,9 @@
 				</div>
 			</div>
 		</div>
+        
 	</div>
+        
 	<div class="action-bar">
 		<c:CORE_LA_CommonActionBar event="{!v.event}" userRegistrationStatus="{!v.event.userRegistrationStatus}"/>
 	</div>
@@ -210,4 +224,5 @@
 			<c:CORE_LA_share ></c:CORE_LA_share>
 		</div>
 	</aura:if>
+    
 </aura:component>
