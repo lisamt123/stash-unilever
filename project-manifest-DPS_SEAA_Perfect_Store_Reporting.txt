@@ -28,6 +28,9 @@ src/documents/SEAA_Perfect_Store/Time_Icon.png
 src/documents/SEAA_Perfect_Store/Time_Icon.png-meta.xml
 src/documents/SEAA_Perfect_Store/UL_Icon.png
 src/documents/SEAA_Perfect_Store/UL_Logo.png-meta.xml
+src/groups/DPS_Perfect_Reporting.group
+src/objects/User.object
+src/layouts/User-User Layout.layout
 wave
 wave/metadata
 wave/metadata/DPS_metadata_country_targets.json
