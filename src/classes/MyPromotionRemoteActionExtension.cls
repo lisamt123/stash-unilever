@@ -315,7 +315,7 @@ Throws : N/A
     global static String invokeWfBOPromotion(String txId, String objectId, String Mode, String Content) {        
         String result = 'test';
         String STATUS_BANDED_PACK = 'Banded Pack Approved';
-        
+
         try{
             Id promoId = Id.valueOf(objectId);
             system.debug('promoId ::: '+promoId);
@@ -416,6 +416,12 @@ Throws : N/A
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_REJECT.toUpperCase())){
                 UL_PromotionWorkflowService.rejectWorkflow(promoId,promoLst,false);
             }
+            
+            if(Mode.equalsIgnoreCase(UL_Utility.STATUS_CLOSED.toUpperCase())){
+	            List<Id> promotionIds = new List<Id>{(Id) objectId};
+	            return UL_PromotionClosure.closePromotions(promotionIds);
+            }
+            
             if(Mode.equalsIgnoreCase('EndDate')){           
                 //throw new UL_CustomException('end date....');
                 try{
@@ -474,7 +480,7 @@ Returns: List of EARUI custom object
 Throws : N/A 
 ********************************************************************/ 
 
-global static EARUI getEARightsBOPromotion_SoCo(String txId, String objectId){
+global static EARUI RightsBOPromotion_SoCo(String txId, String objectId){
         List<EARUI> earBOPromotion = new List<EARUI>();
         
         Map<String, Object> unTypedMap = (Map<String, Object>)JSON.deserializeUntyped(objectId);
@@ -729,15 +735,22 @@ Throws : N/A
                     String status = tacticList[0].ACCL__Promotion__r.UL_Current_Status__c;
                     objectName = objectName.replace(UL_Utility.MANAGEDPACKAGE_NAMESPACE, UL_Utility.EMPTY_STRING);
                     objectName = objectName.replace(CUSTOM_OBJECT_POSTFIX,UL_Utility.EMPTY_STRING);
-                    UL_SmartUIEditability__c settings = UL_SmartUIEditability__c.getValues(objectName+UL_Utility.UNDERSCORE+status);
-                    if(settings != null){
+                    // UL_SmartUIEditability__c settings = UL_SmartUIEditability__c.getValues(objectName+UL_Utility.UNDERSCORE+status);
+                  
+                   UL_SmartUIEditability__c settings;
+                   //Tactic field visibility when promotion status not in Planning.
+                   if(status!=UL_UTILITY.STATUS_PLANNING){
+                   settings = new UL_SmartUIEditability__c();
+                   settings.UL_Fieldset_Name__c = 'UL_SoCo_NotApproved';
+                   }
+                          if(settings != null){
                         Schema.FieldSet fldSet = Schema.SObjectType.ACCL__Tactic__c.fieldSets.getMap().get(settings.UL_Fieldset_Name__c);
                         for(Schema.FieldSetMember fld: fldSet.getFields()){ 
                             
                             EARUI tacticObject = new EARUI();
                             tacticObject.Name = fld.getFieldPath();
                             tacticObject.Type = UtilityEnum.Attribute.Name();
-                            tacticObject.editable = false;  
+                            tacticObject.editable = fld.getRequired();  
                             earBOTactic.add(tacticObject);
                         }
                         
@@ -1908,6 +1921,8 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
     
     @RemoteAction
     global static List<LOExTacticTier> readLOExtTacticTiers(String txId,String readParams){
+    
+    system.debug('bansi..test'+readParams);
         List<LOExTacticTier> result = new List<LOExTacticTier>();
         Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(readParams);//deserializing the JSON from UI        
       /*  Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format
@@ -2232,10 +2247,10 @@ VERSION     AUTHOR        DATE           DETAIL                 Description
 1.0         Abhishek      18/01/2017     INITIAL DEV            
 ***************************************************************/
     global class LOPromotionHistory{
-        public String newValue;
-        public String oldValue;
-        public String userName;
-        public String dt ;
+        public String Name;
+        public String NewValue;
+        public String OldValue;
+        public String CreatedDate ;
     }
     
     /*******************************************************************
@@ -2249,20 +2264,22 @@ Throws : N/A
     global static List<LOPromotionHistory> readLOPromotionHistory(String txtID ,String prmId) {
         system.debug('readLOPromotionHistory ::: ');
         List<LOPromotionHistory> auditDataList = new List<LOPromotionHistory>();
+        system.debug('txtID ::: '+txtID);
+        system.debug('prmId ::: '+prmId);
         String promoId= String.valueOf(prmId);
-        system.debug('promoId ::: '+prmId);
+        
         try{
             for(ACCL__Promotion__History promHis: [SELECT CreatedBy.name,CreatedDate,NewValue,OldValue FROM ACCL__Promotion__History  where parentid = :promoId]){
                 if(promHis.NewValue != Null && promHis.OldValue != Null){
                     LOPromotionHistory auditContent = new LOPromotionHistory();
-                    auditContent.newValue = (string)promHis.NewValue;
-                    auditContent.oldValue = (string)promHis.OldValue;
-                    auditContent.userName = promHis.CreatedBy.name;
-                    auditContent.dt = String.Valueof(promHis.CreatedDate);
+                    auditContent.NewValue = (string)promHis.NewValue;
+                    auditContent.OldValue = (string)promHis.OldValue;
+                    auditContent.Name= promHis.CreatedBy.name;
+                    auditContent.CreatedDate = String.Valueof(promHis.CreatedDate);
                     auditDataList.add(auditContent); 
                 }
             }
-          
+          system.debug('Test01..bansi'+auditDataList);
         }catch(Exception ex){
             system.debug('Ex ::: '+ex);
         UL_Utility.logError(ex, UserInfo.getUserId());
