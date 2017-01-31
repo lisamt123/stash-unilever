@@ -4,7 +4,7 @@
         <editable>true</editable>
         <field>ACCL__ACSF_Service_Schedule__c.ACCL__Promotion_Loader__c</field>
         <readable>true</readable>
-    </fieldPermissions> 
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Account_Bill_To__c.ACCL__Bill_To__c</field>
@@ -7966,23 +7966,23 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>UL_PromotionCategory__c.Heroku_Product_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>UL_PromotionCategory__c.Product__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>UL_PromotionCategory__c.Promotion__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>UL_UserCustomerProduct__c.AccessType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>UL_UserCustomerProduct__c.Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>UL_UserCustomerProduct__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
