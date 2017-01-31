@@ -214,3 +214,5 @@ src/classes/PQN_GlobalcountryReportTest.cls
 src/classes/PQN_GlobalcountryReportTest.cls-meta.xml
 src/classes/PQN_GlobalgeoTest.cls
 src/classes/PQN_GlobalgeoTest.cls-meta.xml
+src/classes/PQN_GlobalCategoryReporttest.cls
+src/classes/PQN_GlobalCategoryReporttest.cls-meta.xml
