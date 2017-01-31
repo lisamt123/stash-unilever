@@ -9571,7 +9571,7 @@
     </recordTypeVisibilities>
     <tabSettings>
         <tab>standard-Account</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>standard-UserProvisioningRequest</tab>
