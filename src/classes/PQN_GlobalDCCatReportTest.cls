@@ -1,13 +1,13 @@
 @isTest
-public class PQN_GlobalDCCatReportTest{
-    public static testMethod void testPQN_GlobalCategoryReport(){
+private class PQN_GlobalDCCatReportTest{
+    private static testMethod void testPQN_GlobalReport(){
   
-    PQN_Sourcing_Unit__c source=PQN_TestLibraryUtil.createSourcingUnit();
-    insert source;
+    PQN_Sourcing_Unit__c sour=PQN_TestLibraryUtil.createSourcingUnit();
+    insert sour;
     
-    PQN_Sourcing_Unit__c source1=PQN_TestLibraryUtil.createSourcingUnit();
-    source1.Year__c='2016';
-    insert source1;
+    PQN_Sourcing_Unit__c source5=PQN_TestLibraryUtil.createSourcingUnit();
+    source5.Year__c='2016';
+    insert source5;
     
     
     PQN_Supplier__c  supplier=PQN_TestLibraryUtil.createSupplier();
@@ -21,6 +21,8 @@ public class PQN_GlobalDCCatReportTest{
     
      PQN_Pallet_Quality_Non_Conformance__c PQN = PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(supplier.id,acc.id,dcvolume.id);
      insert PQN;
+     
+         
      
         PQN_Pallet_Quality_Non_Conformance__c PQN1 = PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(supplier.id,acc.id,dcvolume.id);
         PQN1.Date_Pallet_Received__c=date.newInstance(2016,1,15);
@@ -52,6 +54,8 @@ public class PQN_GlobalDCCatReportTest{
         System.assertEquals(PQN4.Product_Category__c, 'Hair Care');
           Test.startTest();
     
+        
+        
         list<PQN_Pallet_Loss_Tree__c> losstreelst=new list<PQN_Pallet_Loss_Tree__c>();
         PQN_Pallet_Loss_Tree__c losstree=new PQN_Pallet_Loss_Tree__c();
         losstree.name='110';
@@ -191,9 +195,8 @@ public class PQN_GlobalDCCatReportTest{
        
         
         insert losstreelst;
-     
-      
-      PQN_GlobalCategoryReport category=new PQN_GlobalCategoryReport();
+        
+       /* PQN_GlobalCategoryReport category=new PQN_GlobalCategoryReport();
           category.getcategories();
           category.getsuppliers();
           category.Searchby();
@@ -201,12 +204,26 @@ public class PQN_GlobalDCCatReportTest{
           reportDC.getcategories();
           reportDC.getsuppliers();
           reportDC.Searchby();
-       /* PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
+        PQN_GlobalSUReport SU=new PQN_GlobalSUReport();
           SU.getcategories();
           SU.getsuppliers();
           SU.Searchby();*/
-       // PQN_GlobalOverview goverview=new PQN_GlobalOverview();
+          
+          PQN_GlobalGeographyReport report=new PQN_GlobalGeographyReport();
+          report.getcategories();
+          report.getsuppliers();
+          report.Searchby();
+                  
+          ApexPages.StandardController sc = new ApexPages.StandardController(PQN4);
+         PQN_Global_Overview_Geography overview=new PQN_Global_Overview_Geography(sc);
+         PQN_Global_Overview_Geography.generateStackData('mapStr');
+         PQN_Global_Overview_Geography.generateCatStackData('asd');
+          overview.getcategories();
+          overview.getsuppliers();
+          overview.Searchby();
      
+        PQN_Country_Report country=new PQN_Country_Report();
+      
           
      test.stoptest();
      }
