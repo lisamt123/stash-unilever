@@ -1601,11 +1601,6 @@
     </fieldPermissions>	
 	<fieldPermissions>
         <editable>true</editable>
-        <field>BFM_Withhold_Tax__c.Carrier_Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
         <field>BFM_Withhold_Tax__c.Carrier_Vendor_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
