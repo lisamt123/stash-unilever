@@ -56,6 +56,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_China_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals China - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_China</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_China</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Cyprus_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Cyprus – Manager</label>
@@ -427,6 +438,17 @@
         </sharedTo>
         <sharedFrom>
             <role>CEC_Manager_HGS_Europe</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_North_Asia_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Role Equals North Asia - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_North_Asia</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_North_Asia</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

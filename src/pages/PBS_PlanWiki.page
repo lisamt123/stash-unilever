@@ -11,10 +11,8 @@
 
 <style>
 
-    div.filterText{
-    
+    div.filterText{    
         text-indent: -10px;
-    
     }
     ul li{
       margin-left: 0em !important; 
@@ -81,16 +79,13 @@
                               <br/>
    <apex:commandButton value="Go" action="{!getPbsArticleSearchList}" id="submitButton" style="width:30" reRender="theSearchResults" status="actStatusId" />
    
-   
-   
-   <apex:actionStatus id="actStatusId" >
-                <apex:facet name="start" >
-                  <img src="/img/loading.gif" alt="loading"/>                    
-                </apex:facet>
-            </apex:actionStatus>
-            
+                        <apex:actionStatus id="actStatusId" >
+                            <apex:facet name="start" >
+                              <img src="/img/loading.gif" alt="loading"/>                    
+                            </apex:facet>
+                        </apex:actionStatus>         
                
-                            </div>
+                        </div>
                         
    
    
