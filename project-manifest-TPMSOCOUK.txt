@@ -145,7 +145,6 @@ src/objectTranslations/ACCL__Product_Part__c-en_GB.objectTranslation
 src/objectTranslations/ACCL__Product_Part__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Product_Template__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Product__c-en_GB.objectTranslation
-src/objectTranslations/ACCL__Product__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Product__c-es.objectTranslation
 src/objectTranslations/ACCL__Promotion_Store__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Promotion_Template_Hierarchy__c-en_US.objectTranslation
