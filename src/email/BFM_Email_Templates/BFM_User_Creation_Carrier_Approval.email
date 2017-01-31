@@ -1,0 +1,21 @@
+Prezado(a) {!Contact.Name},
+
+
+foi criada um nova solicitação de acesso ao sistema de fretes Unilever.
+
+Por gentileza analise os dados da solicitação abaixo e envie email  para xxxxxxx@unilever.com  com seu parecer. Apenas após o recebimento do email daremos continuidade ao processo de criação de usuário.
+
+
+Dados da Solicitação de novo Usuário:
+
+{!BFM_UserCreationRequest__c.FirstName__c}
+{!BFM_UserCreationRequest__c.LastName__c}
+{!BFM_UserCreationRequest__c.Email__c}
+{!BFM_UserCreationRequest__c.Username__c}
+{!BFM_UserCreationRequest__c.CommunityNickname__c}
+
+
+Atenciosamente,
+
+
+Administrador Unilever

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Search for Shipments with their related CT-es and validations.</description>
+    <label>Search Shipment Ct-e</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom37: Bridge</motif>
+    <page>BFM_SearchShipmentCTe_VF</page>
+</CustomTab>

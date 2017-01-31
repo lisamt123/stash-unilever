@@ -1008,6 +1008,34 @@
             </criteriaItems>
         </ruleEntry>
         <ruleEntry>
+            <assignedTo>CEC_China_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email China</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CEC_China_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>China</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
             <assignedTo>CEC_Hong_Kong_Queue</assignedTo>
             <assignedToType>Queue</assignedToType>
             <criteriaItems>
@@ -1049,5 +1077,9 @@
                 <value>False</value>
             </criteriaItems>
         </ruleEntry>
+    </assignmentRule>
+    <assignmentRule>
+        <fullName>Test</fullName>
+        <active>false</active>
     </assignmentRule>
 </AssignmentRules>

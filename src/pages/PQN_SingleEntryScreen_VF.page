@@ -97,7 +97,7 @@
                 <apex:param name="losName" value=""/>
                 
             </apex:actionFunction>
-            <apex:actionFunction name="callRepDC" action="{!callRepDC}" reRender="frm" immediate="{!immediate}" oncomplete="appendSearch()">
+            <apex:actionFunction name="callRepDC" action="{!callRepDC}" reRender="frm" immediate="{!immediate}" oncomplete="appendSearch()" status="rpcstatus">
                 <apex:param name="repDC" value=""/>
             </apex:actionFunction>
             
@@ -116,12 +116,17 @@
             <apex:commandButton value="Cancel" action="{!cancelPQN}" immediate="true"/>-->   
         </apex:pageblockbuttons>
         <apex:pageMessages id="renderErrorMsg"/>
+        
         <apex:pageBlockSection title="Reporting Distribution Centre" columns="2" collapsible="false" >
+        
             <!--<apex:inputField value="{!pqn.Reporting_DC__c}" required="true"/>-->
-            <apex:selectList value="{!pqn.Reporting_DC__c}" size="1" required="true" onchange="callRepDC(this.value)" rendered="{!if(pqn.id!=null,false,true)}">
-                <apex:selectOptions value="{!reportingdc}"/>
+            <apex:selectList value="{!pqn.Reporting_DC__c}" size="1" required="true" onchange="callRepDC(this.value)" rendered="{!if(pqn.id!=null,false,true)}" >               
+                <apex:selectOptions value="{!reportingdc}"></apex:selectoptions>
+              <apex:actionStatus id="rpcstatus" startText="Please wait..."></apex:actionStatus>  
             </apex:selectList>
-            <apex:inputField value="{!pqn.Reporting_DC__c}" required="true" rendered="{!if(pqn.id!=null,true,false)}"/>
+            
+            <apex:inputField value="{!pqn.Reporting_DC__c}" required="true" rendered="{!if(pqn.id!=null,true,false)}"/> 
+            
             <apex:inputField value="{!pqn.Region__c}" required="true"/>
             <apex:inputField value="{!pqn.DC_Country__c}" required="true"/>
             <apex:inputField value="{!pqn.Cluster__c}" required="true"/>

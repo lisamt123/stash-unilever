@@ -353,35 +353,43 @@ This method updates the details based on check / uncheck of FORM checkbox
     public void updateFormAvailabilityDetails(){
         
         if (!caseRecord.isFormKnown__c){
+            
             isProductCategoryEnabled = true;
+            caseRecord.isVariantKnown__c = FALSE;
+            caseRecord.isPacksizeKnown__c = FALSE;
             
             /*if form is missing, loading product hierarchy */
-            if (!caseRecord.isFormKnown__c){
-                if (productId != null && productId != ''){
-                    mdm_Case_Product__c productObj = [select id, Brand__c from mdm_Case_Product__c where Id = :productId ];
-                    if (productObj != null && productObj.Brand__c!= null){
-                        productHierarchy = productObj.Brand__c;
-                    }
-                    if (caseRecord.Case_product_category__c !=null && caseRecord.Case_product_category__c != ''){
-                        if(productHierarchy==null){
-                            productHierarchy='';
-                        }
-                        productHierarchy =  productHierarchy + ' ' + caseRecord.Case_product_category__c ;
-                    }
+            //if (!caseRecord.isFormKnown__c){
+            if (productId != null && productId != ''){
+                mdm_Case_Product__c productObj = [select id, Brand__c from mdm_Case_Product__c where Id = :productId ];
+                if (productObj != null && productObj.Brand__c!= null){
+                    productHierarchy = productObj.Brand__c;
                 }
-            } 
+                if (caseRecord.Case_product_category__c !=null && caseRecord.Case_product_category__c != ''){
+                    if(productHierarchy==null){
+                        productHierarchy='';
+                    }
+                    productHierarchy =  productHierarchy + ' ' + caseRecord.Case_product_category__c ;
+                }
+            }
+            //} 
         }else{
             isProductCategoryEnabled = false;
             //since form is known and if the other 2 are also known
-            if (caseRecord.isVariantKnown__c && caseRecord.isPacksizeKnown__c){
-                isProductCategoryEnabled = false;
-                if (productId != null && productId != ''){    
-                    mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c from mdm_Case_Product__c where Id = :productId ];
-                    if (productObj != null && productObj.Consumer_Product_Descriptor_Local_Lang__c != null){
+            //if (caseRecord.isVariantKnown__c && caseRecord.isPacksizeKnown__c){
+            //isProductCategoryEnabled = false;
+            if (productId != null && productId != ''){    
+                mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c,Global_CPG_Code__r.Corp_Prod_Grouping_Name__c,Consumer_Product_Descriptor_no_size__c  from mdm_Case_Product__c where Id = :productId ];                
+                if (productObj != null && productObj.Consumer_Product_Descriptor_Local_Lang__c != null){
+                    if(!caseRecord.isVariantKnown__c && productObj.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c!=null)
+                        productHierarchy = productObj.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c;
+                    else if(!caseRecord.isPacksizeKnown__c && productObj.Consumer_Product_Descriptor_no_size__c != null)
+                        productHierarchy = productObj.Consumer_Product_Descriptor_no_size__c;
+                    else
                         productHierarchy = productObj.Consumer_Product_Descriptor_Local_Lang__c;
-                    }
                 }
             }
+            //}
         }
         try{
             caseRecord.CEC_Product_Hierarchy__c = productHierarchy;
@@ -397,15 +405,26 @@ This method updates the details based on check / uncheck of VARIANT checkbox
     public void updateVariantAvailabilityDetails(){
         /*if variant is missing, loading product hierarchy */
         if (!caseRecord.isVariantKnown__c){
+            caseRecord.isPacksizeKnown__c = FALSE;
             if (productId != null && productId != ''){ 
                 mdm_Case_Product__c productObj = [select id, Global_CPG_Code__r.Corp_Prod_Grouping_Name__c from mdm_Case_Product__c where Id = :productId ];
                 if (productObj != null && productObj.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c != null){
                     productHierarchy = productObj.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c;
                 }
             }
-        }else {
+        }else {//CSC-5328
+            
+            caseRecord.isFormKnown__c  = TRUE;
+            isProductCategoryEnabled = false;
+            if (!caseRecord.isPacksizeKnown__c && productId != null && productId != ''){ 
+                mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_no_size__c from mdm_Case_Product__c where Id = :productId ];
+                if (productObj != null && productObj.Consumer_Product_Descriptor_no_size__c != null){
+                    productHierarchy = productObj.Consumer_Product_Descriptor_no_size__c;
+                }
+            }
+        
             //since variant is known and if the other 2 are also known
-            if (caseRecord.isFormKnown__c && caseRecord.isPacksizeKnown__c){
+          /*  if (caseRecord.isFormKnown__c && caseRecord.isPacksizeKnown__c){
                 isProductCategoryEnabled = false;
                 if (productId != null && productId != ''){ 
                     mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c from mdm_Case_Product__c where Id = :productId ];
@@ -413,7 +432,7 @@ This method updates the details based on check / uncheck of VARIANT checkbox
                         productHierarchy = productObj.Consumer_Product_Descriptor_Local_Lang__c;
                     }
                 }
-            }
+            }*/
         }
         try{
             caseRecord.CEC_Product_Hierarchy__c = productHierarchy;
@@ -435,9 +454,20 @@ This method updates the details based on check / uncheck of PACK SIZE checkbox
                     productHierarchy = productObj.Consumer_Product_Descriptor_no_size__c;
                 }
             }
-        } else {
+        } else {//CSC-5328
+        
+            caseRecord.isFormKnown__c  = TRUE;
+            caseRecord.isVariantKnown__c = TRUE;
+            isProductCategoryEnabled = false;
+            if (productId != null && productId != ''){ 
+                mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c from mdm_Case_Product__c where Id = :productId ];
+                if (productObj != null && productObj.Consumer_Product_Descriptor_Local_Lang__c != null){
+                    productHierarchy = productObj.Consumer_Product_Descriptor_Local_Lang__c;
+                }
+            }
+            
             //since PACK SIZE is known and if the other 2 are also known
-            if (caseRecord.isFormKnown__c && caseRecord.isVariantKnown__c){
+           /* if (caseRecord.isFormKnown__c && caseRecord.isVariantKnown__c){
                 isProductCategoryEnabled = false;
                 if (productId != null && productId != ''){ 
                     mdm_Case_Product__c productObj = [select id, Consumer_Product_Descriptor_Local_Lang__c from mdm_Case_Product__c where Id = :productId ];
@@ -445,7 +475,7 @@ This method updates the details based on check / uncheck of PACK SIZE checkbox
                         productHierarchy = productObj.Consumer_Product_Descriptor_Local_Lang__c;
                     }
                 }
-            }
+            }*/
         }
         try{
             caseRecord.CEC_Product_Hierarchy__c = productHierarchy;

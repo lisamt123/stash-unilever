@@ -4,6 +4,7 @@ global without sharing class PQN_UploadNCData_Clone{
     public List<selectoption> filetype{get; set;}
   
     public PQN_UploadNCData_Clone (){
+        selectedfile = apexpages.currentpage().getparameters().get('fileType');
         filetype = new List<selectOption>();
         filetype.add(new SelectOption('Unilever','Unilever'));
         filetype.add(new SelectOption('Cannock','Cannock'));
@@ -12,9 +13,18 @@ global without sharing class PQN_UploadNCData_Clone{
     
     @RemoteAction
     global static Database.UpsertResult[] getSheetData(List<PQN_Pallet_Quality_Non_Conformance__c> xPQN, String selectedFileType,String timeStamp) {
-        Delete [select id From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true];
+        Delete [select id From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true and createdbyid=:UserInfo.getUserId()];
         system.debug(xPQN);
+        
         List<PQN_Pallet_Quality_Non_Conformance__c> xPQNLIST= xPQN;
+        Map<string,PQN_DC_Hierarchy__c> mapmasterdata = new Map<string,PQN_DC_Hierarchy__c>();
+        Map<string,PQN_DC_Hierarchy__c> mapdcdata = new Map<string,PQN_DC_Hierarchy__c>();
+        mapmasterdata = PQN_DC_Hierarchy__c.getAll();
+        
+        for(PQN_DC_Hierarchy__c dc: mapmasterdata.values()){
+            mapdcdata.put(dc.dc__c,dc);             
+        }
+        
         String errorDesc = '';
         List<Account> xAcc = new List<Account>();
         Map<String,Id> mapAcc = new Map<String,Id>();
@@ -63,6 +73,13 @@ global without sharing class PQN_UploadNCData_Clone{
             if(selectedFileType=='Unilever'){    
                 if(mapAcc.get(xP.Reporting_DC__c)!=null){
                     xP.Account__c =mapAcc.get(xP.Reporting_DC__c);
+                    if(mapdcdata.get(xP.Reporting_DC__c)!=null){
+                        xP.Region__c = mapdcdata.get(xP.Reporting_DC__c).region__c;
+                        xP.DC_Country__c = mapdcdata.get(xP.Reporting_DC__c).country__c;
+                        xP.Cluster__c = mapdcdata.get(xP.Reporting_DC__c).cluster__c;
+                        xP.Sub_Cluster__c = mapdcdata.get(xP.Reporting_DC__c).sub_cluster__c;                 
+                        xP.MCO__c = mapdcdata.get(xP.Reporting_DC__c).mco__c;
+                    }
                 }else{
                     xP.Account__c =errAccId;
                     errorDesc+='Reporting DC is not in system. </br>';
@@ -72,6 +89,13 @@ global without sharing class PQN_UploadNCData_Clone{
             if(selectedFileType=='Cannock'){
                 if(xAcc.size()>0){
                     xP.Account__c =xAcc[0].Id;
+                     if(mapdcdata.get('Cannock DC')!=null){
+                        xP.Region__c = mapdcdata.get('Cannock DC').region__c;
+                        xP.DC_Country__c = mapdcdata.get('Cannock DC').country__c;
+                        xP.Cluster__c = mapdcdata.get('Cannock DC').cluster__c;
+                        xP.Sub_Cluster__c = mapdcdata.get('Cannock DC').sub_cluster__c;                 
+                        xP.MCO__c = mapdcdata.get('Cannock DC').mco__c;
+                    }
                 }else{
                     xP.Account__c =errAccId;
                     errorDesc+='Reporting DC is not in system. </br>';
@@ -82,6 +106,13 @@ global without sharing class PQN_UploadNCData_Clone{
             
                 if(xAcc.size()>0){
                     xP.Account__c =xAcc[0].Id;
+                    if(mapdcdata.get('Heilbronn DC')!=null){
+                        xP.Region__c = mapdcdata.get('Heilbronn DC').region__c;
+                        xP.DC_Country__c = mapdcdata.get('Heilbronn DC').country__c;
+                        xP.Cluster__c = mapdcdata.get('Heilbronn DC').cluster__c;
+                        xP.Sub_Cluster__c = mapdcdata.get('Heilbronn DC').sub_cluster__c;                 
+                        xP.MCO__c = mapdcdata.get('Heilbronn DC').mco__c;
+                    }
                 }else{
                     xP.Account__c =errAccId;
                     errorDesc+='Reporting DC is not in system. </br>';
@@ -164,7 +195,7 @@ global without sharing class PQN_UploadNCData_Clone{
     
     @RemoteAction
     global static List<PQN_Pallet_Quality_Non_Conformance__c> sheetErrors(String timeStamp) {
-      return [select id,Reporting_DC__c,Delivery_Note_Number__c,Description__c,SKU__c,Supplier__c,Supplier_Number__c, Non_compliance_reason_code__c,Number_of_Pallets_Per_SKU_Non_Compliant__c,Date_Pallet_Received__c,Comments__c,Error_Description__c,Account__c  From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true];
+      return [select id,Reporting_DC__c,Delivery_Note_Number__c,Description__c,SKU__c,Supplier__c,Supplier_Number__c, Non_compliance_reason_code__c,Number_of_Pallets_Per_SKU_Non_Compliant__c,Date_Pallet_Received__c,Comments__c,Error_Description__c,Account__c  From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true and createdbyid=:userinfo.getuserid()];
     }
     
     
