@@ -1,6 +1,6 @@
 @isTest
-public class PQN_GlobalCategoryReporttest{
-    private static testMethod void testPQN_GlobalCategoryReport(){
+public class PQN_GlobalDCCatReportTest{
+    public static testMethod void testPQN_GlobalCategoryReport(){
   
     PQN_Sourcing_Unit__c source=PQN_TestLibraryUtil.createSourcingUnit();
     insert source;
@@ -15,9 +15,6 @@ public class PQN_GlobalCategoryReporttest{
     
     PQN_DC_Volumes__c dcvolume=PQN_TestLibraryUtil.createDCvolumes();
     insert dcvolume;
-    
-    PQN_Targets__c  tar=PQN_TestLibraryUtil.createtargets();
-    insert tar;
     
     Account acc=PQN_TestLibraryUtil.createpqnAccount('abc','srilanka');
     insert acc;
