@@ -3473,7 +3473,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <description>Category  will be auto populated from user record.</description>
         <externalId>false</externalId>
         <label>Category</label>
-        <length>30</length>
+        <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
