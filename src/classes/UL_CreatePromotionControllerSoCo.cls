@@ -242,8 +242,12 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         PageReference pr;
         
         try {
-			this.relatedRecord.ACCL__Commit_Date__c = this.relatedRecord.ACCL__Date_From__c;
-			database.insert(this.relatedRecord);
+            this.relatedRecord.ACCL__Commit_Date__c = this.relatedRecord.ACCL__Date_From__c;
+            this.relatedRecord.ACCL__Delivery_Date_From__c = this.relatedRecord.ACCL__Date_From__c;
+            this.relatedRecord.ACCL__Delivery_Date_Thru__c = this.relatedRecord.ACCL__Date_Thru__c;
+            this.relatedRecord.ACCL__Placement_Date_From__c = this.relatedRecord.ACCL__Date_From__c;
+            this.relatedRecord.ACCL__Placement_Date_Thru__c = this.relatedRecord.ACCL__Date_Thru__c;
+            database.insert(this.relatedRecord);
             Id promotionId=this.relatedRecord.id;           
             ApexPages.StandardController ctr = new ApexPages.StandardController(this.relatedRecord);
             String recordTypeDevName = [SELECT RecordType.DeveloperName FROM ACCL__Promotion__c where Id = :this.relatedRecord.Id].RecordType.DeveloperName;
@@ -268,6 +272,7 @@ public with sharing class UL_CreatePromotionControllerSoCo{
             //ApexPages.addMessage(msg);
             //Commented above line to display only the generic exception messages
             ApexPages.addMessages(ex);
+            
         }        
         return pr;
     }  

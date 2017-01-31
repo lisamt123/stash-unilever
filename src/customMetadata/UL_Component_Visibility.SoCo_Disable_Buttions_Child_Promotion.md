@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>UKI Common</label>
+    <label>SoCo Disable Buttions Child Promotion</label>
     <protected>false</protected>
     <values>
         <field>Common_for_Sales_Org__c</field>
@@ -12,15 +12,15 @@
     </values>
     <values>
         <field>UL_Components__c</field>
-        <value xsi:type="xsd:string">TOOLBAR_BTN_SUBMIT;TOOLBAR_BTN_APPROVE;TOOLBAR_BTN_REJECT;TOOLBAR_BTN_PUSH;TOOLBAR_BTN_RELEASE;TOOLBAR_BTN_ENDDATE;TOOLBAR_BTN_THRESHOLD;TOOLBAR_BTN_CLOSE</value>
+        <value xsi:type="xsd:string">TOOLBAR_BTN_ADDTACTIC;TACTIC_BTN_MANAGE_PRODS;TACTIC_BTN_MANAGE_FUNDS;TACTIC_BTN_MANAGE_TIERS;TACTIC_FUNDS_CHECKBOX;TOOLBAR_BTN_SUBMIT;TOOLBAR_BTN_APPROVE;TOOLBAR_BTN_ENDDATE;TOOLBAR_BTN_DUPLICATE;TOOLBAR_BTN_DELETE</value>
     </values>
     <values>
         <field>UL_Sales_Org__c</field>
-        <value xsi:type="xsd:string">UK SO</value>
+        <value xsi:type="xsd:string">AR01</value>
     </values>
     <values>
         <field>UL_Status__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">Child Promotions</value>
     </values>
     <values>
         <field>UL_Visible_Components__c</field>

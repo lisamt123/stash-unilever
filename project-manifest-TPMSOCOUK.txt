@@ -108,6 +108,8 @@ src/customMetadata/UL_KPI_Configuration.Investement_Cost.md
 src/customMetadata/UL_KPI_Configuration.Invoice_Type.md
 src/customMetadata/UL_KPI_Configuration.ROI.md
 src/customMetadata/UL_Component_Visibility.SoCo_Common_Layouts.md
+src/customMetadata/UL_Component_Visibility.SoCo_Disable_Buttions_Child_Promotion.md
+src/customMetadata/UL_Component_Visibility.UKI_Common_Layouts.md
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Account_Call_Setting__c-en_US.objectTranslation
@@ -490,6 +492,14 @@ src/classes/UL_ComponentVisibility.cls
 src/classes/UL_ComponentVisibility.cls-meta.xml
 src/classes/UL_fundCloseStatusHandler.cls
 src/classes/UL_fundCloseStatusHandler.cls-meta.xml
+src/classes/UL_PromotionClosure.cls
+src/classes/UL_PromotionClosure.cls-meta.xml
+src/classes/UL_PromotionClosureBatch.cls
+src/classes/UL_PromotionClosureBatch.cls-meta.xml
+src/classes/UL_PromotionClosureBatchTest.cls
+src/classes/UL_PromotionClosureBatchTest.cls-meta.xml
+src/classes/UL_PromotionClosureTest.cls
+src/classes/UL_PromotionClosureTest.cls-meta.xml
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml

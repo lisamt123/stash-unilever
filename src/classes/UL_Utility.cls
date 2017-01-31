@@ -135,6 +135,7 @@
         //Status
         public static final String STATUS_APPROVE = 'Approve';
         public static final String STATUS_REJECT = 'Reject';
+        public static final String STATUS_CLOSED = 'Closed';
         public static final String STATUS_ACTIVE = 'Active';
         public static final String STATUS_APPROVED = 'Approved';
         public static final String STATUS_SUBMIT = 'Submit';
