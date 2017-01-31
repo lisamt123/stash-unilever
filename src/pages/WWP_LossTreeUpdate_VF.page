@@ -114,7 +114,7 @@ select
         </div>
         <apex:outputPanel rendered="{!if( lossTree.Loss_Type__c='Dispatch Compliance' || lossTree.Loss_Type__c='Output Reliability',true,false)}">
         <apex:outputpanel rendered="{!showingPanel}" id="tpan">Tolerance level  for {!code1} = {!plantCode}</apex:outputpanel>
-        </apex:outputPanel>
+       </apex:outputPanel>
         
         
         
@@ -314,9 +314,9 @@ select
                                     <td>{!w.wlt.PO_QTY__c}</td>
                                    <td>{!w.wlt.GR_Date__c}</td>
                                     <td>{!w.wlt.GR_QTY__c}</td>
-                                    <td>{!w.wlt.SUPPLIER_OTIF_TIME_COMPLIANCE__c}</td>
-                                    <td>{!w.wlt.SUPPLIER_OTIF_QTY_COMPLIANCE__c}</td>
-                                    <td>{!w.wlt.OVERALL_SUPPLIER_OTIF_COMPLIANCE__c}</td>
+                                    <td>{!w.wlt.Formula_SUPPLIER_OTIF_TIME_COMPLIANCE__c}</td>
+                                    <td>{!w.wlt.formula_SUPPLIER_OTIF_QTY_COMPLIANCE__c}</td>
+                                    <td>{!w.wlt.Formula_OVERALL_SUPPLIER_OTIF_COMPLIANCE__c}</td>
                                    <!-- <td><apex:selectList value="{!w.selectbox1}" size="1" onchange="change12('{!w.i}',this);" id="mrp1"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
                                     <td><apex:selectList value="{!w.selectbox2}" size="1" onchange="change21('{!w.i}',this);" id="mrp2"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
                                     -->
@@ -433,7 +433,7 @@ select
             <apex:param name="losssecondParam3" value="" />
             </apex:actionfunction>
             
-           <apex:actionFunction action="{!showPanelsDiv1}" rerender="tpan,frm1" name="showpan" >          
+           <apex:actionFunction action="{!showPanelsDiv1}" rerender="tpan,frm1" name="showpan" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')">          
            <apex:param name="firstParams1" value="" />           
            </apex:actionFunction>
            
@@ -561,8 +561,12 @@ function callAct(){
 
 var ptCode = document.getElementById('j_id0:frm1:p1').value;
 
+if(document.getElementById('j_id0:frm1:lossT').value != 'Supplier OTIF'){
 showpan(ptCode);
-
+}
+else{
+document.getElementById('j_id0:frm1:tpan').style.display = 'none';
+}
 
 }
 </script>
@@ -589,7 +593,7 @@ var losstype = j$('[id$="lossT"]').val();
     j$('[id$="myTable"]').dataTable({
         "paging":   true, "ordering": true,"info":false,"bFilter": false, "bSearchable":false,
         "fixedColumns": true, "bLengthChange": true,"scrollY": 300,"scrollX":300,"order": [[ 7, "asc"],[8,"asc"],[2,"asc"]],
-        "columnDefs": [ { "orderable": false, "targets": [0,1,9,10,17,18,19,20]} ],"bStateSave": true});}   
+        "columnDefs": [ { "orderable": false, "targets": [0,1,19,20,21,22]} ],"bStateSave": true});}   
      if(losstype == 'Output Reliability' ){
     j$('[id$="myTable1"]').dataTable({
         "paging":true,"ordering": true, "fixedColumns": true,"info":  false,"bFilter": false,"order": [[ 4, "asc" ], [8,"asc"],[1,"asc"]],
