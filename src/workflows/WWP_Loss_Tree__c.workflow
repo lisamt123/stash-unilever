@@ -176,7 +176,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>IF((ISPICKVAL( Loss_Type__c ,&apos;Supplier OTIF&apos;))&amp;&amp;  NOT( ISPICKVAL( PRIORVALUE( Loss_Name__c ) , &apos;&apos;))&amp;&amp;NOT( ISPICKVAL( PRIORVALUE(  Loss_Sub_Family__c ) , &apos;&apos;))&amp;&amp;NOT( ISPICKVAL( PRIORVALUE(  Loss_Description__c ) , &apos;&apos;)   ) ,true,false)</formula>
+        <formula>IF((ISPICKVAL( Loss_Type__c ,&apos;Supplier OTIF&apos;))&amp;&amp;  NOT( ISPICKVAL( PRIORVALUE( Loss_Name__c ) , &apos;&apos;))&amp;&amp;NOT( ISPICKVAL( PRIORVALUE(  Loss_Sub_Family__c ) , &apos;&apos;))&amp;&amp;NOT( ISPICKVAL( PRIORVALUE(  Loss_Description__c ) , &apos;&apos;)  )&amp;&amp; (Send_to_spp_after_2_wk__c  &lt;&gt; true) ,true,false)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

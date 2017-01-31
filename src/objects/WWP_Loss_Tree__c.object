@@ -120,6 +120,32 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>Formula_OVERALL_SUPPLIER_OTIF_COMPLIANCE__c</fullName>
+        <externalId>false</externalId>
+        <formula>OVERALL_SUPPLIER_OTIF_COMPLIANCE__c  * 100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Formula_OVERALL_SUPPLIER_OTIF_COMPLIANCE</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Formula_SUPPLIER_OTIF_TIME_COMPLIANCE__c</fullName>
+        <externalId>false</externalId>
+        <formula>SUPPLIER_OTIF_TIME_COMPLIANCE__c  * 100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Formula_SUPPLIER_OTIF_TIME_COMPLIANCE</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>GR_Date__c</fullName>
         <externalId>false</externalId>
         <label>GR Date</label>
@@ -862,9 +888,9 @@
         <fullName>OVERALL_SUPPLIER_OTIF_COMPLIANCE__c</fullName>
         <externalId>false</externalId>
         <label>OVERALL SUPPLIER OTIF COMPLIANCE</label>
-        <precision>18</precision>
+        <precision>10</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1108,9 +1134,9 @@
         <fullName>SUPPLIER_OTIF_QTY_COMPLIANCE__c</fullName>
         <externalId>false</externalId>
         <label>SUPPLIER OTIF QTY COMPLIANCE</label>
-        <precision>18</precision>
+        <precision>10</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1119,9 +1145,9 @@
         <fullName>SUPPLIER_OTIF_TIME_COMPLIANCE__c</fullName>
         <externalId>false</externalId>
         <label>SUPPLIER OTIF TIME COMPLIANCE</label>
-        <precision>18</precision>
+        <precision>10</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1176,6 +1202,18 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>formula_SUPPLIER_OTIF_QTY_COMPLIANCE__c</fullName>
+        <externalId>false</externalId>
+        <formula>SUPPLIER_OTIF_QTY_COMPLIANCE__c  * 100</formula>
+        <label>formula_SUPPLIER_OTIF_QTY_COMPLIANCE</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>material_Description__c</fullName>

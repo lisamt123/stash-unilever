@@ -355,4 +355,12 @@
         <tab>Loss_Tree</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+	<recordTypeVisibilities>
+        <recordType>Account.WWP_Account</recordType>
+        <visible>True</visible>
+	</recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <recordType>Contact.WWP_contact_layout</recordType>
+        <visible>True</visible>
+	</recordTypeVisibilities>
 </PermissionSet>
