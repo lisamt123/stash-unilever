@@ -196,6 +196,8 @@ src/objects/BFM_Mulesoft_Endpoint__mdt.object
 src/objects/BFM_SES__c.object
 src/objects/BFM_Shipment__c.object
 src/objects/BFM_Stage__c.object
+src/objects/BFM_Payment_Method__c.object
+src/objects/BFM_Withhold_Tax__c.object
 src/objects/Account.object
 src/objects/Contact.object
 src/objects/BFM_User_Creation_Request_Error__c.object
