@@ -237,7 +237,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-<<<<<<< .merge_file_MlbXj4
         <fullName>DPS_Demographics__c</fullName>
         <externalId>false</externalId>
         <label>Demographics</label>
@@ -462,8 +461,6 @@
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
-=======
->>>>>>> .merge_file_3jjQVJ
         <fullName>Debit_Card_Refund_Limit__c</fullName>
         <description>CEC Debit Card Refund Limit is used to capture the user’s refund limit</description>
         <externalId>false</externalId>
@@ -815,11 +812,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-<<<<<<< .merge_file_MlbXj4
-    <fields>
-=======
      <fields>
->>>>>>> .merge_file_3jjQVJ
         <fullName>Language__c</fullName>
         <description>CEC: Language skills held by the user</description>
         <externalId>false</externalId>
@@ -3345,101 +3338,6 @@
     <fields>
         <fullName>WU_Permission_set_Check__c</fullName>
         <defaultValue>false</defaultValue>
-<<<<<<< .merge_file_MlbXj4
-        <externalId>false</externalId>
-        <label>Permission set Check</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Work_Level__c</fullName>
-        <externalId>false</externalId>
-        <label>Work Level</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>agf__External_ID__c</fullName>
-        <caseSensitive>true</caseSensitive>
-        <deprecated>false</deprecated>
-        <externalId>true</externalId>
-        <label>External ID</label>
-        <length>32</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>agf__GUS_User_Type__c</fullName>
-        <deprecated>false</deprecated>
-        <description>Full Time Employee - This will be used to identify all FTEs in GUS
-Contractor - This will be used to identify all Contractors in GUS
-Team User - This will be used to identify all Team Users in GUS
-API user - This will be used to identify all API users in GUS</description>
-        <externalId>false</externalId>
-        <label>GUS User Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Full Time Employee</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Contractor</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Team User</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>API User</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>agf__Notification_Level__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>Adjusts how often you are sent emails about Work.
-
-Bread &amp; Butter:  User comments and added as an Assignee
-Meat &amp; Potatoes: User comments, status changes and added as Assignee
-The Whole Enchilada: All notifications (Default)</inlineHelpText>
-        <label>Work Notification Level</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Bread &amp; Butter</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Meat &amp; Potatoes</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>The Whole Enchilada</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>agf__Show_All_Work_Comments__c</fullName>
-        <defaultValue>true</defaultValue>
-        <deprecated>false</deprecated>
-=======
->>>>>>> .merge_file_3jjQVJ
         <externalId>false</externalId>
         <label>Permission set Check</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -3460,24 +3358,7 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <defaultValue>false</defaultValue>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
-<<<<<<< .merge_file_MlbXj4
-        <inlineHelpText>Determines which version of the Work page you will see for Bugs and User Stories.</inlineHelpText>
-        <label>Work User Interface</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Classic</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Next Generation</fullName>
-                <default>true</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-=======
         <label>active user settings</label>
->>>>>>> .merge_file_3jjQVJ
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
@@ -3933,15 +3814,9 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>CORE.PROFILE.USERTYPE</columns>
         <filterScope>Everything</filterScope>
         <filters>
-<<<<<<< .merge_file_MlbXj4
-            <field>CORE.USERS.USERNAME</field>
-            <operation>contains</operation>
-            <value>kelvin.leong</value>
-=======
             <field>CORE.USER_ROLE.NAME</field>
             <operation>contains</operation>
             <value>North America</value>
->>>>>>> .merge_file_3jjQVJ
         </filters>
         <label>PM: My View All</label>
         <language>en_US</language>
@@ -4013,8 +3888,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <language>en_US</language>
     </listViews>
     <listViews>
-<<<<<<< .merge_file_MlbXj4
-=======
         <fullName>PM_My_view_UK</fullName>
         <columns>FULL_NAME</columns>
         <columns>CORE.USERS.ALIAS</columns>
@@ -4037,7 +3910,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <language>en_US</language>
     </listViews>
     <listViews>
->>>>>>> .merge_file_3jjQVJ
         <fullName>PM_My_view_test</fullName>
         <columns>FULL_NAME</columns>
         <columns>CORE.USERS.ALIAS</columns>
