@@ -31,7 +31,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Attachment_Count_Error_Message</shortDescription>
-        <value>This Long Term Agreement cannot move to this status as there is no Attachment attached to this Long Term Agreement</value>
+        <value>A Long Term Agreement cannot be submitted without an attachment</value>
     </labels>
     <labels>
         <fullName>AF_Add_Comment</fullName>
@@ -25630,7 +25630,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PP_BTN_SUBMITTEDFORAPPROVAL</shortDescription>
-        <value>Sumitted for Approval</value>
+        <value>Submitted for Approval</value>
     </labels>
     <labels>
         <fullName>PP_DELETE_VALIDATION_ERROR</fullName>
@@ -26992,6 +26992,14 @@ the campaign covers more than 15 countries</value>
         <protected>false</protected>
         <shortDescription>Planning Start And End Date</shortDescription>
         <value>Please enter Planning Start and End Dates, then set Planning Level</value>
+    </labels>
+	<labels>
+        <fullName>UL_DateOverlapingFound</fullName>
+        <categories>UL_IIBBTax_TriggerHandler</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>	Overalaping of periods was found</shortDescription>
+        <value>System has found an overlapping of time frames. Please check and correct the time frame</value>
     </labels>
     <labels>
         <fullName>UL_Pomotion_URL</fullName>

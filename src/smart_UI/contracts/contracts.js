@@ -59,4 +59,4 @@ global.dsexthovercontent = require('./DSExtHoverContent');
 global.dsmetadata = require('./DSMetaData');
 global.dscustomlabels = require('./DSCustomLabels');
 global.dslocale = require('./DSLocale');
-
+global.dskpilabels = require('./DSKpiLabels');

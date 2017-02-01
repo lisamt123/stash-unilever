@@ -1,11 +1,16 @@
 global.LOTacticEAR = [
     {"Type": "Object", "Name": "Tactic__c", "Editable": true},
-    {"Type": "Attribute", "Name": "Lift__c", "Visible": false},
-    {"Type": "UIElement", "Name": "TACTIC_BTN_MANAGE_PRODS", "Visible": false},
+    {"Type": "Attribute", "Name": "Lift__c", "Visible": true},
+    {"Type": "UIElement", "Name": "TACTIC_BTN_MANAGE_PRODS", "Visible": true},
     {"Type": "UIElement", "Name": "TACTIC_BTN_MANAGE_FUNDS", "Visible": true},
     {"Type": "UIElement", "Name": "TACTIC_BTN_MANAGE_TIERS", "Visible": true},
     {"Type": "UIElement", "Name": "ADD_FUND_BUTTON", "Editable": true},
-    {"Type": "UIElement", "Name": "DELETE_FUND_BUTTON", "Editable": false}
+    {"Type": "UIElement", "Name": "DELETE_FUND_BUTTON", "Editable": false},
+    //API - START TPM-XXX - New SoCo Tactic Layout Split
+    {"Type": "UIElement", "Name": "TILE_TACTIC_MAIN_UKI", "Visible": false},
+    {"Type": "UIElement", "Name": "TILE_TACTIC_MAIN_CORE", "Visible": false},
+    {"Type": "UIElement", "Name": "TILE_TACTIC_MAIN_SOCO", "Visible": true}
+    //API - END
 ];
 
 var loTacticMock = {
@@ -28,13 +33,13 @@ var loTacticMock = {
                 'SystemModstamp': '2016-05-30T07:29:36.000+0000',
                 'Promotion__c': 'a1I36000001EWDoEAO',
                 'Amount__c': 2000.00,
+                'Lift__c': 12.50,
                 'Compensation_Model__c': 'LumpSum',
                 'Date_From__c': '2016-04-09',
                 'Date_Thru__c': '2016-04-28',
                 'Included__c': true,
                 'Instore_Date_From__c': '2016-04-09',
                 'Instore_Date_Thru__c': '2016-04-28',
-                'Lift__c': 125.00,
                 'Payment_Method__c': 'Deduction',
                 'Pct_of_Stores__c': 100.00,
                 'Record_Link__c': '<a href=\'/a1W36000000qHpk\' target=\'_self\'>View</a>',
@@ -45,6 +50,7 @@ var loTacticMock = {
                 //PMA - START CODE - 2017-01-12 - New custom field
                 'UL_Payment_Method__c': 'Deduction',
                 'UL_Redemption__c': 10,
+                'UL_IsPushed__c': false,
                 //PMA - END CODE - 2017-01-12 - New custom field
                 "productfilter": {
                     "criteria": {
@@ -70,19 +76,20 @@ var loTacticMock = {
                 'SystemModstamp': '2016-05-12T12:02:15.000+0000',
                 'Promotion__c': 'a1I36000001EWDoEAO',
                 'Amount__c': 25000.00,
+                'Lift__c': 10.00,
                 'Compensation_Model__c': 'LumpSum',
                 'Date_From__c': '2016-04-09',
                 'Date_Thru__c': '2016-04-28',
                 'Included__c': true,
                 'Instore_Date_From__c': '2016-04-09',
                 'Instore_Date_Thru__c': '2016-04-28',
-                'Lift__c': 55.00,
                 'Payment_Method__c': 'Deduction',
                 'Pct_of_Stores__c': 100.00,
                 'Record_Link__c': '<a href=\'/a1W36000000qHpl\' target=\'_self\'>View</a>',
                 'Shipment_Date_From__c': '2016-04-09',
                 'Shipment_Date_Thru__c': '2016-04-28',
                 'Tactic_Template__c': 'a1V36000000nYQgEAM',
+                'UL_IsPushed__c': true,
                 'old_id__c': 'a1P6100000184veEAA'
             }, {
                 'Id': 'a1W360000010GJhEAM',
@@ -102,13 +109,14 @@ var loTacticMock = {
                 'Included__c': true,
                 'Instore_Date_From__c': '2016-04-09',
                 'Instore_Date_Thru__c': '2016-04-29',
-                'Lift__c': 95.00,
+                'Lift__c': 9.20,
                 'Payment_Method__c': 'Deduction',
                 'Pct_of_Stores__c': 100.00,
                 'Record_Link__c': '<a href=\'/a1W36000000qHrX\' target=\'_self\'>View</a>',
                 'Shipment_Date_From__c': '2016-04-09',
                 'Shipment_Date_Thru__c': '2016-04-29',
                 'Tactic_Template__c': 'a1V36000000nYQfEAM',
+                'UL_IsPushed__c': false,
                 'old_id__c': 'a1P61000000CQeCEAW'
             }]
         };

@@ -12,6 +12,7 @@ var PromotionAttachments = require('./PromotionAttachments');
 
 var PromotionPlanningPromotionEdit = require('./PromotionPlanningPromotionEdit');
 var PromotionChildAccounts = require('./PromotionChildAccounts.jsx');
+var PromotionHistory = require('./PromotionHistory.jsx');
 
 module.exports = new React.createClass({
     displayName: 'PromotionOverview',
@@ -19,12 +20,18 @@ module.exports = new React.createClass({
     propTypes: {
         promotion: React.PropTypes.object,      //Promotion details
         editMode: React.PropTypes.bool,         //Flag for showing Edit window
-        showAttachments: React.PropTypes.bool   //Flag for showing Attachments
+        showAttachments: React.PropTypes.bool,   //Flag for showing Attachments
     },
 
     render: function () {
         return (<div className="slds-grid slds-wrap tile-area">
-
+                {/* PMA - START CODE - TPM-1498 - Audit Trail */}
+                {(this.props.showPromotionHistory) ?
+                    <PromotionHistory promotionHistories={this.props.promotion.PromotionHistory}
+                                        closePromotionHistory={this.props.closePromotionHistory}
+                    /> 
+                : null}
+                {/* PMA - END CODE - TPM-1498 - Audit Trail */}
                 {(this.props.showAttachments) ?
                     <ReactCSSTransitionGroup component="div"
                                              className="slds-size--1-of-1"

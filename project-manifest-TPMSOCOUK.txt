@@ -206,6 +206,8 @@ src/triggers/UL_UserCustomerPromFundShareTrigger.trigger
 src/triggers/UL_UserCustomerPromFundShareTrigger.trigger-meta.xml
 src/triggers/UL_DeliveryProfile_MasterTrigger.trigger
 src/triggers/UL_DeliveryProfile_MasterTrigger.trigger-meta.xml
+src/triggers/UL_IIBBTAX_Trigger.trigger
+src/triggers/UL_IIBBTAX_Trigger.trigger-meta.xml
 src/layouts
 src/layouts/ACCL__Account_Set__c-SoCo_AccountSetLayout.layout
 src/layouts/ACCL__Account_Set__c-UKI_AccountSetLayout.layout
@@ -500,6 +502,8 @@ src/classes/UL_PromotionClosureBatchTest.cls
 src/classes/UL_PromotionClosureBatchTest.cls-meta.xml
 src/classes/UL_PromotionClosureTest.cls
 src/classes/UL_PromotionClosureTest.cls-meta.xml
+src/classes/UL_IIBBTax_TriggerHandler.cls
+src/classes/UL_IIBBTax_TriggerHandler.cls-meta.xml
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml

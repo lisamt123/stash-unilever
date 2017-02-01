@@ -112,10 +112,11 @@ body {
     }
 
     .slds-page-header__title {
-        max-width: 800px;
-        font-size: 1.6rem;
-        line-height: 1.6rem;
+        max-width: none;
+        font-size: 1.5rem;
+        line-height: 1.8rem;
         color: @biscay;
+        white-space: initial;
     }
 }
 
@@ -317,13 +318,13 @@ body {
 }
 
 .view-switch.slds-button--brand {
-    color: #ffffff;
+    color: @white;
     background-color: #0070d2;
 }
 
 .view-switch.slds-button--neutral {
-    color: #54698d;
-    background-color: #ffffff;
+    color: @label-color;
+    background-color: @white;
 }
 
 .view-switch > svg {
@@ -381,7 +382,7 @@ body {
     left: 105px;
     display: inline-block;
     border-right: 10px solid transparent;
-    border-top: 10px solid #ffffff;
+    border-top: 10px solid @white;
     border-left: 10px solid transparent;
     content: '';
 }
@@ -389,7 +390,7 @@ body {
 .slds-input[disabled] {
     border-width: 0;
     border-bottom: 1px solid @border-color;
-    background-color: #ffffff;
+    background-color: @white;
     cursor: default;
 }
 
@@ -442,7 +443,7 @@ body {
         margin-left: 0;
         padding-right: 2rem;
         width: 15rem;
-        color: #16325c;
+        color: @biscay;
         text-align: left;
         width: 100%;
 
@@ -453,7 +454,7 @@ body {
             right: 1rem;
             top: 50%;
             margin-top: -0.375rem;
-            fill: #54698d;
+            fill: @label-color;
         }
     }
 }
@@ -467,11 +468,11 @@ body {
 }
 
 .slds-popover__body {
-    background-color: #ffffff;
+    background-color: @white;
 }
 
 .slds-popover.slds-popover--panel::before {
-    background-color: #ffffff;
+    background-color: @white;
     z-index: 9999;
 }
 
@@ -882,31 +883,14 @@ body {
 
     .table--fixed-header {
         height: auto;
-        width: 100%;
 
         > section {
             height: auto;
-            max-height: 200px;
-        }
-
-        tr {
-            height: 49px;
-        }
-
-        thead {
-
-            tr:first-child {
-                height: 0;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
+            max-height: 208px;
         }
 
         > section.editMode > table thead tr th:first-child div.slds-truncate {
-            top: -4px;
+            top: -12px;
             padding: 20px 25px;
         }
     }
@@ -945,159 +929,80 @@ body {
     }
 }
 
-// Tactic Tiers panel
-.ui-tactic-tiers {
+// Tactic Tiers panel / Tactic Funds panel
+.ui-tactic-tiers, .ui-tactic-funds {
 
     .table--fixed-header {
         height: auto;
-        width: 100%;
 
         > section {
             height: auto;
+            max-height: 153px;
         }
+    }
+}
 
-        > section.viewMode {
-            max-height: 147px;
-        }
+//Tiers lookup / Funds lookup
+.tiers-lookup, .funds-lookup {
 
-        > section.editMode {
-            max-height: 298px;
+    .table--fixed-header > section table td {
 
-            table td .slds-form-element {
+        .slds-form-element {
+
+            input {
+                background: none;
+                border: none;
+                color: @science-blue;
+                text-decoration: underline;
+                -moz-appearance: textfield;
+
+                &:focus {
+                    background-color: @white;
+                    cursor: text;
+                    color: @black;
+                    text-decoration: none;
+                }
+
+                &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+            }
+
+            .slds-icon {
+                display: none;
+                position: absolute;
+                right: 10px;
+                top: 8px;
+            }
+
+            &:hover {
 
                 input {
-                    background: none;
-                    border: none;
-                    color: @science-blue;
-                    text-decoration: underline;
-
-                    &:focus {
-                        background-color: @white;
-                        cursor: text;
-                        color: @black;
-                        text-decoration: none;
-                    }
-
-                    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
-                        -webkit-appearance: none;
-                        margin: 0;
-                        -moz-appearance: textfield;
-                    }
+                    background-color: @white;
+                    cursor: pointer;
                 }
 
                 .slds-icon {
-                    display: none;
-                    position: absolute;
-                    right: 10px;
-                    top: 8px;
+                    display: inline;
                 }
-
-                &:hover {
-
-                    input {
-                        background-color: @white;
-                        cursor: pointer;
-                    }
-
-                    .slds-icon {
-                        display: inline;
-                    }
-                }
-            }
-
-            tr.selectedTacticTier {
-                background-color: @main-background-color;
-            }
-        }
-
-        thead {
-
-            tr:first-child {
-                height: 0;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
             }
         }
     }
 }
 
-//Funds lookup
-.funds-lookup {
+.tiers-lookup .table--fixed-header > section {
+    max-height: 298px;
 
-    .table--fixed-header {
-        height: auto;
-        width: 100%;
+    tr.selected-tier {
+        background-color: @main-background-color;
+    }
+}
 
-        > section {
-            height: 346px;
+.funds-lookup .table--fixed-header > section {
+    max-height: 362px;
 
-            table {
-
-                td {
-                    height: 50px;
-
-                    .slds-form-element {
-
-                        input {
-                            background: none;
-                            border: none;
-                            color: @science-blue;
-                            text-decoration: underline;
-
-                            &:focus {
-                                background-color: @white;
-                                cursor: text;
-                                color: @black;
-                                text-decoration: none;
-                            }
-
-                            &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
-                                -webkit-appearance: none;
-                                margin: 0;
-                                -moz-appearance: textfield;
-                            }
-                        }
-
-                        .slds-icon {
-                            display: none;
-                            position: absolute;
-                            right: 10px;
-                            top: 8px;
-                        }
-
-                        &:hover {
-
-                            input {
-                                background-color: @white;
-                                cursor: pointer;
-                            }
-
-                            .slds-icon {
-                                display: inline;
-                            }
-                        }
-                    }
-
-                    .slds-truncate {
-                        max-width: 18rem;
-                    }
-                }
-
-                thead {
-
-                    tr:first-child {
-                        height: 0;
-                        -webkit-touch-callout: none;
-                        -webkit-user-select: none;
-                        -moz-user-select: none;
-                        -ms-user-select: none;
-                        user-select: none;
-                    }
-                }
-            }
-        }
+    .slds-truncate {
+        max-width: 18rem;
     }
 }

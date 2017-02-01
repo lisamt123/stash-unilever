@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Common_for_Sales_Org__c</field>
-        <value xsi:type="xsd:boolean">true</value>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>UL_Attribute__c</field>
@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>UL_Components__c</field>
-        <value xsi:type="xsd:string">TOOLBAR_BTN_ADDTACTIC;TACTIC_BTN_MANAGE_PRODS;TACTIC_BTN_MANAGE_FUNDS;TACTIC_BTN_MANAGE_TIERS;TACTIC_FUNDS_CHECKBOX;TOOLBAR_BTN_SUBMIT;TOOLBAR_BTN_APPROVE;TOOLBAR_BTN_ENDDATE;TOOLBAR_BTN_DUPLICATE;TOOLBAR_BTN_DELETE</value>
+        <value xsi:type="xsd:string">TACTIC_BTN_MANAGE_TIERS;TACTIC_FUNDS_CHECKBOX;TOOLBAR_BTN_SUBMIT;TOOLBAR_BTN_APPROVE;TOOLBAR_BTN_ENDDATE;TOOLBAR_BTN_DUPLICATE;TOOLBAR_BTN_DELETE;TOOLBAR_BTN_CLOSE;TOOLBAR_BTN_EDIT;TOOLBAR_BTN_THRESHOLD;TOOLBAR_BTN_AUDITTRAIL</value>
     </values>
     <values>
         <field>UL_Sales_Org__c</field>

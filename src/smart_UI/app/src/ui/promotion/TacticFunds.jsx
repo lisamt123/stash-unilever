@@ -2,7 +2,7 @@
 
 var React = require('react');
 var Button = require('react-lightning-design-system').Button;
-var FundLookup = require('./FundLookup');
+var FundsLookup = require('./FundsLookup');
 
 var PromotionActions = require('../../actions/PromotionActions').PromotionActions;
 
@@ -11,29 +11,39 @@ module.exports = React.createClass({
 
     getInitialState: function () {
         return {
-            editingFunds: false
+            managingFunds: false
         }
     },
 
     componentWillReceiveProps: function (nextProps) {
-        if (nextProps.item.InvalidFunds) this.setState({editingFunds: true});
-        else this.setState({editingFunds: false});
+        if (nextProps.item.InvalidFunds) this.setState({managingFunds: true});
+        else this.setState({managingFunds: false});
     },
 
     componentWillMount: function () {
         PromotionActions.searchForFunds();
     },
 
-    openFundsLookup: function () {
-        this.setState({editingFunds: true});
+    manageFunds: function () {
+        this.setState({managingFunds: true});
     },
 
     onCancelFundsLookup: function () {
-        this.setState({editingFunds: false});
+        this.setState({managingFunds: false});
     },
 
     onApplyFundsLookup: function (funds) {
         PromotionActions.validateFunds(funds, this.props.item.Id);
+    },
+
+    scrollTable: function (e) {
+        var offset = 8 - e.target.scrollLeft;
+        var headers = e.target.querySelectorAll('table thead th');
+
+        for (var i = 0; i < headers.length; i++) {
+            headers[i].querySelector('div').style.left = offset + 'px';
+            offset += headers[i].offsetWidth;
+        }
     },
 
     isVisible(attribute){
@@ -42,67 +52,103 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        if (this.props.item == null) return null;
+        var titleCols = [
+            AppManager.getLabel('PP_LBL_FUND_NAME') || 'Fund Name',
+            AppManager.getLabel('PP_LBL_FUND_DESCRIPTION') || 'Description',
+            AppManager.getLabel('PP_LBL_FUND_TYPE') || 'Fund Type',
+            AppManager.getLabel('PP_LBL_AVAILABLE_TO_SPEND') || 'Available to Spend',
+            AppManager.getLabel('PP_LBL_PERCENTAGE_ALLOCATED') || '% Allocated',
+            AppManager.getLabel('PP_LBL_AMOUNT_ALLOCATED') || 'Amount Allocated',
+            AppManager.getLabel('PP_LBL_FUND_ANCHOR_CUSTOMER') || 'Anchor Customer',
+            AppManager.getLabel('PP_LBL_FUND_ANCHOR_PRODUCT') || 'Anchor Product'
+        ];
 
         return (
-            <div>
-                {this.state.editingFunds ?
-                    <FundLookup applyHandler={this.onApplyFundsLookup} cancelHandler={this.onCancelFundsLookup}
-                                item={this.props.item}/> : null}
-                <div className="tactic-tile">
-                    <div className="title slds-grid">
-                        <label>Funds</label>
-                        {(this.props.editMode && this.isVisible("TACTIC_BTN_MANAGE_TIERS")) ?
-                            <Button className="slds-container--right" type='neutral' icon='custom_apps' iconAlign='left'
-                                    onClick={() => this.openFundsLookup()}>
+            <div className="ui-tactic-funds">
+                <div className="title slds-grid">
+                    <label>{AppManager.getLabel("PP_TIT_FUNDS") || 'Tiered Funds'}</label>
+                    {(this.props.editMode && this.isVisible("TACTIC_BTN_MANAGE_FUNDS")) ?
+                        <div className="slds-container--right">
+                            <Button type='neutral' icon='custom_apps' iconAlign='left'
+                                    onClick={() => this.manageFunds()}>
                                 {AppManager.getLabel('PP_BTN_MANAGE_FUND') || 'Manage Funds'}
-                            </Button> : null}
-
-                    </div>
-                    {this.props.item.funds.length > 0 ?
-                        <div className="funds-grid slds-scrollable slds-m-vertical--medium">
-                            {this.props.item.funds.map((fund, i) =>
-                                <div className="funds-props" key={i}>
-                                    <div className="tactic-item">
-                                        <label>Fund Name</label>
-                                        <span>{fund.Name}</span>
-                                    </div>
-                                    <div className="tactic-item">
-                                        <label>Description</label>
-                                        <span>{fund.Description__c}</span>
-                                    </div>
-                                    <div className="tactic-item">
-                                        <label>Fund Type</label>
-                                        <span>{fund.Fund_Template_Description__c}</span>
-                                    </div>
-                                    <div className="tactic-item">
-                                        <label>Available to Spend</label>
-                                        <span>{fund.Amount__c}</span>
-                                    </div>
-                                    <div className="tactic-item">
-                                        <label>% Allocated</label>
-                                        <span>{fund.Allocation__c}</span>
-                                    </div>
-                                    <div className="tactic-item">
-                                        <label>Amount Allocated</label>
-                                        <span>{fund.Amount_Allocated__c}</span>
-                                    </div>
-                                    <div className="tactic-item">
-                                        <label>Anchor Customer</label>
-                                        <span>{fund.Anchor_Customer__c}</span>
-                                    </div>
-                                    <div className="tactic-item">
-                                        <label>Anchor Product</label>
-                                        <span>{fund.Anchor_Product__c}</span>
-                                    </div>
-                                </div>)}
-                        </div>
-                        :
-                        <div className="slds-m-vertical--medium">
-                            <span>{AppManager.getLabel('PP_LBL_NO_FUNDS') || 'No Funds associated to this tactic'}</span>
-                        </div>
-                    }
+                            </Button>
+                        </div> : null}
                 </div>
+                {this.props.item.funds != null && this.props.item.funds.length > 0 ?
+                    <div className="slds-grid slds-grid--vertical-align-center slds-grid--align-center">
+                        <div className="table--fixed-header slds-m-vertical--medium slds-m-top--medium">
+                            <section onScroll={(event) => this.scrollTable(event)}>
+                                <table className="slds-table--bordered slds-table--cell-buffer">
+                                    <thead>
+                                    <tr className="slds-text-heading--label">
+                                        {titleCols.map((title, ix) =>
+                                            <th key={ix} scope="col" title={title}>
+                                                {title}
+                                                <div className="slds-truncate">{title}</div>
+                                            </th>)}
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {this.props.item.funds.map((fund, ix) => {
+                                        return (
+                                            <tr key={'Fund_' + ix}>
+                                                <td>
+                                                    <div className="slds-truncate">
+                                                        {fund.Name}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="slds-truncate">
+                                                        {fund.Description__c}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="slds-truncate">
+                                                        {fund.Fund_Template_Description__c}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="slds-truncate">
+                                                        {Utils.Formatters.formatNumber(fund.Amount__c)}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="slds-truncate">
+                                                        {Utils.Formatters.formatNumber(fund.UL_Allocation__c)}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="slds-truncate">
+                                                        {Utils.Formatters.formatNumber(fund.UL_Amount_Allocated__c)}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="slds-truncate">
+                                                        {fund.Anchor_Customer__c}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="slds-truncate">
+                                                        {fund.Anchor_Product__c}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                    :
+                    <div className="slds-m-vertical--medium">
+                        <span>{AppManager.getLabel('PP_LBL_NO_FUNDS') || 'No Funds associated to this tactic'}</span>
+                    </div>
+                }
+                {this.state.managingFunds ?
+                    <FundsLookup applyHandler={this.onApplyFundsLookup} cancelHandler={this.onCancelFundsLookup}
+                                 item={this.props.item}/> : null}
             </div>
         )
     }

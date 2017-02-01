@@ -103,4 +103,12 @@
     <pluralLabel>IIBBTaxes</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>CheckIsFromLessThanThru</fullName>
+        <active>true</active>
+        <description>Check whether from_date is lower as the thru date</description>
+        <errorConditionFormula>(Date_From__c -  Date_Thru__c) &gt;0</errorConditionFormula>
+        <errorDisplayField>Date_From__c</errorDisplayField>
+        <errorMessage>Date Thru may not be lower as Date From. Please correct the dates.</errorMessage>
+    </validationRules>
 </CustomObject>

@@ -9,7 +9,7 @@ var DSMetaData = {
             'Managed': false,
             'Compressed': false,
             'Buffer': false,
-            'Aggregation': false,
+            'Aggregation': true,
             'CheckLayout': false
         },
         {

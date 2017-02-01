@@ -37,8 +37,8 @@ var Localization = {
         "PP_LBL_NO_FUNDS": "No Funds associated to this tactic",
         "PP_TIT_FUND_LOOKUP": "Fund Lookup",
         //"PP_LBL_TACTICS": "Tactics", //Missing
-        "PP_LBL_PRODUCT_GROUPS": "Product Groups",
-        "PP_LBL_PRODUCTS": "Products",
+        //"PP_LBL_PRODUCT_GROUPS": "Product Groups",
+        //"PP_LBL_PRODUCTS": "Products",
         "PP_LBL_SELECT": "Select",
         "PP_LBL_INCLUDED": "Included"
         /*,

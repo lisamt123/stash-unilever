@@ -16,6 +16,9 @@ var Localization = {
         "PP_LBL_FUND_ANCHOR_PRODUCT": "Anchor Product",
         "PP_LBL_FUND_TYPE": "Fund Type",
         "PP_LBL_FUND_AMOUNT": "Amount",
+        "PP_LBL_AVAILABLE_TO_SPEND": "Available to Spend",
+        "PP_LBL_PERCENTAGE_ALLOCATED": "% Allocated",
+        "PP_LBL_AMOUNT_ALLOCATED": "Amount Allocated",
         "PP_TIT_FUNDS": "Funds",
         "PP_TIT_CHILD_PROMOTION_ACCOUNTS": "Child Promotion Accounts",
         "PP_TIT_ACCOUNT": "Account",
@@ -83,7 +86,7 @@ var Localization = {
         "PP_BTN_SIMULATION": "Simulation",
         "PP_BTN_MODEL": "Model",
         "PP_BTN_PLANNED": "Planned",
-        "PP_BTN_SUBMITTEDFORAPPROVAL": "Sumitted for Approval",
+        "PP_BTN_SUBMITTEDFORAPPROVAL": "Submitted for Approval",
         "PP_BTN_REJECTED": "Rejected",
         "PP_BTN_FINALISED": "Finalised",
         "PP_BTN_CANCELLED": "Cancelled",
@@ -92,8 +95,27 @@ var Localization = {
         "PP_BTN_AUDITTRAIL": "Audit Trail",
         "PP_LBL_TACTICS": "Tactics", //Missing
         'PP_BTN_MANAGE_FUND': 'Manage Funds',
-        'PP_BTN_APPLY_FUND' : 'Apply Fund',
-        'PP_BTN_ENDDATE' : 'End Date'
+        'PP_BTN_APPLY_FUND': 'Apply Fund',
+        'PP_BTN_ENDDATE': 'End Date',
+        //API - START - TPM-1499 - New SoCo Layout
+        'PP_LBL_MAIN_ID': 'Promotion ID',
+        'PP_LBL_MAIN_DETAILS': 'Promotion Details',
+        'PP_LBL_MAIN_DATES': 'Promotion Dates',
+        //API - END - TPM-1499 - New SoCo Layout
+        //API - START - TPM-1771 - Close Button for SoCo
+        'PP_BTN_CLOSE': 'Close',
+        //API - END - TPM-1771
+        //API - START - TPM-XXX - New Tactic Layout
+        'PP_TIT_TACTIC_DETAILS': 'Tactic Details',
+        'PP_TIT_TACTIC_DATES': 'Tactic Dates',
+        //API - END
+        //PMA - START CODE - TPM-1498 - Audit Trail
+        'PP_LBL_PROMOTIONHISTORY_NAME': 'Name',
+        'PP_LBL_PROMOTIONHISTORY_CREATEDDATE': 'Created Date',
+        'PP_LBL_PROMOTIONHISTORY_NEWVALUE': 'New Value',
+        'PP_LBL_PROMOTIONHISTORY_OLDVALUE': 'Old Value',
+        'PP_LBL_PROMOTIONHISTORY_TITLE': 'Audit Trail'
+        //PMA - END CODE - TPM-1498 - Audit Trail */
     }
 };
 
