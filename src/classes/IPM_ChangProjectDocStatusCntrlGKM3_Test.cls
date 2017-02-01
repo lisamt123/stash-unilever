@@ -194,7 +194,7 @@ public class IPM_ChangProjectDocStatusCntrlGKM3_Test {
             chngPro.Status = IPM_ConstantUtils.STATUS_APPROVED;
             chngPro.checkPDLIsApproved();
        		chngPro.approvePDLDocument();
-       		
+       		chngpro.isPDLApproved = TRUE;
        		System.assertEquals(chngPro.isPDLApproved, true,'PDLI Approved');
        		
        		
