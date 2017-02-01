@@ -4,13 +4,18 @@
     <label>FS NA Non DDM</label> 
     <fieldPermissions>
         <editable>false</editable>
-        <field>Opportunity.FSNA_Gross_Margin__c</field>
+        <field>Opportunity.FS_TotalTurnoverNA__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Opportunity.FSNA_Gross_Margin__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Opportunity.FSNA_Margin_Market_Code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

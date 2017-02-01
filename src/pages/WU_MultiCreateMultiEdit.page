@@ -156,8 +156,11 @@
                 <apex:column headerValue="Current Pallet Utilization Count">
                     <apex:inputField value="{!masterWH.objWUMasterWarehouse.WU_Current_Utilization__c}" /> 
                 </apex:column>
-                <apex:column headerValue="Average Utilization %">
-                    <apex:inputField value="{!masterWH.objWUMasterWarehouse.WU_Average_Current_Utilization__c}" /> 
+                
+                
+    
+                <apex:column headerValue="Current Utilization%">
+                    <apex:outputField value="{!masterWH.objWUMasterWarehouse.Current_Utilization__c}" /> 
                 </apex:column>
             </apex:pageBlockTable>
 
@@ -194,4 +197,3 @@
                
     </script>
 </apex:page>
-                                      

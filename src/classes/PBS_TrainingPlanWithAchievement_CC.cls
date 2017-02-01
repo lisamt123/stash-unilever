@@ -30,6 +30,7 @@ public with sharing class PBS_TrainingPlanWithAchievement_CC {
 
     public Id planId {get;private set;}
     public transient String planName {get;private set;}
+    public transient String planNameURL {get;private set;} // added by prasanth
     public transient String planDescription {get; private set;}
     public transient String planDetailURL {get; private set;}
     public transient String planAccess{get;private set;}
@@ -45,6 +46,7 @@ public with sharing class PBS_TrainingPlanWithAchievement_CC {
 
     public PBS_TrainingPlanWithAchievement_CC(PBS_Training_Plan__c tplan, PBS_Achievement__c tachievement,String detailURL, Boolean hasAssignment){
         planName = tplan.Name;
+        planNameURL = tplan.Training_Plan_URLs_Name__c; // added by prasanth
         planId = tplan.Id;
         planAccess = tplan.Self_Registration_Access__c;
         planDescription = tplan.Description__c;

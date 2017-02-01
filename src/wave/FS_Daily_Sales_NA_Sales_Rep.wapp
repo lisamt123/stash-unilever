@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assetIcon>/analytics/wave/web/proto/images/app/icons/3.png</assetIcon>
+    <folder>FS_Daily_Sales_NA_Sales_Rep</folder>
+    <masterLabel>FS Daily Sales - NA Sales Rep</masterLabel>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>foodsolutions.integration.user@unilever.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+     <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>FS_DailySales_Admin</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>FS_DailySales_Sales_Rep_Group</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </shares>
+</WaveApplication>

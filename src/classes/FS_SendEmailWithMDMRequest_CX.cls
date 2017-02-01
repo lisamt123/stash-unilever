@@ -46,7 +46,8 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
                                                     Owner.Email,
                                                     Owner.Id,
                                                     FS_MDMRequestSent__c,
-                                                    FS_TPRApproved__c 
+                                                    FS_TPRApproved__c,
+                                                    Name 
                                                  FROM Opportunity
                                                  WHERE Id=:opportunityId
                                                  LIMIT 1];
@@ -108,7 +109,7 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
     ********************************************************************/
     public String emailSubject{
         get{ if(emailSubject == null){
-                emailSubject = MDMDefaultValue.FS_EmailSubject__c;
+                emailSubject = opportunityRecord.Name + ' ' + MDMDefaultValue.FS_EmailSubject__c;
             }
             return emailSubject;
         }
@@ -185,8 +186,8 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
         
         // Sends the email
         if(!Test.isRunningTest()){
-        	Messaging.SendEmailResult [] r = Messaging.sendEmail(new Messaging.SingleEmailMessage[] {emailWithAttach});
-        	}
+            Messaging.SendEmailResult [] r = Messaging.sendEmail(new Messaging.SingleEmailMessage[] {emailWithAttach});
+            }
         opportunityRecord.FS_MDMRequestSent__c = true;
         try {
                 //tag opportunity as MDM request email sent

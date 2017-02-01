@@ -69,7 +69,7 @@
                     filterValue : event.getParam("filterValue")       
                 }
             }
-        }, component); 
+        }, component);
     },
     
     getDetail:function(component, event, helper) {

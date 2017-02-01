@@ -19,7 +19,8 @@ String valueNull = '';
     system.debug(showingPanel);
     }
     public PageReference  refreshFullPage(){
-    PageReference pageRef = new PageReference(ApexPages.currentPage().getUrl());
+    system.debug('dgdgd');
+    PageReference pageRef =page.WWP_LossTreeUpdate_VF;
        pageRef.setRedirect(false);
       return pageRef;
     

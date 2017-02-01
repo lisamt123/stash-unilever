@@ -74,7 +74,7 @@
   
        <apex:form id="frm" styleClass="AF_RaisenewPO_Homepage_lightbox">
        <apex:pageBlock id="pb1">
-         <apex:pagemessages id="msg"/>   
+        
                     
                     <div class="row">
                         <div class="col-lg-12 charttable1">
@@ -146,9 +146,10 @@
                                           
                                           
                            <apex:outputPanel id="Approvepopup">
-                           
+                              
                               <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!popup}"/>
                               <apex:outputPanel styleClass="customPopup_SubitforApproval" layout="block" rendered="{!popup}">
+                              <apex:pagemessages id="msg"/> 
                                  <div class="approval_floatR">
                                     <apex:commandButton value="X" action="{!closePopup}" rerender="Approvepopup" styleClass="approval_closeButton1"/> 
                                  </div>

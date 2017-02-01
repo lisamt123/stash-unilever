@@ -58,7 +58,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_Nira</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Niraj Kothari</literalValue>
+        <literalValue>Ashwathi Upalakkal</literalValue>
         <name>Update ProjectLead Nira</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -67,7 +67,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_Niraj</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Niraj Kothari</literalValue>
+        <literalValue>Ashwathi Upalakkal</literalValue>
         <name>Update ProjectLead Niraj</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -76,7 +76,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_Nirj</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Niraj Kothari</literalValue>
+        <literalValue>Nikoletta Pinter</literalValue>
         <name>Update ProjectLead Niraj</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -130,7 +130,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_Valeria</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Valeria Gulyas</literalValue>
+        <literalValue>Veerabhadran VK</literalValue>
         <name>Update ProjectLead Valeria</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>

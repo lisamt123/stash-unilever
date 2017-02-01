@@ -23,7 +23,7 @@ public without sharing class IPM_ChatterFeedHelper {
     private static final String TO_NOT_FAST_TRACK_STR =' to Not Fast track';
     private static final String FINANCIALS_STR1='The financials for ';
     private static final String FINANCIALS_STR2=' projects and ';
-    private static final String FINANCIALS_STR3=' are no longer aligned. Please contact your BD/BB Finance partner to re-align the business cases';
+    private static final String FINANCIALS_STR3=' are no longer aligned. Please contact your Finance partner to re-align the business cases';
     private static final String FINANCIALS_STR5=' are succesfully aligned.';
     private static final String PLANNED_STR='Planned ';
 

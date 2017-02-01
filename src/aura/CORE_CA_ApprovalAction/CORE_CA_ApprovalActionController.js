@@ -1,48 +1,59 @@
 ({
     //doInit : function(component, event, helper) {
-       // alert('hi1');
-   // },
+    // alert('hi1');
+    // },
     
     onSubmit : function(component, event, helper) { 
         component.set("v.isRequired",false);
+        var btn = event.getSource();
+        btn.set("v.disabled",true);//Disable the button
+        
         var approvalDetail = component.get("v.ApprovalDetail");
         var RequestType = approvalDetail.RequestType; 
         var action= component.get("v.actionTaken"); 
         var comment ='';
         commentbox = document.getElementById("textarea-input-02");                                                 
         if(commentbox != undefined || commentbox != null ){  
-           comment= document.getElementById("textarea-input-02").value; 
-           
-           if(comment== '' && (RequestType == 'Expense' && action == 'Reject')){
-                document.getElementById("textarea-input-02").style.borderColor="red";
-                component.set("v.isRequired",true); 
-           }
-           else if(comment== '' && (RequestType == 'Purchase Request' && action == 'Reject')){
-                document.getElementById("textarea-input-02").style.borderColor="red";
-                component.set("v.isRequired",true); 
-           }
-           else if(comment== '' && (RequestType == 'Clarity' && (action == 'Rework' || action == 'Reject'))){
-                document.getElementById("textarea-input-02").style.borderColor="red";
-                component.set("v.isRequired",true); 
-           }
-           else if(comment== '' && (RequestType == 'Invoice' && (action == 'RTAP' || action == 'QWV'))){
-                document.getElementById("textarea-input-02").style.borderColor="red";
-                component.set("v.isRequired",true); 
-           }
+            comment= document.getElementById("textarea-input-02").value; 
             
-            else{
-                 helper.SubmitMethod(component, event,comment,approvalDetail);                                              
-            }                                               
+            if(comment== '' && (RequestType == 'Expense' && action == 'Reject')){
+                document.getElementById("textarea-input-02").style.borderColor="red";
+                component.set("v.isRequired",true); 
+                btn.set("v.disabled",false);//Enable the button
+            }
+            else if(comment== '' && (RequestType == 'Purchase Request' && action == 'Reject')){
+                document.getElementById("textarea-input-02").style.borderColor="red";
+                component.set("v.isRequired",true); 
+                btn.set("v.disabled",false);//Enable the button
+            }
+                else if(comment== '' && (RequestType == 'Clarity' && (action == 'Rework' || action == 'Reject'))){
+                    document.getElementById("textarea-input-02").style.borderColor="red";
+                    component.set("v.isRequired",true); 
+                    btn.set("v.disabled",false);//Enable the button
+                }
+                    else if(comment== '' && (RequestType == 'Invoice' && (action == 'RTAP' || action == 'QWV'))){
+                        document.getElementById("textarea-input-02").style.borderColor="red";
+                        component.set("v.isRequired",true); 
+                        btn.set("v.disabled",false);//Enable the button
+                    }
+                        else if(comment== '' && (RequestType == 'CLM' && action == 'Reject')){
+                            document.getElementById("textarea-input-02").style.borderColor="red";
+                            component.set("v.isRequired",true); 
+                            btn.set("v.disabled",false);//Enable the button
+                        }
+                            else{
+                                helper.SubmitMethod(component, event,comment,approvalDetail);                                              
+                            }                                               
         }
         else{
             if(RequestType == 'Expense' && action == 'Approve'){
-               helper.SubmitMethod(component, event,comment,approvalDetail);    
+                helper.SubmitMethod(component, event,comment,approvalDetail);    
             }                                            
         }                                           
         
         
         //if(component.find("textarea-input-02").get("v.value") != null && component.find("textarea-input-02").get("v.value") != undefined && RequestType == "Purchase Request" && action=="Approve"){
-            /*var action = component.get("c.updateApprovalAction");
+        /*var action = component.get("c.updateApprovalAction");
             action.setParams({
                 "action": component.get("v.actionTaken"),
                 "comment" : comment,
@@ -60,6 +71,7 @@
         else{ 	
             component.set("v.comment_mand",true);                
         }*/
+        
     },
     
     onCancel : function(component, event, helper) { 
@@ -81,8 +93,8 @@
         else if(component.get("v.isVisible") == false ){ component.set("v.isVisible",true); }
     },
     handleCheckTask : function(cmp, event, helper) {
-            var checkCmp = cmp.find("taskCheckBox");
-           // alert("value : " + checkCmp.get("v.value"));
-            console.log("value : " + checkCmp.get("v.value"))
+        var checkCmp = cmp.find("taskCheckBox");
+        // alert("value : " + checkCmp.get("v.value"));
+        console.log("value : " + checkCmp.get("v.value"))
     },
 })

@@ -4,7 +4,7 @@
     <contactAccessLevel>Edit</contactAccessLevel>
     <description>RFS SDAE</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>RFS Senior Distributor Account Executive (SDAE)</name>
+    <name>RFS Senior Distributor Account Executive (SDAE) MR</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
     <parentRole>National_Development_Manager</parentRole>
 </Role>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This email will be fired if the system identity the participant that has not completed the milestone on the deadline.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FAU_Letterhead</letterhead>
+    <name>FAU UL2020 Milestone Reminder</name>
+    <style>freeForm</style>
+    <subject>REMINDER: {!FAU_Participant__c.FAU_Program_Type__c} {!FAU_Milestone_Participant__c.FAU_Milestone_Name__c}</subject>
+    <textOnly>Dear {!FAU_Participant__c.FAU_First_Name__c}
+
+{!FAU_Participant__c.FAU_Program_Type__c}
+
+{!FAU_Milestone_Participant__c.FAU_Milestone__c}
+
+We have noticed in our records that you have an outstanding task.
+
+Please complete the {!FAU_Milestone_Participant__c.FAU_Milestone__c} as soon as possible on {!FAU_Milestone_Participant__c.FAU_Front_End_Link__c} To mark the task as completed and turn off this task reminder, please check the corresponding box on the link.
+
+To see your progress, check out your: {!FAU_Participant__c.FAU_Participants_Workbook__c}
+
+UL2020 Chatter Group: {!FAU_Participant__c.FAU_Chatter_Group__c}
+
+PII Chatter Group: {!FAU_Participant__c.PII_Chatter_Group_Link__c}
+
+PII Class Chatter Group: {!FAU_Participant__c.PII_Table_Chatter_Group_Link__c}
+
+Kind regards,
+
+{!FAU_Participant__c.OwnerFullName}
+
+{!FAU_Participant__c.OwnerTitle}
+
+Ph: {!FAU_Participant__c.OwnerPhone}
+
+Email: {!FAU_Participant__c.OwnerEmail}</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,10 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2"><span style="color: rgb(33, 33, 33);">Dear CMCO,</span><span style="color: rgb(33, 33, 33);"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2"><span style="color: rgb(33, 33, 33);">&nbsp;</span><span style="color:#212121"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal"><font face="Arial, sans-serif" size="2"><span style="color: rgb(33, 33, 33);">Annual Bonus for&nbsp;</span><font color="#212121" style="color: rgb(0, 0, 0);">{!AF_Bonus_Summary__c.Brand_Name__c}</font><span style="color: rgb(33, 33, 33);">&nbsp;has been approved by&nbsp;</span><font color="#212121">{!AF_Bonus_Summary__c.LastModifiedBy}<br>You can now share the annual bonus with the agency.</font></font></p><div style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2"><br></font></div><div style="color: rgb(0, 0, 0);"><span style="font-family: Arial, sans-serif; font-size: small;">{!AF_Bonus_Summary__c.AF_Internal_Link__c}</span><font face="Arial, sans-serif" size="2"><br><br><br><span style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">From,</span><br><font><span style="background-color: rgb(255, 255, 255);">Bonus Approver</span></font></font></div>]]></td>
+</tr>
+</table>

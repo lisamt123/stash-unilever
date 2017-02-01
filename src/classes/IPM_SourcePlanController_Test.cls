@@ -239,13 +239,10 @@ private class IPM_SourcePlanController_Test{
             Test.startTest();
             IPM_Project__c prj = [Select Id, Name, IPM_Phase__c, IPM_Project_Job_Status__c, (Select Id from Project_Documents__r),
                                            (Select Id from IPM_Financials_Consolidated__r) from IPM_Project__c WHERE name in :projectNameSet Limit 1];
-            //IPM_project_product__c projProduct = [SELECT Name,IPM_Project__c,IPM_Format__c,IPM_Formulation__c,IPM_Packing__c,IPM_Product_Name__c,IPM_ProductSize__c,IPM_ProductSizeMetrics__c FROM IPM_project_product__c LIMIT 1];                    
             
-            pRef = Page.IPM_Product_and_Sourcing_Plan;
-             pRef.getParameters().put(IPM_ConstantUtils.SF_ID, prj.Id);
-                                           
-             IPM_SourcePlanController srcPlanController = new IPM_SourcePlanController();
-             srcPlanController.getSourceUnit();
+	    ApexPages.currentPage().getParameters().put('Id', prj.Id);                      
+            IPM_SourcePlanController srcPlanController = new IPM_SourcePlanController();
+            srcPlanController.getSourceUnit();
              
              
              for(IPM_SourcePlanController.sourcePlanWrapper sourceC: srcPlanController.sourcePlanMap.values()){

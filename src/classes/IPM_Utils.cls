@@ -1188,7 +1188,7 @@ public without sharing class IPM_Utils {
 public static void updateProjectY3ITOValue(List<Id> projListForY3ITOUpdate) { 
     
      Map<Id,Decimal> projIdiTOMap =  IPM_Utils.createProjectSpecificITOValueMap(projListForY3ITOUpdate);
-     
+     Set<Id> clusterIDsforY3iToUpdate = new Set<Id>();
      List<IPM_Project__c> y3iTOUpdateProjList = new List<IPM_Project__c>();
      
      if(projIdiTOMap!=null && !projIdiTOMap.isEmpty()){
@@ -1202,13 +1202,23 @@ public static void updateProjectY3ITOValue(List<Id> projListForY3ITOUpdate) {
         }
         
         if(y3iTOUpdateProjList!=Null && !y3iTOUpdateProjList.isEmpty()){
-        
-            update y3iTOUpdateProjList;
-        
+        	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+            	update y3iTOUpdateProjList;
+            	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
         
         updateProjectBIValue(projListForY3ITOUpdate);
-     
+        
+     	for(IPM_Project__c proj : [Select id,IPM_Cluster__c From IPM_Project__c where id IN: projListForY3ITOUpdate]){
+     		if(proj.IPM_Cluster__c!=Null)
+            	{
+                	clusterIDsforY3iToUpdate.add(proj.IPM_Cluster__c);
+            	}
+     	}
+     	if(!clusterIDsforY3iToUpdate.isEmpty())
+        {
+     		IPM_Utils.updateclusterSumY3iTOValue(clusterIDsforY3iToUpdate);
+        }
      }
 
 } 
@@ -1344,12 +1354,17 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
     * @description: Recursive invocation to provide the List of Children against specific project
     * @param1 incomingProjectIds : List of Project Ids.
     */ 
-    public static Map<Id,IPM_Project__c> populateChildProjectDetails(Set<Id> incomingProjectIds)
+    public static Map<Id,IPM_Project__c> populateChildProjectDetails(Set<Id> incomingProjectIds, Boolean includeArchievedPrjcts)
     {
         Set<Id> projectIds = new Set<Id>();
 
         String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery(IPM_Project,false,null,true);
         String ProjectDetailWhereClause = 'IPM_Parent_Project__c in :incomingProjectIds';
+        
+        if(!includeArchievedPrjcts)
+        {
+            ProjectDetailWhereClause = ProjectDetailWhereClause + ' and Is_Archieved__c = false ';
+        }
         
         ProjectDetailSelectQuery = ProjectDetailSelectQuery  + ' WHERE ' + ProjectDetailWhereClause + LIMIT_STRING ;
         
@@ -1362,7 +1377,7 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
         
         if(!projectIds.isEmpty())
         {
-            projectDetailedMap.putAll(populateChildProjectDetails(projectIds));
+            projectDetailedMap.putAll(populateChildProjectDetails(projectIds,includeArchievedPrjcts));
         }
         return projectDetailedMap;
     }
@@ -1765,4 +1780,73 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
         }
     	return isEditAccess;
 	}
+    /************************************************************************************************
+    Method to Get full project data
+	**********************************/
+    public static IPM_Project__c projectFullInfoVar{get;set;}
+    public static IPM_Project__c getProjectFullInfo(Id projectId) {
+        If(projectFullInfoVar != NULL && projectFullInfoVar.Id ==  projectId) {
+            return projectFullInfoVar;
+        }
+        else {
+            Set<String> systemFields = new set<String>{'lastmodifiedbyid','isdeleted','createdbyid', 'lastmodifieddate', 'createddate','isdeleted'};
+                Set<String> userFields = new Set<String>{'Id','name','email','username'};
+                    String queryStr = ' SELECT ';
+            Map<String,Schema.SObjectField> fieldTypeMap = Schema.SObjectType.IPM_Project__c.fields.getMap();
+            Map<String,Schema.SObjectField> userFieldTypeMap = Schema.SObjectType.User.fields.getMap();
+            Set<String> userCustomfieldSet = new Set<String>();
+            /* Get User Custom Field Information */
+            for(String userfieldAPIName : userFieldTypeMap.keySet())
+            {
+                Schema.DescribeFieldResult userfieldDescribe = userFieldTypeMap.get(userfieldAPIName).getDescribe();
+                if(userfieldDescribe.isCustom())
+                {
+                    userCustomfieldSet.add(userfieldAPIName);
+                }
+            } 
+            /* Get Project Specific Field information */
+            for(String fieldAPIName : fieldTypeMap.keySet())
+            {
+                Schema.DescribeFieldResult fieldDescribe = fieldTypeMap.get(fieldAPIName).getDescribe();
+                if(!fieldDescribe.isNamePointing() &&  !fieldAPIName.equalsIgnoreCase('Id') && !systemFields.contains(fieldAPIName))
+                {
+                    queryStr += ' '+fieldAPIName+',';
+                }
+                /* Check if it is a Reference field, If yes, get asociated Data */
+                if(fieldDescribe.getType() == Schema.DisplayType.Reference && fieldDescribe.isCustom())
+                {
+                    List <Schema.sObjectType> relatedObjectList = fieldDescribe.getReferenceTo();
+                    String relationshipName = fieldDescribe.getRelationshipName();
+                    if(relatedObjectList!=null && !relatedObjectList.isEmpty() && relationshipName!=null)
+                    {
+                        Schema.DescribesObjectResult relatedObjDescribe =  relatedObjectList[0].getDescribe();
+                        String relatedObjectAPI = relatedObjDescribe.getName();
+                        Map<String,Schema.SObjectField> relatedfieldTypeMap = relatedObjDescribe.fields.getMap();     
+                        for(String relatedfieldAPIName : relatedfieldTypeMap.keySet())
+                        {
+                            Schema.DescribeFieldResult relatedFieldDescibe = relatedfieldTypeMap.get(relatedfieldAPIName).getDescribe();
+                            if(!relatedFieldDescibe.isNamePointing()  && !systemFields.contains(relatedfieldAPIName) )
+                            {
+                                if(relatedObjectAPI == 'User' && (userCustomfieldSet.contains(relatedfieldAPIName) || userFields.contains(relatedfieldAPIName) ))
+                                {
+                                    queryStr += ' ' + relationshipName+'.'+relatedfieldAPIName+',';
+                                }
+                                else
+                                {
+                                    queryStr += ' ' + relationshipName+'.'+relatedfieldAPIName+',';
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            queryStr += 'Id from IPM_Project__c where Id= :projectId';
+            List<IPM_Project__c> projectList = Database.query(queryStr);
+            if(projectList != null && !projectList.isEmpty())
+            {
+                projectFullInfoVar = projectList[0]; 
+            }
+            return projectFullInfoVar;
+        }
+    }
 }

@@ -12,7 +12,7 @@
       ga('set', 'dimension1', userId); 
       ga('set', 'dimension2', userCountry);
       ga('set', 'dimension3', userName );
-      ga('set', 'dimension5', profilePage );
+      ga('set', 'dimension5', 'profilePage' );
       ga('send', 'pageview');
 
 </script>

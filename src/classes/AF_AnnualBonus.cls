@@ -161,6 +161,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             isAgency = true;
         }
         list<AF_Brand_Estimate__c>Pilot_model=[SELECT ID,AF_AgencyBaseFees__c, AF_Is_Global_Bonus_Threshold_Checked__c ,AF_Pilot_Model__c,AF_No_Bonus__c FROM AF_Brand_Estimate__c WHERE  Brand__c=:Brand_id AND AF_Agency__c=:agency_id AND AF_Fiscal_Year__c=:current_year AND AF_Active__c=True];
+        isglobal = Pilot_model.get(0).AF_Is_Global_Bonus_Threshold_Checked__c;
         if(Pilot_model.size()>0){
         sum_of_total_bonus=Pilot_model.get(0).AF_AgencyBaseFees__c;
             //AF_Pilot_Model= Pilot_model.get(0).AF_Pilot_Model__c;
@@ -169,7 +170,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             No_Bonus_Check = Pilot_model.get(0).AF_No_Bonus__c;
         }
         if(AF_Pilot_Model || Pilot_model.get(0).AF_Pilot_Model__c){
-           isglobal = Pilot_model.get(0).AF_Is_Global_Bonus_Threshold_Checked__c;
+           //isglobal = Pilot_model.get(0).AF_Is_Global_Bonus_Threshold_Checked__c;
             pilotmode =  Pilot_model.get(0).AF_Pilot_Model__c;
             //new variables
             list<AF_Bonus_Threshold__c> Bonus_Result_list= new list<AF_Bonus_Threshold__c>();
@@ -232,7 +233,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
                     }
                 }
              
-                if(setofnonthreshold_country.size()>0 && !No_Bonus_Check){
+                if(setofnonthreshold_country.size()>0 && !No_Bonus_Check && !isglobal){
                     Apexpages.addmessage(new apexpages.message(apexpages.severity.WARNING, Label.AF_BonusThershold_Mismatch+ ' '+ setofnonthreshold_country ));
                 }
             }
@@ -247,10 +248,12 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
       annualBonusQualQuantPerCalc(Bonus_SubResult_List);
          
         }
+        /*
         if(AF_Pilot_Model)
         {
             //annualBonusPilotModel(agency_id,Brand_id,current_year);
         } 
+        */
     }
  
     /*********************************************************************************
@@ -405,6 +408,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
 *  @return: none.
 ***************************************************************************************************/ 
   public void annualBonusQuantQualExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
+      mapBonus_result=new map<string,AF_Sub_Result__c>();
     for(AF_Sub_Result__c bonusResObj:Bonus_SubResult_List){
                 mapBonus_result.put(bonusResObj.AF_Unique_Thresholds__c,bonusResObj);
                 if(bonusResObj.AF_Quant_Bonus_Value__c!=null){
@@ -813,7 +817,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
                       
                            count = countryBMMap.get(countryDigital);
                            for(string s :EntityAmtMap.keyset()){
-                                if(s.contains('::D')){
+                                if(s.contains(AF_Constants.AF_Digital_Delim)){
                                     Amt = Amt+EntityAmtMap.get(s);
                                 }
                            }
@@ -847,7 +851,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
                         count = countryBMMap.get(countryAdap);
                          for(string s :EntityAmtMap.keyset()){
                            System.debug('s...@@@@'+s);
-                                if(s.contains('::A')){
+                                if(s.contains(AF_Constants.AF_Adaption_Delim)){
                                     System.debug('Inside AAAA');
                                     System.debug('Amt...22222'+Amt);
                                      System.debug('Amt...EntityAmtMap.get(s)'+EntityAmtMap.get(s));
@@ -1138,6 +1142,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
                     sum_of_bonus_val=sum_of_bonus_val + newbonus.bonusResObj.AF_Qual_Bonus_value__c;
                     newbonus.bonusResObj.AF_Total_Bonus__c=newbonus.bonusResObj.AF_Qual_Per__c+newbonus.QualPercent;
                     newbonus.bonusResObj.AF_Total_Bonus_Value__c=newbonus.bonusResObj.AF_Qual_Bonus_value__c+ newbonus.QualValue;
+                    system.debug(newbonus.bonusResObj.AF_Qual_Bonus_value__c+'-----newbonus.bonusResObj.AF_Total_Bonus_Value__c--'+newbonus.bonusResObj.AF_Total_Bonus_Value__c);
                     sum_of_quant_qual_value=sum_of_quant_qual_value+newbonus.bonusResObj.AF_Total_Bonus_Value__c;
                     if(sum_of_bonusable_fees>0)
                     {
@@ -1150,7 +1155,8 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
                      newbonus.bonusResObj.AF_Quant_Bonus_Value__c=math.round(newbonus.total_bonus_fees* newbonus.bonusResObj.AF_Quant_Bonus__c/100);
                     sum_of_bonus_val=sum_of_bonus_val + newbonus.bonusResObj.AF_Quant_Bonus_Value__c;
                     newbonus.bonusResObj.AF_Total_Bonus__c=newbonus.bonusResObj.AF_Quant_Bonus__c+newbonus.QualPercent;
-                    newbonus.bonusResObj.AF_Total_Bonus_Value__c=newbonus.bonusResObj.AF_Quant_Bonus_Value__c+ newbonus.QualValue;
+                    newbonus.bonusResObj.AF_Total_Bonus_Value__c=newbonus.bonusResObj.AF_Quant_Bonus_Value__c;
+                    system.debug(newbonus.QualValue+'-----ewbonus.bonusResObj.AF_Total_Bonus_Value__c--'+newbonus.bonusResObj.AF_Total_Bonus_Value__c);
                     sum_of_quant_qual_value=sum_of_quant_qual_value+newbonus.bonusResObj.AF_Total_Bonus_Value__c;
                     if(sum_of_bonusable_fees>0)
                     {
@@ -1271,7 +1277,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
     public void UpdateBonus() {
         Calculate_Bonus();
         System.debug('QuartelyBonus...3333'+QuartelyBonus);
-        Calculate_Qual();
+        //Calculate_Qual();
         System.debug('QuartelyBonus...444'+QuartelyBonus);
         Boolean bException=false;
         map<string,string> bonusablefeesexecption = new map<String,string>();
@@ -1363,8 +1369,15 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
              Integer value =   CountryBusinessmeasureBonusablefee.get(str);
              if(value > CountryAgencyTotalMap.get(str)){
                  Integer diff = value - CountryAgencyTotalMap.get(str);
-                if(tempcount == 0){ excep = 'exceeded by ' + string.valueof(diff);}
-                else { excep = ', exceeded by ' + string.valueof(diff);}
+                if(tempcount == 0){ excep = 'Target exceeded by ' + string.valueof(diff);}
+                else { excep = ', Target exceeded by ' + string.valueof(diff);}
+                 bonusablefeesexecption.put(str,excep);
+            
+             }
+             if(value < CountryAgencyTotalMap.get(str)){
+                 Integer diff =CountryAgencyTotalMap.get(str)-value;
+                if(tempcount == 0){ excep = 'Target missing by ' + string.valueof(diff);}
+                else { excep = ', Target missing by ' + string.valueof(diff);}
                  bonusablefeesexecption.put(str,excep);
             
              }
@@ -1384,8 +1397,14 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             w_bonus.bonusResObj.AF_Bonusable_Fees__c=w_bonus.total_bonus_fees;
             w_bonus.bonusResObj.AF_Total_bonus_fees__c=w_bonus.totalbonusfee;
             w_bonus.bonusResObj.Af_status__c=AF_Constants.STATUS_DRAFT;
-            w_bonus.bonusResObj.AF_Qual_Per__c=w_bonus.QualPercent;
-            w_bonus.bonusResObj.AF_Qual_Bonus_Value__c=w_bonus.QualValue;
+            w_bonus.bonusResObj.AF_Qual_Per__c=w_bonus.bonusResObj.AF_Qual_Per__c;
+            w_bonus.bonusResObj.AF_Qual_Bonus_Value__c=w_bonus.bonusResObj.AF_Qual_Bonus_Value__c;
+            //w_bonus.bonusResObj.AF_Qual_Bonus_Value__c=w_bonus.bonusResObj.AF_Qual_Bonus_Value__c;
+            if(w_bonus.bonusMeasureMatrix == 'Qualitative Measure' && w_bonus.bonusResObj.AF_Qual_Per__c!=Null && w_bonus.bonusResObj.AF_Qual_Per__c!=0.00)
+            {
+                w_bonus.bonusResObj.AF_Total_Bonus__c=w_bonus.bonusResObj.AF_Qual_Per__c;
+                w_bonus.bonusResObj.AF_Total_Bonus_Value__c = w_bonus.bonusResObj.AF_Qual_Bonus_Value__c;
+            }
             if(w_bonus.bonusMeasureMatrix == 'Qualitative Measure' && w_bonus.bonusResObj.id == Null){
                 w_bonus.bonusResObj.Bonus_Measure__c = 'Qualitative Measure';
                 w_bonus.bonusResObj.AF_Bonus_Target__C = 'Overall Score';
@@ -1406,7 +1425,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             String validationErrorMsg = Label.AF_Quant_Fields;
             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,validationErrorMsg));
         }else if(bonusablefeesexecption.size()>0){
-             string validateerror = 'Bonusable fees';
+             string validateerror = 'Manual adjustment to Bonusable fees must reconcile back to Base Fee Matrix.';
              for(string str: bonusablefeesexecption.keyset()){
                  validateerror = validateerror + bonusablefeesexecption.get(str) + ' for country ' + str;
              }
@@ -1523,7 +1542,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
     public void ConfirmBonus() {
    
         Calculate_Bonus();
-        Calculate_Qual();
+        //Calculate_Qual();
         Boolean bException=false;
         list<AF_Sub_Result__c> bonus_latestlist=new list<AF_Sub_Result__c>();
         for(wrapbonus w_bonus:QuartelyBonus){
@@ -1532,8 +1551,13 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             w_bonus.bonusResObj.AF_Total_bonus_fees__c=w_bonus.totalbonusfee;
             w_bonus.bonusResObj.Af_status__c=AF_Constants.STATUS_SUBMITTED;
             w_bonus.bonusResObj.AF_Locked__c=true;
-            w_bonus.bonusResObj.AF_Qual_Per__c=w_bonus.QualPercent;
-            w_bonus.bonusResObj.AF_Qual_Bonus_Value__c=w_bonus.QualValue;
+            //w_bonus.bonusResObj.AF_Qual_Per__c=w_bonus.QualPercent;
+            //w_bonus.bonusResObj.AF_Qual_Bonus_Value__c=w_bonus.QualValue;
+            if(w_bonus.bonusMeasureMatrix == 'Qualitative Measure' && w_bonus.bonusResObj.AF_Qual_Per__c!=Null && w_bonus.bonusResObj.AF_Qual_Per__c!=0.00)
+            {
+                w_bonus.bonusResObj.AF_Total_Bonus__c=w_bonus.bonusResObj.AF_Qual_Per__c;
+                w_bonus.bonusResObj.AF_Total_Bonus_Value__c = w_bonus.bonusResObj.AF_Qual_Bonus_Value__c;
+            }
             //if(w_bonus.bonusResObj.AF_Qual__c==null || w_bonus.bonusResObj.AF_Quant__c==null){
             if(w_bonus.bonusResObj.AF_Quant__c==null && w_bonus.bonusResObj.AF_Qual__c==null){
                 bException=true;

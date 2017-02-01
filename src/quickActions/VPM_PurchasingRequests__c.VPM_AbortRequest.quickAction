@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>VPM - Ability to Abort a request</description>
+    <fieldOverrides>
+        <field>VPM_AdvancedFormSubmitted__c</field>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>VPM_Status__c</field>
+        <literalValue>Aborted</literalValue>
+    </fieldOverrides>
+    <icon>UnileverLogo</icon>
+    <label>Abort Request</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>VPM_AbortTrue__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>VPM_AbortReason__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns/>
+    </quickActionLayout>
+    <successMessage>Vendor Request has been aborted.</successMessage>
+    <type>Update</type>
+</QuickAction>

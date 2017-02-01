@@ -162,7 +162,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 phaseChangeProjects.add(newRollout.IPM_Project__c);
                 phaseChangeRolloutSet.add(newRollout.Id);
             }
-            
             if(LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null)
             {   
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
@@ -214,7 +213,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             if(!globalProjIdRollout.containskey(newRollout.Id) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)  && oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c){
                 if(newRollout.Regional_Project__c != null && newRollout.IPM_Project_GKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3){
                     globalProjIdRollout.put(newRollout.Id,newRollout);  
-                    projIdList.add(newRollout.IPM_Project__c);
+                    projIdList.add(newRollout.Regional_Project__c);
                 } else if(newRollout.IPM_Project__c != null && newRollout.IPM_Project_GKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3){
                     globalProjIdRollout.put(newRollout.Id,newRollout); 
                     projIdList.add(newRollout.IPM_Project__c);

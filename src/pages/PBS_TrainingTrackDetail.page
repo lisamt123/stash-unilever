@@ -85,8 +85,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                         <apex:variable var="hasBadge" value="{!ti.mainAchievement.Acquired_Image__c != null || ti.mainAchievement.Work_Badge_Image_URL__c != null}" />
                         <apex:variable var="itemURL" value="{!ti.itemURL}"/>
 
-                        <div class="col-xs-12 col-sm-6 col-md-4 track-level-item-content" item-url="{!IF(ti.isExpired,'',itemURL)}">
-                            <div class="tplan_box {!IF(itemURL == null,'tplan_box_disabled','')}">
+                        <div class="col-xs-12 col-sm-6 col-md-4 track-level-item-content" item-url="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning AMS - Network Development' || ti.trackItem.Training_Plan__r.Name == 'Demand Planning AMS - Readiness Skills' || ti.trackItem.Training_Plan__r.Name == 'Demand Planning AMS - Support Tools' || ti.trackItem.Training_Plan__r.Name == 'Demand Planning AMS - Metrics' || ti.trackItem.Training_Plan__r.Name == 'Demand Planning AMS - Framework' || ti.trackItem.Training_Plan__r.Name == 'Demand Planning U2K2 - Framework' || ti.trackItem.Training_Plan__r.Name == 'Demand Planning U2K2 - Metrics' || ti.trackItem.Training_Plan__r.Name == 'Demand Planning U2K2 - Support Tools' || ti.trackItem.Training_Plan__r.Name == 'Demand Planning Readiness Skills U2K2' || ti.trackItem.Training_Plan__r.Name == 'Supply Planning U2K2- Framework' || ti.trackItem.Training_Plan__r.Name == 'Supply Planning U2K2 - Support Tools' || ti.trackItem.Training_Plan__r.Name == 'Supply Planning U2K2 - Readiness Skills' || ti.trackItem.Training_Plan__r.Name == 'Demand Planning U2K2 - Network Development' || ti.trackItem.Training_Plan__r.Name == 'Supply Planning U2K2 - Network Development','',itemURL)}">
+                            <div class="tplan_box {!IF(itemURL == null,'tplan_box_disabled','')} ">
                                 <apex:outputPanel layout="none" rendered="{!hasBadge}">
                                     <div class="tplan_img">
                                         <apex:outputPanel layout="none" rendered="{!ti.itemURL != null}">
@@ -100,7 +100,86 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                                     </div>
                                 </apex:outputPanel>
                                 <div class="{!IF(hasBadge,'tplan_details','tplan_details_no_image')}" >
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name != 'Demand Planning AMS - Network Development' && ti.trackItem.Training_Plan__r.Name != 'Demand Planning AMS - Readiness Skills' && ti.trackItem.Training_Plan__r.Name != 'Demand Planning AMS - Support Tools' && ti.trackItem.Training_Plan__r.Name != 'Demand Planning AMS - Metrics' && ti.trackItem.Training_Plan__r.Name != 'Demand Planning AMS - Framework' && ti.trackItem.Training_Plan__r.Name != 'Demand Planning U2K2 - Framework' && ti.trackItem.Training_Plan__r.Name != 'Demand Planning U2K2 - Metrics' && ti.trackItem.Training_Plan__r.Name != 'Demand Planning U2K2 - Support Tools' && ti.trackItem.Training_Plan__r.Name != 'Demand Planning Readiness Skills U2K2' && ti.trackItem.Training_Plan__r.Name != 'Supply Planning U2K2- Framework' && ti.trackItem.Training_Plan__r.Name != 'Supply Planning U2K2 - Support Tools' && ti.trackItem.Training_Plan__r.Name != 'Supply Planning U2K2 - Readiness Skills' && ti.trackItem.Training_Plan__r.Name != 'Demand Planning U2K2 - Network Development' && ti.trackItem.Training_Plan__r.Name != 'Supply Planning U2K2 - Network Development',True,False)}">
                                     <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputPanel>
+                                    
+                                    
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning AMS - Framework',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F1%2EFramework">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning AMS - Metrics',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F2%2EMetrics">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning AMS - Support Tools',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F3%2ESupport%20Tools">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning AMS - Readiness Skills',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F4%2EReadiness%20Skills">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning AMS - Network Development',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FCORDILLERA%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F5%2ENetwork%20Development">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    
+                                    
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning U2K2 - Framework',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FU2K2%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F1%2EFramework">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning U2K2 - Metrics',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FU2K2%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F2%2EMetrics">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning U2K2 - Support Tools',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FU2K2%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F3%2ESupport%20Tools">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning Readiness Skills U2K2',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FU2K2%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F4%2EReadiness%20Skills">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Supply Planning U2K2- Framework',True,False)}">
+                                    <apex:outputLink value="">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Supply Planning U2K2 - Support Tools',True,False)}">
+                                    <apex:outputLink value="">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Supply Planning U2K2 - Readiness Skills',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FU2K2%2FSNP%20-%20Supply%20Network%20Planning%2F1%2EOn%20Boarding%2F4%2EReadiness%20Skills">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Demand Planning U2K2 - Network Development',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FU2K2%2FDP%20-%20Demand%20Planning%2F1%2EOn%20Boarding%2F5%2ENetwork%20Development">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!IF(ti.trackItem.Training_Plan__r.Name == 'Supply Planning U2K2 - Network Development',True,False)}">
+                                    <apex:outputLink value="https://unilever.sharepoint.com/teams/PlanBusinessSchool/ULlibrary/Forms/AllItems.aspx?id=%2Fteams%2FPlanBusinessSchool%2FULlibrary%2FSystem%20and%20Tools%2FU2K2%2FSNP%20-%20Supply%20Network%20Planning%2F1%2EOn%20Boarding%2F5%2ENetwork%20Development">
+                                    <h4>{!ti.trackItem.Training_Plan__r.Name}</h4>
+                                    </apex:outputLink>
+                                    </apex:outputPanel>
+                                    
+                                    
+                                    
                                     <apex:outputPanel layout="block" rendered="{!ti.tplanAssignment != null && !ti.isExpired}">
                                         <label class="label {!IF(ti.tplanAssignment.Status__c=='Completed','label-success',IF(ti.tplanAssignment.Status__c=='In Progress','label-primary','label-default'))}">
                                             {!IF(ti.tplanAssignment.Status__c == 'Completed',$Label.ALMS_Training_Status_Completed, IF(ti.tplanAssignment.Status__c == 'In Progress', $Label.ALMS_Training_Status_In_Progress, $Label.ALMS_Training_Status_Not_Started))}

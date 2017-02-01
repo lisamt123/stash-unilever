@@ -1,0 +1,172 @@
+<aura:component controller="TEL_OppGenController"  implements="force:lightningQuickaction,force:hasRecordId">
+    <!-- Lightning Style --> 
+    <ltng:require styles="{!$Resource.TEL_TelesalesCSS +'/assets/styles/salesforce-lightning-design-system.css'}"/>
+    
+    <!-- Attributes --> 
+    <aura:attribute name="lstAccounts" 		type="TEL_TelesalesWrapper.DisplayAccounts[]"/>
+    <aura:attribute name="lstOTM"			type="String[]" 				description="Store the OTM search param used to retrieve the account list." />
+    <aura:attribute name="lstFrequency" 	type="String[]" 				description="Store the frequency param used to generate the opportunities call lists."/>
+    <aura:attribute name="mondayWeek" 		type="String" 	default="none" 	description="Indicate the day of week selected to be used on opp creation."/>
+    <aura:attribute name="tuesdayWeek" 		type="String" 	default="none" 	description="Indicate the day of week selected to be used on opp creation."/>
+    <aura:attribute name="wednesdayWeek" 	type="String" 	default="none" 	description="Indicate the day of week selected to be used on opp creation."/>
+    <aura:attribute name="thursdayWeek" 	type="String" 	default="none" 	description="Indicate the day of week selected to be used on opp creation."/>
+    <aura:attribute name="fridayWeek" 		type="String" 	default="none" 	description="Indicate the day of week selected to be used on opp creation."/>
+    <aura:attribute name="spinnerEnable" 	type="Boolean" 	default="false" description="Enable the spinner during actions."/>
+    <aura:attribute name="searchAccEnable" 	type="Boolean" 	default="false" description="Used to render the info based on actions."/>
+    <aura:attribute name="headerEnable"		type="Boolean"	default="true" 	description="Show the header based on the component call."/>
+    <aura:attribute name="selectedAll" 		type="Boolean" 	default="false" description="Indicate if all products of search result needs to be selected."/>
+    
+    <!-- Handlers --> 
+    <aura:handler name="init" 			value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="slds">
+        
+        <!-- Box with search params --> 
+        <div class="slds-box">            
+            <!-- Search Form --> 
+            <form class="slds-form--inline">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="select-01">{!$Label.c.TEL_OTM}</label>
+                    <div class="slds-form-element__control">
+                        <ui:inputSelect aura:id="types" multiple="false">
+                            <ui:inputSelectOption text="None" label="-- None --" value="true"/>
+                            <aura:iteration items="{!v.lstOTM}" var="otm">
+                                <ui:inputSelectOption text="{!otm}" label="{!otm}" value="false"/>
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </div>
+                </div> 
+                <div class="slds-form-element">
+                    <ui:button class="slds-button slds-button--brand" label="{!$Label.c.TEL_Search_Button}" press="{!c.searchAccount}"/>
+                </div>
+            </form>            
+        </div>
+        <!-- End Search Form --> 
+        <br></br>
+        
+        <!-- Search Result Accounts - Table --> 
+        
+        <aura:renderIf isTrue="{!v.searchAccEnable}">
+            <div class="slds-box">
+                
+                <!-- Opportunities Param: which will be consider to be set --> 
+                <fieldset class="slds-form--compound">
+                    <legend class="slds-form-element__label slds-text-title--caps">{!$Label.c.TEL_Frenquency}</legend>
+                    <div class="slds-form-element__group">
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-2">
+                                <legend class="slds-form-element__legend slds-form-element__label">{!$Label.c.TEL_Scheduled_Day}</legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-checkbox--button-group">
+                                        <span class="slds-button slds-checkbox--button" for="monday">
+                                            <input name="weekDay" type="checkbox" id="monday" onclick="{!c.enableMonday}"/>
+                                            <label class="slds-checkbox--button__label" for="monday">
+                                                <span class="slds-checkbox--faux">Mon</span>
+                                            </label>
+                                        </span>
+                                        <span class="slds-button slds-checkbox--button" for="tuesday">
+                                            <input name="weekDay" type="checkbox" id="tuesday" onclick="{!c.enableTuesday}"/>
+                                            <label class="slds-checkbox--button__label" for="tuesday">
+                                                <span class="slds-checkbox--faux">Tue</span>
+                                            </label>
+                                        </span>
+                                        <span class="slds-button slds-checkbox--button" for="wednesday">
+                                            <input name="weekDay" type="checkbox" id="wednesday" onclick="{!c.enableWednesday}"/>
+                                            <label class="slds-checkbox--button__label" for="wednesday">
+                                                <span class="slds-checkbox--faux">Wed</span>
+                                            </label>
+                                        </span>
+                                        <span class="slds-button slds-checkbox--button" for="thursday">
+                                            <input name="weekDay" type="checkbox" id="thursday" onclick="{!c.enableThursday}"/>
+                                            <label class="slds-checkbox--button__label" for="thursday">
+                                                <span class="slds-checkbox--faux">Thu</span>
+                                            </label>
+                                        </span>
+                                        <span class="slds-button slds-checkbox--button" for="friday">
+                                            <input name="weekDay" type="checkbox" id="friday" onclick="{!c.enableFriday}"/>
+                                            <label class="slds-checkbox--button__label" for="friday">
+                                                <span class="slds-checkbox--faux">Fri</span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-form-element slds-size--1-of-2">
+                                <label class="slds-form-element__label" for="frequency">{!$Label.c.TEL_For}</label>
+                                <div class="slds-form-element__control">
+                                    <ui:inputSelect aura:id="frequency" multiple="false">
+                                        <ui:inputSelectOption text="None" label="-- None --" value="true"/>
+                                        <aura:iteration items="{!v.lstFrequency}" var="frq">
+                                            <ui:inputSelectOption text="{!frq}" label="{!frq}" value="false"/>
+                                        </aura:iteration>
+                                    </ui:inputSelect>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <form class="slds-form--inline">
+                    <div class="slds-form--horizontal">
+                        <ui:button class="slds-button slds-button--brand" label="{!$Label.c.TEL_Associate_Button}" press="{!c.sendAccounts}"/>
+                    </div>
+                </form>
+                <br></br>        
+                <!-- End Opportunities Param --> 
+                
+                <!-- Accounts Result Table --> 
+                <table class="slds-table slds-table--bordered slds-table--fixed-layout" role="grid">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th class="slds-cell-shrink" scope="col">
+                                <label class="slds-checkbox">
+                                    <ui:inputCheckBox aura:id="selectAll" change="{!c.changeSelectAll}"/>
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-assistive-text">{!$Label.c.TEL_Select_All}</span>
+                                </label>
+                            </th>
+                            <th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Opportunity Name">
+                                <span class="slds-truncate" title="Account Name">{!$Label.c.TEL_Account_Name}</span>
+                            </th>
+                            <th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Opportunity Name">
+                                <span class="slds-truncate" title="Account Type">{!$Label.c.Tel_Associate_Campaign}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    
+                    <!-- Body: Search account result --> 
+                    <tbody>
+                        <aura:iteration items="{!v.lstAccounts}" var="acc" indexVar="index">
+                            <tr class="slds-hint-parent">
+                                <td role="gridcell" class="slds-cell-shrink">
+                                    <label class="slds-checkbox">
+                                        <ui:inputCheckbox value="{!acc.isSelected}" />
+                                        <span class="slds-checkbox--faux"></span>
+                                    </label>
+                                </td>
+                                <th scope="row" data-label="Account Name">
+                                    <div class="slds-truncate" title="Telesales">
+                                        <ui:outputText aura:id="AccountName" value="{!acc.accountName}"/>
+                                    </div>
+                                </th>
+                                <td role="gridcell" data-label="Type">
+                                    <div class="slds-truncate" title="Telesales">
+                                        <div title="{!acc.accountCampaign}">
+                                            <aura:renderIf isTrue="{!acc.hasAccCampaign}">
+                                                <lightning:icon iconName="utility:bookmark" size="xx-small" />
+                                            </aura:renderIf>
+                                        </div>
+                                        <!-- <ui:outputText aura:id="AccountType" value="{!acc.accType}"/> -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+        </aura:renderIf>
+        
+        
+        <!-- End Search Result Accounts - Table --> 
+        
+    </div>
+</aura:component>

@@ -4,7 +4,7 @@
     <contactAccessLevel>Edit</contactAccessLevel>
     <description>RFS Independent Manager</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>RFS Independent Manager</name>
+    <name>RFS Sales Development Manager Independent HoReCa</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>National_Development_Manager</parentRole>
+    <parentRole>National_Chains_Manager</parentRole>
 </Role>

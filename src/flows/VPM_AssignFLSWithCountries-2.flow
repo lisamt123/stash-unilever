@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>VPM_FLSFoundDecision</name>
+        <label>FLS Found ??</label>
+        <locationX>66</locationX>
+        <locationY>135</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>VPM_FLSNotFoundOutcome</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FLS</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>FLS Not found</label>
+        </rules>
+        <rules>
+            <name>VPM_FLSFoundOutcome</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FLS</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>VPM_RecordUpdateFLSWithCountry</targetReference>
+            </connector>
+            <label>FLS Found</label>
+        </rules>
+    </decisions>
+    <interviewLabel>VPM _Assign FLS With Countries  {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>VPM _Assign FLS With Countries</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>VPM_FetchFLSExistForCountry</name>
+        <label>Fetch FLS  Exist for Country</label>
+        <locationX>67</locationX>
+        <locationY>31</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>VPM_FLSFoundDecision</targetReference>
+        </connector>
+        <filters>
+            <field>VPM_Country__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VarCountry</elementReference>
+            </value>
+        </filters>
+        <object>VPM_CountriesWithFLS__mdt</object>
+        <outputAssignments>
+            <assignToReference>FLS</assignToReference>
+            <field>FLS__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordUpdates>
+        <name>VPM_RecordUpdateFLSWithCountry</name>
+        <label>Record Update FLS with country</label>
+        <locationX>239</locationX>
+        <locationY>248</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>PurchaseID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>VPM_FLSInCountryReqVen__c</field>
+            <value>
+                <elementReference>FLS</elementReference>
+            </value>
+        </inputAssignments>
+        <object>VPM_PurchasingRequests__c</object>
+    </recordUpdates>
+    <startElementReference>VPM_FetchFLSExistForCountry</startElementReference>
+    <variables>
+        <name>FLS</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>PurchaseID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>VarCountry</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>VendorRequest</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>VPM_PurchasingRequests__c</objectType>
+    </variables>
+</Flow>

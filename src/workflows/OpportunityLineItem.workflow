@@ -77,27 +77,19 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    
     <fieldUpdates>
-        <fullName>FS_UpdateuniqueProduct</fullName>
-        <description>Update the unique product field to restrict adding same products to opportunity.</description>
-        <field>FS_UniqueProduct__c</field>
-        <formula>OpportunityId+Product2Id</formula>
-        <name>FS Update unique Product</name>
+        <fullName>Update_FS_NSV_CALCULATION</fullName>
+        <description>Update FS NSV CALCULATION</description>
+        <field>FS_NSV_CALCULATION__c</field>
+        <formula>IF( ISPICKVAL(  CurrencyIsoCode, &apos;CAD&apos;) , Quantity * PricebookEntry.FS_Bracket_3__c * 0.99, Quantity * PricebookEntry.FS_Bracket_1__c * 0.99)</formula>
+        <name>Update FS NSV CALCULATION</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
-    <rules>
-        <fullName>FS Adding Unique Products</fullName>
-        <actions>
-            <name>FS_UpdateuniqueProduct</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>Created to restrict adding same products to opportunity.</description>
-        <formula>AND($Profile.Name=&quot;Unilever Food Solution - Russia&quot;,  Opportunity.RecordType.Name =&quot;RUFS Opportunity TPR&quot;)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
+    
     <rules>
         <fullName>FS Copy DIST TMI and COGS To Non Formula Field</fullName>
         <actions>
@@ -132,6 +124,21 @@ NOT(ISBLANK(TotalCOGS__c))
         </criteriaItems>
         <description>To send an email alert to Line manger and AFM users when fixed price is true</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>FS NSV Calculation</fullName>
+        <actions>
+            <name>Update_FS_NSV_CALCULATION</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.Quantity</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <description>Calculate NSV for Canada or US</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>FS Samples Ordering</fullName>

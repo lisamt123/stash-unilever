@@ -380,7 +380,7 @@ public with sharing class CEC_InstantAlertActionHelper {
                         uniqueId = null;
                         
                         // Create Unique Id based on the daycode check on the alert rule.
-                        if(!alertRule.Group_By_Day_Code__c && caseObj.DayCode__c == null){
+                        if(!alertRule.Group_By_Day_Code__c ){//&& caseObj.DayCode__c == null){
                             uniqueId = alertRule.Id + caseObj.Consumer_Product_Descriptor_no_size__c;
                         }else if(alertRule.Group_By_Day_Code__c && caseObj.DayCode__c != null){
                             uniqueId = alertRule.Id + caseObj.DayCode__c + caseObj.Consumer_Product_Descriptor_no_size__c;
@@ -605,6 +605,11 @@ public with sharing class CEC_InstantAlertActionHelper {
         }
         
         // Util method to add Case to the wrapper instance.
+         /**
+        Util method to add Case to the wrapper instance.( Comment as per CSC-5334 )
+        @param : caseObj 
+        @return : Void
+        */
         public void addCase(Case caseObj) {
             if (this.caseList == null) {
                 this.caseList = new List<Case>();
@@ -612,7 +617,12 @@ public with sharing class CEC_InstantAlertActionHelper {
             this.caseList.add(caseObj);
         }
         
-        // Util method to add alertAction to the wrapper instance.
+        // 
+        /**
+        Util method to add alertAction to the wrapper instance.( Comment as per CSC-5334 )
+        @param : caseObj 
+        @return : Void
+        */
         public void addAlertAction(cec_Alert_Action__c alertAction) {
             if (this.alertActionList == null) {
                 this.alertActionList = new List<cec_Alert_Action__c>();
@@ -620,7 +630,11 @@ public with sharing class CEC_InstantAlertActionHelper {
             this.alertActionList.add(alertAction);
         }
         
-        // Util method to add questionnaireAlertAction to the wrapper instance.
+        /**
+        Util method to add questionnaireAlertAction to the wrapper instance.( Comment as per CSC-5334 )
+        @param : questionnaireAlertAction 
+        @return : Void
+        */
         public void addQuestionnaireAlertAction(cec_Alert_Action__c questionnaireAlertAction) {
             if (this.questionnaireAlertActionList == null) {
                 this.questionnaireAlertActionList = new List<cec_Alert_Action__c>();
@@ -628,7 +642,12 @@ public with sharing class CEC_InstantAlertActionHelper {
             this.questionnaireAlertActionList.add(questionnaireAlertAction);
         }
         
-        // Util method to add alertTracker to the wrapper instance.
+      
+        /**
+        Util method to add alertTracker to the wrapper instance.( Comment as per CSC-5334 )
+        @param : caseId,  alertTracker
+        @return : Void
+        */
         public void addAlertTracker(Id caseId, cec_Alert_Tracker__c alertTracker) {
             if(this.caseAlertTrackerMap == null) {
                 this.caseAlertTrackerMap = new Map<Id, List<cec_Alert_Tracker__c>>();
@@ -639,7 +658,11 @@ public with sharing class CEC_InstantAlertActionHelper {
             this.caseAlertTrackerMap.get(caseId).add(alertTracker);
         }
         
-        // Util method to add alertTrackerItem to the wrapper instance.
+        /**
+        Util method to add alertTrackerItem to the wrapper instance.( Comment as per CSC-5334 )
+        @param : caseId,  alertTracker
+        @return : Void
+        */
         public void addAlertTrackerItem(Id caseId, cec_Alert_Tracker_Item__c alertTrackerItem) {
             if(this.caseAlertTrackerItemMap == null) {
                 this.caseAlertTrackerItemMap = new Map<Id, List<cec_Alert_Tracker_Item__c>>();

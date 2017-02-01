@@ -49,10 +49,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             <div class="row">
                 <apex:outputPanel layout="none" rendered="{!lcategories != null && lcategories.size > 0}">
                     <apex:repeat value="{!lcategories}" var="o" id="theRepeat">
-                    <apex:outputText rendered="{!IF(o.Name == 'System & Tools' || o.Name == 'Math and Analytics',true,false)}" >
+                    <apex:outputText rendered="{!IF(o.Name == 'System & Tools',true,false)}" >
                     <div class="categoryItemWrap">
-                          <!--<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 categoryItem" item-url="{!$Page.PBS_SubFolder}?id={!o.Id}">  commented by Nag R001.001.005 -->
-                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 categoryItem" item-url="{!$Page.PBS_TrainingCatalogDetail}?id={!o.Id}">
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 categoryItem" item-url="{!$Page.PBS_SubFolder}?id={!o.Id}">
+                            <!--<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 categoryItem" item-url="{!$Page.PBS_TrainingCatalogDetail}?id={!o.Id}">  commented by Nag R001.001.005 -->
                             <div class="categoryImage" style="background:url({!JSENCODE(o.Background_Image_URL__c)})">
                                 <apex:outputPanel rendered="{!o.Logo__c != null}" layout="none">
                                     <apex:image value="{!o.Logo__c}"  />
@@ -65,7 +65,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                           </div>
                         </div>
                     </apex:outputText>
-                    <apex:outputText rendered="{!IF(o.Name == 'S&OP' || o.Name == 'Financial Acumen' || o.Name =='End to End Supply Chain Process' || o.Name == 'Business Skills',true,false)}" >
+                    <apex:outputText rendered="{!IF(o.Name == 'S&OP' || o.Name == 'Financial Acumen' || o.Name =='End to End Supply Chain Process' || o.Name == 'Business Skills' ||  o.Name == 'Math and Analytics',true,false)}" >
                         <div class="categoryItemWrap">
                           <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 categoryItem" item-url="{!$Page.PBS_TrainingCatalogDetail}?id={!o.Id}">
                             <div class="categoryImage" style="background:url({!JSENCODE(o.Background_Image_URL__c)})">

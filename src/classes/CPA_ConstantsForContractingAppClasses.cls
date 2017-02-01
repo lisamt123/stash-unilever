@@ -210,7 +210,8 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String EXPTGOLIVEDATENOTPASTDATE='Expected go-live date canot be past date';
     public static final String CPASMT='CPA_SMT';
     public static final String CPAADM='CPA_ADM';
-    public static final String CPAULPM='CPA_ULPM'; 
+    public static final String CPAULPM='CPA_ULPM';
+    public static final String CPAULPMSF='CPA_ULPM_SL'; 
     public static final String WhyProjectInvasiveInNature='Why Project Invasive in nature?';
     public static final String MANDATORYIFPRJISINVASIVEINNATURTE='Mandatory, If Project is Invasive in nature';
     public static final String MANDATORYIFPRJROLESYSADMIN='Mandatory, if the project has Role or System Authorization';

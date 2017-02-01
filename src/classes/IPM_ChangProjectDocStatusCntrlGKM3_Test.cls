@@ -204,8 +204,7 @@ public class IPM_ChangProjectDocStatusCntrlGKM3_Test {
             
             IPM_GateDocumentController ipmGateDocCtrl=new IPM_GateDocumentController();
             ipmGateDocCtrl.isPDLApproved = true; 
-            ipmGateDocCtrl.projectDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_APPROVED;
-            
+            ipmGateDocCtrl.projectDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_APPROVED;            
             
         } 
        

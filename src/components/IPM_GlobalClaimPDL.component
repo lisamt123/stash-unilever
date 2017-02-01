@@ -183,7 +183,7 @@
 	                                                <apex:commandLink styleClass="ipmDropbuttonscc" value="Done" action="{!doneEventHandling}" status="Loading" reRender="ProjectClaimTableId"/>
 	                                            </div>
 	                                            <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
-	                                                <apex:commandLink styleClass="ipmDropresetcc" value="Reset" action="{!resetEventHandling}" status="Loading" reRender="ProjectClaimTableId"/>
+	                                                <a value="Reset" class="ipmDropresetcc">Reset</a>
 	                                            </div>
 	                                        </li>
 	                                    </apex:outputPanel>

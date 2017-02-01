@@ -177,6 +177,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>FS_UpdateChildAccounts</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FS_UpdateChildAccountsTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FS_UtilMABETool</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4493,6 +4501,13 @@
         <field>Account.External_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.FS_SoftServeDistrId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>    
+    
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.FS_ABCSegmentation__c</field>
@@ -5125,19 +5140,10 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account_Relationship__c.External_ID__c</field>
+        <field>Account_Relationship__c.FS_UniqueAccountID__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Secondary_Account__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+
     <fieldPermissions>
         <editable>false</editable>
         <field>Agency_Fee_Field_History__c.Amended_By__c</field>
@@ -15560,11 +15566,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.agf__ADM_Work__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.dgai__Sugestion_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -17169,9 +17170,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Event.FS_SurveyName__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32130,6 +32131,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Opportunity.FS_amountCasePiece__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Opportunity.FS_Indicator__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -32241,7 +32247,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.FS_TotalNumberOfCases__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.FS_TotalQuantityCases__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.FS_TotalQuantityPieces__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32620,6 +32636,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>OpportunityLineItem.FS_QuantityCases__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_QuantityPieces__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>OpportunityLineItem.FS_Rate__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -32644,13 +32670,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>OpportunityLineItem.FS_UniqueProduct__c</field>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_UnitConversionFactor__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_additionalDiscount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>OpportunityLineItem.FS_copyOfCasePiece__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -32676,6 +32707,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_necessaryTPR__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_listPriceCasePiece__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_totalListPrice__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -36315,9 +36356,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Task.FS_SurveyName__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -37127,46 +37168,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Work_Level__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__GUS_User_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Notification_Level__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Show_All_Work_Comments__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Summary__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Team_Member_Allocation__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Wall_Preference__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Work_User_Interface__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -45096,7 +45097,7 @@
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
+        <allowDelete>false</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>

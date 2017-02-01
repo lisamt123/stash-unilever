@@ -5,8 +5,72 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>PQN_CannockJSON2Apex</apexClass>
-        <enabled>true</enabled>
+        <apexClass>PQNBatchDeleteRecords</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQNUpdateFreezePeriodCtrl</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQNUpdateFreezePeriodCtrlTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_AccountDAO</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_AccountDAO_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_AccountSharer</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_AccountSharer_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_CheckDelete</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_CheckDeleteTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_CommunitiesSelfRegController_CC</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_CommunitiesSelfRegController_CC_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_Country_Report</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_CreateAccessRequest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_CreateCommuntiyUser</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_CreateCommuntiyUser_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_CreateUserQueueable</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_CreateUserQueueable_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_DC_Voulmes</apexClass>
@@ -17,15 +81,35 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_HelibronnJSON2Apex</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PQN_MultiTargets</apexClass>
+        <apexClass>PQN_Export_Excel</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_MultiTargetstest</apexClass>
+        <apexClass>PQN_Export_Excel_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_GlobalCategoryReport</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_GlobalGeographyReport</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_GlobalGeographyReportTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_GlobalSUReport</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_Global_DCReport</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_Global_Overview_Geography</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -38,7 +122,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_Supplier_Popup_Ctlr</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_Supplier_Popup_CtlrTest</apexClass>
@@ -49,11 +133,23 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_UploadNCData</apexClass>
-        <enabled>true</enabled>
+        <apexClass>PQN_TestLibraryUtil_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_UploadNCDatatest</apexClass>
+        <apexClass>PQN_UploadNCData_Clone</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_UploadNCData_CloneTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_UserCreateAssignPermissions</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_UserCreationPostProcessing</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -64,8 +160,51 @@
         <apexClass>PQN_singleEntryScreenTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_updateTAR</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_updateTAR_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <description>This permission set is used to grant required access to the objects of the PQN application. 
 ( Demo User)</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.PQN_Cluster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.PQN_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_DC_Volumes__c.Month__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_DC_Volumes__c.Reporting_DC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_DC_Volumes__c.Total_Pallets_Checked_By_DC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_DC_Volumes__c.Total_Pallets_received_by_DC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_DC_Volumes__c.Year__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Cluster__c</field>
@@ -78,7 +217,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Current_Month_Freeze_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.DC_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.DC_Volumes__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -108,12 +257,52 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Error_Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Is_Error__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Loss_Level_2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Loss_Level_4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Loss_level_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Losses__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.MCO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.MonthN__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Month__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Multi_Timestamp__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -163,8 +352,33 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Sup_type_num__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Cluster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Sub_Cluster__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -178,7 +392,87 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Target_Reduction__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Targets__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Total_DC_Vol_Year__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Total_NC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Total_pallets_received_by_DC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Year__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Sourcing_Unit__c.Month__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Sourcing_Unit__c.Soucing_Unit_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Sourcing_Unit__c.Sourcing_Unit_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Sourcing_Unit__c.Total_Volume_Of_pallets_Shipped__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Sourcing_Unit__c.Year__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Supplier__c.Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Supplier__c.Supplier_Alias__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Supplier__c.Supplier_Cluster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PQN_Supplier__c.Supplier_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Supplier__c.Supplier_Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Supplier__c.Supplier_Sub_Cluster__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -198,7 +492,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>PQN_Targets__c.Region_Geography__c</field>
+        <field>PQN_Targets__c.PQN__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_Targets__c.Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -216,6 +515,81 @@
         <field>PQN_Targets__c.Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_User_Account_Request__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PQN_User_Account_Request__c.PQN_User_Creation_Request__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Approval_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Cluster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.DC_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.First_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Last_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.MCO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Nick_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Region__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Sub_Cluster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.User_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.User__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_User_Creation_Request__c.Username__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <label>PQN DC User</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -224,7 +598,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>PQN_DC_Volumes__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -232,7 +606,25 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>PQN_Pallet_Quality_Non_Conformance__c</object>
+        <object>Account</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Contact</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>PQN_Sourcing_Unit__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -245,16 +637,24 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>PQN_Targets__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
+        <apexPage>PQN_CommunitiesSelfReg_VF</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>PQN_Conformance_Detail_VF</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PQN_Country_Report</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -270,6 +670,34 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>PQN_DeleteOverride</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PQN_Export_Excel</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PQN_GlobalSUReport</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PQN_Global_Category_Report</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PQN_Global_DCReport</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PQN_Global_Geography_Report</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PQN_Global_Overview</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>PQN_Home</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -278,11 +706,11 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>PQN_MultiEditScreen_VF</apexPage>
+        <apexPage>PQN_MultiEditScreen_Clone</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>PQN_MultiTargets_VF</apexPage>
+        <apexPage>PQN_PalletLossTreeData</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -291,11 +719,11 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Supplier_Popup</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_TargetEntryScreen_VF</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Target_Detail_VF</apexPage>
@@ -305,13 +733,29 @@
         <apexPage>PQN_Targets_List_View</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <pageAccesses>
+        <apexPage>PQN_Update_Freeze_Period</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <recordTypeVisibilities>
+        <recordType>Account.Pallet_Quality_NC</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>PQN_Pallet_Quality_Non_Conformance__c.PQN</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
     <tabSettings>
         <tab>PQN_DC_Volumes__c</tab>
         <visibility>Available</visibility>
     </tabSettings>
     <tabSettings>
         <tab>PQN_Pallet_Quality_Non_Conformance__c</tab>
-        <visibility>Available</visibility>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PQN_Sourcing_Unit__c</tab>
+        <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
         <tab>PQN_Supplier__c</tab>
@@ -322,7 +766,7 @@
         <visibility>Available</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Pallet_Quality_Non_Conformance_VF</tab>
-        <visibility>Visible</visibility>
+        <tab>PQN_User_Creation_Request__c</tab>
+        <visibility>None</visibility>
     </tabSettings>
 </PermissionSet>

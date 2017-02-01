@@ -64,10 +64,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Volume__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>FS_No_of_Opportunities__c</field>
             </layoutItems>
             <layoutItems>
@@ -233,8 +229,8 @@
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
+        <fields>TASK.TYPE</fields>
         <fields>TASK.WHO_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
         <fields>TASK.DUE_DATE</fields>
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.LAST_UPDATE</fields>

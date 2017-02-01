@@ -3,7 +3,7 @@
 *@Description: This is landing page of IPM NG users.It is used display the alertmessages and Taskcount or Project
 *@Author: Cognizant
 *@Created Date: 13/05/2015
-*@Copyright Â© 2015  Unilever    
+*@Copyright © 2015  Unilever    
 ******************************************************************************************************************
 -->
 <apex:page controller="IPM_HomePageController" sidebar="false" standardStylesheets="false"  extensions="IPM_GetHelpDoc">     
@@ -147,15 +147,14 @@
                                     </div>
                                     <div class="col-sm-5">
                                         <div class="col-sm-12 noPadding">
-                                            <span class="contentHeader">{!$Label.IPM_PROCEDURE_CHANGE}</span>
+                                            <span class="contentHeader">{!$Label.IPM_WELCOME_TEXT}</span>
                                         </div>
+                                        <!-- Slider 1 Latest News -->
                                         <div class="col-sm-12 noPadding sliderContent">
-                                            <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
-                                            <p>{!$Label.IPM_INTERIN_SUPPORT_SOLUTION} </p><br/>
-                                            <div class="homeDivide">{!$Label.IPM_INOPLAN_USER_QUERY}</div>
-                                            <div >{!$Label.IPM_TRAINING_OR_TECHNICAL}</div>                           
+                                            <span class="contentTitle">{!$Label.IPM_MISSION_STATEMENT}</span>
+                                            <div class="homeDivide">{!$Label.IPM_INTERIN_SUPPORT_SOLUTION}</div>
+                                            <div class="homeDivide">{!$Label.IPM_OWNER_HOME}</div>
                                         </div>
-                                        <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
                                     </div>
                                 </div>
                                 
@@ -169,13 +168,15 @@
                                         <div class="col-sm-12 noPadding">
                                             <h5 class="contentHeader">{!$Label.IPM_PROJECT_UPDATE}</h5>
                                         </div>
+                                        <!-- Slider 2 Latest News -->
                                         <div class="col-sm-12 noPadding sliderContent">
                                         <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
-                                            <p>{!$Label.IPM_WATCH_FOR_UPDATES_TO}</p><br />
+                                            <p class="listItem">{!$Label.IPM_WATCH_FOR_UPDATES_TO}</p>
                                             <p class="listItem">{!$Label.IPM_PDL_FOR_PC}</p>
+                                            <p class="listItem">{!$Label.IPM_HOME_TILE2_TEXT}</p>
+                                            <p class="listItem">{!$Label.IPM_HOME_TILE2_TEXT2}</p>
                                         </div>
-                                        <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
-                                    </div>
+									</div>
                                 </div>   
                             </div>
                         </div>
@@ -212,7 +213,7 @@
                                     <span class="boxTitle">{!$Label.IPM_ASK_IPM}</span>           
                                 </div>
                                 <div class="col-sm-6 centerAlign box4 noPadleft noPadright SecButtonSet" title="{!$Label.IPM_GotoIPMPortal}">
-                                    <a class="icoButton ipmportal" href="http://inside.unilever.com/marketing/IPM/Pages/ipmnav.aspx" target="_blank" title="Navigate to IPM Portal"></a>
+                                    <a class="icoButton ipmportal" href="{!$Label.IPM_GOTO_URL}" target="_blank" title="Navigate to IPM Portal"></a>
                                     <span class="boxTitle"><div>{!$Label.IPM_GO_TO}</div><div>{!$Label.IPM_PORTAL}</div></span>             
                                 </div>
                             </div>  

@@ -144,11 +144,35 @@
         <label>Material Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Dummy 1</fullName>
+                <fullName>Rigids</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Dummy 2</fullName>
+                <fullName>Label</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flexible</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Carton</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Corrugate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tube</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Alu Can</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Glass</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -176,11 +200,15 @@
         <label>Solution Category</label>
         <picklist>
             <picklistValues>
-                <fullName>Dummy 1</fullName>
+                <fullName>Overt</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Dummy 2</fullName>
+                <fullName>Covert</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dual</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -197,11 +225,19 @@
         <label>Solution Status</label>
         <picklist>
             <picklistValues>
-                <fullName>Dummy 1</fullName>
+                <fullName>Approved</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Dummy 2</fullName>
+                <fullName>Under Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Archived</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -218,11 +254,11 @@
         <label>Solution Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Dummy 1</fullName>
+                <fullName>Taggents</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Dummy 2</fullName>
+                <fullName>Water Marks</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -283,6 +319,129 @@
         <type>Phone</type>
     </fields>
     <label>PACV Solutions</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>PACV_Material_Type__c</columns>
+        <columns>PACV_Price_Per_Unit__c</columns>
+        <columns>PACV_Solution_Category__c</columns>
+        <columns>PACV_Solution_in_Use__c</columns>
+        <columns>PACV_Solution_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Archived_Solutions</fullName>
+        <columns>NAME</columns>
+        <columns>PACV_Material_Type__c</columns>
+        <columns>PACV_Price_Per_Unit__c</columns>
+        <columns>PACV_Solution_Category__c</columns>
+        <columns>PACV_Solution_in_Use__c</columns>
+        <columns>PACV_Solution_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>PACV_Solution_Status__c</field>
+            <operation>equals</operation>
+            <value>Archived</value>
+        </filters>
+        <label>Archived Solutions</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Category</fullName>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <columns>NAME</columns>
+        <columns>PACV_Benefits__c</columns>
+        <columns>PACV_Material_Type__c</columns>
+        <columns>PACV_Price_Per_Unit__c</columns>
+        <columns>PACV_Solution_Category__c</columns>
+        <columns>PACV_Solution_in_Use__c</columns>
+        <columns>PACV_Solution_Status__c</columns>
+        <columns>PACV_Solution_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>PACV_Solution_Category__c</field>
+            <operation>equals</operation>
+            <value>Overt</value>
+        </filters>
+        <filters>
+            <field>PACV_Solution_Category__c</field>
+            <operation>equals</operation>
+            <value>Covert</value>
+        </filters>
+        <filters>
+            <field>PACV_Solution_Category__c</field>
+            <operation>equals</operation>
+            <value>Dual</value>
+        </filters>
+        <label>Category</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Material_Type</fullName>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+        <columns>NAME</columns>
+        <columns>PACV_Benefits__c</columns>
+        <columns>PACV_Material_Type__c</columns>
+        <columns>PACV_Price_Per_Unit__c</columns>
+        <columns>PACV_Solution_Category__c</columns>
+        <columns>PACV_Solution_in_Use__c</columns>
+        <columns>PACV_Solution_Status__c</columns>
+        <columns>PACV_Solution_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>PACV_Material_Type__c</field>
+            <operation>equals</operation>
+            <value>Rigids</value>
+        </filters>
+        <filters>
+            <field>PACV_Material_Type__c</field>
+            <operation>equals</operation>
+            <value>Label</value>
+        </filters>
+        <filters>
+            <field>PACV_Material_Type__c</field>
+            <operation>equals</operation>
+            <value>Flexible</value>
+        </filters>
+        <filters>
+            <field>PACV_Material_Type__c</field>
+            <operation>equals</operation>
+            <value>Carton</value>
+        </filters>
+        <filters>
+            <field>PACV_Material_Type__c</field>
+            <operation>equals</operation>
+            <value>Corrugate</value>
+        </filters>
+        <label>Material Type</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Price_per_unit</fullName>
+        <columns>NAME</columns>
+        <columns>PACV_Benefits__c</columns>
+        <columns>PACV_Material_Type__c</columns>
+        <columns>PACV_Price_Per_Unit__c</columns>
+        <columns>PACV_Solution_Category__c</columns>
+        <columns>PACV_Solution_in_Use__c</columns>
+        <columns>PACV_Solution_Status__c</columns>
+        <columns>PACV_Solution_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>PACV_Price_Per_Unit__c</field>
+            <operation>greaterThan</operation>
+            <value>EUR 0</value>
+        </filters>
+        <filters>
+            <field>PACV_Price_Per_Unit__c</field>
+            <operation>lessThan</operation>
+            <value>EUR 100</value>
+        </filters>
+        <label>Price per unit</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Solutions Name</label>
         <trackHistory>false</trackHistory>

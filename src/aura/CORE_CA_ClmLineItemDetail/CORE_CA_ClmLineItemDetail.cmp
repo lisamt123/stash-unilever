@@ -1,0 +1,68 @@
+<aura:component controller="Core_CA_ApprovalsController">
+    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="subDivision" type="string"/>
+    <aura:attribute name="lineItemId" type="string"/>
+    <aura:attribute name="sourcePage" type="string"/>
+    <aura:attribute name="filterValue" type="string"/>
+    <aura:attribute name="spinnercompline" type="boolean" default="true"/>
+    <aura:attribute name="ApprovalDetail" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:attribute name="lineItemList" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:attribute name="requestName" type="string"/>
+    <aura:attribute name="count" type="String"/>
+    <aura:attribute name="showMoreCount" type="boolean" default="true"/>
+    <aura:attribute name="lineItemCount" type="String"/>
+    <style>
+        body {
+        font-family: 'Salesforce Sans';
+        }
+    </style>
+    <div class="main-container">
+        <!-- Back button Functionlaity start-->
+        <div>
+            <div onclick="{!c.gotoPreviousPage}" class="topBackBar">
+                <img src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" alt="Back" class="backIconStyle" />
+                <div class="header-card">{!v.requestName}</div>
+                <div class="header-number">{!v.lineItemCount}</div>
+            </div>
+            <hr></hr>
+        </div>
+        <!-- Back button Functionlaity End-->
+        <aura:iteration items="{!v.lineItemList}" var="lineItemData" indexVar="index">
+        <div class="sections">
+            <div class="num">{!(index+1)}</div><div class="title">Material Description </div><div class="slds-text-title--cap text1">{!lineItemData.ItemName}</div>
+            <div class="col-one">
+                <div class="detail_ques">Plant ID</div>
+                <div class="detail_data">{!lineItemData.city}</div>
+            </div>
+            <div>
+                <div class="detail_ques">Payment Terms</div>
+                <div class="detail_data">{!lineItemData.expCode}</div>
+            </div>
+            <div class="clearcls"></div>
+            <div class="col-one">
+                <div class="detail_ques">Value</div>
+                <div class="detail_data">{!lineItemData.expId}</div>
+            </div>
+            <div>
+                <div class="detail_ques">Currency</div>
+                <div class="detail_data">{!lineItemData.Currencies}</div>
+            </div>
+            <div class="clearcls"></div>
+            <div class="col-one">
+                <div class="detail_ques">Volume</div>
+                <div class="detail_data">{!lineItemData.LineItemNumber}</div>
+            </div>
+            <div>
+                <div class="detail_ques">Unit of Measurement</div>
+                <div class="detail_data">{!lineItemData.expCountry}</div>
+            </div>
+            <div class="clearcls"></div>
+        </div>
+        
+        </aura:iteration>
+        <aura:if isTrue="{!v.showMoreCount}">
+                    <div align="center" class="showmore"> <button class="slds-button slds-button--neutral" onclick="{!c.doInit}">Show More</button></div>
+                </aura:if>
+            </div>
+</aura:component>

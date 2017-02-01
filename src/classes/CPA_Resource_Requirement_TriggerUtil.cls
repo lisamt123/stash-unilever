@@ -43,7 +43,7 @@ public with sharing class CPA_Resource_Requirement_TriggerUtil{
                     user_has_permission = true;
                     break;
                 }
-                else if ((permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPAULPM)) && (mapPWORF.get(obj.PWORF__c) != CPA_ConstantsForContractingAppClasses.ACCEPTED && mapPWORF.get(obj.PWORF__c) != CPA_ConstantsForContractingAppClasses.AUTOACCEPT && mapPWORF.get(obj.PWORF__c) != CPA_ConstantsForContractingAppClasses.ANSWERED && mapPWORF.get(obj.PWORF__c) != CPA_ConstantsForContractingAppClasses.CANCELLED)){
+                else if ((permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPAULPM)||permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPAULPMSF)) && (mapPWORF.get(obj.PWORF__c) != CPA_ConstantsForContractingAppClasses.ACCEPTED && mapPWORF.get(obj.PWORF__c) != CPA_ConstantsForContractingAppClasses.AUTOACCEPT && mapPWORF.get(obj.PWORF__c) != CPA_ConstantsForContractingAppClasses.ANSWERED && mapPWORF.get(obj.PWORF__c) != CPA_ConstantsForContractingAppClasses.CANCELLED)){
                     user_has_permission = true;
                     break;
                 }

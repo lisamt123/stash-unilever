@@ -11,10 +11,8 @@
 
 <style>
 
-    div.filterText{
-    
+    div.filterText{    
         text-indent: -10px;
-    
     }
     ul li{
       margin-left: 0em !important; 
@@ -24,9 +22,9 @@
     <div class="row bodyRow group">
         
         <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
-		<div class="col-xs-4 home-detail">
+        <div class="col-xs-4 home-detail">
             <ul>
-            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a></li>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_MyProfile}" target="innerFrame">EDIT PROFILE</a></li>
             </ul>
         </div>
     </div>
@@ -56,26 +54,45 @@
                     <div class="col-md-3 col-lg-3 box-library">
                        
                             <div class="form-group">
-                                <label for="Search">Search Article:</label><br/>
-                               <apex:inputText value="{!searchstring}" id="theSearchstring" maxlength="100" size="20"/> &nbsp;
+                              <label for="Search">Search Article:</label><br/>
+                              <apex:inputText value="{!searchstring}" style="width:100%" id="theSearchstring" maxlength="100" size="20"/>
+                              <label for="Search">Language:</label><br/>
+                              <apex:selectList id="countries" style="width:100%" value="{!language}" size="1" required="true">
+                                  <!--<apex:selectOption itemValue="All" itemLabel="All"/>-->
+                                  <apex:selectOptions value="{!languages}"/>
+                              </apex:selectList><br/>
+                              <br/>
+                              
+                             
+                              <label for="Search">Group Name:</label><br/>
+                              
+                              <apex:selectList value="{!groupNameSearch}" style="width:100%" size="1" required="true">
+                                  <apex:selectOption itemValue="All" itemLabel="All"/>
+                                  <apex:selectOption itemValue="PBS" itemLabel="PBS"/>
+                                  <apex:selectOption itemValue="Demand Planning" itemLabel="Demand Planning"/>
+                                  <apex:selectOption itemValue="Supply Planning" itemLabel="Supply Planning"/>
+                                  <apex:selectOption itemValue="Distribution Planning" itemLabel="Distribution Planning"/>
+                                  <apex:selectOption itemValue="Material Planning" itemLabel="Material Planning"/>
+                                  <apex:selectOption itemValue="Innovation Planning" itemLabel="Innovation Planning"/>
+                              </apex:selectList><br/>
+                              
+                              <br/>
    <apex:commandButton value="Go" action="{!getPbsArticleSearchList}" id="submitButton" style="width:30" reRender="theSearchResults" status="actStatusId" />
    
-   
-   
-   <apex:actionStatus id="actStatusId" >
-                <apex:facet name="start" >
-                  <img src="/img/loading.gif" alt="loading"/>                    
-                </apex:facet>
-            </apex:actionStatus>
-            
+                        <apex:actionStatus id="actStatusId" >
+                            <apex:facet name="start" >
+                              <img src="/img/loading.gif" alt="loading"/>                    
+                            </apex:facet>
+                        </apex:actionStatus>         
                
-                            </div>
+                        </div>
                         
    
    
                     </div>
                     <div class="col-md-9 col-lg-9 table-library">
                     <apex:outputPanel id="theSearchResults" >
+                    
                         <apex:dataTable value="{!PbsArticleSearchList}" var="article" styleClass="table table-bordered table-striped table-hover" >
                            
                             <apex:column >
@@ -95,6 +112,19 @@
                             </apex:column>
                             <apex:column >
                                 <apex:facet name="header">
+                                    Group Name&nbsp;
+                                    <!--<apex:commandLink action="{!sortData}">
+                                        
+                                        <apex:outputPanel styleClass="glyphicon glyphicon-triangle-top" rendered="{!IF(AND(sortField == 'Summary', sortDir == 'ASC'), true, false)}" />
+                                        <apex:outputPanel styleClass="glyphicon glyphicon-triangle-bottom" rendered="{!IF(AND(sortField == 'Summary', sortDir == 'DESC'), true, false)}" />
+                                        <apex:param assignTo="{!sortField}" name="field" value="Summary" />
+                                        <apex:param assignTo="{!sortDir}" name="dir" value="{!IF(sortDir == 'ASC', 'DESC', 'ASC')}" />
+                                    </apex:commandlink>-->
+                                </apex:facet>
+                                <apex:outputText >{!groupnameMap[article.Id]}</apex:outputText> 
+                            </apex:column>
+                            <!--<apex:column >
+                                <apex:facet name="header">
                                     <apex:commandLink action="{!sortData}">
                                         Summary&nbsp;
                                         <apex:outputPanel styleClass="glyphicon glyphicon-triangle-top" rendered="{!IF(AND(sortField == 'Summary', sortDir == 'ASC'), true, false)}" />
@@ -104,9 +134,9 @@
                                     </apex:commandlink>
                                 </apex:facet>
                                 <apex:outputField value="{!article.Summary}"/>
-                            </apex:column>
+                            </apex:column>-->
                             
-                            <apex:column styleClass="dateCol">
+                            <!--<apex:column styleClass="dateCol">
                                 <apex:facet name="header">
                                     <apex:commandLink action="{!sortData}">
                                         Last Published Date&nbsp;
@@ -117,7 +147,7 @@
                                     </apex:commandlink>
                                 </apex:facet>
                                 <apex:outputField value="{!article.lastPublishedDate}"/>
-                            </apex:column>
+                            </apex:column>-->
                             <apex:column styleClass="statsCol">
                                 <apex:facet name="header">AVG Rating</apex:facet>
                                 <div class="rating" data-toggle="wiki-tooltip" title="{!ROUND(ranking[article.KnowledgeArticleId],2)}">
@@ -129,12 +159,12 @@
                                 </div>
                             </apex:column>
                            
-                             <apex:column styleClass="statsCol">
+                             <!--<apex:column styleClass="statsCol">
                                 <apex:facet name="header">Feedback</apex:facet>
                                   <apex:outputPanel rendered="{!(article.ArticleType == 'PBS_Wiki__kav')}"> <a href="/apex/PBS_WikiFeedbackview?ID={!article.id}" target="_self" title=""><apex:outputText value="View"/></a></apex:outputPanel>
                                    <apex:outputPanel rendered="{!(article.ArticleType != 'PBS_Wiki__kav')}"><apex:outputText value="No Feedback"/></apex:outputPanel>
                                 
-                            </apex:column>
+                            </apex:column>-->
                               
                         </apex:dataTable>
                         
@@ -148,11 +178,6 @@
                        </apex:outputPanel>
                     </div>
                 </div>
-
- 
-
-                
-                
 
             </apex:form>
         </div>

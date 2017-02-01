@@ -75,7 +75,6 @@ private class IPM_RolloutPlansAddController_Test
 	
             	System.assertEquals(projectRolloutList.size(),3,'Rollouts Creation Failed.');
             	
-            	System.debug(LoggingLevel.ERROR,'projectRolloutList-->>'+projectRolloutList);
             	
             	IPM_Project_Rollout__c regionalRollout = null;
             	for(IPM_Project_Rollout__c projectRollout : projectRolloutList)
@@ -121,7 +120,6 @@ private class IPM_RolloutPlansAddController_Test
          	    
 	         	Test.StopTest();
 	         	
-	         	System.debug(LoggingLevel.ERROR,'Queries 1 ---->>'+Limits.getQueries());
 	         	
 	         	List<IPM_Project__c> regionalProjectList = [SELECT ID FROM IPM_Project__c where IPM_Parent_Project__c = :projectAssertList[0].Id];
 	         	
@@ -132,7 +130,6 @@ private class IPM_RolloutPlansAddController_Test
 	
 	       		IPM_RolloutPlansAddController irpRegional = new IPM_RolloutPlansAddController(); 
 				
-				System.debug(LoggingLevel.ERROR,'Queries 2 ---->>'+Limits.getQueries());
 				
 	       		irpRegional.regionalMco = 'AO,CM,NG,CG';
 	       		irpRegional.regionalUnselectedMco = 'CM';
@@ -141,7 +138,8 @@ private class IPM_RolloutPlansAddController_Test
 	       		irpRegional.generateRollouts();
 	       		
 	       		irpRegional.checkLocalProjectAssociatedOrNot();
-	       		System.debug(LoggingLevel.ERROR,'Queries 3 ---->>'+Limits.getQueries());
+	       	
+	       		irp.generateRollouts();
      		}
       	} 
       	
@@ -184,7 +182,6 @@ private class IPM_RolloutPlansAddController_Test
 
             	System.assertEquals(projectRolloutList.size(),2,'Rollouts Creation Failed.');
             	
-            	System.debug(LoggingLevel.ERROR,'projectRolloutList-->>'+projectRolloutList);
             	
             	IPM_Project_Rollout__c regionalRollout = null;
             	for(IPM_Project_Rollout__c projectRollout : projectRolloutList)

@@ -1,4 +1,4 @@
-<apex:page standardStylesheets="false" docType="html-5.0" sidebar="false" showHeader="false">
+<apex:page standardStylesheets="false" docType="html-5.0" sidebar="false" showHeader="false" controller="PQNUpdateFreezePeriodCtrl">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -24,39 +24,36 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
 
     <style>
-    
-
+        
+        body.modal-open .datepicker {
+        z-index: 1050 !important;
+    }
+    body.modal-open .bootstrap-timepicker-widget {
+        z-index: 1050 !important;
+    }
+        
         hr.star-light{
             border-top: solid 3px!important;
         }
         body{
             background-color: white;
         }
-        
-        div.footer {
-            width: auto;
-            max-width: inherit;
-            min-width: inherit;
-            background-position: center bottom;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            box-shadow: 0 11px 6px -9px rgba(0,0,0,0.15) inset;
-            margin-top: 2em;
-            position: static;
-            clear: both;
-        }
-        
-        footer .row {
-            position: fixed;
-            right: 0;
+        body .pbBody table.list tr.dataRow td {
+        text-align: center;
+}
+body .pbBody table.list tr.dataRow td:first-child {
+    text-align: left;
+}
+       
+        .footer {
+            //position: absolute;
             bottom: 0;
-            left: 0;
+            width: 100%;
+            background: #007dbb;
+            text-align: center;
+            color:white;
             padding: 15px 0;
             margin: 0px 0;
-            text-align: center;
-            background: #007dbb;
-            //background: #222;
-            color:white;
         }
         
         .navbar-inverse {
@@ -79,6 +76,13 @@
 
 
 <body id="page-top" class="index">
+    <apex:form id="formId">
+    <script type="text/javascript">
+        function displayFreezePage(){
+            window.open("apex/PQN_Update_Freeze_Period", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=300,width=600,height=400");
+        }
+    </script>
+    <apex:pageMessages ></apex:pageMessages>
 
                     <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -99,23 +103,36 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {!$user.FirstName} {!$user.LastName} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="../_ui/core/userprofile/UserProfilePage"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="./_ui/core/userprofile/UserProfilePage"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
-                            <a href="../ui/setup/Setup"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="./ui/setup/Setup"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="../secur/logout.jsp"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="./secur/logout.jsp"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
             </ul>
             
         </nav>
+        
 
+        <apex:outputPanel id="optPanel" rendered="{!flag}">       
+                    <button type="button" style="float: left;background-color:darkorange;" onClick="displayFreezePage();">
+                         Set Freeze Period
+                    </button>
 
-    <!-- Portfolio Grid Section -->
+        </apex:outputPanel>
+        <apex:outputLabel > <marquee direction="right">Freeze Period for Current Month : {!currentMonthFreezePeriod[0].Freeze_Date__c} </marquee> </apex:outputLabel>
+        <div align="left">
+        <apex:outputLabel style="horizontal-align:right">Days Left Before Freeze Date is : {!daysLeft} </apex:outputLabel>
+        </div>
+
+           
+        
+        <!-- Portfolio Grid Section -->
     <section id="portfolio">
         <div class="container">
             <div class="row">
@@ -137,7 +154,7 @@
                     </div>
                 </div>
                 <div class="col-sm-2 portfolio-item">
-                    <a href="./PQN_MultiEditScreen_VF">
+                    <a href="./PQN_MultiEditScreen_Clone">
                         <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/mform.png')}" class="img-responsive" alt="Multiple Entry"/>
                     </a>
                     <div class="text-center">
@@ -153,14 +170,14 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-2 portfolio-item">
+                <!--<div class="col-sm-2 portfolio-item">
                     <a href="./PQN_MultiTargets_VF">
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/target.png')}" class="img-responsive" alt="Target"/>
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/target.png')}" class="img-responsive" alt="Multi Target"/>
                     </a>
                     <div class="text-center">
                         <span class="name">Multi Target</span>
                     </div>
-                </div>
+                </div>-->
                 
                 <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_DC_Volumes_Edit_VF">
@@ -178,24 +195,28 @@
                         <span class="name">Archive</span>
                     </div>
                 </div>
-                
-<!--                <div class="col-sm-3 portfolio-item">
-                   <a href="./PQN_TargetEntryScreen_VF" target="_self">
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/safe.png')}" class="img-responsive" alt=""/>
+                <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_PalletLossTreeData">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/lossTree.png')}" class="img-responsive" alt="Loss Tree Data"/>
                     </a>
+                    <div class="text-center">
+                        <span class="name">Loss Tree Data</span>
+                    </div>
                 </div>
-                <div class="col-sm-3 portfolio-item">
-                    <a href="./PQN_TargetEntryScreen_VF" target="_self">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-2x">Test</i>
-                            </div>
-                        </div>
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/submarine.png')}" class="img-responsive" alt=""/>
+            </div>
+            <div class="row" style="margin-top: 30px;margin-bottom: 30px;">
+
+                 <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_Global_Overview">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/reports.png')}" class="img-responsive" alt="Overview Report"/>
                     </a>
-                </div>-->
+                    <div class="text-center">
+                        <span class="name">Reports and Dashboards</span>
+                    </div>
+                </div>
             </div>
         </div>
+        
     </section>
 
     <!-- About Section -->
@@ -232,20 +253,26 @@
    
     <!-- Bootstrap Core JavaScript -->
     <script src="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/js/bootstrap.min.js')}"></script>
-
-
+    <link href="{!URLFOR($Resource.PQN_Bootstrapdatepicker,'datepicker/css/datepicker.css')}" rel="stylesheet"/>
+    <script src="{!URLFOR($Resource.PQN_Bootstrapdatepicker,'datepicker/js/bootstrap-datepicker.js')}" />
+    <footer class="footer">
+      <div class="container">
+        <div class=""> 
+            <p>This website is best viewed on internet explorer 11 and above</p> 
+        </div>
+        <p>© Unilever 2016</p>
+      </div>
+    </footer>
+    </apex:form>
+    <script>
+$(document).ready(function () {
+    $ = jQuery.noConflict();
+    
+    $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });
+    
+        
+    });
+    </script>
 </body>
-    <div class="footer text-center">
-        <footer>
-            <div class="row">
-                <div class="large-12 columns">
-                    <div class=""> 
-                        <p>This website is best viewed on internet explorer 8 and above</p> 
-                    </div>
-                    <p>© Unilever 2016</p>
-                </div>
-            </div>
-        </footer>
-    </div>
- 
+
 </apex:page>

@@ -5,7 +5,7 @@
 @Description : This is a controller class for AF_BrandEstimate Page, 
 @              this is used to display and input the Unilever BrandEstimate figures.
 @Version : 1.0
-@reference : none  
+@reference : none
 ****************************************************************************************************************************/
 global with sharing class AF_BrandEstimateController2 
 {
@@ -237,7 +237,7 @@ global with sharing class AF_BrandEstimateController2
                     unileverentitytotalmap.put(ae.AF_Unilever_Entity__r.Id,ae.AF_Total__c);       
                 }
             }
-         System.debug('$$$map ..'+unileverentitytotalmap);
+         
         }
           agencyid= BrandEstimateObj.AF_Agency__c;
           brandid=BrandEstimateObj.Brand__c;
@@ -285,7 +285,7 @@ global with sharing class AF_BrandEstimateController2
 *  @return: none.
 ******************************************************************************************/
   public void bonusThresholdValidation(){
-    if(!ispilotModel && !NoBonusCheck){
+    if(!ispilotModel && !NoBonusCheck && !isGlobalModel){
       Integer i=0;
       String errormsg = Label.AF_Thershold_Setting;
       AF_BonusRecordManager bonusRecordManager = new AF_BonusRecordManager();
@@ -558,7 +558,6 @@ global with sharing class AF_BrandEstimateController2
 *  @return: none.
 ***********************************************************************************************/
   public void SaveBonusThresholds(){
-    System.debug('Inside savebonusthresholds...');
     list<AF_Sub_Result__c>bonus_latestlist=new list<AF_Sub_Result__c>();
     bonusInsertList = new list<AF_Bonus_Threshold__c>();
     counter=0;
@@ -575,8 +574,6 @@ global with sharing class AF_BrandEstimateController2
           isDig_Trad=false;
         }
         //if(counter==0 && !isDig_Trad){
-        System.debug('check..'+check);
-        System.debug('check..11'+check1);
         if(counter==0 && !check && !check1){
           for(AF_Bonus_Threshold__c bt:bonusInsertList){
             if(bt.Id == null){
@@ -1049,7 +1046,6 @@ global with sharing class AF_BrandEstimateController2
     {
       Target_criteria.add(new SelectOption(val.getValue(), val.getLabel()));
     }
-    System.debug('$$$Target_criteria...'+Target_criteria);
     return  Target_criteria;        
   }
   
@@ -1060,8 +1056,6 @@ global with sharing class AF_BrandEstimateController2
        boolean globaladded = false;
 
        For(wrapbonus bonus_thresolds:BonusThresholds){
-          system.debug('$$$$$...'+bonus_thresolds.bonusthresholds.AF_Country__r.AF_Country__c);
-          system.debug('$$$$$...'+bonus_thresolds.bonusthresholds.AF_Country__c);
          
            if(countryIDMap.get(bonus_thresolds.bonusthresholds.AF_Country__c) == 'Global'){
                globaladded = True;
@@ -1092,11 +1086,8 @@ global with sharing class AF_BrandEstimateController2
        boolean measureNull = false;
        boolean targetNull = false;
        For(wrapbonus bonus_thresolds:BonusThresholds){
-          system.debug('$$$$$...'+bonus_thresolds.bonusthresholds.Bonus_Measure__c);
-          system.debug('$$$$$...'+bonus_thresolds.bonusthresholds.AF_Bonus_Target__c);
         if(bonus_thresolds.bonusthresholds.Bonus_Measure__c == ''){
                measureNull= true;
-               System.debug('inside bonus measure null...');
            }
            if(bonus_thresolds.bonusthresholds.AF_Bonus_Target__c == ''){
                targetNull = true;

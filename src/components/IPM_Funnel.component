@@ -7,13 +7,13 @@
 *************************************************************************************************************************************************************
 -->
 <apex:component id="ipmFunnelRevamp" controller="IPM_FunnelController">
-<apex:attribute name="project" assignTo="{!ipmProject}" description="Project Object for displaying Phases " type="IPM_Project__c" required="true" />
+    
     <div class="row">
         <div class="col-sm-12">           
             <div class="basic panel ipmFunnelPanel">
                 <div class="progress-wrap">
                     <ul class="progress-bar {!IF(ipmProject.IPM_Project_Type__c = 'Operational', 'pleProgress', '' )}">
-                        <li class="first {!IF(ipmProject.IPM_Phase__c != '', 'completed', '')}"><span>{!if(project.IPM_Bosscard_Status__c,$Label.IPM_BOSSCARD,$Label.IPM_INITIATION)}</span></li>
+                        <li class="first {!IF(ipmProject.IPM_Phase__c != '', 'completed', '')}"><span>{!if(ipmproject.IPM_Bosscard_Status__c,$Label.IPM_BOSSCARD,$Label.IPM_INITIATION)}</span></li>
                     
                         <apex:variable value="{!0}" var="counter"/>
                         <apex:repeat value="{!associatedProjectPhases}" var="phase" >

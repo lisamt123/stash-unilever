@@ -10,23 +10,22 @@
 <apex:form >    
     <!-- all action functions -->
     <apex:actionfunction action="{!createProjectProduct}" rerender="sourceProductTable,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" name="createNewRow"/>
-    <apex:actionfunction action="{!removeSourceUnit}" status="loader" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" rerender="sourceProduct,sourceProductTable,scriptLoad" name="deleteSourceUnit" >
+    <apex:actionfunction action="{!createProjectProductOnLoad}" rerender="sourceProduct,sourceProductTable,scriptLoad" name="jSortTable" >
+         <apex:param name="sFilter" assignTo="{!sFilterColumn}" value=""/>
+         <apex:param name="sOrder" assignTo="{!sSortOrder}" value=""/>
+    </apex:actionfunction>
+        <apex:actionfunction action="{!removeSourceUnit}" status="loader" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" rerender="sourceProduct,sourceProductTable,scriptLoad" name="deleteSourceUnit" >
          <apex:param name="productRowNumber" assignTo="{!row_Index}" value=""/>
          <apex:param name="sUnitIndex" assignTo="{!sourceUnitIndex}" value=""/>
     </apex:actionfunction>
-	<apex:actionfunction action="{!createProjectProductOnLoad}" status="loader" rerender="sourceProduct,sourceProductTable,scriptLoad" name="jSortTable" >
-    	 <apex:param name="sFilter" assignTo="{!sFilterColumn}" value=""/>
-    	 <apex:param name="sOrder" assignTo="{!sSortOrder}" value=""/>
-    </apex:actionfunction>
+    
     <apex:actionfunction action="{!getSourceUnit}" rerender="srcUnitList,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" name="searchsourceunit">
         <apex:param name="srchvalue" assignTo="{!searchUnit_STR}" value=""/>
     </apex:actionFunction>
     <apex:actionfunction action="{!getSourcedinto}" rerender="sourceProductTable,CAssociations,srcCountrylist,srcedcntrymlist,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" status="loader" name="getsourceinto">
         <apex:param name="cntrysource" assignTo="{!holdSelectedProCountry}" value=""/>
     </apex:actionFunction>
-    <apex:actionfunction action="{!getUpdatedNotAssignedSUnits}" rerender="CAssociations" name="getNotAssignedC" status="loader">
-        <apex:param name="cntrysources" assignTo="{!holdSelectedProCountry}" value=""/>
-    </apex:actionFunction>
+
     <apex:actionfunction name="saveRow" action="{!saveRow}" reRender="sourceProductTable,sourceProduct,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" status="loader">
         <apex:param name="saveNewRow" assignTo="{!row_Index}" value=""/>
     </apex:actionfunction>
@@ -36,7 +35,7 @@
     <apex:actionfunction name="addNewSourceUnit" action="{!addNewSourcePlanRow}" reRender="sourceProductTable,refreshSourceUnit,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" status="loader">
      <apex:param name="addsourceRow" assignTo="{!row_Index}" value=""/>
     </apex:actionfunction>
-    <apex:actionFunction name="updateCapabilityForSourcingUnit" action="{!updateCapabilityForSourcingUnit}" reRender="idCapabilityConfirmed" onComplete="firstsrcplan();">
+    <apex:actionFunction name="updateCapabilityForSourcingUnit" action="{!updateCapabilityForSourcingUnit}" reRender="idCapabilityConfirmed,idCapabilityConfirmedRead" onComplete="firstsrcplan();">
      </apex:actionFunction>
     <apex:composition template="IPM_TemplateRevamp">
         <apex:define name="body">
@@ -55,6 +54,7 @@
                 </div>
             </div>
             <apex:outputpanel id="sourceProductTable" layout="block">
+			<!-- Changing the Value on DOM ready --->
             <script type="text/javscript">
             	jq(document).ready(function() {
     				jq('[id*="sourcingUnitList"]').val('Select Sourcing Unit');
@@ -163,7 +163,7 @@
                                                                     <tr>
                                                                         <td width="6%" class="custNameWidth"><apex:inputtext value="{!prodPlan.productPlan.IPM_Product_Name__c}"/></td>
                                                                         <td width="6%"><apex:inputtext value="{!prodPlan.productPlan.IPM_Format__c}"/></td>
-                                                                        <td width="6%" class="formCustWidth"><apex:inputtext value="{!prodPlan.productPlan.IPM_Formulation__c}"/></td>
+                                                                        <td width="7%" class="formCustWidth"><apex:inputtext value="{!prodPlan.productPlan.IPM_Formulation__c}"/></td>
                                                                         <td width="6%"><apex:inputtext value="{!prodPlan.productPlan.IPM_Packing__c}"/></td>
                                                                         <td width="11%" class="custSizeWidth"><apex:inputtext styleClass="sizeNumberbox" value="{!prodPlan.productPlan.IPM_ProductSize__c}"/>
                                                                             <apex:selectList styleClass="sizeSelect" value="{!prodPlan.productPlan.IPM_ProductSizeMetrics__c}" size="1">
@@ -308,7 +308,7 @@
                                                                 <tr>
                                                                     <td width="6%" class="custNameWidth"><span >{!prodPlan.productPlan.IPM_Product_Name__c}</span></td>
                                                                     <td width="6%"><span >{!prodPlan.productPlan.IPM_Format__c}</span></td>
-                                                                    <td class="formCustWidth" width="6%"><span >{!prodPlan.productPlan.IPM_Formulation__c}</span></td>
+                                                                    <td class="formCustWidth" width="7%"><span >{!prodPlan.productPlan.IPM_Formulation__c}</span></td>
                                                                     <td width="6%"><span >{!prodPlan.productPlan.IPM_Packing__c}</span></td>
                                                                     <td width="11%" class="custSizeWidth"><span >{!prodPlan.productPlan.IPM_ProductSize__c}</span>
                                                                                     <span >{!prodPlan.productPlan.IPM_ProductSizeMetrics__c}</span></td>
@@ -331,7 +331,8 @@
                                                                     <tr>
                                                                         <td width="13%"><span> {!sourcep.sourcingPlan.IPM_SourcingUnit__c}</span></td>
                                                                         <td width="6%" class="custSrcWidth">
-	                                                                        <apex:outputPanel rendered="{!bIsPDLApproved}">
+                                                                        <apex:outputPanel id="idCapabilityConfirmedRead">
+                                                                            <apex:outputPanel rendered="{!bIsPDLApproved}">
 	                                                                            <div class="approvalCheckcontainer noPointer">
 	                                                                                 <label class="{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'greenBox','')}">{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not yet')}</label>
 	                                                                            </div>
@@ -340,6 +341,7 @@
 	                                                                             	<div class="greyCapabilityConfirm">
 	                                                                            		<apex:outputLabel >Not yet</apex:outputLabel>
 	                                                                            	</div>
+	                                                                        </apex:outputPanel>
 	                                                                        </apex:outputPanel>
                                                                         </td>
                                                                         <td width="13%">

@@ -180,9 +180,9 @@ private class IPM_ProjDocSectionController_Test{
             projDocSecControl.save();
             projDocSecControl.projDocSec.IPM_Negotiable__c=false;
             projDocSecControl.projDocSec.IPM_PDP_Document_Summary__c=projDocSecControl.projDocSec.IPM_Gate_Document_Summary__c;
-            projDocSecControl.project.name='testwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddata';
+            IPM_ProjectDocumentSectionController.project.name='testwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddata';
             projDocSecControl.save(); 
- 			projectListObj = [Select Id, Name, IPM_Phase__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_ProjectGKM__c,IPM_CompanyCardText__c, IPM_Technical_Project_Leader__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r)
+            projectListObj = [Select Id, Name, IPM_Phase__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_ProjectGKM__c,IPM_CompanyCardText__c, IPM_Technical_Project_Leader__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r)
             from IPM_Project__c LIMIT 10]; 
             for(Integer i = 0; i< projectListObj.size();i++){
                 projectListObj[i].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
@@ -365,7 +365,7 @@ private class IPM_ProjDocSectionController_Test{
             Test.setCurrentPage(pRef );
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
-            projDocSecControl.project.IPM_Phase__c=IPM_ConstantUtils.PHASE_MARKET_READY;
+            IPM_ProjectDocumentSectionController.project.IPM_Phase__c=IPM_ConstantUtils.PHASE_MARKET_READY;
             projDocSecControl.getIpmuserType();
         }
       

@@ -8,7 +8,7 @@
     </values>
     <values>
         <field>IPM_ApplicableCategories__c</field>
-        <value xsi:type="xsd:string">Household Care,Laundry,Dressings,Savoury,Spreads,Tea and Soy &amp; Fruit Beverages,Ice Cream</value>
+        <value xsi:type="xsd:string">Household Care,Laundry,Dressings,Savoury,Spreads,Tea and Soy &amp; Fruit Beverages,Ice Cream,Deodorants &amp; Fragrances</value>
     </values>
     <values>
         <field>IPM_ApplicableCompanyCard__c</field>
@@ -56,11 +56,11 @@
     </values>
     <values>
         <field>IPM_GMKQuestionDefaultAns__c</field>
-        <value xsi:type="xsd:string">RCLT</value>
+        <value xsi:type="xsd:string">CCVP</value>
     </values>
     <values>
         <field>IPM_GMKQuestionHelpText__c</field>
-        <value xsi:type="xsd:string">GCLT=IPM_GCLT_APPROVAL,RCLT=IPM_RCLT_APPROVAL</value>
+        <value xsi:type="xsd:string">GCLT Leader=IPM_GCLT_APPROVAL,CCVP=IPM_RCLT_APPROVAL</value>
     </values>
     <values>
         <field>IPM_GMKQuestionLabel__c</field>

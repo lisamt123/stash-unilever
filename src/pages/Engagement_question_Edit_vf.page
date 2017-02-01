@@ -1,0 +1,289 @@
+<apex:page Controller="Engagement_question_Edit_cc" showHeader="false">
+<apex:form >
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no"/>
+   <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Engagement App</title>
+ 
+  <!-- Bootstrap core CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/dist/css/bootstrap.min.css')}"/>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/assets/css/ie10-viewport-bug-workaround.css')}"/>
+
+    <!-- Custom styles for this template -->
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/style.css')}"/>
+   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"/>
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/main.css')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/normalize.css')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/demo.css')}"/>
+        <!-- Pushy CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/pushy.css')}"/>
+    <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/assets/js/ie-emulation-modes-warning.js')}"></script>
+   <style>
+  .fileType {
+    display: ;
+    position: relative;
+    width: 90px;
+    margin: auto;
+    cursor: pointer;
+    border: 0px;
+    height: 90px;
+    border-radius: 0px;
+    outline: 0;
+}
+.fileType:hover:after {
+    background: ;
+}
+.fileType:after {
+    transition: 200ms all ease;
+    background:#005063;
+    border-bottom: 3px solid rgba(0,0,0,.2);  
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: '';
+    line-height: 80px;
+    border-radius: 0px;
+}
+.realupload {
+    position:absolute;
+    top:0;
+    right:0;
+    opacity:3;
+    -moz-opacity:0.5;
+    filter:alpha(opacity:0.5);
+    z-index:2;
+    width:100px;
+   }
+    
+    </style>
+    
+    
+    <style>
+    #spinner{
+        display: none;
+        <!--width:200px;
+        height: 50px;-->
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        text-align:center;
+        padding:10px;
+        font:normal 16px Tahoma, Geneva, sans-serif;
+        <!--margin-left: -100px;
+        margin-top: -100px;-->
+        z-index:2;
+        <!--overflow: auto;-->
+        <!--border:1px solid #CCC;-->
+        <!--background-color:#a6a6a6;-->
+        z-index:100;
+        padding:5px;
+        line-height:20px;
+}
+
+.loader {
+    border: 6px solid #b3b3b3; /* Light grey */
+    border-top: 6px solid #0066ff; /* Blue */
+    border-radius: 50%;
+    width:40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+     #opaque {
+       position: fixed;
+         top: 0px;
+         left: 0px;
+         width: 100%;
+         height: 100%;
+         z-index: 1;
+         display: none;
+         background-color: black;
+         filter: alpha(opacity=40);
+         opacity: 0.5;
+         -moz-opacity:0.3;
+         -khtml-opacity:0.3;
+     }
+     * html #opaque {
+         position: absolute;
+     }
+  </style>  
+  </head>
+  
+  <body>
+  <div class="site-overlay"></div>
+    <div class="container" id="container">
+    <div class="jumbotron"> 
+    <p class="question"><apex:outputText value="{!ques.Question__c}"></apex:outputText></p>
+      <form class="form-signin">
+    <div class="checkbox excelent">
+    <div class="quescheckbox">
+       <input type="radio" name="progress" value="{!ques.Answer1__c}" class="progress" id="rad1"/>
+    </div>
+    <div class="questext col-md-10">
+    <p style="font-weight:bold; font-size:20px"><apex:outputText value="{!ques.Answer1__c}"/></p>
+    </div>
+    </div>
+    <div class="checkbox good">
+    <div class="quescheckbox">
+     <input type="radio" name="progress" value="{!ques.Answer2__c}" class="progress" id="rad2"/>
+    </div>
+    <div class="questext col-md-10">
+     <p style="font-weight:bold; font-size:20px"><apex:outputText value="{!ques.Answer2__c}"/></p>
+      </div>
+    </div>
+    <div class="checkbox moderate ">
+    <div class="quescheckbox">
+     <input type="radio" name="progress" value="{!ques.Answer3__c}" class="progress" id="rad3"/>
+    </div>
+    <div class="questext">
+     <p style="font-weight:bold; font-size:20px"><apex:outputText value="{!ques.Answer3__c}"/></p>
+      </div>
+    </div>
+    <div class="checkbox poor">
+    <div class="quescheckbox">
+     <input type="radio" name="progress" value="{!ques.Answer4__c}" class="progress" id="rad4"/>
+    </div>
+    <div class="questext">
+     <p style="font-weight:bold; font-size:20px"><apex:outputText value="{!ques.Answer4__c}"/></p>
+      </div>
+    </div>
+        <div class="checkbox verypoor">
+    <div class="quescheckbox">
+      <input type="radio" name="progress" value="{!ques.Answer5__c}" class="progress" id="rad5"/>
+    </div>
+    <div class="questext">
+     <p style="font-weight:bold; font-size:20px"><apex:outputText value="{!ques.Answer5__c}"/></p>
+      </div>
+    </div>  
+    
+    <script>
+    function showdet(){  
+    var value1 = '';
+    value2='';
+    if (document.getElementById('rad1').checked) { value1 = document.getElementById('rad1').value; value2 = 9; }
+    if (document.getElementById('rad2').checked) { value1 = document.getElementById('rad2').value; value2 = 7; }
+    if (document.getElementById('rad3').checked) { value1 = document.getElementById('rad3').value; value2 = 5; }
+    if (document.getElementById('rad4').checked) { value1 = document.getElementById('rad4').value; value2 = 3; }
+    if (document.getElementById('rad5').checked) { value1 = document.getElementById('rad5').value; value2 = 1; }   
+    if(value1!=''){
+    jQuery('[id$=myHiddenField]').val(value1);
+    jQuery('[id$=myHiddenField1]').val(value2);
+    document.getElementById('opaque').style.display='block';
+    var popUp = document.getElementById('spinner');    }
+    document.getElementById('opaque').style.display='block';
+    var popUp = document.getElementById('spinner');
+    }
+    </script>
+    
+    <div class="xtra">
+    <div class="form-group">
+      <apex:outputText value="Comment" style="color:white;font-size:16px"></apex:outputText>
+    <apex:inputTextarea styleClass="form-control" value="{!comment}" rows="3" id="exampleTextarea"></apex:inputTextarea>
+    </div>
+    <div style="text-align:center" align="center"> 
+      <apex:outputText value="Upload pics if any" style="color:white;font-size:16px"></apex:outputText>
+   </div>   
+   <br/>          
+    <div align="center" style="width:100%;padding-left:100px;">
+       <table style="width:100%">
+        <tr>
+         <td>
+           <apex:repeat value="{!photos}" var="photo">      
+           <apex:image url="{!URLFOR($Action.Attachment.Download, photo)}" style="width:50px;height:50px;"/><br/><br/>                               
+           </apex:repeat> 
+         </td>
+         <td>&nbsp;&nbsp;</td>
+         <td>
+           <apex:inputfile id="upload" value="{!file}"/><br/> 
+         </td>
+        </tr>
+        <tr>
+         <td>
+           <apex:repeat value="{!photos1}" var="photo1">      
+           <apex:image url="{!URLFOR($Action.Attachment.Download, photo1)}" style="width:50px;height:50px;"/><br/><br/>                               
+           </apex:repeat> 
+         </td>
+         <td>&nbsp;&nbsp;</td>
+         <td>
+           <apex:inputfile id="upload1" value="{!file2}"/><br/> 
+         </td>
+        </tr>
+        <tr>
+         <td>
+           <apex:repeat value="{!photos2}" var="photo2">      
+           <apex:image url="{!URLFOR($Action.Attachment.Download, photo2)}" style="width:50px;height:50px;"/><br/><br/>                                
+           </apex:repeat> 
+         </td>
+         <td>&nbsp;&nbsp;</td>
+         <td>
+            <apex:inputfile id="upload2" value="{!file3}"/><br/>
+         </td>
+        </tr>             
+       </table>  
+     </div> 
+    <br/> 
+    <div>
+    <p class="butn">
+    <span>
+    <apex:commandButton value="Submit" onClick="showdet();" action="{!save}" />
+    <apex:actionFunction name="Save" action="{!save}"/>
+    </span>
+    </p>
+    </div>
+    <div id="opaque"/>
+   <div id="spinner">
+        <p class="loader" align="center"></p>
+     </div>
+  </div>
+     </form>
+    </div>
+  <apex:inputHidden value="{!val1}" id="myHiddenField"/>
+  <apex:inputHidden value="{!val2}" id="myHiddenField1"/>
+</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+ 
+   <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{!URLFOR($Resource.Engagement, 'Engagement/assets/js/vendor/jquery.min.js')}" ><\/script>')</script>
+     <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/dist/js/bootstrap.min.js')}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/assets/js/ie10-viewport-bug-workaround.js')}"></script>
+   <script>
+   (function ($) {
+    var pushy = $('.pushy'), //menu css class
+        body = $('body'),
+        container = $('#container'), //container css class
+        push = $('.push'), //css class to add pushy capability
+        pushyLeft = 'pushy-left', //css class for left menu position
+        pushyOpenLeft = 'pushy-open-left', //css class when menu is open (left position)
+        pushyOpenRight = 'pushy-open-right', //css class when menu is open (right position)
+        siteOverlay = $('.site-overlay'), //site overlay
+        menuBtn = $('.menu-btn, .pushy-link'), //css classes to toggle the menu
+        menuSpeed = 200, //jQuery fallback menu speed
+        menuWidth = pushy.width() + 'px', //jQuery fallback menu width
+        submenuClass = '.pushy-submenu',
+        submenuOpenClass = 'pushy-submenu-open',
+        submenuClosedClass = 'pushy-submenu-closed',
+        submenu = $(submenuClass);
+   </script>
+    </body>
+</html>
+</apex:form>
+</apex:page>

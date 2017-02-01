@@ -83,18 +83,14 @@ public with sharing class FS_CreateContact_CC {
                 varSiteLead.Firstname=chekingNullValue(varContactDetail.firstname);
                 varSiteLead.Surname  =chekingNullValue(varContactDetail.Lastname);
                 varSiteLead.Address  =chekingNullValue(varContactDetail.MailingStreet);
-                varSiteLead.City     =chekingNullValue(varContactDetail.mailingcity);
-                varSiteLead.Country  =chekingNullValue(varContactDetail.MailingCountry);
-                
+           
              
                 addExtraParameter(FS_ContactUtility.DECISIONMAKER,string.valueOf(varContactDetail.FS_Decision_Maker__c));
                 addExtraParameter(FS_ContactUtility.MYEMAILTEXT,varContactDetail.Email);     
-                addExtraParameter(FS_ContactUtility.CODEPOSTALTEXT,varContactDetail.MailingPostalCode);        
                 addExtraParameter(FS_ContactUtility.MOBILEPHONETEXT,varContactDetail.phone); 
                 addExtraParameter(FS_ContactUtility.WORKPHONETEXT,workPhoneNumber); 
                 addExtraParameter(FS_ContactUtility.PERSONALPHONETEXT,personalPhoneNumber);
                 addExtraParameter(FS_ContactUtility.POSITIONTEXT,varContactDetail.FS_Position__c);
-                addExtraParameter(FS_ContactUtility.STATETEXT,varContactDetail.MailingState);
                 addExtraParameter(FS_ContactUtility.OWNERIDTEXT,UserInfo.getUserId());
                 addExtraParameter(FS_ContactUtility.OWNERNAMETEXT,UserInfo.getName());
                 addExtraParameter(FS_ContactUtility.ACCOUNTIDTEXT,varContactDetail.AccountId);

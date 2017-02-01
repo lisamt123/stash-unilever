@@ -1,0 +1,144 @@
+<apex:page readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+
+ <!-- javascript -->
+<!--    <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/pc_container_js.js')}" /> -->
+    
+    <!-- sylesheets -->
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
+     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_New_UI_Changes.css')}" />
+    
+    <!-- DB Created 14/12/15 - initial welcome page for PBS -->
+    <style type="text/css">
+    
+        body{
+         //background: transparent url("{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/PBS_Welcome_Page.png')}") no-repeat top!important;
+         //background-size: 100% 100% !important;
+         overflow-y: hidden!important;
+           
+        }
+         .leftheader , .navbar-brand {
+    display:none !important;
+    }
+    .col-xs-12.headerDiv img {
+     display:none !important;
+    }
+    .menuTabs{
+        font-family:inherit;
+    }
+    .menuTabs li>a {
+    color: #004976 !important
+   }
+    .almond .navbar-inverse .navbar-nav > li > a, .almond .navbar-inverse .navbar-link , .text-muted, .menuTabs li>a {
+    color: #004976 !important;
+ 
+     }
+   .menuTabs .active, .menuTabs a:hover {
+    color: #FF851B !important;
+}
+        div.lms-container {
+         background-color: #fff!important;
+        }
+        .contentCentered {
+            width            : 700px;
+            margin-left      : auto;
+            margin-right     : auto;
+        }
+        .alertArea {
+            background-color : #004976 !important;
+            color            : #004976;
+            width            : 711px;
+            height           : 100px;
+            border-radius    : 20px;
+            min-height       : 100px;
+            margin-top       : 40px;
+            padding          : 30px;
+            padding-bottom   : 0;
+            font-size        : 18px;
+            display          : table;
+            clear            : both;
+        }
+       ul li{
+      margin-left: 0em !important; 
+    }
+    .almond-bs .container , .almond .container{
+        max-width: 967px !important;
+        width:967px !important;
+    }
+    .almond .container {
+    width:690px !important;
+    max-width: 690px !important;
+    }
+    .almond .lms-nav{
+    left: 9px;
+    z-index: 99;
+    max-width: 968px;
+    width:970px;
+    background-color: #004979 !important;
+    }
+  #lms-nav-header {
+       background: #004979 !important;
+}
+
+
+
+    
+    </style>
+    <apex:composition template="PBS_Header_Template_clone" />
+    <!--<div class="row bodyRow">
+    <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
+        <div class="col-xs-4 home-detail">
+            <ul>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a></li>
+            </ul>
+    </div>
+    </div>-->
+    <apex:composition template="PBS_LMS_Template_clone">
+        <apex:define name="head">
+            <title>Welcome Page</title>
+        </apex:define>
+
+        <apex:define name="body">
+           
+        </apex:define>
+
+    </apex:composition> 
+      <!--  <div>
+            <apex:image id="theImage" style="width:967px;height:500px;position:relative;top:40px;left:155px;" url="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/PBS_Welcome_Page.png')}" />
+        </div>-->
+        
+        <div>
+            <apex:image id="theImage" style="margin-top:-150px" width="100%" url="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/PBS_Welcome_Page.png')}" />
+        </div>
+        <style>
+        
+        
+        .headerDiv {
+    background: transparent !important;
+    }
+   
+   #lms-nav-header {
+    background: transparent !important;
+    box-shadow: none;
+}
+    .almond .container {
+    max-width: 1130px !important;
+    position: absolute;
+    top: -140px;
+    text-align: center;
+    margin: 0 auto;
+   border-top: 1px solid #d0cfcf;
+    margin-top: 15px;
+    left: 200px;
+}
+      .almond .navbar-inverse .navbar-nav > li > a:focus, .almond .navbar-inverse .navbar-nav > li > a:hover, .almond .navbar-inverse .navbar-link:focus, .almond .navbar-inverse .navbar-link:hover     
+       {
+       color:#FF851B !important;
+       }
+       
+      .menuTabs{top:5px;right:30%}
+      .headerDiv{height:113px;}
+       
+        </style>
+        
+</apex:page>

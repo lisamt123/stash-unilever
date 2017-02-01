@@ -1,0 +1,535 @@
+<messaging:emailTemplate subject="Send webform" recipientType="Contact" relatedToType="VPM_PurchasingRequests__c">
+
+<!--
+ /* Font Definitions */
+ @font-face
+    {font-family:"Cambria Math";
+    panose-1:2 4 5 3 5 4 6 3 2 4;
+    mso-font-alt:"Calisto MT";
+    mso-font-charset:0;
+    mso-generic-font-family:roman;
+    mso-font-pitch:variable;
+    mso-font-signature:-536870145 1107305727 0 0 415 0;}
+@font-face
+    {font-family:Calibri;
+    panose-1:2 15 5 2 2 2 4 3 2 4;
+    mso-font-alt:"Japanese Gothic";
+    mso-font-charset:0;
+    mso-generic-font-family:swiss;
+    mso-font-pitch:variable;
+    mso-font-signature:-536870145 1073786111 1 0 415 0;}
+@font-face
+    {font-family:"Unilever DIN Offc Pro";
+    panose-1:2 11 5 4 2 1 1 2 1 2;
+    mso-font-alt:"Times New Roman";
+    mso-font-charset:0;
+    mso-generic-font-family:swiss;
+    mso-font-pitch:variable;
+    mso-font-signature:-1610612033 1073750139 8 0 159 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+    {mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-parent:"";
+    margin:0cm;
+    margin-bottom:.0001pt;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri",sans-serif;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+    {mso-style-priority:99;
+    color:#0563C1;
+    text-decoration:underline;
+    text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+    {mso-style-noshow:yes;
+    mso-style-priority:99;
+    color:#954F72;
+    text-decoration:underline;
+    text-underline:single;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    margin-top:0cm;
+    margin-right:0cm;
+    margin-bottom:0cm;
+    margin-left:36.0pt;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri",sans-serif;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0cm;
+    margin-right:0cm;
+    margin-bottom:0cm;
+    margin-left:36.0pt;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri",sans-serif;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0cm;
+    margin-right:0cm;
+    margin-bottom:0cm;
+    margin-left:36.0pt;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri",sans-serif;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0cm;
+    margin-right:0cm;
+    margin-bottom:0cm;
+    margin-left:36.0pt;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri",sans-serif;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-fareast-language:EN-US;}
+p.msonormal0, li.msonormal0, div.msonormal0
+    {mso-style-name:msonormal;
+    mso-style-unhide:no;
+    mso-margin-top-alt:auto;
+    margin-right:0cm;
+    mso-margin-bottom-alt:auto;
+    margin-left:0cm;
+    mso-pagination:widow-orphan;
+    font-size:12.0pt;
+    font-family:"Times New Roman",serif;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;}
+span.EmailStyle19
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:windowtext;}
+span.EmailStyle20
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:windowtext;}
+span.EmailStyle21
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:#1F497D;}
+span.EmailStyle22
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:windowtext;}
+span.EmailStyle23
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:#1F497D;}
+span.EmailStyle24
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:#1F497D;}
+span.EmailStyle25
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:#1F497D;}
+span.EmailStyle26
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:#1F497D;}
+span.EmailStyle27
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:#1F497D;}
+span.EmailStyle28
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:#1F497D;}
+span.EmailStyle29
+    {mso-style-type:personal;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-hansi-font-family:Calibri;
+    color:windowtext;}
+span.EmailStyle30
+    {mso-style-type:personal-reply;
+    mso-style-noshow:yes;
+    mso-style-unhide:no;
+    mso-ansi-font-size:11.0pt;
+    mso-bidi-font-size:11.0pt;
+    font-family:"Calibri",sans-serif;
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    color:windowtext;}
+.MsoChpDefault
+    {mso-style-type:export-only;
+    mso-default-props:yes;
+    font-size:10.0pt;
+    mso-ansi-font-size:10.0pt;
+    mso-bidi-font-size:10.0pt;}
+@page WordSection1
+    {size:612.0pt 792.0pt;
+    margin:72.0pt 72.0pt 72.0pt 72.0pt;
+    mso-header-margin:36.0pt;
+    mso-footer-margin:36.0pt;
+    mso-paper-source:0;}
+div.WordSection1
+    {page:WordSection1;}
+ /* List Definitions */
+ @list l0
+    {mso-list-id:2013725405;
+    mso-list-type:hybrid;
+    mso-list-template-ids:1519291328 134807567 134807577 134807579 134807567 134807577 134807579 134807567 134807577 134807579;}
+@list l0:level1
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    text-indent:-18.0pt;}
+@list l0:level2
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    text-indent:-18.0pt;}
+@list l0:level3
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    text-indent:-9.0pt;}
+@list l0:level4
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    text-indent:-18.0pt;}
+@list l0:level5
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    text-indent:-18.0pt;}
+@list l0:level6
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    text-indent:-9.0pt;}
+@list l0:level7
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    text-indent:-18.0pt;}
+@list l0:level8
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    text-indent:-18.0pt;}
+@list l0:level9
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    text-indent:-9.0pt;}
+ol
+    {margin-bottom:0cm;}
+ul
+    {margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+    {mso-style-name:"Table Normal";
+    mso-tstyle-rowband-size:0;
+    mso-tstyle-colband-size:0;
+    mso-style-noshow:yes;
+    mso-style-priority:99;
+    mso-style-parent:"";
+    mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+    mso-para-margin:0cm;
+    mso-para-margin-bottom:.0001pt;
+    mso-pagination:widow-orphan;
+    font-size:10.0pt;
+    font-family:"Times New Roman",serif;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1026"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang="EN-GB" link="#0563C1" vlink="#954F72" style="tab-interval:36.0pt">
+
+<div class="WordSection1">
+
+<p class="MsoNormal" style="mso-layout-grid-align:none;text-autospace:none"><span style="mso-bidi-font-family:Calibri;color:black"></span></p>
+
+<p class="MsoNormal"></p>
+
+<p class="MsoNormal"><a name="_MailOriginal"></a></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:_MailOriginal"><span style="font-size:10.0pt;color:#D9D9D9;mso-fareast-language:EN-GB"></span></span></p>
+
+<div align="center">
+
+<span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><span style="mso-bookmark:_MailOriginal"></span><table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="752" style="width:564.15pt;border-collapse:collapse;mso-yfti-tbllook:1184;
+ mso-padding-alt:0cm 0cm 0cm 0cm">
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;height:44.7pt">
+  <td width="36" colspan="2" rowspan="2" valign="top" style="width:26.65pt;border-top:
+  solid #D9D9D9 1.0pt;border-left:solid #D9D9D9 1.0pt;border-bottom:none;
+  border-right:none;padding:0cm 0cm 0cm 0cm;height:44.7pt"><span style="mso-bookmark:_MailOriginal"></span></td>
+  
+  <td width="332" colspan="2" valign="top" style="width:249.0pt;border:none;
+  border-top:solid #D9D9D9 1.0pt;padding:0cm 0cm 0cm 0cm;height:44.7pt"><span style="mso-bookmark:_MailOriginal"></span></td>
+  
+  <td width="385" colspan="2" rowspan="2" valign="top" style="width:288.5pt;border-top:
+  solid #D9D9D9 1.0pt;border-left:none;border-bottom:none;border-right:solid #BFBFBF 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:44.7pt">
+  <p class="MsoNormal" align="right" style="text-align:right"><span style="mso-bookmark:_MailOriginal"><span style="mso-fareast-language:EN-GB;
+  mso-no-proof:yes"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+   coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+   filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="Picture_x0020_3" o:spid="_x0000_i1025" type="#_x0000_t75"
+   alt="no-image" style='width:4in;height:173.25pt;visibility:visible;
+   mso-wrap-style:square'>
+   <v:imagedata src=http://survey.clicktools.com/app/org/capgemin14/images/UnileverForYourInformation.jpg"
+    o:title="UnileverForYourInformation"/>
+  </v:shape><![endif]--><!--[if !vml]--><img width="384" height="231" src="http://survey.clicktools.com/app/org/capgemin14/images/UnileverForYourInformation.jpg" alt="UnileverForYourInformation" v:shapes="Picture_x0020_3"></img><!--[endif]--></span></span></p>
+  </td>
+  
+ </tr>
+
+ <tr style="mso-yfti-irow:1;height:85.55pt">
+  
+  <td width="25" valign="top" style="width:18.95pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:85.55pt"><span style="mso-bookmark:_MailOriginal"></span></td>
+  
+  <td width="500" valign="top" align="left" style="width:5000pt;padding:0cm 0cm 0cm 0cm;
+  height:85.55pt">
+  <p class="MsoNormal" align="centre" style="text-align:left"><span style="mso-bookmark:_MailOriginal"><b><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif;
+  color:#00ACBC"><br/>
+  <span class="MsoHyperlink"><span style="color:#00ACBC;text-decoration:none;
+ <br/>
+  <span class="MsoHyperlink"><span style="color:#00ACBC;text-decoration:none;
+  text-underline:none">Invitation
+  to Share Company Details with Unilever </div></span></span></span></b></span></p>
+  </td>
+  
+ </tr>
+ <tr style="mso-yfti-irow:2;height:572.6pt">
+  <td width="20" valign="top" style="width:14.9pt;border-top:none;border-left:solid #D9D9D9 1.0pt;
+  border-bottom:solid white 1.0pt;border-right:none;padding:0cm 5.4pt 0cm 5.4pt;
+  height:572.6pt"><span style="mso-bookmark:_MailOriginal"></span>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"></span></p>
+  </td>
+  
+  <td width="654" colspan="4" valign="top" style="width:490.25pt;border:none;
+  border-bottom:solid white 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;height:572.6pt">
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+  color:#333333"><br/>
+  </span></span><span style="mso-bookmark:_MailOriginal"><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif"><br/>
+  </span></span><span style="mso-bookmark:_MailOriginal"><b><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif;color:#00B2A9">Invitation
+  to Share Company Details</span></b></span></p>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">This is an invitation
+  to share your company details to enable an update of the Unilever Vendor
+  database.</span></span></p>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"></span></span></p>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">Required Master Data
+  details can be shared via the completion of an online form (link below). </span></span></p>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"></span></span></p>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"><br/><a href="http://survey.clicktools.com/app/survey/go.jsp?iv=bkg1coehmyn2&q1={!VPM_PurchasingRequests__c.Id}">Click Here</a></span></span></p>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"></span></span></p>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><br/><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">Within the form you
+  will have access to confirm the company name, address, relevant taxation and banking
+  details. Please also include all supporting documentation as requested in the
+  help text within the form. </span></span></p><br/>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"></span></span></p>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">Regards,</span></span></p>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><b><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">
+  {!VPM_PurchasingRequests__c.CreatedBy}</span></b></span></p>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><b><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">{!VPM_PurchasingRequests__c.OwnerEmail}</span></b></span></p>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"></span><a href="http://www.unilever.com"><span style="mso-bookmark:_MailOriginal"><b><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">www.unilever.com</span></b></span><span style="mso-bookmark:_MailOriginal"></span></a><span style="mso-bookmark:_MailOriginal"><b><span style="font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"></span></b></span></p>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"></span></b></span></p>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">1.
+  No agreement</span></b></span></p>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">Unilever’s
+  acceptance or receipt of details submitted in accordance with the
+  instructions in this email does not constitute acceptance of, entry into or
+  any commitment or undertaking to enter into any form of binding agreement
+  between Unilever, Unilever Group companies, our licensors or licensees, and
+  you or any other person or entity. Unilever, Unilever Group companies, our
+  licensors or licensees shall not incur any liability in respect of you or any
+  other person or entity as a result of your submitting details in accordance
+  with this email.</span></b></span></p>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">2.
+  Privacy</span></b></span></p>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">By
+  submitting details in accordance with this email, you are consenting to
+  Unilever, Unilever Group companies and other third parties collecting, using
+  and disclosing your personal information in accordance with applicable data
+  protection laws and regulations.<span style="mso-spacerun:yes">&nbsp; </span></span></b></span></p>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">We
+  may share your personal information with third party providers of services,
+  such as data processors, law enforcement or government authorities, providers
+  of web analytic tools and other trusted third parties. If we do share your
+  personal information with a third party, we shall use our best efforts to
+  ensure that they keep your information secure and only use it in accordance
+  with our instructions and applicable data protection laws and regulations. </span></b></span></p>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><b><span style="font-size:7.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif">We
+  will not keep your personal information for longer than is necessary to
+  fulfil the purpose for which it was collected, unless we have to keep it for
+  legitimate business or legal reasons. In order to protect information from
+  accidental or malicious destruction, when we delete information from our
+  services we may not immediately delete residual copies from our servers or
+  remove information from our backup systems.</span></b></span></p>
+  <span style="mso-bookmark:_MailOriginal"></span>
+  <p class="MsoNormal" style="margin-bottom:12.0pt"><span style="mso-bookmark:
+  _MailOriginal"><b><span style="font-size:8.0pt;font-family:&quot;Unilever DIN Offc Pro&quot;,sans-serif"></span></b></span></p>
+  </td>
+  
+  <td width="79" rowspan="2" valign="top" style="width:59.0pt;border-top:none;
+  border-left:none;border-bottom:solid #D9D9D9 1.0pt;border-right:solid #BFBFBF 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:572.6pt"><span style="mso-bookmark:_MailOriginal"></span>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"></span></p>
+  </td>
+  
+ </tr>
+ <tr style="mso-yfti-irow:3;height:3.5pt">
+  <td width="20" valign="top" style="width:14.9pt;border-top:none;border-left:solid #D9D9D9 1.0pt;
+  border-bottom:solid #D9D9D9 1.0pt;border-right:none;padding:0cm 5.4pt 0cm 5.4pt;
+  height:3.5pt"><span style="mso-bookmark:_MailOriginal"></span>
+  <p class="MsoNormal"><span style="mso-bookmark:_MailOriginal"><span style="font-size:4.0pt"></span></span></p>
+  </td>
+  
+  <td width="654" colspan="4" valign="top" style="width:490.25pt;border:none;
+  border-bottom:solid #D9D9D9 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;height:3.5pt"><span style="mso-bookmark:_MailOriginal"></span></td>
+  
+ </tr>
+ <tr style="mso-yfti-irow:4;mso-yfti-lastrow:yes">
+  <td width="20" style="width:14.9pt;padding:0cm 0cm 0cm 0cm"><span style="mso-bookmark:_MailOriginal"></span></td>
+  
+  <td width="16" style="width:11.75pt;padding:0cm 0cm 0cm 0cm"><span style="mso-bookmark:_MailOriginal"></span></td>
+  
+  <td width="25" style="width:18.95pt;padding:0cm 0cm 0cm 0cm"><span style="mso-bookmark:_MailOriginal"></span></td>
+  
+  <td width="307" style="width:230.05pt;padding:0cm 0cm 0cm 0cm"><span style="mso-bookmark:_MailOriginal"></span></td>
+  
+  <td width="306" style="width:229.5pt;padding:0cm 0cm 0cm 0cm"><span style="mso-bookmark:_MailOriginal"></span></td>
+  
+  <td width="79" style="width:59.0pt;padding:0cm 0cm 0cm 0cm"><span style="mso-bookmark:_MailOriginal"></span></td>
+  
+ </tr>
+</tbody></table>
+
+</div>
+
+</div>
+
+
+
+
+</body></html>
+
+</messaging:htmlEmailBody>
+ 
+</messaging:emailTemplate>
