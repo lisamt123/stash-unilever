@@ -197,13 +197,13 @@
           System.debug('>>>>>>3');
               List<UL_PromotionCategory__c> insertProductCategoryList = new List<UL_PromotionCategory__c>();
               //Create ProductCategory list to add new products
-              for(ACCL__Product__c product : [SELECT id, ACCL__Criterion_2_Product__c,ACCL__Criterion_3_Product__c FROM ACCL__Product__c WHERE 
+              for(ACCL__Product__c product : [SELECT id, ACCL__Criterion_4_Product__c FROM ACCL__Product__c WHERE 
                                                    id in:insertProductSet LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
                   //Upsert records into Promotion Category if the Criterion3 Product is present
-                  if(product.ACCL__Criterion_3_Product__c != UL_Utility.NULL_ID){ 
+                  if(product.ACCL__Criterion_4_Product__c != UL_Utility.NULL_ID){ 
                       UL_PromotionCategory__c insertProductCategory = new UL_PromotionCategory__c();
                       insertProductCategory.Heroku_Product_Id__c = product.id;
-                      insertProductCategory.Product__c = product.ACCL__Criterion_3_Product__c;
+                      insertProductCategory.Product__c = product.ACCL__Criterion_4_Product__c;
                       insertProductCategory.Promotion__c = promotionId;
                       insertProductCategoryList.add(insertProductCategory);
                   }

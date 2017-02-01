@@ -66,7 +66,7 @@
     Returns: String
     Throws N/A
     ********************************************************************/
-    public static void getThresholdKPI(String txid, id promId, String mode){
+    public static List<KpiValueDescriptor> getThresholdKPI(String txid, id promId, String mode){
         
         List<KpiValueDescriptor> result = new List<KpiValueDescriptor>();
         Map<String,Object> postParameters = new Map<String,Object>();
@@ -111,6 +111,7 @@
         }
         
         calculateThresholdViolate(result,promid,mode);
+        return result;
     }
     /*******************************************************************
     Purpose: Validates promotion KPIs
