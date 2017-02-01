@@ -1103,6 +1103,10 @@
                 <fullName>Personal Care</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Food Solutions</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
