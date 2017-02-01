@@ -343,7 +343,7 @@ public class IPM_TestFactory_Helper
         
         User u = new User(Alias = uniqueUserEMailId.substring(18,23), Email=uniqueUserEMailId, 
         EmailEncodingKey=IPM_ConstantUtils.USER_EMAIL_ENCODE, LastName='BD_BB_USER', LanguageLocaleKey=IPM_ConstantUtils.USER_LOCALEKEY, 
-        LocaleSidKey='en_US', ProfileId = profileList[1].Id, 
+        LocaleSidKey='en_US', ProfileId = profileList[0].Id, 
         TimeZoneSidKey=IPM_ConstantUtils.USER_TIMEZONEKEY, UserName=uniqueUserEMailId, 
         isActive =true);
         
