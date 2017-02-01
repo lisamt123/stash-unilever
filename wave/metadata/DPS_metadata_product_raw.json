@@ -106,8 +106,9 @@
         {
           "fullyQualifiedName": "Date_of_audit",
           "name": "Date_of_audit",
-          "type": "Text",
-          "label": "Audit Date"
+          "type": "Date",
+          "label": "Audit Date",
+          "format": "yyyy-MM-dd"
         },
         {
           "fullyQualifiedName": "Division_ID",
