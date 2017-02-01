@@ -26,11 +26,13 @@ src/documents/SEAA_Perfect_Store/Stores_Grey.png
 src/documents/SEAA_Perfect_Store/Stores_Grey.png-meta.xml
 src/documents/SEAA_Perfect_Store/Time_Icon.png
 src/documents/SEAA_Perfect_Store/Time_Icon.png-meta.xml
-src/documents/SEAA_Perfect_Store/UL_Icon.png
+src/documents/SEAA_Perfect_Store/UL_Logo.png
 src/documents/SEAA_Perfect_Store/UL_Logo.png-meta.xml
 src/groups/DPS_Perfect_Reporting.group
-src/objects/User.object
 src/layouts/User-User Layout.layout
+src/objects/User.object
+src/permissionsets/Analytics_Cloud_Builder.permissionset
+src/permissionsets/Analytics_Cloud_User.permissionset
 wave
 wave/metadata
 wave/metadata/DPS_metadata_country_targets.json
