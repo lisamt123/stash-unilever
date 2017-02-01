@@ -315,7 +315,7 @@
         },
         {
           "fullyQualifiedName": "Sales_area_ID",
-          "name": "Sales Area ID",
+          "name": "Sales_area_ID",
           "type": "Text",
           "label": "Sales_area_ID"
         },

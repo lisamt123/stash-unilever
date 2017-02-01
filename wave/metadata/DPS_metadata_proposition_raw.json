@@ -11,7 +11,7 @@
           "name": "Record_Id",
           "type": "Text",
           "label": "Record_Id",
-          "isUniqueId": true,
+          "isUniqueId": true
         },
         {
           "fullyQualifiedName": "X4P_5P_6P",
@@ -286,7 +286,7 @@
           "name": "Local_Subchannel",
           "type": "Text",
           "label": "Local Subchannel"
-        }
+        },
         {
           "fullyQualifiedName": "Store_Type",
           "name": "Store_Type",
