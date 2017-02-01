@@ -25630,7 +25630,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PP_BTN_SUBMITTEDFORAPPROVAL</shortDescription>
-        <value>Sumitted for Approval</value>
+        <value>Submitted for Approval</value>
     </labels>
     <labels>
         <fullName>PP_DELETE_VALIDATION_ERROR</fullName>
