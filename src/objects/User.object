@@ -103,7 +103,7 @@
                 <fullName>Agency</fullName>
                 <default>false</default>
             </picklistValues>
-			<picklistValues>
+            <picklistValues>
                 <fullName>Approver</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1215,7 +1215,7 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
-    <fields>
+     <fields>
         <fullName>Market__c</fullName>
         <externalId>false</externalId>
         <label>Market</label>
@@ -3352,15 +3352,6 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>dgai__active_user_settings__c</fullName>
-        <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>active user settings</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>dgai__active_user_settings__c</fullName>
