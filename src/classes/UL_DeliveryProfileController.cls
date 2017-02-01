@@ -14,6 +14,7 @@ public with sharing class UL_DeliveryProfileController{
     
     private final Static String SAVE_NEW = 'saveAndNew';
     
+    
     private ApexPages.StandardController ctr;
     private String recId{set;get;}
     
@@ -21,6 +22,7 @@ public with sharing class UL_DeliveryProfileController{
     public list<Integer> filedLevels{set;get;} 
     public Integer weekLimit{set;get;}      
     public UL_Delivery_Profile__c releatedRecord{set;get;}
+   
     
     private UL_Planning_Level__c allAccounts{set;get;}
     private ACCL__Product__c allProducts{set;get;}
@@ -119,17 +121,17 @@ public with sharing class UL_DeliveryProfileController{
     public PageReference save(){
             PageReference pref = null;
        try{
-             
+           
                 mappingCustomer();               
                 Database.upsert(releatedRecord);
-                Boolean saveAndNew = false;
-                for(String key : Apexpages.currentPage().getParameters().keySet()){
-                    if(SAVE_NEW.contains(key)){
+                Boolean saveAndNew = false;                 
+                for(String key : Apexpages.currentPage().getParameters().keySet()){                                       
+                    if(key.contains(SAVE_NEW)){                     
                         saveAndNew = true;
                         break;
                     }
                 }
-                if(saveAndNew){
+                if(saveAndNew){                 
                     Apexpages.currentPage().setRedirect(true);
                     pref =  new PageReference(UL_Utility.FORWARD_SLASH + ctr.getRecord().getSObjectType().getDescribe().getKeyPrefix()+ UL_Utility.RECORD_EDIT_PARAM);
                 }
