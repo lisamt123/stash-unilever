@@ -409,6 +409,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Date_From__c</fields>
+        <fields>Date_Thru__c</fields>
+        <fields>IIBB_Tax__c</fields>
         <relatedList>IIBBTax__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
