@@ -418,8 +418,8 @@ Throws : N/A
             }
             
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_CLOSED.toUpperCase())){
-	            List<Id> promotionIds = new List<Id>{(Id) objectId};
-	            return UL_PromotionClosure.closePromotions(promotionIds);
+                List<Id> promotionIds = new List<Id>{(Id) objectId};
+                return UL_PromotionClosure.closePromotions(promotionIds);
             }
             
             if(Mode.equalsIgnoreCase('EndDate')){           
@@ -624,6 +624,11 @@ Throws : N/A
                             earBOPromotion.add(promoField);
                         }
                     }
+                    List<EARUI> btListBtn = new List<EARUI>();
+                     btListBtn  = UL_ComponentVisibility.hideButtons(promoList[0].ACCL__Sales_Org__c, 'Child Promotions');                     
+                     system.debug('vinod hide ---->'+btListBtn);
+                     earBOPromotion.addall(btListBtn);
+                     System.debug('vinod add buttons---->'+earBOPromotion);
                 }
                 
             }
@@ -631,7 +636,7 @@ Throws : N/A
              List<EARUI> btList = new List<EARUI>();
              btList = UL_ComponentVisibility.hideButtons(promoList[0].ACCL__Sales_Org__c, status);
              earBOPromotion.addall(btList);
-            
+             System.debug('vinod add all buttons---->'+earBOPromotion);
             
             
         }catch(Exception ex){
