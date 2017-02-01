@@ -19,12 +19,14 @@ var Variant = require('../components/Variant.jsx');
 
 var PromotionActions = require('../../actions/PromotionActions').PromotionActions;
 
+var ACLCheck = require('../components/ACLCheck'); //API_TPM-XXX - New Tactic Layout Market Based
+
 module.exports = React.createClass({
     getInitialState: function () {
         return {
             tactic: this.props.tactic,
             confirmMessage: null,
-            showManageProducts: false
+            showManageProducts: false,
         };
     },
 
@@ -136,121 +138,206 @@ module.exports = React.createClass({
         var acl = this.state.tactic._acl;
 
         return (
-            <div className="tile">
-                <div className=" title slds-grid">{AppManager.getLabel('PP_TIT_TACTIC_INFO') || 'Tactic Information'}</div>
-                <div className="slds-m-top--medium"/>
-                <div className="slds-grid ">
-                    <div className="slds-col--padded-right slds-size--1-of-3">
-                        <Variant object={this.state.tactic} field="Tactic_Template__c" editable={false}/>
-                        <div className="slds-m-top--medium"/>
-                        <Variant object={this.state.tactic} field="Amount__c" onValueChange={this.onFieldChange}
-                                 editable={this.props.editMode }/>
-
-                        <div className="slds-grid slds-m-top--medium">
-                            <div className="slds-col--padded-right">
-                                <Variant object={this.state.tactic} field="UL_Off_On_Invoice__c"
-                                         onValueChange={this.onFieldChange} editable={this.props.editMode }/>
-                            </div>
-                            <div className="slds-col">
-                                <Variant object={this.state.tactic} field="UL_Take_Up_Rate__c"
-                                         onValueChange={this.onFieldChange} editable={this.props.editMode }/>
-                            </div>
-                        </div>
-                        <div className="slds-grid slds-m-top--medium">
-                            <div className="slds-col--padded-right">
-                                <Variant object={this.state.tactic} field="UL_Redemption__c"
-                                         onValueChange={this.onFieldChange} editable={this.props.editMode }/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="slds-col--padded slds-size--1-of-3">
+            <div>{/*API - MAIN DIV - Do NOT Remove - New Formatted Tactic Layout based on Markets*/}
+                <ACLCheck object={this.props.tactic} field="TILE_TACTIC_MAIN_UKI">
+                    <div className="tile">
+                        <div className=" title slds-grid">{AppManager.getLabel('PP_TIT_TACTIC_INFO') || 'Tactic Information'}</div>
+                        <div className="slds-m-top--medium" />
                         <div className="slds-grid ">
-                            <div className="slds-col--padded-right">
-                                <Variant object={this.state.tactic} field="Lift__c" onValueChange={this.onFieldChange}
-                                         editable={this.props.editMode }/>
-                            </div>
-                            <div className="slds-col">
-                                <Variant object={this.state.tactic} field="Pct_of_Stores__c"
-                                         onValueChange={this.onFieldChange} editable={this.props.editMode }/>
-                            </div>
-                        </div>
-                        <div className="slds-grid slds-m-top--medium">
-                            <div className="slds-col--padded-right">
-                                <Variant object={this.state.tactic} field="Date_From__c"
-                                         onValueChange={this.onFieldChange} editable={this.props.editMode }/>
-                            </div>
-                            <div className="slds-col">
-                                <Variant object={this.state.tactic} field="Date_Thru__c"
-                                         onValueChange={this.onFieldChange} editable={this.props.editMode }/>
-                            </div>
-                        </div>
+                            <div className="slds-col--padded-right slds-size--1-of-3">
+                                <Variant object={this.state.tactic} field="Tactic_Template__c" editable={false} />
+                                <div className="slds-m-top--medium" />
+                                <Variant object={this.state.tactic} field="Amount__c" onValueChange={this.onFieldChange}
+                                    editable={this.props.editMode} />
 
-                        {/* soco start */}
-                        <div className="slds-grid slds-m-top--medium">
-                                <div className="slds-col--padded-right">
-                                    <Variant object={this.state.tactic} field="Instore_Date_From__c"   onValueChange={this.onFieldChange}  editable={this.props.editMode }/>
+                                <div className="slds-grid slds-m-top--medium">
+                                    <div className="slds-col--padded-right">
+                                        <Variant object={this.state.tactic} field="UL_Off_On_Invoice__c"
+                                            onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                    <div className="slds-col">
+                                        <Variant object={this.state.tactic} field="UL_Take_Up_Rate__c"
+                                            onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
                                 </div>
-                                <div className="slds-col">
-                                    <Variant object={this.state.tactic} field="Instore_Date_Thru__c"   onValueChange={this.onFieldChange}  editable={this.props.editMode }/>
+                                <div className="slds-grid slds-m-top--medium">
+                                    <div className="slds-col--padded-right">
+                                        <Variant object={this.state.tactic} field="UL_Redemption__c"
+                                            onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="slds-col--padded slds-size--1-of-3">
+                                <div className="slds-grid ">
+                                    <div className="slds-col--padded-right">
+                                        <Variant object={this.state.tactic} field="Lift__c" onValueChange={this.onFieldChange}
+                                            editable={this.props.editMode} />
+                                    </div>
+                                    <div className="slds-col">
+                                        <Variant object={this.state.tactic} field="Pct_of_Stores__c"
+                                            onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                </div>
+                                <div className="slds-grid slds-m-top--medium">
+                                    <div className="slds-col--padded-right">
+                                        <Variant object={this.state.tactic} field="Date_From__c"
+                                            onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                    <div className="slds-col">
+                                        <Variant object={this.state.tactic} field="Date_Thru__c"
+                                            onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                </div>
+
+                                {/* soco start */}
+                                <div className="slds-grid slds-m-top--medium">
+                                    <div className="slds-col--padded-right">
+                                        <Variant object={this.state.tactic} field="Instore_Date_From__c" onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                    <div className="slds-col">
+                                        <Variant object={this.state.tactic} field="Instore_Date_Thru__c" onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                </div>
+                                <div className="slds-grid slds-m-top--medium">
+                                    <div className="slds-col--padded-right">
+                                        <Variant object={this.state.tactic} field="Shipment_Date_From__c" onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                    <div className="slds-col">
+                                        <Variant object={this.state.tactic} field="Shipment_Date_Thru__c" onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                </div>
+                                <div className="slds-grid slds-m-top--medium">
+                                    <div className="slds-col--padded-right">
+                                        <Variant object={this.state.tactic} field="UL_Order_Date_From__c" onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                    <div className="slds-col">
+                                        <Variant object={this.state.tactic} field="UL_Order_Date_Thru__c" onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+
+                                </div>
+                                {/* soco end */}
+
+                            </div>
+                            <div className="slds-col--padded slds-size--1-of-3">
+                                <Variant object={this.state.tactic} field="Compensation_Model__c"
+                                    onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                <div className="slds-m-top--medium" />
+                                {/* PMA - START CODE - 2017-01-12 - New custom field */}
+                                <Variant object={this.state.tactic} field="Payment_Method__c" onValueChange={this.onFieldChange}
+                                    editable={this.props.editMode} />
+                                {/* PMA - END CODE - 2017-01-12 - New custom field */}
+
+                                <div className="slds-grid slds-m-top--medium">
+                                    <div className="slds-col--padded-right">
+                                        <Variant object={this.state.tactic} field="UL_Condition_Type__c"
+                                            onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                    <div className="slds-col">
+                                        <Variant object={this.state.tactic} field="UL_Investment_Method__c"
+                                            onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="slds-grid slds-m-top--medium">
-                                <div className="slds-col--padded-right">
-                                    <Variant object={this.state.tactic} field="Shipment_Date_From__c"   onValueChange={this.onFieldChange}  editable={this.props.editMode }/>
-                                </div>
-                                <div className="slds-col">
-                                    <Variant object={this.state.tactic} field="Shipment_Date_Thru__c"   onValueChange={this.onFieldChange}  editable={this.props.editMode }/>
+                        <div className="slds-m-top--medium"></div>
+                        {(this.props.editMode && this.isVisible("TACTIC_BTN_MANAGE_PRODS")) ?
+                            <div className="slds-grid">
+                                <Button type='neutral' icon='custom_apps' iconAlign='left'
+                                    onClick={() => this.manageProducts()}>{AppManager.getLabel('PP_BTN_MANAGE_PRODS') || 'Manage Products'}</Button>
                             </div>
-                        </div>        
-                        {/*}
-                        <div className="slds-grid slds-m-top--medium">
-                                <div className="slds-col--padded-right">
-                                    <Variant object={this.state.tactic} field="UL_Order_Date_From__c"   onValueChange={this.onFieldChange}  editable={this.props.editMode }/>
-                                </div>
+                            : null}
 
-
-                                <div className="slds-col">
-                                    <Variant object={this.state.tactic} field="UL_Order_Date_Thru__c"   onValueChange={this.onFieldChange}  editable={this.props.editMode }/>
-                            </div>
-                            
-                        </div>
-                        */}
-                        {/* soco end */}
-
+                        {this.props.editMode && this.state.showManageProducts ?
+                            <div className="slds-m-top--medium">{this.renderManageProducts()}</div> : null}
                     </div>
-                    <div className="slds-col--padded slds-size--1-of-3">
-                        <Variant object={this.state.tactic} field="Compensation_Model__c"
-                                 onValueChange={this.onFieldChange} editable={this.props.editMode }/>
-                        <div className="slds-m-top--medium"/>
-                        {/* PMA - START CODE - 2017-01-12 - New custom field */}
-                        <Variant object={this.state.tactic} field="Payment_Method__c" onValueChange={this.onFieldChange}
-                                 editable={this.props.editMode }/>
-                        {/* PMA - END CODE - 2017-01-12 - New custom field */}
-
-                        <div className="slds-grid slds-m-top--medium">
-                            <div className="slds-col--padded-right">
-                                <Variant object={this.state.tactic} field="UL_Condition_Type__c"
-                                         onValueChange={this.onFieldChange} editable={this.props.editMode }/>
+                </ACLCheck>
+                <ACLCheck object={this.props.tactic} field="TILE_TACTIC_MAIN_SOCO">
+                    <div className="tile">
+                        <div className=" title slds-grid">{AppManager.getLabel('PP_TIT_TACTIC_DETAILS') || 'Tactic Details'}</div>
+                        <div className="slds-m-top--medium" />
+                        <div className="slds-grid ">
+                            <div className="slds-col--padded-right slds-size--1-of-3">
+                                <div className="slds-m-top--medium" />
+                                <div className="slds-col">
+                                    <Variant object={this.state.tactic} field="Tactic_Template__c" editable={false} />
+                                    <div className="slds-m-top--medium" />
+                                    <Variant object={this.state.tactic} field="UL_Redemption__c"
+                                            onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                </div>
                             </div>
-                            <div className="slds-col">
-                                <Variant object={this.state.tactic} field="UL_Investment_Method__c"
-                                         onValueChange={this.onFieldChange} editable={this.props.editMode }/>
+                            <div className="slds-col--padded-right slds-size--1-of-3">
+                                <div className="slds-m-top--medium" />
+                                <div className="slds-col">
+                                    <Variant object={this.state.tactic} field="Amount__c" onValueChange={this.onFieldChange}
+                                        editable={this.props.editMode} />
+                                    <div className="slds-m-top--medium" />
+                                    <Variant object={this.state.tactic} field="Lift__c" onValueChange={this.onFieldChange}
+                                            editable={this.props.editMode} />
+                                </div>
+                            </div>
+                            <div className="slds-col--padded-right slds-size--1-of-3">
+                                <div className="slds-m-top--medium" />
+                                <div className="slds-col">
+                                    <Variant object={this.state.tactic} field="Compensation_Model__c"
+                                        onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    <div className="slds-m-top--medium" />
+                                    <Variant object={this.state.tactic} field="Payment_Method__c" onValueChange={this.onFieldChange}
+                                        editable={this.props.editMode} />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="slds-m-top--medium"></div>
-                {(this.props.editMode && this.isVisible("TACTIC_BTN_MANAGE_PRODS")) ?
-                <div className="slds-grid">
-                        <Button type='neutral' icon='custom_apps' iconAlign='left'
-                                onClick={() => this.manageProducts()}>{AppManager.getLabel('PP_BTN_MANAGE_PRODS') || 'Manage Products'}</Button>
-                </div>
-                : null}
+                        <div className="slds-m-top--medium"></div>
+                        {(this.props.editMode && this.isVisible("TACTIC_BTN_MANAGE_PRODS")) ?
+                            <div className="slds-grid">
+                                <Button type='neutral' icon='custom_apps' iconAlign='left'
+                                    onClick={() => this.manageProducts()}>{AppManager.getLabel('PP_BTN_MANAGE_PRODS') || 'Manage Products'}</Button>
+                            </div>
+                            : null}
 
-                {this.props.editMode && this.state.showManageProducts ?
-                    <div className="slds-m-top--medium">{this.renderManageProducts()}</div> : null}
+                        {this.props.editMode && this.state.showManageProducts ?
+                            <div className="slds-m-top--medium">{this.renderManageProducts()}</div> : null}
+                    </div>
+                </ACLCheck>
+                <ACLCheck object={this.props.tactic} field="TILE_TACTIC_MAIN_SOCO">
+                        <div className="tile  slds-m-top--medium" >
+                            <div className="slds-grid title">{AppManager.getLabel('PP_TIT_TACTIC_DATES') || 'Tactic Dates'}</div>
+                            <div className="slds-grid ">
+                                <div className="slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3 slds-col--padded-right">
+                                    <div className="slds-m-top--medium" />
+                                    <div className="slds-col">
+                                        <Variant object={this.state.tactic} field="Date_From__c"
+                                                onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                        <div className="slds-m-top--medium" />
+                                        <Variant object={this.state.tactic} field="Date_Thru__c"
+                                                onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                </div>
+                                <div className="slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3 slds-col--padded-left slds-col--padded-right">
+                                    <div className="slds-m-top--medium" />
+                                    <div className="slds-col">
+                                        <Variant object={this.state.tactic} field="Shipment_Date_From__c"
+                                                onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                        <div className="slds-m-top--medium" />
+                                        <Variant object={this.state.tactic} field="Shipment_Date_Thru__c"
+                                                onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                </div>
+                                <div className="slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3 slds-col--padded-left slds-col--padded-right">
+                                    <div className="slds-m-top--medium" />
+                                    <div className="slds-col">
+                                        <Variant object={this.state.tactic} field="Instore_Date_From__c"
+                                                onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                        <div className="slds-m-top--medium" />
+                                        <Variant object={this.state.tactic} field="Instore_Date_Thru__c"
+                                                onValueChange={this.onFieldChange} editable={this.props.editMode} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ACLCheck>
             </div>
+           
         )
     }
 });

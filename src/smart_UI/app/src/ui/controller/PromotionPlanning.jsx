@@ -14,9 +14,9 @@ var ButtonGroup = require('react-lightning-design-system').ButtonGroup;
 var Button = require('react-lightning-design-system').Button;
 var DropdownButton = require('react-lightning-design-system').DropdownButton;
 var MenuItem = require('react-lightning-design-system').MenuItem;
-var MessagePopup = require('../components/MessagePopup.jsx');
 
 var ConfirmPopup = require('../components/ConfirmPopup');
+var MessagePopup = require('../components/MessagePopup.jsx');
 
 module.exports = React.createClass({
     displayName: 'PromotionPlanning',
@@ -32,6 +32,7 @@ module.exports = React.createClass({
             isPromotionSelected: false,
             productSearch: [],
             confirmMessage: null,
+            showPromotionHistory: false,
             tree: null,
             type: 'neutral',
             message: null
@@ -110,8 +111,9 @@ module.exports = React.createClass({
         if (this.state.tree && this.state.tree != null) {
             PromotionActions.setPromotionField(this.state.promotion.Id, 'Manual_Calculation_Input__c', JSON.stringify(this.state.tree.getManualChanges()));
         }
-        PromotionActions.save(this.state.promotion.Id);
         this.setState({editMode: false});
+        PromotionActions.save(this.state.promotion.Id);
+        //TODO//this.invokeThreshold();
     },
 
     saveAndRefresh: function () {
@@ -120,7 +122,7 @@ module.exports = React.createClass({
         }
         this.setState({enableToolbar: false});
         PromotionActions.saveAndRefresh(this.state.promotion.Id);
-
+        //TODO//this.invokeThreshold();
     },
     //Unilever Function to call the Workflow change
     changeWf: function (e) {
@@ -134,11 +136,14 @@ module.exports = React.createClass({
     },
     //PMA - END CODE - 2017-01-13 - Threshold button
 
-    //PMA - START CODE - 2017-01-17 - Audit Trail button
-    invokeAuditTrail: function () {
-        PromotionActions.invokeAuditTrail();
+    //PMA - START CODE - TPM-1498 - Audit Trail
+    openPromotionHistory: function () {
+        this.setState({showPromotionHistory: true});
     },
-    //PMA - END CODE - 2017-01-17 - Audit Trail button
+    closePromotionHistory: function () {
+        this.setState({showPromotionHistory: false});
+    },
+    //PMA - END CODE - TPM-1498 - Audit Trail
 
     /*When edit button is clicked*/
     edit: function () {
@@ -201,7 +206,7 @@ module.exports = React.createClass({
     renderToolbarView: function () {
         var editButton, approveButton, cancelButton, kickOffWorkflowButton, pushButton, releaseButton, thresholdButton,
             simulationButton, modelButton, plannedButton, submittedForApprovalButton, rejectedButton, finalisedButton, cancelledButton,
-            stoppedButton, auditTrailButton, endDateButton = null;
+            stoppedButton, auditTrailButton, endDateButton, closeButton = null;
 
         if (this.state.promotion != null && this.state.promotion.isEditable && (this.state.viewGrid || (!this.state.viewGrid && this.state.selectedItem != null && (this.state.selectedItem.type == 'PROMOTION' || this.state.selectedItem.type == 'TACTIC')))) {
             editButton = <Button className="margin-large icon-button" type='neutral' icon='edit' iconAlign='left'
@@ -222,6 +227,12 @@ module.exports = React.createClass({
             if (this.state.promotion != null && this.isVisible("TOOLBAR_BTN_ENDDATE"))
                 endDateButton = <Button className="margin-large icon-button" type='neutral'
                                        onClick={(e) => this.changeWf('EndDate')}>{AppManager.getLabel('PP_BTN_ENDDATE') || 'End Date'}</Button>;
+            //API-TPM_1771 START
+            if (this.state.promotion != null && this.isVisible("TOOLBAR_BTN_CLOSE"))
+                closeButton = <Button className="margin-large icon-button" type='neutral'
+                                       onClick={(e) => this.changeWf('Close')}>{AppManager.getLabel('PP_BTN_CLOSE') || 'Close'}</Button>;
+            //API-TPM_1771 END                         
+
             //START UK Buttons
             //PMA - START CODE - 2017-01-16 - New UK Button
             if (this.state.promotion != null && this.isVisible("TOOLBAR_BTN_SIMULATION"))
@@ -250,7 +261,7 @@ module.exports = React.createClass({
                                         onClick={(e) => this.changeWf('Stopped')}>{AppManager.getLabel('PP_BTN_STOPPED') || 'Stopped'}</Button>;
             //PMA - END CODE - 2017-01-16 - New UK Button
             //PMA - START CODE - 2017-01-13 - Threshold button
-            if (this.state.promotion != null)
+            if (this.state.promotion != null && this.isVisible("TOOLBAR_BTN_THRESHOLD"))
                 thresholdButton = <Button className="margin-large" type='neutral'
                                           onClick={(e) => this.invokeThreshold()}>{AppManager.getLabel('PP_BTN_INVOKETHRESHOLD') || 'Threshold'}</Button>;
             //PMA - END CODE - 2017-01-13 - Threshold button
@@ -258,7 +269,7 @@ module.exports = React.createClass({
             //Custom buttons available in the right side of the toolbar
             if (this.state.promotion != null && this.isVisible("TOOLBAR_BTN_AUDITTRAIL"))
                 auditTrailButton = <Button className="margin-large icon-button" type='neutral'
-                                           onClick={(e) => this.invokeAuditTrail()}>{AppManager.getLabel('PP_BTN_AUDITTRAIL') || 'Audit Trail'}</Button>;
+                                           onClick={(e) => this.openPromotionHistory()}>{AppManager.getLabel('PP_BTN_AUDITTRAIL') || 'Audit Trail'}</Button>;
             if (this.state.promotion != null && this.isVisible("TOOLBAR_BTN_PUSH"))
                 pushButton = <Button className="margin-large icon-button" type='neutral' disabled={this.state.pushMode || !this.state.isPromotionSelected}
                                      onClick={(e) => this.pushMode()}>{AppManager.getLabel('PP_BTN_PUSH') || 'Push'}</Button>;
@@ -278,6 +289,7 @@ module.exports = React.createClass({
                 {rejectedButton}
                 {cancelButton}
                 {endDateButton}
+                {closeButton}
                 {simulationButton}
                 {modelButton}
                 {plannedButton}
@@ -343,7 +355,7 @@ module.exports = React.createClass({
                                     label='Add'
                                     disabled={!enableToolbar}
                                     menuAlign='center' nubbinTop>
-                        <label className='menuItemLabel'>{AppManager.getLabel('PP_LBL_TACTIC') || 'TACTIC'}</label>
+                        {/*<label className='menuItemLabel'>{AppManager.getLabel('PP_LBL_TACTIC') || 'TACTIC'}</label> - API-TPM1339*/}
                         {this.state.promotion.tacticTemplates.map((tacticTemplate, ix) => {
                                 return <MenuItem key={ix}
                                                  onClick={() => this.addTactic(tacticTemplate)}>{tacticTemplate.Description__c}</MenuItem>
@@ -352,12 +364,12 @@ module.exports = React.createClass({
                     </DropdownButton>
                     : null}
 
-                {(!this.state.viewGrid && this.state.selectedTactic != null) ?
+                {(!this.state.viewGrid && this.state.selectedTactic != null && this.isVisible("TOOLBAR_BTN_DUPLICATE")) ?
                     <Button className="margin-large icon-button" type='neutral' icon='relate' iconAlign='left'
                             disabled={!enableToolbar}
                             onClick={() => this.duplicateTactic(this.state.selectedTactic)}>{AppManager.getLabel('PP_BTN_DUPLICATE') || 'Duplicate'}</Button>
                     : null}
-                {(!this.state.viewGrid && this.state.selectedTactic != null) ?
+                {(!this.state.viewGrid && this.state.selectedTactic != null && this.isVisible("TOOLBAR_BTN_DELETE")) ?
                     <Button className="margin-small icon-button" type='neutral' icon='delete' iconAlign='left'
                             disabled={!enableToolbar}
                             onClick={() => this.deleteTactic(this.state.selectedTactic)}>{AppManager.getLabel('PP_BTN_DELETE') || 'Delete'}</Button>
@@ -393,6 +405,8 @@ module.exports = React.createClass({
                 overviewItem = <PromotionOverview promotion={this.state.promotion}
                                                   editMode={this.state.editMode} update={this.updatePromotion}
                                                   showAttachments={this.state.showAttachments}
+                                                  showPromotionHistory={this.state.showPromotionHistory}
+                                                  closePromotionHistory={this.closePromotionHistory}
                                                   editToggle={this.edit} pushMode={this.state.pushMode}
                                                   pushModeEnd={this.pushModeEnd}/>
             } else {//if (this.state.selectedItem.type == 'TACTIC') {

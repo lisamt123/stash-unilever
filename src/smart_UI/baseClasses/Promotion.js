@@ -1,7 +1,7 @@
 var Promotion = {
     /**
      * The onInstantiate function is call once when the BO is ready for user
-     * 
+     *
      * @param data - Empty in most circumstances
      * @returns {Promise[]} Array of promises created by asynchronous load of data
      */
@@ -9,24 +9,24 @@ var Promotion = {
     onInstantiate: function (data) {
         var me = this;
         var instantiatePromises = []; // when.defer();
-        this.fluxHandler=UI_EVENT_BUS.subscribe(EVENTS.FLUX, this.onDispatcher.bind(this));
+        this.fluxHandler = UI_EVENT_BUS.subscribe(EVENTS.FLUX, this.onDispatcher.bind(this));
         UI_EVENT_BUS.subscribe(EVENTS.UI_ERROR, this.onUIError.bind(this));
-        this.Id = promotionId; 
+        this.Id = promotionId;
 
-        instantiatePromises = this.preLoad();     
+        instantiatePromises = this.preLoad();
         this.isEditable = false;
         this.editMode = false;
 
         return instantiatePromises;
     },
-/**
-     * Load all data which must be available before the UI is rendered. 
+    /**
+     * Load all data which must be available before the UI is rendered.
      * The promises as returned by this function are handled in a synchronous way. Only once all of them are resolved the system continues.
      * @returns {Promise[]} Array of promises created by asynchronous load of data
      */
     preLoad: function () {
         var me = this;
-        var instantiatePromises = []; 
+        var instantiatePromises = [];
 
         this.loadPhase = 'preload';
         instantiatePromises.push(this.load(promotionId, false));
@@ -35,20 +35,20 @@ var Promotion = {
         instantiatePromises.push(this.LOPromotion_Template.load());
         instantiatePromises.push(this.LOAccount.load());
         //instantiatePromises.push(this.LOAccountSet.load());
-        instantiatePromises.push( this.LOTacticProductFilter.load());
+        instantiatePromises.push(this.LOTacticProductFilter.load());
 
         // Reset the availability of the Chart controls after each load
         this.isKPIInvalid = false;
 
         return Utils.callCustomFunction(this, 'preLoad', null, instantiatePromises);
     },
- /**
-     * Load all data which must be available before the UI is rendered. 
+    /**
+     * Load all data which must be available before the UI is rendered.
      * The promises as returned by this function are handled in a synchronous way. Only once all of them are resolved the system continues.
      * @returns {Promise[]} Array of promises created by asynchronous load of data
      */
     postLoad: function () {
-       var me = this;
+        var me = this;
 
         // Build JSON object of promotion content needed as parameter for APEX calls
         var promoObject = this.serializePromotion();
@@ -71,7 +71,6 @@ var Promotion = {
 
             chartPromise,
 
-          
             this.LOFund.load(null, promoObject),
 
             when.all([
@@ -112,12 +111,12 @@ var Promotion = {
                 productFilters: this.serializeProductFilters(),
                 selectedTactic: this.serializeSelectedTactic()
             });
-        });      
+        });
 
         setTimeout(() => this.changeHandler(), 0);
     },
 
-   /**
+    /**
      * Anchor for the postLoad function
      * Content is moved to postLoad since it may be called several times which would not match the purpose of this function
      */
@@ -150,8 +149,8 @@ var Promotion = {
 
         var productFilter = this.LOTacticProductFilter.getAllItems().filter(item => item.tacticId == tacticID);
         if (productFilter.length > 0) {
-                   productfilter = productFilter[0].productfilter;
-                }
+            productfilter = productFilter[0].productfilter;
+        }
 
         var criteria = {};
         productfilter.criteria = criteria;
@@ -172,12 +171,12 @@ var Promotion = {
         var weekDuration = 7 * 24 * 60 * 60000;
         return Math.floor(duration / weekDuration) + ' weeks';
     },
-  /**
+    /**
      * Internal implementation of the serialization to APEX. Is called and customized through serializeToAPEX
      * @returns {JSON} Serialized version for the BO as required by the APEX layer
      */
 
-    
+
     serializePromotion: function () {
         var me = this;
         var saveObject = this.serialize();
@@ -201,15 +200,15 @@ var Promotion = {
                 tactic.Pct_of_Stores__c = parseFloat(tactic.Pct_of_Stores__c);
                 tactic.Amount__c = parseFloat(tactic.Amount__c);
                 tactic.Lift__c = parseFloat(tactic.Lift__c);
-               // tactic.__ObjectStatus = me.LOTactic.getAllItems().find(item => item.Id == tactic.Id).getObjectStatus();
+                // tactic.__ObjectStatus = me.LOTactic.getAllItems().find(item => item.Id == tactic.Id).getObjectStatus();
                 tactic.__ObjectStatus = _.find(me.LOTactic.getAllItems(), {Id: tactic.Id}).getObjectStatus();
             });
- saveObject.LOExtPromotionAttachment = SerializationHelper.serializeWithStatus(this.LOExtPromotionAttachment);
+        saveObject.LOExtPromotionAttachment = SerializationHelper.serializeWithStatus(this.LOExtPromotionAttachment);
         // We do not get a state for the tactic relation of a fund. This is because of the LO structure (tactic
         // is array in LI). The APEX controller needs to take care of that.
         saveObject.LOFund = this.LOFund.serialize() || {};
         if (saveObject.LOFund)
-            saveObject.LOFund.forEach(fund=> {
+            saveObject.LOFund.forEach(fund => {
                 var tactics;
                 me.LOFund.getAllItems().forEach(function (f) {
                     if (f.Id === fund.Id)
@@ -223,9 +222,9 @@ var Promotion = {
                     fund.tactics = [];
                 }
             });
-  return {"BOPromotion": Utils.callCustomFunction(this, 'serializeToAPEX', null, saveObject)};
+        return {"BOPromotion": Utils.callCustomFunction(this, 'serializeToAPEX', null, saveObject)};
     },
-/**
+    /**
      * getMergedProductFilters
      * @param {model} loTactic - Representation of the tactic LO
      * @param {JSON} extPrdFilters - Product filters
@@ -272,7 +271,7 @@ var Promotion = {
         });
         return currentFilters;
     },
-/**
+    /**
      * Saves the BO to the SF backend. Does not leave the edit mode!
      */
     save: function () {
@@ -291,22 +290,22 @@ var Promotion = {
             }
         });
     },
-     /**
+    /**
      * Save the promotion to SF calling writeBOPromotion. The BO will then be reloaded and the UI newly rendered with the loaded content.
      * The edit mode is NOT left by this function
      */
-  saveAndRefresh: function () {
+    saveAndRefresh: function () {
         console.log('PERFORMED ACTION SAVE PROMOTION');
         var saveObject = this.serializePromotion();
         var promoId = this.getId();
-        saveObject.target="Salesforce";
+        saveObject.target = "Salesforce";
         this.apex_write(this.getIdValue(), JSON.stringify(saveObject)).then(saveResult => {
             // TODO: Use correct event bus here! This is just dummy code
             if (saveResult.__Status) {
                 // Send event to UI that save has succeeded and appropriate action can be done
                 console.log('Save of data succeeded!');
                 //trigger save to heroku
-                saveObject.target="WebService";
+                saveObject.target = "WebService";
                 this.apex_write(this.getIdValue(), JSON.stringify(saveObject));
                 this.refreshPromotion();
 
@@ -314,15 +313,15 @@ var Promotion = {
             } else {
                 // Error during saving. Edit mode should not be closed and user needs to be informed!
                 console.log('Save of data failed!', saveResult.ExceptionType, saveResult.ExceptionMessage, saveResult.ExceptionWhere);
-               // this.refreshPromotion(); //refresh anyway
-               //don't refresh promotion stay in edit mode'
+                // this.refreshPromotion(); //refresh anyway
+                //don't refresh promotion stay in edit mode'
                 UI_EVENT_BUS.put(EVENTS.UI_BINDING, {enableToolbar: true, editMode: true});
                 UI_EVENT_BUS.put(EVENTS.BO_SAVE_FAILED, saveResult);
             }
         });
     },
-   /**
-     * Returns all products for a given tactic 
+    /**
+     * Returns all products for a given tactic
      */
     getProductsForTacticID: function (tacticID, relation) {
         return _.filter(this.LOExtProduct.getAllItems(), function (product) {
@@ -337,12 +336,12 @@ var Promotion = {
         this.logger.info('PERFORMED ADD TACTIC WITH TACTIC TEMPLATE ' + tacticTemplate);
 
         var saveObject = {'BOPromotion': this.serialize(), 'Tactic_Template_Id__c': tacticTemplate.Id};
-         saveObject = Utils.callCustomFunction(this, 'addTactic', 'beforeAPEX', saveObject);
+        saveObject = Utils.callCustomFunction(this, 'addTactic', 'beforeAPEX', saveObject);
 
         var me = this;
         this.LOTactic.apex_create(JSON.stringify(saveObject)).then(createResult => {
             if (createResult.__Status) {
-                 createResult.data = Utils.callCustomFunction(this, 'addTactic', 'afterAPEX', createResult.data);
+                createResult.data = Utils.callCustomFunction(this, 'addTactic', 'afterAPEX', createResult.data);
                 createResult.data.objectStatus = STATE.NEW;
                 me.LOTactic.addItem(createResult.data);
                 //addtactic to LOTacticProductFilter
@@ -363,7 +362,7 @@ var Promotion = {
                 var tacticItem = this.serializeSelectedTactic();
                 UI_EVENT_BUS.put(EVENTS.UI_BINDING, {selectedItem: tacticItem});
                 UI_EVENT_BUS.put(EVENTS.UI_BINDING, {selectedNode: tacticItem});
-                 Utils.callCustomFunction(this, 'addTactic', 'post', saveObject);
+                Utils.callCustomFunction(this, 'addTactic', 'post', saveObject);
                 this.changeHandler();
 
             } else {
@@ -373,7 +372,7 @@ var Promotion = {
             }
         });
     },
- /**
+    /**
      * Logically deletes a selected tactic from LOTactic. The actual deletion only happens when the BO is saved
      * @param {string} tacticID - Id of the tactic to be deleted
      */
@@ -400,8 +399,8 @@ var Promotion = {
                     productfilter: _.clone(this.LOTacticProductFilter.getItems()[0].productfilter)
 
                 };
-                 copyResult.data.productfilter = tacticFilter.productfilter;
-                 this.LOTactic.addItem(copyResult.data);
+                copyResult.data.productfilter = tacticFilter.productfilter;
+                this.LOTactic.addItem(copyResult.data);
                 this.LOTacticProductFilter.addItem(tacticFilter);
 
                 this.LOTactic.onLoad(); //added for tacticId handling
@@ -420,12 +419,12 @@ var Promotion = {
 
                 console.log('PERFORMED ACTION DUPLICATE TACTIC FOR TACTIC ID:', tacticID);
             }
-                 else {
+            else {
                 console.log('Duplicate tactic', tacticID, 'failed. APEX RemoteAction returned no data.');
             }
         });
     },
-  /**
+    /**
      * Helper function to reset the LO filters possibly set by user actions
      */
     resetAllFilters: function () {
@@ -435,7 +434,7 @@ var Promotion = {
         this.LOFund.resetAllFilters();
         this.LOTacticProductFilter.resetAllFilters();
     },
- /**
+    /**
      * Helper function called when the user selects a tactic in the drilldown control.
      * The system sets filters on all relevant LOs to ensure that the right data is displayed
      *  @param {string} id - Id of the tactic to be filtered on
@@ -447,7 +446,7 @@ var Promotion = {
         this.LOFund.setFilter('Tactics', '{"Field": "tacticId", "Value":"' + id + '"}', 'CONTAINS');
         this.LOTacticProductFilter.setFilter('tacticId', id, 'EQ');
     },
-  /**
+    /**
      * Helper function called when the user applies a product filter in the manage products dialog.
      * The system makes a callout to SF to get the corresponding list of products from the backend
      * @param {string} tacticID - Id of the active tactic
@@ -485,27 +484,27 @@ var Promotion = {
             filterValueId: filterValueID
         }).selected = selected;
     },
-  /**
+    /**
      * Refreshes the content of the bo WITHOUT saving any possibly changed content
      * @param {any} context - Decision on which context the UI recides on
      */
     refreshPromotion: function (context) {
         var refreshGrid = false;
-        if (context && context==="tree") refreshGrid = true;
-         var me = this;
-                this._hidden.lists.forEach(id=> {
-                    me[id].removeAllItems();
-                });
-                var promises = this.preLoad();
-                when.all(promises).then(function (dataArray) {
-                    if (me.onLoad) me.onLoad(); // Internal callback
-                    me.postLoad();     //post laod
-                    me.loadGrid(JSON.parse(me.getManual_Calculation_Input__c()));
-                    //reset all filters and get back to promotion
-                    me.resetAllFilters();
-                    //enable toolbar.
-                    UI_EVENT_BUS.put(EVENTS.UI_BINDING, {enableToolbar: true});
-                });
+        if (context && context === "tree") refreshGrid = true;
+        var me = this;
+        this._hidden.lists.forEach(id => {
+            me[id].removeAllItems();
+        });
+        var promises = this.preLoad();
+        when.all(promises).then(function (dataArray) {
+            if (me.onLoad) me.onLoad(); // Internal callback
+            me.postLoad();     //post laod
+            me.loadGrid(JSON.parse(me.getManual_Calculation_Input__c()));
+            //reset all filters and get back to promotion
+            me.resetAllFilters();
+            //enable toolbar.
+            UI_EVENT_BUS.put(EVENTS.UI_BINDING, {enableToolbar: true});
+        });
     },
 
     addProductsFilter: function (tacticID, products) {
@@ -514,10 +513,10 @@ var Promotion = {
         //Let's update the tactic productFilter
         if (tacticID == this.LOTacticProductFilter.getItems()[0].tacticId) {
             //Let's update the tactic productFilter
-              _.find(this.LOTactic.getItems(), {Id: tacticID}).objectStatus |= STATE.DIRTY;
+            _.find(this.LOTactic.getItems(), {Id: tacticID}).objectStatus |= STATE.DIRTY;
             var productfilter = this.LOTacticProductFilter.getItems()[0].productfilter;
             if (!productfilter.manualproducts) productfilter.manualproducts = [];
-            products.map((prod)=> {
+            products.map((prod) => {
                 var manualProd = _.find(productfilter.manualproducts, {productid: prod.Id});
                 if (manualProd) {
                     manualProd.included = true;
@@ -528,7 +527,7 @@ var Promotion = {
         }
 
         //Now let's update the LOExtProduct
-        products.map((prod)=> {
+        products.map((prod) => {
             var existingProduct = this.LOExtProduct.getItemById(prod.Id);
             if (existingProduct) {
                 //Update relationship
@@ -585,7 +584,7 @@ var Promotion = {
             this.LOFilteredProducts.addItems(productList.data);
         });
     },
- /**
+    /**
      * Add a fund to the LO. The system checks if there is already a relation to this fund.
      * If yes, then it will be added, otherwise it is updated
      * @param {Array} funds - List of fund to be added
@@ -632,12 +631,11 @@ var Promotion = {
         return _.uniqBy(productsForTactic, 'ProductGroupDescription');
     },
 
-
-     serializeTree: function () {
+    serializeTree: function () {
         var me = this;
         var promotionJSON = {
             _meta: this.getSfMeta(),
-           _acl: this.getACL(),
+            _acl: this.getACL(),
             type: 'PROMOTION',
             desc: AppManager.getLabel('PP_TIT_PROMO_SUMMARY') || 'Promotion Summary',//TODO:TRANSLATE
             Date_From__c: new Date(this.Date_From__c),
@@ -674,13 +672,13 @@ var Promotion = {
         //Adding the promotion Account
         var account = _.find(this.LOAccount.getAllItems(), {Id: this.Anchor_Account__c});
         promotionJSON.Anchor_Account__c = (account) ? account.Name : '';
-        var accountSet = _.find(this.LOAccountSet.getAllItems(), { Id: this.Anchor_Account_Set__c });
+        var accountSet = _.find(this.LOAccountSet.getAllItems(), {Id: this.Anchor_Account_Set__c});
         promotionJSON.Anchor_Account_Set__c = (accountSet) ? accountSet.Description__c : '';
         //Adding the KPIs
-        _.filter(this.LOExtChartValues.getAllItems(), {'id': promotionJSON.Id, 'level': 'measures'}).map((KPI)=> {
+        _.filter(this.LOExtChartValues.getAllItems(), {'id': promotionJSON.Id, 'level': 'measures'}).map((KPI) => {
             promotionJSON.AggregatedKPIs[KPI.kpiId] = KPI.value;
         });
-        this.LOTactic.getAllItems().map((tactic)=> {
+        this.LOTactic.getAllItems().map((tactic) => {
             if (tactic.getObjectStatus() !== STATE.DELETED) {
                 var tacticJSON = {
                     _meta: tactic.getSfMeta(),
@@ -705,7 +703,7 @@ var Promotion = {
                 var products = me.getProductsForTacticID(tactic.Id, 'MATCH').concat(me.getProductsForTacticID(tactic.Id, 'INCLUDED'));
 
                 var productGroups = _.uniqBy(products, 'ProductGroupDescription');
-                productGroups.map((pg)=> {
+                productGroups.map((pg) => {
                     var productGroup = {
                         Name: pg.ProductGroupDescription,
                         Id: pg.ProductGroupId,
@@ -713,7 +711,7 @@ var Promotion = {
                         children: []
                     };
                     var productsPerPG = _.filter(products, {ProductGroupDescription: pg.ProductGroupDescription});
-                    productsPerPG.map((prod)=> {
+                    productsPerPG.map((prod) => {
                         var product = {
                             Id: prod.Id,
                             Name: prod.Description_1,
@@ -762,75 +760,78 @@ var Promotion = {
             tacticJSON.Tactic_Template__c = (ttemplate) ? ttemplate.Description__c : '';
 
             tacticJSON.funds = this.LOFund.getItems();
-            tacticJSON.availableFunds = _.differenceBy(this.LOFilteredFunds.getAllItems(), this.LOFund.getItems(), 'Id');
+            tacticJSON.AvailableFunds = _.differenceBy(this.LOFilteredFunds.getAllItems(), this.LOFund.getItems(), 'Id');
             tacticJSON._acl = this.LOTactic.getACL();
             //Adding the KPIs
-            _.filter(this.LOExtChartValues.getAllItems(), {'id': tacticJSON.Id, 'level': 'Tactic'}).map((KPI)=> {
+            _.filter(this.LOExtChartValues.getAllItems(), {'id': tacticJSON.Id, 'level': 'Tactic'}).map((KPI) => {
                 tacticJSON.AggregatedKPIs[KPI.kpiId] = KPI.value;
             });
-            return  Utils.callCustomFunction(this, 'serializeSelectedTacticToUI', null, tacticJSON);
+            return Utils.callCustomFunction(this, 'serializeSelectedTacticToUI', null, tacticJSON);
         } else {
             return null;
         }
     },
-loadGrid: function(Manual_Calculation_Input){
-var me = this;
- me.LOExtPromotionGrid.apex_getMeta(JSON.stringify( this.serializePromotion())).then(metaData => {
+    loadGrid: function (Manual_Calculation_Input) {
+        var me = this;
+        me.LOExtPromotionGrid.apex_getMeta(JSON.stringify(this.serializePromotion())).then(metaData => {
 
-                    if (metaData.data) {
-                        APEXAbstraction.readCustomLabels(metaData.data.measures.reduce((result, v) => { 
-                            
-                            if (v.display && v.display.enabled) { 
-                                var prefix = '';
-                             //   if (ACSFNamespace) prefix = ACSFNamespace+'.';
-                               // if (v.customized) prefix = '';
-                                    
-                                result.push(prefix+v.name);
-                                 
-                            } 
-                                return result; 
-                        }, [])).then(function(readCustomLabelsResult) {
-                            if (readCustomLabelsResult.__Status && readCustomLabelsResult.data) {
-                                var kpiLabels = readCustomLabelsResult.data;
-                                me.LOExtProduct.addLabels(kpiLabels);
-                            }
+            if (metaData.data) {
+                APEXAbstraction.readCustomLabels(metaData.data.measures.reduce((result, v) => {
 
-                        });
+                    if (v.display && v.display.enabled) {
+                        var prefix = '';
+                        //   if (ACSFNamespace) prefix = ACSFNamespace+'.';
+                        // if (v.customized) prefix = '';
+
+                        result.push(prefix + v.name);
+
+                    }
+                    return result;
+                }, [])).then(function (readCustomLabelsResult) {
+                    if (readCustomLabelsResult.__Status && readCustomLabelsResult.data) {
+                        var kpiLabels = readCustomLabelsResult.data;
+                        me.LOExtProduct.addLabels(kpiLabels);
                     }
 
-                    var errorHappened = false;
-                    try {
-                        if(metaData.__Status){
-                            metaData = metaData.data;
-                            me.LOExtPromotionGrid.apex_getData(JSON.stringify( me.serializePromotion())).then(data => {
-                                if (data.__Status){
-                                    data=data.data;
-                                    /**CAUTION: We are sending a functional object instead of only data. In a multithread environment this won't work*/
-                                    var tree = Tree.instantiate(("string" == typeof data)? JSON.parse(data):data, metaData, metaData.variables, Manual_Calculation_Input);
-                                    UI_EVENT_BUS.put(EVENTS.UI_BINDING, {tree: tree , idToLabelMapping: this.LOExtProduct._hidden.idToLabelMapping});
-                                }
-                                
-                            });
-                        } else {
-                            errorHappened = true;
-                            LogManager.getLogger('PromotionPlanning').error('Status of the metaData JSON is false');
-                    }
-
-                    } catch (e) {
-                        errorHappened = true;
-                        LogManager.getLogger('PromotionPlanning').error(e.message);
-                    }
-                    if(errorHappened) {
-                        UI_EVENT_BUS.put(EVENTS.UI_ERROR, {title: 'Error loading grid',
-                            message:'Error occurred, please contact the administrator.',
-                            type:'E'});
-                        
-                    }
                 });
-        
+            }
 
+            var errorHappened = false;
+            try {
+                if (metaData.__Status) {
+                    metaData = metaData.data;
+                    me.LOExtPromotionGrid.apex_getData(JSON.stringify(me.serializePromotion())).then(data => {
+                        if (data.__Status) {
+                            data = data.data;
+                            /**CAUTION: We are sending a functional object instead of only data. In a multithread environment this won't work*/
+                            var tree = Tree.instantiate(("string" == typeof data) ? JSON.parse(data) : data, metaData, metaData.variables, Manual_Calculation_Input);
+                            UI_EVENT_BUS.put(EVENTS.UI_BINDING, {
+                                tree: tree,
+                                idToLabelMapping: this.LOExtProduct._hidden.idToLabelMapping
+                            });
+                        }
 
-},
+                    });
+                } else {
+                    errorHappened = true;
+                    LogManager.getLogger('PromotionPlanning').error('Status of the metaData JSON is false');
+                }
+
+            } catch (e) {
+                errorHappened = true;
+                LogManager.getLogger('PromotionPlanning').error(e.message);
+            }
+            if (errorHappened) {
+                UI_EVENT_BUS.put(EVENTS.UI_ERROR, {
+                    title: 'Error loading grid',
+                    message: 'Error occurred, please contact the administrator.',
+                    type: 'E'
+                });
+
+            }
+        });
+
+    },
     serializeProductFilters: function () {
         //Hardcoded for the moment
         var tacticID = null
@@ -840,7 +841,7 @@ var me = this;
             return null;
         }
         var productFilters = [];
-        this.LOExtProductFilter.getItems().map((prodFilter)=> {
+        this.LOExtProductFilter.getItems().map((prodFilter) => {
             productFilters.push({
                 filterId: prodFilter.filterId,
                 filterLabel: prodFilter.filterLabel,
@@ -852,7 +853,7 @@ var me = this;
         });
 
         var products = this.LOExtProduct.getItems();
-        products.map((pd)=> {
+        products.map((pd) => {
             pd.relationship = _.find(pd.Tactics, {tacticId: tacticID}).relationship
         });
         products = _.orderBy(products, 'relationship', 'desc');
@@ -862,13 +863,13 @@ var me = this;
             products: products
         };
     },
-onUIError: function (message) {
+    onUIError: function (message) {
         this.modalMessages.push(message);
         AppManager.init().then(() => UI_EVENT_BUS.put(EVENTS.UI_BINDING, {modalMessages: this.modalMessages}));
     },
     onDispatcher: function (payload) {
         var action = payload;
-        var me=this;
+        var me = this;
         switch (action.actionType) {
             case PromotionActionConstants.PROMOTION_LOAD:
                 this.load(this.Id);
@@ -876,23 +877,23 @@ onUIError: function (message) {
             case PromotionActionConstants.PROMOTION_LOAD_GRID:
                 this.loadGrid(action.payload.Manual_Calculation_Input);
                 break;
-            case  PromotionActionConstants.PROMOTION_SAVE:
+            case PromotionActionConstants.PROMOTION_SAVE:
                 this.editMode = false;
                 this.saveAndRefresh();
                 break;
 
-            case  PromotionActionConstants.PROMOTION_SAVE_AND_REFRESH :
+            case PromotionActionConstants.PROMOTION_SAVE_AND_REFRESH :
                 this.saveAndRefresh();
                 break;
             case PromotionActionConstants.PROMOTION_EDIT:
                 this.editMode = true;
-                break;          
-            case  PromotionActionConstants.PROMOTION_CANCEL:
+                break;
+            case PromotionActionConstants.PROMOTION_CANCEL:
                 this.editMode = false;
                 this.refreshPromotion(payload.Context);
                 break;
 
-            case  PromotionActionConstants.PROMOTION_SET_FIELD:
+            case PromotionActionConstants.PROMOTION_SET_FIELD:
                 if (action.payload.Id == this.Id) {
                     var setter = this['set' + action.payload.fieldName];
                     if (setter) {
@@ -917,7 +918,7 @@ onUIError: function (message) {
                 this.changeHandler();
                 break;
 
-            case  PromotionActionConstants.TACTIC_SET_FIELD:
+            case PromotionActionConstants.TACTIC_SET_FIELD:
                 if (action.payload.Id == this.LOTactic.getItems()[0].Id) {
                     var tactic = this.LOTactic.getItems()[0];
                     var setter = tactic['set' + action.payload.fieldName];
@@ -930,66 +931,62 @@ onUIError: function (message) {
                 }
                 break;
 
-            case  PromotionActionConstants.TACTIC_ADD:
+            case PromotionActionConstants.TACTIC_ADD:
                 this.addTactic(action.payload);
                 break;
 
-            case  PromotionActionConstants.TACTIC_DUPLICATE :
+            case PromotionActionConstants.TACTIC_DUPLICATE:
                 this.duplicateTactic(action.payload);
                 break;
 
-            case  PromotionActionConstants.TACTIC_DELETE :
+            case PromotionActionConstants.TACTIC_DELETE:
                 this.deleteTactic(action.payload);
                 break;
 
-            case  PromotionActionConstants.APPLY_PRODUCT_FILTER :
+            case PromotionActionConstants.APPLY_PRODUCT_FILTER:
                 this.applyProductFilter(action.payload.tacticId, action.payload.productFilter);
-                 
+
                 break;
 
-            case  PromotionActionConstants.SEARCH_FOR_PRODUCTS :
+            case PromotionActionConstants.SEARCH_FOR_PRODUCTS:
                 this.searchForProducts(action.payload);
                 break;
 
-            case  PromotionActionConstants.CLEAR_SEARCH_FOR_PRODUCTS:
+            case PromotionActionConstants.CLEAR_SEARCH_FOR_PRODUCTS:
                 this.LOFilteredProducts.removeAllItems();
                 UI_EVENT_BUS.put(EVENTS.UI_BINDING, {productSearch: []});
                 break;
 
-            case  PromotionActionConstants.ADD_PRODUCTS :
+            case PromotionActionConstants.ADD_PRODUCTS:
                 this.addProductsFilter(action.payload.tacticId, action.payload.products);
                 break;
 
-            case  PromotionActionConstants.SEARCH_FOR_FUNDS :
+            case PromotionActionConstants.SEARCH_FOR_FUNDS:
                 if (this.LOFilteredFunds.getCount() == 0) { //Just load funds once
-                    //this.LOFilteredFunds.load(this.serializePromotion());
                     this.LOFilteredFunds.apex_read(JSON.stringify(this.serializePromotion())).then(fundList => {
-                        // UI_EVENT_BUS.put(EVENTS.UI_BINDING, {productSearch: productList.data});
                         this.LOFilteredFunds.removeAllItems();
                         this.LOFilteredFunds.addItems(fundList.data);
-                         UI_EVENT_BUS.put(EVENTS.UI_BINDING, {selectedTactic: this.serializeSelectedTactic()});
+                        this.changeHandler();
                     });
                 }
-                 UI_EVENT_BUS.put(EVENTS.UI_BINDING, {selectedTactic: this.serializeSelectedTactic()});
-               
                 break;
 
-            case  PromotionActionConstants.ADD_FUNDS :
+            case PromotionActionConstants.ADD_FUNDS:
                 this.addFunds(action.payload.funds, action.payload.tacticId);
                 this.changeHandler();
                 break;
 
-            case  PromotionActionConstants.DELETE_FUNDS :
+            case PromotionActionConstants.DELETE_FUNDS:
                 this.deleteFunds(action.payload.fundsId, action.payload.tacticId);
                 this.changeHandler();
                 break;
 
-            case  PromotionActionConstants.TOGGLE_TACTIC_PRODUCT_FILTER :
+            case PromotionActionConstants.TOGGLE_TACTIC_PRODUCT_FILTER:
                 this.toggleTacticProductFilter(action.payload.filterId, action.payload.filterValueId, action.payload.tactic, action.payload.selected);
                 UI_EVENT_BUS.put(EVENTS.UI_BINDING, {productFilters: this.serializeProductFilters()});
                 break;
 
-            case  PromotionActionConstants.CHANGE_TACTIC_PRODUCT_RELATIONSHIP :
+            case PromotionActionConstants.CHANGE_TACTIC_PRODUCT_RELATIONSHIP:
                 if (action.payload.tacticId == this.LOTacticProductFilter.getItems()[0].tacticId) {
                     //Let's update the tactic productFilter
                     _.find(this.LOTactic.getItems(), {Id: action.payload.tacticId}).objectStatus |= STATE.DIRTY;
@@ -1021,7 +1018,7 @@ onUIError: function (message) {
                     productFilters: this.serializeProductFilters()
                 });
                 break;
-             default: 
+            default:
                 Utils.callCustomFunction(this, 'onDispatcher', null, action);
                 break;
         }

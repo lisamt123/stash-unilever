@@ -28,8 +28,8 @@ var lofundmock = {
                 'Tactics': [
                     {
                         'tacticId': 'a1W36000000qHpkEAE',
-                        'Allocation__c': 75,
-                        'Amount_Allocated__c': 1500.00
+                        'UL_Allocation__c': '75.00',
+                        'UL_Amount_Allocated__c': '1500.00'
                     }
                 ]
             }, {
@@ -57,8 +57,8 @@ var lofundmock = {
                 'Tactics': [
                     {
                         'tacticId': 'a1W36000000qHpkEAE',
-                        'Allocation__c': 25,
-                        'Amount_Allocated__c': 250.00
+                        'UL_Allocation__c': '25.00',
+                        'UL_Amount_Allocated__c': '250.00'
                     }
                 ]
             }]

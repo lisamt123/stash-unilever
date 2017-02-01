@@ -16,7 +16,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': 'pk',
                     'Pack_Size__c': 6,
-                    'Short_Description__c': 'Diet Cream Wafer'
+                    'Short_Description__c': 'Diet Cream Wafer',
+                    UL_Material_Type__c: 'Dummy'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -30,7 +31,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer2'
+                    'Short_Description__c': 'Diet Cream Wafer2',
+                    UL_Material_Type__c: 'Dummy'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -44,7 +46,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -58,7 +61,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -72,7 +76,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': 'pk',
                     'Pack_Size__c': 6,
-                    'Short_Description__c': 'Diet Cream Wafer'
+                    'Short_Description__c': 'Diet Cream Wafer',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -86,7 +91,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer2'
+                    'Short_Description__c': 'Diet Cream Wafer2',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -100,7 +106,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -114,7 +121,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -128,7 +136,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': 'pk',
                     'Pack_Size__c': 6,
-                    'Short_Description__c': 'Diet Cream Wafer'
+                    'Short_Description__c': 'Diet Cream Wafer',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -142,7 +151,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer2'
+                    'Short_Description__c': 'Diet Cream Wafer2',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -156,7 +166,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -170,7 +181,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -184,7 +196,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': 'pk',
                     'Pack_Size__c': 6,
-                    'Short_Description__c': 'Diet Cream Wafer'
+                    'Short_Description__c': 'Diet Cream Wafer',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -198,7 +211,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer2'
+                    'Short_Description__c': 'Diet Cream Wafer2',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -212,7 +226,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -226,7 +241,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -240,7 +256,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': 'pk',
                     'Pack_Size__c': 6,
-                    'Short_Description__c': 'Diet Cream Wafer'
+                    'Short_Description__c': 'Diet Cream Wafer',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -254,7 +271,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer2'
+                    'Short_Description__c': 'Diet Cream Wafer2',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -268,7 +286,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -282,7 +301,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -296,7 +316,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': 'pk',
                     'Pack_Size__c': 6,
-                    'Short_Description__c': 'Diet Cream Wafer'
+                    'Short_Description__c': 'Diet Cream Wafer',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -310,7 +331,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer2'
+                    'Short_Description__c': 'Diet Cream Wafer2',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -324,7 +346,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 },
                 {
                     'Category__c': 'Snacks',
@@ -338,7 +361,8 @@ var loFilteredProductsMock = {
                     'Name': 'a0d61000000OEAX',
                     'Pack_Size_Unit__c': null,
                     'Pack_Size__c': null,
-                    'Short_Description__c': 'Diet Cream Wafer3'
+                    'Short_Description__c': 'Diet Cream Wafer3',
+                    UL_Material_Type__c: 'AL'
                 }
             ]
         };
