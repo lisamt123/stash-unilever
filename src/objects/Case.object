@@ -5514,6 +5514,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CEC_Product_Hierarchy__c</columns>
         <columns>Production_Code__c</columns>
         <columns>CEC_Reason_Code__c</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.CREATED_DATE_DATE_ONLY</field>

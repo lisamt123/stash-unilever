@@ -7850,6 +7850,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <value>Account.Pitch_Agency</value>
         </filters>
         <label>Pitch Agencies</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Pitch_Users</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Pitch_Experts</fullName>
@@ -7863,6 +7867,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <value>PersonAccount.Pitch_Expert</value>
         </filters>
         <label>Pitch Experts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Pitch_Users</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Primary_Account_View</fullName>
@@ -7881,6 +7889,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>Primary Account View</label>
         <language>en_US</language>
+        <sharedTo>
+            <group>UID_Users</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Recently_Created_Records</fullName>
@@ -7989,6 +8000,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>Secondary Account View</label>
         <language>en_US</language>
+        <sharedTo>
+            <group>UID_Users</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Temporary_Accounts_Administrator</fullName>

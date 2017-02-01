@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
-        <caseValues>
-            <plural>false</plural>
-            <value>Phone 4</value>
-        </caseValues>
-        <name>home_phone_contact</name>
-        <startsWith>Consonant</startsWith>
-    </fields>
-    <fields>
-        <caseValues>
-            <plural>false</plural>
-            <value>Phone 3</value>
-        </caseValues>
-        <name>mobile_contact</name>
-        <startsWith>Consonant</startsWith>
-    </fields>
-    <fields>
-        <caseValues>
-            <plural>false</plural>
-            <value>Phone 2</value>
-        </caseValues>
-        <name>other_phone_contact</name>
-        <startsWith>Vowel</startsWith>
-    </fields>
-    <fields>
-        <caseValues>
-            <plural>false</plural>
-            <value>Phone 1</value>
-        </caseValues>
-        <name>phone_contact</name>
-        <startsWith>Consonant</startsWith>
-    </fields>
-    <fields>
         <help><!-- This field is for Agency contact who will receive the notification after approval process. --></help>
         <label><!-- Send Email Notifcation --></label>
         <name>AF_Send_Email_Notification__c</name>
