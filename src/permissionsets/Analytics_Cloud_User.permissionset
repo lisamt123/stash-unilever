@@ -10037,6 +10037,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course_Attachment__c.Attachment_type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course_Attachment__c.FA_Download_Available_From__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Download_Statistics__c.Content_Document_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -32178,26 +32188,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_Terms_Conditions__c.uw_BET__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.DPS_Demographics__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.DPS_Product_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.DPS_Sales_Region__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.DPS_Trade_Format__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <label>Analytics Cloud User</label>
