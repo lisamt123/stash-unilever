@@ -64,7 +64,7 @@ global class UL_PromotionClosureBatch implements Database.batchable<SObject>, Da
             try {
    				Messaging.sendEmail(new Messaging.SingleEmailMessage[] {outbound});
             } catch (Exception e){
-                
+                UL_Utility.logError(e, UserInfo.getUserId());
             }
    		}
 	} 

@@ -12,19 +12,26 @@ VERSION     AUTHOR			DATE             DETAIL                 Description
 
 global with sharing class UL_PromotionClosure {
 	
-    //closes promotions (used by AJAX Toolkit Button)
+    /*******************************************************************
+        Purpose: closes promotions (used by AJAX Toolkit Button) 
+        Version 1.0
+        Parameters: List of Promotion Ids
+        Returns: Success or Error messages
+        Throws : N/A 
+    ********************************************************************/
     webService static String closePromotionsWebservice(List<Id> promotionIds) {
         return UL_PromotionClosure.closePromotions(promotionIds);
     }
     
 	 //closes promotions (used SMART UI)
-     @RemoteAction	
+     /*@RemoteAction	
      global static String closePromotionsRemote(Id promotionId){
          List<Id> promotionIds = new List<Id>{promotionId};
      	return UL_PromotionClosure.closePromotions(promotionIds);
-     }
+     }*/
     
     //closes promotions (used SMART UI)
+    /*
      @RemoteAction	
      global static String invokeWfBOPromotion(String txId, String objectId, String Mode, String Content) {
         if (Mode=='Closed'){
@@ -32,9 +39,15 @@ global with sharing class UL_PromotionClosure {
             return UL_PromotionClosure.closePromotions(promotionIds);
         }
          return null;
-     }
+     }*/
 	
-	 //receives a list of promotion ids --> sets them to closed
+	 /*******************************************************************
+        Purpose: receives a list of promotion ids --> sets them to closed
+        Version 1.0
+        Parameters: List of Promotion Ids
+        Returns: Success or Error messages
+        Throws : N/A 
+    ********************************************************************/
      public static String closePromotions(List<Id> promotionIds){
     	
     	//max number of Promotions to close
@@ -75,6 +88,7 @@ global with sharing class UL_PromotionClosure {
             		try {
             			update promos;
             		} catch (Exception e){
+                        UL_Utility.logError(e, UserInfo.getUserId());
             			return Label.Promotion_Closure_Internal_Error + e.getMessage();
             		}
             		return Label.Promotions_Closed_Successfully;
