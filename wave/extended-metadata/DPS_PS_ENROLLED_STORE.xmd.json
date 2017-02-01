@@ -1,17 +1,1 @@
-{
-  "values_query_columns": [],
-  "hide_measures": [],
-  "types": {},
-  "formats": {
-    "measures": {}
-  },
-  "organizations": [],
-  "hide_dimensions": [],
-  "colors": {},
-  "labels": {
-    "measures": {},
-    "keys": {},
-    "dimensions": {}
-  },
-  "dimensions": []
-}
+{"dataset":{},"dates":[],"derivedDimensions":[],"derivedMeasures":[],"dimensions":[],"measures":[],"organizations":[],"showDetailsDefaultFields":[]}
