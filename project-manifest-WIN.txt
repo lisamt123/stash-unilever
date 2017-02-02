@@ -9,3 +9,5 @@ src/objects/Win_Region__c.object
 src/objects/Win_Retailer__c.object
 src/objects/Win_Tracked_Object_Config__c.object
 src/objects/Win_User_Region__c.object
+src/connectedApps
+src/connectedApps/Wings2.connectedApp
