@@ -39,7 +39,7 @@ public without sharing class Win_UploadService implements Win_IUploadService{
     } 
     
     //Initialize for each sObject type all the required fields, which should be returned in upload response
-    private Map<String, List<String>> getObjectFieldListMap(){
+    public Map<String, List<String>> getObjectFieldListMap(){
         Map<String, List<String>> fieldListMap = new Map<String, List<String>>();
         
         Map<String, Win_Tracked_Object_Config__c> objectsSetting = Win_TrackingUtils.getObjects(ClientAppId);

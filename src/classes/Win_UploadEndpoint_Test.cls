@@ -221,5 +221,14 @@ public with sharing class Win_UploadEndpoint_Test {
 		System.assertEquals(0, res.size());
 	}
 
+    /*
+     * Test multiple insertions
+     */
+    static testMethod void testObjectFieldListMap() {
+        Win_UploadService service = new Win_UploadService();
+        Win_TestUtils.createTrackedObjConfigCustomSetting();
+        Map<String, List<String>> result = service.getObjectFieldListMap();
+        System.assert(result != null);
+    }
 
 }
