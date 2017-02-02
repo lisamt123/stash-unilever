@@ -41,15 +41,17 @@
             /* fallback */
         }
         tbody td, thead th {
-            width: 10%!important;
+            width: 20%!important;
             float: left!important;
             white-space: normal!important;
+            text-align: center;
             
         }
 
         tbody td:first-child, thead th:first-child {
-            width: 16%!important;
+            width: 20%!important;
             float: left!important;
+            text-align: left;
         }
         
         

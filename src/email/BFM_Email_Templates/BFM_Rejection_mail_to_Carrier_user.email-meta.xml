@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>BFM Rejection mail to Carrier user</name>
+    <style>none</style>
+    <subject>Request rejected</subject>
+    <textOnly>Hi {!BFM_UserCreationRequest__c.FirstName__c} {!BFM_UserCreationRequest__c.LastName__c},
+
+Your new user request has been rejected.
+
+Thanks &amp; Regards,
+BFM</textOnly>
+    <type>custom</type>
+</EmailTemplate>

@@ -116,6 +116,7 @@ public with sharing class PBS_LMSService_CC{
             'Id'
             ,'Name'
             ,DESCRIPTION_C
+            ,'Training_Plan_URLs_Name__c'  // added by prasanth
             ,'Enable_Self_Registration__c'
             ,'Self_Registration_Access__c'
             ,'Enforce_Sequence__c'
@@ -170,6 +171,7 @@ public with sharing class PBS_LMSService_CC{
             'Id'
             ,'Name'
             ,DESCRIPTION_C
+            ,'Training_Plan_URLs_Name__c'  // added by prasanth
             ,'Enable_Self_Registration__c'
             ,'Self_Registration_Access__c'
             ,'Enforce_Sequence__c'
@@ -567,6 +569,7 @@ public with sharing class PBS_LMSService_CC{
         soqlQuery += ' order by CreatedDate asc';
 
         List<PBS_Training_Plan_Assignment__c> planAssignments = (List<PBS_Training_Plan_Assignment__c>)Database.query(soqlQuery);
+        System.debug('planAssignments >>'+planAssignments);
         for(PBS_Training_Plan_Assignment__c tpa : planAssignments){
 
             if(!results.containsKey(tpa.User__c)){
@@ -576,7 +579,7 @@ public with sharing class PBS_LMSService_CC{
             results.get(tpa.User__c).put(tpa.Training_Plan__c,tpa);
         }
 
-
+        System.debug('result >>'+results);
         return results;
 
     }
@@ -1444,9 +1447,8 @@ public with sharing class PBS_LMSService_CC{
 
         results = (List<PBS_Learning_Category__c>)Database.query(soqlQuery);
         return results;
-
     }
-
+    
     //Return training trackas based on status
     public static List<PBS_Training_Track__c> getTrainingTracks(String status, String trackFilter, Boolean isPortalUser){
 
@@ -1571,6 +1573,7 @@ public with sharing class PBS_LMSService_CC{
         relatedFieldsObjects.put(PBS_Training_Plan__c.sObjectType,new List<String>{
             'Name'
             ,DESCRIPTION_C
+            ,'Training_Plan_URLs_Name__c'  // added by prasanth
             ,'Enable_Self_Registration__c'
             ,'Self_Registration_Access__c'
             ,STATUS_C
@@ -2407,7 +2410,6 @@ public with sharing class PBS_LMSService_CC{
             //END Access Check
 
             PBS_Learning_Version__c learningVersion = null;
-
             if(learningType == 'Resource'){
                 learningVersion = [select id
                                         ,Training_Resource__c
