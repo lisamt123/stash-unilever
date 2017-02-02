@@ -7007,6 +7007,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Philippines_All_Cases_FOM1</fullName>
+        <columns>PII_Data_Check__c</columns>
         <columns>L1_Product_Category__c</columns>
         <columns>CEC_Product_Hierarchy__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
