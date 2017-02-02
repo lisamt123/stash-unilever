@@ -166,9 +166,9 @@ private class BEN_CategoryDetailsTriggerTest {
         
         insert CategoryMaster1;
         
-        BEN_CU_GTIN__c ccc = new BEN_CU_GTIN__c();
-        ccc.Name = 'Test';
-        insert ccc;
+        /*BEN_CU_GTIN__c ccc = new BEN_CU_GTIN__c();
+        ccc.Name = 'Beverages';
+        insert ccc;*/
         
         BEN_Benchmark__c benchamrking = new BEN_Benchmark__c();
         benchamrking.CurrencyIsoCode = 'EUR';
@@ -187,7 +187,7 @@ private class BEN_CategoryDetailsTriggerTest {
         categorydetails.pkl_Logic__c='WIN on OO & KA' ;
         categorydetails.pkl_Key_Attributes__c='Parity' ;
         //categorydetails.pkl_OVERALL_SCORE__c='Parity' ;
-        categorydetails.lkp_CU_GTIN__c=ccc.Id;
+        categorydetails.txt_CUC_Code__c='test';
         categorydetails.pkl_Product_Format__c='Flavoured & Speciality' ;
         categorydetails.pkl_Product__c='Beceda' ;
         categorydetails.pkl_Country__c='India' ;

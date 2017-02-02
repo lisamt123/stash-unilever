@@ -98,9 +98,9 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
     
     private static void init() {
         
-        BEN_CU_GTIN__c ccc = new BEN_CU_GTIN__c();
+        /*BEN_CU_GTIN__c ccc = new BEN_CU_GTIN__c();
         ccc.Name = 'Test';
-        insert ccc;
+        insert ccc;*/
                 
         BEN_Benchmark__c benchamrking = new BEN_Benchmark__c();
         benchamrking.CurrencyIsoCode = 'EUR';
@@ -122,7 +122,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         categorydetails.pkl_Logic__c='PARITY on OO & KA' ;
         categorydetails.pkl_Key_Attributes__c='Parity' ;
         //categorydetails.pkl_OVERALL_SCORE__c='Parity' ;
-        categorydetails.lkp_CU_GTIN__c=ccc.Id;
+        categorydetails.txt_CUC_Code__c='CUC Code';
         categorydetails.pkl_Product_Format__c='Flavoured & Speciality' ;
         categorydetails.pkl_Product__c='Beceda' ;
         categorydetails.pkl_Country__c='Germany' ;
@@ -150,7 +150,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         categorydetails.pkl_Logic__c='WIN on OO & KA' ;
         categorydetails.pkl_Key_Attributes__c='Loss' ;
         //categorydetails.pkl_OVERALL_SCORE__c='Parity' ;
-        categorydetails.lkp_CU_GTIN__c=ccc.Id;
+        categorydetails.txt_CUC_Code__c='CUC Code';
         categorydetails.pkl_Product_Format__c='Flavoured & Speciality' ;
         categorydetails.pkl_Product__c='Beceda' ;
         categorydetails.pkl_Country__c='USA' ;
@@ -178,7 +178,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         categorydetails.pkl_Logic__c='WIN on OO & KA' ;
         categorydetails.pkl_Key_Attributes__c='Win' ;
         //categorydetails.pkl_OVERALL_SCORE__c='Parity' ;
-        categorydetails.lkp_CU_GTIN__c=ccc.Id;
+        categorydetails.txt_CUC_Code__c='CUC Code';
         categorydetails.pkl_Product_Format__c='Flavoured & Speciality' ;
         categorydetails.pkl_Product__c='Beceda' ;
         categorydetails.pkl_Country__c='India' ;

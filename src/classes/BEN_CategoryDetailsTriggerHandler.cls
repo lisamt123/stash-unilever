@@ -226,7 +226,7 @@ firstStepMap.put(catgrydtls1.Id,catgrydtls1);
         String body='';
         if (catgryDtls.In_Approval__c && catgryDtls.bln_Mark_for_Deletion__c) {   
             body =  'Hi Category Approver,<br/><br/>'+        
-                'Test result ' +catgryDtls.Product_Category__c+ ' : has been marked for deletion. Reason for deletion indicated '+ 
+                'Test result ' +catgryDtls.Name+ ' : has been marked for deletion. Reason for deletion indicated '+ 
                 catgryDtls.txt_Reason_for_Deletion__c +
                 '<br/><br/>'+
                 'You can access the result via the link below;'+
