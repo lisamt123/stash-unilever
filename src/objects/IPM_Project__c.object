@@ -4942,6 +4942,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
             </values>
         </picklistValues>
 		<picklistValues>
+			<picklist>IPM_Project_Status__c</picklist>
 			<values>
 				<fullName>Legacy</fullName>
 				<default>false</default>
@@ -5848,6 +5849,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
             </values>
         </picklistValues>
 		<picklistValues>
+			<picklist>IPM_Project_Status__c</picklist>
 			<values>
 				<fullName>Legacy</fullName>
 				<default>false</default>
