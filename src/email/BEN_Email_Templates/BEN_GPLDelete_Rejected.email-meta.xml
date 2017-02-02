@@ -10,7 +10,8 @@
     <textOnly>Hi {!BEN_Category_Details__c.CreatedBy},
 
 Test result &apos;{!BEN_Category_Details__c.Name} &apos; Deletion is rejected by
-{!User.Name}  Reason sited for rejection is {!ApprovalRequest.Comments}&quot;.
+{!User.Name}
+Reason sited for rejection is {!ApprovalRequest.Comments}&quot;.
 
 You can access the result via the link below;{!BEN_Category_Details__c.Link}
 

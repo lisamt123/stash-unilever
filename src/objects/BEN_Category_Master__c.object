@@ -58,86 +58,6 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
-        <fullName>BEN_Category_Count__c</fullName>
-        <description>Count of Categories used in Category Detail</description>
-        <externalId>false</externalId>
-        <label>BEN_Category_Count</label>
-        <summaryForeignKey>BEN_Category_Details__c.Product_Category__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>BEN_Total_Loss__c</fullName>
-        <externalId>false</externalId>
-        <label>BEN Total Loss</label>
-        <summaryFilterItems>
-            <field>BEN_Category_Details__c.fml_Overall_Score__c</field>
-            <operation>equals</operation>
-            <value>Loss</value>
-        </summaryFilterItems>
-        <summaryForeignKey>BEN_Category_Details__c.Product_Category__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>BEN_Total_Parity__c</fullName>
-        <externalId>false</externalId>
-        <label>BEN Total Parity</label>
-        <summaryFilterItems>
-            <field>BEN_Category_Details__c.fml_Overall_Score__c</field>
-            <operation>equals</operation>
-            <value>Parity</value>
-        </summaryFilterItems>
-        <summaryForeignKey>BEN_Category_Details__c.Product_Category__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>BEN_Total_Win__c</fullName>
-        <externalId>false</externalId>
-        <label>BEN Total Win</label>
-        <summaryFilterItems>
-            <field>BEN_Category_Details__c.fml_Overall_Score__c</field>
-            <operation>equals</operation>
-            <value>Win</value>
-        </summaryFilterItems>
-        <summaryForeignKey>BEN_Category_Details__c.Product_Category__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>BEN_Total_of_Studies__c</fullName>
-        <externalId>false</externalId>
-        <formula>BEN_Total_Win__c  +  BEN_Total_Parity__c  +  BEN_Total_Loss__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>BEN Total # of Studies</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>CTi_Group__c</fullName>
-        <externalId>false</externalId>
-        <label>CTi Group</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>pkl_Super_Category__c</fullName>
         <externalId>false</externalId>
         <label>Super Category</label>
@@ -150,10 +70,18 @@
                 <fullName>Personal care</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Home Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
+        <required>true</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -162,6 +90,7 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
+        <columns>pkl_Super_Category__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>

@@ -162,15 +162,23 @@ private class BEN_CategoryDetailsTriggerTest {
     
     static testMethod BEN_Category_Details__c createCategoryDetails() {
         
-        BEN_Category_Master__c CategoryMaster1=new BEN_Category_Master__c(Name='Beverages123');
+        BEN_Category_Master__c CategoryMaster1=new BEN_Category_Master__c(Name='Beverages',pkl_Super_Category__c='Home Care');
+        
         insert CategoryMaster1;
         
-        BEN_Category_CUC_Codes__c ccc = new BEN_Category_CUC_Codes__c();
+        BEN_CU_GTIN__c ccc = new BEN_CU_GTIN__c();
         ccc.Name = 'Test';
         insert ccc;
         
+        BEN_Benchmark__c benchamrking = new BEN_Benchmark__c();
+        benchamrking.CurrencyIsoCode = 'EUR';
+        benchamrking.Name = 'Barrys Gold';
+        insert benchamrking; 
+       
+        
         BEN_Category_Details__c categorydetails = new BEN_Category_Details__c();
         categorydetails.Product_Category__c = CategoryMaster1.Id;
+        categorydetails.pkl_Category_Master__c= 'Beverages'; 
         categorydetails.pkl_Region__c='South Asia' ;
         categorydetails.pkl_Brand__c='Lipton Yellow Label' ;
         categorydetails.txt_Title__c='Test123' ;
@@ -179,19 +187,20 @@ private class BEN_CategoryDetailsTriggerTest {
         categorydetails.pkl_Logic__c='WIN on OO & KA' ;
         categorydetails.pkl_Key_Attributes__c='Parity' ;
         //categorydetails.pkl_OVERALL_SCORE__c='Parity' ;
-        categorydetails.lkp_CUC_Codes__c=ccc.Id;
+        categorydetails.lkp_CU_GTIN__c=ccc.Id;
         categorydetails.pkl_Product_Format__c='Flavoured & Speciality' ;
         categorydetails.pkl_Product__c='Beceda' ;
         categorydetails.pkl_Country__c='India' ;
         categorydetails.pkl_Status__c='Saved' ;
         categorydetails.pkl_Key_Attribute_1_Appraisal__c = 'Parity';
         categorydetails.pkl_Key_Attribute_2_Consumer_Test__c = 'Parity';
-        categorydetails.pkl_Benchmark__c = 'Barrys Gold';
+        categorydetails.lkp_Benchmark__c = benchamrking.Id; 
         categorydetails.pkl_Blind_OO__c = 'Parity';
         categorydetails.txt_Unilever_Formula__c = 'testing';
         categorydetails.txt_Agency_Name__c = 'samsung';
         categorydetails.txt_Agency_Job_Number__c = '12345';
         categorydetails.txt_Reason_for_Deletion__c = 'dont want';
+        
         insert categorydetails ; 
         
         
@@ -208,7 +217,7 @@ private class BEN_CategoryDetailsTriggerTest {
         }
         
         BEN_CategoryDetails__c bcd = new BEN_CategoryDetails__c();
-        bcd.Name = 'Beverages123';
+        bcd.Name = 'Beverages';
         bcd.QueueId__c = testGroup.Id;
         insert bcd;
         
