@@ -6,6 +6,7 @@ src/classes/IPM_ChangProjectDocStatusCntrlGKM3_Test.cls
 src/classes/IPM_ChangProjectDocStatusCntrlGKM3_Test.cls-meta.xml
 src/classes/IPM_ConstantUtils.cls
 src/classes/IPM_ConstantUtils.cls-meta.xml
+src/classes/IPM_Fin_Alignment_Snapshot_Job_Queue.cls
 src/classes/IPM_Fin_Alignment_Snapshot_Job_Queue.cls-meta.xml
 src/classes/IPM_GateDocumentController.cls
 src/classes/IPM_GateDocumentController.cls-meta.xml
@@ -32,7 +33,6 @@ src/pages/IPM_ProjectSetUpView.page
 src/pages/IPM_ProjectSetUpView.page-meta.xml
 src/permissionsets
 src/permissionsets/IPMNG_Basic.permissionset
-src/permissionsets/IPM_Admin_Analytics.permissionset
 src/permissionsets/IPM_ProjectLeader.permissionset
 src/permissionsets/IPM_Wave_User.permissionset
 src/sharingRules
