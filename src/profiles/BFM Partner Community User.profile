@@ -1845,7 +1845,7 @@
 		<recordType>Account.BFM_Carrier</recordType>
     </layoutAssignments>
 	<layoutAssignments>
-		<layout>Contact-Carrier Contact</layout>
+		<layout>Contact-Carrier Contact Layout</layout>
 		<recordType>Contact.BFM_Carrier_Contact</recordType>
     </layoutAssignments>
     <layoutAssignments>
