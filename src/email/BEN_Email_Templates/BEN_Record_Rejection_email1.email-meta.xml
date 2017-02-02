@@ -6,23 +6,18 @@
     <letterhead>TO_Letter_Head</letterhead>
     <name>BEN Record Rejection email1</name>
     <style>freeForm</style>
-    <subject>{!BEN_Category_Details__c.Name} Test Result is Rejected</subject>
+    <subject>Test Result is Rejected</subject>
     <textOnly>Hi {!BEN_Category_Details__c.CreatedBy},
 
-Test result &apos;{!BEN_Category_Details__c.Name} &apos; is rejected by
-{!User.Name}
+Test result &apos;{!BEN_Category_Details__c.Name} &apos; is rejected by {!User.Name}  .
+Reason sited for rejection is &quot;{!ApprovalRequest.Comments}&quot; .
 
 You can access the result via the link below;{!BEN_Category_Details__c.Link}
 
 
-Test Rejected
-
-Rejected by : {!User.Name}
-Reason for rejection : {!ApprovalRequest.Comments}
-Date of rejection : {!BEN_Category_Details__c.LastModifiedDate}
 
 
-This is an automatically generated email, please do not reply
+This is an automatically generated email, please do not reply.
 
 Thanks,
 {!User.Name}</textOnly>

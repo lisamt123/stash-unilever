@@ -19,9 +19,6 @@
         <field>BEN_Category_Details__c.fml_Year_Quarter__c</field>
     </columns>
     <columns>
-        <field>BEN_Category_Details__c.pkl_Benchmark__c</field>
-    </columns>
-    <columns>
         <field>BEN_Category_Details__c.pkl_Product_Format__c</field>
     </columns>
     <columns>
@@ -75,11 +72,6 @@
             <column>BEN_Category_Details__c.fml_Year_Quarter__c</column>
             <operator>equals</operator>
             <value>2009/Q1</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>BEN_Category_Details__c.pkl_Status__c</column>
-            <operator>equals</operator>
-            <value>Approved</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

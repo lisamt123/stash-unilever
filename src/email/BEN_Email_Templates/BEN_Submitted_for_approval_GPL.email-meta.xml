@@ -6,26 +6,22 @@
     <letterhead>TO_Letter_Head</letterhead>
     <name>BEN Submitted for approval GPL</name>
     <style>freeForm</style>
-    <subject>{!BEN_Category_Details__c.Name} Test Result Submitted For Approval</subject>
-    <textOnly>Hi,
+    <subject>Test Result Submitted For Approval</subject>
+    <textOnly>Hi  {!BEN_Category_Details__c.CreatedBy},
 
-Test result &apos;{!BEN_Category_Details__c.txt_Title__c}&apos; is submitted for your approval.
+Test result &apos;{!BEN_Category_Details__c.Name} &apos;  is submitted for your approval.
 
 You can access the result via the link below;
-https://unilever--benchmrkng.cs52.my.salesforce.com/{!BEN_Category_Details__c.Id}
+{!BEN_Category_Details__c.Link}
 
 Category submitted for : {!BEN_Category_Details__c.Product_Category__c}
 Submitted by : {!BEN_Category_Details__c.CreatedBy}
-Approved by : {!BEN_Category_Details__c.LastModifiedBy}
+Approved by : {!User.Name}
 Date of Submission : {!BEN_Category_Details__c.dt_Date_of_Submission__c}
 Date of approval : {!BEN_Category_Details__c.LastModifiedDate}
 
-This is an automatically generated email, please do not reply
-
+This is an automatically generated email, please do not reply.
 Thanks,
-{!BEN_Category_Details__c.LastModifiedBy}
-approval status last modified : {!Core_Approver_Details__c.LastModifiedBy}
-approval step assign: {!ApprovalRequest.Process_Assignee}
-approval step approver : {!ApprovalRequest.Process_Approver}</textOnly>
+{!User.Name}</textOnly>
     <type>html</type>
 </EmailTemplate>

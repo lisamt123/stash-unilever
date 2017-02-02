@@ -69,6 +69,7 @@
 	  <runTest>BEN_CategoryDetailsTriggerTest</runTest>
 	  <runTest>BEN_Matrix_VF_Controller_Test</runTest>
 	  <runTest>BEN_EmailRemainderSchedularTest</runTest>
+	  <runTest>BEN_KPIProgressReport_Test</runTest>
     </sf:deploy>
   </target>  
 
