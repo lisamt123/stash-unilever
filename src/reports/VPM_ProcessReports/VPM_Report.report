@@ -7,6 +7,33 @@
         <field>VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c</field>
     </columns>
     <columns>
+        <field>VPM_PurchasingRequests__c.VPM_ReportingRegion__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_CreatedDate__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_BusinessRequestorEmail__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_CompletionStatus__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_VendorName1__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_VendorType__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_AccountGroup__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_GlobalAuthorisationGroup__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_Bypass__c</field>
+    </columns>
+    <columns>
         <field>VPM_PurchasingRequests__c.VPM_Country__c</field>
     </columns>
     <columns>
@@ -52,10 +79,16 @@
         <field>VPM_PurchasingRequests__c.VPM_FinanceApproval__c</field>
     </columns>
     <columns>
+        <field>VPM_PurchasingRequests__c.VPM_FinanceApprovedByEmail__c</field>
+    </columns>
+    <columns>
         <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithFinance__c</field>
     </columns>
     <columns>
         <field>VPM_PurchasingRequests__c.VPM_FLSApproval__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_FLSApprovedByEmail__c</field>
     </columns>
     <columns>
         <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithFLS__c</field>
@@ -64,10 +97,16 @@
         <field>VPM_PurchasingRequests__c.VPM_ProcurementApproval__c</field>
     </columns>
     <columns>
+        <field>VPM_PurchasingRequests__c.VPM_ProcurementApprovedByEmail__c</field>
+    </columns>
+    <columns>
         <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithProcurement__c</field>
     </columns>
     <columns>
         <field>VPM_PurchasingRequests__c.VPM_RussianCustomsTaxApporval__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.RussainCustomTaxApprovedByEmail__c</field>
     </columns>
     <columns>
         <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithRussianCustomTax__c</field>
@@ -76,13 +115,34 @@
         <field>VPM_PurchasingRequests__c.VPM_BankValidatorApproval__c</field>
     </columns>
     <columns>
+        <field>VPM_PurchasingRequests__c.VPM_BankValidationApprovedByEmail__c</field>
+    </columns>
+    <columns>
         <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithBankValidator__c</field>
     </columns>
     <columns>
         <field>VPM_PurchasingRequests__c.VPM_FreightApproval__c</field>
     </columns>
     <columns>
+        <field>VPM_PurchasingRequests__c.VPM_FreightApprovedByEmail__c</field>
+    </columns>
+    <columns>
         <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithFreight__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_MasterDataManagementApproval__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_MasterDataApprovedByEmail__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithMasterData__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_TotalCycleTimeHrs__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_RejectedByEmail__c</field>
     </columns>
     <columns>
         <field>VPM_PurchasingRequests__c.VPM_MDMOpsReview__c</field>
@@ -129,6 +189,12 @@
     <columns>
         <field>VPM_PurchasingRequests__c.VPM_BankValidatorReworks__c</field>
     </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_MDMOpsReworks__c</field>
+    </columns>
+    <columns>
+        <field>VPM_PurchasingRequests__c.VPM_FTRStatus__c</field>
+    </columns>
     <description>The report is mainly used to track trends and identify gaps, e.g. why does Procurement approval take X time or why do Finance on average rework requests X times. At a high level, every stage of the process after the request is no longer in ‘Draft’ status</description>
     <format>Tabular</format>
     <name>VPM Report</name>
@@ -137,7 +203,7 @@
         <value>1</value>
     </params>
     <reportType>CustomEntity$VPM_PurchasingRequests__c</reportType>
-    <scope>user</scope>
+    <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>CUST_CREATED_DATE</dateColumn>

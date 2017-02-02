@@ -73,19 +73,21 @@ public with sharing class VPM_HttpUtil {
     Description  : Send final response to SAP. HTTP GET response
     Return Type  : HttpResponse.
     ********************************************************************/
-    public static HttpResponse sendRequest(String requestType, String requestBodyJson, String serviceName) {
+    public static HttpResponse sendRequest(String requestType, String requestBodyJson, String serviceName , String VenId) {
         HttpResponse res = null;
         try {
             String url ='';
             if(requestType != null && !requestType.equalsIgnoreCase('GET')) {
                 url = VPM_HttpUtil.createEndPoint(serviceName);
             }
+            VPM_PurchasingRequests__c purReq = [Select id ,VPM_SAPBPMRequestID__c from VPM_PurchasingRequests__c where id =:VenId limit 1];
             Http h = new Http();
             HttpRequest req = new HttpRequest();        
             req.setEndpoint(url);
             req.setMethod(requestType);
             if(requestType != null && !requestType.equalsIgnoreCase('GET') && String.isNotBlank(requestBodyJson)) {
                 req.setHeader('Content-Type', 'application/json');
+                req.setHeader('salesforceid',purReq.VPM_SAPBPMRequestID__c);
                 req.setBody(requestBodyJson);
             }
             req.setTimeout(120000);
@@ -149,7 +151,7 @@ public with sharing class VPM_HttpUtil {
      public static void updateVendorMDMStatus(String venReqId, String reqStatus, String message, String messageMDM) {
         // Update vendor request record status after send to SAP.
         // Update MDM Ops user fields on vendor request record.
-        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
+        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_MDMOpsEmail__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
        // List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
         if(!vendorList.isEmpty()) {
             VPM_PurchasingRequests__c vendor = vendorList.get(0);
@@ -159,6 +161,7 @@ public with sharing class VPM_HttpUtil {
             }
             vendor.VPM_MDMInsertUpdateStatusMessage__c = message;
             vendor.VPM_MDMInsertUpdateStatus__c = messageMDM;
+            vendor.VPM_MDMOpsEmail__c = UserInfo.getUserEmail();
             update vendor;
            
             }
@@ -175,7 +178,7 @@ public with sharing class VPM_HttpUtil {
      public static void updateVendorECCStatus(String venReqId, String reqStatus, String message, String messageECC) {
         // Update vendor request record status after send to SAP.
         // Update MDM Ops user fields on vendor request record.
-        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_ECC_InsertUpdateStatus__c,VPM_isVendorCached__c,VPM_ECC_InsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
+        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_MDMOpsEmail__c,VPM_ECC_InsertUpdateStatus__c,VPM_isVendorCached__c,VPM_ECC_InsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
         //List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
         if(!vendorList.isEmpty()) {
             VPM_PurchasingRequests__c vendor = vendorList.get(0);
@@ -186,6 +189,7 @@ public with sharing class VPM_HttpUtil {
             vendor.VPM_isVendorCached__c=True;
             vendor.VPM_ECC_InsertUpdateStatusMessage__c = message;
             vendor.VPM_ECC_InsertUpdateStatus__c = messageECC;
+            vendor.VPM_MDMOpsEmail__c = UserInfo.getUserEmail();
             system.debug('inside failkkk'+vendor.VPM_isVendorCached__c);
             update vendor;
              
@@ -200,12 +204,15 @@ public with sharing class VPM_HttpUtil {
     Return Type  : Void.
     ********************************************************************/
     public static String valueBeforeUnderscore(String inputString) {
+    if(string.isNotBlank(inputString)){
         List<String> inputArray = inputString.split('_');
         if(!inputArray.isEmpty()) {
             return inputArray.get(0);
         } else {
             return '';
         }
+        }
+        return '';
     }
     public static Map<String,String> fetchUserDetails() {
         Map<String, String> userDetails = new Map<String, String>();
@@ -274,7 +281,7 @@ public with sharing class VPM_HttpUtil {
         String msg = '', responseString;
         CreateVendorResponse createVenResp;
         CreateVendorFailureResponse createVenFailResp;
-        HttpResponse res = sendRequest('POST',inputRetry,'VPM_CreateVendorBPM');
+        HttpResponse res = sendRequest('POST',inputRetry,'VPM_CreateVendorBPM',vendorId);
         System.debug('------whole response string----'+ res.toString());
         System.debug('------HTTP response status and status code and response body are ------'+res.getStatus() + '  ' + res.getStatusCode() + '  '+res.getBody());
         // String statusCodeStr = String.valueOf(res.getStatusCode());
