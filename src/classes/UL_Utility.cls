@@ -36,7 +36,13 @@
         public static final String FIELD_SPLITTER = ',';
         public static final String BOM_PRODUCT = 'BoM';
         public static final String DATE_FORMAT_YYYY_MM_DD = 'yyyy-MM-dd';
-        
+        public static final String APEX = '/apex/';
+        public static final String URL_ID = '?id=';
+        public static final String idname = 'id';
+        public static final String level = 'level';
+        public static final String kpiid = 'kpiId';
+        public static final String value = 'value';
+        public static final string finance = 'finance';
         //Customer Org Hierarchy Levels - SOCO
         public static final String CUSTOMER_ORG_HIERARCHY_LEVEL_REGION = 'Region';
         public static final String CUSTOMER_ORG_HIERARCHY_LEVEL_SUB_REGION = 'Sub Region';
@@ -145,6 +151,12 @@
         public static final String STATUS_FINANCE_CHECK = 'Finance Check';
         public static final String STATUS_MANAGER_CHECK = 'Manager Check'; 
         public static final String STATUS_SUBMITTED_FOR_APPROVAL = 'Submitted for Approval'; 
+        public static final String STATUS_INCOMPLETE = 'Incomplete';
+        public static final String STATUS_PLANNED = 'Planned';
+        public static final String STATUS_REJECTED = 'Rejected';
+        public static final String STATUS_REQUIRES_APPROVAL = 'Requires Approval';
+         public static final String STATUS_FINALISED = 'Finalised';
+        public static final String STATUS_INFLIGHT = 'InFlight';
                
         //User Org Role
         public static final String ROLE_CATEGORY_MANAGER = 'category manager';
@@ -176,7 +188,11 @@
 
         //edo Promotion Picklists for ACCL__Promotion_Template__c.ACCL__Anchor_Type__c
         public static final String PROMOTION_TEMPLATE_ANCHOR_TYPE_CUSTOMER = 'Customer';        
-        public static final String PROMOTION_TEMPLATE_ANCHOR_TYPE_CUSTOMERSET = 'CustomerSet';  
+        public static final String PROMOTION_TEMPLATE_ANCHOR_TYPE_CUSTOMERSET = 'CustomerSet';
+        public static final String PROMOTION_TEMPLATE_MOBILITY = 'Mobility';
+        public static final String DEFAULT_PROMOTION_TYPELABEL = 'None';
+        public static final String DEFAULT_PROMOTION_TYPEVALUE = '--None--';
+        public static final String RETURL = 'retURL';
 
         //edo Promotion Picklists for ACCL__Promotion_Template__c.ACCL__Trade_Calendar_Relevant__c 
         public static final String PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_YES = 'Yes';
