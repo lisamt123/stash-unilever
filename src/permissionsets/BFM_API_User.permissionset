@@ -401,11 +401,6 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
-        <field>BFM_AccountAccessRequest__c.UserCreationRequest__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
         <field>BFM_AccountAccessRequest__c.Carrier_CNPJ__c</field>
         <readable>true</readable>
     </fieldPermissions>

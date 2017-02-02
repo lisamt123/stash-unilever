@@ -2056,7 +2056,7 @@
         <visible>true</visible>
     </recordTypeVisibilities>
 	<recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
         <recordType>Contact.BFM_Carrier_Contact</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
