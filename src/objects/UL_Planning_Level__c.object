@@ -139,10 +139,10 @@
         <searchResultsAdditionalFields>UL_Planning_Level_Start_Date__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
-	  <validationRules>
+	    <validationRules>
         <fullName>UL_Planning_Level_Past_Dates_Validation</fullName>
         <active>true</active>
-        <errorConditionFormula>IF( UL_Planning_Level_Start_Date__c &lt;Today() || UL_Planning_Level_End_Date__c  &lt;Today(), true, false)</errorConditionFormula>
+        <errorConditionFormula>IF(ISNEW() ,  if(UL_Planning_Level_Start_Date__c &lt;Today() || UL_Planning_Level_End_Date__c  &lt;Today(),true,false),if(  UL_Planning_Level_End_Date__c  &lt;Today(),true,false) )</errorConditionFormula>
         <errorMessage>Planning level Start/End should not be in past</errorMessage>
     </validationRules>
     <validationRules>

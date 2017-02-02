@@ -357,7 +357,6 @@ src/classes/UL_PromotionUtility.cls
 src/classes/UL_RecordTypeUtil.cls
 src/classes/UL_SalesOrgTestFactory.cls
 src/classes/UL_SecurityUtil.cls
-src/classes/UL_TacticsValidate.cls
 src/classes/UL_ThresholdTemplateExtensions.cls
 src/classes/UL_ThresholdTemplateExtensionsTest.cls
 src/classes/UL_ThresholdTemplateExtensionsTest.cls-meta.xml
@@ -429,7 +428,6 @@ src/classes/UL_PromotionUtility.cls-meta.xml
 src/classes/UL_RecordTypeUtil.cls-meta.xml
 src/classes/UL_SalesOrgTestFactory.cls-meta.xml
 src/classes/UL_SecurityUtil.cls-meta.xml
-src/classes/UL_TacticsValidate.cls-meta.xml
 src/classes/UL_ThresholdTemplateExtensions.cls-meta.xml
 src/classes/UL_TransactionRowTestFactory.cls-meta.xml
 src/classes/UL_TransactionTemplateTestFactory.cls-meta.xml
