@@ -12,7 +12,7 @@ public without sharing class PQN_singleEntryScreen{
     Id pqnId;
     integer err=0;
     Map<string,PQN_DC_Hierarchy__c> mapdcdata = new Map<string,PQN_DC_Hierarchy__c>();
-    
+    string dcuserrep = '';
     public PQN_singleEntryScreen(ApexPages.StandardController controller){
         immediate=true;
         immediatevalidate = true;
@@ -33,12 +33,13 @@ public without sharing class PQN_singleEntryScreen{
         
         if(userinfo.getusertype() == 'Standard'){
             List<PermissionSetAssignment> PermissionSetAssigs = new List<PermissionSetAssignment>();
-            PermissionSetAssigs = [select id,PermissionSet.name,Assignee.country from PermissionSetAssignment where AssigneeId =: userinfo.getuserid()];
+            PermissionSetAssigs = [select id,PermissionSet.name,Assignee.country,Assignee.title from PermissionSetAssignment where AssigneeId =: userinfo.getuserid()];
             for(PermissionSetAssignment psa: PermissionSetAssigs){
                 if(psa.PermissionSet.name == 'PQN_Internal_User' && psa.Assignee.country != pqn.DC_Country__c){
                    // showsingleedit = false;
                    system.debug('enter');
                 }
+                
             }
         }
         
@@ -67,7 +68,16 @@ public without sharing class PQN_singleEntryScreen{
             }
             
             if(userinfo.getusertype() == 'Standard'){
-                user u = [select id,country from user where id=:userinfo.getuserid()];
+                List<PermissionSetAssignment> PermissionSetAssigs1 = new List<PermissionSetAssignment>();
+            PermissionSetAssigs1 = [select id,PermissionSet.name,Assignee.country,Assignee.title from PermissionSetAssignment where AssigneeId =: userinfo.getuserid()];
+            for(PermissionSetAssignment psa: PermissionSetAssigs1){
+                if(psa.PermissionSet.name == 'PQN_DC_User'){
+                   // showsingleedit = false;
+                   dcuserrep = psa.Assignee.title;
+                   
+                }
+            }
+                user u = [select id,country,title from user where id=:userinfo.getuserid()];
                 List<Account> listac = new List<Account>();
                 //if(u.country!=null){
                     listac = [select id,name,billingcountry,pqn_country__c from Account where pqn_country__c!=null order by Name];
@@ -97,6 +107,14 @@ public without sharing class PQN_singleEntryScreen{
             pqn.Sub_Cluster__c = mapdcdata.get(firstdc).sub_cluster__c;                 
             pqn.MCO__c = mapdcdata.get(firstdc).mco__c;
             
+        }
+        if(pqnId==null && userinfo.getusertype() == 'Standard' && reportingdc.size()>0 && dcuserrep!='' && mapdcdata.containskey(dcuserrep)){
+            pqn.reporting_dc__c = dcuserrep;
+            pqn.Region__c = mapdcdata.get(dcuserrep).region__c;
+            pqn.DC_Country__c = mapdcdata.get(dcuserrep).country__c;
+            pqn.Cluster__c = mapdcdata.get(dcuserrep).cluster__c;
+            pqn.Sub_Cluster__c = mapdcdata.get(dcuserrep).sub_cluster__c;                 
+            pqn.MCO__c = mapdcdata.get(dcuserrep).mco__c;
         }
         
         
