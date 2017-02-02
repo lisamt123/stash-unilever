@@ -50102,6 +50102,10 @@
         <apexPage>MyPromotionPlanningTest</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
+	<pageAccesses>
+        <apexPage>myTradeCalendar</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>New_Link</apexPage>
         <enabled>false</enabled>

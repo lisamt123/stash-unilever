@@ -1705,6 +1705,10 @@
         <apexPage>MyPromotionPlanning</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
+	<pageAccesses>
+        <apexPage>myTradeCalendar</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>MyViewPromotion</apexPage>
         <enabled>false</enabled>
