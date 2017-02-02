@@ -1,11 +1,11 @@
 src
 src/customMetadata
-src/customMetadataVPM_PaymentMethods.DK_001md
-src/customMetadataVPM_PaymentMethods.DK_002md
-src/customMetadataVPM_PaymentMethods.FI_001md
-src/customMetadataVPM_PaymentMethods.NO_001md
-src/customMetadataVPM_PaymentMethods.NO_002md
-src/customMetadataVPM_PaymentMethods.SE_001md
+src/customMetadataVPM_PaymentMethods.DK_001.md
+src/customMetadataVPM_PaymentMethods.DK_002.md
+src/customMetadataVPM_PaymentMethods.FI_001.md
+src/customMetadataVPM_PaymentMethods.NO_001.md
+src/customMetadataVPM_PaymentMethods.NO_002.md
+src/customMetadataVPM_PaymentMethods.SE_001.md
 src/customMetadata/VPM_VendorRequestDefaultValues.X2599_CSBFALSE_Domestic_MBS.md
 src/customMetadata/VPM_VendorRequestDefaultValues.X2599_CSBFALSE_Domestic_PI.md
 src/customMetadata/VPM_VendorRequestDefaultValues.X2599_CSBFALSE_Domestic_SCS.md
