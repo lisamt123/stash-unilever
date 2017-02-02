@@ -64,17 +64,5 @@
         <unique>false</unique>
     </fields>
     <label>PQN Pallet Loss Tree</label>
-    <listViews>
-        <fullName>Loss_tree</fullName>
-        <columns>Loss_Code__c</columns>
-        <columns>Loss_L1__c</columns>
-        <columns>Loss_L2__c</columns>
-		<columns>Loss_L3__c</columns>
-		<columns>Loss_L4__c</columns>
-		<columns>Explanations__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>Loss tree</label>
-        <language>en_US</language>
-    </listViews>
     <visibility>Public</visibility>
 </CustomObject>
