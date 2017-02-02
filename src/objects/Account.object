@@ -5984,6 +5984,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Checkbox</type>
     </fields>
 	<fields>
+        <fullName>BFM_Address_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Address No</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
         <fullName>BFM_Carrier_Name__c</fullName>
         <externalId>false</externalId>
         <label>Carrier Name</label>
@@ -6063,7 +6074,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
 	<fields>
         <fullName>BFM_Carrier_Region__c</fullName>
         <externalId>false</externalId>
-        <label>Region1</label>
+        <label>Carrier Region</label>
         <length>3</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -6681,6 +6692,28 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <roleAndSubordinatesInternal>CEC_Global_Head</roleAndSubordinatesInternal>
         </sharedTo>
     </listViews>
+	<listViews>
+        <fullName>Transportadoras</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>BFM_CNPJ__c</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>BFM_Vendor_Account_Group__c</columns>
+        <columns>BFM_Vendor__c</columns>
+        <columns>BFM_Vendor_UF_State__c</columns>
+        <columns>BFM_City__c</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>BFM_Centrally_Imposed_Purchasing_Block__c</columns>
+        <columns>BFM_Central_Posting_Block__c</columns>
+        <columns>BFM_Central_Del_Flag_Master_Record__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.BFM_Carrier</value>
+        </filters>
+        <label>Transportadoras</label>
+        <language>en_US</language>
+    </listViews>
     <listViews>
         <fullName>Secondary</fullName>
         <columns>ACCOUNT.NAME</columns>
@@ -6742,6 +6775,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <sharedTo>
             <roleAndSubordinatesInternal>Global_Food_Solutions</roleAndSubordinatesInternal>
         </sharedTo>
+    </listViews>
+	<listViews>
+        <fullName>Unilever</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>BFM_Company_Code__c</columns>
+        <columns>BFM_CNPJ__c</columns>
+        <columns>BFM_Vendor_UF_State__c</columns>
+        <columns>BFM_City__c</columns>
+        <columns>BFM_Vendor_Account_Group__c</columns>
+        <columns>BFM_Plant_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Standard,Account.BFM_Unilever_Account,Account.Agency</value>
+        </filters>
+        <label>Contas Unilever</label>
+        <language>en_US</language>
     </listViews>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>

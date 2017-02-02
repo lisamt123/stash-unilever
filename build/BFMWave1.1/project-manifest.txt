@@ -183,6 +183,8 @@ src/layouts/BFM_Shipment__c-Shipment Layout.layout
 src/layouts/BFM_Stage__c-Stage Layout.layout
 src/layouts/BFM_User_Creation_Request_Error__c-BFM User Creation Request Error Layout.layout
 src/layouts/BFM_UserCreationRequest__c-BFM User Creation Request Layout.layout
+src/layouts/BFM_Payment_Method__c-Payment Method Layout.layout
+src/layouts/BFM_Withhold_Tax__c-Withhold Tax Layout.layout
 src/objects/BFM_AccountAccessRequest__c.object
 src/objects/BFM_Bank_Information__c.object
 src/objects/BFM_Company_Code__c.object
@@ -196,6 +198,8 @@ src/objects/BFM_Mulesoft_Endpoint__mdt.object
 src/objects/BFM_SES__c.object
 src/objects/BFM_Shipment__c.object
 src/objects/BFM_Stage__c.object
+src/objects/BFM_Payment_Method__c.object
+src/objects/BFM_Withhold_Tax__c.object
 src/objects/Account.object
 src/objects/Contact.object
 src/objects/BFM_User_Creation_Request_Error__c.object
@@ -279,6 +283,8 @@ src/tabs/BFM_Search_Shipment_Cte.tab
 src/tabs/BFM_Search_Occurrence.tab
 src/tabs/BFM_Stage__c.tab
 src/tabs/BFM_UserCreationRequest__c.tab
+src/tabs/BFM_Payment_Method__c.tab
+src/tabs/BFM_Withhold_Tax__c.tab
 src/triggers/BFM_Occurrence.trigger
 src/triggers/BFM_Occurrence.trigger-meta.xml
 src/triggers/BFM_Shipment.trigger

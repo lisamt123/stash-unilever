@@ -182,9 +182,7 @@
     if (document.getElementById('rad5').checked) { value1 = document.getElementById('rad5').value; value2 = 1; }   
     if(value1!=''){
     jQuery('[id$=myHiddenField]').val(value1);
-    passStringToController();
     jQuery('[id$=myHiddenField1]').val(value2);
-    passStringToController1();
     document.getElementById('opaque').style.display='block';
     var popUp = document.getElementById('spinner');    }
     document.getElementById('opaque').style.display='block';
@@ -242,7 +240,8 @@
     <div>
     <p class="butn">
     <span>
-    <apex:commandButton value="Submit" action="{!save}" onclick="showdet();"/>
+    <apex:commandButton value="Submit" onClick="showdet();" action="{!save}" />
+    <apex:actionFunction name="Save" action="{!save}"/>
     </span>
     </p>
     </div>
@@ -251,12 +250,10 @@
         <p class="loader" align="center"></p>
      </div>
   </div>
-    </form>
+     </form>
     </div>
   <apex:inputHidden value="{!val1}" id="myHiddenField"/>
-  <apex:actionFunction name="passStringToController" />
   <apex:inputHidden value="{!val2}" id="myHiddenField1"/>
-  <apex:actionFunction name="passStringToController1"/>
 </div>
 
     <!-- Bootstrap core JavaScript
