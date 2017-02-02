@@ -10,7 +10,6 @@
 This is to notify that the Promotion {!ACCL__Promotion__c.Name} is about to end today.
 Kindly take an action if required
 
-Thanks.
-{!Approval_Requesting_User.Name}</textOnly>
+Thanks.</textOnly>
     <type>custom</type>
 </EmailTemplate>
