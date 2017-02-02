@@ -533,7 +533,7 @@ Throws : N/A
             Id promoId = (Id)unTypedMap.get(UtilityEnum.Id.Name()); 
             String objectName =  String.valueOf(((Id)promoId).getSObjectType());
             List<ACCL__Promotion__c> PromoList = new List<ACCL__Promotion__c>();
-            promoList = [SELECT Id, Name, UL_Current_Status__c,UL_Parent_Push_Id__c, UL_PromotionTemplateType__c, ACCL__Sales_Org__c,UL_EnableChild__c,ACCL__Promotion_Template__c FROM ACCL__Promotion__c WHERE Id =:promoId];
+            promoList = [SELECT Id, Name, ACCL__Parent_Promotion__c, UL_Current_Status__c,UL_Parent_Push_Id__c, UL_PromotionTemplateType__c, ACCL__Sales_Org__c,UL_EnableChild__c,ACCL__Promotion_Template__c FROM ACCL__Promotion__c WHERE Id =:promoId];
             //for hiding lift field from promotion page when Promotion template is LTA
             System.debug('promoList[0].UL_PromotionTemplateType__c::::::::::'+promoList[0].UL_PromotionTemplateType__c);
             
@@ -625,16 +625,17 @@ Throws : N/A
                         }
                     }
                     List<EARUI> btListBtn = new List<EARUI>();
-                     btListBtn  = UL_ComponentVisibility.hideButtons(promoList[0].ACCL__Sales_Org__c, 'Child Promotions');                     
+                     //btListBtn  = UL_ComponentVisibility.hideButtons(promoList[0].ACCL__Sales_Org__c, 'Child Promotions');                     
                      system.debug('vinod hide ---->'+btListBtn);
                      earBOPromotion.addall(btListBtn);
                      System.debug('vinod add buttons---->'+earBOPromotion);
                 }
                 
             }
-            //Added by Abhishek for the visibility control of buttons for UKI 
+            //Added by Abhishek for the visibility control of buttons for UKI
+            boolean isChildPromotion = promoList[0].UL_Parent_Push_Id__c!=null || promoList[0].ACCL__Parent_Promotion__c!=null ? true : false;
              List<EARUI> btList = new List<EARUI>();
-             btList = UL_ComponentVisibility.hideButtons(promoList[0].ACCL__Sales_Org__c, status);
+             btList = UL_ComponentVisibility.hideButtons(promoList[0].ACCL__Sales_Org__c, status, isChildPromotion );
              earBOPromotion.addall(btList);
              System.debug('vinod add all buttons---->'+earBOPromotion);
             
@@ -708,7 +709,7 @@ Throws : N/A
             }*/
 
             
-            promo=[Select Id,UL_EnableChild__c, UL_Current_Status__c, ACCL__Sales_Org__c, UL_Parent_Push_Id__c, UL_PromotionTemplateType__c from ACCL__Promotion__c where ID =:tacticParentId LIMIT 1];
+            promo=[Select Id,UL_EnableChild__c, ACCL__Parent_Promotion__c, UL_Current_Status__c, ACCL__Sales_Org__c, UL_Parent_Push_Id__c, UL_PromotionTemplateType__c from ACCL__Promotion__c where ID =:tacticParentId LIMIT 1];
             List<ACCL__tactic__c> taclst = new List<ACCL__tactic__c>();
             System.debug('promo.UL_PromotionTemplateType__c::::::::::'+promo.UL_PromotionTemplateType__c);
             //for hiding lift field from Tactic page if tactic template is Long Term Agreement
@@ -724,7 +725,7 @@ Throws : N/A
                 //}   
             }
             List<EARUI> btList = new List<EARUI>();
-            btList = UL_ComponentVisibility.hideButtons(promo.ACCL__Sales_Org__c, promo.UL_Current_Status__c);
+            //btList = UL_ComponentVisibility.hideButtons(promo.ACCL__Sales_Org__c, promo.UL_Current_Status__c);
             earBOTactic.addall(btList);
             
             
@@ -780,7 +781,7 @@ Throws : N/A
                         earBOTactic.add(tacticObject);
                     }
                 }
-            }
+            } 
             else{
                 EARUI tacticObject = new EARUI();
                 tacticObject.Name = 'UL_Redemption__c';
@@ -2120,7 +2121,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
     }
     
      @RemoteAction
-    global static void validateLOFund(String txId, String tacticFundParams){
+    global static string validateLOFund(String txId, String tacticFundParams){
         tacticFundParams=UL_PromotionContentReplace.replaceFieldContent(tacticFundParams);
         List<Object> tacticFundList = (List<Object>) JSON.deserializeUntyped(tacticFundParams); //should change when the UI will sent the JSON example
         Double sum=0;
@@ -2140,11 +2141,12 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                 Throw new updateException('The fund' + String.valueOf(temp.get('ACCL__Fund__c')) + ' is selected and the allocation is 0%');
             }
         }
-            if(sum != 100){
+           /* if(sum != 100){
                  Throw new updateException('The allocation % is different then 100');
 
-            }
+            }*/
         }
+        return tacticFundParams;
     }
       
     
@@ -2350,11 +2352,10 @@ Throws : N/A
         
         List<ACCL__Product__c> result = null;
         promotionContent = UL_PromotionContentReplace.replaceFieldContent(promotionContent);
-        system.debug('>>>>' + promotionContent);
         result = ACCL.PromotionRemoteActionExtension.readLOFilteredProducts(txId,promotionContent);                
+        
         //Display only least level products.
         if(!result.isEmpty()){
-            system.debug('>>>>>>' + promotionContent);
             List<ACCL__Product__c> internalProductList = new List<ACCL__Product__c>();
             for(ACCL__Product__c product : result){
                 if(UL_Utility.ProductLevel.Product.name().equalsIgnoreCase(product.ACCL__Product_Level__c)){
@@ -2400,7 +2401,7 @@ Throws : N/A
         return result;
     }
     
-       /*******************************************************************
+    /*******************************************************************
     Purpose: Read the Promotions that should be displayed in TradeCalendar and add some 
     SpecialEvents and Event for Trade Calendar 
     Version 1.0
@@ -2409,73 +2410,24 @@ Throws : N/A
     Throws : N/A 
     Author : Eleonora.dotz@accenture.com 
     ********************************************************************/     
-    @RemoteAction
+  @RemoteAction
     public static List<ACCL.PromotionRemoteActionExtension.PromotionGroup> readLOCalPromotions(String txId, String uiview){
        system.debug(JSON.serialize(uiview));
        ACCL.PromotionRemoteActionExtension.UIViewDefinition incomingParams = ( ACCL.PromotionRemoteActionExtension.UIViewDefinition)JSON.deserialize(uiview, ACCL.PromotionRemoteActionExtension.UIViewDefinition.class);
-        //incomingParams.date_from as long 
-        //incomingParams.date_thru as Long
-        // convertLong to Date if not null
-      
-        DateTime dateFromTime =  objToDate(incomingParams.date_from);
+           
+        DateTime dateFromTime =   Ul_Utility.objToDate(incomingParams.date_from);
         Date dateFrom =  dateFromTime.date();
-        DateTime dateThruTime =  objToDate(incomingParams.date_thru);
+        DateTime dateThruTime =   Ul_Utility.objToDate(incomingParams.date_thru);
         Date dateThru =  dateThruTime.date();
-        String currentSalesOrg = getSalesOrg(UserInfo.getUserId());
-        
+        String currentSalesOrg = Ul_Utility.getSalesOrg(UserInfo.getUserId());
 
         List<ACCL.PromotionRemoteActionExtension.PromotionGroup> result = ACCL.PromotionRemoteActionExtension.readLOCalPromotions(txId, uiview);
           system.debug('result: ' + result);
-       // Map<String, Object> request = (Map<String, Object>) JSON.deserializeUntyped(uiview);
-
-        //lese aus UIView die DateFrom Und DateThru
-        //Konvertiere in den SF Format
-
-        // Finde Aktuelle SalesOrg
-       
-
-        // Baue den SQL Query wie folgt auf
-        /*
-        Suche nach den passenden Templates ID
-        SELECT Id, Name, ACCL__Active__c, ACCL__Anchor_Type__c, ACCL__Promotion_Type__c, 
-            ACCL__Sales_Org__c, ACCL__Trade_Calendar_Color__c, ACCL__Trade_Calendar_Relevant__c,
-            UL_Promotion_Template_Type__c 
-        FROM ACCL__Promotion_Template__c
-        WHere
-            UL_Promotion_Template_Type__c
-            and ACCL__Promotion_Type__c = 'Promotion'
-            and ACCL__Sales_Org__c =  REPLACE -->SalesOrg fom Current User
-            and ACCL__Active__c = true
-            and ACCL__Anchor_Type__c = 'Customer'
-            and ACCL__Trade_Calendar_Relevant__c = true
-
-        //Braucht man nicht da es aus Promotion auszulesen ist deshalb Promotion
-        keine Restriction on  and ACCL__Phase__c = 'commited'
-        */
-     
-        List<ACCL__Promotion__c> eventList = [ SELECT Id, Name, ACCL__Active__c, ACCL__Date_From__c, ACCL__Date_Thru__c, 
-            ACCL__Phase__c, ACCL__Sales_Org__c, ACCL__Promotion_Template__c, 
-            ACCL__Promotion_Template__r.ACCL__Trade_Calendar_Color__c,
-            ACCL__Slogan__c, ACCL__Anchor_Account__c 
-        FROM ACCL__Promotion__c
-        Where
-            ACCL__Active__c = true
-            and ACCL__Sales_Org__c = : currentSalesOrg
-            and ACCL__Promotion_Template__r.ACCL__Anchor_Type__c = : UL_Utility.PROMOTION_TEMPLATE_ANCHOR_TYPE_CUSTOMER 
-            and ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c in (: UL_Utility.PROMOTION_TEMPLATE_TYPE_SPECIALHOLIDAY, : UL_Utility.PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT)
-            and ACCL__Promotion_Template__r.ACCL__Trade_Calendar_Relevant__c= : UL_Utility.PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_YES 
-            and ACCL__Promotion_Template__r.ACCL__Promotion_Type__c = : UL_Utility.PROMOTION_TEMPLATE_PROMOTION_TYPE_PROMOTION
-            order by ACCL__Slogan__c];
-
-            System.debug('Liste of Special Promotions' + eventList);
-
-          /*  
-    SalesOrg = UL_Utility.SalesOrg.AR01.Name()
-        */
-        String slogan = null;
+      
+       //  return PromotionRemoteActionExtensionEdo.readLOCalPromotions(txId, uiview);
+          
+        String slogan = '';
         Integer countGoups = 0;
-
-       // List<ACCL.PromotionRemoteActionExtension.PromotionGroup> resultFirst = new List<ACCL.PromotionRemoteActionExtension.PromotionGroup>();
 
         List <ACCL.PromotionRemoteActionExtension.CalendarPromotion> listCalProm = new List<ACCL.PromotionRemoteActionExtension.CalendarPromotion> ();
         ACCL__Promotion__c lastevent ; 
@@ -2496,54 +2448,47 @@ Throws : N/A
                                                 and (ACCL__Date_Thru__c >= :dateFrom and ACCL__Date_From__c <= : dateThru)  
                                                 order by ACCL__Slogan__c]){
 
-           /* if (event.ACCL__Slogan__c.compareTo(slogan) == 0){
-                 ACCL.PromotionRemoteActionExtension.CalendarPromotion calProm = prepareDataForPromotion (event);
-            }*/
-            
-            ACCL.PromotionRemoteActionExtension.CalendarPromotion calProm =  new ACCL.PromotionRemoteActionExtension.CalendarPromotion(event.ACCL__Phase__c, event.Id, event.ACCL__Date_From__c,event.ACCL__Date_Thru__c ); // prepareDataForPromotion (event);
-            
-            if (!slogan.equals(event.ACCL__Slogan__c)){
-                if (listCalProm.size()>0 ){
-                     ACCL.PromotionRemoteActionExtension.PromotionGroup promGroup = new ACCL.PromotionRemoteActionExtension.PromotionGroup(lastevent.ACCL__Slogan__c, 
-                        listCalProm, lastevent.ACCL__Promotion_Template__c, lastevent.ACCL__Anchor_Account__c, null, lastevent.ACCL__Promotion_Template__r.ACCL__Trade_Calendar_Color__c,
-                       null, lastevent.ACCL__Anchor_Account__r.name , null );
-                     lastAddPromGroup = promGroup.Slogan;
-
-                     System.debug ('lastAddPromGroup ' + lastAddPromGroup);
-                     result.add(countGoups,promGroup);
-                     countGoups  = countGoups + 1;
-
-                }
-
-                listCalProm = new List<ACCL.PromotionRemoteActionExtension.CalendarPromotion> ();
-                listCalProm.add (calProm);
-                slogan = event.ACCL__Slogan__c;
-            } else {
-                listCalProm.add (calProm);
-            }
-        
-/*
-             listCalProm.add(calProm);
-      
-             ACCL.PromotionRemoteActionExtension.PromotionGroup promGroup = new ACCL.PromotionRemoteActionExtension.PromotionGroup(event.ACCL__Slogan__c, 
-                listCalProm,
-               event.ACCL__Promotion_Template__c, event.ACCL__Anchor_Account__c, null, event.ACCL__Promotion_Template__r.ACCL__Trade_Calendar_Color__c,
-               null, event.ACCL__Anchor_Account__r.name , null );
-*/
-             //PromotionGroup(String slogan, List promotions, Id promotionTemplates, Id accountId, Id accountSetId, String commitColor, Double sortValue, String accountName, String accountSetDescription)
-            // List <ACAS.CallsPlanningFromJobListsController.WrapperJoblistsSearched > newSLList = new List <ACAS.CallsPlanningFromJobListsController.WrapperJoblistsSearched>();
-
- /*           ACCL.PromotionRemoteActionExtension.CalendarPromotion calProm = prepareDataForPromotion (event);
-            List<PromotionRemoteActionExtension.CalendarPromotion> events = new List<PromotionRemoteActionExtension.CalendarPromotion>{calProm};
-
-            PromotionRemoteActionExtension.PromotionGroup eventGroup  = getPromotionGroup(calProm);
-*/          lastevent = event;
-           // result.add(0,promGroup);
-
-
-        }
          
-        if (listCalProm.size()>0  && result.size() >0 &&  result.size() >= countGoups && !result[countGoups-1].Slogan.equals(lastAddPromGroup) ){
+            
+             System.debug('Event ' + event);
+            if (event != null){
+
+                 ACCL.PromotionRemoteActionExtension.CalendarPromotion calProm =  new ACCL.PromotionRemoteActionExtension.CalendarPromotion(event.ACCL__Phase__c, event.Id, event.ACCL__Date_From__c,event.ACCL__Date_Thru__c ); // prepareDataForPromotion (event);
+            
+                if (!slogan.equals(event.ACCL__Slogan__c)){
+                    System.debug (' Slogan is different of previous');
+                    if (listCalProm.size()>0 ){
+                         ACCL.PromotionRemoteActionExtension.PromotionGroup promGroup = new ACCL.PromotionRemoteActionExtension.PromotionGroup(lastevent.ACCL__Slogan__c, 
+                            listCalProm, lastevent.ACCL__Promotion_Template__c, lastevent.ACCL__Anchor_Account__c, null, lastevent.ACCL__Promotion_Template__r.ACCL__Trade_Calendar_Color__c,
+                           0, lastevent.ACCL__Anchor_Account__r.name , '' );
+                         lastAddPromGroup = promGroup.Slogan;
+
+                         System.debug ('lastAddPromGroup ' + lastAddPromGroup);
+                         result.add(countGoups,promGroup);
+                         countGoups  = countGoups + 1;
+
+                         System.debug (' new group created');
+
+                    }
+
+                    listCalProm = new List<ACCL.PromotionRemoteActionExtension.CalendarPromotion> ();
+                    listCalProm.add (calProm);
+                    slogan = event.ACCL__Slogan__c;
+                } else {
+                    listCalProm.add (calProm);
+                }
+            
+              lastevent = event;
+               
+            }
+           
+
+
+        }  // for 
+         System.debug('countGoups' + countGoups);
+         System.debug('result[countGoups-1].Slogan  - ' + result[0].Slogan);
+
+        if (listCalProm.size()>0  && result.size() >0 &&  countGoups >0 && result.size() >= countGoups && lastAddPromGroup !=null && !result[countGoups-1].Slogan.equals(lastAddPromGroup) ){
              ACCL.PromotionRemoteActionExtension.PromotionGroup promGroup = new ACCL.PromotionRemoteActionExtension.PromotionGroup(lastevent.ACCL__Slogan__c, 
                         listCalProm, lastevent.ACCL__Promotion_Template__c, lastevent.ACCL__Anchor_Account__c, null, lastevent.ACCL__Promotion_Template__r.ACCL__Trade_Calendar_Color__c,
                        null, lastevent.ACCL__Anchor_Account__r.name , null );
@@ -2555,48 +2500,10 @@ Throws : N/A
 
         }
 
-        
-        //UL_Promotion_Template_Type__c
+
         return result;
     }
 
-    private static String getSalesOrg (String userId){
-        String salesOrg = null;
-        List<User> user = [ SELECT ACCL__Sales_Org__c, Id FROM User where Id = : userId];
-        if (user.size()>0){
-            return user[0].ACCL__Sales_Org__c;
-        }
-        else return salesOrg;
-    }
-
-    public static Date objToDate(Object o){
-        if (o == null){
-            return null;
-        }
-        else if (o instanceof Date){
-            return (Date)o;
-        }
-        else if (o instanceof Long) {
-            Long i = (Long)o;
-            DateTime dt = DateTime.newInstance(i);
-            return dt.dateGmt();
-        }
-        else if (o instanceof Integer) {
-            Integer i = (Integer)o;
-            DateTime dt = DateTime.newInstance(i);
-            return dt.dateGmt();
-        }
-        else if (o instanceof String) {
-            String s = (String)o;
-            return Date.valueOf(s);
-        }
-        else{
-            return  null; //Constants.MIN_DATE;}
-        }
-}
-    /* private ACCL.PromotionRemoteActionExtension.CalendarPromotion prepareDataForPromotion ( ACCL__Promotion__c event){
-        ACCL.PromotionRemoteActionExtension.CalendarPromotion calProm =  
-        return 
-     }
-     */
+ 
+ 
 }
