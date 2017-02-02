@@ -382,6 +382,11 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Parent_Promotion__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1267,11 +1272,6 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Slogan__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>UL_Cannibalisation_Override__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1642,12 +1642,27 @@
         <fullName>UL_SoCo_Planning</fullName>
         <description>Field sets refer when Promotion is in Planning status</description>
         <displayedFields>
+            <field>ACCL__Anchor_Account_Set__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Free_Text__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>UL_Current_Status__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Anchor_Account__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
