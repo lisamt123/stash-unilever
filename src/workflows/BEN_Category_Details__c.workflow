@@ -11,6 +11,16 @@
         <template>BEN_Email_Templates/BEN_Record_Rejection_email1</template>
     </alerts>
     <alerts>
+        <fullName>BEN_CategorydetailrejectedApprover</fullName>
+        <description>BEN CategorydetailrejectedApprover</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>BEN_Email_Templates/BEN_Record_Rejection_email1</template>
+    </alerts>
+    <alerts>
         <fullName>BEN_EMAIL_ALERT_TO_Editor_Deletion_REJECTED</fullName>
         <description>BEN EMAIL ALERT TO Editor - Deletion REJECTED</description>
         <protected>false</protected>
@@ -19,6 +29,16 @@
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>BEN_Email_Templates/BEN_GPLDelete_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>BEN_EmailToRecordCreatorApproved</fullName>
+        <description>BEN EmailToRecordCreatorApproved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>BEN_Email_Templates/BEN_RecordApprovedEmail</template>
     </alerts>
     <alerts>
         <fullName>BEN_Record_has_been_deleted</fullName>
@@ -63,6 +83,15 @@
         <template>BEN_Email_Templates/BEN_GPL_approval_for_deletion</template>
     </alerts>
     <fieldUpdates>
+        <fullName>BEN_Field_Update</fullName>
+        <field>Approval_Status__c</field>
+        <literalValue>In First Step</literalValue>
+        <name>BEN Field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>BEN_Field_Update_SecondStep</fullName>
         <description>BEN fieldupdate to secondstep</description>
         <field>Approval_Status__c</field>
@@ -77,6 +106,16 @@
         <field>In_Approval__c</field>
         <literalValue>0</literalValue>
         <name>BEN In Approval False</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>BEN_Is_Approver</fullName>
+        <field>BEN_Is_Approver__c</field>
+        <literalValue>0</literalValue>
+        <name>BEN Is Approver</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -173,15 +212,6 @@
         <name>BEN Submitted date</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>BEN_Update_Status_to_Deleted</fullName>
-        <field>pkl_Status__c</field>
-        <literalValue>Deleted</literalValue>
-        <name>BEN Update Status to Deleted</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>

@@ -272,6 +272,27 @@
         <fields>ACCOUNT.PC_EMAIL</fields>
         <relatedList>RelatedPartnerList</relatedList>
     </relatedLists>
+	<relatedLists>
+        <fields>NAME</fields>
+        <fields>Company_Code__c</fields>
+        <fields>Payment_Condition_Code__c</fields>
+        <fields>Payment_Condition_Description__c</fields>
+        <fields>Payment_Method__c</fields>
+        <fields>Payment_Method_Description__c</fields>
+        <fields>Payment_Block__c</fields>
+        <fields>Posting_Block__c</fields>
+        <fields>Deletion_Flag__c</fields>
+        <relatedList>BFM_Payment_Method__c.Carrier_Account__c</relatedList>
+    </relatedLists>
+	<relatedLists>
+        <fields>NAME</fields>
+        <fields>Company_Code__c</fields>
+        <fields>Withholding_Tax_Type__c</fields>
+        <fields>Withholding_Tax_Code__c</fields>
+        <fields>Withholding_Tax_Flag__c</fields>
+        <fields>Withholding_Tax_Text__c</fields>
+        <relatedList>BFM_Withhold_Tax__c.Carrier_Account__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
