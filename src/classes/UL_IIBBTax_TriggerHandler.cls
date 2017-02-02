@@ -1,5 +1,23 @@
+/***************************************************************
+    Name: UL_IIBBTax_TriggerHandler
+    Copyright © 2016 Accenture Pvt. Ltd.
+    ======================================================
+    Purpose:
+    Is called bei UL_IIBBtax_Trigger. to check the overlapping of Timeframes 
+    ======================================================
+    History
+    -------
+    VERSION     AUTHOR         DATE         DETAIL             Description
+    1.0         eleonora Dotz   30/01/2017   INITIAL DEV       Overlaps Check of periods
+    ***************************************************************/
 public with sharing class UL_IIBBTax_TriggerHandler {
-    
+   /*******************************************************************
+	    Purpose: overlapcheck
+	    Version: 1.0
+	    Parameters: List<IIBBTax__c> IBBTaxList
+	    Returns: Void
+	    Throws : Catch exceptions
+    ********************************************************************/
     public static void overlapcheck (List<IIBBTax__c> IBBTaxList){
     	
     	try{
@@ -28,6 +46,13 @@ public with sharing class UL_IIBBTax_TriggerHandler {
     	
     }
 
+     /*******************************************************************
+	    Purpose: getallAccounts
+	    Version: 1.0
+	    Parameters: List<IIBBTax__c> taxList
+	    Returns: set <ID>
+	    Throws N/A
+    ********************************************************************/
     private static set <ID> getallAccounts(List<IIBBTax__c> taxList){
     	set <ID> accounts= new set<ID>(); 
     	for ( IIBBTax__c tax : taxList){
@@ -35,7 +60,13 @@ public with sharing class UL_IIBBTax_TriggerHandler {
 	    } 
 	    return accounts;
     }
-
+     /*******************************************************************
+	    Purpose: getIIBBAcounts
+	    Version: 1.0
+	    Parameters: set <Id> acc
+	    Returns: Map <Id, List<IIBBTax__c>> 
+	    Throws N/A
+    ********************************************************************/
     private static Map <Id, List<IIBBTax__c>> getIIBBAcounts(set <Id> acc){
     	Map <Id, List<IIBBTax__c>>  accounts= new Map <Id,List<IIBBTax__c>> (); 
 
