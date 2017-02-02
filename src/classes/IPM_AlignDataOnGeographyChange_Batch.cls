@@ -8,29 +8,31 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
     List<String> applicableGKMs = New List<String>{'GKM1','GKM2','GKM3','GKM4'}; 
     
     Set<String> impactedCountryIds = new Set<String>();  
+	
+	Map<Id,IPM_Country__c> countryMap = new  Map<Id,IPM_Country__c>(); 
      
     //Map to hold MCO short names 
-    Map<String,IPM_MCO_Short_Names__c> mapMCOCodeToShortName =  IPM_MCO_Short_Names__c.getAll();
+    Map<String,IPM_MCO_Short_Names__c> mapMCOCodeToShortName =  IPM_MCO_Short_Names__c.getAll();  
  
-    public Database.QueryLocator start(Database.BatchableContext BC)      
+    public Database.QueryLocator start(Database.BatchableContext batchContext)       
     {
-        // returns country and associated data for project records 
-        return Database.getQueryLocator([ Select Id from  IPM_Project__c  where IPM_ProjectGKM__c IN :applicableGKMs limit  50000]) ;   
+        // returns country and associated data for project records  
+        return Database.getQueryLocator([ Select Id from  IPM_Project__c  where IPM_ProjectGKM__c IN :applicableGKMs  limit  50000]) ;    
     }
 
-    public void execute(Database.BatchableContext BC ,List<IPM_Project__c> geoImpactedProjects)  
+    public void execute(Database.BatchableContext batchContext ,List<IPM_Project__c> geoImpactedProjects)    
     {
         
         Map<Id,IPM_Project__c> projectMap = new   Map<Id,IPM_Project__c>(geoImpactedProjects);
         
         //list to hold the country records associated with a project , they will be further operated on to identify the geography  change
-        List<IPM_Country__c> countryList = [Select Id,MCO_Name__c, Local_Rollout__r.IPM_CharterApproved__c,Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.MCO__c,  
+        List<IPM_Country__c> countryList = [Select Id,isActive__c,MCO_Name__c, Local_Rollout__r.IPM_CharterApproved__c,Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.MCO__c,  
         IPM_Rollout_Status__c ,  Local_Rollout__r.KeyMCO__c,IPM_Regional_Project__r.IPM_Target_Launch_Dates__c,IPM_Project__r.IPM_Target_Launch_Dates__c,
         Local_Rollout__r.Regional_Rollout__r.IPM_Rollout_Project__c , Local_Rollout__r.name, Local_Rollout__r.IPM_Rollout_Project__c, Country_Code__c,Local_Rollout__r.Project_Sustainability_Period__c,Local_Rollout__r.Target_Launch_Date__c,IPM_Regional_Project__r.IPM_Project_Name__c   From IPM_Country__c  Where    Local_Rollout__c !=Null  AND 
-       (IPM_Project__c IN : projectMap.keySet() OR  IPM_Regional_Project__c IN :   projectMap.keySet() ) ];
+       (IPM_Project__c IN : projectMap.keySet() OR  IPM_Regional_Project__c IN :   projectMap.keySet() ) ]; 
 	   
-	    Map<Id,IPM_Country__c> countryListDeepCloneMap = new  Map<Id,IPM_Country__c>([Select Id,MCO_Name__c, Local_Rollout__r.IPM_CharterApproved__c,Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.IPM_Rollout_Span__c,
-Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_Company_Card__c, Local_Rollout__r.IPM_Regional_PL_Text__c, Local_Rollout__r.IPM_Regional_Rollout_Status__c, Local_Rollout__r.IPM_Rollout_Gatekeeper__c, Local_Rollout__r.isActive__c,  Local_Rollout__r.IPM_Local_Rollout_Status__c, Local_Rollout__r.Market_Cluster_Name__c, Local_Rollout__r.Market_Cluster__c, Local_Rollout__r.MCO_Name__c, Local_Rollout__r.Regional_Project_Span__c, Local_Rollout__r.Regional_Project_Sustainability_Period__c, Local_Rollout__r.Regional_Rollout_External_Id__c, Local_Rollout__r.Regional_Rollout_Phase__c, Local_Rollout__r.IPM_Regional_PL__c, Local_Rollout__r.MCO__c, Local_Rollout__r.IPM_Rollout_Type__c , Local_Rollout__r.IPM_Brand__c,Local_Rollout__r.External_Id__c,Local_Rollout__r.Type__c,Local_Rollout__r.IPM_StoppedByProject__c,Local_Rollout__r.IPM_Status__c,Local_Rollout__r.IPM_Small_C__c,Local_Rollout__r.IPM_ShowAtRegional__c,Local_Rollout__r.IPM_ShowAtGlobal__c,Local_Rollout__r.IPM_ShowAtLocal__c,
+	    Map<Id,IPM_Country__c> countryListDeepCloneMap = new  Map<Id,IPM_Country__c>([Select Id,isActive__c,MCO_Name__c, Local_Rollout__r.IPM_CharterApproved__c,Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.IPM_Rollout_Span__c,
+		Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_Company_Card__c, Local_Rollout__r.IPM_Regional_PL_Text__c, Local_Rollout__r.IPM_Regional_Rollout_Status__c, Local_Rollout__r.IPM_Rollout_Gatekeeper__c, Local_Rollout__r.isActive__c,  Local_Rollout__r.IPM_Local_Rollout_Status__c, Local_Rollout__r.Market_Cluster_Name__c, Local_Rollout__r.Market_Cluster__c, Local_Rollout__r.MCO_Name__c, Local_Rollout__r.Regional_Project_Span__c, Local_Rollout__r.Regional_Project_Sustainability_Period__c, Local_Rollout__r.Regional_Rollout_External_Id__c, Local_Rollout__r.Regional_Rollout_Phase__c, Local_Rollout__r.IPM_Regional_PL__c, Local_Rollout__r.MCO__c, Local_Rollout__r.IPM_Rollout_Type__c , Local_Rollout__r.IPM_Brand__c,Local_Rollout__r.External_Id__c,Local_Rollout__r.Type__c,Local_Rollout__r.IPM_StoppedByProject__c,Local_Rollout__r.IPM_Status__c,Local_Rollout__r.IPM_Small_C__c,Local_Rollout__r.IPM_ShowAtRegional__c,Local_Rollout__r.IPM_ShowAtGlobal__c,Local_Rollout__r.IPM_ShowAtLocal__c,
         IPM_Rollout_Status__c ,  Local_Rollout__r.KeyMCO__c,IPM_Regional_Project__r.IPM_Target_Launch_Dates__c,IPM_Project__r.IPM_Target_Launch_Dates__c,
         Local_Rollout__r.Regional_Rollout__r.IPM_Rollout_Project__c , Local_Rollout__r.name, Local_Rollout__r.IPM_Rollout_Project__c, Country_Code__c,Local_Rollout__r.Project_Sustainability_Period__c,Local_Rollout__r.Target_Launch_Date__c,IPM_Regional_Project__r.IPM_Project_Name__c   From IPM_Country__c  Where    Local_Rollout__c !=Null  AND  
        (IPM_Project__c IN : projectMap.keySet() OR  IPM_Regional_Project__c IN :   projectMap.keySet() ) ]);
@@ -82,25 +84,30 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
             
         //local project Ids to collect the related records
         Set<Id> localProjectIds = new  Set<Id>();
+		
+		Map<String,String>  newToOldExtIdMap = new  Map<String,String>();
     
-        SavePoint SP = Database.SetSavePoint();
+        SavePoint setDbPointer = Database.SetSavePoint();
         
         try
         {
             for(IPM_Country__c ipmCountry : countryList)  
             {
-                countryAssoLocalRollouts.add(ipmCountry.Local_Rollout__c);
+                countryMap.put(ipmCountry.Id, ipmCountry);
+				
+				countryAssoLocalRollouts.add(ipmCountry.Local_Rollout__c);
                 
-                if(ipmCountry.MCO_Code__c!=null&&mapMCOCodeToShortName.ContainsKey(ipmCountry.MCO_Code__c) &&(ipmCountry.Local_Rollout__r.name!=null && !ipmCountry.Local_Rollout__r.name.endsWith('_'+mapMCOCodeToShortName.get(ipmCountry.MCO_Code__c).Short_Name__c)))
-                {
+                if(ipmCountry.MCO_Code__c!=null && mapMCOCodeToShortName.ContainsKey(ipmCountry.MCO_Code__c) && ipmCountry.Local_Rollout__r.name!=null && ((!ipmCountry.Local_Rollout__r.name.endsWith(IPM_ConstantUtils.UNDERSCORE+mapMCOCodeToShortName.get(ipmCountry.MCO_Code__c).Short_Name__c)) || ipmCountry.MCO_Code__c != ipmCountry.Local_Rollout__r.MCO__c ))
+                { 
                     
-                    impactedCountryIds.add(ipmCountry.Id);
+
+					impactedCountryIds.add(ipmCountry.Id);
                     
                     String shortName = mapMCOCodeToShortName.get(ipmCountry.MCO_Code__c).Short_Name__c;
                     
-                    String rolloutName = ipmCountry.IPM_Rollout_Status__c == IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE ? ipmCountry.Local_Rollout__r.name.substringBeforeLast('_')+'_'+ipmCountry.Country_Code__c :ipmCountry.Local_Rollout__r.name.substringBeforeLast('_')+'_'+shortName;
+                    String rolloutName = ipmCountry.IPM_Rollout_Status__c == IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE ? ipmCountry.Local_Rollout__r.name.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+IPM_ConstantUtils.UNDERSCORE+ipmCountry.Country_Code__c :ipmCountry.Local_Rollout__r.name.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+IPM_ConstantUtils.UNDERSCORE+shortName;
                 
-                    String rolloutExternalId = ipmCountry.IPM_Rollout_Status__c == IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE ? ipmCountry.Local_Rollout__r.IPM_Rollout_Project__c.substringBeforeLast('_')+'_'+ipmCountry.Country_Code__c : ipmCountry.Local_Rollout__r.IPM_Rollout_Project__c.substringBeforeLast('_')+'_'+shortName;
+                    String rolloutExternalId = ipmCountry.IPM_Rollout_Status__c == IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE ? ipmCountry.Local_Rollout__r.IPM_Rollout_Project__c.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+IPM_ConstantUtils.UNDERSCORE+ipmCountry.Country_Code__c : ipmCountry.Local_Rollout__r.IPM_Rollout_Project__c.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+IPM_ConstantUtils.UNDERSCORE+shortName;
                     
                     countryAssoLocalRolloutsExtIds.add(rolloutExternalId);
                     
@@ -118,11 +125,13 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
                         rolloutExternalId,Id=ipmCountry.Local_Rollout__c) );
 
                     } 
-                    else 
+                    else
                     {
                         IPM_Project_Rollout__c deepClonedRollout = countryListDeepCloneMap.get(ipmCountry.Id).Local_Rollout__r.clone(false, true, false, false);
                         
-                        deepClonedRollout.name=rolloutName;
+						newToOldExtIdMap.put(rolloutExternalId,deepClonedRollout.IPM_Rollout_Project__c);
+						
+						deepClonedRollout.name=rolloutName;
                         
                         deepClonedRollout.IPM_Rollout_Project__c=rolloutExternalId;
                         
@@ -148,28 +157,31 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
                         
                         IPM_Project_Rollout__c clonedRollout = ipmCountry.Local_Rollout__r.clone(false, false, false, false);
                         
-                        clonedRollout.name=rolloutName;
+                         //updating rollout name and external id , not required when there is only change in mco code of the country and no change in the short name.Like country moved to middle America from central America,short name not updated but country geo changed and so as the mco code and mdm id of geo
+						if(ipmCountry.Local_Rollout__r.name!=null && !ipmCountry.Local_Rollout__r.name.endsWith(IPM_ConstantUtils.UNDERSCORE+mapMCOCodeToShortName.get(ipmCountry.MCO_Code__c).Short_Name__c) )
+						{
+							clonedRollout.name=rolloutName;
                         
-                        clonedRollout.IPM_Rollout_Project__c=rolloutExternalId;
-                        
+                            clonedRollout.IPM_Rollout_Project__c=rolloutExternalId;
+                            
+                            IPM_Country__c ipmNewCountry = new IPM_Country__c();
+							
+							ipmNewCountry.Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c=rolloutExternalId);
+							
+							ipmNewCountry.Project_Country__c =  rolloutName.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE) + IPM_ConstantUtils.UNDERSCORE + ipmCountry.Country_Code__c;
+							
+							ipmNewCountry.Id =ipmCountry.Id;
+                            
+                            ipmNewCountry.IsActive__c = ipmCountry.isActive__c ;
+							
+							updateCountryRolloutAssoMap.put(ipmCountry.Id,ipmNewCountry);
+						}
+						
                         clonedRollout.MCO__c =ipmCountry.MCO_Code__c;
                         
                         clonedRollout.MCO_Name__c =ipmCountry.MCO_Name__c;
                         
-                    
-                    
                         mcoCodeToRolloutUpsertMap.put(rolloutExternalId,clonedRollout);
-                        
-
-                        IPM_Country__c ipmNewCountry = new IPM_Country__c();
-                        
-                        ipmNewCountry.Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c=rolloutExternalId);
-                        
-                        ipmNewCountry.Project_Country__c =  rolloutName.substringBeforeLast('_') + '_' + ipmCountry.Country_Code__c;
-                        
-                        ipmNewCountry.Id =ipmCountry.Id;
-                        
-                        updateCountryRolloutAssoMap.put(ipmCountry.Id,ipmNewCountry);
                     }
 
                 }
@@ -184,6 +196,15 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
             } 
 
             Set<String> existingRollouts = new Set<String>();
+			
+			Set<String> toBeUpdatedFinIds = new Set<String>();
+			
+			//Set<String> toBeReferencedFinIds = new Set<String>();
+			
+            Map<String,String> newOldExtMap = new Map<String,string>();
+            
+            Map<String ,ID> finExtIdToParentRegRolloutMap = new Map<String ,ID>(); 
+
             
             if(mcoCodeToRolloutUpsertMap.values()!= Null && !mcoCodeToRolloutUpsertMap.isEmpty())
             {
@@ -199,13 +220,46 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
                     if(!existingRollouts.Contains(extId))
                     {
                         
-                        mcoCodeToDeepClonedRolloutUpsertMap.get(extId).Target_Launch_Date__c= rollourExtIdToParentProjTLDMap.get(extId);
+                        if(mcoCodeToRolloutUpsertMap.get(extId).KeyMCO__c)
+						{
+							toBeUpdatedFinIds.add(extId);
+						}
+						else
+						{
+							toBeUpdatedFinIds.add(extId.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+'_NONKEY');
+						}
+						
+						mcoCodeToDeepClonedRolloutUpsertMap.get(extId).Target_Launch_Date__c= rollourExtIdToParentProjTLDMap.get(extId);
                         
                         mcoCodeToRolloutUpsertMap.put(extId,mcoCodeToDeepClonedRolloutUpsertMap.get(extId));
                     }
+					
                 }
+				
+				for( String extId :newToOldExtIdMap.keyset())
+				{
+					if(mcoCodeToRolloutUpsertMap.get(extId).KeyMCO__c)
+					{
+						//toBeReferencedFinIds.add(extId);
+						newOldExtMap.put(extId,newToOldExtIdMap.get(extId));
+					}
+					else
+					{ 
+						//toBeReferencedFinIds.add(extId.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+'_NONKEY');
+						newOldExtMap.put(extId.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+'_NONKEY',newToOldExtIdMap.get(extId).substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+'_NONKEY');
+
+					}
+					
+				}
+				
+				
+				for(IPM_Financial__c fin : [Select id ,Financial_External_ID__c,IPM_Project_Rollout__c from  IPM_Financial__c where Financial_External_ID__c IN : newOldExtMap.values()])
+				{
+					finExtIdToParentRegRolloutMap.put(fin.Financial_External_ID__c,fin.IPM_Project_Rollout__c);
+				}
                 
                 upsert  mcoCodeToRolloutUpsertMap.values() IPM_Rollout_Project__c ;
+				
             } 
 
             if( !updateCountryRolloutAssoMap.isEmpty())
@@ -237,7 +291,7 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
                 
                 defaultLocalFin.Financial_External_ID__c = extId;
                 
-                changeFinancialsExtId.add(defaultLocalFin );    
+                changeFinancialsExtId.add(defaultLocalFin );     
             }
 
 
@@ -278,8 +332,7 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
                     {                        
                         toBeDeletedRollouts.add(rollout);                    
                     }
-                    
-                    
+
                     if(rollout.Local_Project__c!=null) 
                     {
                         toBeMarkedLegacy.add(new IPM_Project__c(Id=rollout.Local_Project__c,IPM_Project_Status__c='Legacy',Is_Archieved__c=true,IPM_Parent_Project__c=null,IPM_Project_Rollout__c=null) );
@@ -309,6 +362,7 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
                  if(rlout.name!=null && rlout.Local_Project__r.name!=null && rlout.name!= rlout.Local_Project__r.name ) 
                  {
                      updatedNameProjects.add(new IPM_project__c(Id=rlout.Local_Project__c,name=rlout.name,IPM_Project_Name__c=rlout.name));
+                     
                      localProjectIds.add(rlout.Local_Project__c);
                  }
 
@@ -327,9 +381,9 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
                 
                 for(IPM_Milestone__c milestone: relationalData.IPM_Milestones__r)
                 {
-                    if(!milestone.Name.substringBefore('-').equals(milestone.IPM_Project_Name__c))
+                    if(!milestone.Name.substringBefore(IPM_ConstantUtils.HYPHEN_DELIMITER).equals(milestone.IPM_Project_Name__c))
                     {
-                        milestone.Name = milestone.Name.replace(milestone.Name.substringBefore('-'), milestone.IPM_Project_Name__c);
+                        milestone.Name = milestone.Name.replace(milestone.Name.substringBefore(IPM_ConstantUtils.HYPHEN_DELIMITER), milestone.IPM_Project_Name__c);
                         
                         toBeUpdatedMiles.add(milestone);
                     }
@@ -338,11 +392,11 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
                 
                 for(IPM_Task__c task: relationalData.Tasks__r)
                 {
-                    if(!task.Name.substringBefore('-').equals(task.IPM_Project__r.Name))
+                    if(!task.Name.substringBefore(IPM_ConstantUtils.HYPHEN_DELIMITER).equals(task.IPM_Project__r.Name))
                     {
-                        task.ExternalField__c = task.ExternalField__c.replace(task.Name.substringBefore('-'), task.IPM_Project__r.Name);
+                        task.ExternalField__c = task.ExternalField__c.replace(task.Name.substringBefore(IPM_ConstantUtils.HYPHEN_DELIMITER), task.IPM_Project__r.Name);
                         
-                        task.Name = task.Name.replace(task.Name.substringBefore('-'), task.IPM_Project__r.Name);
+                        task.Name = task.Name.replace(task.Name.substringBefore(IPM_ConstantUtils.HYPHEN_DELIMITER), task.IPM_Project__r.Name);
                         
                         toBeUpdatedTasks.add(task);
                     }   
@@ -350,9 +404,9 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
                 
                 for(IPM_Project_Document__c projDoc: relationalData.Project_Documents__r)
                 {
-                    if(!projDoc.Name.substringBefore('-').equals(projDoc.IPM_Project__r.Name))
+                    if(!projDoc.Name.substringBefore(IPM_ConstantUtils.HYPHEN_DELIMITER).equals(projDoc.IPM_Project__r.Name))
                     {
-                        projDoc.Name = projDoc.Name.replace(projDoc.Name.substringBefore('-'), projDoc.IPM_Project__r.Name);
+                        projDoc.Name = projDoc.Name.replace(projDoc.Name.substringBefore(IPM_ConstantUtils.HYPHEN_DELIMITER), projDoc.IPM_Project__r.Name);
                         
                         toBeUpdatedDocuments.add(projDoc);
                     }   
@@ -377,9 +431,10 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
 
             for(IPM_Project_Document_Section__c proDocSec: [Select Id, Name, IPM_Project_Document__r.IPM_Project__r.Name From IPM_Project_Document_Section__c Where IPM_Project_Document__r.IPM_Project__c IN : localProjectIds])
             {
-                if(!proDocSec.Name.substringBefore('-').equals(proDocSec.IPM_Project_Document__r.IPM_Project__r.Name))
+                if(!proDocSec.Name.substringBefore(IPM_ConstantUtils.HYPHEN_DELIMITER).equals(proDocSec.IPM_Project_Document__r.IPM_Project__r.Name))
                 {
-                    proDocSec.Name = proDocSec.Name.replace(proDocSec.Name.substringBefore('-'), proDocSec.IPM_Project_Document__r.IPM_Project__r.Name); 
+                    proDocSec.Name = proDocSec.Name.replace(proDocSec.Name.substringBefore(IPM_ConstantUtils.HYPHEN_DELIMITER), proDocSec.IPM_Project_Document__r.IPM_Project__r.Name); 
+                    
                     toBeUpdatedDocSections.add(proDocSec);
                 }   
             } 
@@ -388,29 +443,62 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
             {                
                 update toBeUpdatedDocSections;   
             }
+			
+			Map<Id,IPM_Financial__c> toBeupdateFin = new Map<Id,IPM_Financial__c>();
+			
+			for(IPM_Financial__c financial : [Select Id,Financial_External_ID__c,IPM_Project_Rollout__c,IPM_Key_Financial__c from IPM_Financial__c where Financial_External_ID__c IN :toBeUpdatedFinIds] )
+			{
+				if(financial.IPM_Project_Rollout__c==null)
+				{
+					financial.IPM_Project_Rollout__c = finExtIdToParentRegRolloutMap.get(newOldExtMap.get(financial.Financial_External_ID__c));
+				}
+				
+                toBeupdateFin.put(financial.Id,financial);  
+			}
+			
+			
+			if(!toBeupdateFin.isEmpty())
+			{
+					update toBeupdateFin.values();
+			}
+			
        
         }
+       
         
         catch(Exception ex)
         {
-            Database.Rollback(SP);
+            Database.Rollback(setDbPointer);
+            
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'IPM_AlignDataOnGeographyChange_Batch','Execute',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
         }
 
     }
 
-    public  void finish(Database.BatchableContext BC) 
+    public  void finish(Database.BatchableContext batchContext)  
     {
         
         Set<String> impactedLocalRolloutIds = new Set<String>(); 
         
         Set<String> impactedProjIds = new Set<String>(); 
-        
-        for(IPM_Country__c ipmCountry :[Select Id, Local_Rollout__c,IPM_Project__c,IPM_Regional_Project__c,IPM_Local_Project__c from IPM_Country__c where ID IN :impactedCountryIds ])
+		
+		List<IPM_Country__c> lstUpdateCountry = new List<IPM_Country__c>();
+
+
+        for(IPM_Country__c ipmCountry :[Select Id, isActive__c,  Local_Rollout__c,IPM_Project__c,IPM_Regional_Project__c,IPM_Local_Project__c from IPM_Country__c where ID IN :impactedCountryIds ])
         {
             impactedLocalRolloutIds.add(ipmCountry.Local_Rollout__c);
             
             impactedProjIds.addAll(new Set<String> {ipmCountry.IPM_Project__c,ipmCountry.IPM_Regional_Project__c,ipmCountry.IPM_Local_Project__c});
+			
+			ipmCountry.isActive__c = countryMap.get(ipmCountry.Id).isActive__c;
+            
+            lstUpdateCountry.add(ipmCountry);
+        }
+		
+		if(!lstUpdateCountry.isEmpty())
+		{
+            update lstUpdateCountry;
         }
         
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
@@ -426,11 +514,11 @@ Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_C
         mail.setPlainTextBody(plainTextBody); 
         
         //sends an email for job status, after the job is completed. 
-        IPM_Utils.sendApexJobStatusMail(BC); 
+        IPM_Utils.sendApexJobStatusMail(batchContext); 
         
-        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });  
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });    
         
-    }
+    } 
 
 
 }
