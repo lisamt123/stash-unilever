@@ -2046,17 +2046,17 @@
         <enabled>true</enabled>
     </pageAccesses>
 	<recordTypeVisibilities>
-        <default>true</default>
+        <default>false</default>
         <recordType>Account.BFM_Unilever_Account</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>true</default>
+        <default>false</default>
         <recordType>Account.BFM_Carrier</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
 	<recordTypeVisibilities>
-        <default>true</default>
+        <default>false</default>
         <recordType>Contact.BFM_Carrier_Contact</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
