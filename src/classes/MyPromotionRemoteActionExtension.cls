@@ -1836,10 +1836,9 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         
     } 
     //This function is updating the enableChild field to get all the fields editable when the user click on enable child button
-    //This function is updating the enableChild field to get all the fields editable when the user click on enable child button
     @RemoteAction 
     global static void UpdateEnablePushBOPromotion(String txId,String promoParams){
-        system.debug(promoParams);
+    try{
         Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promoParams);//deserializing the JSON from UI        
         Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format        
         Long DateFromString =Long.valueOf(String.valueof(boPromotion.get('ACCL__Date_From__c')));
@@ -1848,10 +1847,8 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         DateTime DateThru = DateTime.newInstance(DateThrutring);
         List<Promotion_Acc_Rel__c> allPromoAccList=new List<Promotion_Acc_Rel__c>();
         allPromoAccList= getPromotionAccRel(promoParams);
-        system.debug('DateFrom'+DateFrom);
         ACCL__Promotion_Template__c promotemp = new ACCL__Promotion_Template__c();
         promotemp = [SELECT id,UL_Allow_past_Promotions__c FROM ACCL__Promotion_Template__c WHERE id=: String.valueOf(boPromotion.get('ACCL__Promotion_Template__c')) LIMIT 1];
-        
         
         Integer i=0;
         Boolean allIsCompleted=true;
@@ -1866,20 +1863,23 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         if(DateThru > system.today() || (DateThru < system.today() && promotemp.UL_Allow_past_Promotions__c== true)){
             List <ACCL__Promotion__c> childPromotions = new List <ACCL__Promotion__c>();
             ACCL__Promotion__c promo = new ACCL__Promotion__c();
-            childPromotions=[SELECT id,UL_Parent_Push_Id__c,UL_EnableChild__c FROM ACCL__Promotion__c 
-                             where UL_Parent_Push_Id__c=: String.valueOf(boPromotion.get('Id'))];
-            for(ACCL__Promotion__c p : childPromotions){
+            for(ACCL__Promotion__c p : [SELECT id,UL_Parent_Push_Id__c,UL_EnableChild__c FROM ACCL__Promotion__c where UL_Parent_Push_Id__c=: String.valueOf(boPromotion.get('Id'))]){
                 p.UL_EnableChild__c=true;
-                p.ACCL__Phase__c='Approved';
+                p.ACCL__Phase__c = UL_Utility.status_approved;
+                p.UL_Current_status__c = UL_Utility.status_approved;
+                childPromotions.add(p);
             }
             update childPromotions;
         }
         else{
             Throw new updateException('The promotion is passed');
         }
+        }
+        catch(exception ex){
+         throw ex;
+        }
         
     }
-    
     @RemoteAction
     global static void validateLOExtTacticTiers(String txId, String promoParams){
         // Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promoParams);//deserializing the JSON from UI        
