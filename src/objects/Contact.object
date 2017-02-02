@@ -1233,7 +1233,7 @@
     </fields>
     <fields>
         <fullName>Title</fullName>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackFeedHistory>true</trackFeedHistory>
     </fields>
     <fields>
         <fullName>hoot2sf_FacebookId__c</fullName>
