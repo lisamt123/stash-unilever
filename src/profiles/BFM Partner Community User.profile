@@ -2051,7 +2051,7 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
         <recordType>Account.BFM_Carrier</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

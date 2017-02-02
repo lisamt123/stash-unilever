@@ -396,11 +396,6 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
-        <field>BFM_AccountAccessRequest__c.Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
         <field>BFM_AccountAccessRequest__c.City__c</field>
         <readable>true</readable>
     </fieldPermissions>
