@@ -65,7 +65,6 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-      <-- Populate your Test Classes here in the above format and do not delete the aboce test clasess, these are mandotry test classes to be executed-->
     </sf:deploy>
   </target>  
 
