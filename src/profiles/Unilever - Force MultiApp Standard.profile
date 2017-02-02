@@ -2133,11 +2133,11 @@
         <apexClass>BET_UpsertBETControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-	<classAccesses>
+	    <classAccesses>
         <apexClass>BFM_AccountDAO</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_AccountDAO_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2145,7 +2145,7 @@
         <apexClass>BFM_AccountMoreDetailsController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_AccountMoreDetailsController_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2161,7 +2161,7 @@
         <apexClass>BFM_BulkOccurrenceQuery</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_BulkOccurrenceQuery_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2169,23 +2169,15 @@
         <apexClass>BFM_BulkShipmentQuery</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_BulkShipmentQuery_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_CPFValidator</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BFM_CPFValidator_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_CommunitiesSelfRegController_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_CommunitiesSelfRegController_CC_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2193,7 +2185,7 @@
         <apexClass>BFM_CreateAccessRequest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_CreateAccessRequest_test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2201,7 +2193,7 @@
         <apexClass>BFM_CreateCarrierUser</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_CreateCarrierUser_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2209,7 +2201,7 @@
         <apexClass>BFM_CreateContactFromEmailInformation</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_CreateContactFromEmail_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2217,7 +2209,7 @@
         <apexClass>BFM_CreateUserQueueable</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_CreateUserQueueable_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2225,7 +2217,7 @@
         <apexClass>BFM_GeneralServiceCalls</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_GeneralServiceCalls_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2241,12 +2233,24 @@
         <apexClass>BFM_NFEHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_NFEHandler_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_OccurrenceHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_OccurrenceHandler_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_QueryFreights</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_QueryFreightsTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -2261,8 +2265,16 @@
         <apexClass>BFM_QueryFreightsResponse</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_QueryFreightsResponse_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_QueryOccurrence</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_QueryOccurrenceTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -2285,11 +2297,15 @@
         <apexClass>BFM_SearchOccurrenceController_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_SearchOccurrenceController_CC_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_SearchShipmentCTeController_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_SearchShipmentController_CCTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2297,11 +2313,15 @@
         <apexClass>BFM_SendEmailToCarrierApprover</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_SendEmailToCarrierApproverTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_ShipmentDocumentGeneration_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	 <classAccesses>
         <apexClass>BFM_ShipmentDocumentGeneration_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2309,20 +2329,32 @@
         <apexClass>BFM_ShipmentHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_ShipmentHandlerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_ShipmentUpdate_CC</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_ShipmentUpdate_CCTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_TriggerFactory</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_TriggerFactory_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BFM_UpdateFreightData</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_UpdateFreightData_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -2342,14 +2374,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BFM_UpdateFreightData_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>BFM_UpdateUserRequestQueueable</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_UpdateUserRequestQueueable_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2357,7 +2385,7 @@
         <apexClass>BFM_UserCreationAssignPermissions</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_UserCreationAssignPermissions_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2365,7 +2393,7 @@
         <apexClass>BFM_UserCreationPostProcessing</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_UserCreationPostProcessing_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2373,11 +2401,15 @@
         <apexClass>BFM_UserCreationRequestAttachmentCheck</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_UserCreationRequestAttachment_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_UserCreationRequestHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>BFM_UserCreationRequestHandler_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
