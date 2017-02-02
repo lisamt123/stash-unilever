@@ -44,6 +44,11 @@ public with sharing class Win_UploadEndpoint_Test {
         
         List<Win_Local_Assignment__c> resultRecords = [SELECT Id FROM Win_Local_Assignment__c WHERE Id = : testRecord.Id];
         System.assertEquals(0, resultRecords.size());
+
+        Win_UploadService service = new Win_UploadService();
+        testRecord = new Win_Local_Assignment__c(Device_Id__c = 'SimpleTestAcco', Local_Id__c = 'oneone', Salesforce_Id__c = 'accenture');
+        service.insertForceSharing(testRecord);
+        service.updateForceSharing(testRecord);
     }
 
     /*
@@ -158,7 +163,8 @@ public with sharing class Win_UploadEndpoint_Test {
     /*
      * Test Chatter feeds
      */
-    @IsTest(SeeAllData=true)
+    //@IsTest(SeeAllData=true)
+    /*
     static void testFeedItem() {
     	Win_UploadRequestItem reqItem = new Win_UploadRequestItem();
     	Win_Utils winUtils = new Win_Utils();
@@ -183,6 +189,7 @@ public with sharing class Win_UploadEndpoint_Test {
         
         response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, 'testdevice');
     }
+    */
    
    	/*
      * Test tracked objects
