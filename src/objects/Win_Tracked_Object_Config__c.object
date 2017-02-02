@@ -126,6 +126,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>Win Tracked Object Config</label>
+    <label>Wings Tracked Object Config</label>
     <visibility>Public</visibility>
 </CustomObject>
