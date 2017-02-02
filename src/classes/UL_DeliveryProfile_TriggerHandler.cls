@@ -38,19 +38,23 @@ public without sharing class UL_DeliveryProfile_TriggerHandler {
 **********************************************************************************************************************************************************/    
     public void handleBeforeInsert(){ 
         Set<String> delivery_profile_names = new Set<String>();
-        Date lowestDate = System.today();
-        Date highestDate = System.today();
+        Date lowestDate;// = System.today();
+        Date highestDate;// = System.today();
         for(UL_Delivery_Profile__c newDeliveryProfile : new_DeliveryProfile_List){
-            if(newDeliveryProfile.UL_Sales_Organisation__c.equals(UL_Utility.UK_SO)){
-                if(lowestDate > newDeliveryProfile.UL_Valid_From__c){
-                    lowestDate = newDeliveryProfile.UL_Valid_From__c;
-                }
+            if(lowestDate==null){
+                lowestDate = newDeliveryProfile.UL_Valid_From__c;
+            }
+            if(highestDate==null){
+                highestDate= newDeliveryProfile.UL_Valid_Thru__c;
+            }
+            if(lowestDate > newDeliveryProfile.UL_Valid_From__c){
+                lowestDate = newDeliveryProfile.UL_Valid_From__c;
+            }
 
-                if(highestDate < newDeliveryProfile.UL_Valid_Thru__c){
-                    highestDate = newDeliveryProfile.UL_Valid_Thru__c;
-                }
-                delivery_profile_names.add(newDeliveryProfile.UL_Delivery_Profile_Name__c);
-            }            
+            if(highestDate < newDeliveryProfile.UL_Valid_Thru__c){
+                highestDate = newDeliveryProfile.UL_Valid_Thru__c;
+            }
+            delivery_profile_names.add(newDeliveryProfile.UL_Delivery_Profile_Name__c);            
         }
          
         if(delivery_profile_names.size() > 0){
@@ -89,6 +93,7 @@ public without sharing class UL_DeliveryProfile_TriggerHandler {
          
         for(UL_Delivery_Profile__c newDeliveryProfile : new_DeliveryProfile_List){
             if(delivery_profile_map.containsKey(newDeliveryProfile.UL_Delivery_Profile_Name__c)){
+            system.debug('----->'+delivery_profile_map.get(newDeliveryProfile.UL_Delivery_Profile_Name__c));
                 for(UL_Delivery_Profile__c existingRate : delivery_profile_map.get(newDeliveryProfile.UL_Delivery_Profile_Name__c)){
                     if(existingRate.Id!= newDeliveryProfile.Id && existingRate.UL_Valid_From__c <= newDeliveryProfile.UL_Valid_Thru__c && existingRate.UL_Valid_Thru__c >= newDeliveryProfile.UL_Valid_From__c){
                         String errMessage = Label.UL_Duplicate_Record_Found+' - '+existingRate.UL_Delivery_Profile_Name__c+' ('+existingRate.Name+')';
