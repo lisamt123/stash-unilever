@@ -25377,6 +25377,13 @@ the campaign covers more than 15 countries</value>
         <value>Add</value>
     </labels>
     <labels>
+        <fullName>PP_BTN_ADDTACTIC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_ADDTACTIC</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
         <fullName>PP_BTN_ADD2</fullName>
         <language>en_US</language>
         <protected>false</protected>
