@@ -15,7 +15,7 @@ public class BEN_CategoryDetailsTriggerHandler{
     
     private static boolean isDone = false;
     public static boolean rejectedRecord = false;
-    public static String loginUser = '';
+    public static Boolean loginUser = false;
     /*******************************************************************
 Purpose: This method is used to perform submit for  Approval process& make the Reject comments require
 Parameters: Id,BEN_Category_Details__c
@@ -24,7 +24,8 @@ Throws [Exceptions]:
 ********************************************************************/  
     public static void SendRecordForApproval(List<BEN_Category_Details__c> categryList, Map<Id,BEN_Category_Details__c> oldMap,Map<Id,BEN_Category_Details__c> newMap){
         if(!isDone){
-            loginUser = checkLoginUser();
+            loginUser = checkApproverUser();
+            System.debug('-------------'+loginUser );
             Map<Id,BEN_Category_Details__c> categoryMap = new Map<Id,BEN_Category_Details__c>([select Id,In_Approval__c,
                                                                                                Product_Category__c,
                                                                                                Product_Category__r.Name,txt_Reason_for_Deletion__c,
@@ -139,20 +140,24 @@ firstStepMap.put(catgrydtls1.Id,catgrydtls1);
                     if(oldMap.get(catgryDtls.Id).bln_Flag_for_Retest__c==false && newMap.get(catgryDtls.Id).bln_Flag_for_Retest__c){
                         usrList.addAll(GPLUserIDs);
                         Messaging.SingleEmailMessage mail =  new Messaging.SingleEmailMessage();  
-                        String body =  'Hi,<br/><br/>'+        
-                            'Test result ' +catgryDtls.Name+ ' : is been pinned for re-test by '+categoryMap.get(catgryDtls.Id).LastModifiedBy.Name +
+                        String body =  'Hi Category Approver/GPL ,<br/><br/>'+        
+                            'Test result ' +catgryDtls.Name+ ' : is been pinned for re-test by '+ UserInfo.getFirstName() + ' '+UserInfo.getLastName() +
                             '<br/><br/>'+
                             'You can access the result via the link below;'+
+                            '<br/><br/>'+
                             URL.getSalesforceBaseUrl().toExternalForm()+'/'+catgryDtls.Id+
                             '<br/>'+
                             'This is an automatically generated email, please do not reply'+
                             '<br/><br/>Thanks,<br/>'+
-                            categoryMap.get(catgryDtls.Id).LastModifiedBy.Name;
+                            //newMap.get(catgryDtls.Id).LastModifiedBy.Name;
+                            UserInfo.getFirstName() + ' '+UserInfo.getLastName();
+                            //catgryDtls.LastModifiedBy.Name;
+
                         
                         
                         mail.settoAddresses(usrList);
                         mail.setHTMLBody(body);
-                        mail.setSubject('Test Result marked for Retest'); 
+                        mail.setSubject('Test Pinned for Re-test'); 
                         Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});  
                         isDone = true;  
                     }
@@ -178,7 +183,7 @@ firstStepMap.put(catgrydtls1.Id,catgrydtls1);
                     
                     isDone = true; 
                 } //This is for calling Approvalprocess
-                else if (catgryDtls.In_Approval__c) {   
+                else if (catgryDtls.In_Approval__c) { 
                     approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
                     req1.setComments('Submitting request for approval.');
                     req1.setObjectId(catgryDtls.id); 
@@ -187,19 +192,19 @@ firstStepMap.put(catgrydtls1.Id,catgrydtls1);
                     //if(!Test.isRunningTest())
                     approval.ProcessResult result = Approval.process(req1);   
                     sendEmail(catgryDtls,usrList,categoryMap);
-                    
                     isDone = true; 
                 }//This step is for sending email to particular Queue if GPL rejects
                 else if(catgryDtls.Approval_Status__c == BEN_ConstantsForBenchmarkingAppClasses.INSECONDSTEP && catgryDtls.pkl_Status__c == BEN_ConstantsForBenchmarkingAppClasses.REJECTED){
                     Messaging.SingleEmailMessage mail =  new Messaging.SingleEmailMessage();  
-                    String body =  'Hi,<br/><br/>'+        
+                    String body =  'Hi Category Approver,<br/><br/>'+        
                         'Test result ' +catgryDtls.Name+ ' is Rejected by GPL.'+ 
                         'Reason for Rejection indicated '+ rejectionComments  + 
                         '<br/><br/>'+
                         'You can access the result via the link below;'+
+                        '<br/><br/>'+
                         URL.getSalesforceBaseUrl().toExternalForm()+'/'+catgryDtls.Id+
                         '<br/>'+
-                        'This is an automatically generated email, please do not reply'+
+                        'This is an automatically generated email, please do not reply.'+
                         '<br/><br/>Thanks,<br/>'+
                         categoryMap.get(catgryDtls.Id).LastModifiedBy.Name;
                     
@@ -220,28 +225,30 @@ firstStepMap.put(catgrydtls1.Id,catgrydtls1);
         Messaging.SingleEmailMessage mail =  new Messaging.SingleEmailMessage();
         String body='';
         if (catgryDtls.In_Approval__c && catgryDtls.bln_Mark_for_Deletion__c) {   
-            body =  'Hi,<br/><br/>'+        
-                'Test result ' +catgryDtls.Name+ ' : has been marked for deletion. Reason for deletion indicated    '+ 
+            body =  'Hi Category Approver,<br/><br/>'+        
+                'Test result ' +catgryDtls.Product_Category__c+ ' : has been marked for deletion. Reason for deletion indicated '+ 
                 catgryDtls.txt_Reason_for_Deletion__c +
                 '<br/><br/>'+
                 'You can access the result via the link below;'+
+                '<br/><br/>'+
                 URL.getSalesforceBaseUrl().toExternalForm()+'/'+catgryDtls.Id+
                 '<br/>'+
                 'This is an automatically generated email, please do not reply'+
                 '<br/><br/>Thanks,<br/>'+
                 categoryMap.get(catgryDtls.Id).LastModifiedBy.Name;
                 
-              mail.setSubject(' Test submitted for  Delete approval');
+              mail.setSubject('Test Result Submitted For Deletion');
             
             
         }else if(rejectedRecord == true){
-            body =  'Hi,<br/><br/>'+        
+            body =  'Hi Category Approver,<br/><br/>'+        
                 'Test result ' +catgryDtls.Name+ ' is Re-submitted for your approval.'+ 
                 '<br/><br/>'+
                 'You can access the result via the link below;'+
+                '<br/><br/>'+
                 URL.getSalesforceBaseUrl().toExternalForm()+'/'+catgryDtls.Id+
                 '<br/>'+
-                'This is an automatically generated email, please do not reply'+
+                'This is an automatically generated email, please do not reply.'+
                 '<br/><br/>Thanks,<br/>'+
                 categoryMap.get(catgryDtls.Id).CreatedBy.Name;
             
@@ -249,13 +256,17 @@ firstStepMap.put(catgrydtls1.Id,catgrydtls1);
             
         }
         else{                    
-            body =  'Hi,<br/><br/>'+        
-                'Test result ' +catgryDtls.Name+ '  is submitted for your approval.'+ 
+            body =  'Hi Category Approver,<br/><br/>'+        
+                'Test result ' +catgryDtls.Name+ ' is submitted for your approval.'+ 
                 '<br/><br/>'+
                 'You can access the result via the link below;'+
-                URL.getSalesforceBaseUrl().toExternalForm()+'/'+catgryDtls.Id+
+                '<br/><br/>'+
+               
+                URL.getSalesforceBaseUrl().toExternalForm()+'/'+catgryDtls.Id+ 
+                
                 '<br/>'+
-                'This is an automatically generated email, please do not reply'+
+              
+                'This is an automatically generated email, please do not reply.'+
                 '<br/><br/>Thanks,<br/>'+
                 categoryMap.get(catgryDtls.Id).CreatedBy.Name;
             
@@ -272,10 +283,10 @@ firstStepMap.put(catgrydtls1.Id,catgrydtls1);
         
     }    
     
-    public static String checkLoginUser(){
+    public static boolean checkApproverUser(){
          
             String loginUserID = UserInfo.getUserId();
-            String user = '';
+            Boolean user = false;
             
             Id users_Id = ID.valueOf(loginUserID);
             User ApprovalSubUser = [Select Id, UserName from User where ID=:users_Id];
@@ -283,7 +294,7 @@ firstStepMap.put(catgrydtls1.Id,catgrydtls1);
             List<PermissionSetAssignment> permsAssigns = [SELECT Id, AssigneeId, PermissionSet.Name FROM PermissionSetAssignment WHERE PermissionSetId IN :permSets];
             for(PermissionSetAssignment psa : permsAssigns){
                 if(psa.AssigneeId == ApprovalSubUser.ID){
-                    user = 'Approver';  break;
+                    user = true;  break;
                 }  
             }
         return user;

@@ -4,6 +4,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>BEN Record deleted</name>
     <style>none</style>
-    <subject>Your Test result has been deleted</subject>
+    <subject>Test result has been deleted</subject>
     <type>text</type>
 </EmailTemplate>

@@ -47,7 +47,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         
         List<BEN_Category_Master__c> catMaster =  [select name from BEN_Category_Master__c where name='Beverages'];
         if(checkEmpty(catMaster)){
-            CategoryMaster=new BEN_Category_Master__c(Name='Beverages'); 
+            CategoryMaster=new BEN_Category_Master__c(Name='Beverages', pkl_Super_Category__c= 'Home Care'); 
             insert CategoryMaster;
         }else
             CategoryMaster = catMaster.get(0);
@@ -98,10 +98,14 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
     
     private static void init() {
         
-        BEN_Category_CUC_Codes__c ccc = new BEN_Category_CUC_Codes__c();
+        BEN_CU_GTIN__c ccc = new BEN_CU_GTIN__c();
         ccc.Name = 'Test';
         insert ccc;
-        
+                
+        BEN_Benchmark__c benchamrking = new BEN_Benchmark__c();
+        benchamrking.CurrencyIsoCode = 'EUR';
+        benchamrking.Name = 'Barrys Gold';
+        insert benchamrking;
         
         
         insertedCatDetails = new List<BEN_Category_Details__c>();
@@ -109,6 +113,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
             
         BEN_Category_Details__c categorydetails = new BEN_Category_Details__c();
         categorydetails.Product_Category__c = CategoryMaster.Id;
+        categorydetails.pkl_Category_Master__c= 'Beverages';
         categorydetails.pkl_Region__c='Europe' ;
         categorydetails.pkl_Brand__c='Lipton Yellow Label' ;
         categorydetails.txt_Title__c='Test123' ;
@@ -117,14 +122,14 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         categorydetails.pkl_Logic__c='PARITY on OO & KA' ;
         categorydetails.pkl_Key_Attributes__c='Parity' ;
         //categorydetails.pkl_OVERALL_SCORE__c='Parity' ;
-        categorydetails.lkp_CUC_Codes__c=ccc.Id;
+        categorydetails.lkp_CU_GTIN__c=ccc.Id;
         categorydetails.pkl_Product_Format__c='Flavoured & Speciality' ;
         categorydetails.pkl_Product__c='Beceda' ;
         categorydetails.pkl_Country__c='Germany' ;
         categorydetails.pkl_Status__c='Approved' ;
         categorydetails.pkl_Key_Attribute_1_Appraisal__c = 'Parity';
         categorydetails.pkl_Key_Attribute_2_Consumer_Test__c = 'Parity';
-        categorydetails.pkl_Benchmark__c = 'Barrys Gold';
+        categorydetails.lkp_Benchmark__c = benchamrking.Id;
         categorydetails.pkl_Blind_OO__c = 'Parity';
         categorydetails.txt_Unilever_Formula__c = 'testing';
         categorydetails.txt_Agency_Name__c = 'samsung';
@@ -136,6 +141,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
             
         BEN_Category_Details__c categorydetails = new BEN_Category_Details__c();
         categorydetails.Product_Category__c = CategoryMaster.Id;
+        categorydetails.pkl_Category_Master__c= 'Beverages';
         categorydetails.pkl_Region__c='North America' ;
         categorydetails.pkl_Brand__c='Lipton Yellow Label' ;
         categorydetails.txt_Title__c='Test200' ;
@@ -144,14 +150,14 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         categorydetails.pkl_Logic__c='WIN on OO & KA' ;
         categorydetails.pkl_Key_Attributes__c='Loss' ;
         //categorydetails.pkl_OVERALL_SCORE__c='Parity' ;
-        categorydetails.lkp_CUC_Codes__c=ccc.Id;
+        categorydetails.lkp_CU_GTIN__c=ccc.Id;
         categorydetails.pkl_Product_Format__c='Flavoured & Speciality' ;
         categorydetails.pkl_Product__c='Beceda' ;
         categorydetails.pkl_Country__c='USA' ;
         categorydetails.pkl_Status__c='Approved' ;
         categorydetails.pkl_Key_Attribute_1_Appraisal__c = 'Loss';
         categorydetails.pkl_Key_Attribute_2_Consumer_Test__c = 'Loss';
-        categorydetails.pkl_Benchmark__c = 'Barrys Gold';
+        categorydetails.lkp_Benchmark__c = benchamrking.Id;
         categorydetails.pkl_Blind_OO__c = 'Loss';
         categorydetails.txt_Unilever_Formula__c = 'testing';
         categorydetails.txt_Agency_Name__c = 'samsung';
@@ -163,6 +169,7 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
             
         BEN_Category_Details__c categorydetails = new BEN_Category_Details__c();
         categorydetails.Product_Category__c = CategoryMaster.Id;
+        categorydetails.pkl_Category_Master__c= 'Beverages';
         categorydetails.pkl_Region__c='South Asia' ;
         categorydetails.pkl_Brand__c='Lipton Yellow Label' ;
         categorydetails.txt_Title__c='Test300' ;
@@ -171,14 +178,14 @@ public without sharing class BEN_Matrix_VF_Controller_Test {
         categorydetails.pkl_Logic__c='WIN on OO & KA' ;
         categorydetails.pkl_Key_Attributes__c='Win' ;
         //categorydetails.pkl_OVERALL_SCORE__c='Parity' ;
-        categorydetails.lkp_CUC_Codes__c=ccc.Id;
+        categorydetails.lkp_CU_GTIN__c=ccc.Id;
         categorydetails.pkl_Product_Format__c='Flavoured & Speciality' ;
         categorydetails.pkl_Product__c='Beceda' ;
         categorydetails.pkl_Country__c='India' ;
         categorydetails.pkl_Status__c='Approved' ;
         categorydetails.pkl_Key_Attribute_1_Appraisal__c = 'Win';
         categorydetails.pkl_Key_Attribute_2_Consumer_Test__c = 'Win';
-        categorydetails.pkl_Benchmark__c = 'Barrys Gold';
+        categorydetails.lkp_Benchmark__c = benchamrking.Id;
         categorydetails.pkl_Blind_OO__c = 'Win';
         categorydetails.txt_Unilever_Formula__c = 'testing';
         categorydetails.txt_Agency_Name__c = 'samsung';

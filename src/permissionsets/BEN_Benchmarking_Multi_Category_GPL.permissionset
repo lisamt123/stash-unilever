@@ -6,7 +6,7 @@
     </applicationVisibilities>
     <classAccesses>
         <apexClass>BEN_ApprovalProcess_Helper_test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BEN_AprovalProcess_WebService_helper</apexClass>
@@ -33,12 +33,24 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BEN_KPIProgressReport_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BEN_KPIProgressReprtHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BEN_KPIProgress_Generator_Controller</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BEN_Matrix_Print_VF_Controller</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BEN_Matrix_VF_Controller_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>BEN_Matrix_VF_controller</apexClass>
@@ -47,68 +59,133 @@
     <description>This Permission set is for Multi Category – GPL</description>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.Pkl_Market_Cluster__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.BEN_Country_Code__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.dt_Month__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.Pkl_Market_Cluster__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.lkp_Product_Category__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.dt_Month__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.pkl_Country__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.lkp_Product_Category__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.pkl_MCO__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.pkl_Country__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.pkl_Super_Category__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.pkl_MCO__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.txt_Attached_Spec_Code__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.pkl_Super_Category__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.txt_Brand__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.txt_Attached_Spec_Code__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.txt_CPG_Code__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.txt_Brand__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.txt_MRDR_Code_ECC__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.txt_MRDR_Code_ECC__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.txta_CPG_Description__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.txta_CPG_Description__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.txta_MRDR_Description__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.txta_MRDR_Description__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BEN_Category_CUC_Codes__c.txta_Spec_Description__c</field>
-        <readable>false</readable>
+        <field>BEN_CS_GTIN__c.txta_Spec_Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.BEN_Country_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.Pkl_Market_Cluster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.dt_Month__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.lkp_Product_Category__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.pkl_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.pkl_MCO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.pkl_Super_Category__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.txt_Attached_Spec_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.txt_Brand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.txt_MRDR_Code_ECC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.txta_CPG_Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.txta_MRDR_Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BEN_CU_GTIN__c.txta_Spec_Description__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -122,13 +199,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>BEN_Category_Details__c.BEN_Is_Approver__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>BEN_Category_Details__c.Current_Market_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BEN_Category_Details__c.In_Approval__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -161,9 +243,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_Details__c.fml_Year_Quater__c</field>
-        <readable>false</readable>
+        <editable>true</editable>
+        <field>BEN_Category_Details__c.lkp_CS_GTIN__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BEN_Category_Details__c.lkp_CU_GTIN__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -345,46 +432,6 @@
         <field>BEN_Category_Details__c.txt_Title__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_Details__c.win_check__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_Master__c.BEN_Category_Count__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_Master__c.BEN_Total_Loss__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_Master__c.BEN_Total_Parity__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_Master__c.BEN_Total_Win__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_Master__c.BEN_Total_of_Studies__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_Master__c.CTi_Group__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BEN_Category_Master__c.pkl_Super_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <label>Benchmarking Multi Category – GPL</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -392,7 +439,25 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>BEN_Category_CUC_Codes__c</object>
+        <object>BEN_Benchmark__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>BEN_CS_GTIN__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>BEN_CU_GTIN__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -413,6 +478,14 @@
         <object>BEN_Category_Master__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>BEN_KPIProgressReport</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>BEN_KPIProgressReport_Generator</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>BEN_Matrix3cross3_Report</apexPage>
         <enabled>true</enabled>
@@ -442,7 +515,15 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
-        <tab>BEN_Category_CUC_Codes__c</tab>
+        <tab>BEN_Benchmark__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>BEN_CS_GTIN__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>BEN_CU_GTIN__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
@@ -454,8 +535,12 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>BEN_KPI_Progress</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>BEN_Matrix_Report</tab>
-        <visibility>Visible</visibility>
+        <visibility>None</visibility>
     </tabSettings>
     <userPermissions>
         <enabled>true</enabled>
