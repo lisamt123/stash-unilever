@@ -23,6 +23,8 @@ src/classes/VPM_RegionalMaintainVendor.cls
 src/classes/VPM_RegionalMaintainVendor.cls-meta.xml
 src/classes/VPM_SearchVendor1.cls
 src/classes/VPM_SearchVendor1.cls-meta.xml
+src/classes/VPM_MaintainGlobalVendorServiceHelper.cls
+src/classes/VPM_MaintainGlobalVendorServiceHelper.cls-meta.xml
 src/customMetadata
 src/customMetadata/VPM_PaymentTerms.A1.md
 src/customMetadata/VPM_PaymentTerms.A10.md
@@ -336,6 +338,7 @@ src/queues/VPM_IrelandMasterDataManagement.queue
 src/queues/VPM_IsraelMasterDataManagement.queue
 src/queues/VPM_ItalyMasterDataManagement.queue
 src/queues/VPM_IvoryCoastMasterDataManagement.queue
+src/queues/VPM_JapanMasterDataManagement.queue
 src/queues/VPM_KazakhstanMasterDataManagement.queue
 src/queues/VPM_KenyaMasterDataManagement.queue
 src/queues/VPM_LatviaMasterDataManagement.queue
@@ -394,5 +397,8 @@ src/queues/VPM_ZimbabweMasterDataManagement.queue
 src/reports
 src/reports/VPM_ProcessReports
 src/reports/VPM_ProcessReports/VPM_Report.report
+src/triggers
+src/triggers/VPM_SetGlobalOrRegionalFieldUpdate.trigger
+src/triggers/VPM_SetGlobalOrRegionalFieldUpdate.trigger-meta.xml
 src/workflows
 src/workflows/VPM_PurchasingRequests__c.workflow
