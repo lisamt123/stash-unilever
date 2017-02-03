@@ -86,7 +86,7 @@
     <fieldUpdates>
         <fullName>VPM_ApprovedByRussianEmail</fullName>
         <description>VPM - Captures the approver email.</description>
-        <field>RussainCustomTaxApprovedByEmail__c</field>
+        <field>VPM_RussainCustomTaxApprovedByEmail__c</field>
         <formula>$User.Email</formula>
         <name>VPM-Approved By Russian Email</name>
         <notifyAssignee>false</notifyAssignee>
@@ -119,6 +119,7 @@
         <fullName>VPM_MasterDataManagementApprovedTime</fullName>
         <description>VPM- Time the Request is Approved by the group.</description>
         <field>VPM_MasterDataManagementApproval__c</field>
+        <formula>NOW()</formula>
         <name>Master Data Management Approved Time</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -429,9 +430,9 @@ TRUE,FALSE)</formula>
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_MDMInsertUpdateStatus__c</field>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
             <operation>equals</operation>
-            <value>Approval Rejected in BPM</value>
+            <value>SAP BPM Approval Rejected</value>
         </criteriaItems>
         <description>Sent Email to MDM Ops User when Record is Rejected in SAP BPM</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>

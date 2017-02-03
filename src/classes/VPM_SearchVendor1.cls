@@ -191,7 +191,7 @@ public with sharing class VPM_SearchVendor1{
         recId = controller.getRecord().Id; 
         vendorDetails = (VPM_PurchasingRequests__c)controller.getRecord();
         try {
-           vendorQuery1   = [select Id,VPM_Title__c,VPM_DetailsOfPlannedActivitiesSour2__c,VPM_ModeTransportForeignTrade__c,VPM_LanguageISOCode__c,VPM_SupAudDetailsOfPlannedActivities__c ,VPM_PROATControlProof__c,VPM_VendorCode__c,VPM_ConfirmationControl__c,VPM_IndicatorForWithholdingTaxType__c,VPM_InstructionKeyDataExchange__c,VPM_Industry__c, VPM_StandardCommMethod__c,VPM_IsMDMPISaved__c,VPM_PaymentMethodWeb__c,VPM_SSIStatus__c, VPM_TermsOfPayment__c, VPM_ReasonForExemption__c, VPM_ToleranceGroup__c, VPM_City__c,VPM_Incoterms2__c,VPM_VendordoesntExistFlag__c, VPM_TradePartnerType__c, VPM_CheckDoubleInvoices__c,VPM_VendorContactDetail__c,VPM_ReconciliationAccount__c,VPM_BankCountryKey__c, VPM_Comments__c, VPM_VendorName1__c, VPM_VendorPhone__c,
+           vendorQuery1   = [select Id,VPM_Title__c,VPM_DetailsOfPlannedActivitiesSour2__c,VPM_ModeTransportForeignTrade__c,VPM_LanguageISOCode__c,VPM_SupAudDetailsOfPlannedActivities__c ,VPM_PROATControlProof__c,VPM_VendorCode__c,VPM_ConfirmationControl__c,VPM_IndicatorForWithholdingTaxType__c,VPM_WithholdingTaxCode__c, VPM_InstructionKeyDataExchange__c,VPM_Industry__c, VPM_StandardCommMethod__c,VPM_IsMDMPISaved__c,VPM_PaymentMethodWeb__c,VPM_SSIStatus__c, VPM_TermsOfPayment__c, VPM_ReasonForExemption__c, VPM_ToleranceGroup__c, VPM_City__c,VPM_Incoterms2__c,VPM_VendordoesntExistFlag__c, VPM_TradePartnerType__c, VPM_CheckDoubleInvoices__c,VPM_VendorContactDetail__c,VPM_ReconciliationAccount__c,VPM_BankCountryKey__c, VPM_Comments__c, VPM_VendorName1__c, VPM_VendorPhone__c,
                             VPM_GeneralVendorDetailsChanged__c,VPM_BankDetailsChanged__c,VPM_FinancialFieldsChanged__c,VPM_PaymentTermsAndPurchasingDataChanged__c,VPM_RegionalFieldsChanged__c,VPM_VendorName2__c,VPM_IsMaintain2__c,VPM_Name3__c,VPM_Name4__c,VPM_TaxNumber1__c,VPM_TaxNumber2__c,VPM_TaxNumber3__c,VPM_TaxNumber4__c,VPM_VATRegistrationNumber__c, VPM_RecipientType__c, VPM_RegStGrp__c,
                             VPM_ECC__c, VPM_ExtensionType__c,VPM_PaymentTerms__c,VPM_Status__c,VPM_VendorCodeLookup__c, VPM_VendorCodeLookup__r.mdm_ecc__c, VPM_VendorCodeLookup__r.mdm_Code__c,VPM_Commodity__r.Name,VPM_Commodity__r.VPM_CommodityCode__c,VPM_Commodity__r.VPM_CSBVendor__c,
                             VPM_CompanyCode__r.ECC__c,VPM_Commodity__c,VPM_Commodity__r.VPM_VendorType__c,VPM_VendorType__c, VPM_Commodity__r.VPM_AuthorisationGroup__c,VPM_GlobalAuthorisationGroup__c, VPM_Street1__c, VPM_Country__c, VPM_ZIPPostcode__c, VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,
@@ -281,6 +281,7 @@ public with sharing class VPM_SearchVendor1{
             taxJuriCodeDefValue = vendorQuery1.VPM_TaxJurisdictionCode__c;
             industryOptionsDefValue = vendorQuery1.VPM_Industry__c;
             indicatorWithHoldingDefValue = vendorQuery1.VPM_IndicatorForWithholdingTaxType__c;
+            withholdingTaxCodeValue = vendorQuery1.VPM_WithholdingTaxCode__c;
             instKeyDataExchangeDefValue = vendorQuery1.VPM_InstructionKeyDataExchange__c;
             vendorCashmgmntgroup = vendorQuery1.VPM_CashManagementGroup__c;
             system.debug('@@ vendorQuery1.VPM_Language__c' + vendorQuery1.VPM_Language__c);
@@ -1129,7 +1130,7 @@ public with sharing class VPM_SearchVendor1{
     {  
        String CountryCode = VPM_HttpUtil.valueBeforeUnderscore(vendorQuery1.VPM_Country__c);
        String TaxType= VPM_HttpUtil.valueBeforeUnderscore(indicatorWithHoldingDefValue);
-       withholdingTaxCode =VPM_PicklistHelper.VPM_WithholdingTaxCode(CountryCode,TaxType, null); 
+      withholdingTaxCode =VPM_PicklistHelper.VPM_WithholdingTaxCode(CountryCode,TaxType, null); 
     }
     
     /******************************************************************** 
@@ -1608,6 +1609,7 @@ public with sharing class VPM_SearchVendor1{
             vendorQuery1.VPM_StandardNumber__c = vendorStandardNumber;
             vendorQuery1.VPM_Industry__c = industryOptionsDefValue;
             vendorQuery1.VPM_IndicatorForWithholdingTaxType__c = indicatorWithHoldingDefValue;
+             vendorQuery1.VPM_WithholdingTaxCode__c= withholdingTaxCodeValue;
             vendorQuery1.VPM_InstructionKeyDataExchange__c = instKeyDataExchangeDefValue;
             vendorQuery1.VPM_ConfirmationControl__c = confirmationControlDefaultValue;
             vendorQuery1.VPM_ModeTransportForeignTrade__c = modeOfTransport;
@@ -2292,8 +2294,10 @@ public with sharing class VPM_SearchVendor1{
         recipentTypeOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.RECIPENT_TYPE,recipentTypeDefValue);        
         industryOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.INDUSTRY,industryOptionsDefValue);
         //indicatorWithHoldingOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.IND_WITHHOLD_TAX,indicatorWithHoldingDefValue);
-        indicatorWithHoldingOptions =VPM_PicklistHelper.getWithHoldingTaxType(CountryCode, null); 
-        GetWithholdingTaxCode();
+        indicatorWithHoldingOptions =VPM_PicklistHelper.getWithHoldingTaxType(CountryCode, indicatorWithHoldingDefValue); 
+        String CountryCode = VPM_HttpUtil.valueBeforeUnderscore(vendorQuery1.VPM_Country__c);
+        String TaxType= VPM_HttpUtil.valueBeforeUnderscore(indicatorWithHoldingDefValue);
+        withholdingTaxCode =VPM_PicklistHelper.VPM_WithholdingTaxCode(CountryCode,TaxType, withholdingTaxCodeValue ); 
         instKeyDataExchangeOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.INS_KEYDATA_EXCHANGE,instKeyDataExchangeDefValue);     
         confirmationControlOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.CONF_CONTROL,confirmationControlDefaultValue);
     }
