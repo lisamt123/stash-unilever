@@ -312,6 +312,16 @@
         <field>User.Geography__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	    <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Training_Plan__c.Training_Plan_Name_URLs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+        <fieldPermissions>
+        <editable>true</editable>
+        <field>PBS_Training_Plan__c.Training_Plan_URLs_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <label>PBS LMS Admin</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -374,6 +384,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>PBS_Wiki_Feeback__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+	<objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>PBS_Training_Plan__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>

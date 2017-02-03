@@ -1,6 +1,14 @@
 @isTest 
 private class PQN_UploadNCData_CloneTest {
     static testMethod void PQN_M1() {
+        
+        List<PQN_DC_Hierarchy__c> pdh = new List<PQN_DC_Hierarchy__c>();
+        PQN_DC_Hierarchy__c dc1 = new PQN_DC_Hierarchy__c(name ='Cannock DC',dc__c = 'Cannock DC',region__c = 'Americas',cluster__c = 'Latin America',sub_cluster__c = 'Latin America',mco__c ='mco');
+        PQN_DC_Hierarchy__c dc2 = new PQN_DC_Hierarchy__c(name ='Heilbronn DC',dc__c = 'Heilbronn DC',region__c = 'Americas',cluster__c = 'Latin America',sub_cluster__c = 'Latin America',mco__c ='mco');
+        pdh.add(dc1);
+        pdh.add(dc2);
+        insert pdh;
+    
         List<Account> listacc = new List<Account>();    
           Account acc=new account();
           acc.name='Error DC';

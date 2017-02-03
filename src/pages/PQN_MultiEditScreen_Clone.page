@@ -53,29 +53,49 @@
             <div class="panel-heading"><strong>Import Data</strong> <small>Excel file upload</small></div>
             <div class="panel-body">
                <h4>Select format to parse the excel </h4>
-              <div class = "pull-right">
-                  <apex:outputPanel id="ipfile">
-                  <apex:selectList value="{!selectedfile}" size="1" styleClass="selectedFile" onchange="fileChange();">
-                      <apex:selectOptions value="{!filetype}"/>
-                  </apex:selectList>
-                  </apex:outputPanel>
-              </div>
-               <!-- Standar Form -->
-              <br/> <br/>
-            
-                <div class="form-inline pull-right">
-                  <div class="form-group">
-                    <input type="file" name="xlfile" id="xlf"/>
-                  </div>
+               <div id="file_Div">
+                    <div class = "pull-right">
+                      <apex:outputPanel id="ipfile">
+                          <apex:selectList value="{!selectedfile}" size="1" styleClass="selectedFile" onchange="fileChange(this.value);">
+                              <apex:selectOptions value="{!filetype}"/>
+                          </apex:selectList>
+                      </apex:outputPanel>
+                    </div>
+                    <!-- Standar Form -->
+                    <br/> <br/>
+                    
+                    <div class="form-inline pull-right">
+                        <div class="form-group">
+                            <input type="file" name="xlfile" id="xlf"/>
+                        </div>
+                    </div>
                 </div>
                 
+                <div class = "pull-right" id="newFileButton" style="display:none;" >
+                    <input type="button" value="Upload New File" onClick="window.location.reload()"/>
+                </div>
                 <br/>
+                <br/>
+                
+                <div id="warningId" class="alert alert-warning" style="display:none;">
+                    <strong>Warning!</strong> Please refresh the page for new file import.... 
+                </div>
+                
                 <br/>
                 
                 <div class="loader" id="loaderDiv" style="display:none;"></div>
                 <div id="alert_dangerId" class="alert alert-danger" style="display:none;">
-                    <strong>Danger!</strong> You should .
+                    <strong>Danger!</strong>.
                 </div>
+                
+                <div id="alert_SuccessId" class="alert alert-success" style="display:none;">
+                    <strong>Success!</strong> You should .
+                </div>
+                
+                <div id="alert_ErrorId" class="alert alert-danger" style="display:none;">
+                    <strong>Error!</strong> .
+                </div>
+                
                 <div style="margin:20px;">                    
                     <input id="importBtnId" style="display:none" class="btn" value="Start Import" type="button" onclick="getImportData();"/>
                     <a class="btn" id ="exportError" style="display:none" target="_blank" role="button">Export Error File</a>
@@ -280,6 +300,12 @@
             <script>
                 var loopCount=0;totalloopCount=1;
                 function getImportData(){
+                    $("#importBtnId").hide();
+                    $("#file_Div").hide();
+                    $("#newFileButton").show();
+                    
+                
+                    //$("#warningId").show();                    
                     $("#loaderDiv").show();
                     var timeepoch = (new Date).getTime();
                     var timeStamp = Math.floor(timeepoch/ 1000);                    
@@ -300,10 +326,8 @@
                         callImportPQNObj(0, rem,timeStamp);
                    
                     }
-
                     $("#exportSuccess").attr('href','{!$page.PQN_Export_Excel}?filestatus=success&timestamp='+timeStamp);
-                    $("#exportError").attr('href','{!$page.PQN_Export_Excel}?filestatus=error&timestamp='+timeStamp);
-                    
+                    $("#exportError").attr('href','{!$page.PQN_Export_Excel}?filestatus=error&timestamp='+timeStamp);    
                 }
             </script>        
             <script>
@@ -378,25 +402,25 @@
                     '{!$RemoteAction.PQN_UploadNCData_Clone.getSheetStatus}',
                     timeStamp,
                     function(result, event){
-                       if(event.result.Success>0){
-                            $("#exportSuccess").show();
+                        $("#alert_SuccessId").hide(); $("#alert_ErrorId").hide(); $("#showImportData").empty(); $("#alert_dangerId").hide();
+                       if(event.result.Success>0){                            
+                            $("#exportSuccess").show(); $("#alert_SuccessId").show();
+                            $("#alert_SuccessId").html('<strong>Successfully inserted</strong> records are '+event.result.Success);
                             $("#exportSuccess").text("Export Success Records- "+event.result.Success);
                             $("#loaderDiv").hide();
                         }
                         if(event.result.Error>0 && event.result.Error<501){
                              ErrorList(timeStamp);
-                             $("#insertErrorId").text("Insert ErrorList- "+event.result.Error);
-                             $("#exportError").show();
-                             $("#exportError").text("Export Error Records-"+event.result.Error);
+                             $("#insertErrorId").text("Submit");
+                             $("#alert_ErrorId").show(); $("#alert_ErrorId").html('<strong>Error</strong> records are '+event.result.Error);
+                             $("#exportError").show();  $("#exportError").text("Export Error Records-"+event.result.Error);
                              $("#loaderDiv").hide();
                         }else{                            
-                            $("#exportError").show();
-                            $("#exportError").text("Export Error Records-"+event.result.Error);
+                            $("#exportError").show(); $("#exportError").text("Export Error Records-"+event.result.Error);
                             $("#loaderDiv").hide();
                         }
                      }, 
-                     {escape: true, buffer: false,timeout: 120000}
-              );           
+                     {escape: true, buffer: false,timeout: 120000});           
            }
            </script>
            
@@ -409,7 +433,7 @@
                            if(result.length>0){                               
                                 var row = $("<thead>"); $("#showImportData").append(row); var rowtr = $("<tr>"); row.append(rowtr);
                                 rowtr.append($("<th>Error Detail</th>")); rowtr.append($("<th>Reporting DC</th>")); rowtr.append($("<th>SKU</th>")); rowtr.append($("<th>Supplier Number</th>"));
-                                rowtr.append($("<th>Supplier Alias</th>")); rowtr.append($("<th>Loss Code</th>")); rowtr.append($("<th>No. Of pallets per SKU NC</th>")); rowtr.append($("<th>Comments</th>"));
+                                rowtr.append($("<th>Supplier Name</th>")); rowtr.append($("<th>Loss Code</th>")); rowtr.append($("<th>No. Of pallets per SKU NC</th>")); rowtr.append($("<th>Comments</th>"));
                                 $.each(result, function(x, y) {
                                    var row = $("<tr class="+x+">");
                                    $("#showImportData").append(row);
@@ -485,13 +509,14 @@
             </script>
            
             <script>
-               function fileChange(){
+               function fileChange(fileType){
                   $("#exportSuccess").hide();
-                    $("#exportError").hide();
+                  $("#exportError").hide();
+                  //document.location.href = window.location.origin+ '?fileType=' + fileType;
               }
             
             </script>
-            <script>
+            <script>            
             function initiateInsertion(){ passStringToUploadDataTosObject(document.getElementById('out').innerText); }
             function saveexceldata(){ saveexceldatainapex(); }
             var xlf = document.getElementById('xlf');

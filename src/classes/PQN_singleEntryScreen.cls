@@ -11,6 +11,8 @@ public without sharing class PQN_singleEntryScreen{
 //    public Long dayLeft {get;set;}
     Id pqnId;
     integer err=0;
+    Map<string,PQN_DC_Hierarchy__c> mapdcdata = new Map<string,PQN_DC_Hierarchy__c>();
+    string dcuserrep = '';
     public PQN_singleEntryScreen(ApexPages.StandardController controller){
         immediate=true;
         immediatevalidate = true;
@@ -21,6 +23,8 @@ public without sharing class PQN_singleEntryScreen{
 
         reportingdc = new List<selectoption>();
         pqnId = Apexpages.currentpage().getparameters().get('id');
+        string firstdc='';
+        Map<string,PQN_DC_Hierarchy__c> mapmasterdata = new Map<string,PQN_DC_Hierarchy__c>();
         if(pqnId!=null){
             pqn = [select id,Reporting_DC__c,Region__c,DC_Country__c,MCO__c,Cluster__c,Sub_Cluster__c, Delivery_Note_Number__c,Description__c,
                     Product_Name__c,Product_Group__c,Product_Category__c,SKU__c,Supplier_type__c,Supplier__c,Supplier_Number__c,Non_compliance_reason_code__c,
@@ -29,12 +33,13 @@ public without sharing class PQN_singleEntryScreen{
         
         if(userinfo.getusertype() == 'Standard'){
             List<PermissionSetAssignment> PermissionSetAssigs = new List<PermissionSetAssignment>();
-            PermissionSetAssigs = [select id,PermissionSet.name,Assignee.country from PermissionSetAssignment where AssigneeId =: userinfo.getuserid()];
+            PermissionSetAssigs = [select id,PermissionSet.name,Assignee.country,Assignee.title from PermissionSetAssignment where AssigneeId =: userinfo.getuserid()];
             for(PermissionSetAssignment psa: PermissionSetAssigs){
                 if(psa.PermissionSet.name == 'PQN_Internal_User' && psa.Assignee.country != pqn.DC_Country__c){
                    // showsingleedit = false;
                    system.debug('enter');
                 }
+                
             }
         }
         
@@ -61,24 +66,71 @@ public without sharing class PQN_singleEntryScreen{
                     
                 }
             }
+            
             if(userinfo.getusertype() == 'Standard'){
-                user u = [select id,country from user where id=:userinfo.getuserid()];
-                List<Account> listac = new List<Account>();
-                if(u.country!=null){
-                    listac = [select id,name,billingcountry,pqn_country__c from Account where pqn_country__c!=null order by Name];
+                List<PermissionSetAssignment> PermissionSetAssigs1 = new List<PermissionSetAssignment>();
+            PermissionSetAssigs1 = [select id,PermissionSet.name,Assignee.country,Assignee.title from PermissionSetAssignment where AssigneeId =: userinfo.getuserid()];
+            for(PermissionSetAssignment psa: PermissionSetAssigs1){
+                if(psa.PermissionSet.name == 'PQN_DC_User'){
+                   // showsingleedit = false;
+                   dcuserrep = psa.Assignee.title;
+                   
                 }
+            }
+                user u = [select id,country,title from user where id=:userinfo.getuserid()];
+                List<Account> listac = new List<Account>();
+                //if(u.country!=null){
+                    listac = [select id,name,billingcountry,pqn_country__c from Account where pqn_country__c!=null order by Name];
+               // }
                 if(!listac.isEmpty()){
                     for(Account a:listac){
                         reportingdc.add(new selectoption(a.name,a.name));
+                        if(firstdc == ''){
+                            firstdc = a.name;
+                        }
                     }
                 }
             }
         }
         
+        
+        
+        mapmasterdata = PQN_DC_Hierarchy__c.getAll();
+        for(PQN_DC_Hierarchy__c dc: mapmasterdata.values()){
+            mapdcdata.put(dc.dc__c,dc);             
+        }
+        if(pqnId==null && userinfo.getusertype() == 'Standard' && reportingdc.size()>0 && firstdc!='' && mapdcdata.containskey(firstdc)){
+            
+            pqn.Region__c = mapdcdata.get(firstdc).region__c;
+            pqn.DC_Country__c = mapdcdata.get(firstdc).country__c;
+            pqn.Cluster__c = mapdcdata.get(firstdc).cluster__c;
+            pqn.Sub_Cluster__c = mapdcdata.get(firstdc).sub_cluster__c;                 
+            pqn.MCO__c = mapdcdata.get(firstdc).mco__c;
+            
+        }
+        if(pqnId==null && userinfo.getusertype() == 'Standard' && reportingdc.size()>0 && dcuserrep!='' && mapdcdata.containskey(dcuserrep)){
+            pqn.reporting_dc__c = dcuserrep;
+            pqn.Region__c = mapdcdata.get(dcuserrep).region__c;
+            pqn.DC_Country__c = mapdcdata.get(dcuserrep).country__c;
+            pqn.Cluster__c = mapdcdata.get(dcuserrep).cluster__c;
+            pqn.Sub_Cluster__c = mapdcdata.get(dcuserrep).sub_cluster__c;                 
+            pqn.MCO__c = mapdcdata.get(dcuserrep).mco__c;
+        }
+        
+        
     }
+    
     public void callRepDC(){
         String repDC= ApexPages.currentPage().getParameters().get('repDC');
-        if(repDC=='3512 - Jacksonville, FL DC'){
+        system.debug('sssssssssss'+mapdcdata.get(repDC));
+        if(mapdcdata.containskey(repDC) && mapdcdata.get(repDC)!=null){
+            pqn.Region__c = mapdcdata.get(repDC).region__c;
+            pqn.DC_Country__c = mapdcdata.get(repDC).country__c;
+            pqn.Cluster__c = mapdcdata.get(repDC).cluster__c;
+            pqn.Sub_Cluster__c = mapdcdata.get(repDC).sub_cluster__c;                 
+            pqn.MCO__c = mapdcdata.get(repDC).mco__c;
+        }
+      /*  if(repDC=='3512 - Jacksonville, FL DC'){
         
             pqn.Region__c ='Americas';
             pqn.DC_Country__c ='United States';
@@ -107,7 +159,7 @@ public without sharing class PQN_singleEntryScreen{
             pqn.MCO__c = 'Greece';
             
         
-        }
+        }*/
         
     
     }

@@ -5,21 +5,26 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>WWP_LossTree_CC21</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WWP_LossTree_CC21_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>WWP_LossTree_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WWP_Losstree_Copy_Component_Ctrl</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WWP_Losstree_Copy_Component_Ctrl_test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>WWP_Losstree_EXt</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>WWP_Last_job_run_record__c.Last_job_run_date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>WWP_Loss_Tree__c.Actual_Dispatch__c</field>
@@ -58,6 +63,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>WWP_Loss_Tree__c.InsertedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Last_job_run_date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -211,6 +221,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Plant_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>WWP_Loss_Tree__c.RegionId__c</field>
         <readable>true</readable>
@@ -223,6 +238,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>WWP_Loss_Tree__c.Resource_Line__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.SAP_vendor_code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.SF_Primary_Key__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.SF_key__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -251,6 +281,26 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Send_to_spp_after_2_wk__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Source_code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Ultimate_Supplier_code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Updated_field_otif__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>WWP_Loss_Tree__c.Week__c</field>
         <readable>true</readable>
@@ -262,10 +312,39 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>WWP_Loss_Tree__c.plant_description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>WWP_Loss_Tree__c.trigger_email__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Formula_OVERALL_SUPPLIER_OTIF_COMPLIANCE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.formula_SUPPLIER_OTIF_QTY_COMPLIANCE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Formula_SUPPLIER_OTIF_TIME_COMPLIANCE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <label>WWP User Permissions</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>WWP_Last_job_run_record__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -279,4 +358,24 @@
         <apexPage>WWP_LossTreeUpdate_VF</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <pageAccesses>
+        <apexPage>wwp_LosstreeSupplier_update</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <tabSettings>
+        <tab>LossTree_Supplier</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Loss_Tree</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<recordTypeVisibilities>
+        <recordType>Account.WWP_Account</recordType>
+        <visible>True</visible>
+	</recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <recordType>Contact.WWP_contact_layout</recordType>
+        <visible>True</visible>
+	</recordTypeVisibilities>
 </PermissionSet>

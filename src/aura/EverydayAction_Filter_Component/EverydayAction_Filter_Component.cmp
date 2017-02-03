@@ -24,25 +24,25 @@
           
         </aura:if> 
          
-        <span>
+        <div>
           <aura:iteration items="{!v.Themes}" var="themenames">
-             <SPAN> 
+             <div> 
              <aura:if isTrue="{!v.temp == themenames.Name ? true:false}">
-              <span>
+              <div>
                <c:EverydayAction_Active_Filter_component themeName="{!v.temp}"/>
                 <!-- <c:Theme_Filter_comp themeName="All Theme"/> -->
-                </span> 
+                </div> 
                </aura:if> 
               <aura:if isTrue="{!v.temp != themenames.Name ? true:false}"> 
-                <span>
+                <div>
                <c:EverydayAction_InActive_Filter_component themeName="{!themenames.Name}"/>
                     <!--     <c:Theme_InActiveFilter_comp themeName="{!themenames.Name}"/>  -->
-                </span>
+                </div>
              </aura:if> 
-              </SPAN>
+              </div>
              
         </aura:iteration>
-        </span>
+        </div>
     </div>     
     </div>     
 </aura:component>

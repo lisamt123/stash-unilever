@@ -119,6 +119,28 @@
         <fullName>Birthdate</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
+	<fields>
+        <fullName>BFM_CPF__c</fullName>
+        <description>Indicates the CPF provided by the user when creating a login.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please type numbers only</inlineHelpText>
+        <label>CPF</label>
+        <length>11</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>BFM_CarrierUserApproved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox to check if the Carrier User has been approved by their Carrier and Unilever internal user, and is now allowed to access Salesforce.</description>
+        <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
+        <label>BFM Carrier User Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>CNPJ__c</fullName>
         <description>Used to store CNPJ information for the contact.</description>
@@ -1221,7 +1243,7 @@
     </fields>
     <fields>
         <fullName>Title</fullName>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackFeedHistory>true</trackFeedHistory>
     </fields>
     <fields>
         <fullName>hoot2sf_FacebookId__c</fullName>
@@ -5323,6 +5345,82 @@
         <fullName>WWP_contact_layout</fullName>
         <active>true</active>
         <label>WWP contact layout</label>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+	<recordTypes>
+        <fullName>BFM_Carrier_Contact</fullName>
+        <active>true</active>
+        <description>Contact representing one Carrier User.</description>
+        <label>Carrier Contact</label>
         <picklistValues>
             <picklist>LeadSource</picklist>
             <values>

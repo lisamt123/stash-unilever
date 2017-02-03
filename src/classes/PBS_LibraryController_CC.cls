@@ -27,6 +27,7 @@
         public Map<String, Decimal> ranking {get; set;}
         
         public Map<String, String> groupnameMap{get; set;}
+        public Map<String, String> groupnameMap1{get; set;}
         /**
          * Current article type filter value
          */
@@ -75,6 +76,9 @@
          * Number of rows per page
          */
         public Integer rowsPerPage = 10;
+        public List<KnowledgeArticleVersion> PbsArticleSearchList {get;set;}
+        public List<KnowledgeArticleVersion> PbsArticleSearchList1{get;set;}
+        
         /**
          * Class constructor
          */
@@ -84,7 +88,9 @@
             language  = UserInfo.getLanguage();
             ranking   = new Map<String, Decimal>();
             groupnameMap = new Map<String, String>();
+            groupnameMap1 = new Map<String, String>();
             PbsArticleSearchList = new List<KnowledgeArticleVersion>();
+            PbsArticleSearchList1 = new List<KnowledgeArticleVersion>();
             //getPbsArticleList();
             pbsKnowledgeArticleList();
             
@@ -97,9 +103,7 @@
          */
         //public List<KnowledgeArticleVersion> getPbsArticleList()
         public List<KnowledgeArticleVersion> pbsKnowledgeArticleList()
-        {
-               
-                   
+        {                  
                 String query = getQuery(false);
                 query += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != 'Title' ? ', Title ASC' : '');
                 query += ' LIMIT ' + this.rowsPerPage;
@@ -107,78 +111,73 @@
                 system.debug('Query ->>'+query);
                 PbsArticleSearchList = Database.query(query);
                 String idStrings = '(\'';
-                for(KnowledgeArticleVersion xKAV : PbsArticleSearchList){
-                    
+                for(KnowledgeArticleVersion xKAV : PbsArticleSearchList){                    
                     idStrings += xKAV.Id+ '\',\'';
                 }
                 idStrings = idStrings.substring(0,idStrings.length()-2); 
-                idStrings += ')';
-                
+                idStrings += ')';                
                 
                 String QueryPBS_WIKI = 'Select Id,Group_Name__c FROM PBS_Wiki__kav where PublishStatus=\'Online\'';
+                       
                 if(PbsArticleSearchList.size()>0){
                        QueryPBS_WIKI += ' AND Id in' +idStrings;
-                       
-                   
-                    for(PBS_Wiki__kav xWIKI: Database.query(QueryPBS_WIKI)){
+                /*
+                if((groupNameSearch !=''  && groupNameSearch != null) &&  groupNameSearch != 'All'){
+                   QueryPBS_WIKI += ' AND Group_Name__c=\'System and Process\' ';
+            	}
+                 */   
+                System.debug('QueryPBS_WIK====>'+ QueryPBS_WIKI);
+                    
+                //groupnameMap1.clear(); 
+                    
+                for(PBS_Wiki__kav xWIKI: Database.query(QueryPBS_WIKI)){
+                        System.debug('xWIKI--->'+xWIKI.Group_Name__c);                    	
                         xWIKI.Group_Name__c = xWIKI.Group_Name__c==null ? '':xWIKI.Group_Name__c;
                         groupnameMap.put(xWIKI.Id,xWIKI.Group_Name__c);
+                    	//groupnameMap1.put(xWIKI.Id,xWIKI.Group_Name__c);	
                     }
+                   System.debug('groupnameMap--->'+groupnameMap); 
                 }
-                // load stats
+            	 /*	
+                 PbsArticleSearchList1.clear();
+				 for(KnowledgeArticleVersion  list1: PbsArticleSearchList){
+				 if(groupnameMap1.containsKey(list1.id)){
+				   PbsArticleSearchList1 .add(list1);
+				 }		
+				 }
+                 */
+                // load stats 
                 getPbsArticleStats(PbsArticleSearchList);
-                return PbsArticleSearchList;
-           
-          
+                return PbsArticleSearchList;         
         }
         
-        Set<Id> setKnowledgeId = new Set<Id>();
-        
-      
-        public List<KnowledgeArticleVersion> PbsArticleSearchList {get;set;}
+        Set<Id> setKnowledgeId = new Set<Id>();      
         
         public Pagereference getPbsArticleSearchList()
-        {
-        
-        
-        String pageUrl = ApexPages.currentPage().GetURL();
-
-        
-        if ((searchstring == null || searchstring == '' ) && !pageUrl.toLowerCase().contains('planwiki'))
-        {
-            PageReference pageRef = new PageReference('/apex/pbs_library');
-            pageRef.setRedirect(true);
-        
-        
+        {  
+           String searchQueryCount;  
+           String pageUrl = ApexPages.currentPage().GetURL();
+            
+           if ((searchstring == null || searchstring == '' ) && !pageUrl.toLowerCase().contains('planwiki'))
+           {
+             PageReference pageRef = new PageReference('/apex/pbs_library');
+             pageRef.setRedirect(true);       
             //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Search term must be longer than one character'));
-            return pageRef ;
-        } 
-        else if((searchstring == null || searchstring == '' ) && pageUrl.toLowerCase().contains('planwiki')){
-            PageReference pageRef = new PageReference('/apex/pbs_planwiki');
-            pageRef.setRedirect(true);
-        
-        
-            //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Search term must be longer than one character'));
-            return pageRef ;
-        
-        }
- 
- 
- 
- 
- 
-          if(searchstring != null && searchstring != '' && this.currentPage > 1){
-          
-              
+             return pageRef ;
+           } 
+           if((searchstring == null || searchstring == '' ) && pageUrl.toLowerCase().contains('planwiki')){
+              PageReference pageRef = new PageReference('/apex/pbs_planwiki');
+              pageRef.setRedirect(true);        
+              //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Search term must be longer than one character'));
+              pbsKnowledgeArticleList();
+              return null ;                      
+        	} 
+       		if(searchstring != null && searchstring != '' && this.currentPage > 1){
              this.currentPage = 1;
-              
-              
-          }
-           
-          
+        	}  
             //String searchQueryCount = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId WHERE PublishStatus=\'Online\' AND Language=\'en_US\'';
             //searchQueryCount += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != STR_TITLE ? ', Title ASC' : '') + ')';
-            String searchQueryCount = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId,Group_Name__c WHERE PublishStatus=\'Online\'';
+            searchQueryCount = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId,Group_Name__c WHERE PublishStatus=\'Online\'';
             searchQueryCount += ' AND Language=\''+language+'\'';
             if(groupNameSearch!='All'){
                 searchQueryCount += ' AND Group_Name__c=\''+groupNameSearch+'\' ';
@@ -186,8 +185,6 @@
             searchQueryCount += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != STR_TITLE ? ', Title ASC' : '') +')' ;
              system.debug('***searchQueryCount******'+searchQueryCount);
             List<List<sObject>> searchCountList = search.query(searchQueryCount);
-            
-            
              
            
             List<PBS_Wiki__kav> lstPbsWikiCount = searchCountList [0];      
@@ -242,8 +239,7 @@
          * @return String query string
          */
         private String getQuery()
-        {
-        
+        {        
                 String idString = '(\'';
                 for (Id thisId : setKnowledgeId) {
                     idString += thisId + '\',\'';
@@ -261,26 +257,25 @@
                 query += ' TranslationExportedDate, TranslationImportedDate, UrlName, VersionNumber ';
                
             
-             query += ' FROM ';
+            query += ' FROM ';
                 query += ' KnowledgeArticleVersion ';
             query += ' WHERE ';
             
             query += ' language = \'' + language + '\'';
-
+			
             query += STR_AND;
                 query += ' PublishStatus = \'Online\' ';
             query += STR_AND;
                 query += ' ArticleType IN (\'PBS_Wiki__kav\') ';
             
             if(!setKnowledgeId.isEmpty())  {  
-            query += STR_AND;
+                query += STR_AND;
                 query += ' KnowledgeArticleId IN '+idString;
-                }
+            }
                 
             if (!String.isBlank(filterArticleType)) {
                 query += ' AND ArticleType = \'' + String.escapeSingleQuotes(filterArticleType) + '\' ';
             }
-
             return query;
         }
         
@@ -303,9 +298,8 @@
                 Math.ceil(
                     Double.valueOf(getSearchCount) / Double.valueOf(this.rowsPerPage)
                 )
-            );
-            
-            result         = result == 0 ? 1 : result;
+            );            
+            result = result == 0 ? 1 : result;
             return result;
         }
         /**
@@ -341,10 +335,10 @@
                 //query += ' Id,KnowledgeArticleId, ArticleType, Title, UrlName, publishStatus, ';
                 //query += ' LastPublishedDate, LastModifiedById, Summary ';
             }
-             query += ' FROM ';
-                query += ' KnowledgeArticleVersion ';
+            query += ' FROM ';
+            query += ' KnowledgeArticleVersion ';
             query += ' WHERE ';
-            query += ' language = \'' + language + '\'';                                
+            query += ' language = \'' + language + '\'';
             query += ' AND ';
             query += ' PublishStatus = \'Online\' ';
             query += ' AND ';
@@ -491,8 +485,7 @@
 
     
           public Pagereference getPbsArticleSearchListSearch()
-        {
-        
+        {        
             String searchQuery = '';
             if(searchstring  != null && searchstring  != '')  {                            
             searchQuery = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId,Group_Name__c WHERE PublishStatus=\'Online\'';
@@ -507,7 +500,8 @@
             
             List<List<sObject>> searchList = search.query(searchQuery);
               system.debug('*******searchQuery'+searchQuery);    
-            List<PBS_Wiki__kav> lstPbsWiki = searchList[0];                   
+            List<PBS_Wiki__kav> lstPbsWiki = searchList[0];               
+                
            
            setKnowledgeId = new Set<ID>();
          
@@ -518,8 +512,8 @@
                 groupnameMap.put(objPbsWiki.Id,objPbsWiki.Group_Name__c);
             
             }
-            String newQuery = getQuery();
-              system.debug('*******newQuery '+newQuery  );
+           String newQuery = getQuery();
+           system.debug('*******newQuery '+newQuery  );
            PbsArticleSearchList = new List<KnowledgeArticleVersion> ();
            List<KnowledgeArticleVersion> PbsArticleSearchListnew1 = new List<KnowledgeArticleVersion> ();
            PbsArticleSearchListnew1 =Database.query(newQuery);
@@ -531,11 +525,16 @@
                     PbsArticleSearchList.add(obj);
                     
                 }
-            }
+            }  
+                /*         
+				PbsArticleSearchList1.clear();
+				for(KnowledgeArticleVersion  list1: PbsArticleSearchList){
+				    PbsArticleSearchList1 .add(list1);
+				}              
+                */
             getPbsArticleStats(PbsArticleSearchList);
             }
-            else{
-            
+            else{            
                 pbsKnowledgeArticleList();
             }
             

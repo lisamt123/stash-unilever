@@ -32,11 +32,11 @@ public with sharing class BEN_EmailRemainderSchedular implements Schedulable{
      listofUser.Add(distUser);
     }
     
-    //OrgWideEmailAddress Orgid = [Select Id,displayname from OrgWideEmailAddress];
+    OrgWideEmailAddress Orgid = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'sagar.ambasankar@unilever.com' LIMIT 1];
     Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-    //setting toaddress
-    //message.setOrgWideEmailAddressId('0D2E00000004Fc3KAE');
-     //setting from address
+    //setting from address
+    message.setOrgWideEmailAddressId(Orgid.Id);
+   //setting to address
    for(String distUserIds:distinctuserIds){
      message.setTargetObjectId(distUserIds);
     }  
@@ -51,14 +51,17 @@ public with sharing class BEN_EmailRemainderSchedular implements Schedulable{
     String body3='Kindly ignore this mail, if already undertaken.';
     String body4='This is an automatically generated email, please do not reply'; 
     String body5='Thanks,';
-    String body6    ='<GPL Team>';
+    String body6='GPL Team';
     //preparing main body
     String mailBody=body1+'\n'+'\n'+body2+'\n'+body3+'\n'+'\n'+body4+'\n'+'\n'+body5+'\n'+body6;
     message.plainTextBody=mailBody;
-            
+   try{        
    Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
    Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
-   
+   }
+   catch(System.EmailException ex){
+      System.debug(ex.getMessage());
+    }
   }
 
 }
