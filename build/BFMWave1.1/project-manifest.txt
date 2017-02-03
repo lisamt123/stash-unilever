@@ -183,7 +183,7 @@ src/layouts/BFM_SES__c-SES Layout.layout
 src/layouts/BFM_Shipment__c-Shipment Layout.layout
 src/layouts/BFM_Stage__c-Stage Layout.layout
 src/layouts/BFM_User_Creation_Request_Error__c-BFM User Creation Request Error Layout.layout
-src/layouts/BFM_UserCreationRequest__c-BFM User Creation Request Layout.layout
+src/layouts/BFM_UserCreationRequest__c-BFM Carrier User Request Layout.layout
 src/layouts/BFM_Payment_Method__c-Payment Method Layout.layout
 src/layouts/BFM_Withhold_Tax__c-Withhold Tax Layout.layout
 src/objects/BFM_AccountAccessRequest__c.object
