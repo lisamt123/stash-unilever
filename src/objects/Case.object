@@ -7007,7 +7007,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Philippines_All_Cases_FOM1</fullName>
-        <columns>PII_Data_Check__c</columns>
+        <columns>PII_Warning_Check__c</columns>
         <columns>L1_Product_Category__c</columns>
         <columns>CEC_Product_Hierarchy__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
@@ -7035,6 +7035,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.SUBJECT</field>
             <operation>notContain</operation>
             <value>spam</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>lessOrEqual</operation>
+            <value>1/31/2017 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
         </filters>
         <label>CEC Philippines - All Cases - PII check</label>
         <language>en_US</language>

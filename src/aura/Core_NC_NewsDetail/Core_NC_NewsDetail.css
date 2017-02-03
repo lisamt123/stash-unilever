@@ -113,7 +113,6 @@
 /*vartical align the content inside the table*/
 .THIS table td{
     vertical-align: top;
-    padding-left: 10px;
 }
 /*responsive richtext pannel*/
 .THIS .responsiverichtext{
@@ -126,6 +125,20 @@
     text-decoration:none;
     color:black;
 }
-/* .THIS .responsiverichtext p, .THIS .responsiverichtext div{
-padding-bottom:10px;
-} */
+.THIS .responsiverichtext p, .THIS .responsiverichtext div, .THIS .responsiverichtext span, .THIS .responsiverichtext li{
+    padding-bottom:10px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+.THIS hr{
+    margin:0.5rem 0;
+}
+.THIS .responsiverichtext table, .THIS .responsiverichtext h1, .THIS .responsiverichtext h2, .THIS .responsiverichtext h3, .THIS .responsiverichtext h4, .THIS .responsiverichtext h5, .THIS .responsiverichtext h6{
+    padding-bottom:10px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+.THIS .rtImg{
+    width:200px;
+    height:200px;
+}

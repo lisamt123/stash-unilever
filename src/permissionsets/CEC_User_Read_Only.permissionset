@@ -17359,6 +17359,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.BFM_CPF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.Birthdate</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -17621,6 +17626,16 @@
         <editable>true</editable>
         <field>Contact.Sapient_Language_Preference__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.TEL_Preferred_Contact_Method__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.TEL_Telephone_Extension__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -43222,6 +43237,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Contact.BFM_Carrier_Contact</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Contact.FS_Contact</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -43239,6 +43258,10 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Contact.Standard_Contact</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Contact.WWP_contact_layout</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

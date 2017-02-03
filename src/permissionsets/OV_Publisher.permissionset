@@ -17361,6 +17361,11 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.BFM_CPF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.Birthdate</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -17622,6 +17627,16 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Sapient_Language_Preference__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.TEL_Preferred_Contact_Method__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.TEL_Telephone_Extension__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -43476,6 +43491,10 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Contact.BFM_Carrier_Contact</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Contact.FS_Contact</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -43493,6 +43512,10 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Contact.Standard_Contact</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Contact.WWP_contact_layout</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

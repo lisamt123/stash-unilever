@@ -17394,6 +17394,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.BFM_CPF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Birthdate</field>
         <readable>true</readable>
@@ -17656,6 +17661,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Sapient_Language_Preference__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.TEL_Preferred_Contact_Method__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.TEL_Telephone_Extension__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -41804,6 +41819,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
+        <recordType>Contact.BFM_Carrier_Contact</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Contact Layout</layout>
         <recordType>Contact.FS_Contact</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -41821,6 +41840,10 @@
     <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
         <recordType>Contact.Standard_Contact</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Contact Layout</layout>
+        <recordType>Contact.WWP_contact_layout</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-Pitch Contact Layout</layout>
@@ -45558,6 +45581,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Contact.BFM_Carrier_Contact</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Contact.FS_Contact</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -45579,6 +45607,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Contact.Standard_Contact</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Contact.WWP_contact_layout</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
