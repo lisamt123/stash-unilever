@@ -533,7 +533,7 @@ Throws : N/A
             Id promoId = (Id)unTypedMap.get(UtilityEnum.Id.Name()); 
             String objectName =  String.valueOf(((Id)promoId).getSObjectType());
             List<ACCL__Promotion__c> PromoList = new List<ACCL__Promotion__c>();
-            promoList = [SELECT Id, Name, ACCL__Parent_Promotion__c, UL_Current_Status__c,UL_Parent_Push_Id__c, UL_PromotionTemplateType__c, ACCL__Sales_Org__c,UL_EnableChild__c,ACCL__Promotion_Template__c FROM ACCL__Promotion__c WHERE Id =:promoId];
+            promoList = [SELECT Id, Name, UL_Current_Status__c,UL_Parent_Push_Id__c, UL_PromotionTemplateType__c, ACCL__Sales_Org__c,UL_EnableChild__c,ACCL__Promotion_Template__c FROM ACCL__Promotion__c WHERE Id =:promoId];
             //for hiding lift field from promotion page when Promotion template is LTA
             System.debug('promoList[0].UL_PromotionTemplateType__c::::::::::'+promoList[0].UL_PromotionTemplateType__c);
             
@@ -633,9 +633,9 @@ Throws : N/A
                 
             }
             //Added by Abhishek for the visibility control of buttons for UKI
-            boolean isChildPromotion = promoList[0].UL_Parent_Push_Id__c!=null || promoList[0].ACCL__Parent_Promotion__c!=null ? true : false;
+            boolean isChildPromotion = promoList[0].UL_Parent_Push_Id__c!=null ? true : false;
              List<EARUI> btList = new List<EARUI>();
-             btList = UL_ComponentVisibility.hideButtons(promoList[0].ACCL__Sales_Org__c, status, isChildPromotion );
+             btList = UL_ComponentVisibility.hideButtons(promoList[0].ACCL__Sales_Org__c, status, isChildPromotion);
              earBOPromotion.addall(btList);
              System.debug('vinod add all buttons---->'+earBOPromotion);
             
@@ -709,7 +709,7 @@ Throws : N/A
             }*/
 
             
-            promo=[Select Id,UL_EnableChild__c, ACCL__Parent_Promotion__c, UL_Current_Status__c, ACCL__Sales_Org__c, UL_Parent_Push_Id__c, UL_PromotionTemplateType__c from ACCL__Promotion__c where ID =:tacticParentId LIMIT 1];
+            promo=[Select Id,UL_EnableChild__c, UL_Current_Status__c, ACCL__Sales_Org__c, UL_Parent_Push_Id__c, UL_PromotionTemplateType__c from ACCL__Promotion__c where ID =:tacticParentId LIMIT 1];
             List<ACCL__tactic__c> taclst = new List<ACCL__tactic__c>();
             System.debug('promo.UL_PromotionTemplateType__c::::::::::'+promo.UL_PromotionTemplateType__c);
             //for hiding lift field from Tactic page if tactic template is Long Term Agreement
@@ -725,7 +725,7 @@ Throws : N/A
                 //}   
             }
             List<EARUI> btList = new List<EARUI>();
-            //btList = UL_ComponentVisibility.hideButtons(promo.ACCL__Sales_Org__c, promo.UL_Current_Status__c);
+            btList = UL_ComponentVisibility.hideButtons(promo.ACCL__Sales_Org__c, promo.UL_Current_Status__c, false);
             earBOTactic.addall(btList);
             
             
