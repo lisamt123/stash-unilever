@@ -6,12 +6,6 @@ src/email
 src/email/unfiled$public
 src/email/unfiled$public/UL_Budget_Approval.email
 src/email/unfiled$public/UL_Budget_Approval.email-meta.xml
-src/email/unfiled$public/UL_Fund_Transaction_Approval_Email.email
-src/email/unfiled$public/UL_Fund_Transaction_Approval_Email.email-meta.xml
-src/email/unfiled$public/UL_Fund_Transaction_Approved_Email.email
-src/email/unfiled$public/UL_Fund_Transaction_Approved_Email.email-meta.xml
-src/email/unfiled$public/UL_Fund_Transaction_Rejected_Email.email
-src/email/unfiled$public/UL_Fund_Transaction_Rejected_Email.email-meta.xml
 src/email/unfiled$public/UL_Promotion_Approval.email
 src/email/unfiled$public/UL_Promotion_Approval.email-meta.xml
 src/email/unfiled$public/UL_Promotion_End_Notification.email
