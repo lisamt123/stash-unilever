@@ -1,4 +1,4 @@
-/*
+ /*
 This Helper class is used to get picklist value from schema as well as from 
 custom setting. This return options according to ECC depedent and default values
 as from SAP we get only starting codes and not the completed value.
