@@ -103,7 +103,7 @@ public class VPM_GoldenDataController2Test{
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
         pur.VPM_DeletionBlockFlag__c = 'MDM Ops Review - Unblock';
         pur.VPM_GlobalAuthorisationGroup__c='Authorization';
-        pur.VPM_Industry__c = '9001_Oils';    
+        pur.VPM_Industry__c = '9001';    
         insert pur;
         
         pur.VPM_Commodity__c=commodityCode.id;
@@ -180,7 +180,7 @@ public class VPM_GoldenDataController2Test{
         //pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
         pur.VPM_GlobalAuthorisationGroup__c='Authorization';
-        pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_Industry__c = '9001';
         insert pur;
         pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_CashManagementGroup__c = 'V1000_Vendor RM_Vendors: RM & Packaging';
@@ -250,7 +250,7 @@ public class VPM_GoldenDataController2Test{
         //pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
         pur.VPM_GlobalAuthorisationGroup__c='Authorization';
-        pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_Industry__c = '9001';
         insert pur;
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
@@ -319,7 +319,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         //pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
         pur.VPM_GlobalAuthorisationGroup__c='Authorization';
-        pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_Industry__c = '9001';
         insert pur;
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
@@ -402,7 +402,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
        
         pur.VPM_VendorType__c =FREIGHTVENDOR;
         pur.VPM_Country__c =VPM_COUNTRYNAME;
-        pur.VPM_Industry__c = '9001_Oils'; 
+        pur.VPM_Industry__c = '9001'; 
         //pur.VPM_Commodity_Family__c = 'Out of Scope';
         insert pur;
         pur.VPM_Commodity__c=commodityCode.id;
@@ -484,7 +484,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         //pur.VPM_DeletionBlockFlag__c ='delete';
      //  pur.VPM_Company_Code_Value__c = '2611';
         pur.VPM_ProvidedUnblockUndelete__c= TRUE;
-        pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_Industry__c = '9001';
         pur.VPM_Country__c =VPM_COUNTRYNAME;
         pur.VPM_VendorType__c =FREIGHTVENDOR;
         //pur.VPM_Commodity_Family__c =commodityCode.VPM_CommodityFamily__c;
@@ -1086,7 +1086,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         pur.VPM_ClerksInternet__c = '';
         pur.VPM_Country__c = 'IN_India';
         pur.VPM_ExtensionType__c = VPM_RecordTypeHelper.REGIONAL_REQUEST;
-        pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_Industry__c = '9001';
         insert pur;
         insert commodityCode;
         pur.VPM_Commodity__c = commodityCode.id;
@@ -1344,7 +1344,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'FRGT_Freight Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='Freight_Freight';        
-       	purId.VPM_FreightApprovalRequired__c=true;
+        purId.VPM_FreightApprovalRequired__c=true;
         
         
        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
@@ -1407,7 +1407,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
          pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
          pur.VPM_RussianTaxApprovalRequired__c=false;
-      	
+        
          pur.VPM_Rework__c='No';
          pur.VPM_AdvancedFormSubmitted__c='Yes';
          pur.VPM_RussiaSubmitted__c='No';
@@ -1515,7 +1515,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-    	purId.VPM_BankDataValidationRequired__c=true;
+        purId.VPM_BankDataValidationRequired__c=true;
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
        // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
@@ -1676,7 +1676,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         purcReqlst.add(purId);
         VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
     }
-	
+    
     static VPM_PurchasingRequests__c TestDataPositive3(){
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
@@ -1906,5 +1906,5 @@ static testMethod void VPM_ApprovalMethodFreight12(){
     }
     
     
- 	 
+     
 }

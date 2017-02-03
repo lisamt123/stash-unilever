@@ -122,10 +122,24 @@
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitted__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.RecordType</field>
+            <operation>notEqual</operation>
+            <value>Vendor Request</value>
+        </criteriaItems>
     </entryCriteria>
     <finalApprovalActions>
         <action>
             <name>VPM_ApprovalStatusAproval</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ApprovedByBankValidationEmail</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -169,6 +183,10 @@
         </action>
         <action>
             <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_RejectedByEmail</name>
             <type>FieldUpdate</type>
         </action>
         <action>
