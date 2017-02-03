@@ -10,7 +10,8 @@ Purpose:  Used to trigger the Approval process
 History                                                            
 -------                                                            
 VERSION  AUTHOR       DATE             DETAIL                  Description
-1.0 - Samrin       09/09/2016       INITIAL DEVELOPMENT     Invocable method which is call in PB to trigger the approval process 
+1.0 - Samrin       09/09/2016       INITIAL DEVELOPMENT     Invocable method which is call in PB to trigger the approval process
+2.0 - Samrin 	   23/01/2017		IAVMD-2533 Approval Stage for [Country] Master Data Management Team
 ****************************************************************************/
 
 public  class VPM_ApprovalSubmit {
@@ -49,7 +50,8 @@ public  class VPM_ApprovalSubmit {
                 if(purc.VPM_BusinessRequestorSubmitted__c==YES && purc.VPM_Rework__c==NO)
                 { ProcessName='VPM_PurchasingRequestFLSApprovals'; // FLS Approval Process 
                 }
-            else if(purc.VPM_Rework__c==NO && Purc.VPM_AdvancedFormSubmitted__c==YES && purc.VPM_ProcurementApprovalRequired__c && purc.VPM_ProcurementSubmitted__c==NO && (purc.VPM_IsInApprovalProcess__c=='' || purc.VPM_IsInApprovalProcess__c==null)
+            else if(purc.VPM_Rework__c==NO && Purc.VPM_AdvancedFormSubmitted__c==YES && purc.VPM_ProcurementApprovalRequired__c &&
+                    purc.VPM_ProcurementSubmitted__c==NO && (purc.VPM_IsInApprovalProcess__c=='' || purc.VPM_IsInApprovalProcess__c==null)
                    )
             {   ProcessName='VPM_ProcurementApproval';  // Procurement approval Process 
             }
@@ -72,6 +74,12 @@ public  class VPM_ApprovalSubmit {
             else  if(purc.VPM_Rework__c==NO && Purc.VPM_AdvancedFormSubmitted__c==YES  && purc.VPM_FinanceApprovalRequired__c && purc.VPM_FinanceSubmitted__c==NO && (purc.VPM_IsInApprovalProcess__c=='' || purc.VPM_IsInApprovalProcess__c==null)
                    )
             {    ProcessName='VPM_VendorRequestFinaceApproval'; // Finance  T-Z  Approval Process
+            }
+            else  if(purc.VPM_Rework__c==NO && Purc.VPM_AdvancedFormSubmitted__c==YES  && (purc.VPM_BusinessRequestorSubmitted__c==NO || purc.VPM_BusinessRequestorSubmitted__c=='' || purc.VPM_BusinessRequestorSubmitted__c==null ) && !purc.VPM_ProcurementApprovalRequired__c 
+						&& !purc.VPM_FreightApprovalRequired__c &&!purc.VPM_RussianTaxApprovalRequired__c &&!purc.VPM_BankDataValidationRequired__c && !purc.VPM_FinanceApprovalRequired__c && 
+purc.VPM_MasterDataManagementApprovalRequired__c  && purc.VPM_MasterDataManagementSubmitted__c==NO && (purc.VPM_IsInApprovalProcess__c=='' || purc.VPM_IsInApprovalProcess__c==null)
+                   )
+            {    ProcessName='VPM_MasterDataManagementApprovalProcess'; // Master Data Manegement  Approval Process
             }
                 System.debug('------ProcessName' + ProcessName);
                 submitRequest.setProcessDefinitionNameOrId(ProcessName);

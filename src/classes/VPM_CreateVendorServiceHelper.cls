@@ -51,7 +51,7 @@ global class VPM_CreateVendorServiceHelper {
             try 
             {
                 numTimes++;
-                res = VPM_HttpUtil.sendRequest('POST',reqBodyJson,'VPM_CreateVendorBPM');
+                res = VPM_HttpUtil.sendRequest('POST',reqBodyJson,'VPM_CreateVendorBPM',vendorId);
                 System.debug('------whole response string----'+ res.toString());
                 System.debug('------HTTP response status, status code and response body are ------'+res.getStatus() + '  ' + res.getStatusCode() + '  '+res.getBody());
                // statusCodeStr = String.valueOf(res.getStatusCode());
@@ -68,6 +68,7 @@ global class VPM_CreateVendorServiceHelper {
                         }
                         responseString = msg;
                         if(res.getStatusCode() == 200 ) {
+                        responseString = System.Label.VPM_SendToSAPSuccessMessage+';'+msg;
                             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
                             VPM_HttpUtil.updateRecordType(vendorId);
                            // VPM_HttpUtil.updateFieldType(vendorId);

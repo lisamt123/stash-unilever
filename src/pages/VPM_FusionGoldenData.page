@@ -57,7 +57,7 @@
                      
                 
                 
-               <apex:pageBlockSectionItem >               
+               <apex:pageBlockSectionItem HelpText="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountGroup__c.inlineHelpText}">               
                    <apex:outputLabel value="{!$Label.Account_Group}" for="ACCGrp" />
                    <apex:inputField id="ACCGrp" value="{!VPM_PurchasingRequests__c.VPM_AccountGroup__c}" required="true"/>  
                </apex:pageBlockSectionItem>
@@ -89,15 +89,18 @@
                  
                  <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_Street1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Street1__c }" required="true"/-->
                  <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_City__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_City__c }"  required="true"/-->
-                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OrderingEmailAddress__c.Label}"   value="{!VPM_PurchasingRequests__c.VPM_OrderingEmailAddress__c}" required="{!isReqOrderingEmail}" rendered="{!showOrderingEmail}"/>
-                 <!--apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
+               <apex:pageBlockSectionItem HelpText="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OrderingEmailAddress__c.inlineHelpText}" rendered="{!showOrderingEmail}">
+                   <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OrderingEmailAddress__c.Label}"/> 
+                   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OrderingEmailAddress__c.Label}"   value="{!VPM_PurchasingRequests__c.VPM_OrderingEmailAddress__c}" required="{!isReqOrderingEmail}" rendered="{!showOrderingEmail}"/>
+               </apex:pageBlockSectionItem>
+                    <!--apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Country__c.Label}"/>
                  <apex:outputPanel layout="block" styleClass="requiredInput">
                  <apex:outputpanel layout="block" styleClass="requiredBlock"/ -->
                  <!--apex:inputField value="{!purchReqVar.VPM_Country__c}" required="true" /-->
                  <!--/apex:outputPanel>
                  </apex:pageBlockSectionItem-->
-                 <apex:pageBlockSectionItem >             
+                 <apex:pageBlockSectionItem HelpText="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.inlineHelpText}">             
                     <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}" />    
                          <apex:outputPanel layout="block" styleClass="requiredInput">
                              <apex:outputpanel layout="block" styleClass="requiredBlock"/>                  
@@ -107,12 +110,24 @@
                                <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}"/ -->
                          </apex:outputPanel>
               </apex:pageBlockSectionItem>
+              <apex:pageBlockSectionItem HelpText="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TermsOfPayment__c.inlineHelpText}">             
+                    <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TermsOfPayment__c.Label}" />    
+                         <apex:outputPanel layout="block" styleClass="requiredInput">
+                             <apex:outputpanel layout="block" styleClass="requiredBlock"/>                  
+                              <apex:selectList value="{!termsOFPayment}"  multiselect="false" size="1">
+                               <apex:selectOptions value="{!termsofPaymentOptions}"/>                            
+                               </apex:selectList>
+                    </apex:outputPanel>
+              </apex:pageBlockSectionItem>
               <apex:selectList value="{!vendorCashManagementGrp}"  multiselect="false" size="1" label="Cash management Group">
                     <apex:selectOptions value="{!CashManagementGrp}"/>
                   </apex:selectList>
               <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_SortKey__c}" />
-                <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ReconciliationAccount__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReconciliationAccount__c}" required="true"/>
-                 <!--apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
+               <apex:pageBlockSectionItem HelpText="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReconciliationAccount__c.inlineHelpText}">
+                   <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReconciliationAccount__c.Label}"/>
+                   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ReconciliationAccount__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReconciliationAccount__c}" required="true"/>
+               </apex:pageBlockSectionItem>
+                   <!--apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SortKey__c.Label}"/>
                  <apex:outputPanel layout="block" styleClass="requiredInput">
                  <apex:outputpanel layout="block" styleClass="requiredBlock"/>
@@ -137,7 +152,7 @@
                    <apex:outputLabel value="{!$Label.VPM_PreSelectedPaymentMethod}"/>
                    <apex:outputField value="{!purchReqVar.VPM_PaymentMethod__c}"/> 
                </apex:pageBlockSectionItem>  
-               <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px"> 
+               <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" HelpText="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentMethod__c.inlineHelpText}"> 
                    <apex:outputLabel value="{!$Label.VPM_PaymentMethodChanged}"/>
                    <!--apex:outputPanel layout="block" styleClass="requiredInput">
                        <apex:outputpanel layout="block" styleClass="requiredBlock"/-->

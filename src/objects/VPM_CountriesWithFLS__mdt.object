@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>VPM - Custom Meta data which is used to keep the track Whether Country has FLS or Not</description>
+    <description>VPM - Used to track whether Country Requesting Vendor has an FLS or Local MDM team enabled</description>
     <fields>
         <fullName>FLS__c</fullName>
         <defaultValue>false</defaultValue>
@@ -22,7 +22,16 @@
         <type>Text</type>
         <unique>true</unique>
     </fields>
-    <label>Countries with FLS</label>
-    <pluralLabel>Countries with FLS</pluralLabel>
+    <fields>
+        <fullName>VPM_LocalMasterDataManagement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - used to track whether Country Requesting Vendor has an  Local MDM team enabled</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Local Master Data Management</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>Countries with FLS/Local MDM</label>
+    <pluralLabel>Countries with FLS/Local MDM</pluralLabel>
     <visibility>Public</visibility>
 </CustomObject>
