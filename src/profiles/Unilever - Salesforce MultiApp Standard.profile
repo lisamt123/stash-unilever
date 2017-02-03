@@ -4049,6 +4049,7 @@
     <pageAccesses>
         <apexPage>im_IssuesLP</apexPage>
         <enabled>false</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>maketingRedirect</apexPage>
         <enabled>false</enabled>
