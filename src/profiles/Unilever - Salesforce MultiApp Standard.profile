@@ -2315,10 +2315,6 @@
         <apexPage>SendToChatter</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>Template</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>AF_Bonus_Results__c.Bonus_Annual</recordType>
