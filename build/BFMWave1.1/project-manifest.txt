@@ -171,6 +171,7 @@ src/groups/BFM_Governance.group
 src/homePageLayouts/BFM Home Page.homePageLayout
 src/layouts/Account-BFM Unilever Account.layout
 src/layouts/Account-Carrier.layout
+src/layouts/Contact-Carrier Contact Layout.layout
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
 src/layouts/BFM_Bank_Information__c-BFM Bank Information Layout.layout
 src/layouts/BFM_Company_Code__c-Company Code Layout.layout
@@ -282,6 +283,7 @@ src/tabs/BFM_Search_Shipment.tab
 src/tabs/BFM_Search_Shipment_Cte.tab
 src/tabs/BFM_Search_Occurrence.tab
 src/tabs/BFM_Stage__c.tab
+src/tabs/BFM_Email_Information__c.tab
 src/tabs/BFM_UserCreationRequest__c.tab
 src/tabs/BFM_Payment_Method__c.tab
 src/tabs/BFM_Withhold_Tax__c.tab
