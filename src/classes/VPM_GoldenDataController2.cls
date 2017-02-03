@@ -386,16 +386,19 @@ with Sharing public class VPM_GoldenDataController2 {
       system.debug('@@ LATAm Countries:' + obj);
         latam = obj.VPM_CountryName__c;
         
-        system.debug('@@ LATAm Countries:' + latam);
+      //  system.debug('@@ LATAm Countries:' + latam);
         IF(purchReqVar.VPM_Country__c == VENDOR_COUNTRY)
         {   isRequiredFieldCountry = true; }
         else 
         { isRequiredFieldCountry = false;  }
-                   
+        
+        if(purchReqVar.VPM_Country__c <> null || String.isNotBlank(latam))
+        {           
         if(purchReqVar.VPM_Country__c == VENDOR_COUNTRY || latam.contains(purchReqVar.VPM_Country__c))      
         { isRequiredtax1 = true; }
         else
         { isRequiredtax1 = false; }
+        }
 
        
         /*//modified for IAPR-605
@@ -536,15 +539,23 @@ with Sharing public class VPM_GoldenDataController2 {
         
          //modified by Vaishali nagar for IAPR-605
            
-            if(purchReqVar.VPM_Country__c <> null)
+            if(purchReqVar.VPM_Country__c <> null || String.isNotBlank(latam))
             {
-                if(latam.contains(purchReqVar.VPM_Country__c) || purchReqVar.VPM_Country__c == VENDOR_COUNTRY){
+                if(purchReqVar.VPM_Country__c == VENDOR_COUNTRY){
                     isRequiredtax1 = true;
+                }else if(String.isNotBlank(latam))
+                {
+                  if(latam.contains(purchReqVar.VPM_Country__c))
+                  {
+                     isRequiredtax1 = true;
+                  }
+                  else{
+                    isRequiredtax1=false; }
                 } 
                 else
                 {
                     isRequiredtax1=false; }
-                    system.debug('@@ latam' + latam);
+                    //system.debug('@@ latam' + latam);
                     system.debug('@@ purchReqVar.VPM_Country__c' + purchReqVar.VPM_Country__c);
                     system.debug('@@ tax number 1' + purchReqVar.VPM_TaxNumber1__c);
                 

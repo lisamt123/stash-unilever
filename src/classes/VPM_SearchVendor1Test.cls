@@ -89,7 +89,7 @@ public class VPM_SearchVendor1Test{
         pur.VPM_ClerksInternet__c = '';
         pur.VPM_Country__c = vpmCountry;
         pur.VPM_ExtensionType__c = VPM_RecordTypeHelper.REGIONAL_REQUEST;
-        pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_Industry__c = '9001';
         pur.VPM_SupplierAchillesRegistration__c = '';
         insert pur;
         insert commodityCode;
@@ -169,7 +169,7 @@ public class VPM_SearchVendor1Test{
         pur.VPM_VendorType__c = 'MBS--Other_MBS--Other';
         pur.VPM_ClerksInternet__c = '';
         pur.VPM_Country__c = vpmCountry;
-        pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_Industry__c = '9001';
         pur.VPM_IsVendorSME__c = 'Yes';
         insert pur;
         insert commodityCode;
@@ -249,7 +249,7 @@ public class VPM_SearchVendor1Test{
         pur.VPM_VendorType__c = 'MBS--Other_MBS--Other';
         pur.VPM_ClerksInternet__c = '';
         pur.VPM_Country__c = vpmCountry;
-        pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_Industry__c = '9001';
         pur.VPM_IsVendorSME__c = 'Yes';
         insert pur;
         insert commodityCode;

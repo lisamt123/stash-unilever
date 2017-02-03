@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+	<alerts>
+        <fullName>VPM_RequestforUsertoCompleteVendorRequestSurvey</fullName>
+        <description>Request for User to Complete Vendor Request Survey</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_UserSurveyRequest</template>
+    </alerts>
     <alerts>
         <fullName>VPM_RequestRejectMDMNotification</fullName>
         <description>VPM - Used to send Notification to the MDM Ops  when the request is rejected</description>
@@ -17,7 +28,8 @@
         <description>VPM Send email to Vendor Email</description>
         <protected>false</protected>
         <recipients>
-            <type>creator</type>
+            <field>VPM_VendorContactDetail__c</field>
+            <type>email</type>
         </recipients>
         <senderAddress>supplier.information@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
