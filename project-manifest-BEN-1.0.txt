@@ -161,3 +161,5 @@ src/reportTypes
 src/reportTypes/BEN_Category_Details.reportType
 src/workflows
 src/workflows/BEN_Category_Details__c.workflow
+src/flowDefinitions
+src/flowDefinitions/BEN_CategoryDetails.flowDefinition

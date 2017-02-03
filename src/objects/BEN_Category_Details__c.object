@@ -731,6 +731,18 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <picklistValues>
                 <fullName>Other</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+                <controllingFieldValues>HHC</controllingFieldValues>
+                <controllingFieldValues>Hair</controllingFieldValues>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+                <controllingFieldValues>Laundry</controllingFieldValues>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>P/S</fullName>
@@ -1754,7 +1766,18 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <picklistValues>
                 <fullName>Other</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+                <controllingFieldValues>HHC</controllingFieldValues>
+                <controllingFieldValues>Hair</controllingFieldValues>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+                <controllingFieldValues>Laundry</controllingFieldValues>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
                 <controllingFieldValues>Savoury</controllingFieldValues>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>APA</fullName>
@@ -1855,6 +1878,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>n/a</fullName>
                 <default>false</default>
                 <controllingFieldValues>HHC</controllingFieldValues>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Powder</fullName>
@@ -2642,7 +2666,32 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <label>All</label>
         <language>en_US</language>
         <sharedTo>
+            <group>BEN_Beverages_Category_Approver_Editor</group>
+            <group>BEN_Beverages_Category_Viewer</group>
+            <group>BEN_Deodorants_Category_Approver_Editor</group>
+            <group>BEN_Deodorants_Category_Viewer</group>
+            <group>BEN_Dressings_Category_Approver_Editor</group>
+            <group>BEN_Dressings_Category_Viewer</group>
             <group>BEN_GPL_User</group>
+            <group>BEN_HHC_Category_Approver_Editor</group>
+            <group>BEN_HHC_Category_Viewer</group>
+            <group>BEN_Hair_Category_Approver_Editor</group>
+            <group>BEN_Hair_Category_Viewer</group>
+            <group>BEN_Ice_Cream_Category_Approver_Editor</group>
+            <group>BEN_Ice_Cream_Category_Viewer</group>
+            <group>BEN_Laundry_Category_Approver_Editor</group>
+            <group>BEN_Laundry_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
+            <group>BEN_Oral_Care_Category_Approver_Editor</group>
+            <group>BEN_Oral_Care_Category_Viewer</group>
+            <group>BEN_Savoury_Category_Approver_Editor</group>
+            <group>BEN_Savoury_Category_Viewer</group>
+            <group>BEN_Skin_Care_Category_Approver_Editor</group>
+            <group>BEN_Skin_Care_Category_Viewer</group>
+            <group>BEN_Skin_Cleansing_Cat_Approver_Editor</group>
+            <group>BEN_Skin_Cleansing_Category_Viewer</group>
+            <group>BEN_Spreads_Category_Approver_Editor</group>
+            <group>BEN_Spreads_Category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2669,6 +2718,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_Beverages_Category_Approver_Editor</group>
             <group>BEN_Beverages_Category_Viewer</group>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2721,6 +2771,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_Dressings_Category_Approver_Editor</group>
             <group>BEN_Dressings_Category_Viewer</group>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2747,6 +2798,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_GPL_User</group>
             <group>BEN_HHC_Category_Approver_Editor</group>
             <group>BEN_HHC_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2773,6 +2825,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_GPL_User</group>
             <group>BEN_Hair_Category_Approver_Editor</group>
             <group>BEN_Hair_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2799,6 +2852,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_GPL_User</group>
             <group>BEN_Ice_Cream_Category_Approver_Editor</group>
             <group>BEN_Ice_Cream_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2825,6 +2879,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_GPL_User</group>
             <group>BEN_Laundry_Category_Approver_Editor</group>
             <group>BEN_Laundry_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2849,6 +2904,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Oral_Care_Category_Approver_Editor</group>
             <group>BEN_Oral_Care_Category_Viewer</group>
         </sharedTo>
@@ -2875,6 +2931,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Savoury_Category_Approver_Editor</group>
             <group>BEN_Savoury_Category_Viewer</group>
         </sharedTo>
@@ -2901,6 +2958,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Skin_Care_Category_Approver_Editor</group>
             <group>BEN_Skin_Care_Category_Viewer</group>
         </sharedTo>
@@ -2927,6 +2985,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Skin_Cleansing_Cat_Approver_Editor</group>
             <group>BEN_Skin_Cleansing_Category_Viewer</group>
         </sharedTo>
@@ -2953,6 +3012,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Spreads_Category_Approver_Editor</group>
             <group>BEN_Spreads_Category_Viewer</group>
         </sharedTo>
