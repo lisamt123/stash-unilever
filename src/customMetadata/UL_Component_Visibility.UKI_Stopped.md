@@ -26,4 +26,8 @@
         <field>UL_Visible_Components__c</field>
         <value xsi:nil="true"/>
     </values>
+    <values>
+        <field>UL_is_Child_Promotion__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
 </CustomMetadata>

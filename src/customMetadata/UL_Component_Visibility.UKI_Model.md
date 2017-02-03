@@ -26,4 +26,8 @@
         <field>UL_Visible_Components__c</field>
         <value xsi:type="xsd:string">TOOLBAR_BTN_SIMULATION;TOOLBAR_BTN_PLANNED;TOOLBAR_BTN_SUBMITTEDFORAPPROVAL;TOOLBAR_BTN_CANCELLED</value>
     </values>
+    <values>
+        <field>UL_is_Child_Promotion__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
 </CustomMetadata>

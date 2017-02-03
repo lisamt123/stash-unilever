@@ -54,6 +54,14 @@
         <required>false</required>
         <type>TextArea</type>
     </fields>
+    <fields>
+        <fullName>UL_is_Child_Promotion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>is Child Promotion</label>
+        <type>Checkbox</type>
+    </fields>
     <label>UL Component Visibility</label>
     <pluralLabel>UL Component Visibility</pluralLabel>
     <visibility>Public</visibility>
