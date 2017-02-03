@@ -2,6 +2,7 @@
  * Queueable class to isolate User creation from other DML, since it will give an error if ran synchronously. 
  * After user creation, this class enqueues the Account Sharing creation for the needed Accounts
  * 
+
  * @author Zanquini, Vinicius
  * @date 2016/08/02
  * */
@@ -30,21 +31,8 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
                 if(usr.id!=null){
                     BFM_LoginuserPermissions.assignPermissionset(usr.id, userRequestId);
                 }
-             /*   string psName ='';
-                if(userRequest.Operational_User__c == true){
-                    psName = 'BFM_Carrier_Operational_User';
-                }
-                 PermissionSet ps = new PermissionSet();
-                 if(psName!=''){
-                     ps = [select id from PermissionSet where name=: psName limit 1];
-                 }
-                 if(ps!=null && usr!=null){
-                     PermissionSetAssignment psa = new PermissionSetAssignment();
-                     psa.AssigneeId = usr.id;
-                     psa.PermissionSetId = ps.id;
-                     insert psa;
-                 }*/
             } 
+
            
             catch(DMLException e){
                 errorMessage = e.getDmlMessage(0);
@@ -52,10 +40,13 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
                     Contact contactToDelete = new Contact(Id = usr.ContactId);
                     delete contactToDelete;
                 }
+
                 System.debug('eeee'+errorMessage);
                 insert new BFM_User_Creation_Request_Error__c(BFM_User_Creation_Request__c = userRequest.Id, 
+
                                                        Error_Message__c = errorMessage );
             }
+
             
             
             // Enqueues the sharing of accounts. This has to be enqueued because Site.createPortalUser is already performing DML on User, 
@@ -63,8 +54,11 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
             if(usr.Id != null){
                 Set<Id> accountsIds = new Set<Id>();
                 for(BFM_AccountAccessRequest__c accessRequest : [SELECT Account__c
+
                                                                     FROM BFM_AccountAccessRequest__c 
                                                                     WHERE UserCreationRequest__c =:userRequestId]){
+
+
                     accountsIds.add(accessRequest.Account__c);                                                
                 }
                 if(!Test.isRunningTest()){
@@ -73,6 +67,7 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
             } 
         }
     }
+
         
     /**
      * Private instance method that creates one User based on a userRequest. 
@@ -90,14 +85,12 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
             } 
             acc.id = ar.account__c;     
         }
-      //  if(userRequest.cnpj__c!=null){
-      //      acc = [select id,BFM_cnpj__c,parentid from account where BFM_cnpj__c Like: userRequest.cnpj__c+'%' limit 1];      
-      //  }
         if(acc.id!=null){
             con.lastname = userRequest.lastName__c;
             con.FirstName = userRequest.firstName__c;
             if(acc.parentid!=null){
                 con.accountid = acc.parentid;
+
             }
             else{
                 con.accountid = acc.id;
@@ -124,5 +117,6 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
         
         return u;
     }
+
 
 }

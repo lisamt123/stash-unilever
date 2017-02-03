@@ -143,6 +143,9 @@
 		<layout>Contact-Carrier Contact Layout</layout>
 		<recordType>Contact.BFM_Carrier_Contact</recordType>
     </layoutAssignments>
+	<layoutAssignments>
+		<layout>BFM_UserCreationRequest__c-BFM Carrier User Request Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Account_Relationship__c-External PoP ID Layout</layout>
     </layoutAssignments>

@@ -6,6 +6,118 @@
 <value>Forum</value>
 </labels>
 <labels>
+<fullName>BFM_Firstname</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Firstname</shortDescription>
+<value>First Name :</value>
+</labels>
+<labels>
+<fullName>BFM_LastName</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM LastName</shortDescription>
+<value>lastName</value>
+</labels>
+<labels>
+<fullName>BFM_Email</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Email</shortDescription>
+<value>email</value>
+</labels>
+<labels>
+<fullName>BFM_Cpf</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Cpf</shortDescription>
+<value>Cpf</value>
+</labels>
+<labels>
+<fullName>BFM_Wait</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM_Wait</shortDescription>
+<value>Please Wait...</value>
+</labels>
+<labels>
+<fullName>BFM_Name</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM_Name</shortDescription>
+<value>Community Nickname</value>
+</labels>
+<labels>
+<fullName>BFM_Support_Email</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Support Email</shortDescription>
+<value>luciana.hama@unilever.com</value>
+</labels>
+<labels>
+<fullName>BFM_Self_Service_Search_CNPJ</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Self Service Search CNPJ</shortDescription>
+<value>Search CNPJ (first 8 digits only)</value>
+</labels>
+<labels>
+<fullName>BFM_Self_Service_Search_Carrier_Branches</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Self Service Search Carrier Branches</shortDescription>
+<value>Search Carrier Branches</value>
+</labels>
+<labels>
+<fullName>BFM_Shipnum</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Shipnum</shortDescription>
+<value>shipmentNumber</value>
+</labels>
+<labels>
+<fullName>BFM_Carrvendor</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Carrvendor</shortDescription>
+<value>carrieraccvendor</value>
+</labels>
+<labels>
+<fullName>BFM_Convname</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Convname</shortDescription>
+<value>Conveyor name</value>
+</labels>
+<labels>
+<fullName>BFM_CNPJ_Carier</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM CNPJ Carier</shortDescription>
+<value>CNPJ Carrier</value>
+</labels>
+<labels>
+<fullName>BFM_Plant</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Plant</shortDescription>
+<value>Plant</value>
+</labels>
+<labels>
+<fullName>BFM_Search_Transport_Doc</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Search Transport Doc</shortDescription>
+<value>Search Transport Document</value>
+</labels>
+<labels>
+<fullName>BFM_Doctype</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Doctype</shortDescription>
+<value>Doc type Transp</value>
+</labels>
+<labels>
 <fullName>BFM_Freight_Ok</fullName>
 <language>en_US</language>
 <protected>false</protected>
@@ -25,6 +137,13 @@
 <protected>false</protected>
 <shortDescription>BFM_Cancel</shortDescription>
 <value>Cancel</value>
+</labels>
+<labels>
+<fullName>BFM_Addinfo</fullName>
+<language>en_US</language>
+<protected>false</protected>
+<shortDescription>BFM Addinfo</shortDescription>
+<value>Additional account information</value>
 </labels>
 <labels>
 <fullName>BFM_NF_e</fullName>
