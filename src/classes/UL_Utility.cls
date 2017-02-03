@@ -237,7 +237,7 @@
     Returns: String
     Throws N/A
     ********************************************************************/
-   private static String getSalesOrg (String userId){
+   public static String getSalesOrg (String userId){
         String salesOrg = '';
         List<User> user = [ SELECT ACCL__Sales_Org__c, Id FROM User where Id = : userId];
         if (user.size()>0){
