@@ -131,6 +131,16 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>BFM_CarrierUserApproved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox to check if the Carrier User has been approved by their Carrier and Unilever internal user, and is now allowed to access Salesforce.</description>
+        <externalId>false</externalId>
+        <inlineHelpText></inlineHelpText>
+        <label>BFM Carrier User Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>CNPJ__c</fullName>
         <description>Used to store CNPJ information for the contact.</description>
@@ -1233,7 +1243,7 @@
     </fields>
     <fields>
         <fullName>Title</fullName>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackFeedHistory>true</trackFeedHistory>
     </fields>
     <fields>
         <fullName>hoot2sf_FacebookId__c</fullName>
