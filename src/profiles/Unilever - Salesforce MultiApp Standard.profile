@@ -682,9 +682,6 @@
         <recordType>Core_Approver_Details__c.GTES</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course_Attachment__c-FA_Course Attachment Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Download_Statistics__c-WINatPOS Download Statistics Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
