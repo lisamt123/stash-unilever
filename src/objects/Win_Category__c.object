@@ -56,6 +56,20 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Category_External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Category External Id</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Category External Id</inlineHelpText>
+        <label>Category External Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Category_ID__c</fullName>
         <externalId>false</externalId>
         <label>Category_ID</label>

@@ -68,6 +68,7 @@
     </fields>
     <fields>
         <fullName>Region_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
         <label>Region Id</label>
         <length>10</length>
@@ -75,7 +76,7 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Sales_Rep_Email__c</fullName>

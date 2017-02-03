@@ -65,6 +65,11 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
+      <runTest>Win_Bootstrap_Test</runTest>
+      <runTest>Win_ChatterDeletedEndpoint_Test</runTest>
+      <runTest>Win_ErrorEndpoint_Test</runTest>
+      <runTest>Win_MetadataEndpoint_Test</runTest>
+      <runTest>Win_UploadEndpoint_Test</runTest>
     </sf:deploy>
   </target>  
 

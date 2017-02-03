@@ -69,6 +69,48 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Calendar_End_Time__c</fullName>
+        <description>Calendar End Time</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calendar End Time</inlineHelpText>
+        <label>Calendar End Time</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Calendar_Start_Time__c</fullName>
+        <description>Calendar Start Time</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calendar Start Time</inlineHelpText>
+        <label>Calendar Start Time</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Calendar_Week_Day_Count__c</fullName>
+        <description>Calendar Week Day Count</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calendar Week Day Count</inlineHelpText>
+        <label>Calendar Week Day Count</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Chatter_Module__c</fullName>
         <description>Chatter Module Availability depending on the Country</description>
         <externalId>false</externalId>

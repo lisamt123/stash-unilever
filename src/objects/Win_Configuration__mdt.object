@@ -18,7 +18,7 @@
         <required>true</required>
         <type>Picklist</type>
     </fields>
-    <label>Win_Configuration</label>
-    <pluralLabel>Win_Configurations</pluralLabel>
+    <label>Wings Configuration</label>
+    <pluralLabel>Wings Configurations</pluralLabel>
     <visibility>Public</visibility>
 </CustomObject>
