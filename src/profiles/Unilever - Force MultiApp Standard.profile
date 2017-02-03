@@ -847,86 +847,6 @@
         <layout>FAQ_Enhanced__kav-FAQ Enhanced Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>FAU_Email__c-Email Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Milestone_Participant__c-Milestone Participant Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Milestone__c-Milestone Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Module_Participant__c-FAU_Campus</layout>
-        <recordType>FAU_Module_Participant__c.FAU_Campus</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Module_Participant__c-FAU_Off_Campus</layout>
-        <recordType>FAU_Module_Participant__c.FAU_Off_Campus</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Module_Participant__c-Module Participant Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Module__c-Module Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_PII_Table__c-PII Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_PII__c-PII Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Participant__c-FAU Class  Participant Layout</layout>
-        <recordType>FAU_Participant__c.UL2020_Participant</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Participant__c-FAU Participant Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Participant__c-FAU Participant Layout</layout>
-        <recordType>FAU_Participant__c.Program_participant</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Program__c-FAU Core</layout>
-        <recordType>FAU_Program__c.Core</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Program__c-FAU Franchise</layout>
-        <recordType>FAU_Program__c.Franchise</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Program__c-FAU Template</layout>
-        <recordType>FAU_Program__c.Template</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Program__c-FAU Template %28Inactive%29</layout>
-        <recordType>FAU_Program__c.Template_Inactive</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Program__c-FAU UL2020</layout>
-        <recordType>FAU_Program__c.UL2020</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Program__c-Program Wave Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Sponsor__c-Sponsor Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Webinar_Participant__c-Webinar Participant Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Webinar__c-Webinar Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Webinar__c-Webinar Layout</layout>
-        <recordType>FAU_Webinar__c.FAU_Normal</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FAU_Webinar__c-Webinar Registration Layout</layout>
-        <recordType>FAU_Webinar__c.FAU_Registration</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>FS_Account_Plan__c-Account Plan Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2600,15 +2520,6 @@
         <recordType>im_Issue__c.Reviewed_Issue</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>isll_Event_Visit__c-Event Unique Visit Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>kof_Unilever_Project_Team__c-Unilever Project User Relationship Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>kof_Unilever_Project__c-Unilever Project Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>mdm_Brand_Position__c-Brand Position Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -3613,46 +3524,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Exception</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAU_Create_Program</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAU_Create_Template</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAU_EmailTemplateSender</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAU_GenerateAndAttach</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAU_LandingPage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAU_ModuleParticipant</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAU_Participant_Bio</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAU_Participant_Biography_Doc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAU_Participant_Register</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAU_UpdateParticipantMilestone</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -4960,130 +4831,6 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>isll_AllContentInIsll</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ArticleEdit</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_BrainResults</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_BusinessFundamentals</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_CarouselEditPage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ChatterGroupSearch</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_CommuniBrain</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ContentEdit</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ContentUploader</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_DeleteChatterHistory</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_DeliverSLBrandExp</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EditPageContent</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EmbedSustainableLIMP</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EventDetail</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EventMembers</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Events</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EventsDetail</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Events_Edit</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Home</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Info_VF</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ModeratorEdit</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_MyLibrary</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_NewsArchive</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Partnerships</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_PastEvents</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_SMEEdit</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_SustainExpertEdit</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_SustainableLivingExperts</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_TemplateMain</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_USLPBrandTablbEdit</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_UslpAmbition</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>maketingRedirect</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -5672,46 +5419,6 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Everyday_Activity__c.Working_Effectively</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>FAU_Module_Participant__c.FAU_Campus</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>FAU_Module_Participant__c.FAU_Off_Campus</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>FAU_Program__c.Core</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>FAU_Program__c.Franchise</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>FAU_Program__c.Template</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>FAU_Program__c.Template_Inactive</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>FAU_Webinar__c.FAU_Normal</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>FAU_Webinar__c.FAU_Registration</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
