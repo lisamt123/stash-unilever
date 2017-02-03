@@ -4266,6 +4266,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>ACCL__Promotion_Template_Tactic_Template__c.promo_temp_name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ACCL__Promotion_Template_Tactic_Template__c.tactic_temp_name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Promotion_Template__c.ACCL__Active_Policy__c</field>
         <readable>true</readable>
@@ -4429,6 +4439,11 @@
         <editable>true</editable>
         <field>ACCL__Promotion_Template__c.UL_Promotion_Template_Type__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ACCL__Promotion_Template__c.UL_ShowAttachments__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
