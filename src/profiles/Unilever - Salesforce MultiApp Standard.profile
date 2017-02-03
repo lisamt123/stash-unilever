@@ -5,10 +5,6 @@
         <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>
-        <application>Unilever_International_Distributor</application>
-        <default>false</default>
-        <visible>true</visible>
-    </applicationVisibilities>
     <layoutAssignments>
         <layout>AF_Agency_Estimate__c-Agency Estimate Layout</layout>
     </layoutAssignments>
