@@ -100,6 +100,7 @@ private class PQNUpdateFreezePeriodCtrlTest {
      
     PQNUpdateFreezePeriodCtrl freez=new PQNUpdateFreezePeriodCtrl();
     freez.getResult();
+    freez.getFlag();
     freez.updateFreezePeriod();
     
     

@@ -11,7 +11,7 @@ VERSION     AUTHOR        DATE            DETAIL Description
 V1.0         Mahesh         12/01/2017    Helper class for Approval Process for Category Details
 ***********************************************************************/
 
-global with sharing class BEN_AprovalProcess_WebService_helper {
+global class BEN_AprovalProcess_WebService_helper {
   
     // method to check loggedIn user is Approver or not
    webservice static String userIsApprover(String userId) {

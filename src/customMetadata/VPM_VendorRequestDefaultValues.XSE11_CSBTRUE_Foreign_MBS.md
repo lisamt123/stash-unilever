@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>VPM_PaymentMethod3__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">B_OCR Payments</value>
     </values>
     <values>
         <field>VPM_PaymentMethod4__c</field>
