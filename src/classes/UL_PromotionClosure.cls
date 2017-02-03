@@ -20,7 +20,7 @@ global with sharing class UL_PromotionClosure {
         Throws : N/A 
     ********************************************************************/
     webService static String closePromotionsWebservice(List<Id> promotionIds) {
-        return UL_PromotionClosure.closePromotions(promotionIds);
+        return UL_PromotionClosure.closePromotions(promotionIds,false);
     }
     
 	 //closes promotions (used SMART UI)
@@ -44,11 +44,11 @@ global with sharing class UL_PromotionClosure {
 	 /*******************************************************************
         Purpose: receives a list of promotion ids --> sets them to closed
         Version 1.0
-        Parameters: List of Promotion Ids
+        Parameters: List of Promotion Ids, Boolean throwErrorIfProblem (decides whether an exception is throw in error case or just a String message returned)
         Returns: Success or Error messages
         Throws : N/A 
     ********************************************************************/
-     public static String closePromotions(List<Id> promotionIds){
+     public static String closePromotions(List<Id> promotionIds,Boolean throwErrorIfProblem){
     	
     	//max number of Promotions to close
     	final Integer maxNumClosure = 3;
@@ -56,10 +56,16 @@ global with sharing class UL_PromotionClosure {
     	
         //check that there is at least one Promotion selected
         if (promotionIds.size()==0){
+        	if (throwErrorIfProblem){
+        		throw new UL_CustomException(Label.No_Promotions_Selected);
+        	}
             return Label.No_Promotions_Selected;
         } else 
         //check if user has necessary rights
         if (!ACCL__Promotion__c.sObjectType.getDescribe().isUpdateable() || !Account.Description.getDescribe().isUpdateable()){
+            if (throwErrorIfProblem){
+        		throw new UL_CustomException(Label.User_Profile_No_Right);
+        	}
             return Label.User_Profile_No_Right;
         } 
         //check if sharing requirements and logical requirements are fulfilled --> if so, do the update
@@ -89,6 +95,9 @@ global with sharing class UL_PromotionClosure {
             			update promos;
             		} catch (Exception e){
                         UL_Utility.logError(e, UserInfo.getUserId());
+                        if (throwErrorIfProblem){
+			        		throw new UL_CustomException(Label.Promotion_Closure_Internal_Error + e.getMessage());
+			        	}
             			return Label.Promotion_Closure_Internal_Error + e.getMessage();
             		}
             		return Label.Promotions_Closed_Successfully;
@@ -112,6 +121,9 @@ global with sharing class UL_PromotionClosure {
                         message+=' -' + cPro.ACCL__Slogan__c+'\n';
                     }
                 }
+                if (throwErrorIfProblem){
+	        		throw new UL_CustomException(message);
+	        	}
                 return message;
             }
         }
