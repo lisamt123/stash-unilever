@@ -11284,7 +11284,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <fullName>BEN_CUC_Code_validation</fullName>
         <active>true</active>
         <errorConditionFormula>AND( ISBLANK( lkp_CS_GTIN__c ), ISBLANK( txt_CUC_Code__c ) , ISBLANK( lkp_CU_GTIN__c )  )</errorConditionFormula>
-        <errorMessage>Kindly add receipe on at-least on two aspects from CU-GTIN,CS-GTIN or CUC Code.</errorMessage>
+        <errorMessage>Kindly add receipe on at-least one aspects from CU-GTIN,CS-GTIN or CUC Code.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>BEN_CUC_Validation</fullName>
@@ -11416,7 +11416,7 @@ p.bln_Mark_for_Deletion__c = &quot;{!BEN_Category_Details__c.bln_Mark_for_Deleti
 /*if(ApproverUser == &quot;true&quot; &amp;&amp; p.bln_Mark_for_Deletion__c == 0 ){
 throw new Error(&quot;Approver not Allowed to submit, except mark of deletion approval&quot;);
 }*/
-if(ApproverUser == &quot;true&quot;){
+if(ApproverUser == &quot;true&quot; &amp;&amp; p.bln_Mark_for_Deletion__c == 0){
 p.BEN_Is_Approver__c = &quot;true&quot;;
 }
 else{

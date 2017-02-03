@@ -132,6 +132,33 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>BEN_Overall_Score_Loss</fullName>
+        <field>pkl_Overall_score__c</field>
+        <literalValue>Loss</literalValue>
+        <name>BEN Overall Score Loss</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>BEN_Overall_Score_Parity</fullName>
+        <field>pkl_Overall_score__c</field>
+        <literalValue>Parity</literalValue>
+        <name>BEN Overall Score Parity</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>BEN_Overall_Score_Win</fullName>
+        <field>pkl_Overall_score__c</field>
+        <literalValue>Win</literalValue>
+        <name>BEN Overall Score Win</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>BEN_Record_Type_Approved</fullName>
         <description>Record type changed to BEN Category Details Approved</description>
         <field>RecordTypeId</field>
@@ -259,6 +286,54 @@
         </criteriaItems>
         <description>To update new category detail record when cloned</description>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>BEN Category Detail Overall Score Loss</fullName>
+        <actions>
+            <name>BEN_Overall_Score_Loss</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>BEN_Category_Details__c.fml_Overall_Score__c</field>
+            <operation>equals</operation>
+            <value>Loss</value>
+        </criteriaItems>
+        <description>To update overall score value</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>BEN Category Detail Overall Score Parity</fullName>
+        <actions>
+            <name>BEN_Overall_Score_Parity</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>BEN_Category_Details__c.fml_Overall_Score__c</field>
+            <operation>equals</operation>
+            <value>Parity</value>
+        </criteriaItems>
+        <description>To update overall score value</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>BEN Category Detail Overall Score Win</fullName>
+        <actions>
+            <name>BEN_Overall_Score_Win</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>BEN_Category_Details__c.fml_Overall_Score__c</field>
+            <operation>equals</operation>
+            <value>win</value>
+        </criteriaItems>
+        <description>To update overall score value</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>BEN Category detail submission</fullName>
