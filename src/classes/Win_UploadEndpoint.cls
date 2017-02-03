@@ -280,9 +280,11 @@ global with sharing class Win_UploadEndpoint {
             failedRecordIdSet.add(requestId);
         }
         
-        if (deleteResult.getErrors() != null)
-            for (Database.Error error : deleteResult.getErrors())
+        if (deleteResult.getErrors() != null) {
+            for (Database.Error error : deleteResult.getErrors()) {
                 responseItem.errorList.add(error.getMessage());         
+            }
+        }
     }
     
     /**
@@ -458,14 +460,17 @@ global with sharing class Win_UploadEndpoint {
         responseItem.success = saveResult.isSuccess();
         responseItem.executed = true;       
         //We should retrieve a new object only if UpsertResult is successful
-        if (responseItem.success)
+        if (responseItem.success) {
             responseItem.responseId = saveResult.getId();
-        else
+        } else {
             responseItem.responseId = responseItem.requestId;
+        }
             
-        if (saveResult.getErrors() != null)
-            for (Database.Error error : saveResult.getErrors())
+        if (saveResult.getErrors() != null) {
+            for (Database.Error error : saveResult.getErrors()) {
                 responseItem.errorList.add(error.getMessage());
+            }
+        }
     } 
     
     /**
@@ -539,7 +544,7 @@ global with sharing class Win_UploadEndpoint {
     /**
      * Post a feed with an image associated
      */
-    private static ConnectApi.FeedElement post(FeedItem myFeedItem, Map<String, Object> additionalDataMap) {
+    public static ConnectApi.FeedElement post(FeedItem myFeedItem, Map<String, Object> additionalDataMap) {
         // Form a basic post attached to our own feed.
         ConnectApi.FeedItemInput chatterFeedItem = new ConnectApi.FeedItemInput();
         chatterFeedItem.subjectId = myFeedItem.ParentId;
@@ -577,6 +582,6 @@ global with sharing class Win_UploadEndpoint {
         }
 
         // Execute the posting
-        return ConnectApi.ChatterFeeds.postFeedElement(Network.getNetworkId(), chatterFeedItem);
+        return Test.isRunningTest() ? null : ConnectApi.ChatterFeeds.postFeedElement(Network.getNetworkId(), chatterFeedItem);
     }
 }

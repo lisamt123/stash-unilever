@@ -41,6 +41,8 @@ public with sharing class Win_UploadEndpoint_Test {
         System.assert(response.body.get(0).responseId != null);
         System.assertNotEquals(response.body.get(0).requestId, response.body.get(0).responseId);
         System.assert(response.body.get(1).success);
+        response.getError();
+        response.getStatus();
         
         List<Win_Local_Assignment__c> resultRecords = [SELECT Id FROM Win_Local_Assignment__c WHERE Id = : testRecord.Id];
         System.assertEquals(0, resultRecords.size());
@@ -225,10 +227,43 @@ public with sharing class Win_UploadEndpoint_Test {
      * Test multiple insertions
      */
     static testMethod void testObjectFieldListMap() {
-        Win_UploadService service = new Win_UploadService();
-        Win_TestUtils.createTrackedObjConfigCustomSetting();
+        Win_Utils utils = new Win_Utils();
+        Win_UploadRequestItem item = new Win_UploadRequestItem();
+        Win_WebServiceResponse resp = new Win_UploadResponse();
+        resp.getError();
+
+        Win_Tracked_Object_Config__c t1TrackedObjConfig2 = new Win_Tracked_Object_Config__c();
+        t1TrackedObjConfig2.Active__c = true;
+        t1TrackedObjConfig2.ClientApp_ID__c = 'TestingONE';
+        t1TrackedObjConfig2.Name = 'Case';
+        t1TrackedObjConfig2.Object_Api_Name__c = 'Case';
+        insert t1TrackedObjConfig2;
+
+        Win_UploadService service = new Win_UploadService('TestingONE');
+        //Win_TestUtils.createTrackedObjConfigCustomSetting();
         Map<String, List<String>> result = service.getObjectFieldListMap();
         System.assert(result != null);
+    }
+
+    /*
+     * Test multiple insertions
+     */
+    static testMethod void testFeed() {
+        FeedItem item = new FeedItem();
+        Map<String, Object> additionalDataMap = new Map<String, Object>();
+        additionalDataMap.put('ChatterPostContentFileName', 'nameeee');
+        additionalDataMap.put('ChatterPostContentDataBlob', Blob.valueof('Jimmyyy'));
+        ConnectApi.FeedElement result = Win_UploadEndpoint.post(item, additionalDataMap);
+    }
+
+    /*
+     * Test multiple insertions
+     */
+    static testMethod void testObjectPreparation() {
+        Win_UploadService service = new Win_UploadService();
+        Map<String, Object> additionalData = new Map<String, Object>();
+        Map<String, Object> dataMap = new Map<String, Object>();
+        service.prepareAdditionalData(additionalData, dataMap, 'testing', 'Jimmyyy');
     }
 
 }

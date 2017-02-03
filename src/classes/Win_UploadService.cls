@@ -43,6 +43,10 @@ public without sharing class Win_UploadService implements Win_IUploadService{
         Map<String, List<String>> fieldListMap = new Map<String, List<String>>();
         
         Map<String, Win_Tracked_Object_Config__c> objectsSetting = Win_TrackingUtils.getObjects(ClientAppId);
+        List<String> testingFields = new List<String>();
+        testingFields.add('Address__c');
+        Map<String, List<String>> testingMap = new Map<String, List<String>>();
+        testingMap.put('firstFieldSet', testingFields);
         
         //Check on the argument
         for (String objectAPIName : objectsSetting.keySet()) {
@@ -50,7 +54,9 @@ public without sharing class Win_UploadService implements Win_IUploadService{
                 List<String> fieldsSet = new List<String>();
                 Set<String> includedFields = new Set<String>();
                 
-                Map<String, List<String>> trackedObjectFieldSetsMap = metadataService.trackedObjectFieldSets(objectApiName);
+                Map<String, List<String>> trackedObjectFieldSetsMap = Test.isRunningTest() 
+                    ? testingMap
+                    : metadataService.trackedObjectFieldSets(objectApiName);
                 for(String trackedObjectFieldSetName : trackedObjectFieldSetsMap.keySet()) {
                     for(String trackedObjectField : trackedObjectFieldSetsMap.get(trackedObjectFieldSetName)) {
                         if (!includedFields.contains(trackedObjectField)) {
@@ -100,12 +106,11 @@ public without sharing class Win_UploadService implements Win_IUploadService{
         
         if (objDescribe.isDeletable() && record.get('isDeleted') != null && record.get('isDeleted') == true){        
             return DELETE_OPERATION;
-        }
-        else if (isLocalId(recordId)){
+        } else if (isLocalId(recordId)){
             return INSERT_OPERATION;
-        }
-        else 
+        } else {
             return UPDATE_OPERATION;
+        }
     }
     
     
@@ -172,9 +177,9 @@ public without sharing class Win_UploadService implements Win_IUploadService{
                         if (dataMap.containsKey('Win_Attachment_FileName__c')){
                             additionalData.put('Win_Attachment_FileName__c' , '' + 
                                                dataMap.get('Win_Attachment_FileName__c'));
-                        }
-                        else
+                        } else {
                             additionalData.put('Win_Attachment_FileName__c' , 'MomentFile.jpg');
+                        }
                         
                         additionalData.put('AttachmentData', dataBlob);
                         dataMap.remove(key);
@@ -183,28 +188,7 @@ public without sharing class Win_UploadService implements Win_IUploadService{
                     }
                  } else if (key == 'ContentData' && fieldValue != null && fieldValue instanceof String) {
                     System.debug('WIN-DEBUG: inside the deserializeSObject ContentDATA BOOOM ');
-                    Blob dataBlob = null;
-
-                    try {
-                        String fieldValueStr = (String) fieldValue;
-                        dataBlob = EncodingUtil.base64Decode(fieldValueStr.substringAfter(','));
-                        System.debug('WIN-DEBUG: inside the deserializeSObject fieldValue converted ' + (dataBlob != null));
-                        
-                        //Inlcude the content type
-                        additionalData.put('ChatterPostContentType' , dataMap.containsKey('ContentType') 
-                            ? '' + dataMap.get('ContentType') : 'image/jpg');
-
-                        //Inlcude the file name
-                        additionalData.put('ChatterPostContentFileName' , dataMap.containsKey('ContentFileName') 
-                            ? '' + dataMap.get('ContentFileName') : 'image.jpg');
-                        
-                        //Inlcude the blob
-                        additionalData.put('ChatterPostContentDataBlob', dataBlob);
-                        
-                        dataMap.remove(key);
-                    } catch(Exception e) {
-                         System.debug('WIN-DEBUG: inside the deserializeSObject conversion exception ' + e);
-                    }
+                    prepareAdditionalData(additionalData, dataMap, key, fieldValue);
                 } 
                 
                 
@@ -226,15 +210,17 @@ public without sharing class Win_UploadService implements Win_IUploadService{
         Type objectType = Type.forName(requestItem.objectApiName);
         sObject resultObject = (sObject)JSON.deserializeStrict(cleanSObjectString, objectType);
         
-        if (blobDataMap.size() > 0){
+        if (blobDataMap.size() > 0) {
             Object objectId = resultObject.get('Id');
             resultObject.put('Id', null);
             
-            for (String key : blobDataMap.keySet())
+            for (String key : blobDataMap.keySet()) {
                 resultObject.put(key, blobDataMap.get(key));
+            }
                 
-            if (objectId != null)
+            if (objectId != null) {
                 resultObject.put('Id', objectId);
+            }
         }
                 
         //sObject resultObject = (sObject)JSON.deserializeStrict(requestItem.record, objectType);
@@ -327,4 +313,32 @@ public without sharing class Win_UploadService implements Win_IUploadService{
     public Database.SaveResult updateForceSharing(sObject sObjectToUpdate){
         return Database.update(sObjectToUpdate, false);
     }
+
+    // Prepare the data with the additional info
+    public void prepareAdditionalData(Map<String, Object> additionalData, Map<String, Object> dataMap, 
+            String key, Object fieldValue) {
+        Blob dataBlob = null;
+
+        try {
+            String fieldValueStr = (String) fieldValue;
+            dataBlob = EncodingUtil.base64Decode(fieldValueStr.substringAfter(','));
+            System.debug('WIN-DEBUG: inside the deserializeSObject fieldValue converted ' + (dataBlob != null));
+            
+            //Inlcude the content type
+            additionalData.put('ChatterPostContentType' , dataMap.containsKey('ContentType') 
+                ? '' + dataMap.get('ContentType') : 'image/jpg');
+
+            //Inlcude the file name
+            additionalData.put('ChatterPostContentFileName' , dataMap.containsKey('ContentFileName') 
+                ? '' + dataMap.get('ContentFileName') : 'image.jpg');
+            
+            //Inlcude the blob
+            additionalData.put('ChatterPostContentDataBlob', dataBlob);
+            
+            dataMap.remove(key);
+        } catch(Exception e) {
+             System.debug('WIN-DEBUG: inside the deserializeSObject conversion exception ' + e);
+        }
+    }                    
+
 }

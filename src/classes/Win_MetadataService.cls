@@ -276,6 +276,7 @@ public with sharing class Win_MetadataService implements Win_IMetadataService {
                     }
                 }
             } else {
+                System.debug('Issue with object not found objectAPIName: ' + objectAPIName);
                 throw new Win_Exception(Win_MetadataResponse.SERVER_ERROR_OBJECTNOTFOUND);
             }
         }       

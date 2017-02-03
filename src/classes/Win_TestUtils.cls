@@ -98,21 +98,6 @@ public with sharing class Win_TestUtils {
         t1TrackedObjConfig2.Where__c = '';
         trackedObjConfigList.add(t1TrackedObjConfig2);
         
-        Win_Tracked_Object_Config__c t1TrackedObjConfig3 = new Win_Tracked_Object_Config__c();
-        t1TrackedObjConfig3.Active__c = true;
-        t1TrackedObjConfig3.ClientApp_ID__c = 'TquilaONE';
-        t1TrackedObjConfig3.Custom_Index_List__c = '';
-        t1TrackedObjConfig3.Displayable__c = true;
-        t1TrackedObjConfig3.Fieldset_Name_List__c = '';
-        t1TrackedObjConfig3.Layout_Needed__c = false;
-        t1TrackedObjConfig3.List_Header_Fieldset__c = '';
-        t1TrackedObjConfig3.Max_Records_Before_Full_Sync__c = 1000;
-        t1TrackedObjConfig3.Name = 'Order';
-        t1TrackedObjConfig3.Object_Api_Name__c = 'Order__c';
-        t1TrackedObjConfig3.Order_By__c = '';
-        t1TrackedObjConfig3.Where__c = '';
-        trackedObjConfigList.add(t1TrackedObjConfig3);
-        
         Win_Tracked_Object_Config__c t1TrackedObjConfig4 = new Win_Tracked_Object_Config__c();
         t1TrackedObjConfig4.Active__c = true;
         t1TrackedObjConfig4.ClientApp_ID__c = 'TquilaONE';
