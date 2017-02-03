@@ -149,7 +149,8 @@
         public static final String STATUS_PENDING = 'Pending';
         public static final String STATUS_PLANNING = 'Planning';
         public static final String STATUS_FINANCE_CHECK = 'Finance Check';
-        public static final String STATUS_MANAGER_CHECK = 'Manager Check'; 
+        public static final String STATUS_MANAGER_CHECK = 'Manager Check';
+        public static final String STATUS_DIRECTOR_CHECK = 'Director Check'; 
         public static final String STATUS_SUBMITTED_FOR_APPROVAL = 'Submitted for Approval'; 
         public static final String STATUS_INCOMPLETE = 'Incomplete';
         public static final String STATUS_PLANNED = 'Planned';
