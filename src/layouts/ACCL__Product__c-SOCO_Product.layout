@@ -71,6 +71,10 @@
                 <behavior>Edit</behavior>
                 <field>ACCL__Tax_Classification__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ACCL__ExternalId__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -283,6 +287,10 @@
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ACCL__Criterion_4_Product__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ACCL__Criterion_5_Product__c</field>
