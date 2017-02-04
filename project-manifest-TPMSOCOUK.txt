@@ -104,6 +104,7 @@ src/customMetadata/UL_KPI_Configuration.ROI.md
 src/customMetadata/UL_Component_Visibility.SoCo_Common_Layouts.md
 src/customMetadata/UL_Component_Visibility.SoCo_Disable_Buttions_Child_Promotion.md
 src/customMetadata/UL_Component_Visibility.UKI_Common_Layouts.md
+src/customMetadata/UL_Component_Visibility.SoCo_Child_Tactic.md
 src/objectTranslations
 src/objectTranslations/ACCL__Account_Bill_To__c-en_US.objectTranslation
 src/objectTranslations/ACCL__Account_Call_Setting__c-en_US.objectTranslation
