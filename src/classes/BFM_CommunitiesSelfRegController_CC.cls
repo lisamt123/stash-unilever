@@ -213,5 +213,6 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         operationalUser = false;
         
         requestLines = null;
-    }   
+    }
+    
 }
