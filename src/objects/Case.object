@@ -7024,7 +7024,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Web,Web North America,Email</value>
+            <value>Web,Web North America,Email,SMS / Text Messages</value>
         </filters>
         <filters>
             <field>PII_Warning_Check__c</field>
@@ -7040,11 +7040,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.CREATED_DATE</field>
             <operation>lessOrEqual</operation>
             <value>1/31/2017 12:00 AM</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
         </filters>
         <label>CEC Philippines - All Cases - PII check</label>
         <language>en_US</language>
