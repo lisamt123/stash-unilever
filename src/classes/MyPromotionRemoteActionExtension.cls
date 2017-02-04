@@ -725,8 +725,10 @@ Throws : N/A
                     
                 //}   
             }
+            
+            boolean isChildPromotion = promo.UL_Parent_Push_Id__c!=null ? true : false;
             List<EARUI> btList = new List<EARUI>();
-            btList = UL_ComponentVisibility.hideButtons(promo.ACCL__Sales_Org__c, promo.UL_Current_Status__c, false);
+            btList = UL_ComponentVisibility.hideButtons(promo.ACCL__Sales_Org__c, promo.UL_Current_Status__c, isChildPromotion);
             earBOTactic.addall(btList);
             
             
