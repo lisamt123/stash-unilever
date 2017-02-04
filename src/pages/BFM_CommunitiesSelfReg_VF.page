@@ -134,7 +134,7 @@
 {!$ObjectType.BFM_UserCreationRequest__c.fields.CommunityNickname__c.Label}
 </label>-->
                                 <label class="control-label" for="signupEmailagain">
-                                    Apelido da comunidade
+                                    "Apelido da comunidade"
                                 </label>
                                 <apex:inputText required="true" disabled="{!readOnlyform}" id="communityNickname" value="{!communityNickname}" label="{!$Label.site.community_nickname}" styleclass="form-control"/>
                             </div>
@@ -172,7 +172,7 @@
                             <div class="col-sm-6 form-group">
                                 Problemas? Contacte-nos em
                                 <apex:outputLink value="{!sendEmail}">
-									Luciana.Hama@unilever.com
+                                    'luciana.hama@unilever.com'
                                 </apex:outputLink>
                                 <br/>
                             </div>

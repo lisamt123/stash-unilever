@@ -7,8 +7,7 @@ Public class BFM_LoginuserPermissions{
     
         string psName ='';
         if(userRequest.Operational_User__c == true){
-            //psName = 'BFM_Carrier_Operational_User';
-            psName = 'BFM_Governance_Super_User';
+            psName = 'BFM_Carrier_Operational_User';
         }
         else
         {
@@ -25,4 +24,4 @@ Public class BFM_LoginuserPermissions{
              insert psa;
          }
     }
-} 
+}
