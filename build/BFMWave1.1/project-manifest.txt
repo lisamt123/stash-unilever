@@ -246,6 +246,8 @@ src/permissionsets/BFM_Tax_Unilever.permissionset
 src/permissionsets/BFM_Unilever_Operational_User.permissionset
 src/permissionsets/BFM_Unilever_Tester.permissionset
 src/permissionsets/BFM_View_All_Data_User.permissionset
+src/permissionsets/BFM_Governance_Super_User_SalesforcePlatform.permissionset
+src/permissionsets/BFM_Governance_Super_User_Salesforce.permissionset
 src/profiles/BFM Partner Community User.profile
 src/profiles/Unilever - Force MultiApp Standard.profile
 src/profiles/Unilever - Salesforce MultiApp Standard.profile
