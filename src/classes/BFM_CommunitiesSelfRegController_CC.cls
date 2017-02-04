@@ -24,7 +24,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         firstName = '';
         lastName = '';
         readOnlyForm = false;
-        supportEmail = system.label.BFM_Support_Email;
+        supportEmail = system.Label.BFM_Support_Email;
         sendEmail = 'mailto:'+supportEmail ;
     }
     
@@ -213,6 +213,5 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         operationalUser = false;
         
         requestLines = null;
-    }
-    
+    }   
 }

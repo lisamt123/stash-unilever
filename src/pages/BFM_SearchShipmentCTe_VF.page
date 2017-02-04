@@ -52,21 +52,21 @@
                                                                      height: 100%;opacity:0.65;width:100%;"> 
                     <div class="waitingHolder" style="top: 74.2px; width: 91px;">
                         <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
-                        <span class="waitingDescription">{!$Label.BFM_Wait}</span>
+                        <span class="waitingDescription">Loading...</span>
                     </div>
                 </div>
             </apex:facet>
         </apex:actionstatus>
         
-        <apex:pageBlock title="{!$label.BFM_Search_Transport_Doc}" id="pb1" mode="edit"> <!-- TODO : ADD CUSTOM LABEL -->
+        <apex:pageBlock title="Buscar Documento de Transporte" id="pb1" mode="edit"> <!-- TODO : ADD CUSTOM LABEL -->
             <apex:pageBlockSection columns="2" id="pbs">
-                <apex:inputtext value="{!shipmentNumber}" id="shpn" label="{!$Label.BFM_Shipnum}"/>
-                <apex:inputtext value="{!carrieraccvendor}" id="carvendor" label="{!$Label.BFM_Carrvendor}"/>
+                <apex:inputtext value="{!shipmentNumber}" id="shpn" label="Número doc.Transp"/>
+                <apex:inputtext value="{!carrieraccvendor}" id="carvendor" label="Código da Transportadora"/>
                 <!--<apex:inputtext value="{!carrieracc}" label="Doc Atualizados S/N"/>--> 
-                <apex:inputtext value="{!shipCarrierAccount}" label="{!Label.BFM_Convname}"/>
-                <apex:inputtext value="{!shpmnttype}" label="{!$label.BFM_Doctype}"/>
-                <apex:inputtext value="{!shipFromAccount}" label="{!$Label.BFM_CNPJ_Carier}" id="shpvac"/>
-                <apex:inputtext value="{!stageplantcode}" label="{!$Label.BFM_Plant}"/>
+                <apex:inputtext value="{!shipCarrierAccount}" label="Nome transportadora"/>
+                <apex:inputtext value="{!shpmnttype}" label="Tipo doc Transp"/>
+                <apex:inputtext value="{!shipFromAccount}" label="CNPJ Transportadora" id="shpvac"/>
+                <apex:inputtext value="{!stageplantcode}" label="Planta"/>
             </apex:pageBlockSection>
             
             <apex:pageBlockSection columns="2">

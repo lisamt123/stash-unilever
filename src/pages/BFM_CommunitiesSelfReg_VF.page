@@ -90,8 +90,8 @@
                 <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
                                                                      height: 100%;opacity:0.65;width:100%;"> 
                     <div class="waitingHolder" style="centre: 74.2px; width: 91px;">
-                        <img class="waitingImage" src="http://upload.wikimedia.org/wikipedia/commons/e/ed/Cursor_Windows_Vista.gif" title="{!$Label.BFM_Wait}" />
-                        <span class="waitingDescription">{!$Label.BFM_Wait}</span>
+                        <img class="waitingImage" src="http://upload.wikimedia.org/wikipedia/commons/e/ed/Cursor_Windows_Vista.gif" title="Por favor, espere..." />
+                        <span class="waitingDescription">Por favor, espere...</span>
                     </div>
                 </div>
             </apex:facet>
@@ -131,10 +131,10 @@
                             </div>
                             <div class="col-sm-6 form-group">
                                 <!--<label class="control-label" for="signupEmailagain">
-								{!$ObjectType.BFM_UserCreationRequest__c.fields.CommunityNickname__c.Label}
-								</label>-->
+{!$ObjectType.BFM_UserCreationRequest__c.fields.CommunityNickname__c.Label}
+</label>-->
                                 <label class="control-label" for="signupEmailagain">
-                                    {!$Label.BFM_Name}
+                                    Apelido da comunidade
                                 </label>
                                 <apex:inputText required="true" disabled="{!readOnlyform}" id="communityNickname" value="{!communityNickname}" label="{!$Label.site.community_nickname}" styleclass="form-control"/>
                             </div>
@@ -177,12 +177,12 @@
                                 <br/>
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label class="control-label" for="signupEmailagain">{!$Label.BFM_Self_Service_Search_CNPJ}</label>
+                                <label class="control-label" for="signupEmailagain">Pesquisar CNPJ (apenas 8 dígitos)</label>
                                 <apex:inputText maxlength="8" required="true" id="cnpj" value="{!cnpj}" label="Cnpj" styleclass="form-control"/>
                                 <br/>
                             </div>
                             <div class="col-sm-12 form-group">
-                                <apex:commandButton action="{!fetchBranches}" value="{!$Label.BFM_Self_Service_Search_Carrier_Branches}" id="branch" status="status" rerender="theForm" styleClass="myClass" />
+                                <apex:commandButton action="{!fetchBranches}" value="Pesquisar Sucursais Transportadoras" id="branch" status="status" rerender="theForm" styleClass="myClass" />
                                 <br/>
                             </div>
                             <div class="{!IF(NOT(ISNULL(requestLines)), 'col-sm-12 form-group', 'hidden')}"  >
