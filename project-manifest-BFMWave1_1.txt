@@ -186,7 +186,6 @@ src/layouts/BFM_User_Creation_Request_Error__c-BFM User Creation Request Error L
 src/layouts/BFM_UserCreationRequest__c-BFM Carrier User Request Layout.layout
 src/layouts/BFM_Payment_Method__c-Payment Method Layout.layout
 src/layouts/BFM_Withhold_Tax__c-Withhold Tax Layout.layout
-src/labels/BFM.labels
 src/objects/BFM_AccountAccessRequest__c.object
 src/objects/BFM_Bank_Information__c.object
 src/objects/BFM_Company_Code__c.object
