@@ -52,16 +52,16 @@
         <name>Account_Record_Count__c</name>
     </fields>
     <fields>
-        <label><!-- Additional Information --></label>
+        <label>Informações Adicionais</label>
         <name>Additional_Information__c</name>
     </fields>
     <fields>
-        <label><!-- Agency Contact --></label>
+        <label>Contato da Agência</label>
         <name>Agency_Contact__c</name>
         <relationshipLabel><!-- Accounts --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Agency Expertise --></label>
+        <label>Expertise da Agência</label>
         <name>Agency_Expertise__c</name>
         <picklistValues>
             <masterLabel>Behaviour Design</masterLabel>
@@ -162,7 +162,7 @@
     </fields>
     <fields>
         <help><!-- Do you agree to any records relating to Unilever activities or costs being audited? --></help>
-        <label><!-- Business Auditing --></label>
+        <label>Auditoria de Negócio</label>
         <name>Agree_to_Audits__c</name>
         <picklistValues>
             <masterLabel>No</masterLabel>
@@ -285,7 +285,7 @@
     </fields>
     <fields>
         <help><!-- Please indicate the type of business activities your organisation is currently involved in. Please also distinguish between those that are currently provided to Unilever, and those that are not. --></help>
-        <label><!-- Business activity types --></label>
+        <label>Tipo de Atividade de Negócio</label>
         <name>Business_activity_types__c</name>
     </fields>
     <fields>
@@ -293,23 +293,19 @@
         <name>CEC_Marketing_Opt_In__c</name>
     </fields>
     <fields>
-        <label><!-- Children Under 12 --></label>
+        <label>Criança Menor que 12 Anos</label>
         <name>Children_under_12__c</name>
     </fields>
     <fields>
-        <label><!-- Club Member Number --></label>
+        <label>Número do Membro do Clube</label>
         <name>Club_Member_Number__c</name>
-    </fields>
-    <fields>
-        <label>Nome</label>
-        <name>Company_Name__c</name>
     </fields>
     <fields>
         <label><!-- Company Structure --></label>
         <name>Company_Structure__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Note --></label>
+        <label>Nota do Consumidor</label>
         <name>Consumer_Note__c</name>
     </fields>
     <fields>
@@ -777,7 +773,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- D &amp; B Duns Number --></label>
+        <label>Número do Cobrador D &amp; B</label>
         <name>D_B_Duns_Number__c</name>
     </fields>
     <fields>
@@ -814,7 +810,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Discipline --></label>
+        <label>Disciplina</label>
         <name>Discipline__c</name>
         <picklistValues>
             <masterLabel>Activations and Promotions</masterLabel>
@@ -930,11 +926,11 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Document Number --></label>
+        <label>Número do Documento</label>
         <name>Document_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Document Type --></label>
+        <label>Tipo de Documento</label>
         <name>Document_Type__c</name>
     </fields>
     <fields>
@@ -943,7 +939,7 @@
         <name>Drinking_frequency__c</name>
     </fields>
     <fields>
-        <label><!-- External Id --></label>
+        <label>ID Externo</label>
         <name>External_Id__c</name>
     </fields>
     <fields>
@@ -1164,11 +1160,11 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Local Identifier No Special Char --></label>
+        <label>Identificador Local s/ Caracteres Especi</label>
         <name>Local_Identifier_No_Special_Char__c</name>
     </fields>
     <fields>
-        <label><!-- Local Identifier --></label>
+        <label>Identificador Local</label>
         <name>Local_Identifier__c</name>
     </fields>
     <fields>
@@ -1184,7 +1180,7 @@
         <name>No_of_Tea_drinkers__c</name>
     </fields>
     <fields>
-        <label><!-- Overall Rating --></label>
+        <label>Avaliação Geral</label>
         <name>Overall_Rating__c</name>
     </fields>
     <fields>
@@ -1212,11 +1208,11 @@
         <name>Ownership_Status__c</name>
     </fields>
     <fields>
-        <label><!-- Phone No Special Char --></label>
+        <label>Telefone sem Caracteres Especiais</label>
         <name>Phone_No_Special_Char__c</name>
     </fields>
     <fields>
-        <label><!-- Preferred Channel --></label>
+        <label>Canal Preferencial</label>
         <name>Preferred_Channel__c</name>
         <picklistValues>
             <masterLabel>Email</masterLabel>
@@ -1300,11 +1296,11 @@
         <name>Ratings_and_Reviews_Username__c</name>
     </fields>
     <fields>
-        <label><!-- Registration Date --></label>
+        <label>Data de Registro</label>
         <name>Registration_Date__c</name>
     </fields>
     <fields>
-        <label><!-- Responsible Unilever Employee --></label>
+        <label>Funcionário Unilever Responsável</label>
         <name>Responsible_Unilever_Employee__c</name>
         <relationshipLabel><!-- Accounts --></relationshipLabel>
     </fields>
@@ -1341,15 +1337,15 @@
         <name>SAP_ID__c</name>
     </fields>
     <fields>
-        <label><!-- Strategic Capabilities Video --></label>
+        <label>Vídeo de Capacidades Estratégicas</label>
         <name>Strategic_Capabilities_Video__c</name>
     </fields>
     <fields>
-        <label><!-- Strategic Capabilities --></label>
+        <label>Capacidades Estratégicas</label>
         <name>Strategic_Capabilities__c</name>
     </fields>
     <fields>
-        <label><!-- Subcategories --></label>
+        <label>Subcategoria</label>
         <name>Subcategories__c</name>
         <picklistValues>
             <masterLabel>Apple Farms</masterLabel>
@@ -1405,78 +1401,78 @@
         <name>Tea_moment_of_the_week__c</name>
     </fields>
     <fields>
-        <label><!-- Total Rating Count --></label>
+        <label>Contador Total de Registros</label>
         <name>Total_Rating_Count__c</name>
     </fields>
     <fields>
-        <label><!-- Total Rating Score --></label>
+        <label>Pontuação Total de Avaliação</label>
         <name>Total_Rating_Score__c</name>
     </fields>
     <fields>
         <name>Type</name>
         <picklistValues>
             <masterLabel>Analyst</masterLabel>
-            <translation><!-- Analyst --></translation>
+            <translation>Analista</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Association</masterLabel>
-            <translation><!-- Association --></translation>
+            <translation>Associado</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Competitor</masterLabel>
-            <translation><!-- Competitor --></translation>
+            <translation>Concorrente</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Customer</masterLabel>
-            <translation><!-- Customer --></translation>
+            <translation>Cliente</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Integrator</masterLabel>
-            <translation><!-- Integrator --></translation>
+            <translation>Integrador</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Investor</masterLabel>
-            <translation><!-- Investor --></translation>
+            <translation>Investidor</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Legal</masterLabel>
-            <translation><!-- Legal --></translation>
+            <translation>Jurídico</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Logistic</masterLabel>
-            <translation><!-- Logistic --></translation>
+            <translation>Logistica</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
+            <translation>Outros</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Partner</masterLabel>
-            <translation><!-- Partner --></translation>
+            <translation>Parceiro</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Press</masterLabel>
-            <translation><!-- Press --></translation>
+            <translation>Imprensa</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Prospect</masterLabel>
-            <translation><!-- Prospect --></translation>
+            <translation>Potencial</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Reseller</masterLabel>
-            <translation><!-- Reseller --></translation>
+            <translation>Revendedor</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Retailer</masterLabel>
-            <translation><!-- Retailer --></translation>
+            <translation>Varejista</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Shop</masterLabel>
-            <translation><!-- Shop --></translation>
+            <translation>Lojista</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Shop In Shop</masterLabel>
-            <translation><!-- Shop In Shop --></translation>
+            <translation>Quiosque</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>UL Careline</masterLabel>
@@ -1484,7 +1480,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Branch --></label>
+        <label>Filial</label>
         <name>UID_Branch__c</name>
     </fields>
     <fields>
@@ -1664,7 +1660,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Region --></label>
+        <label>Região</label>
         <name>UID_Region__c</name>
         <picklistValues>
             <masterLabel>EUROPE</masterLabel>
@@ -1692,7 +1688,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Segment --></label>
+        <label>Segmento</label>
         <name>UID_Segment__c</name>
         <picklistValues>
             <masterLabel>NON PI CUSTOMERS</masterLabel>
@@ -1728,23 +1724,15 @@
         <name>VIP__c</name>
     </fields>
     <fields>
-        <label><!-- Vimeo Link --></label>
+        <label>Link Vimeo</label>
         <name>Vimeo_Link__c</name>
-    </fields>
-    <fields>
-        <label><!-- Withholding Tax Identification Number --></label>
-        <name>Withholding_Tax_Identification_Number__c</name>
-    </fields>
-    <fields>
-        <label><!-- Withholding Tax Type --></label>
-        <name>Withholding_Tax_Type__c</name>
     </fields>
     <fields>
         <label><!-- Year Established --></label>
         <name>Year_Established__c</name>
     </fields>
     <recordTypes>
-        <label><!-- Agency --></label>
+        <label>Agência</label>
         <name>Agency</name>
     </recordTypes>
     <recordTypes>
@@ -1752,7 +1740,7 @@
         <name>Agency_Fee</name>
     </recordTypes>
     <recordTypes>
-        <label><!-- Carrier --></label>
+        <label>Conta do Negócio</label>
         <name>BFM_Carrier</name>
     </recordTypes>
     <recordTypes>
@@ -1768,7 +1756,7 @@
         <name>Pitch_Agency</name>
     </recordTypes>
     <recordTypes>
-        <label><!-- Standard --></label>
+        <label>Padrão</label>
         <name>Standard</name>
     </recordTypes>
     <recordTypes>
@@ -1776,7 +1764,7 @@
         <name>UID_Primary_Account</name>
     </recordTypes>
     <recordTypes>
-        <label><!-- Secondary Account --></label>
+        <label>Conta Secundária</label>
         <name>UID_Secondary_Account</name>
     </recordTypes>
     <validationRules>

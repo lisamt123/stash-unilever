@@ -8,6 +8,210 @@
         <plural>true</plural>
         <value>NF-es</value>
     </caseValues>
+    <fields>
+        <label>Número do Destino</label>
+        <name>Address_Number_Destination__c</name>
+    </fields>
+    <fields>
+        <label>Número do Emissor</label>
+        <name>Address_Number_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Documento de Transporte</label>
+        <name>Billing_Document__c</name>
+    </fields>
+    <fields>
+        <label>CNPJ Emissor</label>
+        <name>CNPJ_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>CNPJ Destinatário</label>
+        <name>CNPJ_destination__c</name>
+    </fields>
+    <fields>
+        <label>CPF de Destino</label>
+        <name>CPF_destination__c</name>
+    </fields>
+    <fields>
+        <label>Cód. do Município de Destino</label>
+        <name>City_Code_Destination__c</name>
+    </fields>
+    <fields>
+        <label>Cód. do Município do Emissor</label>
+        <name>City_Code_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Nome do Município de Destino</label>
+        <name>City_Destination__c</name>
+    </fields>
+    <fields>
+        <label>Nome do Município do Emissor</label>
+        <name>City_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Complemento End.Emissor</label>
+        <name>Complement_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Complemento End.Destino</label>
+        <name>Complement_destination__c</name>
+    </fields>
+    <fields>
+        <label>Informação Complementar</label>
+        <name>Complementary_information__c</name>
+    </fields>
+    <fields>
+        <label>Código do País do Emissor</label>
+        <name>Country_Code_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>País do Emissor</label>
+        <name>Country_Name_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Código do País do Destino</label>
+        <name>Country_code_destination__c</name>
+    </fields>
+    <fields>
+        <label>País do Destino</label>
+        <name>Country_name_destination__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Interno SF-REM</label>
+        <name>Delivery__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Bairro do Emissor</label>
+        <name>District_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Bairro do Destino</label>
+        <name>District_destination__c</name>
+    </fields>
+    <fields>
+        <label>Peso Bruto</label>
+        <name>Gross_weight__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterms --></label>
+        <name>Incoterms__c</name>
+    </fields>
+    <fields>
+        <label>Uso do Material</label>
+        <name>Material_Usage__c</name>
+    </fields>
+    <fields>
+        <label>NF55 foi Criada?</label>
+        <name>NF55_Created__c</name>
+    </fields>
+    <fields>
+        <label>Valor Total</label>
+        <name>NF_e_Total_Value__c</name>
+    </fields>
+    <fields>
+        <label>Chave de Acesso</label>
+        <name>NF_e_access_key__c</name>
+    </fields>
+    <fields>
+        <label>Data de Emissão</label>
+        <name>NF_e_creation_date__c</name>
+    </fields>
+    <fields>
+        <label>Tipo Embalagem</label>
+        <name>NF_e_item_specie__c</name>
+    </fields>
+    <fields>
+        <label>Número NF-e</label>
+        <name>NF_e_number__c</name>
+    </fields>
+    <fields>
+        <label>Série</label>
+        <name>NF_e_serie__c</name>
+    </fields>
+    <fields>
+        <label>Nome do Emissor</label>
+        <name>Name_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Nome do Destino</label>
+        <name>Name_destination__c</name>
+    </fields>
+    <fields>
+        <label>Número de Volumes</label>
+        <name>Nf_e_total_quantity__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Interno SF-OCOR</label>
+        <name>Occurrence__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Telefone do Emissor</label>
+        <name>Phone_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Telefone do Destino</label>
+        <name>Phone_destination__c</name>
+    </fields>
+    <fields>
+        <label>Código Postal do Emissor</label>
+        <name>Postal_Code_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Código Postal do Destino</label>
+        <name>Postal_code_destination__c</name>
+    </fields>
+    <fields>
+        <label>Produto Predominante</label>
+        <name>Predominant_product__c</name>
+    </fields>
+    <fields>
+        <label>Número FRS</label>
+        <name>SES_Number__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Interno SF-FRS</label>
+        <name>SES__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Registro SUFRAMA Emissor</label>
+        <name>SUFRAMA_Registration_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Registro SUFRAMA Destino</label>
+        <name>SUFRAMA_registration__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Interno SF-DT</label>
+        <name>Shipment__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>UF Emissor</label>
+        <name>State_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>Insc.Estatual do Destino</label>
+        <name>State_Registration_Destination__c</name>
+    </fields>
+    <fields>
+        <label>Insc.Estatual do Emissor</label>
+        <name>State_Registration_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label>UF Destino</label>
+        <name>State_destination__c</name>
+    </fields>
+    <fields>
+        <label>Endereço do Destino</label>
+        <name>Street_Destination__c</name>
+    </fields>
+    <fields>
+        <label>Endereço do Emissor</label>
+        <name>Street_Goods_Sender__c</name>
+    </fields>
     <gender>Masculine</gender>
     <nameFieldLabel>Núm.Interno SF-NF-e</nameFieldLabel>
 </CustomObjectTranslation>

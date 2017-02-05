@@ -8,5 +8,42 @@
         <plural>true</plural>
         <value>Bank Informations</value>
     </caseValues>
+    <fields>
+        <label><!-- Account Number --></label>
+        <name>Account_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agency Number --></label>
+        <name>Agency_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Code --></label>
+        <name>Bank_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Country --></label>
+        <name>Bank_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Name --></label>
+        <name>Bank_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank key --></label>
+        <name>Bank_key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Carrier Account --></label>
+        <name>Carrier_Account__c</name>
+        <relationshipLabel><!-- Bank Informations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>Company_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

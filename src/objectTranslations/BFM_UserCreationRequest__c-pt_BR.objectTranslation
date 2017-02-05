@@ -8,6 +8,59 @@
         <plural>true</plural>
         <value>Solicitações de Criação de Usuários</value>
     </caseValues>
+    <fields>
+        <label>CNPJ</label>
+        <name>CNPJ__c</name>
+    </fields>
+    <fields>
+        <label>CPF</label>
+        <name>CPF__c</name>
+    </fields>
+    <fields>
+        <label>Apelido</label>
+        <name>CommunityNickname__c</name>
+    </fields>
+    <fields>
+        <label>Usuário Criado</label>
+        <name>Created_User__c</name>
+        <relationshipLabel><!-- User Creation Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>E-mail</label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label>Mensagem de Erro</label>
+        <name>Error_Message__c</name>
+    </fields>
+    <fields>
+        <label>Usuário Finanças</label>
+        <name>Finance_User__c</name>
+    </fields>
+    <fields>
+        <label>Primeiro nome</label>
+        <name>FirstName__c</name>
+    </fields>
+    <fields>
+        <label>Sobrenome</label>
+        <name>LastName__c</name>
+    </fields>
+    <fields>
+        <label>Usuário Operacional</label>
+        <name>Operational_User__c</name>
+    </fields>
+    <fields>
+        <label>Requisição Aprovada?</label>
+        <name>Request_Approved__c</name>
+    </fields>
+    <fields>
+        <label>Usuário de Impostos</label>
+        <name>Tax_User__c</name>
+    </fields>
+    <fields>
+        <label>Usuário</label>
+        <name>Username__c</name>
+    </fields>
     <gender>Feminine</gender>
     <nameFieldLabel>BFM Solicitação de Criação de Usuário</nameFieldLabel>
 </CustomObjectTranslation>

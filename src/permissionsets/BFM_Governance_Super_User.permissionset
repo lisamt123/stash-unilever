@@ -2067,11 +2067,11 @@
         <enabled>true</enabled>
     </pageAccesses>
 	<tabSettings>
-        <tab>standard-Accounts</tab>
+        <tab>standard-Account</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 	<tabSettings>
-        <tab>standard-Contacts</tab>
+        <tab>standard-Contact</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

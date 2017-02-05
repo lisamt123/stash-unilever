@@ -8,5 +8,191 @@
         <plural>true</plural>
         <value>Occurrences</value>
     </caseValues>
+    <fields>
+        <label><!-- Approval Date 1 --></label>
+        <name>Approval_Date_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Date 2 --></label>
+        <name>Approval_Date_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Date 3 --></label>
+        <name>Approval_Date_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Date 4 --></label>
+        <name>Approval_Date_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Date 5 --></label>
+        <name>Approval_Date_5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Date 6 --></label>
+        <name>Approval_Date_6__c</name>
+    </fields>
+    <fields>
+        <label><!-- Carrier Account --></label>
+        <name>Carrier_Account__c</name>
+        <relationshipLabel><!-- Occurrences --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Carrier Vendor Code --></label>
+        <name>Carrier_Vendor_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>Company_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- CreatedBy --></label>
+        <name>CreatedBy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created date --></label>
+        <name>Created_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery System Description --></label>
+        <name>Delivery_System_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery System --></label>
+        <name>Delivery_System__c</name>
+    </fields>
+    <fields>
+        <label><!-- Equip. Type --></label>
+        <name>Equip_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Equip. Type description --></label>
+        <name>Equip_Type_description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fiscal Documents --></label>
+        <name>Fiscal_Documents__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Deleted in SAP --></label>
+        <name>Is_Deleted_in_SAP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Occurrence Update --></label>
+        <name>Last_Occurrence_Update__c</name>
+    </fields>
+    <fields>
+        <label><!-- Load Type Description --></label>
+        <name>Load_Type_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Load Type --></label>
+        <name>Load_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Occurrence Code --></label>
+        <name>Occurrence_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Occurrence Description --></label>
+        <name>Occurrence_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Occurrence Number --></label>
+        <name>Occurrence_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Occurrence Quantity --></label>
+        <name>Occurrence_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Occurrence Value --></label>
+        <name>Occurrence_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant --></label>
+        <name>Plant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plate Number --></label>
+        <name>Plate_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Range of Extent of Occurrence (From) --></label>
+        <name>Range_of_Extent_of_Occurrence_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Range of Extent of Occurrence (To) --></label>
+        <name>Range_of_Extent_of_Occurrence_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason Code --></label>
+        <name>Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason Description --></label>
+        <name>Reason_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason for Rejection --></label>
+        <name>Reason_for_Rejection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rejection Description --></label>
+        <name>Rejection_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment Document Number --></label>
+        <name>Shipment_Document_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment Type --></label>
+        <name>Shipment_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment --></label>
+        <name>Shipment__c</name>
+        <relationshipLabel><!-- Occurrences --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Shipping Process Description --></label>
+        <name>Shipping_Process_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Process --></label>
+        <name>Shipping_Process__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Description --></label>
+        <name>Status_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tax --></label>
+        <name>Tax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Test URL --></label>
+        <name>Test_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total --></label>
+        <name>Total__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Get_BFM_Occurrence --></label>
+        <name>Get_BFM_Occurrence</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Search_BFM_Occurrence --></label>
+        <name>Search_BFM_Occurrence</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_Occurrence --></label>
+        <name>Update_Occurrence</name>
+    </webLinks>
 </CustomObjectTranslation>

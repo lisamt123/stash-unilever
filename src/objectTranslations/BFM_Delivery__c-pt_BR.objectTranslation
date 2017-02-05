@@ -8,6 +8,24 @@
         <plural>true</plural>
         <value>Remessas</value>
     </caseValues>
+    <fields>
+        <label>Número da Remessa</label>
+        <name>Delivery_Number__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Interno SF-DT</label>
+        <name>Shipment__c</name>
+        <relationshipLabel><!-- Remessas --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Número Etapa</label>
+        <name>Stage_Number__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Interno SF-Etapa</label>
+        <name>Stage__c</name>
+        <relationshipLabel><!-- Deliveries --></relationshipLabel>
+    </fields>
     <gender>Masculine</gender>
     <nameFieldLabel>Núm.Interno SF-REM</nameFieldLabel>
 </CustomObjectTranslation>
