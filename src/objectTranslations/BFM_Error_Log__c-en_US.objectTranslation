@@ -42,11 +42,6 @@
         <name>Error_log__c</name>
     </fields>
     <fields>
-        <label><!-- NF-e DF --></label>
-        <name>NF_e_DF__c</name>
-        <relationshipLabel><!-- Error Logs --></relationshipLabel>
-    </fields>
-    <fields>
         <label><!-- Reason --></label>
         <name>Reason__c</name>
     </fields>

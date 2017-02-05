@@ -301,7 +301,7 @@
         <name>Club_Member_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Company Structure --></label>
+        <label>Estrutura da Companhia</label>
         <name>Company_Structure__c</name>
     </fields>
     <fields>

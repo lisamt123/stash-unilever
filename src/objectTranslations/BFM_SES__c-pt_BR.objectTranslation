@@ -229,10 +229,6 @@
         <relationshipLabel>FRSs</relationshipLabel>
     </fields>
     <fields>
-        <label>Opções Cod.Impostos</label>
-        <name>Tax_Code_Picklist__c</name>
-    </fields>
-    <fields>
         <label>Código Imposto</label>
         <name>Tax_Code__c</name>
     </fields>

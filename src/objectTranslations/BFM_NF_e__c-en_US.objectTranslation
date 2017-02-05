@@ -77,11 +77,6 @@
         <name>Country_name_destination__c</name>
     </fields>
     <fields>
-        <label><!-- Debit Note --></label>
-        <name>Debit_Note__c</name>
-        <relationshipLabel><!-- NF-es --></relationshipLabel>
-    </fields>
-    <fields>
         <label><!-- Delivery --></label>
         <name>Delivery__c</name>
         <relationshipLabel><!-- NF-es --></relationshipLabel>

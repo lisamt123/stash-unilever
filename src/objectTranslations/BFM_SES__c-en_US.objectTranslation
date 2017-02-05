@@ -229,10 +229,6 @@
         <relationshipLabel><!-- SESs --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Tax Code Picklist --></label>
-        <name>Tax_Code_Picklist__c</name>
-    </fields>
-    <fields>
         <label><!-- Tax Code --></label>
         <name>Tax_Code__c</name>
     </fields>
