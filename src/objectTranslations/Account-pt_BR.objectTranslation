@@ -207,7 +207,7 @@
         <label><!-- Awards --></label>
         <name>Awards__c</name>
     </fields>
-	fields>
+	<fields>
         <label><!-- BFM_Active_CNPJ --></label>
         <name>BFM_Active_CNPJ__c</name>
     </fields>
