@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customLabels>
+<customLabels>
 <label><!-- Agent Report Success --></label>
 <name>AA_Agent_Report_Success</name>
 </customLabels>
@@ -18620,4 +18618,3 @@
 <label><!-- User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos; --></label>
 <name>uw_Inoplan_error_nullvalue</name>
 </customLabels>
-</Translations>
