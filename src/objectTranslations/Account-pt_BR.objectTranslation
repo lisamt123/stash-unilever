@@ -207,7 +207,7 @@
         <label><!-- Awards --></label>
         <name>Awards__c</name>
     </fields>
-    <fields>
+	fields>
         <label><!-- BFM_Active_CNPJ --></label>
         <name>BFM_Active_CNPJ__c</name>
     </fields>
@@ -278,10 +278,6 @@
     <fields>
         <label>Cód.Fornecedor</label>
         <name>BFM_Vendor__c</name>
-    </fields>
-    <fields>
-        <label><!-- Bazaarvoice Username --></label>
-        <name>Bazaarvoice_Username__c</name>
     </fields>
     <fields>
         <help><!-- Please indicate the type of business activities your organisation is currently involved in. Please also distinguish between those that are currently provided to Unilever, and those that are not. --></help>
@@ -963,8 +959,12 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- ICB CNPJ --></label>
+        <label><!-- CNPJ --></label>
         <name>ICB_CNPJ__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mobile Channel --></label>
+        <name>ICB_Mobile_Channel__c</name>
     </fields>
     <fields>
         <name>Industry</name>
@@ -1739,7 +1739,7 @@
         <label><!-- Agency Fee --></label>
         <name>Agency_Fee</name>
     </recordTypes>
-    <recordTypes>
+	<recordTypes>
         <label>Conta do Negócio</label>
         <name>BFM_Carrier</name>
     </recordTypes>
@@ -1748,7 +1748,7 @@
         <name>BFM_Unilever_Account</name>
     </recordTypes>
     <recordTypes>
-        <label><!-- Business Account --></label>
+        <label>Conta do Negócio</label>
         <name>Business_Account</name>
     </recordTypes>
     <recordTypes>
@@ -1794,10 +1794,6 @@
     <webLinks>
         <label><!-- HooversProfile --></label>
         <name>HooversProfile</name>
-    </webLinks>
-    <webLinks>
-        <label>Mais Detalhes</label>
-        <name>More_Details</name>
     </webLinks>
     <webLinks>
         <label><!-- YahooMaps --></label>
