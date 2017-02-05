@@ -162,12 +162,6 @@ src/email/BFM_Email_Templates/BFM_Request_Approval.email
 src/email/BFM_Email_Templates/BFM_Request_Approval.email-meta.xml
 src/email/BFM_Email_Templates/BFM_User_Creation_Carrier_Approval.email
 src/email/BFM_Email_Templates/BFM_User_Creation_Carrier_Approval.email-meta.xml
-src/flows/BFM_Create_Carrier_User_and_Share_Accounts-1.flow
-src/flows/BFM_Create_Carrier_User_and_Share_Accounts-2.flow
-src/flows/BFM_Create_Carrier_User_and_Share_Accounts-3.flow
-src/flows/BFM_Create_Carrier_User_and_Share_Accounts-4.flow
-src/flows/BFM_Free_Freight_update_CTE-1.flow
-src/flows/BFM_Update_Shipment_in_CTe-1.flow
 src/groups/BFM_Governance.group
 src/homePageLayouts/BFM Home Page.homePageLayout
 src/layouts/Account-BFM Unilever Account.layout
@@ -316,8 +310,6 @@ src/tabs/BFM_Email_Information__c.tab
 src/tabs/BFM_UserCreationRequest__c.tab
 src/tabs/BFM_Payment_Method__c.tab
 src/tabs/BFM_Withhold_Tax__c.tab
-src/translations/pt_BR.translation
-src/translations/en_US.translation
 src/triggers/BFM_Occurrence.trigger
 src/triggers/BFM_Occurrence.trigger-meta.xml
 src/triggers/BFM_Shipment.trigger

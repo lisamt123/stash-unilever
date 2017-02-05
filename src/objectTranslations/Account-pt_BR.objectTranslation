@@ -293,10 +293,6 @@
         <name>CEC_Marketing_Opt_In__c</name>
     </fields>
     <fields>
-        <label>Nome</label>
-        <name>Carrier_Name__c</name>
-    </fields>
-    <fields>
         <label><!-- Children Under 12 --></label>
         <name>Children_under_12__c</name>
     </fields>
