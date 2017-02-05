@@ -11,6 +11,10 @@
         <name>BFM_CPF__c</name>
     </fields>
     <fields>
+        <label><!-- BFM Carrier User Approved --></label>
+        <name>BFM_CarrierUserApproved__c</name>
+    </fields>
+    <fields>
         <label><!-- CHD Contact ID --></label>
         <name>CHD__CHD_Contact_ID__c</name>
     </fields>

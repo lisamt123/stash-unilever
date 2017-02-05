@@ -992,6 +992,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>DisplayUrl</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Division__c</fullName>
         <description>Purpose : To select Division 
 Data Source : NA | Integration : NA | Security Level : Restricted</description>
@@ -1045,6 +1049,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <required>false</required>
         <trackHistory>false</trackHistory>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ExternalDataSourceId</fullName>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ExternalId</fullName>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>FS_Category__c</fullName>
@@ -2583,6 +2596,18 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>QuantityUnitOfMeasure</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Each</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>ResourceType__c</fullName>

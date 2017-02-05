@@ -5172,7 +5172,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
-    <description>Generic profile for Salesforce Application users who will be given application accesses via Permission Sets.</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Agency_Estimate__c.AF_1stSave__c</field>
@@ -16124,6 +16123,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.AmountAllOpportunities</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.AmountWonOpportunities</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Campaign.BudgetedCost</field>
         <readable>true</readable>
@@ -16234,6 +16243,36 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.NumberOfContacts</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.NumberOfConvertedLeads</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.NumberOfLeads</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.NumberOfOpportunities</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.NumberOfResponses</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.NumberOfWonOpportunities</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Campaign.NumberSent</field>
         <readable>true</readable>
@@ -16306,6 +16345,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Breakdown_Machine__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.BusinessHoursId</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -17396,6 +17440,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.BFM_CPF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.BFM_CarrierUserApproved__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -31639,6 +31688,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.Probability</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.Rationale_for_funding_request__c</field>
         <readable>false</readable>
@@ -32439,6 +32493,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.DisplayUrl</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Product2.Division__c</field>
         <readable>false</readable>
@@ -32447,6 +32506,16 @@
         <editable>false</editable>
         <field>Product2.EndDate__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.ExternalDataSourceId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.ExternalId</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32712,6 +32781,11 @@
         <editable>false</editable>
         <field>Product2.ProfitabilityTarget__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.QuantityUnitOfMeasure</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -41335,14 +41409,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-Account Layout</layout>
-        <recordType>Account.BFM_Carrier</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Account-Account Layout</layout>
-        <recordType>Account.BFM_Unilever_Account</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Account-Account Layout</layout>
         <recordType>Account.Business_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -41583,68 +41649,68 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_HLE_Request__c-BPE</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_HLE_Request__c-BPE</layout>
+        <recordType>CPA_HLE_Request__c.A_HLE_Request_Saved</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.BPE</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-BPE Answered</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.BPE_Answered</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-BPE Cancelled</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.BPE_Cancelled</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.HLE</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Answered</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.HLE_Answered</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Cancelled</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.HLE_Cancelled</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Request Accepted</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.HLE_Request_Accepted</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Request Cancelled</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.HLE_request_Cancelled</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Request Saved layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Request Saved layout</layout>
-        <recordType>CPA_HLE_Request__c.A_HLE_Request_Saved</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_Key_Contacts__c-Key Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_LOI__c-LOI Accepted and further</layout>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
         <recordType>CPA_LOI__c.LOI_Accepted</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_LOI__c-LOI Layout without mandatory fields</layout>
-        <recordType>CPA_LOI__c.LOI_Other</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_LOI__c-LOI submitted Layout</layout>
-        <recordType>CPA_LOI__c.LOI_Submitted</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_LOI__c-ULPM LOI without Mandatory Fields</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_LOI__c-ULPM LOI without Mandatory Fields</layout>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
         <recordType>CPA_LOI__c.LOI_Cancael</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_LOI__c-ULPM LOI without Mandatory Fields</layout>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
         <recordType>CPA_LOI__c.LOI_Cancel</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
+        <recordType>CPA_LOI__c.LOI_Other</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
+        <recordType>CPA_LOI__c.LOI_Submitted</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_PWORF_Ageing__c-CPA PWORF Ageing Layout</layout>
@@ -41653,11 +41719,11 @@
         <layout>CPA_PWORF__c-All Project Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_PWORF__c-Other Read Only Layout</layout>
+        <layout>CPA_PWORF__c-All Project Layout</layout>
         <recordType>CPA_PWORF__c.All</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_PWORF__c-RA Read Only Layout</layout>
+        <layout>CPA_PWORF__c-All Project Layout</layout>
         <recordType>CPA_PWORF__c.RA</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -41682,23 +41748,59 @@
         <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_CR</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_HLE_Request</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_LOI</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_PWO</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_PWORF</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CR_docusign</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.LOI_docusign</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.PWO_docusign</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_CNF</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
+        <recordType>CPA_project_work_order__c.CPA_PWO_Signed</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_project_work_order__c-CPA Project Work Order CNF Signed Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_CNF_Signed</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Submitted   Layout</layout>
-        <recordType>CPA_project_work_order__c.CPA_PWO_CNF_Submitted</recordType>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Signed Layout</layout>
+        <recordType>CPA_project_work_order__c.CPA_PWO_Submitted</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_project_work_order__c-CPA Project Work Order Cancel  Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_Cancel</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Delivered  Layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order Cancel  Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_Delivered</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -41709,19 +41811,15 @@
         <recordType>CPA_project_work_order__c.CPA_PWO</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Signed  Layout</layout>
-        <recordType>CPA_project_work_order__c.CPA_PWO_Signed</recordType>
+        <layout>CPA_project_work_order__c-CPA Project Work Order Layout</layout>
+        <recordType>CPA_project_work_order__c.CPA_PWO_CNF_Submitted</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_project_work_order__c-CPA Project Work Order Submitted  Layout</layout>
-        <recordType>CPA_project_work_order__c.CPA_PWO_Submitted</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order TNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_TNF</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order TNF Signed Layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order TNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_TNF_Signed_Layout</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -41792,10 +41890,6 @@
     <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
         <recordType>Contact.Agency_Contact</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Contact-Contact Layout</layout>
-        <recordType>Contact.BFM_Carrier_Contact</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
@@ -44939,7 +45033,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>Account.Standard</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

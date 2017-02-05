@@ -9,4 +9,5 @@
     <tab>standard-Solution</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
+    <tab>standard-WaveHome</tab>
 </CustomApplication>
