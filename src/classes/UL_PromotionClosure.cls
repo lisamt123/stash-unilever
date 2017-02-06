@@ -55,7 +55,7 @@ global with sharing class UL_PromotionClosure {
     	
     	
         //check that there is at least one Promotion selected
-        if (promotionIds.size()==0){
+        if (promotionIds.isEmpty()){
         	if (isCalledByPromotionPage){
         		throw new UL_CustomException(Label.No_Promotions_Selected);
         	}
@@ -75,17 +75,17 @@ global with sharing class UL_PromotionClosure {
             List<ACCL__Promotion__c> failedPros_Share = new List<ACCL__Promotion__c>();
             List<ACCL__Promotion__c> promos = [Select ACCL__Slogan__c, UL_Closed__c, UL_WorkflowState__c, ACCL__Date_Thru__c, UserRecordAccess.HasEditAccess From ACCL__Promotion__c Where Id IN: promotionIds];
             for (ACCL__Promotion__c cPro: promos){
-                if (!(cPro.ACCL__Date_Thru__c<Date.today() && cPro.UL_Closed__c != true && cPro.UL_WorkflowState__c=='Approved')){
+                if (!(cPro.ACCL__Date_Thru__c<Date.today() && cPro.UL_Closed__c != true && UL_Utility.STATUS_APPROVED.equalsIgnoreCase(cPro.UL_WorkflowState__c))){
                     failedPros_Requ.add(cPro);
                     message=Label.Close_Promotion_FailedSingle;
-                } else if (cPro.UserRecordAccess.HasEditAccess==false){
+                } else if (!cPro.UserRecordAccess.HasEditAccess){
                     failedPros_Share.add(cPro);
                     message=Label.Close_Promotion_Missing_SharingSingle;
                 }
             }
             
             //execute update if all requirements requirements are fulfilled
-            if(failedPros_Requ.size()==0 && failedPros_Share.size()==0){
+            if(failedPros_Requ.isEmpty() && failedPros_Share.isEmpty()){
             	if (promotionIds.size()>maxNumClosure){
             		Database.executeBatch(new UL_PromotionClosureBatch(promos), maxNumClosure);
             		return Label.Close_Promotion_Initiated;
@@ -111,20 +111,20 @@ global with sharing class UL_PromotionClosure {
             	if (isCalledByPromotionPage){
             		throw new UL_CustomException(message);
             	} else {
-	                message='';
-	                if(failedPros_Requ.size()>0){
-	                    message+=Label.Promotion_Closure_Failed + '\n';
+	                message=UL_Utility.EMPTY_STRING;
+	                if(!failedPros_Requ.isEmpty()){
+	                    message+=Label.Promotion_Closure_Failed + UL_Utility.NEWLINE_CHAR;
 	                    for (ACCL__Promotion__c cPro: failedPros_Requ){
-	                        message+=' -' + cPro.ACCL__Slogan__c+'\n';
+	                        message+=UL_Utility.SPACE + UL_Utility.HYPHEN + cPro.ACCL__Slogan__c + UL_Utility.NEWLINE_CHAR;
 	                    }
 	                }
-	                if(failedPros_Share.size()>0){
-	                    if(failedPros_Requ.size()>0){
-	                        message+='\n\n';
+	                if(!failedPros_Share.isEmpty()){
+	                    if(!failedPros_Requ.isEmpty()){
+	                        message+=UL_Utility.NEWLINE_CHAR+UL_Utility.NEWLINE_CHAR;
 	                    }
-	                    message+=Label.Close_Promotion_Missing_Sharing + '\n';
+	                    message+=Label.Close_Promotion_Missing_Sharing + UL_Utility.NEWLINE_CHAR;
 	                    for (ACCL__Promotion__c cPro: failedPros_Share){
-	                        message+=' -' + cPro.ACCL__Slogan__c+'\n';
+	                        message+=UL_Utility.SPACE + UL_Utility.HYPHEN + cPro.ACCL__Slogan__c+UL_Utility.NEWLINE_CHAR;
 	                    }
 	                }
             	}
