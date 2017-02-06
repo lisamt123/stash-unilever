@@ -100,6 +100,11 @@
         <label><!-- cB4L --></label>
         <name>cB4L</name>
     </customApplications>
+	
+	  <customLabels>
+        <label>Add Investment</label>
+        <name>PP_BTN_ADDTACTIC</name>
+    </customLabels>
     <customLabels>
         <label><!-- AF Adjust Quarters --></label>
         <name>AF_Adjust_Quarters</name>

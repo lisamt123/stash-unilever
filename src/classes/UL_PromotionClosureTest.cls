@@ -51,7 +51,7 @@ public class UL_PromotionClosureTest {
     }
     
     @isTest
-	private static void UL_PromotionClosureTest(){
+	private static void UL_PromotionClosureTestBad(){
         
         
         //Creating promotion records (good one and bad one)
@@ -75,13 +75,13 @@ public class UL_PromotionClosureTest {
         insert allPromos;
     	     
         Test.startTest();
-        	System.debug('****UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id, testPromotion2.Id})' + UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id, testPromotion2.Id}));
+        	System.debug('****UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id, testPromotion2.Id})' + UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id, testPromotion2.Id},false));
 		Test.stopTest();
         System.assertEquals(0,[Select Id From ACCL__Promotion__c Where UL_Closed__c = true AND Id IN: allPromos].size());
     }
     
     @isTest
-	private static void UL_PromotionClosureTest2(){
+	private static void UL_PromotionClosureTestGood(){
         
         
         //Creating promotion records (good one and bad one)
@@ -101,11 +101,72 @@ public class UL_PromotionClosureTest {
         allPromos.add(testPromotion);
         ACCL__Promotion__c testPromotion2 = testPromotion.clone();
         allPromos.add(testPromotion2);
+        ACCL__Promotion__c testPromotion3 = testPromotion.clone();
+        allPromos.add(testPromotion3);
         insert allPromos;
     	     
         Test.startTest();
-        	System.debug('****UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id, testPromotion2.Id})' + UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id, testPromotion2.Id}));
+        	System.debug('****UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id, testPromotion2.Id})' + UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id, testPromotion2.Id, testPromotion3.Id}, false));
 		Test.stopTest();
-        System.assertEquals(2,[Select Id From ACCL__Promotion__c Where UL_Closed__c = true AND Id IN: allPromos].size());
+        System.assertEquals(3,[Select Id From ACCL__Promotion__c Where UL_Closed__c = true AND Id IN: allPromos].size());
+    }
+    
+    @isTest
+	private static void UL_PromotionClosureTestSingleGood(){
+        
+        
+        //Creating promotion records (good one and bad one)
+        ACCL__Promotion__c testPromotion = new ACCL__Promotion__c();
+        testPromotion.ACCL__Active__c=TRUE;
+        testPromotion.ACCL__Promotion_Template__c=[Select Id From ACCL__Promotion_Template__c].id;
+        testPromotion.ACCL__Slogan_Language_1__c='Promotion Test';
+        testPromotion.ACCL__Anchor_Account__c=[Select Id From Account].id;
+        testPromotion.ACCL__Commit_Date__c=Date.today()-2;
+        testPromotion.ACCL__Date_From__c=Date.today()-2;
+        testPromotion.ACCL__Date_Thru__c=Date.today()-2;
+        testPromotion.ACCL__Phase__c='Approved';
+        testPromotion.UL_WorkflowState__c='Approved';
+        testPromotion.UL_Closed__c=false;
+        testPromotion.RecordTypeId= Schema.SObjectType.ACCL__Promotion__c.getRecordTypeInfosByName().get('Promotion').getRecordTypeId();
+        insert testPromotion;
+    	     
+        Test.startTest();
+        	try {
+        		System.debug('****UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id, testPromotion2.Id})' + UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id},true));
+			} catch (Exception e){
+        		
+        	}
+		Test.stopTest();
+        System.assertEquals(1,[Select Id From ACCL__Promotion__c Where UL_Closed__c = true AND Id =: testPromotion.Id].size());
+    }
+    
+    @isTest
+	private static void UL_PromotionClosureTestSingleBad(){
+        
+        
+        //Creating promotion records (good one and bad one)
+        List<ACCL__Promotion__c> allPromos = new List<ACCL__Promotion__c>();
+        ACCL__Promotion__c testPromotion = new ACCL__Promotion__c();
+        testPromotion.ACCL__Active__c=TRUE;
+        testPromotion.ACCL__Promotion_Template__c=[Select Id From ACCL__Promotion_Template__c].id;
+        testPromotion.ACCL__Slogan_Language_1__c='Promotion Test';
+        testPromotion.ACCL__Anchor_Account__c=[Select Id From Account].id;
+        testPromotion.ACCL__Commit_Date__c=Date.today()-2;
+        testPromotion.ACCL__Date_From__c=Date.today()-2;
+        testPromotion.ACCL__Date_Thru__c=Date.today()-2;
+        testPromotion.ACCL__Phase__c='Planning';
+        testPromotion.UL_WorkflowState__c='Planning';
+        testPromotion.UL_Closed__c=false;
+        testPromotion.RecordTypeId= Schema.SObjectType.ACCL__Promotion__c.getRecordTypeInfosByName().get('Promotion').getRecordTypeId();
+        insert testPromotion;
+    	     
+        Test.startTest();
+        	try {
+        		System.debug('****UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id, testPromotion2.Id})' + UL_PromotionClosure.closePromotions(new List<Id>{testPromotion.Id}, true));
+        	} catch (Exception e){
+        		
+        	}
+		Test.stopTest();
+        System.assertEquals(0,[Select Id From ACCL__Promotion__c Where UL_Closed__c = true AND Id IN: allPromos].size());
     }
 }

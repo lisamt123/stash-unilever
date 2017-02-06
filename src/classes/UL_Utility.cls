@@ -43,6 +43,9 @@
         public static final String kpiid = 'kpiId';
         public static final String value = 'value';
         public static final string finance = 'finance';
+        public static final string uiElement = 'UIElement';
+        public static final string semiColon = ';';
+        
         //Customer Org Hierarchy Levels - SOCO
         public static final String CUSTOMER_ORG_HIERARCHY_LEVEL_REGION = 'Region';
         public static final String CUSTOMER_ORG_HIERARCHY_LEVEL_SUB_REGION = 'Sub Region';
@@ -141,7 +144,7 @@
         //Status
         public static final String STATUS_APPROVE = 'Approve';
         public static final String STATUS_REJECT = 'Reject';
-        public static final String STATUS_CLOSED = 'Closed';
+        public static final String STATUS_CLOSED = 'Close';
         public static final String STATUS_ACTIVE = 'Active';
         public static final String STATUS_APPROVED = 'Approved';
         public static final String STATUS_SUBMIT = 'Submit';
@@ -149,7 +152,8 @@
         public static final String STATUS_PENDING = 'Pending';
         public static final String STATUS_PLANNING = 'Planning';
         public static final String STATUS_FINANCE_CHECK = 'Finance Check';
-        public static final String STATUS_MANAGER_CHECK = 'Manager Check'; 
+        public static final String STATUS_MANAGER_CHECK = 'Manager Check';
+        public static final String STATUS_DIRECTOR_CHECK = 'Director Check'; 
         public static final String STATUS_SUBMITTED_FOR_APPROVAL = 'Submitted for Approval'; 
         public static final String STATUS_INCOMPLETE = 'Incomplete';
         public static final String STATUS_PLANNED = 'Planned';
@@ -229,8 +233,8 @@
         system.debug('An error occured while logging error message');
     }
    }
-
-    /*******************************************************************
+   
+      /*******************************************************************
     Purpose: Get SalesOrg of current User 
     Version: 1.0
     Parameters: String userId
@@ -279,7 +283,6 @@
         }
     }
  
-   
    /*******************************************************************
     Purpose: Generic method to create SFDC object
     Version: 1.0

@@ -10,6 +10,7 @@ History
 VERSION     AUTHOR        DATE           DETAIL                 Description
 1.0         Badri         16/12/2016     INITIAL DEV            
 2.0         Eleonora Dotz 24.01.2017     Add a function "readLOCalPromotions" to get special Event displayed in Trade Calendar   TPM-243 
+2.1         Marcel Schulz 03.02.2017     Add Promotion Closure functionality   TPM-1771
 ***************************************************************/
 global class MyPromotionRemoteActionExtension {
     
@@ -419,7 +420,7 @@ Throws : N/A
             
             if(Mode.equalsIgnoreCase(UL_Utility.STATUS_CLOSED.toUpperCase())){
                 List<Id> promotionIds = new List<Id>{(Id) objectId};
-                return UL_PromotionClosure.closePromotions(promotionIds);
+                return UL_PromotionClosure.closePromotions(promotionIds,true);
             }
             
             if(Mode.equalsIgnoreCase('EndDate')){           
@@ -551,9 +552,32 @@ Throws : N/A
                     DrillDown_Lift_Field.visible = false;  
                     earBOPromotion.add(DrillDown_Lift_Field);
                     
+                    if(promoList[0].ACCL__Sales_Org__c == UL_Utility.UK_SO || promoList[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO){
+                        Schema.FieldSet fldSet = Schema.SObjectType.ACCL__Promotion__c.fieldSets.getMap().get('UL_UKI_LTA_Disabled_Fields');
+                        for(Schema.FieldSetMember fld: fldSet.getFields()){ 
+                            EARUI promoField = new EARUI();
+                            promoField.Name = fld.getFieldPath();
+                            promoField.Type = UtilityEnum.Attribute.Name();
+                            promoField.visible = false;
+                            earBOPromotion.add(promoField);
+                        }
+                    }
+                    
                 //}
                 
             }
+            //Non-LTA
+            else if(promoList[0].ACCL__Sales_Org__c == UL_Utility.UK_SO || promoList[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO){
+                Schema.FieldSet fldSet = Schema.SObjectType.ACCL__Promotion__c.fieldSets.getMap().get('UL_UKI_LTA_Specific');
+                for(Schema.FieldSetMember fld: fldSet.getFields()){ 
+                    EARUI promoField = new EARUI();
+                    promoField.Name = fld.getFieldPath();
+                    promoField.Type = UtilityEnum.Attribute.Name();
+                    promoField.visible = false;
+                    earBOPromotion.add(promoField);
+                }
+            }
+            
             String status = promoList[0].UL_Current_Status__c;
             
             
@@ -2417,11 +2441,12 @@ Throws : N/A
        system.debug(JSON.serialize(uiview));
        ACCL.PromotionRemoteActionExtension.UIViewDefinition incomingParams = ( ACCL.PromotionRemoteActionExtension.UIViewDefinition)JSON.deserialize(uiview, ACCL.PromotionRemoteActionExtension.UIViewDefinition.class);
            
-        DateTime dateFromTime =   Ul_Utility.objToDate(incomingParams.date_from);
+        DateTime dateFromTime =  objToDate(incomingParams.date_from);
         Date dateFrom =  dateFromTime.date();
-        DateTime dateThruTime =   Ul_Utility.objToDate(incomingParams.date_thru);
+        DateTime dateThruTime =  objToDate(incomingParams.date_thru);
         Date dateThru =  dateThruTime.date();
-        String currentSalesOrg = Ul_Utility.getSalesOrg(UserInfo.getUserId());
+        String currentSalesOrg = getSalesOrg(UserInfo.getUserId());
+        
 
         List<ACCL.PromotionRemoteActionExtension.PromotionGroup> result = ACCL.PromotionRemoteActionExtension.readLOCalPromotions(txId, uiview);
           system.debug('result: ' + result);
@@ -2506,6 +2531,39 @@ Throws : N/A
         return result;
     }
 
- 
+    private static String getSalesOrg (String userId){
+        String salesOrg = null;
+        List<User> user = [ SELECT ACCL__Sales_Org__c, Id FROM User where Id = : userId];
+        if (user.size()>0){
+            return user[0].ACCL__Sales_Org__c;
+        }
+        else return salesOrg;
+    }
+
+    public static Date objToDate(Object o){
+        if (o == null){
+            return null;
+        }
+        else if (o instanceof Date){
+            return (Date)o;
+        }
+        else if (o instanceof Long) {
+            Long i = (Long)o;
+            DateTime dt = DateTime.newInstance(i);
+            return dt.dateGmt();
+        }
+        else if (o instanceof Integer) {
+            Integer i = (Integer)o;
+            DateTime dt = DateTime.newInstance(i);
+            return dt.dateGmt();
+        }
+        else if (o instanceof String) {
+            String s = (String)o;
+            return Date.valueOf(s);
+        }
+        else{
+            return  null; //Constants.MIN_DATE;}
+        }
+    }
  
 }

@@ -172,6 +172,9 @@ src/objectTranslations/UL_Sales_Org_Mapping__c-de.objectTranslation
 src/objectTranslations/UL_UserCustomerProduct__c-de.objectTranslation
 src/objectTranslations/UL_Workflow_Threshold_Template__c-de.objectTranslation
 src/objectTranslations/UL_Workflow_Threshold__c-de.objectTranslation
+src/translations
+src/translations/en_GB.translation
+src/translations/en_US.translation
 src/triggers
 src/triggers/UL_AccountTrigger.trigger
 src/triggers/UL_AccountTrigger.trigger-meta.xml
@@ -524,6 +527,8 @@ src/pages/UL_Delivery_Profile.page
 src/pages/UL_Delivery_Profile.page-meta.xml
 src/pages/MyPromotionPlanning2.page
 src/pages/MyPromotionPlanning2.page-meta.xml
+src/pages/myTradeCalendar.page
+src/pages/myTradeCalendar.page-meta.xml
 src/globalPicklists
 src/globalPicklists/UL_Feature.globalPicklist
 src/staticresources

@@ -36,7 +36,7 @@
             <value>Agency Fee</value>
         </criteriaItems>
     </sharingCriteriaRules>
-	   <sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Sharing_rule_for_SoCo_Sys_Admin_AR01</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
@@ -64,7 +64,7 @@
         </accountSettings>
         <label>Sharing rule for SoCo Sys Admin_CL01</label>
         <sharedTo>
-            <group>SoCo_Admin_AR01</group>
+            <group>SoCo_Admin_CL01</group>
         </sharedTo>
         <criteriaItems>
             <field>UL_Sales_Organization__c</field>
@@ -106,6 +106,24 @@
             <field>UL_Sales_Organization__c</field>
             <operation>equals</operation>
             <value>Ireland SO</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sharing_rules_for_UK_SO</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sharing rules for UK SO</label>
+        <sharedTo>
+            <group>UK_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>UK SO</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -160,24 +178,6 @@
             <field>UL_Sales_Organization__c</field>
             <operation>equals</operation>
             <value>CL03</value>
-        </criteriaItems>
-    </sharingCriteriaRules>    
-    <sharingCriteriaRules>
-        <fullName>Sharing_rules_for_UK_SO</fullName>
-        <accessLevel>Read</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Read</contactAccessLevel>
-            <opportunityAccessLevel>None</opportunityAccessLevel>
-        </accountSettings>
-        <label>Sharing rules for UK SO</label>
-        <sharedTo>
-            <group>UK_SO</group>
-        </sharedTo>
-        <criteriaItems>
-            <field>UL_Sales_Organization__c</field>
-            <operation>equals</operation>
-            <value>UK SO</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingOwnerRules>

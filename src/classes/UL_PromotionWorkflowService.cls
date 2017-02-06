@@ -170,7 +170,7 @@
                             if(currentStatus!=null && currentStatus.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase())){
                                 if(!procInstNode.ProcessInstance.ProcessDefinition.DeveloperName.containsIgnoreCase('Urgent')){
                                     //nextApproverId = getApproverIds(promoId, UL_Utility.ROLE_ACCOUNT_MANAGER);
-									nextApproverId = getApproverIds(promoId, 'manager');
+                                    nextApproverId = getApproverIds(promoId, 'manager');
                                 }
                                 else{
                                     nextApproverId = getApproverIds(promoId, 'TPM');
@@ -198,7 +198,9 @@
                     if(promotionLst[0].UL_Finance_Check_Approvers__c!=null && currentStatus!=null && currentStatus.containsIgnoreCase(UL_Utility.STATUS_FINANCE_CHECK.toLowerCase()) && !promotionLst[0].UL_Finance_Check_Approvers__c.contains(userinfo.getuserid())){
                        throw new ul_customexception(Label.UL_PROMOTION_ASSIGNE_VALIDATION);
                     }
-                   if(promotionLst[0].UL_Manager_Check_Approvers__c!=null && currentStatus!=null && currentStatus.containsIgnoreCase(UL_Utility.STATUS_MANAGER_CHECK.toLowerCase()) && !promotionLst[0].UL_Manager_Check_Approvers__c.contains(userinfo.getuserid())){
+                   if(promotionLst[0].UL_Manager_Check_Approvers__c!=null && currentStatus!=null 
+                   && (currentStatus.containsIgnoreCase(UL_Utility.STATUS_MANAGER_CHECK.toLowerCase()) || currentStatus.containsIgnoreCase(UL_Utility.STATUS_DIRECTOR_CHECK.toLowerCase()))
+                   && !promotionLst[0].UL_Manager_Check_Approvers__c.contains(userinfo.getuserid())){
                        throw new ul_customexception(Label.UL_PROMOTION_ASSIGNE_VALIDATION);
                     } 
                 }
@@ -315,12 +317,14 @@
             for(ACCL__Promotion__c promuser : [SELECT CreatedBy.UL_Finance_Analyst__c, CreatedBy.UL_Finance_Analyst__r.userrole.name,CreatedBy.UL_Finance_Manager__c,CreatedBy.UL_Finance_Manager__r.userrole.name,CreatedBy.managerid,CreatedBy.manager.userrole.name FROM ACCL__Promotion__c WHERE Id =: promotionId LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())]){
                 system.debug('userRole '+userRole) ;
                 system.debug('promuser.CreatedBy.UL_Finance_Analyst__r.userrole.name '+promuser.CreatedBy.UL_Finance_Analyst__r.userrole.name) ;
-                if(promuser.CreatedBy.UL_Finance_Analyst__r.userrole.name.containsIgnorecase(userRole)){
-                    approverIds.add(promuser.CreatedBy.UL_Finance_Analyst__c);
-                }
-                system.debug('promuser.CreatedBy.UL_Finance_manager__r.userrole.name '+promuser.CreatedBy.UL_Finance_manager__r.userrole.name) ;
-                if(promuser.CreatedBy.UL_Finance_manager__r.userrole.name.containsIgnorecase(userRole)){
-                    approverIds.add(promuser.CreatedBy.UL_Finance_Manager__c);
+                if(!userRole.containsIgnoreCase('TPM')){
+                    if(promuser.CreatedBy.UL_Finance_Analyst__r.userrole.name.containsIgnorecase(userRole)){
+                        approverIds.add(promuser.CreatedBy.UL_Finance_Analyst__c);
+                    }
+                    system.debug('promuser.CreatedBy.UL_Finance_manager__r.userrole.name '+promuser.CreatedBy.UL_Finance_manager__r.userrole.name) ;
+                    if(promuser.CreatedBy.UL_Finance_manager__r.userrole.name.containsIgnorecase(userRole)){
+                        approverIds.add(promuser.CreatedBy.UL_Finance_Manager__c);
+                    }
                 }
                 system.debug('promuser.CreatedBy.manager.userrole.name '+promuser.CreatedBy.manager.userrole.name) ;
                 if(promuser.CreatedBy.manager.userrole.name.containsIgnorecase(userRole)){
