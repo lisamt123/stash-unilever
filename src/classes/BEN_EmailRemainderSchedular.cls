@@ -31,11 +31,13 @@ public with sharing class BEN_EmailRemainderSchedular implements Schedulable{
      //adding  all email records from set to list
      listofUser.Add(distUser);
     }
-    
+    try{
     OrgWideEmailAddress Orgid = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'sagar.ambasankar@unilever.com' LIMIT 1];
     Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
     //setting from address
+    if(Orgid.Id!=null || Orgid.Id!=''){
     message.setOrgWideEmailAddressId(Orgid.Id);
+    }
    //setting to address
    for(String distUserIds:distinctuserIds){
      message.setTargetObjectId(distUserIds);
@@ -55,7 +57,7 @@ public with sharing class BEN_EmailRemainderSchedular implements Schedulable{
     //preparing main body
     String mailBody=body1+'\n'+'\n'+body2+'\n'+body3+'\n'+'\n'+body4+'\n'+'\n'+body5+'\n'+body6;
     message.plainTextBody=mailBody;
-   try{        
+           
    Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
    Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
    }
