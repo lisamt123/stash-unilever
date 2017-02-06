@@ -18,6 +18,8 @@ src/classes/VPM_ECCVendorSearchServiceOutput.cls
 src/classes/VPM_ECCVendorSearchServiceOutput.cls-meta.xml
 src/classes/VPM_FetchVendorsDetails.cls
 src/classes/VPM_FetchVendorsDetails.cls-meta.xml
+src/classes/VPM_FetchVendorDetailsHttpMock.cls
+src/classes/VPM_FetchVendorDetailsHttpMock.cls-meta.xml
 src/classes/VPM_GoldenDataController2.cls
 src/classes/VPM_GoldenDataController2.cls-meta.xml
 src/classes/VPM_GoldenDataController2Test.cls

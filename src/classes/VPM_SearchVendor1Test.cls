@@ -7,6 +7,23 @@ public class VPM_SearchVendor1Test{
     public static final string eccFusion = 'Fusion';
     public static final string eccCORDILLERA = 'Cordillera'; 
     
+    @testSetup 
+    static void withHoldingTaxSetup() {
+    VPM_WithholdingTaxType__c WithTaxType =new VPM_WithholdingTaxType__c();
+    WithTaxType.VPM_Country__c = 'IN';
+    WithTaxType.VPM_WithholdingTaxType__c ='TS';
+    WithTaxType.Name ='1';
+    
+    VPM_WithholdingTaxCode__c withTaxCode = new VPM_WithholdingTaxCode__c();
+    withTaxCode.VPM_Country__c ='IN';
+    withTaxCode.VPM_TaxType__c ='TS';
+    withTaxCode.VPM_PickListValue__c='TY';
+     withTaxCode.Name ='1';
+    
+    insert WithTaxType ;
+    insert withTaxCode ;
+    }
+    
     static void customSettingData(string regionVar) {
         VPM_RegionSpecificFields__c region = new VPM_RegionSpecificFields__c();
         List<VPM_RegionSpecificFields__c> regionList = new List<VPM_RegionSpecificFields__c>();
@@ -370,12 +387,15 @@ public class VPM_SearchVendor1Test{
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         
         VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
+        searchVendor.getLangOption();
         searchVendor.intCalcIndicatorDefValues = '01';
         searchVendor.getVendorDetailList();        
         searchVendor.mdmVendorType = '';
         searchVendor.VendorSelected();    
         
-        searchVendor.mdmVendorType = '0122222 \\#; 0050502921 \\#; U2K2';
+        searchVendor.mdmVendorType = '0122222 \\#; 0050502921 \\#; U2K2 \\#; Test \\#; Test \\#; Test \\#; test \\#; test \\#; test';
+        //searchVendor.VPM_ECCVendorSearchServiceOutput otp =new VPM_ECCVendorSearchServiceOutput();
+        //otp.CentralPostingBlock =true;
         //searchVendor.VendorSelected(); 
         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Maintain'));
         //searchVendor.requestType ='Maintain';  
@@ -399,6 +419,93 @@ public class VPM_SearchVendor1Test{
         searchVendor.getButtonVisibleSaveExit();
         //searchVendor.getExitButtonVisible();    
     }
+    
+    static testMethod void VPM_SearchVendorU2k2Blocked(){        
+        VPM_PurchasingRequests__c purId = TestDataU2K2();
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Extend)'].Id; 
+        purId.recordTypeId=recordTypeId;
+        update purId;
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        system.assertEquals(purch.VPM_ECC__c, 'U2K2');
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        
+        VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
+        searchVendor.getLangOption();
+        searchVendor.intCalcIndicatorDefValues = '01';
+        searchVendor.getVendorDetailList();        
+        searchVendor.mdmVendorType = '';
+        //searchVendor.VendorSelected();    
+        
+        searchVendor.mdmVendorType = '0122222 \\#; 0050502921 \\#; U2K2 \\#; Test \\#; Test \\#; Test \\#; test \\#; test \\#; test';
+        //searchVendor.VPM_ECCVendorSearchServiceOutput otp =new VPM_ECCVendorSearchServiceOutput();
+        //otp.CentralPostingBlock =true;
+        //searchVendor.VendorSelected(); 
+        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Block'));
+        //searchVendor.requestType ='Maintain';  
+        Test.startTest();
+        searchVendor.VendorSelected(); 
+        //VPM_ECCVendorSearchServiceOutput op = new VPM_ECCVendorSearchServiceOutput();
+        //op = searchVendor.FetchVendorDeatilSAPService(string.valueOf(vendor.mdm_vCodeSirius__c));           
+        Test.stopTest();    
+    
+        searchVendor.newMethod();
+        searchVendor.vendorNameChange(); 
+        searchVendor.SendWebformMethod();  
+        searchVendor.backBtnAction();  
+        searchVendor.GoldenDataSave();  
+        searchVendor.GoldenDataSave2();          
+        searchVendor.SaveAndExit();   
+        searchVendor.SaveMethod();
+        searchVendor.VendorNotFound = true;    
+        //searchVendor.isInternationalVersionCollapsed();
+        searchVendor.getButtonVisibleSaveMenu();
+        searchVendor.getButtonVisibleSaveExit();
+        //searchVendor.getExitButtonVisible();    
+    }
+    
+    
+    static testMethod void VPM_SearchVendorU2k2Blocked1(){        
+        VPM_PurchasingRequests__c purId = TestDataU2K2();
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Extend)'].Id; 
+        purId.recordTypeId=recordTypeId;
+        update purId;
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        system.assertEquals(purch.VPM_ECC__c, 'U2K2');
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        
+        VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
+        searchVendor.getLangOption();
+        searchVendor.intCalcIndicatorDefValues = '01';
+        searchVendor.getVendorDetailList();        
+        searchVendor.mdmVendorType = '';
+        //searchVendor.VendorSelected();    
+        
+        searchVendor.mdmVendorType = '0122222 \\#; 0050502921 \\#; U2K2 \\#; Test \\#; Test \\#; Test \\#; test \\#; test \\#; test';
+        //searchVendor.VPM_ECCVendorSearchServiceOutput otp =new VPM_ECCVendorSearchServiceOutput();
+        //otp.CentralPostingBlock =true;
+        //searchVendor.VendorSelected(); 
+        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Blocked'));
+        //searchVendor.requestType ='Maintain';  
+        Test.startTest();
+        searchVendor.VendorSelected(); 
+        //VPM_ECCVendorSearchServiceOutput op = new VPM_ECCVendorSearchServiceOutput();
+        //op = searchVendor.FetchVendorDeatilSAPService(string.valueOf(vendor.mdm_vCodeSirius__c));           
+        Test.stopTest();    
+    
+        searchVendor.newMethod();
+        searchVendor.vendorNameChange(); 
+        searchVendor.SendWebformMethod();  
+        searchVendor.backBtnAction();  
+        searchVendor.GoldenDataSave();  
+        searchVendor.GoldenDataSave2();          
+        searchVendor.SaveAndExit();   
+        searchVendor.SaveMethod();
+        searchVendor.VendorNotFound = true;    
+        //searchVendor.isInternationalVersionCollapsed();
+        searchVendor.getButtonVisibleSaveMenu();
+        searchVendor.getButtonVisibleSaveExit();
+        //searchVendor.getExitButtonVisible();    
+    }    
     
     static testMethod void VPM_SearchVendorFusionExtend(){        
         VPM_PurchasingRequests__c purId = TestDataFusion();
