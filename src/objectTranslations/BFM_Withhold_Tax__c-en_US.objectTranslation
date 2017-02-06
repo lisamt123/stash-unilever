@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Withhold Tax</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Withhold Taxes</value>
+    </caseValues>
+    <fields>
+        <label><!-- Carrier Account --></label>
+        <name>Carrier_Account__c</name>
+        <relationshipLabel><!-- Withhold Taxes (Carrier Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Carrier Vendor Code --></label>
+        <name>Carrier_Vendor_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>Company_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unilever Account --></label>
+        <lookupFilter>
+            <errorMessage><!-- O tipo de registro deve ser Standard. --></errorMessage>
+        </lookupFilter>
+        <name>Unilever_Account__c</name>
+        <relationshipLabel><!-- Withhold Taxes (Unilever Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Withholding Tax Code --></label>
+        <name>Withholding_Tax_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Withholding Tax Flag --></label>
+        <name>Withholding_Tax_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Withholding Tax Text --></label>
+        <name>Withholding_Tax_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Withholding Tax Type --></label>
+        <name>Withholding_Tax_Type__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Shipment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Shipments</value>
+    </caseValues>
+    <fields>
+        <label><!-- ANTT --></label>
+        <name>ANTT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Carrier Account	Vendor Code --></label>
+        <name>Carrier_Account_Vendor_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Carrier Account --></label>
+        <name>Carrier_Account__c</name>
+        <relationshipLabel><!-- Shipments (Carrier Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>Company_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created Date --></label>
+        <name>Created_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display --></label>
+        <name>Display__c</name>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100</masterLabel>
+            <translation><!-- 100 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>200</masterLabel>
+            <translation><!-- 200 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25</masterLabel>
+            <translation><!-- 25 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50</masterLabel>
+            <translation><!-- 50 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Is Deleted in SAP --></label>
+        <name>Is_Deleted_in_SAP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Shipment Update --></label>
+        <name>Last_Shipment_Update__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant Code --></label>
+        <name>Plant_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pricing Calculation Date --></label>
+        <name>Pricing_Calculation_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment Number --></label>
+        <name>Shipment_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment Start --></label>
+        <name>Shipment_Start__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment Status --></label>
+        <name>Shipment_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment Type --></label>
+        <name>Shipment_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unilever Company --></label>
+        <name>Unilever_Company__c</name>
+        <relationshipLabel><!-- DTs (Unilever Company) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Vehicle Plate --></label>
+        <name>Vehicle_Plate__c</name>
+    </fields>
+    <fields>
+        <label><!-- 6th flag Updated Date --></label>
+        <name>X6th_flag_Updated_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- 6th flag --></label>
+        <name>X6th_flag__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Document_Generation --></label>
+        <name>Document_Generation</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Search_BFM_Shipments --></label>
+        <name>Search_BFM_Shipments</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_Shipment --></label>
+        <name>Update_Shipment</name>
+    </webLinks>
+</CustomObjectTranslation>
