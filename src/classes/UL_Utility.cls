@@ -43,6 +43,9 @@
         public static final String kpiid = 'kpiId';
         public static final String value = 'value';
         public static final string finance = 'finance';
+        public static final string uiElement = 'UIElement';
+        public static final string semiColon = ';';
+        
         //Customer Org Hierarchy Levels - SOCO
         public static final String CUSTOMER_ORG_HIERARCHY_LEVEL_REGION = 'Region';
         public static final String CUSTOMER_ORG_HIERARCHY_LEVEL_SUB_REGION = 'Sub Region';
@@ -231,6 +234,55 @@
     }
    }
    
+      /*******************************************************************
+    Purpose: Get SalesOrg of current User 
+    Version: 1.0
+    Parameters: String userId
+    Returns: String
+    Throws N/A
+    ********************************************************************/
+   public static String getSalesOrg (String userId){
+        String salesOrg = '';
+        List<User> user = [ SELECT ACCL__Sales_Org__c, Id FROM User where Id = : userId];
+        if (user.size()>0){
+            return user[0].ACCL__Sales_Org__c;
+        }
+        else return salesOrg;
+    }
+
+    /*******************************************************************
+    Purpose: Convert Object to Date 
+    Version: 1.0
+    Parameters: 
+    Returns: Date
+    Throws N/A
+    ********************************************************************/
+    public static Date objToDate(Object o){
+        if (o == null){
+            return null;
+        }
+        else if (o instanceof Date){
+            return (Date)o;
+        }
+        else if (o instanceof Long) {
+            Long i = (Long)o;
+            DateTime dt = DateTime.newInstance(i);
+            return dt.dateGmt();
+        }
+        else if (o instanceof Integer) {
+            Integer i = (Integer)o;
+            DateTime dt = DateTime.newInstance(i);
+            return dt.dateGmt();
+        }
+        else if (o instanceof String) {
+            String s = (String)o;
+            return Date.valueOf(s);
+        }
+        else{
+            return  null; //Constants.MIN_DATE;}
+        }
+    }
+ 
    /*******************************************************************
     Purpose: Generic method to create SFDC object
     Version: 1.0
