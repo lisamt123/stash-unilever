@@ -11430,7 +11430,7 @@ IF(NOT(ISBLANK(lkp_CS_GTIN__c)) ,IF(lkp_CS_GTIN__r.lkp_Product_Category__r.Name 
         <fullName>BEN_Product_category_and_Category_Master</fullName>
         <active>true</active>
         <description>product category and category master has to be same</description>
-        <errorConditionFormula>TEXT( pkl_Category_Master__c )  &lt;&gt;  Product_Category__r.Name</errorConditionFormula>
+        <errorConditionFormula>NOT( CONTAINS(Product_Category__r.Name,TEXT( pkl_Category_Master__c )))</errorConditionFormula>
         <errorDisplayField>pkl_Category_Master__c</errorDisplayField>
         <errorMessage>Product category and category master has to be same</errorMessage>
     </validationRules>
