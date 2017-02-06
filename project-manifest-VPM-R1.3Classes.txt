@@ -1,9 +1,0 @@
-src/classes
-src/classes/VPM_FetchVendorDetailsHttpMock.cls
-src/classes/VPM_FetchVendorDetailsHttpMock.cls-meta.xml
-src/classes/VPM_HttpUtil.cls
-src/classes/VPM_HttpUtil.cls-meta.xml
-src/classes/VPM_SearchVendor1.cls
-src/classes/VPM_SearchVendor1.cls-meta.xml
-src/classes/VPM_SearchVendor1Test.cls
-src/classes/VPM_SearchVendor1Test.cls-meta.xml
