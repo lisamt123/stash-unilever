@@ -26363,6 +26363,22 @@ the campaign covers more than 15 countries</value>
         <shortDescription>Promotion Access Read</shortDescription>
         <value>Read</value>
     </labels>
+	<labels>
+        <fullName>Close_Promotion_FailedSingle</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close_Promotion_FailedSingle</shortDescription>
+        <value>The promotion can not be closed as the closing conditions are not fulfilled (end date must be passed and workflow state must be approved).</value>
+    </labels>
+	<labels>
+        <fullName>Close_Promotion_Missing_SharingSingle</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close_Promotion_Missing_SharingSingle</shortDescription>
+        <value>You can not close the promotion due to missing sharing access.</value>
+    </labels>
     <labels>
         <fullName>Promotion_Closure_Failed</fullName>
         <categories>Promotions_Closing</categories>
