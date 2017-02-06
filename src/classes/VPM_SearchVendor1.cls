@@ -440,7 +440,7 @@ public with sharing class VPM_SearchVendor1{
        return LangOption;
     }
     
-     /******************************************************************** 
+    /******************************************************************** 
     Created By   : Ajay Rawat
     Created Date : 05th June 2016
     Last Modify  : 06th June 2016
@@ -588,18 +588,19 @@ public with sharing class VPM_SearchVendor1{
                  hideSearchVendor=false;
                  if(op.statusCode == '200') {
                      if(op.vendorFoundResult) {                              
-                         if(op.companyCodeMatching ) {              
+                         if(op.companyCodeMatching && OP.purchasingOrgMatch) {              
                              if(op.CompanyData <> null && op.CompanyData.size() > 0 ) {
                                  boolean Blocked = false;
                                  boolean Deleted = false;
-                                 boolean BlockedCentral = op.CentralPostingBlock;
-                                 boolean BlockedCentral1 = op.CentralPurchasingBlock;
+                                 boolean BlockedCentral = op.CentralPostingBlock ;
+                                 boolean BlockedCentral1 = op.CentralPurchasingBlock ;
                                  boolean BlockedCentral2 = String.isNotBlank(op.BlockFunction);
                                  boolean DeletedCentral = op.CentralDeletionFlag;
-                                 boolean BlockedCompany = op.CompanyData[0].PostingBlock;
+                                 boolean BlockedCompany = op.CompanyData[0].PostingBlock ;
                                  boolean DeletedCompany = op.CompanyData[0].DeletionFlag;
-                                 boolean BlockedPurch = op.PurchasingData[0].PostingBlock;
+                                 boolean BlockedPurch = op.PurchasingData[0].PostingBlock ;
                                  boolean DeletedPurch = op.PurchasingData[0].DeletionFlag;
+                                system.debug('test cl'+BlockedCentral);
                                  if(BlockedCentral || BlockedCentral1 || BlockedCentral2 || BlockedCompany || BlockedPurch)
                                 {
                                   Blocked = true;
@@ -608,6 +609,7 @@ public with sharing class VPM_SearchVendor1{
                                 {
                                  Deleted = true;
                                 }
+                                 
                                  vendorBlockUnblockDelete = VPM_RecordTypeHelper.booleanToStringMethod(Blocked,Deleted);                                 
                                  if(BlockedCentral || BlockedCentral1 || BlockedCentral2 || DeletedCentral || BlockedCompany || DeletedCompany || BlockedPurch || DeletedPurch) {
                                      requestType = VPM_RecordTypeHelper.MAINTAIN_2; // Limited no of options
