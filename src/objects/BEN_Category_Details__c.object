@@ -1364,6 +1364,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1404,6 +1408,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklist>
             <picklistValues>
                 <fullName>Cleans clothes thoroughly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Key Attribute 2 description</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -1448,6 +1456,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1490,6 +1502,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1530,6 +1546,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklist>
             <picklistValues>
                 <fullName>Win on DIG stains</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Key Attribute 5 description</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -3828,6 +3848,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_1_description__c</picklist>
             <values>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -3853,6 +3877,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Cleans clothes thoroughly</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Key Attribute 2 description</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_Sensory__c</picklist>
@@ -3871,6 +3899,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -3894,6 +3926,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_4_description__c</picklist>
             <values>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -3915,6 +3951,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_5_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 5 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -5473,6 +5513,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_1_description__c</picklist>
             <values>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -5498,6 +5542,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Cleans clothes thoroughly</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Key Attribute 2 description</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_Sensory__c</picklist>
@@ -5516,6 +5564,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -5539,6 +5591,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_4_description__c</picklist>
             <values>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -5560,6 +5616,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_5_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 5 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -7138,6 +7198,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_1_description__c</picklist>
             <values>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -7163,6 +7227,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Cleans clothes thoroughly</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Key Attribute 2 description</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_Sensory__c</picklist>
@@ -7181,6 +7249,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -7204,6 +7276,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_4_description__c</picklist>
             <values>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -7225,6 +7301,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_5_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 5 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -8803,6 +8883,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_1_description__c</picklist>
             <values>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -8828,6 +8912,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Cleans clothes thoroughly</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Key Attribute 2 description</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_Sensory__c</picklist>
@@ -8846,6 +8934,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -8869,6 +8961,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_4_description__c</picklist>
             <values>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -8890,6 +8986,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_5_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 5 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -10452,6 +10552,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_1_description__c</picklist>
             <values>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -10477,6 +10581,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Cleans clothes thoroughly</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Key Attribute 2 description</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_Sensory__c</picklist>
@@ -10495,6 +10603,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -10518,6 +10630,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_4_description__c</picklist>
             <values>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -10539,6 +10655,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_5_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 5 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
