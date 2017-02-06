@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+<alerts>
+        <fullName>VPM_EmailRequestCompleted</fullName>
+        <description>VPM- Email for request completed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <field>VPM_MDMOpsEmail__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_Requesthasbeencompleted</template>
+    </alerts>
 	<alerts>
         <fullName>VPM_RequestforUsertoCompleteVendorRequestSurvey</fullName>
         <description>Request for User to Complete Vendor Request Survey</description>
@@ -391,6 +406,21 @@ VPM_CRVT__c=&quot;Nepal&quot;
 ),	
 TRUE,FALSE)</formula>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+	<rules>
+        <fullName>VPM_EmailNotificationForRequestCompleted</fullName>
+        <actions>
+            <name>VPM_EmailRequestCompleted</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>Request Completed</value>
+        </criteriaItems>
+        <description>VPM- email notification to record creator when the request is completed</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>VPM Send email to Vendor</fullName>

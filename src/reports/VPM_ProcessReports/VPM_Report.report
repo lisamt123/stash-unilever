@@ -139,6 +139,9 @@
         <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithMasterData__c</field>
     </columns>
     <columns>
+        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithMDMOps__c</field>
+    </columns>
+    <columns>
         <field>VPM_PurchasingRequests__c.VPM_TotalCycleTimeHrs__c</field>
     </columns>
     <columns>

@@ -19,4 +19,6 @@ trigger VPM_SetGlobalOrRegionalFieldUpdate on VPM_PurchasingRequests__c (before 
        
 
     }
+
+
 }
