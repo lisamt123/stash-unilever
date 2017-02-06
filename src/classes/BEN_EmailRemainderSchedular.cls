@@ -35,7 +35,9 @@ public with sharing class BEN_EmailRemainderSchedular implements Schedulable{
     OrgWideEmailAddress Orgid = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'sagar.ambasankar@unilever.com' LIMIT 1];
     Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
     //setting from address
+    if(Orgid.Id!=null || Orgid.Id!=''){
     message.setOrgWideEmailAddressId(Orgid.Id);
+    }
    //setting to address
    for(String distUserIds:distinctuserIds){
      message.setTargetObjectId(distUserIds);
