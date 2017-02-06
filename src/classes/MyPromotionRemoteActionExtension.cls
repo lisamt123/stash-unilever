@@ -552,9 +552,32 @@ Throws : N/A
                     DrillDown_Lift_Field.visible = false;  
                     earBOPromotion.add(DrillDown_Lift_Field);
                     
+                    if(promoList[0].ACCL__Sales_Org__c == UL_Utility.UK_SO || promoList[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO){
+                        Schema.FieldSet fldSet = Schema.SObjectType.ACCL__Promotion__c.fieldSets.getMap().get('UL_UKI_LTA_Disabled_Fields');
+                        for(Schema.FieldSetMember fld: fldSet.getFields()){ 
+                            EARUI promoField = new EARUI();
+                            promoField.Name = fld.getFieldPath();
+                            promoField.Type = UtilityEnum.Attribute.Name();
+                            promoField.visible = false;
+                            earBOPromotion.add(promoField);
+                        }
+                    }
+                    
                 //}
                 
             }
+            //Non-LTA
+            else if(promoList[0].ACCL__Sales_Org__c == UL_Utility.UK_SO || promoList[0].ACCL__Sales_Org__c == UL_Utility.Ireland_SO){
+                Schema.FieldSet fldSet = Schema.SObjectType.ACCL__Promotion__c.fieldSets.getMap().get('UL_UKI_LTA_Specific');
+                for(Schema.FieldSetMember fld: fldSet.getFields()){ 
+                    EARUI promoField = new EARUI();
+                    promoField.Name = fld.getFieldPath();
+                    promoField.Type = UtilityEnum.Attribute.Name();
+                    promoField.visible = false;
+                    earBOPromotion.add(promoField);
+                }
+            }
+            
             String status = promoList[0].UL_Current_Status__c;
             
             
