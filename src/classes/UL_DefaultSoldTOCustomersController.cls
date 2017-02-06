@@ -138,58 +138,25 @@ public with sharing class UL_DefaultSoldTOCustomersController{
     ********************************************************************/ 
    public pageReference save(){
         pageReference pref = null;
+        boolean isDuplicate = false;
        try{
         //Do not allow to create customer planning level if customer(s) at level 8 have different currency
-        if(isCustomerDifferentCurrency){
-            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.UL_CURRENCY_DISCREPANCY);
-            ApexPages.addMessage(msg);            
-        }        
-        Id  currCustId = relatedRecord.UL_Customer__c ;
-        Date currPLRecStartDt = relatedRecord.UL_Planning_Level_Start_Date__c ;
-        Date currPLRecEndDt = relatedRecord.UL_Planning_Level_End_Date__c ;        
-        Boolean planLev = false ;        
-        List<Account>  custHierAccLst = new List<Account>();
-        List<UL_Planning_Level__c> custHierAccPLLst = new List<UL_Planning_Level__c>();
-        List<UL_Planning_Level__c> currCustPLLst = new List<UL_Planning_Level__c>();
-        Set<Id> custHierAccIds = new Set<Id> () ;               
-        custHierAccLst = UL_CustomerUtility.getCustomerHierarchyAllCustomers(currCustId, UL_Utility.LEVEL8, currPLRecStartDt , currPLRecEndDt , false) ;                
-        if(custHierAccLst != null){        
-            if(custHierAccLst.size() > 0){               
-                for(Account custHierAcc : custHierAccLst){
-                    custHierAccIds.add(custHierAcc.Id) ;
-                }
+        for(UL_Planning_Level__c existedPlanningLevels:[SELECT Id, Name,UL_Planning_Level_Start_Date__c,UL_Planning_Level_End_Date__c  From UL_Planning_Level__c WHERE UL_Customer__c =: relatedRecord.UL_Customer__c AND UL_Planning_Level_End_Date__c>=:relatedRecord.UL_Planning_Level_Start_Date__c AND UL_Planning_Level_Start_Date__c<=:relatedRecord.UL_Planning_Level_End_Date__c LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())]){
+            if(existedPlanningLevels.id != relatedRecord.id && existedPlanningLevels.UL_Planning_Level_End_Date__c  >= relatedRecord.UL_Planning_Level_Start_Date__c &&
+             existedPlanningLevels.UL_Planning_Level_Start_Date__c  <= relatedRecord.UL_Planning_Level_End_Date__c){
+               isDuplicate = true;                
             }
-        }        
-        if(custHierAccIds.size() > 0){      
-            custHierAccPLLst = [SELECT Id, Name,UL_Planning_Level_Start_Date__c,UL_Planning_Level_End_Date__c  From UL_Planning_Level__c WHERE UL_Customer__c =: custHierAccIds LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
-        }        
-        currCustPLLst = [SELECT Id, Name,UL_Planning_Level_Start_Date__c,UL_Planning_Level_End_Date__c  From UL_Planning_Level__c WHERE UL_Customer__c =: relatedRecord.UL_Customer__c LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())] ;
-        if(currCustPLLst.size() > 0){
-            for(UL_Planning_Level__c currCustPL : currCustPLLst){
-                custHierAccPLLst.add(currCustPL) ;
-            }
-        }        
-        if(custHierAccPLLst.size() > 0){
-        system.debug('custHierAccPL---'+custHierAccPLLst);
-            for(UL_Planning_Level__c custHierAccPL : custHierAccPLLst){
-                if((custHierAccPL.Id != relatedRecord.Id)&&((currPLRecEndDt == custHierAccPL.UL_Planning_Level_Start_Date__c||currPLRecStartDt == custHierAccPL.UL_Planning_Level_Start_Date__c) || (currPLRecEndDt == custHierAccPL.UL_Planning_Level_End_Date__c)
-                || (currPLRecStartDt > custHierAccPL.UL_Planning_Level_Start_Date__c && currPLRecStartDt < custHierAccPL.UL_Planning_Level_End_Date__c)
-                || (currPLRecEndDt > custHierAccPL.UL_Planning_Level_Start_Date__c && currPLRecEndDt < custHierAccPL.UL_Planning_Level_End_Date__c)
-                || (custHierAccPL.UL_Planning_Level_Start_Date__c > currPLRecStartDt && custHierAccPL.UL_Planning_Level_Start_Date__c < currPLRecEndDt)
-                || (custHierAccPL.UL_Planning_Level_End_Date__c > currPLRecStartDt && custHierAccPL.UL_Planning_Level_End_Date__c  < currPLRecEndDt))){
-                    planLev = true ;
-                    break ;
-                }
-            }
-        }            
-        if (planLev){
-            ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, System.Label.UL_PlanningLevelAndCurrency);
-            ApexPages.addMessage(msg);           
+            
+        }
+        if(isDuplicate){
+        ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, System.Label.UL_PlanningLevelAndCurrency);
+                ApexPages.addMessage(msg); 
+        
         }
         else{
-            Database.upsert(relatedRecord);
-            pref  = new PageReference('/'+relatedRecord.UL_Customer__c);            
-            pref.setRedirect(true);           
+                Database.upsert(relatedRecord);
+                pref  = new PageReference('/'+relatedRecord.UL_Customer__c);            
+                pref.setRedirect(true);           
         }
        }
     catch(Exception ex){
