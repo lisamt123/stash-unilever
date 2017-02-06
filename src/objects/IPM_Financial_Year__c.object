@@ -14,11 +14,15 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
-        <type>Default</type>
+        <content>IPM_Financial_YearRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <type>Default</type>
+        <content>IPM_Financial_YearRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -26,11 +30,15 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>List</actionName>
-        <type>Default</type>
+        <content>IPM_Financial_YearList</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <type>Default</type>
+        <content>IPM_Financial_YearRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -38,11 +46,15 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
-        <type>Default</type>
+        <content>IPM_Financial_YearList</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <content>IPM_Financial_YearRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -54,6 +66,46 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fieldSets>
+        <fullName>DefaultListView</fullName>
+        <description>DefaultListView</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Financial__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Global_Project_Id__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Financial_Postfix__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>isActive__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Year__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Year_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>DefaultListView</label>
+    </fieldSets>
     <fieldSets>
         <fullName>IPM_Financial_Year_FS</fullName>
         <description>ipmFinancial VF Page</description>

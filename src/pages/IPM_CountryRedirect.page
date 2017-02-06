@@ -1,0 +1,5 @@
+<apex:page standardController="IPM_Country__c" >
+    <apex:form >
+		<c:IPM_sObjectDetail sObjectName="IPM_Country__c" objectId="{!$CurrentPage.parameters.id}"/>   
+    </apex:form>  
+</apex:page>

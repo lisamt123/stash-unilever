@@ -1,0 +1,5 @@
+<apex:page standardController="IPM_MarketPerformanceBreakdown__c" >
+    <apex:form >
+		<c:IPM_sObjectDetail sObjectName="IPM_MarketPerformanceBreakdown__c" objectId="{!$CurrentPage.parameters.id}"/>   
+    </apex:form>  
+</apex:page>

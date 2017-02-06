@@ -1,0 +1,5 @@
+<apex:page standardController="IPM_Financial_Year__c" >
+    <apex:form >
+		<c:IPM_sObjectDetail sObjectName="IPM_Financial_Year__c" objectId="{!$CurrentPage.parameters.id}"/>   
+    </apex:form>  
+</apex:page>

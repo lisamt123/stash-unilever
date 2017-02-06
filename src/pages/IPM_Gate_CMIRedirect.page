@@ -1,0 +1,5 @@
+<apex:page standardController="IPM_Gate_CMI__c" >
+    <apex:form >
+		<c:IPM_sObjectDetail sObjectName="IPM_Gate_CMI__c" objectId="{!$CurrentPage.parameters.id}"/>   
+    </apex:form>  
+</apex:page>

@@ -1,0 +1,95 @@
+<apex:component controller="IPM_sObjectListController" id="listingCmp">
+    <apex:attribute name="sObjectName" description="Name of the sObject" type="String" required="true" assignTo="{!selectedSObject}" />
+    <apex:attribute name="fieldSetName" description="Fieldset for columns to be displayed" type="String" required="true" assignTo="{!associatedFieldSet}" />
+    <apex:attribute name="searchFieldName" description="Search based on field API Name" type="String" required="false" assignTo="{!searchFieldAPI}" />
+    
+     {!initialize}
+     
+    <apex:form rendered="{!OR($Permission[listActionPermission],$Permission[fullPermission])}" >
+         <apex:sectionHeader title="{!$ObjectType[sObjectName].label}" subtitle="Home"/> 
+         
+         <apex:pageBlock id="listPB" >
+             
+            <apex:outputPanel layout="block" styleClass="topNavTab" id="paginationheader">
+                <apex:outputPanel layout="inline" styleClass="left">
+                    <apex:commandButton action="{!URLFOR($Action[sObjectName]['New'],null,null,true)}" value="New {!$ObjectType[sObjectName].label}" rendered="{!OR($Permission[newActionPermission],$Permission[fullPermission])}" />          
+                </apex:outputPanel>
+                
+                <apex:outputPanel layout="inline" styleClass="right" style="float:right" rendered="{!NOT(ISBLANK(searchFieldName))}">
+                    <apex:inputText value="{!sObj[searchFieldAPI]}" html-placeholder="Search {!$ObjectType[sObjectName].fields[searchFieldName].Label}"/> 
+                    <apex:commandButton value="Search" action="{!searchRecords}" rerender="listPB" ></apex:commandButton>
+                    <apex:commandButton value="Reset" action="{!resetRecords}" rerender="listPB" ></apex:commandButton>    
+                </apex:outputPanel>
+            </apex:outputPanel>
+        
+            <apex:pageBlockTable value="{!sObjectList}" var="record">
+                    <apex:column headerValue="Action" width="125px"> 
+                    <apex:commandLink action="{!URLFOR($Action[sObjectName]['Edit'],record.Id,null,false)}" value="View" rendered="{!OR($Permission[viewActionPermission],$Permission[fullPermission])}" /> &nbsp;     
+
+                        <apex:repeat value="{!inlineActionList}" var="actionName">   
+                            <apex:commandLink action="{!URLFOR($Action[sObjectName][actionName],record.Id,null,true)}" value="{!actionName}" rendered="{!OR($Permission[objectActionsToPermissions[actionName]],$Permission[fullPermission])}" /> &nbsp;       
+                        </apex:repeat>
+                    </apex:column> 
+                <apex:repeat value="{!fieldSetMemList}" var="fieldSetMem" >
+                    <apex:column headerValue="{!fieldSetMem.label}" >
+                        <apex:facet name="header">
+                            <apex:commandLink action="{!updateSortOrder}" value="{!fieldSetMem.label}" rerender="listPB">
+                                <apex:param name="sortColumn" assignTo="{!sortColumn}" value="{!fieldSetMem.fieldPath}" ></apex:param>
+                                <apex:image styleclass="x-grid3-sort-icon" value="/img/sort_asc_arrow.gif" rendered="{!AND(sortColumn== fieldSetMem.fieldPath,sortOrder=='asc')}" ></apex:image> 
+                                <apex:image styleclass="x-grid3-sort-icon" value="/img/sort_desc_arrow.gif" rendered="{!AND(sortColumn== fieldSetMem.fieldPath,sortOrder=='desc')}" ></apex:image>
+                            </apex:commandLink>
+                            
+                        </apex:facet>
+                        <apex:outputField value="{!record[fieldSetMem.fieldPath]}" /> 
+                    </apex:column> 
+                </apex:repeat>     
+            </apex:pageBlockTable>
+            <apex:outputPanel layout="block" styleClass="bottomNav" id="paginationBar">
+                <apex:outputPanel layout="block" styleClass="paginator">
+                    
+                    <apex:outputPanel layout="inline" styleClass="left">
+                        <apex:outputText >{! IF(noOfRecords>0,(standardSetCtrl.pageNumber * standardSetCtrl.pageSize)+1-standardSetCtrl.pageSize,0-0)} -{!IF((standardSetCtrl.pageNumber * standardSetCtrl.pageSize)>noOfRecords, noOfRecords,(standardSetCtrl.pageNumber * standardSetCtrl.pageSize))} of {!noOfRecords}
+                        </apex:outputText>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="inline" styleClass="prevNext">
+                        <apex:commandButton status="fetchStatus" reRender="listPB" value="First" action="{!standardSetCtrl.first}" disabled="{!!standardSetCtrl.hasPrevious}" title="First Page"/> 
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="inline" styleClass="prevNext">
+                        <apex:commandButton status="fetchStatus" reRender="listPB" value="Previous" action="{!standardSetCtrl.previous}" disabled="{!!standardSetCtrl.hasPrevious}" title="Previous Page"/> 
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="inline" styleClass="prevNext">
+                        <apex:commandButton status="fetchStatus" reRender="listPB" value="Next" action="{!standardSetCtrl.next}" disabled="{!!standardSetCtrl.hasNext}" title="Next Page"/> 
+                    </apex:outputPanel>
+                     
+                    <apex:outputPanel layout="inline" styleClass="prevNext">
+                        <apex:commandButton status="fetchStatus" reRender="listPB" value="Last" action="{!standardSetCtrl.last}" disabled="{!!standardSetCtrl.hasNext}" title="Last Page"/>
+                    </apex:outputPanel>
+                    
+                    <apex:actionStatus id="fetchStatus" > 
+                        <apex:facet name="start" >
+                            <img src="/img/loading.gif" />                    
+                        </apex:facet>
+                    </apex:actionStatus>
+                
+                    <apex:outputPanel layout="inline" styleClass="right">
+                        <apex:selectList value="{!standardSetCtrl.pageSize}" multiselect="false" size="1"> 
+                             <apex:selectOption itemValue="5" itemLabel="5"/>
+                             <apex:selectOption itemValue="10" itemLabel="10"/>
+                             <apex:selectOption itemValue="15" itemLabel="15"/>
+                             <apex:selectOption itemValue="20" itemLabel="20"/>
+                             <apex:selectOption itemValue="25" itemLabel="25"/>
+                             <apex:actionSupport event="onchange" action="{!null}" status="fetchStatus" reRender="listPB" ></apex:actionSupport>  
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form> 
+
+    <apex:form rendered="{!AND(NOT($Permission[listActionPermission]),NOT($Permission[fullPermission]))}" >
+        <apex:pageMessage summary="{!unAuthorizedAccessMessage}" severity="error" strength="3" />  
+    </apex:form>   
+</apex:component>

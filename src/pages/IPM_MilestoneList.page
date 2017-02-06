@@ -1,0 +1,3 @@
+<apex:page standardController="IPM_Milestone__c" recordSetVar="IPM_Milestone__c">
+    <c:IPM_sObjectList sObjectName="IPM_Milestone__c" fieldSetName="DefaultListView" searchFieldName="IPM_Name__c" />    
+</apex:page>
