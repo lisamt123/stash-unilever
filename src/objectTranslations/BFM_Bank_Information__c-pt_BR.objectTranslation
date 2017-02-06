@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Bank Information --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Bank Information --></value>
+    </caseValues>
+    <fields>
+        <label>Conta Corrente</label>
+        <name>Account_Number__c</name>
+    </fields>
+    <fields>
+        <label>Agencia</label>
+        <name>Agency_Number__c</name>
+    </fields>
+    <fields>
+        <label>Banco</label>
+        <name>Bank_Code__c</name>
+    </fields>
+    <fields>
+        <label>País</label>
+        <name>Bank_Country__c</name>
+    </fields>
+    <fields>
+        <label>Nome Banco</label>
+        <name>Bank_Name__c</name>
+    </fields>
+    <fields>
+        <label>Chave do Banco</label>
+        <name>Bank_key__c</name>
+    </fields>
+    <fields>
+        <label>Fornecedor</label>
+        <name>Carrier_Account__c</name>
+        <relationshipLabel><!-- Bank Informations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Cód.Empresa</label>
+        <name>Company_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <nameFieldLabel><!-- Bank Information Name --></nameFieldLabel>
+</CustomObjectTranslation>

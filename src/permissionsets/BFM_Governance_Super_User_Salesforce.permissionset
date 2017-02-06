@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-    <applicationVisibilities>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+	<applicationVisibilities>
         <application>Brazil_Freight_Collaboration_Tool</application>
-        <default>true</default>
         <visible>true</visible>
     </applicationVisibilities>
-        <classAccesses>
+    <classAccesses>
         <apexClass>BFM_AccountDAO</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -285,8 +284,7 @@
         <apexClass>BFM_UserCreationRequestHandler_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <custom>true</custom>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.BFM_Active_CNPJ__c</field>
         <readable>true</readable>
@@ -444,6 +442,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Bank_Information__c.Company_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_Bank_Information__c.External_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_Company_Code__c.Company_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -688,12 +696,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>BFM_NF_e__c.Complement_Goods_Sender__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>BFM_NF_e__c.Complement_destination__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>BFM_NF_e__c.Complementary_information__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_NF_e__c.Country_Code_Goods_Sender__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_NF_e__c.Country_Name_Goods_Sender__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -818,6 +841,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>BFM_NF_e__c.Name_Taker__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>BFM_NF_e__c.Name_destination__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -833,12 +861,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>BFM_NF_e__c.Phone_Goods_Sender__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>BFM_NF_e__c.Phone_destination__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>BFM_NF_e__c.Postal_Code_Cargo_Dispatcher__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_NF_e__c.Postal_Code_Goods_Sender__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -883,6 +921,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>BFM_NF_e__c.SUFRAMA_Registration_Goods_Sender__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>BFM_NF_e__c.SUFRAMA_registration__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -914,6 +957,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>BFM_NF_e__c.State_Recipient__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_NF_e__c.State_Registration_Destination__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_NF_e__c.State_Registration_Goods_Sender__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1740,175 +1793,122 @@
         <editable>true</editable>
         <field>BFM_User_Creation_Request_Error__c.Error_Message__c</field>
         <readable>true</readable>
-    </fieldPermissions>	
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>BFM_Withhold_Tax__c.Carrier_Vendor_Code__c</field>
-        <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>BFM_Withhold_Tax__c.Company_Code__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>BFM_Withhold_Tax__c.External_Id__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>BFM_Withhold_Tax__c.Unilever_Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>BFM_Withhold_Tax__c.Withholding_Tax_Code__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>BFM_Withhold_Tax__c.Withholding_Tax_Flag__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>BFM_Withhold_Tax__c.Withholding_Tax_Text__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>BFM_Withhold_Tax__c.Withholding_Tax_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>	
 	<fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.Company_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.Deletion_Flag__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.External_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.Payment_Block_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.Payment_Block__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.Payment_Condition_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.Payment_Condition_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.Payment_Method_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.Payment_Method__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.Posting_Block__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BFM_Payment_Method__c.Unilever_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<layoutAssignments>
-		<layout>Account-BFM Unilever Account</layout>
-		<recordType>Account.BFM_Unilever_Account</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-		<layout>Account-Carrier</layout>
-		<recordType>Account.BFM_Carrier</recordType>
-    </layoutAssignments>
-	<layoutAssignments>
-		<layout>Contact-Carrier Contact Layout</layout>
-		<recordType>Contact.BFM_Carrier_Contact</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_AccountAccessRequest__c-BFM Account Access Request Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_Bank_Information__c-BFM Bank Information Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_Company_Code__c-Company Code Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_Email_Information__c-BFM Email Information Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_Error_Log__c-BFM_Error Log Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_NF_e__c-NF-e Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_Occurrence__c-BFM Occurrence Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_SES__c-SES Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_Shipment__c-Shipment Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_Stage__c-Stage Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_UserCreationRequest__c-BFM Carrier User Request Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>BFM_User_Creation_Request_Error__c-BFM User Creation Request Error Layout</layout>
-    </layoutAssignments>
-	<layoutAssignments>
-        <layout>BFM_Payment_Method__c-Payment Method Layout</layout>
-    </layoutAssignments>
-	<layoutAssignments>
-        <layout>BFM_Withhold_Tax__c-Withhold Tax Layout</layout>
-    </layoutAssignments>
-	<objectPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_Withhold_Tax__c.Carrier_Vendor_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_Withhold_Tax__c.Company_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_Withhold_Tax__c.External_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_Withhold_Tax__c.Unilever_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_Withhold_Tax__c.Withholding_Tax_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_Withhold_Tax__c.Withholding_Tax_Flag__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_Withhold_Tax__c.Withholding_Tax_Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BFM_Withhold_Tax__c.Withholding_Tax_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <label>BFM-Governance Super User Salesforce</label>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
+        <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Account</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <objectPermissions>
+	<objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
+        <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Contact</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-	<objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -1917,43 +1917,7 @@
         <object>BFM_AccountAccessRequest__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-	<objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>BFM_Email_Information__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-	<objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>BFM_Shipment__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-	<objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>BFM_Occurrence__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-	<objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>BFM_Stage__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-	<objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -1962,7 +1926,34 @@
         <object>BFM_Delivery__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-	<objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>BFM_Email_Information__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>BFM_Error_Log__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>BFM_Fiscal_Documents__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -1977,16 +1968,52 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
-        <object>BFM_Error_Log__c</object>
+        <object>BFM_Occurrence__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-	<objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>BFM_SES__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>BFM_Shipment__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>BFM_Stage__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>BFM_UserCreationRequest__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>BFM_User_Creation_Request_Error__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
 	<objectPermissions>
@@ -2007,25 +2034,19 @@
         <object>BFM_Withhold_Tax__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-	<objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>BFM_UserCreationRequest__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>BFM_User_Creation_Request_Error__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <pageAccesses>
+	<recordTypeVisibilities>
+        <recordType>Account.BFM_Unilever_Account</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <recordType>Account.BFM_Carrier</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <recordType>Contact.BFM_Carrier_Contact</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+	<pageAccesses>
         <apexPage>BFM_AccountMoreDetails</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -2045,112 +2066,65 @@
         <apexPage>BFM_ShipmentDocumentGeneration</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-	<recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Account.BFM_Unilever_Account</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>Account.BFM_Carrier</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-	<recordTypeVisibilities>
-        <default>true</default>
-        <recordType>Contact.BFM_Carrier_Contact</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <tabVisibilities>
+	<tabSettings>
+        <tab>standard-Account</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>standard-Contact</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>BFM_AccountAccessRequest__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>BFM_Shipment__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-	<tabVisibilities>
-        <tab>BFM_Occurrence__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>BFM_Search_Shipment_Cte</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-	<tabVisibilities>
-        <tab>BFM_Search_Occurrence</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-	<tabVisibilities>
-        <tab>BFM_Email_Information__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-	<tabVisibilities>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>BFM_Bank_Information__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>BFM_Company_Code__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>BFM_NF_e__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-	<tabVisibilities>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>BFM_Occurrence__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>BFM_SES__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-	<tabVisibilities>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>BFM_Search_Occurrence</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>BFM_Search_Shipment</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>BFM_Search_Shipment_Cte</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>BFM_Shipment__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>BFM_Stage__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-	<tabVisibilities>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>BFM_UserCreationRequest__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <userLicense>Partner Community</userLicense>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>AllowUniversalSearch</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ApiEnabled</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>AssignTopics</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ChatterOwnGroups</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>CreateTopics</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>EditOppLineItemUnitPrice</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>EditTask</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>EditTopics</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>EnableNotifications</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>RunReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>SelectFilesFromSalesforce</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ShowCompanyNameAsUserBadge</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewGlobalHeader</name>
-    </userPermissions>
-</Profile>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>BFM_Email_Information__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<userLicense>Salesforce</userLicense>
+</PermissionSet>

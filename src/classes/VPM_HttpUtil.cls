@@ -1,4 +1,4 @@
- /*********************************************************************************************************
+/*********************************************************************************************************
 Name:  VPM_HttpUtil 
 Copyright ? 2016  Unilever
 ==========================================================================================================
@@ -256,7 +256,7 @@ public with sharing class VPM_HttpUtil {
         //recordType rec = [select Name, id from recordType where Name like '%Maintain%' limit 1];
        //vendorList.RecordTypeId = rec.id;
        vendorList.VPM_isVendorCached__c= true;
-       vendorList.VPM_FieldType__c = 'Regional';
+       //vendorList.VPM_FieldType__c = 'Regional';
         update vendorList;
         }
     public static boolean convertYesNoToBoolean(String inputString) {
@@ -323,7 +323,7 @@ public with sharing class VPM_HttpUtil {
     public static void updateFieldType(String vendorId)
     {
         VPM_PurchasingRequests__c vendor = [Select Id , VPM_FieldType__c from VPM_PurchasingRequests__c where id=: vendorId limit 1];
-        vendor.VPM_FieldType__c = 'Regional';
+        //vendor.VPM_FieldType__c = 'Regional';
         update vendor;
     }
     

@@ -131,6 +131,21 @@
         <layout>Account-Pitch Agency Layout</layout>
         <recordType>Account.Pitch_Agency</recordType>
     </layoutAssignments>
+	<layoutAssignments>
+		<layout>Account-BFM Unilever Account</layout>
+		<recordType>Account.BFM_Unilever_Account</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+		<layout>Account-Carrier</layout>
+		<recordType>Account.BFM_Carrier</recordType>
+    </layoutAssignments>
+	<layoutAssignments>
+		<layout>Contact-Carrier Contact Layout</layout>
+		<recordType>Contact.BFM_Carrier_Contact</recordType>
+    </layoutAssignments>
+	<layoutAssignments>
+		<layout>BFM_UserCreationRequest__c-BFM Carrier User Request Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Account_Relationship__c-External PoP ID Layout</layout>
     </layoutAssignments>

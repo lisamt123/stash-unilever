@@ -2066,6 +2066,14 @@
         <apexPage>BFM_ShipmentDocumentGeneration</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+	<tabSettings>
+        <tab>standard-Account</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>standard-Contact</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <tabSettings>
         <tab>BFM_AccountAccessRequest__c</tab>
         <visibility>Visible</visibility>
@@ -2104,7 +2112,7 @@
     </tabSettings>
     <tabSettings>
         <tab>BFM_Shipment__c</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>BFM_Stage__c</tab>

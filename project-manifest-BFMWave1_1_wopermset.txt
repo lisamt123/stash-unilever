@@ -162,6 +162,11 @@ src/email/BFM_Email_Templates/BFM_Request_Approval.email
 src/email/BFM_Email_Templates/BFM_Request_Approval.email-meta.xml
 src/email/BFM_Email_Templates/BFM_User_Creation_Carrier_Approval.email
 src/email/BFM_Email_Templates/BFM_User_Creation_Carrier_Approval.email-meta.xml
+src/flows/BFM_Create_Carrier_User_and_Share_Accounts-1.flow
+src/flows/BFM_Create_Carrier_User_and_Share_Accounts-2.flow
+src/flows/BFM_Create_Carrier_User_and_Share_Accounts-4.flow
+src/flows/BFM_Free_Freight_update_CTE-1.flow
+src/flows/BFM_Update_Shipment_in_CTe-1.flow
 src/groups/BFM_Governance.group
 src/homePageLayouts/BFM Home Page.homePageLayout
 src/layouts/Account-BFM Unilever Account.layout
@@ -200,30 +205,6 @@ src/objects/Account.object
 src/objects/Contact.object
 src/objects/BFM_User_Creation_Request_Error__c.object
 src/objects/BFM_UserCreationRequest__c.object
-src/objectTranslations/BFM_Bank_Information__c-en_US.objectTranslation
-src/objectTranslations/BFM_Bank_Information__c-pt_BR.objectTranslation
-src/objectTranslations/BFM_Delivery__c-en_US.objectTranslation
-src/objectTranslations/BFM_Delivery__c-pt_BR.objectTranslation
-src/objectTranslations/BFM_Error_Log__c-en_US.objectTranslation
-src/objectTranslations/BFM_Error_Log__c-pt_BR.objectTranslation
-src/objectTranslations/BFM_NF_e__c-en_US.objectTranslation
-src/objectTranslations/BFM_NF_e__c-pt_BR.objectTranslation
-src/objectTranslations/BFM_Occurrence__c-en_US.objectTranslation
-src/objectTranslations/BFM_Occurrence__c-pt_BR.objectTranslation
-src/objectTranslations/BFM_Payment_Method__c-en_US.objectTranslation
-src/objectTranslations/BFM_Payment_Method__c-pt_BR.objectTranslation
-src/objectTranslations/BFM_SES__c-en_US.objectTranslation
-src/objectTranslations/BFM_SES__c-pt_BR.objectTranslation
-src/objectTranslations/BFM_Shipment__c-en_US.objectTranslation
-src/objectTranslations/BFM_Shipment__c-pt_BR.objectTranslation
-src/objectTranslations/BFM_Stage__c-en_US.objectTranslation
-src/objectTranslations/BFM_Stage__c-pt_BR.objectTranslation
-src/objectTranslations/BFM_UserCreationRequest__c-en_US.objectTranslation
-src/objectTranslations/BFM_UserCreationRequest__c-pt_BR.objectTranslation
-src/objectTranslations/BFM_Withhold_Tax__c-en_US.objectTranslation
-src/objectTranslations/BFM_Withhold_Tax__c-pt_BR.objectTranslation
-src/objectTranslations/Account-en_US.objectTranslation
-src/objectTranslations/Account-pt_BR.objectTranslation
 src/pages/BFM_AccountMoreDetails.page
 src/pages/BFM_AccountMoreDetails.page-meta.xml
 src/pages/BFM_CommunitiesSelfReg_VF.page
@@ -241,7 +222,6 @@ src/permissionsets/BFM_API_Permissions.permissionset
 src/permissionsets/BFM_Accenture.permissionset
 src/permissionsets/BFM_API_User.permissionset
 src/permissionsets/BFM_Carrier_Finance_User.permissionset
-src/permissionsets/BFM_Carrier_Operational_User.permissionset
 src/permissionsets/BFM_Carrier_Tax_User.permissionset
 src/permissionsets/BFM_Carrier_User_Approver.permissionset
 src/permissionsets/BFM_Carriers_Administrative.permissionset
