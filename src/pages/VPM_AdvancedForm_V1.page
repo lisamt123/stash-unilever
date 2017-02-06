@@ -194,6 +194,7 @@
           
           <apex:pageBlockSection title="{!$Label.VPM_PartnerFunction}" rendered="{!paymentTermScreen}"  >
               <apex:inputField label="{!$Label.VPM_NewPartner}" value="{!VPM_PurchasingRequests__c.VPM_ForaNewPartnerLinktoexistingTrade__c}"/>
+               <apex:inputField label="{!$Label.VPM_ExistingTradePartnerTypeId}" value="{!VPM_PurchasingRequests__c.VPM_ForaNewPartnerLinktoexistingTrade__c}"/>
           </apex:pageBlockSection> 
        <!--for IAPR-460 -->
        <apex:pageBlockSection title="{!$Label.VPM_Payment_Terms}" rendered="{!paymentTermScreen}">
@@ -593,7 +594,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCountryKey__c}" />
               <!--<apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCode__c}" />
               <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorForWithholdingTaxType__c.Label}" value="{!indicatorWithHoldingDefValue}" maxlength="2"/>-->
-              <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
+              <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" helpText="{!$Label.VPM_WithholdingTaxCode}">
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCode__c.Label}"/>
                  <apex:outputpanel layout="block" styleClass="requiredBlock" id="withholdingTaxCodeSirius">
                
@@ -618,8 +619,7 @@
               <!-- Epsita - IAVMD-2704 -->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Liable__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Liable__c}"/>
               <!-- Epsita - IAVMD-2704 -->
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionNumber__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}"/>
+               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionRate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionRate__c}"/>
               
@@ -736,10 +736,9 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPerson__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPerson__c}" />
           </apex:pageBlockSection>
           
-          <apex:pageBlockSection title="{!$Label.VPM_Withholding_Tax}" rendered="{!regionalSpecificScreenU2K2}">
+          <apex:pageBlockSection title="{!$Label.VPM_Withholding_Tax}" rendered="{!regionalSpecificScreenU2K2}" >
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCountryKey__c}" />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CertificateWithholdingTaxExemption__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CertificateWithholdingTaxExemption__c}"/>
-               <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
+               <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" helpText="{!$Label.VPM_WithholdingTaxCode}">
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCode__c.Label}"/>
                  <apex:outputpanel layout="block" styleClass="requiredBlock" id="withholdingTaxCodeU2K2">
                
@@ -772,8 +771,7 @@
                <apex:selectList value="{!recipentTypeDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_RecipientType__c.Label}" size="1" >
                   <apex:selectOptions value="{!recipentTypeOptions}"/>
               </apex:selectList>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionNumber__c}" />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}" />
+               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionRate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionRate__c}" />
               
@@ -856,7 +854,7 @@
                   <apex:pageBlockSection columns="2" title="{!$Label.VPM_Withholding_Tax}" rendered="{!regionalSpecificScreenCordillera}">
                <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCountryKey__c}" />
               
-              <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
+              <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" helpText="{!$Label.VPM_WithholdingTaxCode}">
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCode__c.Label}"/>
                  <apex:outputpanel layout="block" styleClass="requiredBlock" id="withholdingTaxCodeCordillera">
                
@@ -882,11 +880,8 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxIdentificationNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxIdentificationNumber__c}"/>
              
               <!-- Epsita - IAVMD-2704 -->
-               <apex:selectList value="{!recipentTypeDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_RecipientType__c.Label}" size="1" >
-                  <apex:selectOptions value="{!recipentTypeOptions}"/>
-              </apex:selectList>
+              
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReasonForExemption__c.Label}" value="{!vendorQuery1.VPM_ReasonForExemption__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionNumber__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionRate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionRate__c}"/>              
@@ -1040,9 +1035,11 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPerson__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPerson__c}"/>
           </apex:pageBlocksection>
           <apex:pageBlocksection title="{!$Label.VPM_Withholding_Tax}" rendered="{!regionalSpecificScreenFusion}">
+          <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCountryKey__c}" />
+             
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxIdentificationNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxIdentificationNumber__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CertificateWithholdingTaxExemption__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CertificateWithholdingTaxExemption__c}"/>
-              <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
+              <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" helpText="{!$Label.VPM_WithholdingTaxCode}">
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCode__c.Label}"/>
                  <apex:outputpanel layout="block" styleClass="requiredBlock" id="withholdingTaxCode">
                
@@ -1051,6 +1048,9 @@
               </apex:selectList>
               </apex:outputpanel>
               </apex:pageBlockSectionItem>
+               <apex:selectList value="{!recipentTypeDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_RecipientType__c.Label}" size="1" >
+                  <apex:selectOptions value="{!recipentTypeOptions}"/>
+              </apex:selectList>
               <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorForWithholdingTaxType__c.Label}"/>
                
@@ -1067,7 +1067,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Liable__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Liable__c}"/>
               <!-- Epsita - IAVMD-2704 -->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReasonForExemption__c.Label}" value="{!vendorQuery1.VPM_ReasonForExemption__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionNumber__c}"/>
+              <!--<apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionNumber__c}"/>-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionRate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionRate__c}"/>
@@ -1277,7 +1277,7 @@
           <apex:commandButton action="{!GoldenDataSave2}"  value="{!$Label.VPM_Next}"  reRender="Block1"  rendered="{!goldendata2Screen2}" status="actStatusId"/>          
           </div>
       </apex:pageBlock>     
-   
+  
       <script>
       function changeValue(input, textid) {
       debugger;
