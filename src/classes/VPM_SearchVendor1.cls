@@ -964,7 +964,7 @@ public with sharing class VPM_SearchVendor1{
             system.debug('@@@ setting Launch screen options');
             String OptionWrapperJSON ='['; //
             //Added by Epsita for IAPR-1756
-            if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.APPROVALPENDING) || vendorQuery1.VPM_Status__c.contains('BPM Record Submitted ') || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REJECTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.ABORTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED) || vendorQuery1.VPM_Status__c.contains('MDM Ops')){
+            if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.APPROVALPENDING) || vendorQuery1.VPM_Status__c.contains('BPM Record Submitted ') || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REJECTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.ABORTED) || vendorQuery1.VPM_Status__c.contains('MDM Ops')){
                 system.debug('@@@ vendorQuery1.VPM_IsLock__c '+vendorQuery1.VPM_IsLock__c);
                 // Changes Condition Modified By Samrin on 23rd Dec 2016 for IAVMD-2892 - CANNOT SUBMIT RECALLED REQUEST
                 //Modified by Epsita - If MDM Ops Review Requested Rework, show quick submit.
@@ -975,6 +975,9 @@ public with sharing class VPM_SearchVendor1{
                     system.debug('@@@vendorQuery1.VPM_Status__c '+vendorQuery1.VPM_Status__c);
                     OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_SubmitVendorRequestforApproval + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_SubmitVendorRequestforApproval+CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2 +System.label.VPM_Quick_Submit+CONST3;
                 }
+            }
+            else if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED)){
+                //don't show quick submit
             }
             else{
                 OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_SubmitVendorRequestforApproval +CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_SubmitVendorRequestforApproval+CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2 +System.label.VPM_Quick_Submit+CONST3;
