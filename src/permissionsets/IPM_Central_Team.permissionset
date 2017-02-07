@@ -8462,11 +8462,11 @@
         <visibility>Visible</visibility>
     </tabSettings>
 	<tabSettings>
-        <tab>IPM_Company_Card</tab>
+        <tab>IPM_Company_Card__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 	<tabSettings>
-        <tab>IPM_User_Profile</tab>
+        <tab>IPM_User_Profile__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 	

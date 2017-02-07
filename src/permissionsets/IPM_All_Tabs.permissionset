@@ -36058,10 +36058,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>FA_Course_ChatterGroup__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>FA_Course_Occurence__c</tab>
         <visibility>None</visibility>
     </tabSettings>
