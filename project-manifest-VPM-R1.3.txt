@@ -10,12 +10,18 @@ src/approvalProcesses/VPM_PurchasingRequests__c.VPM_VendorRequestFreightApproval
 src/classes
 src/classes/VPM_ApprovalSubmit.cls
 src/classes/VPM_ApprovalSubmit.cls-meta.xml
+src/classes/VPM_CreateVendorFetchFieldDetails.cls
+src/classes/VPM_CreateVendorFetchFieldDetails.cls-meta.xml
+src/classes/VPM_CreateVendorFieldDetailsWrapper.cls
+src/classes/VPM_CreateVendorFieldDetailsWrapper.cls-meta.xml
 src/classes/VPM_CreateVendorServiceHelper.cls
 src/classes/VPM_CreateVendorServiceHelper.cls-meta.xml
 src/classes/VPM_ECCMaintainExtendHelper.cls
 src/classes/VPM_ECCMaintainExtendHelper.cls-meta.xml
 src/classes/VPM_ECCVendorSearchServiceOutput.cls
 src/classes/VPM_ECCVendorSearchServiceOutput.cls-meta.xml
+src/classes/VPM_FetchVendorDetailsHttpMock.cls
+src/classes/VPM_FetchVendorDetailsHttpMock.cls-meta.xml
 src/classes/VPM_FetchVendorsDetails.cls
 src/classes/VPM_FetchVendorsDetails.cls-meta.xml
 src/classes/VPM_GoldenDataController2.cls
@@ -26,6 +32,8 @@ src/classes/VPM_HttpUtil.cls
 src/classes/VPM_HttpUtil.cls-meta.xml
 src/classes/VPM_MaintainGlobalVendorServiceHelper.cls
 src/classes/VPM_MaintainGlobalVendorServiceHelper.cls-meta.xml
+src/classes/VPM_MaintainVendorFetchFieldDetails.cls
+src/classes/VPM_MaintainVendorFetchFieldDetails.cls-meta.xml
 src/classes/VPM_PicklistHelper.cls
 src/classes/VPM_PicklistHelper.cls-meta.xml
 src/classes/VPM_PurchaseRequestsControllerExtension.cls
@@ -38,10 +46,6 @@ src/classes/VPM_SearchVendor1.cls
 src/classes/VPM_SearchVendor1.cls-meta.xml
 src/classes/VPM_SearchVendor1Test.cls
 src/classes/VPM_SearchVendor1Test.cls-meta.xml
-src/classes/VPM_CreateVendorFetchFieldDetails.cls
-src/classes/VPM_CreateVendorFetchFieldDetails.cls-meta.xml
-src/classes/VPM_MaintainVendorFetchFieldDetails.cls
-src/classes/VPM_MaintainVendorFetchFieldDetails.cls-meta.xml
 src/customMetadata
 src/customMetadata/VPM_PaymentTerms.A1.md
 src/customMetadata/VPM_PaymentTerms.A10.md
@@ -185,6 +189,7 @@ src/groups
 src/groups/VPM_AlgeriaMasterDataManagement.group
 src/groups/VPM_ArgentinaMasterDataManagement.group
 src/groups/VPM_AustraliaMasterDataManagement.group
+src/groups/VPM_AustriaMasterDataManagement.group
 src/groups/VPM_BahrainMasterDataManagement.group
 src/groups/VPM_BangladeshMasterDataManagement.group
 src/groups/VPM_BelgiumMasterDataManagement.group
@@ -284,6 +289,7 @@ src/labels
 src/labels/VPM.labels
 src/layouts
 src/layouts/VPM_CommodityCode__c-Commodity Code Layout.layout
+src/layouts/VPM_CountriesWithFLS__mdt-Countries with FLS Layout.layout
 src/layouts/VPM_PurchasingRequests__c-Business Requestor.layout
 src/layouts/VPM_VendorWebformTranslations__mdt-Vendor Webform Translations Layout.layout
 src/objects

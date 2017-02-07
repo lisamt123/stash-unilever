@@ -15275,13 +15275,6 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
 	<value>Provide the city in which the Vendor is located</value>
 </labels>
 <labels>
-	<fullName>VPM_ClickToolsURL</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>VPM_ClickToolsURL</shortDescription>
-	<value>http://survey.clicktools.com/app/survey/go.jsp?iv=bkg1coehmyn2&amp;q1=</value>
-</labels>
-<labels>
 	<fullName>VPM_Click_Here</fullName>
 	<language>en_US</language>
 	<protected>false</protected>
@@ -15555,6 +15548,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
 	<value>Please enter Exception Details</value>
 </labels>
 <labels>
+        <fullName>VPM_ExistingTradePartnerTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Existing Trade Partner Type Id</shortDescription>
+        <value>Existing Trade Partner Type Id</value>
+    </labels>
+    <labels>
 	<fullName>VPM_Exit</fullName>
 	<language>en_US</language>
 	<protected>false</protected>
