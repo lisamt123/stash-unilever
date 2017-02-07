@@ -978,6 +978,7 @@ public with sharing class VPM_SearchVendor1{
             }
             else if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED)){
                 //don't show quick submit
+				system.debug('Complete Request. No Quick Submit.');
             }
             else{
                 OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_SubmitVendorRequestforApproval +CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_SubmitVendorRequestforApproval+CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2 +System.label.VPM_Quick_Submit+CONST3;
