@@ -1,8 +1,4 @@
 src
-src/wave/FS_Daily_Sales_Leaderships.wapp
-src/wave/FS_Daily_Sales_NA_Sales_Rep.wapp
-src/wave/FS_Daily_Sales_RU_Leaderships.wapp
-src/wave/FS_Daily_Sales_Stage.wapp
 src/permissionsets/FS_Wave_Analytics.permissionset
 src/permissionsets/Analytics_Cloud_User_Export_Data.permissionset
 src/groups/FS_DailySales_Sales_Manager_Group.group
