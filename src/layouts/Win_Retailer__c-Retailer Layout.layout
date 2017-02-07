@@ -56,7 +56,7 @@
         <layoutColumns>
             <layoutItems>
                 <height>300</height>
-                <page>Retailer_Logo_Page</page>
+                <page>Win_Retailer_Logo_Page</page>
                 <showLabel>false</showLabel>
                 <showScrollbars>true</showScrollbars>
                 <width>500</width>
