@@ -18620,4 +18620,16 @@
 <label><!-- User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos; --></label>
 <name>uw_Inoplan_error_nullvalue</name>
 </customLabels>
+<customTabs>
+<label>Buscar DT</label>
+<name>BFM_Search_Shipment_Cte</name>
+</customTabs>
+<customTabs>
+<label>Buscar Ocorrência</label>
+<name>BFM_Search_Occurrence</name>
+</customTabs>
+<customTabs>
+<label>Solicitações de acesso à conta</label>
+<name>BFM_AccountAccessRequest__c</name>
+</customTabs>
 </Translations>
