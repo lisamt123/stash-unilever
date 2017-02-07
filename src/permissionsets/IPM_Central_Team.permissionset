@@ -7885,10 +7885,10 @@
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
+        <allowDelete>false</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>IPM_Clusters__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -8157,7 +8157,11 @@
         <apexPage>IPM_ExportTeamMembersReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
+	<pageAccesses>
+        <apexPage>IPM_ProjectsClustersMapping</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	
     <recordTypeVisibilities>
         <recordType>IPM_Company_Card__c.IPM_Global_Company_Card</recordType>
         <visible>true</visible>
