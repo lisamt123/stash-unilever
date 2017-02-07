@@ -654,6 +654,8 @@ src/pages/IPM_User_ProfileRedirect.page
 src/pages/IPM_User_ProfileRedirect.page-meta.xml
 src/pages/IPM_ViewAssortmentStrategyPage.page
 src/pages/IPM_ViewAssortmentStrategyPage.page-meta.xml
+src/pages/IPM_Company_CardList.page
+src/pages/IPM_Company_CardList.page-meta.xml
 
 src/permissionsets
 
