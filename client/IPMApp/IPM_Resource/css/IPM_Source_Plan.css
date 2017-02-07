@@ -288,7 +288,7 @@ a.save:hover{text-decoration:none; background: #56843b;
 .table-bordered.noTabborder{border:0;margin-bottom:0;}
 .table>tbody>tr>td.noPadd{padding:0;}
 .productsourcegrey input.srcUnitBox{float: left;width: 90%;}
-.numberBox{width:100%;}
+input.numberBox{width:47%;}
 input.sizeNumberbox{width:47%;float:left;}
 table.table.table-bordered.productsourcegrey td .sizeSelect{width:50%;height: 23px;}
 .ipmDropDown .srcedcntrymainlist .noindent>li{border-bottom: 0;padding: 0;}
@@ -454,7 +454,7 @@ input.icoButton.clone{position:relative; background:url(../images/ico-clone.svg)
 .ui-tooltip.srcunitTip{background:#01B1A6;color:#fff;}
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
      /* IE10+ CSS styles go here */
-	 a.ui-spinner-button,a.ui-state-hover,a.ui-state-active{right:-6px;}
+	 a.ui-spinner-button,a.ui-state-hover,a.ui-state-active{right:0;}
 }
 @media (min-width: 1024px) and (max-width: 1129px) {
    .darkoverlay th{height:91px;}

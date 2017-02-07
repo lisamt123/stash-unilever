@@ -362,6 +362,11 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
+        <editable>false</editable>
+        <field>Case.CPG_Code_Reporting__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>true</editable>
         <field>Case.Case_Brand_Mapping__c</field>
         <readable>true</readable>
@@ -375,6 +380,11 @@
         <editable>false</editable>
         <field>Case.Case_Market__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Case_Market_Mapping_Country__c</field>
+        <readable>false</readable>
     </fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
@@ -2443,6 +2453,11 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>false</editable>
+        <field>cec_Alert_Rule__c.Market__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
         <field>cec_Alert_Rule__c.Product_Category_Concat_Value__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3026,7 +3041,7 @@
         <field>cec_Fulfilment__c.Consumer_Phone_Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	 <fieldPermissions>
+	<fieldPermissions>
         <editable>true</editable>
         <field>cec_Fulfilment__c.Country__c</field>
         <readable>true</readable>

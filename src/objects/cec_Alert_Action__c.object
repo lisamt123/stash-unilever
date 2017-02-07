@@ -175,6 +175,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>China</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Colombia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -231,6 +235,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -256,6 +264,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korea, Republic Of</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -363,7 +375,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

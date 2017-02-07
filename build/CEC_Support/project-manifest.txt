@@ -1,3 +1,10 @@
 src
-src/assignmentRules
-src/assignmentRules/Case.assignmentRules
+src/staticresources
+src/staticresources/CEC_ChatOfflineBenJerryBrazilPortuguese.resource
+src/staticresources/CEC_ChatOfflineBenJerryBrazilPortuguese.resource-meta.xml
+src/staticresources/CEC_ChatOfflineBenJerryNAEnglish.resource
+src/staticresources/CEC_ChatOfflineBenJerryNAEnglish.resource-meta.xml
+src/staticresources/CEC_ChatOnlineBenJerryBrazilPortuguese.resource
+src/staticresources/CEC_ChatOnlineBenJerryBrazilPortuguese.resource-meta.xml
+src/staticresources/CEC_ChatOnlineBenJerryNAEnglish.resource
+src/staticresources/CEC_ChatOnlineBenJerryNAEnglish.resource-meta.xml

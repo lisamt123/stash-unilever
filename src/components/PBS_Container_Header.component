@@ -1,6 +1,8 @@
 <apex:component >
   <!-- sylesheets -->
+
    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
+   
    <!--  <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_Container.css')}" /> -->
   <!--javascript -->
   <!--<apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
@@ -20,9 +22,10 @@
             </div>
             <div class="menuTabs">
                 <ul>
+                <!--Removed Clone page in container -->
                     <li><a onclick="setActiveLink('home');" id="home" href="{!$Page.PC_ContainerPage}" target="_self" class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-                    <li><a onclick="setActiveLink('pbs');" id="pbs" href="{!$Page.PBS_WelcomePage}" target="_self" >PBS</a></li>
-                    <li><a onclick="setActiveLink('forum');" id="forum" href="{!$Page.PC_Forum}" target="_self">Collaborate!</a></li>
+                    <li><a onclick="setActiveLink('pbs');" id="pbs" href="{!$Page.PBS_WelcomePage_clone}" target="_self" >PBS</a></li>
+                    <li><a onclick="setActiveLink('forum');" id="forum" href="{!$Page.PC_Forum_clone}" target="_self">Collaborate!</a></li>
                     <li><a href="http://play.trivie.com/#/home/" target ="_new"><span class="text-muted">Games</span></a></li>
                     <li><a onclick="setActiveLink('profile');" id="profile" href="{!$Page.PBS_MyProfile}" target="_self">My Profile</a></li>
                     <!--<apex:image value="{!loggedUsernameImageUrl}" styleClass="profilePic-header"/>-->

@@ -37,6 +37,10 @@
                 <field>WU_Warehouse_Secondary_POC_Email__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OwnerId</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>WU_Active_WH__c</field>
             </layoutItems>
@@ -244,10 +248,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>WU_Current_Utilization__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Current_Utilization__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

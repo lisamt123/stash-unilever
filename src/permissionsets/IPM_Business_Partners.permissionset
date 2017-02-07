@@ -1660,6 +1660,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_External_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>IPM_Analytics_OTIF__c.IPM_Finance_Member__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -8156,12 +8161,16 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
+        <tab>IPM_Clusters__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>All_Projects</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>IPM_Company_Card__c</tab>
-        <visibility>Visible</visibility>
+        <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
         <tab>IPM_Exchange_Rate__c</tab>

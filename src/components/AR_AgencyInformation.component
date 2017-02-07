@@ -4,7 +4,7 @@
     <apex:attribute name="internal" type="Boolean" description="Specify whether for internal or external user" required="false" />
 
     <section class="intro">
-    <b> <font size="4" color="#D8198D">Discipline: </font></b><apex:outputField value="{!agency.Discipline__c}" />
+    <b> <font size="4" color="#D8198D">Discipline: </font></b><apex:outputField value="{!agency.Agency_Discipline__c}" />
         <p style="font-size:16px;"><apex:outputField value="{!agency.Strategic_Capabilities__c}" /></p>
          <b> <font size="4" color="#D8198D"> Expertise: </font></b><apex:outputField value="{!agency.Agency_Expertise__c}" />
          </section>

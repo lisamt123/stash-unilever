@@ -213,7 +213,7 @@ public with sharing class IPM_AssesmentHandler_Helper {
             
             String queryStr = '';
             queryStr = IPM_Utils.prepareSOQLQuery('IPM_Assessment__c', false, null,true);
-            queryStr += ' Where IPM_Project__c IN:projectIdSet';
+            queryStr += ' Where IPM_Project__c IN:projectIdSet and IPM_Country__r.isActive__c = true';
             
             //find all the assessments which are required to be copied over
             List<IPM_Assessment__c> probableAssesmentsToCopy = Database.Query(queryStr);

@@ -1,0 +1,29 @@
+           table.detailList {
+                              width: 60% !important;
+                              text-align: center;
+                                }
+                         	.Matrix tr>td[colspan="4"] {
+                                text-align: center;
+                             }
+                            .Matrix tr>td {
+                              min-width: 80px;
+                             padding: 16px 0;
+                              text-align: center;
+                            }
+                        
+                            .Matrix tr>td[colspan="4"] {
+    						text-align: right;
+    						position: relative;
+    						right: 70px;
+						     }
+                           .Matrix tr>td:first-child,.Matrix tr:nth-child(5)>td,.Matrix tr:nth-child(2)>td:nth-child(2),.Matrix tr:nth-child(3)>td:nth-child(2),.Matrix tr:nth-child(4)>td:nth-child(2) {
+                           font-weight:700;}
+                            .Matrix tr:nth-child(2) td:nth-child(3), .Matrix tr:nth-child(2) td:nth-child(4), .Matrix tr:nth-child(3) td:nth-child(4) {
+                              background: green;
+                            }
+                           .Matrix tr:nth-child(3) td:nth-child(2), .Matrix tr:nth-child(4) td:nth-child(2), .Matrix tr:nth-child(4) td:nth-child(3) {
+                             background: #f00;
+                            }
+                            .Matrix tr:nth-child(2) td:nth-child(2), .Matrix tr:nth-child(3) td:nth-child(3), .Matrix tr:nth-child(4) td:nth-child(4) {
+                             background: yellow;
+                           }

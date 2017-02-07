@@ -57,3 +57,5 @@ src/tabs/PACV_Risk_Assessment__c.tab
 src/tabs/PACV_Risk_Assessment_Questionnaire__c.tab
 src/tabs/PACV_Solutions__c.tab
 src/tabs/PACV_Case_Study__c.tab
+src/sharingRules
+src/sharingRules/PACV_Risk_Assessment_Questionnaire__c.sharingRules

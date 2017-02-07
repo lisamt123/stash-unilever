@@ -3,7 +3,7 @@
 	- Description   : This file is used in the Financial Copy Paste Grid page 
 	- Client        : Unilever
 	- Last Modified : 18-11-15
-	- Author        : Cognizant Technology Solutions  
+	- Author        : Cognizant Technology Solutions  2016
 *******************************************************************************************/
 /* ===GLOBAL STYLES=== */
 .panel,table{border:0 ;}
@@ -28,8 +28,8 @@ button.ipmButton.green{height:34px ;}
 .navbar .navbar-nav>li a{font-size:14px;}
 .btn.ipmButton.green,.btnDisabled.ipmButton.green{height:32px;font-size:16px;}
 .tit_head{margin-bottom: 15px;border-bottom: 1px solid #ccc;}
-.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td.TDwidth2 {border-top:0px;}
-.table>tbody>tr>td.TDwidth1{border-top: 0px;}
+.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td.TDwidth2 {border-top:0px; vertical-align:top;}
+.table>tbody>tr>td.TDwidth1{border-top: 0px; vertical-align:top;}
 .bodyDiv.brdPalette.brandPrimaryBrd table{margin-bottom:0px;}
 .ipmTable.table{ border-top:0px;}
 .proInitLoader {

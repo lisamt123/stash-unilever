@@ -1,0 +1,6 @@
+Hi {!BFM_UserCreationRequest__c.FirstName__c} {!BFM_UserCreationRequest__c.LastName__c}, <br/><br/>
+
+Your new user request has been rejected.<br/><br/>
+
+Thanks & Regards,<br/>
+BFM<br/>

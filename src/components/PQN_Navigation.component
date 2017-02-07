@@ -98,6 +98,14 @@
             background-color: #004976!important;
         }
         
+        #demo1 li, #demo1 li>a{
+            list-style: none;
+            color: #fff;
+        }
+        #demo1 .active {
+            background-color: #004976!important;
+        }
+        
         .navbar-inverse .navbar-toggle {
             border-color: #36a0fe;
         }
@@ -171,15 +179,15 @@
                     </li>
                
                     <li class="{!If(navigationName=='multiple_entry' ,'active','')}">
-                        <a href="./PQN_MultiEditScreen_VF"><i class="fa fa-fw fa-copy"></i> Multiple Entry</a>
+                        <a href="./PQN_MultiEditScreen_Clone"><i class="fa fa-fw fa-copy"></i> Multiple Entry</a>
                     </li>
                 
                     <li class="{!If(navigationName=='target' ,'active','')}">
                         <a href="./PQN_TargetEntryScreen_VF"><i class="fa fa-fw fa-bullseye"></i> Target</a>
                     </li>
-                    <li class="{!If(navigationName=='multiple_target' ,'active','')}">
+                    <!--<li class="{!If(navigationName=='multiple_target' ,'active','')}">
                         <a href="./PQN_MultiTargets_VF"><i class="fa fa-fw fa-arrows"></i> Multiple Target</a>
-                    </li>
+                    </li>-->
                     <li class="{!If(navigationName=='dc_volumes' ,'active','')}">
                         <a href="./PQN_DC_Volumes_Edit_VF"><i class="fa fa-fw fa-flask"></i> DC Volumes</a>
                     </li>
@@ -202,6 +210,38 @@
                             </li>
                         </ul>
                     </li>
+                    
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo1" class="" style="{!If(navigationName=='Reports' ,'color: #fff; background-color: #004976;','')}" aria-expanded="true"><i class="fa fa-fw fa-th-list"></i> Reports<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo1" class="collapse in" aria-expanded="true" style="width: 150px;">
+                           
+                            <li class="{!If(subNavName=='govgeography' ,'active','')}">
+                                <a href="./PQN_Global_Overview">Global Overview</a>
+                            </li>
+                            <li class="{!If(subNavName=='geography' ,'active','')}">
+                                <a href="./PQN_Global_Geography_Report">Global Geography</a>
+                            </li>
+                            <li class="{!If(subNavName=='gcategory' ,'active','')}">
+                                <a href="./PQN_Global_Category_Report">Global Category</a>
+                            </li>
+                            <li class="{!If(subNavName=='globalsu' ,'active','')}">
+                                <a href="./PQN_GlobalSUReport">Global SU</a>
+                            </li>
+                            <li class="{!If(subNavName=='dcreport' ,'active','')}">
+                                <a href="./PQN_Global_DCReport">Global DC</a>
+                            </li>
+                            <li class="{!If(subNavName=='countryreport' ,'active','')}">
+                                <a href="./PQN_Country_Report">Country</a>
+                            </li>
+                            
+                            
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    
                 
                     <!--<li class="{!If(navigationName=='dc_values' ,'active','')}">
                         <a href=""><i class="fa fa-fw fa-dashboard"></i> DC Values</a>
@@ -223,11 +263,11 @@
               $("#navbar_toggle").removeClass( "navbar-toggle false" ).addClass("navbar-toggle true");
               $("#navbar_toggle").css({"transform": "rotate(-90deg)","margin-left": "1px"});
               $("#wrapper").css({"padding-left": "40px"});
-              $(".side-nav").css({"left": "202px", "width": "58px"});
+              $(".side-nav").css({"left": "202px", "width": "73px"});
               
           }else{
               $("#navbar_toggle").removeClass( "navbar-toggle true" ).addClass("navbar-toggle false");
-              $("#navbar_toggle").css({"transform": "rotate(0deg)","margin-left": "50px"});
+              $("#navbar_toggle").css({"transform": "rotate(0deg)","margin-left": "65px"});
               $("#wrapper").css({"padding-left": "175px"});
               $(".side-nav").css({"left": "210px", "width": "175px"});
           }

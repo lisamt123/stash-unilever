@@ -4550,9 +4550,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.FS_Distributor_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -4575,9 +4575,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.FS_INN__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -4640,9 +4640,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.FS_RTM__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -5114,21 +5114,31 @@
         <field>Account.Zone__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.FS_SoftServeDistrId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>    
+    
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.External_ID__c</field>
+        <editable>true</editable>
+        <field>Account_Relationship__c.FS_MasterAccount__c</field>
         <readable>true</readable>
     </fieldPermissions>
+
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Secondary_Account__c</field>
+        <editable>true</editable>
+        <field>Account_Relationship__c.FS_MergedAccountName__c</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions> 
+    
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Type__c</field>
+        <editable>true</editable>
+        <field>Account_Relationship__c.FS_UniqueAccountID__c</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>         
+
     <fieldPermissions>
         <editable>false</editable>
         <field>Agency_Fee_Field_History__c.Amended_By__c</field>
@@ -15547,11 +15557,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.WorkIt2__Total_Seconds__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.agf__ADM_Work__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -32631,11 +32636,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>OpportunityLineItem.FS_UniqueProduct__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>OpportunityLineItem.FS_additionalDiscount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -37113,46 +37113,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Work_Level__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__GUS_User_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Notification_Level__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Show_All_Work_Comments__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Summary__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Team_Member_Allocation__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Wall_Preference__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.agf__Work_User_Interface__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -44991,7 +44951,7 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
@@ -45295,7 +45255,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Account.FS_OperatorRussia</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Account.Operators</recordType>
@@ -47196,6 +47156,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>TransferAnyEntity</name>
+    </userPermissions>
+	<userPermissions>
+        <enabled>true</enabled>
+        <name>UpdateWithInactiveOwner</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

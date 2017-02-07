@@ -93,7 +93,11 @@ public with sharing class FS_TPRCalculationHelper {
                     //oppProd.FS_additionalDiscount__c = FS_TPRUtil.calculateAdditionalDiscount(oppProd, opportunityMap);
                      
                      oppProd.FS_additionalDiscount__c = opportunityMap.get(oppProd.opportunityID).FS_onInvoice__c;
+                    // Getting case piece Value form Opportunity
+                     oppProd.FS_copyOfCasePiece__c = opportunityMap.get(oppProd.opportunityID).FS_casesPiece__c;
                     
+                    // Getting Value from Product 
+                    oppProd.FS_UnitConversionFactor__c = product2Map.get(oppProd.Product2Id).FS_ZSU__c;
 
                     //Calculate List Price (Case/Piece)
                     oppProd.FS_listPriceCasePiece__c = FS_TPRUtil.calculateListPriceCasePiece(oppProd, opportunityMap, priceBookEntryMap, product2Map);

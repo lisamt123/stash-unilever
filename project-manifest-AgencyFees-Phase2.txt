@@ -1,5 +1,9 @@
 src
 src/classes
+src/classes/AF_ApprovalProcessForBrandEstContro_Test.cls
+src/classes/AF_ApprovalProcessForBrandEstContro_Test.cls-meta.xml
+src/classes/AF_UpdBonusSummaryCatApproverValues_Test.cls
+src/classes/AF_UpdBonusSummaryCatApproverValues_Test.cls-meta.xml
 src/classes/AF_BonusMatrixOverrideController.cls
 src/classes/AF_BonusMatrixOverrideController.cls-meta.xml
 src/classes/AF_Constants_Test.cls
@@ -134,4 +138,4 @@ src/triggers
 src/triggers/AF_Bonus_SummaryTrigger.trigger
 src/triggers/AF_Bonus_SummaryTrigger.trigger-meta.xml
 src
-        
+          

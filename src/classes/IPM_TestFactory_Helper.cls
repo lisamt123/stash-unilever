@@ -8,9 +8,10 @@ public class IPM_TestFactory_Helper
 {
     public static final String CHARTER_GATE_FULL = 'Charter Gate Full';
     public static final String IDEA_GRAPHIC= 'Idea / Graphic';
+    public static final String TRADE_STORY= 'Trade Story';
     public static final String IDEAS = 'Ideas';
     public static boolean FALSE_VAR = False;
-    public static final String GCLT_RCLT = 'GCLT & RCLT';
+    public static final String GCLT_RCLT = 'GCLT Leader & CCVP';
     public static final String TEST_CONTENT =  'A quick brown fox jumped over a lazy dog';
     public static final String NEWVARIANTSIZE_STR = 'New Variant/ Size';
     public static final String COREPARAMETER_BLG = 'BLG';
@@ -26,6 +27,7 @@ public class IPM_TestFactory_Helper
     public static final string IPM_PROJECT_TEMPLATE = 'IPM_Project_Template__c';
     public static final string IPM_DOCUMENT_TEMPLATE_NAME = 'IPM_Document_Template_Name__c'; 
     public static final string IPM_SECTION_SEQUENCE = 'IPM_Section_Sequence__c';
+    public static final string IPM_SECTION_LABEL = 'IPM_Section_Label_Type__c';
     public static final string IPM_PROJECT_NAME = 'IPM_Project_Name__c';
     public static final string FULL = 'Full';
     public static final string EXTERNAL = 'External';
@@ -81,7 +83,7 @@ public class IPM_TestFactory_Helper
     public static final String CHARTER = 'Charter';
     public static final String STRINGVALUE_4 = '4';
     public static final String C_TRUE = 'true';
-    public static final String BD = 'BD';
+    public static final String BD = IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
     public static final String IPM_USER_FUNCTION = 'IPM_User_Function__c';
     public static final String IPM_COMPANY_CARD = 'IPM_Company_Card__c';
     public static final String IPM_MANAGED_CATEGORY = 'IPM_Managed_category__c';
@@ -99,7 +101,7 @@ public class IPM_TestFactory_Helper
     public static final String AFRICA = 'Africa';
     public static final String MARKET_READY = 'Market Ready';
     public static final String PDL = 'Product Design Lock';
-    public static final String BB = 'BB';
+    public static final String BB = IPM_ConstantUtils.FUNCTIONAL_ROLE_BB;
     public static final String CD = 'CD';
     public static final String CMI = 'CMI';
     public static final String FINANCE = 'Finance';
@@ -457,7 +459,17 @@ public class IPM_TestFactory_Helper
     **************************************************************************************************/
     public static IPM_Section__c createIPMSection(Boolean doInsert) {
         Map<String,Object> sectMap =  new Map<String,Object>{IPM_SECTION_SEQUENCE=> IPM_ConstantUtils.IDEAS_SEQUENCE, 
-            IPM_SECTION_Name => IDEA_GRAPHIC, IPMNEGOTIABLE => FALSE};
+            IPM_SECTION_Name => IDEA_GRAPHIC, IPMNEGOTIABLE => FALSE, IPM_SECTION_LABEL => IPM_ConstantUtils.SECTION_TYPE_SUBHEADER};
+        IPM_Section__c secMast = (IPM_Section__c)IPM_TestFactory.createSObject('IPM_Section__c',sectMap,FALSE);
+        if(doInsert) { 
+            insert secMast;
+        }
+        return secMast;
+    }
+    
+    public static IPM_Section__c createIPMSection(Boolean doInsert, string secseq, string secname, string seclabel) {
+        Map<String,Object> sectMap =  new Map<String,Object>{IPM_SECTION_SEQUENCE=> secseq, 
+            IPM_SECTION_Name => secname, IPMNEGOTIABLE => FALSE, IPM_SECTION_LABEL => seclabel};
         IPM_Section__c secMast = (IPM_Section__c)IPM_TestFactory.createSObject('IPM_Section__c',sectMap,FALSE);
         if(doInsert) { 
             insert secMast;
@@ -938,7 +950,7 @@ public class IPM_TestFactory_Helper
         List<IPM_Project__c> testIPMProjList = new List<IPM_Project__c>();
         for(Integer i = 1; i <= listSize; i++){ 
             Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_OP_COMMENTS + scope + i,IPM_PROJECT_NAME=>TEST_OP_COMMENTS + scope + i,
-                IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'RCLT',
+                IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'CCVP',
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>scope , 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => scope +' Company Card',
                 BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => OPERATIONAL_PROJECTYPE,
@@ -964,7 +976,7 @@ public class IPM_TestFactory_Helper
         List<IPM_Project__c> testIPMProjList = new List<IPM_Project__c>();
         for(Integer i = 1; i <= listSize; i++){
             Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_REG_COMMENTS + i,IPM_PROJECT_NAME=>TEST_REG_COMMENTS + i,
-                IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'RCLT',
+                IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'CCVP',
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>REGIONAL, 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => 'Regional Company Card',
                 BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => ORIGINAL_PROJECTYPE,
@@ -2157,6 +2169,7 @@ public class IPM_TestFactory_Helper
         
         Map<String,List<Object>> taskMasterMap = new Map<String,List<Object>>{
             'IPM_Function__c' => new List<String>{BD,R_D,SC,CD,CMI,CMI,FINANCE,BB,R_D,CMI},
+            'IPM_Multiple_Functional_Role__c' => new List<String>{'','','','','','','','','',''},
             'IPM_Is_Master__c' => new List<Boolean>{true,true,true,true,true,true,true,true,true,true},
             IPM_PHASE => new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT},
             IPM_PROJECT_TEMPLATE => new List<Id>{projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id},
@@ -2173,7 +2186,7 @@ public class IPM_TestFactory_Helper
         
         insert taskTemplateList;
         
-        List<IPM_Task__c> masterTasks = [Select Id,IPM_Phase__c,IPM_Project_Template__c,IPM_Task_Complexity__c,IPM_Task_Name__c from IPM_Task__c where recordTypeId =:taskMasterRecordType AND IPM_Project_Template__c in :projectTemplateList];
+        List<IPM_Task__c> masterTasks = [Select Id,IPM_Phase__c,IPM_Project_Template__c,IPM_Function__c,IPM_Task_Complexity__c,IPM_Task_Name__c from IPM_Task__c where recordTypeId =:taskMasterRecordType AND IPM_Project_Template__c in :projectTemplateList];
         
         Map<String,List<IPM_Task__c>> phaseToTaskList = new Map<String,List<IPM_Task__c>>();
         Map<String,List<IPM_Task__c>> complexityToTaskList = new Map<String,List<IPM_Task__c>>();
@@ -2400,18 +2413,18 @@ public class IPM_TestFactory_Helper
         List<IPM_Project__c> masterProjectList =  [Select Id from IPM_Project__c where IPM_Project_Name__c ='IPM_MasterProject'];
         
         System.assertEquals(masterProjectList.size(),1);
-		
-		IPM_TestFactory_Helper.createTasksForMasterTamplate(masterProjectList[0]);
-		IPM_TestFactory_Helper.createSectionForMasterTemplate();
+        
+        IPM_TestFactory_Helper.createTasksForMasterTamplate(masterProjectList[0]);
+        IPM_TestFactory_Helper.createSectionForMasterTemplate();
         IPM_TestFactory_Helper.createMilestoneForMasterTemplate(masterProjectList[0]);
         IPM_TestFactory_Helper.createQuestionnaireForMasterTemplate(masterProjectList[0]);
         IPM_TestFactory_Helper.loadDataForMasterTemplate();
         projectMetadataList = IPM_TestFactory_Helper.createIPMProjectMetadata();
     }
-	
-	//This method is used for create Tasks for Master data
+    
+    //This method is used for create Tasks for Master data
     public static void createTasksForMasterTamplate(IPM_Project__c masterPro){
-		Map<String,List<Object>> taskMasterMap = new Map<String,List<Object>>{
+        Map<String,List<Object>> taskMasterMap = new Map<String,List<Object>>{
             'IPM_Function__c' => new List<String>{BD,R_D,SC,CD,CMI,CMI,FINANCE,BB,R_D,CMI},
             'IPM_Is_Master__c' => new List<Boolean>{true,true,true,true,true,true,true,true,true,true},
             IPM_PHASE => new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT},

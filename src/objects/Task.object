@@ -211,6 +211,150 @@
                 <fullName>Personal Task</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>D - District meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - General sales meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Foodshow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Meet with key decision makers or management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Trade event - present and coordinate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Trade event – local activity (ex: sample)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Trade event – check in (mid point, final)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Trade event – launch at general sales meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Conduct business review or program update</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Conduct annual joint business planning session</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - DSR Work-With</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Market blitz</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Lead follow up on behalf of distributor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Development/execution of local promotion – local led</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Development/execution of local promotion – center led</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Distributor email communication</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D - Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Phone mtg - discuss product/program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Phone mtg - arrange appointment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Phone mtg - follow up</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Virtual call - present/review marketing program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Virtual call - general</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Virtual call - RAP/profile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Virtual call - discuss pricing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Virtual call - strategy meeting/top to top</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - present/review marketing program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - product demo/cutting/ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - general</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - RAP/profile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - review pricing quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - In person sales call - strategy meeting/top to top</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Restaurant visit - RAP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Email/text - provide follow up information</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Email/text - confirm appointment / agenda</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Order sample products</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
@@ -597,22 +741,157 @@
         <picklistValues>
             <picklist>Type</picklist>
             <values>
-                <fullName>Call</fullName>
+                <fullName>D - Conduct annual joint business planning session</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Meeting</fullName>
+                <fullName>D - Conduct business review or program update</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Other</fullName>
+                <fullName>D - DSR Work-With</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Personal Task</fullName>
+                <fullName>D - Development%2Fexecution of local promotion %E2%80%93 center led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Development%2Fexecution of local promotion %E2%80%93 local led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Distributor email communication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - District meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Foodshow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - General sales meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Lead follow up on behalf of distributor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Market blitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Meet with key decision makers or management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Trade event %E2%80%93 check in %28mid point%2C final%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Trade event %E2%80%93 launch at general sales meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Trade event %E2%80%93 local activity %28ex%3A sample%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Trade event - present and coordinate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Email%2Ftext - confirm appointment %2F agenda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Email%2Ftext - provide follow up information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - RAP%2Fprofile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - general</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - present%2Freview marketing program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - product demo%2Fcutting%2Fideation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - review pricing quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - In person sales call - strategy meeting%2Ftop to top</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Order sample products</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Phone mtg - arrange appointment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Phone mtg - discuss product%2Fprogram</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Phone mtg - follow up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Restaurant visit - RAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Virtual call - RAP%2Fprofile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Virtual call - discuss pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Virtual call - general</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Virtual call - present%2Freview marketing program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Virtual call - strategy meeting%2Ftop to top</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>FS_Type_Mandatory</fullName>
+        <active>true</active>
+        <description>FS_Type_Mandatory</description>
+        <errorConditionFormula>AND($Profile.Name = &apos;Unilever Food Solution - NA&apos;,  ISPICKVAL(Type,&apos;&apos;))</errorConditionFormula>
+        <errorMessage>Type is Mandatory, Please select a Type.</errorMessage>
+    </validationRules>
 </CustomObject>

@@ -33,8 +33,9 @@ public with sharing class VPM_PicklistHelper {
     public static final string IND_WITHHOLD_TAX = 'Indicator WithHolding Tax';
     public static final string INS_KEYDATA_EXCHANGE = 'Instruction Data Exchange';
     public static final string CONF_CONTROL = 'Confirmation Control';
+    public static final string MODE_OF_TRANSPORT = 'Mode Of Transport';
     
-		
+        
     /********************************************************************  
     Created By   : Piyush Mathur
     Created Date : 05th June 2016
@@ -72,5 +73,73 @@ public with sharing class VPM_PicklistHelper {
                 }
             }
             return options;
+        }
+        
+          public static List<SelectOption> getWithHoldingTaxType(string CountryCode,string defaultValue){
+             Map<String, VPM_WithholdingTaxType__c> settingMap = new Map<String, VPM_WithholdingTaxType__c>();
+              Map<String, VPM_WithholdingTaxType__c> VPM_WithHoldingTaxTypeMap = VPM_WithholdingTaxType__c.getAll();
+               List<String> settingList = new List<String>();
+               
+                 List<SelectOption> options = new List<SelectOption>();
+                  options.add(new SelectOption('','--None--'));
+            if(string.isNotBlank(defaultValue)) {
+                options.add(new SelectOption(defaultValue,defaultValue));
+            }
+            for(VPM_WithholdingTaxType__c TaxType : VPM_WithHoldingTaxTypeMap.values()) {
+                //if(region.Region__c == ecc && region.Picklist_Name__c == pickListName && region.Picklist_Values__c !=defaultValue){
+                    if(TaxType.VPM_Country__c == CountryCode)
+                    settingMap.put(TaxType.VPM_WithholdingTaxType__c,TaxType);
+                //}
+            }
+            if(settingMap <> null && settingMap.size() > 0) {
+                // sorting based on values 
+                settingList.addAll(settingMap.keySet());
+                settingList.sort();
+                system.debug('@@ settingList' + settingList);
+                if(settingList <> null && settingList.size() > 0) {         
+                    for (String stateName : settingList) {
+                        VPM_WithholdingTaxType__c TaxType = settingMap.get(stateName);                        
+                        options.add(new SelectOption(TaxType.VPM_WithholdingTaxType__c, TaxType.VPM_WithholdingTaxType__c));
+                    }
+                    system.debug('@@ Options' + options);
+                }
+            }
+            return options;
+            
+
+        }
+
+        public static List<SelectOption> VPM_WithholdingTaxCode(string CountryCode, string TaxType, string defaultValue){
+             Map<String, VPM_WithholdingTaxCode__c> settingMap = new Map<String, VPM_WithholdingTaxCode__c>();
+              Map<String, VPM_WithholdingTaxCode__c> VPM_WithHoldingTaxCodeMap = VPM_WithholdingTaxCode__c.getAll();
+               List<String> settingList = new List<String>();
+               
+                 List<SelectOption> options = new List<SelectOption>();
+                  options.add(new SelectOption('','--None--'));
+            if(string.isNotBlank(defaultValue)) {
+                options.add(new SelectOption(defaultValue,defaultValue));
+            }
+            for(VPM_WithholdingTaxCode__c TaxCode : VPM_WithHoldingTaxCodeMap.values()) {
+                //if(region.Region__c == ecc && region.Picklist_Name__c == pickListName && region.Picklist_Values__c !=defaultValue){
+                    if(TaxCode.VPM_Country__c == CountryCode && TaxCode.VPM_TaxType__c == TaxType)
+                    settingMap.put(TaxCode.VPM_PickListValue__c,TaxCode);
+                //}
+            }
+            if(settingMap <> null && settingMap.size() > 0) {
+                // sorting based on values 
+                settingList.addAll(settingMap.keySet());
+                settingList.sort();
+                system.debug('@@ settingList' + settingList);
+                if(settingList <> null && settingList.size() > 0) {         
+                    for (String stateName : settingList) {
+                        VPM_WithholdingTaxCode__c TaxCode = settingMap.get(stateName);                        
+                        options.add(new SelectOption(TaxCode.VPM_PickListValue__c, TaxCode.VPM_PickListValue__c));
+                    }
+                    system.debug('@@ Options' + options);
+                }
+            }
+            return options;
+            
+
         }
 }

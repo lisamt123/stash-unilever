@@ -39,6 +39,7 @@
         <externalId>false</externalId>
         <formula>Contract_Product__r.Actual_Quantity__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Reflects actual shipped volume.</inlineHelpText>
         <label>Actual Quantity</label>
         <precision>18</precision>
         <required>false</required>
@@ -46,6 +47,14 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>TEL_Associated_Campaigns__c</fullName>
+        <externalId>false</externalId>
+        <label>Associated Campaigns</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>	
     <fields>
         <fullName>ApprovalGranted__c</fullName>
         <defaultValue>false</defaultValue>
@@ -102,6 +111,7 @@
     <fields>
         <fullName>Distributor__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Distributor expected to supply products to operator. Used for determining distributor TMI.</inlineHelpText>
         <label>Distributor TMI</label>
         <picklist>
             <picklistValues>
@@ -174,7 +184,7 @@
         <fullName>FSNA_TotalDeviatedRate__c</fullName>
         <externalId>false</externalId>
         <formula>Quantity *  FS_Rate__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total Rebate Discount Spend</inlineHelpText>
         <label>Total Deviated Rate</label>
         <precision>18</precision>
         <required>false</required>
@@ -185,7 +195,7 @@
         <fullName>FSNA_TotalHQRate__c</fullName>
         <externalId>false</externalId>
         <formula>Quantity *  FS_HQRate__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total discount offered paid directly to HQ or Corporate Accounts.</inlineHelpText>
         <label>Total HQ Rate</label>
         <precision>18</precision>
         <required>false</required>
@@ -197,6 +207,7 @@
         <externalId>false</externalId>
         <formula>PricebookEntry.FS_Bracket_1__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Bracket One price: as determined by Price Terms</inlineHelpText>
         <label>B1 Price</label>
         <precision>18</precision>
         <required>false</required>
@@ -206,6 +217,7 @@
     <fields>
         <fullName>FS_BR3__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Bracket Three price: as determined by  Price Terms</inlineHelpText>
         <label>BR3</label>
         <precision>7</precision>
         <required>false</required>
@@ -226,7 +238,7 @@
         <fullName>FS_DISTTMI__c</fullName>
         <externalId>false</externalId>
         <formula>FS_DSTMI__c * Quantity</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Expected Distributor Earnings from opportunity.</inlineHelpText>
         <label>DIST TMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -238,6 +250,7 @@
         <externalId>false</externalId>
         <formula>IF( ISPICKVAL( CurrencyIsoCode , &apos;CAD&apos;), PricebookEntry.FS_Bracket_3__c, PricebookEntry.FS_Bracket_1__c) *((IF( ISPICKVAL( Distributor__c , &quot;US Direct / CED&quot;) , 0, IF( ISPICKVAL( Distributor__c , &quot;US Sysco&quot;) , 11.6, IF( ISPICKVAL( Distributor__c , &quot;US Foods&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;Reinhart&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;PFG&quot;) , 8.1, IF( ISPICKVAL( Distributor__c , &quot;US GFS&quot;) , 6, IF( ISPICKVAL( Distributor__c , &quot;US OTher&quot;) , 6.3, IF( ISPICKVAL( Distributor__c , &quot;US Only (Food Buy, Aramark, Sodexho, Compass)&quot;) , 6.1, IF( ISPICKVAL( Distributor__c , &quot;CA Sysco&quot;) , 12, IF( ISPICKVAL( Distributor__c , &quot;CA GFS&quot;) , 12.6, IF( ISPICKVAL( Distributor__c , &quot;Colabor&quot;) , 11.1, IF( ISPICKVAL( Distributor__c , &quot;CA Other&quot;) , 6.5, IF( ISPICKVAL( Distributor__c , &quot;CA Direct&quot;) , 0, 0))))))))))))))/100)*0.99</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Expected Distributor Earnings per case from product opportunity.</inlineHelpText>
         <label>DS TMI/Cs</label>
         <precision>18</precision>
         <required>false</required>
@@ -249,6 +262,7 @@
         <externalId>false</externalId>
         <formula>IF(ISPICKVAL(CurrencyIsoCode,&quot;CAD&quot;), 0, PricebookEntry.FS_Bracket_3__c-PricebookEntry.FS_Bracket_1__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Difference between BR1-BR3, used for calculations where fixed price is selected.</inlineHelpText>
         <label>Delta BR1-BR3</label>
         <precision>18</precision>
         <required>false</required>
@@ -293,12 +307,14 @@
         <fullName>FS_FixedPrice__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <inlineHelpText>Fixed price offered to customer for this product.</inlineHelpText>
         <label>Fixed Price</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>FS_HQRate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Discount to be paid directly to HQ or Corporate account.</inlineHelpText>
         <label>HQ Rate</label>
         <precision>6</precision>
         <required>false</required>
@@ -349,7 +365,7 @@
         <fullName>FS_NSV__c</fullName>
         <externalId>false</externalId>
         <formula>FS_NSV_CALCULATION__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>List Price multiplied by quantity.</inlineHelpText>
         <label>NSV</label>
         <precision>18</precision>
         <required>false</required>
@@ -359,8 +375,9 @@
     <fields>
         <fullName>FS_NetPrice__c</fullName>
         <externalId>false</externalId>
-        <formula>PricebookEntry.FS_Bracket_1__c  -  (  Opportunity.FS_MSCS__c  +  FS_HQRate__c  +  FS_Rate__c  )</formula>
+        <formula>IF( ISPICKVAL( CurrencyIsoCode , &apos;CAD&apos;), PricebookEntry.FS_Bracket_3__c, PricebookEntry.FS_Bracket_1__c)  -  (  Opportunity.FS_MSCS__c  +  FS_HQRate__c  +  FS_Rate__c  )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>List Price minus offered Operator Discounts.</inlineHelpText>
         <label>Net Price</label>
         <precision>18</precision>
         <required>false</required>
@@ -372,6 +389,7 @@
         <externalId>false</externalId>
         <formula>FS_Rate__c  +  FS_HQRate__c  +  Opportunity.FS_MSCS__c +  IF( FS_FixedPrice__c = TRUE,  FS_DeltaBR1BR3__c , 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Operator discounts per case.</inlineHelpText>
         <label>Op TMI/Cs</label>
         <precision>18</precision>
         <required>false</required>
@@ -383,6 +401,7 @@
         <externalId>false</externalId>
         <formula>FS_OpTMICs__c  *  Quantity</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total Dollar value of discounts offered to operator.</inlineHelpText>
         <label>Op TMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -405,15 +424,39 @@
         <externalId>false</externalId>
         <formula>TEXT(PricebookEntry.Product2.MarketType__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Respective market for Product.</inlineHelpText>
         <label>Product Market</label>
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_QuantityCases__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(FS_copyOfCasePiece__c = &apos;cases&apos;, Quantity,Quantity /FS_UnitConversionFactor__c )</formula>
+        <label>Quantity(Cases)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_QuantityPieces__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(FS_copyOfCasePiece__c = &apos;piece&apos;, Quantity,Quantity  * FS_UnitConversionFactor__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quantity(Pieces)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Rate__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Enter the currency for Rate</inlineHelpText>
+        <inlineHelpText>Rebate Discount provided on individual product.</inlineHelpText>
         <label>Rate</label>
         <precision>8</precision>
         <required>false</required>
@@ -484,15 +527,15 @@
         <type>Percent</type>
     </fields>
     <fields>
-        <fullName>FS_UniqueProduct__c</fullName>
-        <caseSensitive>true</caseSensitive>
-        <description>Created to restrict adding same products (adding unique products )to opportunity.</description>
+        <fullName>FS_UnitConversionFactor__c</fullName>
+        <description>This Value is updating from Product.</description>
         <externalId>false</externalId>
-        <label>Unique Product</label>
-        <length>255</length>
+        <label>Unit Conversion Factor</label>
+        <precision>18</precision>
         <required>false</required>
-        <type>Text</type>
-        <unique>true</unique>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FS_additionalDiscount__c</fullName>
@@ -512,6 +555,15 @@
         <formula>TEXT( Opportunity.FS_casesPiece__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Cases/Piece</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_copyOfCasePiece__c</fullName>
+        <externalId>false</externalId>
+        <label>Copy Of Case Piece</label>
+        <length>20</length>
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
@@ -706,7 +758,7 @@
         <fullName>GPPercent__c</fullName>
         <externalId>false</externalId>
         <formula>IF( FS_Sample__c =true, 0, GrossProfit__c  /  Turnover__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Product Gross Margin % based on proposed discounts.</inlineHelpText>
         <label>Gross Profit %</label>
         <precision>18</precision>
         <required>false</required>
@@ -718,7 +770,7 @@
         <description>To Calculate GrossProfit</description>
         <externalId>false</externalId>
         <formula>Turnover__c - TotalCOGS__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Expected Gross Profit (Net in Pocket less cost of products).</inlineHelpText>
         <label>Gross Profit</label>
         <precision>18</precision>
         <required>false</required>
@@ -841,6 +893,7 @@
         <externalId>false</externalId>
         <formula>PricebookEntry.Product2.COGS__c  *  Quantity</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total Cost of Product, production and supply chain related costs.</inlineHelpText>
         <label>Total COGS</label>
         <precision>18</precision>
         <required>false</required>
@@ -855,6 +908,7 @@
         <externalId>false</externalId>
         <formula>FS_NSV__c  -   FS_DISTTMI__c -  FS_OpTMI__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Net in Pocket. Net in Pocket for UFS (NSV - Total TMI)</inlineHelpText>
         <label>Turnover</label>
         <precision>18</precision>
         <required>false</required>

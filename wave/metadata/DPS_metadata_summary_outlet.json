@@ -1,421 +1,427 @@
 {
-  "fileFormat": {
-    "charsetName": "UTF-8",
-    "fieldsEnclosedBy": "\"",
-    "fieldsDelimitedBy": ",",
-    "linesTerminatedBy": "\n",
-    "numberOfLinesToIgnore": 1
-  },
   "objects": [
     {
-      "rowLevelSecurityFilter": null,
-      "connector": "Salesforce connector",
-      "description": "SSP Raw",
-      "label": "SSP Raw",
-      "name": "edgemartfc3fb5ee",
+      "connector": "CSV",
+      "fullyQualifiedName": "DPS_SEM_DPS_LODR_4P_PRF_STR_csv",
+      "label": "DPS_SEM_DPS_LODR_4P_PRF_STR.csv",
+      "name": "DPS_SEM_DPS_LODR_4P_PRF_STR_csv",
       "fields": [
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Record_Id",
-          "label": "Record_Id",
-          "name": "Record_Id",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": true,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
+          "fullyQualifiedName": "Record_ID",
+          "name": "Record_ID",
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Record_ID"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Month_Year_Number",
-          "label": "Sales Calendar Month Year Number",
-          "name": "Month_Year_Number",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Date",
-          "precision": null,
-          "scale": null,
-          "format": "yyyy-MM-dd",
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Distributor_Id",
-          "label": "Distributor Identifier",
-          "name": "Distributor_Id",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
+          "fullyQualifiedName": "Country_ID",
+          "name": "Country_ID",
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Country_ID"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Outlet_Classification_Code",
-          "label": "Outlet Classification Code",
-          "name": "Outlet_Classification_Code",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Outlet_Type_Code",
-          "label": "Outlet Type Code",
-          "name": "Outlet_Type_Code",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Company_Id",
-          "label": "Company Identifier",
-          "name": "Company_Id",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Sales_Orgn_Id",
-          "label": "Sales Organization Identifier",
-          "name": "Sales_Orgn_Id",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Outlet_Active_Status_Code",
-          "label": "Outlet Active Status Code",
-          "name": "Outlet_Active_Status_Code",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Customer_Sold_To_Id",
-          "label": "Customer Sold To Party Identifier",
-          "name": "Customer_Sold_To_Id",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Perfect_Store_Indicator",
-          "label": "Perfect Store Indicator",
-          "name": "Perfect_Store_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Product_Perfect_Store_Indicator",
-          "label": "Product Perfect Store Indicator",
-          "name": "Product_Perfect_Store_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Price_Perfect_Indicator",
-          "label": "Price Perfect Indicator",
-          "name": "Price_Perfect_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Pack_Perfect_Indicator",
-          "label": "Pack Perfect Indicator",
-          "name": "Pack_Perfect_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Promo_Perfect_Indicator",
-          "label": "Promo Perfect Indicator",
-          "name": "Promo_Perfect_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Ever_Billed_Perfect_Indicator",
-          "label": "Ever Billed Perfect Indicator",
-          "name": "Ever_Billed_Perfect_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Redline_Perfect_Indicator",
-          "label": "Redline Perfect Indicator",
-          "name": "Redline_Perfect_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Core_Of_Core_sku_Indicator",
-          "label": "Core Of Core sku Indicator",
-          "name": "Core_Of_Core_sku_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.New_Prod_Dev_Perfect_Indicator",
-          "label": "New Product Development Perfect Indicator",
-          "name": "New_Prod_Dev_Perfect_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Width_Pack_Perfect_Indicator",
-          "label": "Width Pack Perfect Indicator",
-          "name": "Width_Pack_Perfect_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Business_Mandate_Perfect_Indicator",
-          "label": "Business Mandate Perfect Indicator",
-          "name": "Business_Mandate_Perfect_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Priority_Promo_Perfect_Indicator",
-          "label": "Priority Promo Perfect Indicator",
-          "name": "Priority_Promo_Perfect_Indicator",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
-        },
-        {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Country",
-          "label": "Country",
+          "fullyQualifiedName": "Country",
           "name": "Country",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Country"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Outlet_Name",
-          "label": "Outlet_Name",
+          "fullyQualifiedName": "Region_ID",
+          "name": "Region_ID",
+          "type": "Text",
+          "label": "Region_ID"
+        },
+        {
+          "fullyQualifiedName": "Region",
+          "name": "Region",
+          "type": "Text",
+          "label": "Region"
+        },
+        {
+          "fullyQualifiedName": "Province_ID",
+          "name": "Province_ID",
+          "type": "Text",
+          "label": "Province_ID"
+        },
+        {
+          "fullyQualifiedName": "Province",
+          "name": "Province",
+          "type": "Text",
+          "label": "Province"
+        },
+        {
+          "fullyQualifiedName": "City_ID",
+          "name": "City_ID",
+          "type": "Text",
+          "label": "City_ID"
+        },
+        {
+          "fullyQualifiedName": "City",
+          "name": "City",
+          "type": "Text",
+          "label": "City"
+        },
+        {
+          "fullyQualifiedName": "Community",
+          "name": "Community",
+          "type": "Text",
+          "label": "Community"
+        },
+        {
+          "fullyQualifiedName": "Rural_Urban",
+          "name": "Rural_Urban",
+          "type": "Text",
+          "label": "Rural/Urban"
+        },
+        {
+          "fullyQualifiedName": "Customer_ID",
+          "name": "Customer_ID",
+          "type": "Text",
+          "label": "Customer_ID"
+        },
+        {
+          "fullyQualifiedName": "Customer",
+          "name": "Customer",
+          "type": "Text",
+          "label": "Customer"
+        },
+        {
+          "fullyQualifiedName": "Outlet_Id",
+          "name": "Outlet_Id",
+          "type": "Text",
+          "label": "Outlet_Id"
+        },
+        {
+          "fullyQualifiedName": "Outlet_Name",
           "name": "Outlet_Name",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Outlet Name"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Customer_Id",
-          "label": "Customer_Id",
-          "name": "Customer_Id",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
+          "fullyQualifiedName": "Banner_ID",
+          "name": "Banner_ID",
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Banner ID"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Customer_Name",
-          "label": "Customer_Name",
-          "name": "Customer_Name",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
+          "fullyQualifiedName": "Banner",
+          "name": "Banner",
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Banner"
+        },
+        {
+          "fullyQualifiedName": "Channel_ID",
+          "name": "Channel_ID",
+          "type": "Text",
+          "label": "Channel_ID"
+        },
+        {
+          "fullyQualifiedName": "Channel",
+          "name": "Channel",
+          "type": "Text",
+          "label": "Channel"
+        },
+        {
+          "fullyQualifiedName": "Local_Channel_ID",
+          "name": "Local_Channel_ID",
+          "type": "Text",
+          "label": "Local_Channel_ID"
+        },
+        {
+          "fullyQualifiedName": "Local_Channel",
+          "name": "Local_Channel",
+          "type": "Text",
+          "label": "Local Channel"
+        },
+        {
+          "fullyQualifiedName": "Subchannel_ID",
+          "name": "Subchannel_ID",
+          "type": "Text",
+          "label": "Subchannel_ID"
+        },
+        {
+          "fullyQualifiedName": "Subchannel",
+          "name": "Subchannel",
+          "type": "Text",
+          "label": "Subchannel"
+        },
+        {
+          "fullyQualifiedName": "Local_Subchannel_ID",
+          "name": "Local_Subchannel_ID",
+          "type": "Text",
+          "label": "Local Subchannel ID"
+        },
+        {
+          "fullyQualifiedName": "Local_Subchannel",
+          "name": "Local_Subchannel",
+          "type": "Text",
+          "label": "Local Subchannel"
+        },
+        {
+          "fullyQualifiedName": "Store_Type",
+          "name": "Store_Type",
+          "type": "Text",
+          "label": "Store Type"
+        },
+        {
+          "fullyQualifiedName": "Location",
+          "name": "Location",
+          "type": "Text",
+          "label": "Location"
+        },
+        {
+          "fullyQualifiedName": "Key_Customer_Type",
+          "name": "Key_Customer_Type",
+          "type": "Text",
+          "label": "Key Customer Type"
+        },
+        {
+          "fullyQualifiedName": "Trade_Format",
+          "name": "Trade_Format",
+          "type": "Text",
+          "label": "Trade Format"
+        },
+        {
+          "fullyQualifiedName": "PS_Standard",
+          "name": "PS_Standard",
+          "type": "Text",
+          "label": "Perfect Store Standard"
+        },
+        {
+          "fullyQualifiedName": "Top_Customer",
+          "name": "Top_Customer",
+          "type": "Text",
+          "label": "Top Customer"
+        },
+        {
+          "fullyQualifiedName": "Outlet_Classification",
+          "name": "Outlet_Classification",
+          "type": "Text",
+          "label": "Outlet Classification"
+        },
+        {
+          "fullyQualifiedName": "Sales_Org",
+          "name": "Sales_Org",
+          "type": "Text",
+          "label": "Sales Org"
+        },
+        {
+          "fullyQualifiedName": "Sales_Region_ID",
+          "name": "Sales_Region_ID",
+          "type": "Text",
+          "label": "Sales_Region_ID"
+        },
+        {
+          "fullyQualifiedName": "Sales_Region",
+          "name": "Sales_Region",
+          "type": "Text",
+          "label": "Sales Region"
+        },
+        {
+          "fullyQualifiedName": "Sales_Area_ID",
+          "name": "Sales_Area_ID",
+          "type": "Text",
+          "label": "Sales_Area_ID"
+        },
+        {
+          "fullyQualifiedName": "Sales_Area",
+          "name": "Sales_Area",
+          "type": "Text",
+          "label": "Sales Area"
+        },
+        {
+          "fullyQualifiedName": "Sales_Territory_ID",
+          "name": "Sales_Territory_ID",
+          "type": "Text",
+          "label": "Sales_Territory_ID"
+        },
+        {
+          "fullyQualifiedName": "Sales_Territory",
+          "name": "Sales_Territory",
+          "type": "Text",
+          "label": "Sales Territory"
+        },
+        {
+          "fullyQualifiedName": "Field_Execution_Manager_ID",
+          "name": "Field_Execution_Manager_ID",
+          "type": "Text",
+          "label": "Field_Execution_Manager_ID"
+        },
+        {
+          "fullyQualifiedName": "Field_Execution_Manager",
+          "name": "Field_Execution_Manager",
+          "type": "Text",
+          "label": "Field Execution Manager"
+        },
+        {
+          "fullyQualifiedName": "Field_Sales_Manager_ID",
+          "name": "Field_Sales_Manager_ID",
+          "type": "Text",
+          "label": "Field_Sales_Manager_ID"
+        },
+        {
+          "fullyQualifiedName": "Field_Sales_Manager",
+          "name": "Field_Sales_Manager",
+          "type": "Text",
+          "label": "Field Sales Manager"
+        },
+        {
+          "fullyQualifiedName": "Store_Operations_Manager_ID",
+          "name": "Store_Operations_Manager_ID",
+          "type": "Text",
+          "label": "Store_Operations_Manager_ID"
+        },
+        {
+          "fullyQualifiedName": "Store_Operations_Manager",
+          "name": "Store_Operations_Manager",
+          "type": "Text",
+          "label": "Store_Operations_Manager"
+        },
+        {
+          "fullyQualifiedName": "Sales_Route",
+          "name": "Sales_Route",
+          "type": "Text",
+          "label": "Sales Route"
+        },
+        {
+          "fullyQualifiedName": "Distributor_Site_Code",
+          "name": "Distributor_Site_Code",
+          "type": "Text",
+          "label": "Distributor Site Code"
+        },
+        {
+          "fullyQualifiedName": "Month_Year_Number",
+          "name": "Month_Year_Number",
+          "type": "Date",
+          "label": "Month Year Number",
+          "format": "yyyy-MM-dd"
+        },
+        {
+          "fullyQualifiedName": "Distributor_ID",
+          "name": "Distributor_ID",
+          "type": "Text",
+          "label": "Distributor_ID"
+        },
+        {
+          "fullyQualifiedName": "Company_ID",
+          "name": "Company_ID",
+          "type": "Text",
+          "label": "Company_ID"
+        },
+        {
+          "fullyQualifiedName": "Customer_Sold_To_Id",
+          "name": "Customer_Sold_To_Id",
+          "type": "Text",
+          "label": "Customer_Sold_To_Id"
+        },
+        {
+          "fullyQualifiedName": "Perfect_Store_Indicator",
+          "name": "Perfect_Store_Indicator",
+          "type": "Numeric",
+          "label": "Perfect Store Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "Product_Perfect_Store_Indicator",
+          "name": "Product_Perfect_Store_Indicator",
+          "type": "Numeric",
+          "label": "Product Perfect Store Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "Price_Perfect_Indicator",
+          "name": "Price_Perfect_Indicator",
+          "type": "Numeric",
+          "label": "Price Perfect Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "Pack_Perfect_Indicator",
+          "name": "Pack_Perfect_Indicator",
+          "type": "Numeric",
+          "label": "Pack Perfect Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "Promo_Perfect_Indicator",
+          "name": "Promo_Perfect_Indicator",
+          "type": "Numeric",
+          "label": "Promo Perfect Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "Ever_Billed_Perfect_Indicator",
+          "name": "Ever_Billed_Perfect_Indicator",
+          "type": "Numeric",
+          "label": "Ever Billed Perfect Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "Redline_Perfect_Indicator",
+          "name": "Redline_Perfect_Indicator",
+          "type": "Numeric",
+          "label": "Redline Perfect Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "Core_Of_Core_Sku_Indicator",
+          "name": "Core_Of_Core_Sku_Indicator",
+          "type": "Numeric",
+          "label": "Core Of Core Sku Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "New_Prod_Dev_Perfect_Indicator",
+          "name": "New_Prod_Dev_Perfect_Indicator",
+          "type": "Numeric",
+          "label": "New Prod Dev Perfect Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "Width_Pack_Perfect_Indicator",
+          "name": "Width_Pack_Perfect_Indicator",
+          "type": "Numeric",
+          "label": "Width Pack Perfect Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "Business_Mandate_Perfect_Indicator",
+          "name": "Business_Mandate_Perfect_Indicator",
+          "type": "Numeric",
+          "label": "Business Mandate Perfect Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        },
+        {
+          "fullyQualifiedName": "Priority_Promo_Perfect_Indicator",
+          "name": "Priority_Promo_Perfect_Indicator",
+          "type": "Numeric",
+          "label": "Priority Promo Perfect Indicator",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
         }
-      ],
-      "fullyQualifiedName": "edgemartfc3fb5ee"
+      ]
     }
   ]
 }

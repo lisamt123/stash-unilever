@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -4552,13 +4556,13 @@ p.pkl_Status__c = &quot;{!CPA_PWORF__c.pkl_Status__c }&quot;;
 p.isValidated__c = &quot;{!CPA_PWORF__c.isValidated__c }&quot;; 
 
 //if(p.isValidated__c == &quot;1&quot;){ 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;;
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name;
 //alert(permissionSetName);
 
-if( permissionSetName == &quot;CPA_SMT&quot; || permissionSetName == &quot;CPA_ULPM&quot;){ 
+if( permissionSetName == &quot;CPA_SMT&quot; || permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ULPM_SL&quot;){ 
 
 	if(p.pkl_Status__c ==&quot;Cancelled&quot;){ 
 		alert(&quot;PWORF is already Cancelled, you cant submit for Approval&quot;); 
@@ -4617,7 +4621,7 @@ var p = new sforce.SObject(&apos;CPA_PWORF__c&apos;);
 p.id = &quot;{!CPA_PWORF__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_PWORF__c.pkl_Status__c }&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4642,7 +4646,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	alert(&quot;PWORF cant be Withhold as it is already Answered/Cancelled/Withhold.&quot;); 
 	} 
 } 
-else if(permissionSetName == &quot;CPA_ULPM&quot;){ 
+else if(permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ULPM_SL&quot;){ 
 	if(loiRec != null &amp;&amp; loiRec.length &gt; 0){
 		alert(&quot;PWORF cannot be Withheld as it has LOI in Process.&quot;); 
 	}
@@ -4693,12 +4697,12 @@ var pwoIdList = new Array();
 var doFlag= true; 
 var errMsg =&quot;&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;,&apos;CPA_ULPM_SL&apos;)&quot;;
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name;
 
-if( permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_SMT&quot;){ 
+if( permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_ULPM_SL&quot; || permissionSetName == &quot;CPA_SMT&quot;){ 
 
 	if(p.pkl_Status__c != &quot;Cancelled&quot;){ 
 
@@ -4728,7 +4732,7 @@ if( permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_
 
 	// Status check Starts here 
 		if(doFlag == true ){ 
-			if(permissionSetName == &quot;CPA_ULPM&quot; &amp;&amp; (p.pkl_Status__c != &quot;Accepted&quot; &amp;&amp; p.pkl_Status__c != &quot;Answered&quot; &amp;&amp; p.pkl_Status__c != &quot;Auto Accepted&quot; &amp;&amp; p.pkl_Status__c != &quot;Sent For Signature&quot; &amp;&amp; p.pkl_Status__c != &quot;Signed&quot;)){ 
+			if((permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_ULPM_SL&quot;)&amp;&amp; (p.pkl_Status__c != &quot;Accepted&quot; &amp;&amp; p.pkl_Status__c != &quot;Answered&quot; &amp;&amp; p.pkl_Status__c != &quot;Auto Accepted&quot; &amp;&amp; p.pkl_Status__c != &quot;Sent For Signature&quot; &amp;&amp; p.pkl_Status__c != &quot;Signed&quot;)){ 
 				// redirect to cancel 
 				window.open(&apos;/apex/CPA_PWORF_Cancel_Reason?id=&apos;+&quot;{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
 			}else if( permissionSetName == &quot;CPA_SMT&quot;){ 

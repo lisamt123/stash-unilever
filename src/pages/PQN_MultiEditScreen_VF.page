@@ -218,16 +218,19 @@
                        <!-- <apex:column headerValue="Date Pallet received" >
                             <apex:inputField value="{!nc.pqn.Date_Pallet_Received__c}"/>
                         </apex:column>-->
-                       
-                        <apex:column headerValue="MCO" >
-                            <apex:inputField value="{!nc.pqn.MCO__c}"/>
-                        </apex:column>   
+                       <apex:column headerValue="Region" >
+                            <apex:inputField value="{!nc.pqn.Region__c}"/>
+                        </apex:column>
+                         
                         <apex:column headerValue="Cluster" >
                             <apex:inputField value="{!nc.pqn.Cluster__c}"/>
                         </apex:column>
                         <apex:column headerValue="Sub Cluster" >
                             <apex:inputField value="{!nc.pqn.Sub_Cluster__c}"/>
                         </apex:column>
+                        <apex:column headerValue="MCO" >
+                            <apex:inputField value="{!nc.pqn.MCO__c}"/>
+                        </apex:column>  
                            <apex:column headerValue="Description" >
                             <apex:inputField value="{!nc.pqn.Description__c}"/>
                         </apex:column>
@@ -239,6 +242,7 @@
                               <apex:column headerValue="Supplier Type" >
                                         <apex:inputField value="{!nc.pqn.Supplier_type__c}"/>
                              </apex:column>
+                             
 
                         </apex:pageBlockTable>
                                              

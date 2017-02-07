@@ -1,4 +1,14 @@
 <apex:page controller="FS_MonthlyPlanningRussia_CX" showHeader="false" >
+    <apex:variable value="{!0}" var="total1"/>
+    <apex:variable value="{!0}" var="total2"/>
+    <apex:variable value="{!0}" var="total3"/>
+    <apex:variable value="{!0}" var="total4"/>
+    <apex:variable value="{!0}" var="total5"/> 
+    <apex:variable value="{!0}" var="total6"/>
+    <apex:variable value="{!0}" var="total7"/>
+    <apex:variable value="{!0}" var="total8"/>
+    <apex:variable value="{!0}" var="total9"/>
+    <apex:variable value="{!0}" var="total10"/>
     <apex:outputPanel rendered="{!isVisible}" id="monthlyPlanner">
         <apex:pageBlock title="Russia Monthly Planner Report">
             <apex:pageBlock title="Month detailed data">
@@ -23,18 +33,113 @@
                 </apex:pageBlockSection>
             </apex:pageBlock>
             <apex:pageblock title="Monthly planner detail for each user">
-                <apex:pageBlockSection >
-                    <apex:pageBlockTable value="{!listMonthlyPlanner}" var="monthlyPlanner">
-                        <apex:column headervalue="User" value="{!monthlyPlanner.userName}"/>    
-                        <apex:column headervalue="Monthly Event Plan" value="{!monthlyPlanner.plan}"/>
-                        <apex:column headervalue="Actual" value="{!monthlyPlanner.actual}"/>
-                        <apex:column headervalue="Avg" value="{!monthlyPlanner.average} "/>    
-                        <apex:column headervalue="Actual Working Days Till Date" value="{!monthlyPlanner.actualWorkingDays}"/>
-                        <apex:column headervalue="Actual Percentage" value="{!monthlyPlanner.criticalTarget}"/>
+                <apex:pageBlockSection columns="1">
+                    <apex:pageBlockTable value="{!listMonthlyPlannerNCM}" var="monthlyPlanner" id="MP1" >
+                        <apex:column headervalue="User">   
+                            <apex:outputText value="{!monthlyPlanner.userName}" />
+                            <apex:facet name="footer">
+                                Individual Team effort 
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Monthly Event Plan" >
+                            <apex:outputText value="{!monthlyPlanner.plan}" />
+                            <apex:variable var="total1" value="{!total1 + monthlyPlanner.plan}" />
+                            <apex:facet name="footer">
+                                <span class="t1"></span>   
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Actual">
+                            <apex:outputText value="{!monthlyPlanner.actual}" />
+                            <apex:variable var="total2" value="{!total2 + monthlyPlanner.actual}" />
+                            <apex:facet name="footer">
+                                <span class="t2"></span>   
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Avg">
+                            <!--{!monthly_PlannerFinal.average} -->
+                            <apex:outputText value="{!monthlyPlanner.average}" />
+                            <apex:variable var="total3" value="{!ActualAverageNCM}" />
+                            <apex:facet name="footer">
+                                <span class="t3"></span>   
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Actual Working Days Till Date">
+                            <apex:outputText value="{!monthlyPlanner.actualWorkingDays}" />
+                            <apex:variable var="total4" value="{!total4 + monthlyPlanner.actualWorkingDays}" />
+                            <apex:facet name="footer">
+                                <span class="t4"></span>   
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Actual Percentage">
+                            <apex:outputText value="{!monthlyPlanner.criticalTarget}" />                            
+                            <apex:variable var="total5"  value="{!criticalTargetaverageNCM}" />
+                            
+                            <apex:facet name="footer">
+                                
+                                <span class="t5"></span>
+                            </apex:facet>
+                        </apex:column>
                     </apex:pageBlockTable>
+                    <apex:pageBlockTable value="{!listMonthlyPlannerNDM}" var="monthlyPlanner" id="MP2">
+                        <apex:column headervalue="User">   
+                            <apex:outputText value="{!monthlyPlanner.userName}" />
+                            <apex:facet name="footer">
+                                Individual Team effort   
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Monthly Event Plan">
+                            <apex:outputText value="{!monthlyPlanner.plan}" />
+                            <apex:variable var="total6" value="{!total6 + monthlyPlanner.plan}" />
+                            <apex:facet name="footer">
+                                <span class="t6"></span>   
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Actual">
+                            <apex:outputText value="{!monthlyPlanner.actual}" />
+                            <apex:variable var="total7" value="{!total7 + monthlyPlanner.actual}" />
+                            <apex:facet name="footer">
+                                <span class="t7"></span>   
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Avg">
+                            <apex:outputText value="{!monthlyPlanner.average}" />
+                            <apex:variable var="total8" value="{!ActualAverage}" />
+                            <apex:facet name="footer">
+                                <span class="t8"></span>   
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Actual Working Days Till Date">
+                            <apex:outputText value="{!monthlyPlanner.actualWorkingDays}" />
+                            <apex:variable var="total9" value="{!total9 + monthlyPlanner.actualWorkingDays}"/>
+                            <apex:facet name="footer">
+                                <span class="t9"></span>   
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Actual Percentage">
+                            <apex:outputText value="{!monthlyPlanner.criticalTarget}" />
+                            <apex:variable var="total10" value="{!criticalTargetaverage}" />
+                            <apex:facet name="footer">
+                                <span class="t10"></span>   
+                            </apex:facet>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                    
+                    <script>
+                    // Here we will set the generated subtotals to the footer cells
+                    document.getElementsByClassName('t1')[0].innerHTML = '{!total1}';
+                    document.getElementsByClassName('t2')[0].innerHTML = '{!total2}';
+                    document.getElementsByClassName('t3')[0].innerHTML = '{!total3}';
+                    document.getElementsByClassName('t4')[0].innerHTML = '{!total4}';
+                    document.getElementsByClassName('t5')[0].innerHTML = '{!total5}';
+                    document.getElementsByClassName('t6')[0].innerHTML = '{!total6}';
+                    document.getElementsByClassName('t7')[0].innerHTML = '{!total7}';
+                    document.getElementsByClassName('t8')[0].innerHTML = '{!total8}';
+                    document.getElementsByClassName('t9')[0].innerHTML = '{!total9}';
+                    document.getElementsByClassName('t10')[0].innerHTML = '{!total10}';
+                    </script>
+                    
                 </apex:pageBlockSection>
             </apex:pageblock>
         </apex:pageBlock>
     </apex:outputPanel>       
-    
 </apex:page>

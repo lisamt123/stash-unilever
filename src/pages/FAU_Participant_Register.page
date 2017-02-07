@@ -217,6 +217,7 @@
             <h2><apex:outputText value="{!program.FAU_Invite_Form_Text__c}" /></h2>
             
             <br/>
+            <apex:outputPanel rendered="{!!isUL2020}">
             <div id="RegDiv" style="width:700px; margin:0 auto; ">
                 <table style="border:none !important;">
                     <tbody style="border:none !important;">
@@ -247,7 +248,39 @@
                     </tbody>
                 </table> 
             </div>
- 
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!isUL2020}">
+                        <div id="RegDiv" style="width:700px; margin:0 auto; ">
+                <table style="border:none !important;">
+                    <tbody style="border:none !important;">
+                    <tr style="border:none !important;">
+                        <td style="border:none !important;">
+                            <p style="color:#2060AD !important; font-weight:bold;">By accepting this invitation and providing the details on this form, you confirm that: </p>
+
+                            <ul>
+                                <li><strong>1.</strong> You have approval from the budget holder </li>
+                                <li><strong>2.</strong> You/budget holder accept the charges that will be cross-charged 1 month before the residential programme </li>
+                                <li><strong>3.</strong> You accept the cancellation policies 
+                                <ul>
+                                    <li>    - More than 60 days before the programme start date, no charge </li>
+                                    <li>    - Between 31 and 59 days before the programme start date 50% charge </li>
+                                    <li>    -  Within 30 days before the programme start date, 100% charge </li>
+                                </ul>
+                                </li>
+                            </ul>
+                            
+                            <p style="color:#2060AD !important; font-weight:bold;">To register, you will need </p>
+                            <ul>
+                                <li>- Your company name and code </li>
+                                <li>- Your cost center details </li>
+                                <li>- GL code (please check with your Finance BP on this)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table> 
+            </div>
+            </apex:outputPanel>
             <br/>
            
             <div id="ReasonDiv" style="{!IF(declineReasonAvailable,'width:700px; margin:0 auto;','display:none;')}">
@@ -264,7 +297,13 @@
             <h2><apex:commandButton style="color:#054976; height:30px; width:250px; background:#FFFFFF; border-radius:10px;"
                 id="proceed" 
                 value="Proceed with Registration" 
-                action="{!proceedWithInvitation}" />
+                action="{!proceedWithInvitation}" rendered="{!!isUL2020}"/>
+                             
+            <apex:commandButton style="color:#054976; height:30px; width:300px; background:#FFFFFF; border-radius:10px;"
+                id="Accept" 
+                value="Accept and proceed with registration" 
+                action="{!acceptInvite}" rendered="{!isUL2020}"/>
+                
             <apex:commandButton style="color:#054976; height:30px; width:150px; background:#FFFFFF; border-radius:10px;" 
                 id="decline" 
                 value="Decline Invitation" 
@@ -299,6 +338,11 @@
             document.getElementById('paDiv').style.display = (isSelfSelected) ? 'none' : 'block';
         }
 
+        </script>
+        <script>
+        function workbooklink() {
+        window.location = 'http://fouracresadmin.com/lon/billing/registration';
+        }
         </script>
 
         <apex:form id="proceedingForm" rendered="{!pageState=='Proceeding'}">
@@ -551,35 +595,57 @@
                     REGISTRATION <span id="content-header-blue">LINKS</span>
                 </div>
                 <div style="clear:both; height:50px;"></div>
-                 <h1><apex:outputText value="Next Steps:"/></h1><br/>
+                 <h1><apex:outputText value="Next Steps:" rendered="{!!isUL2020}"/></h1><br/>
 
-                <h2><apex:outputText value="Step 1"/></h2><br/> 
+                <h2><apex:outputText value="Step 1"/></h2><br/><br/>
                 <h3><apex:outputText value="Please click on the link below to complete the registration program."/><br/>
-                    <apex:outputText value="It will take you to a another web page with an Excel-based tool to collect billing information."/><br/><br/>
-                <a href="http://teamsites.unilever.com/collab/4ASG/Billing/SitePages/Home.aspx" target="_blank">Please click here to complete registration.</a></h3><br/>
-                <br/><br/><br/>
+                <apex:outputText value="It will take you to a another web page with an Excel-based tool to collect billing information." rendered="{!!isUL2020}"/><br/></h3>
+                <h3><apex:outputPanel rendered="{!!isUL2020}">    
+                <a href="http://teamsites.unilever.com/collab/4ASG/Billing/SitePages/Home.aspx" target="_blank">Please click here to complete registration.</a>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!isUL2020}"> 
+                <a href="http://fouracresadmin.com/lon/billing/registration" target="_blank">OMNIBILL</a>            
+                </apex:outputPanel></h3>
+                <br/><br/><br/><br/>
                 <h2><apex:outputText value="Step 2"/></h2><br/>
-                <h3><apex:outputText value="Click on the links below to add your travel details for your upcoming modules or "/><br/>
-                <apex:outputText value="or click on Fill Later to go to the Learning Milestones Checklist." /></h3><br/>
-
+                <h3><apex:outputText value="Click on the links below to add your travel details for your upcoming modules or " rendered="{!!isUL2020}"/><br/>
+                <apex:outputText value="or click on Fill Later to go to the Learning Milestones Checklist." rendered="{!!isUL2020}"/>
+                <apex:outputText value="Click on the link below to add your travel details and accommodation requirements." rendered="{!isUL2020}"/>
+                </h3><br/>
+                <br/>
+                <apex:outputPanel rendered="{!!isUL2020}">
                 <h3><apex:repeat var="module" value="{!modules}">
                     <a href="/apex/FAU_ModuleParticipant?Id={!module.Id}">{!module.FAU_Module__r.Name}</a>
-                    <!--<a href="/{!module.Id}">(Temporary Standard Page)</a>-->
-                    <br/>
-                </apex:repeat></h3>
-                    <br/><br/><br/>
-                 <h2><apex:commandButton style="color:#054976; height:35px; width:180px; background:#FFFFFF; border-radius:10px; border:3px #E1F3FD solid; box-shadow:0px 0px 3px #000;" 
+                    <!--<a href="/{!module.Id}">(Temporary Standard Page)</a> --->
+                </apex:repeat></h3> 
+                </apex:outputPanel>  
+                <apex:outputPanel rendered="{!isUL2020}">
+                <h3><apex:repeat var="module" value="{!modules}">
+                <a href="/apex/FAU_ModuleParticipant?Id={!module.Id}">{!program.name}</a>
+                </apex:repeat></h3> 
+                </apex:outputPanel>                               
+                <br/><br/><br/><br/>
+                <h2><apex:commandButton style="color:#054976; height:35px; width:180px; background:#FFFFFF; border-radius:10px; border:3px #E1F3FD solid; box-shadow:0px 0px 3px #000;" 
                 action="{!selfFill}"  
                 value="Edit Registration Details" 
                 styleClass="btn" 
                 id="btnEdit" 
-                immediate="true"/></h2>
+                immediate="true"
+                rendered="{!!isUL2020}"/></h2>
+                <h2><apex:commandButton style="color:#054976; height:35px; width:180px; background:#FFFFFF; border-radius:10px; border:3px #E1F3FD solid; box-shadow:0px 0px 3px #000;" 
+                action="{!cancel}" 
+                value="Go to my Workbook" 
+                styleClass="btn" 
+                id="workbook" 
+                immediate="true"
+                rendered="{!isUL2020}"/></h2>
                 <h2><apex:commandButton style="color:#054976; height:35px; width:150px; background:#FFFFFF; border-radius:10px; border:3px #E1F3FD solid; box-shadow:0px 0px 3px #000;" 
                 action="{!cancel}" 
                 value="Fill Later" 
                 styleClass="btn" 
                 id="btnCancel" 
-                immediate="true"/></h2>
+                immediate="true"
+                rendered="{!!isUL2020}"/></h2>
             <div style="clear:both; height:250px;"></div>
         <div id="leaves_img_right_top" style="margin-bottom: 380px;margin-top: -600px;margin-left: 773px; z-index:0px;"></div>
         <div id="leaves_img_left_top" style="margin-bottom:100px;margin-top: -688px; z-index:0px;"></div>

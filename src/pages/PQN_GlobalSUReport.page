@@ -1,0 +1,331 @@
+<apex:page controller="PQN_GlobalSUReport" showHeader="false" readOnly="true">
+ <head>
+        <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/js/jquery-1.11.1.min.js')}"></script>
+        <script>
+            j$ = jQuery.noConflict();
+            j$(document).ready( function (){
+                callTable();                
+                
+            });  
+            window.onload = function() {
+                refreshRemoteChart();
+            }
+          
+            function callTable(){
+                 j$("table.pageblockTableCls th").each(function() {
+                      if(j$( this ).attr("class")=="headerRow Gray"){ j$( this ).attr("style","background-color:#7F7F7F;") }
+                      if(j$( this ).attr("class")=="headerRow Cyan"){ j$( this ).attr("style","background-color:#00A1DA;") }
+                      if(j$( this ).attr("class")=="headerRow Pink"){ j$( this ).attr("style","background-color:#EA00AD;") }
+                      if(j$( this ).attr("class")=="headerRow Blue"){ j$( this ).attr("style","background-color:#3C44E8;") }                      
+                });
+                j$("table.pageblockTableCls td").each(function(){
+                      if(j$( this ).attr("class")=="dataCell  GreenBack"){ j$( this ).attr("style","background-color:#00B050;") }
+                      if(j$( this ).attr("class")=="dataCell  RedBack"){ j$( this ).attr("style","background-color:#FF0000;") }
+                      if(j$( this ).attr("class")=="dataCell  Amber"){ j$( this ).attr("style","background-color:#FFC000;") }
+                });
+            }
+       </script>
+        
+        <script>
+        
+            var tableToExcel = (function() {
+              var uri = 'data:application/vnd.ms-excel;base64,'
+                , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+                , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+                , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+              return function(table, name, filename) {
+                if (!table.nodeType) table = document.getElementById(table)
+                var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+                document.getElementById("dlink").href = uri + base64(format(template, ctx));
+                document.getElementById("dlink").download = filename;
+                document.getElementById("dlink").click();
+              }
+             
+             } )()
+             
+             function exporttable(){                 
+                 tableToExcel(j$("table.pageblockTableCls").attr("id"), 'Data Collection','PQN_GlobalSUReport');
+             
+             }
+        </script>
+        <script>
+            function refreshRemoteChart(){
+            var statusElement = document.getElementById('statusDisplay');
+                retrieveChartData(function(statusElement){
+                            return function(data){
+                            RemotingstackDosingChart.reload(data);
+                        };
+                    }(statusElement)
+                );
+            }
+        </script>
+     
+     <script>
+     function retrieveChartData(callback){            
+           var dataArray = new Array();           
+           Visualforce.remoting.Manager.invokeAction(
+           '{!$RemoteAction.PQN_GlobalSUReport.generateStack}',
+           function(result, event){
+                if (event.status) {
+                
+                    j$.each({!strChartResult}, function( key, val ) {
+                        if(key!="TOTAL_MD_RESULT"){
+                           var b = "{"+val+'';        
+                           b=b.replace(/MD_/g, '"');
+                           b+=',"name":"'+key+'"}';                          
+                           var obj = j$.parseJSON(b);                          
+                           dataArray.push(obj);
+                        }                      
+                     });
+              
+                    callback(dataArray);
+                    RemotingstackDosingChart.show();
+                     
+                      
+               }else if (event.type === 'exception') { document.getElementById("remoteResponseErrors").innerHTML = event.message +'<br/>' + event.where;
+               } else { document.getElementById("remoteResponseErrors").innerHTML = event.message;}                   
+           },
+           {escape: true, buffer: false,timeout: 120000}
+        );}
+     </script>
+        
+        
+    </head>
+    <div class="panel panel-default" style="padding-left:200px;">
+        <div class="panel-heading" style="text-align: center!important;">
+            <h3 class="panel-title" style="font-size: large; color: #b41955!important;">
+                <b>Top Level2 Losses by Cluster</b>
+            </h3>
+        </div>  
+    <div >
+       <div class="panel-body">
+           <apex:chart data="RemotingstackDosingChart" name="RemotingstackDosingChart" height="500" width="100%">
+                <apex:legend position="bottom" font="bold 14px Calibri"/>
+                <apex:axis type="Numeric" position="left" title="NC events {!cuYear}" grid="true" fields="{!dosingKey}" dashSize="2">
+                 <apex:chartLabel />
+                </apex:axis>                
+                <apex:axis type="Category" position="bottom" fields="name" title="Cluster">
+                    <apex:chartLabel rotate="315"/>
+                </apex:axis>
+                <apex:barSeries orientation="vertical" axis="left" stacked="true" xField="name" yField="{!dosingKey}" title="{!dosingLabel}">
+                <apex:chartTips height="30" width="200"/>
+                </apex:barSeries>
+            </apex:chart>
+        </div>
+        <div>
+            
+            <table style="width:96%;text-align: center;" class="table table-bordered" >
+                <thead>
+                <tr>
+                    <th Class="Cyan"></th>
+                    <apex:repeat value="{!yAxisName}" var="pos">
+                        <th Class="Cyan">{!pos}</th>
+                    </apex:repeat>
+                </tr>
+                </thead>
+                <tbody>
+                <apex:repeat value="{!xAxisName}" var="code">
+                <tr>
+                <td>{!code}</td>
+                    <apex:repeat value="{!yAxisName}" var="xp">
+                        <apex:variable value="{!xp}{!code}" var="combValStr"/>
+                        <apex:variable value="" var="keySetcheck"/>
+                         <apex:repeat value="{!yMapKeySet}" var="keySet">
+                             <apex:outputPanel rendered="{!if(keySet==combValStr,true,false)}">
+                                 <apex:variable value="{!keySet}" var="keySetcheck"/>
+                               <td><b>{!xMap[combValStr]}</b></td>
+                           </apex:outputPanel>
+                        </apex:repeat>
+                        <apex:outputPanel rendered="{!if(keySetcheck=='',true,false)}">
+                        <td></td>
+                        </apex:outputPanel>
+                   
+                    </apex:repeat>
+                </tr>
+                </apex:repeat>
+                </tbody>
+            </table>
+            
+            </div>
+        </div>
+    </div>
+
+
+<style>
+        
+
+        .pageblockTableCls table {
+            width: 100%!important;
+        }
+
+        .pageblockTableCls thead,.pageblockTableCls tbody,.pageblockTableCls tr,.pageblockTableCls td,.pageblockTableCls th { display: block; }
+
+        .pageblockTableCls tr:after {
+            content: ' ';
+            display: block!important;
+            visibility: hidden!important;
+            clear: both!important;
+        }
+
+        .pageblockTableCls thead th {
+            height: 60px!important;
+        }
+        
+        .pageblockTableCls tbody td {
+            height: 30px!important;
+            //text-align: center;
+            
+        }
+
+        .pageblockTableCls tbody {
+            height: 500px!important;
+            overflow-y: auto!important;
+        }
+
+        thead {
+            /* fallback */
+        }
+        .pageblockTableCls tbody td,.pageblockTableCls thead th {
+            width: 7.5%!important;
+            float: left!important;
+            white-space: normal!important;
+            
+        }
+
+        .pageblockTableCls tbody td:first-child,.pageblockTableCls thead th:first-child {
+            width: 40%!important;
+            float: left!important;
+        }
+              
+        
+</style>
+<style>
+
+      .tbody td, thead th {
+           white-space: normal!important; 
+            text-align: center!important;  
+        }
+        th {
+           color:white!important;  
+        }
+        body .pbBody table.list tr.dataRow td:first-child {
+          text-align: left;
+        }
+        tr.headerRow {
+            width: 98.6%!important;
+        }
+        .RedBack{
+            background-color:#FF0000!important;
+        }
+        .GreenBack{
+            background-color:#00B050!important;
+        }
+        .Amber{
+            background-color:#FFC000!important;
+        }
+        .Cyan{
+            background-color:#00A1DA!important;
+        }
+        .Blue{
+            background-color:#3C44E8!important;
+        }
+        .Pink{
+            background-color:#EA00AD!important;
+        }
+        .Gray{
+            background-color:#7F7F7F!important;
+        }
+        .row{
+            background-color:#DBE5F1!important;
+        }
+        .odd { 
+        background-color: #FCF7F7;
+        }
+        .even {
+        background-color: #E3DCDB;
+        }
+        
+</style>
+
+           
+<body>
+    <div id="wrapper">
+     <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+        <c:PQN_Navigation navigationName="Reports" subNavName="globalsu"/>
+         </apex:outputPanel>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+ <apex:form >
+ <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">
+                
+            
+            Region: <apex:inputField styleClass="RegionClass" value="{!pqnObj.Region__c}"/>&nbsp;&nbsp;
+            Cluster: <apex:inputField value="{!pqnObj.Cluster__c}"/>&nbsp;&nbsp;
+            Country: <apex:inputField value="{!pqnObj.DC_Country__c}"/>&nbsp;&nbsp;<br/>
+            <br/>
+            Supplier: <apex:selectList value="{!selectedsupplier}" multiselect="false" size="1" >
+                <apex:selectOptions value="{!suppliers}" />
+            </apex:selectList>&nbsp;&nbsp;
+            Product Category: <apex:selectList value="{!selectedcategory}" multiselect="false" size="1" >
+                <apex:selectOptions value="{!categories}" />
+            </apex:selectList><br/>
+            <br/>
+            Start Date: <apex:inputField value="{!pqnObj.Date_Pallet_Received__c}" showDatePicker="true"/>&nbsp;
+            End Date: <apex:inputField value="{!pqnObj.Current_Month_Freeze_Date__c}" showDatePicker="true"/>&nbsp;
+            <apex:commandButton value="Refresh" action="{!Searchby}" reRender="pgb"/> 
+            </h3>
+            </div>  
+            </div>
+     <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+            <a id="dlink"  style="display:none;"></a>
+            <button type="button" onclick="exporttable();">Export Report</button>
+     </apex:outputPanel>
+      <apex:pageBlock id="pgb">
+          <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" columnsWidth="60%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%"  styleclass="pageblockTableCls" id="pageblockTableId">
+              <apex:column headerClass="Gray" headerValue="Sourcing Units" >
+                   <apex:outputText value="{!xD.Cluster}" style="font-weight:800" rendered="{!xD.child}" />
+                  <apex:outputText value="{!empty}" rendered="{!xD.child}" />
+              
+                 &nbsp; &nbsp; &nbsp; &nbsp;<apex:outputText value="{!xD.Supplier}"  />
+              </apex:column> 
+              <apex:column headerClass="Cyan" headerValue="% SU NC {!preYear}" value="{!xD.preYearPercent}%" />
+              <apex:column headerClass="Cyan" headerValue="# SU NC {!preYear}">
+                  <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.preYeardata}"/>
+                  </apex:outputText> 
+              </apex:column> 
+              <apex:column headerClass="Pink" headerValue="{!cuYear} target SU % NC" value="{!xD.cuYeartarper}" />
+              <apex:column headerClass="Blue" headerValue="{!cuMonth} {!cuYear} # SU NC">
+                 <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.cumnthdata}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Blue" headerValue="{!cuMonth} {!cuYear} %SU NC" value="{!xD.cumnthPercent }%" />
+              <apex:column headerClass="Blue" headerValue="#SU NC {!cuYear}">
+                <apex:outputText value="{0, number, ###,###,###,##0}">
+                      <apex:param value="{!xD.cuYeardata}"/>
+                  </apex:outputText> 
+              </apex:column>
+              <apex:column headerClass="Pink" headerValue="% SU NC {!cuYear}" value="{!xD.cuYearPercent}%" />
+              <apex:column headerClass="Pink" headerValue="Trend %" value="{!xD.Trendper}%" styleClass="{!if(xD.Trendper!=null, if(xD.cuYearPercent>xD.preYearPercent,'RedBack','GreenBack'),'empty')}" />
+              
+                           
+            
+                         
+          </apex:pageblockTable>
+      </apex:pageBlock>
+      
+</apex:form>
+</div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+</body>
+<style>
+        [hidden],template {
+            display: block!important;
+        }
+    </style>
+</apex:page>

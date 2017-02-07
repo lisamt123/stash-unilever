@@ -68,7 +68,7 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	  <runTest>GSurveysController_Test</runTest>
+	  <!-- <runTest>GSurveysController_Test</runTest>
 	  <runTest>SurveyManagerController_Test</runTest>
 	  <runTest>AF_Agency_EstimateHandler_Test</runTest>
 	  <runTest>AF_RaisenewPO_Homepage_lightbox_Test</runTest>
@@ -95,7 +95,8 @@
 	  <runTest>ICB_SetupPhotoMobileChannel_Test</runTest>
 	  <runTest>ICB_SobjectInstance_SP2_Test</runTest>
 	  <runTest>ICB_SobjectInstance_Test</runTest>
-	  <runTest>SurveyManagerController_Test</runTest>
+	  <runTest>SurveyManagerController_Test</runTest> -->
+	  <runTest>FS_CHDUtilityTest</runTest>
 	  <runTest>FS_AccountPlanningTest</runTest>
 	  <runTest>FS_ContactDetail_Test</runTest>
 	  <runTest>FS_CreateContact_CC_Test</runTest>
@@ -110,7 +111,8 @@
 	  <runTest>FS_ContactExtend_CX_Test</runTest>
 	  <runTest>FS_ClaimedCasesForeCastingSchedule_Test</runTest>
 	  <runTest>FS_CentrallyLedChildAccountTest</runTest>
-	  <runTest>FS_MABETest</runTest>	  
+	  <runTest>FS_MABETest</runTest>	
+	  <runTest>FS_UpdateChildAccountsTest</runTest>
   </sf:deploy>
   <!--<antcall target="generatePackage"/>-->
   </target>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>VPM : This list contains withholding Tax Type values</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>VPM_APIName__c</fullName>
+        <description>VPM : API name</description>
+        <externalId>false</externalId>
+        <label>VPM_APIName</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Country__c</fullName>
+        <description>VPM : Country code</description>
+        <externalId>false</externalId>
+        <label>VPM_Country</label>
+        <length>2</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ECC__c</fullName>
+        <description>VPM : ECC</description>
+        <externalId>false</externalId>
+        <label>VPM_ECC</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_WithholdingTaxType__c</fullName>
+        <description>VPM : Picklist Values</description>
+        <externalId>false</externalId>
+        <label>VPM_WithholdingTaxType</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>VPM_WithholdingTaxType</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -57,6 +57,37 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Country__c</fullName>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Supplier_Alias__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Supplier Alias</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Supplier_Cluster__c</fullName>
+        <externalId>false</externalId>
+        <label>Supplier Cluster</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Supplier_Number__c</fullName>
         <caseSensitive>false</caseSensitive>
         <externalId>false</externalId>
@@ -66,6 +97,26 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Supplier_Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Supplier Region</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Supplier_Sub_Cluster__c</fullName>
+        <externalId>false</externalId>
+        <label>Supplier Sub Cluster</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Supplier_Type__c</fullName>
@@ -80,6 +131,14 @@
                 <fullName>Third Parties</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>SU</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Im / Ex</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -92,7 +151,11 @@
         <columns>NAME</columns>
         <columns>Supplier_Number__c</columns>
         <columns>Supplier_Type__c</columns>
+        <columns>Country__c</columns>
         <columns>CURRENCY_ISO_CODE</columns>
+        <columns>Supplier_Cluster__c</columns>
+        <columns>Supplier_Region__c</columns>
+        <columns>Supplier_Sub_Cluster__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>

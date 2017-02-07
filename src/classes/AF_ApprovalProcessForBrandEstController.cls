@@ -20,7 +20,7 @@ public class AF_ApprovalProcessForBrandEstController
     public Boolean hasProcess {get; set;}
     public List<ProcessInstance> process {get; set;}
     public list<ProcessInstance> Targetprocess{set;get;}
-  public List<ProcessInstanceHistory> stepOrWorkItem{get; set;}
+  //public List<ProcessInstanceHistory> stepOrWorkItem{get; set;}
   public Boolean hasStep {get; set;}
   public user LoggedinUser{set;get;}
   public AF_Brand_Estimate__c BrandEstRecord{set;get;}
@@ -267,7 +267,9 @@ public class AF_ApprovalProcessForBrandEstController
             {
                 workItemId=pis.id;
                 Actoridset.add(pis.ActorId) ;
-            }   
+            }  
+            system.debug(UserInfo.getUserId()+'--Actoridset--'+Actoridset);
+            
         }
         identifyLoggedUser();
         if(Actoridset.contains(LoggedinUser.id))
