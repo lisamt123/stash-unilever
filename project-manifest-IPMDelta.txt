@@ -11,7 +11,6 @@ src/layouts/IPM_Clusters__c-IPM_Clusters_Layout.layout
 src/layouts/IPM_Company_Card__c-IPM Company Card Layout.layout
 src/layouts/IPM_Company_Card__c-IPM Regional Company Card Layout.layout
 src/permissionsets
-src/permissionsets/IPM_All_Tabs.permissionset
 src/permissionsets/IPM_Central_Team.permissionset
 src/permissionsets/IPM_Finance_Team.permissionset
 src/permissionsets/IPM_ProjectLeader.permissionset
