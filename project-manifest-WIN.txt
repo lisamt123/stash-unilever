@@ -36,8 +36,7 @@ src/pages
 src/pages/Win_Dictionary.page
 src/pages/Win_Dictionary.page-meta.xml
 src/pages/Win_BrandLogoPage.page
-src/pages/Win_Brand
-LogoPage.page-meta.xml
+src/pages/Win_BrandLogoPage.page-meta.xml
 src
 src/labels
 src/labels/Wings.labels
