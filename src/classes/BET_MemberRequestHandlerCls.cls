@@ -106,8 +106,8 @@ public class BET_MemberRequestHandlerCls {
         for(BET_Member_Request__c mRequest : memberRequestLst){
             bets.add(mRequest.Brand_Experience_Toolkit__c);
         }
-         List<uw_BET_Team_Member__c> tmem=[select id , Team_Member__c, BET__c, Role__c,email__c from uw_BET_Team_Member__c where BET__c in: bets and Team_Member__c != null];
-        for(uw_BET_Team_Member__c tMember : tmem){
+
+        for(uw_BET_Team_Member__c tMember : [select id , Team_Member__c, BET__c, Role__c,email__c from uw_BET_Team_Member__c where BET__c in: bets and Team_Member__c != null]){
             if(betTeamMembersMap.keySet().contains(tMember.BET__c)){
                 betTeamMembersMap.get(tMember.BET__c).add(tMember.Team_Member__c);
             } else {
@@ -115,8 +115,8 @@ public class BET_MemberRequestHandlerCls {
             }
             teamMemberExistingMap.put(''+tMember.BET__c+tMember.Team_Member__c,tMember);
         }
-           List<uw_BET_Team_Member__c > tm=[select id , Team_Member__c, BET__c, Role__c,email__c from uw_BET_Team_Member__c where BET__c in: bets and Team_Member__c = null and email__c != null];
-       for(uw_BET_Team_Member__c tMember : tm){
+
+       for(uw_BET_Team_Member__c tMember : [select id , Team_Member__c, BET__c, Role__c,email__c from uw_BET_Team_Member__c where BET__c in: bets and Team_Member__c = null and email__c != null]){
             if(betexternalTeamMembersMap.keySet().contains(tMember.BET__c)){
                 betexternalTeamMembersMap.get(tMember.BET__c).add(tMember.email__c);
             } else {
