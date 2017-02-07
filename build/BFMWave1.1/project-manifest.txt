@@ -310,6 +310,8 @@ src/tabs/BFM_Email_Information__c.tab
 src/tabs/BFM_UserCreationRequest__c.tab
 src/tabs/BFM_Payment_Method__c.tab
 src/tabs/BFM_Withhold_Tax__c.tab
+src/translations/en_US.translation
+src/translations/pt_BR.translation
 src/triggers/BFM_Occurrence.trigger
 src/triggers/BFM_Occurrence.trigger-meta.xml
 src/triggers/BFM_Shipment.trigger
