@@ -8337,6 +8337,22 @@
         <enabled>true</enabled>
     </pageAccesses>
 	<pageAccesses>
+        <apexPage>IPM_Company_CardRedirect</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>IPM_User_ProfileList</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>IPM_User_ProfileRedirect</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>PM_Company_CardList</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
         <apexPage>IPM_ExportTeamMembersReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
