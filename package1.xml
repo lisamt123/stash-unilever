@@ -121,16 +121,10 @@
     <types>
         <members>*</members>
         <name>Network</name>
-    </types>    
- 
-             
+    </types>          
     <types>
         <members>*</members>
         <name>PermissionSet</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Profile</name>
     </types>
 
     <version>37.0</version>
