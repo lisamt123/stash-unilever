@@ -58,11 +58,14 @@ public with sharing class BEN_EmailRemainderSchedular implements Schedulable{
     String mailBody=body1+'\n'+'\n'+body2+'\n'+body3+'\n'+'\n'+body4+'\n'+'\n'+body5+'\n'+body6;
     message.plainTextBody=mailBody;
            
-   Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
-   Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
-   }
-   catch(System.EmailException ex){
+    Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
+    Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
+    }
+    catch(System.EmailException ex){
       System.debug(ex.getMessage());
+    }
+    catch(Exception e) {
+    System.debug(e.getMessage());
     }
   }
 
