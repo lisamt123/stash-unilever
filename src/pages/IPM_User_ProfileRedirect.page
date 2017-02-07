@@ -1,0 +1,5 @@
+<apex:page standardController="IPM_User_Profile__c" >
+    <apex:form >
+		<c:IPM_sObjectDetail sObjectName="IPM_User_Profile__c" objectId="{!$CurrentPage.parameters.id}"/>   
+    </apex:form>  
+</apex:page>
