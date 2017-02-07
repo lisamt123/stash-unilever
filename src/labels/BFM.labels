@@ -1167,3 +1167,10 @@ Response message: {2}</value>
         <shortDescription>BFm_Previous</shortDescription>
         <value>Previous Page</value>
     </labels>
+	<labels>
+        <fullName>Update_Shipment</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Update_Shipment</shortDescription>
+        <value>Atualizar DT</value>
+    </labels>
