@@ -660,7 +660,7 @@ src/pages/IPM_Company_CardList.page-meta.xml
 src/permissionsets
 
 src/permissionsets/IPMNG_Basic.permissionset
-src/permissionsets/IPM_All_Tabs.permissionset
+
 src/permissionsets/IPM_Business_Partners.permissionset
 src/permissionsets/IPM_Central_Team.permissionset
 src/permissionsets/IPM_Finance_Team.permissionset
