@@ -1,0 +1,3 @@
+<apex:page standardController="IPM_Company_Card__c" recordSetVar="IPM_Company_Card__c">
+    <c:IPM_sObjectList sObjectName="IPM_Company_Card__c" fieldSetName="DefaultListView" searchFieldName="Name" />    
+</apex:page>

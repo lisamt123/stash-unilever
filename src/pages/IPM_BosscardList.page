@@ -1,0 +1,3 @@
+<apex:page standardController="IPM_Bosscard__c" recordSetVar="IPM_Bosscard__c">
+    <c:IPM_sObjectList sObjectName="IPM_Bosscard__c" fieldSetName="DefaultListView" searchFieldName="IPM_BosscardName__c" />    
+</apex:page>

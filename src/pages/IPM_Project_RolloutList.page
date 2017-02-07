@@ -1,0 +1,3 @@
+<apex:page standardController="IPM_Project_Rollout__c" recordSetVar="IPM_Project_Rollout__c">
+    <c:IPM_sObjectList sObjectName="IPM_Project_Rollout__c" fieldSetName="DefaultListView" searchFieldName="IPM_Rollout_Project__c" />    
+</apex:page>

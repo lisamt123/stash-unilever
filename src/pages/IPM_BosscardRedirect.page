@@ -1,0 +1,5 @@
+<apex:page standardController="IPM_Bosscard__c" >
+    <apex:form >
+		<c:IPM_sObjectDetail sObjectName="IPM_Bosscard__c" objectId="{!$CurrentPage.parameters.id}"/>   
+    </apex:form>  
+</apex:page>

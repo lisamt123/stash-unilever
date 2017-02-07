@@ -718,8 +718,19 @@ public class IPM_ConstantUtils {
     public static final String IPM_Copy_Team_From_Other_Projects='Copy Team From Other Projects';
     
     //permissions
+    
+    public static final String NEW_ACCESS = 'New';
+    public static final String VIEW_ACCESS = 'View';
     public static final String EDIT_ACCESS = 'Edit';
     public static final String READ_ACCESS = 'Read';
+    public static final String DELETE_ACCESS= 'Delete';
+    public static final String FULL_ACCESS = 'Full';
+    public static final String LIST_ACCESS = 'List';
+    
+    
+    public static final String SORTORDER_ASC = 'asc';
+    public static final String SORTORDER_DESC = 'desc';
+    
     public static final String WL_TWO = 'WL2+';
     
     //For Gate CMI
