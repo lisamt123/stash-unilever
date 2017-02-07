@@ -164,6 +164,7 @@ src/email/BFM_Email_Templates/BFM_User_Creation_Carrier_Approval.email
 src/email/BFM_Email_Templates/BFM_User_Creation_Carrier_Approval.email-meta.xml
 src/groups/BFM_Governance.group
 src/homePageLayouts/BFM Home Page.homePageLayout
+src/labels/BFM.labels
 src/layouts/Account-BFM Unilever Account.layout
 src/layouts/Account-Carrier.layout
 src/layouts/Contact-Carrier Contact Layout.layout
