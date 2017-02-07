@@ -4317,10 +4317,10 @@ Id=VLOOKUP
         <errorConditionFormula>AND(  ISPICKVAL(ACCL__Phase__c , &apos;Committed&apos;),  ISCHANGED( Name )  )</errorConditionFormula>
         <errorMessage>Name should not be edited when the Phase is Committed.</errorMessage>
     </validationRules>
-    <validationRules>
+   <validationRules>
         <fullName>UL_Default_Sold_To_Mandatory_Rule</fullName>
         <active>true</active>
-        <errorConditionFormula>IF(  ACCL__Promotion_Template__r.UL_Calculate_Slogan_Name__c &amp;&amp; ISBLANK( ACCL__Anchor_Account__c) , true, false)</errorConditionFormula>
+        <errorConditionFormula>IF( (  ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Promotion&apos;))&amp;&amp; ACCL__Promotion_Template__r.UL_Calculate_Slogan_Name__c &amp;&amp; ISBLANK( ACCL__Anchor_Account__c) , true, false)</errorConditionFormula>
         <errorMessage>All promotions must have a sold-to assigned to them. If no sold-to appears in the list for your account, please contact your support team for guidance.</errorMessage>
     </validationRules>
     <validationRules>

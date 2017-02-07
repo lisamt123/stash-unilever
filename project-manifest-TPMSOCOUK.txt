@@ -173,9 +173,6 @@ src/objectTranslations/UL_Sales_Org_Mapping__c-de.objectTranslation
 src/objectTranslations/UL_UserCustomerProduct__c-de.objectTranslation
 src/objectTranslations/UL_Workflow_Threshold_Template__c-de.objectTranslation
 src/objectTranslations/UL_Workflow_Threshold__c-de.objectTranslation
-src/translations
-src/translations/en_GB.translation
-src/translations/en_US.translation
 src/triggers
 src/triggers/UL_AccountTrigger.trigger
 src/triggers/UL_AccountTrigger.trigger-meta.xml
