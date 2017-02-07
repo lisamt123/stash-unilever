@@ -9181,7 +9181,7 @@
         <recordType>IPM_Project__c.IPM_Cluster_Layout</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <recordTypeVisibilities>
+    <recordTypeVisibilities> 
         <recordType>IPM_Questionnaire__c.Corporate_Risk</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

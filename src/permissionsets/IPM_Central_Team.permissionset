@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+	
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_Company_CardView</name>
+    </customPermissions>
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_Company_CardEdit</name>
+    </customPermissions>
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_Company_CardList</name>
+    </customPermissions>
+	
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_User_ProfileView</name>
+    </customPermissions>
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_User_ProfileEdit</name>
+    </customPermissions>
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_User_ProfileEdit</name>
+    </customPermissions>
+	
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_ProjectFull</name>
+    </customPermissions>
 
     <customPermissions>
         <enabled>true</enabled>
@@ -8410,4 +8441,17 @@
         <tab>IPM_Clusters__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+	<tabSettings>
+        <tab>IPM_Project__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Company_Card</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_User_Profile</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	
 </PermissionSet>
