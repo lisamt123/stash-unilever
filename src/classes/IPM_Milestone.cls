@@ -234,29 +234,7 @@ public with sharing class IPM_Milestone {
                 
                 for(MilestoneWrapper incomingMileWrap : milestones)
                 {
-                    if (incomingMileWrap.checked)
-                    { 
-                        Date gateDueDate = null;
-                        Date incomingDate = incomingMileWrap.mile.IPM_Due_Date__c;
-                        Id standardMasterMileId = incomingMileWrap.mile.IPM_Milestone__c;
-                    
-                        if(masterToProjectMileStone.containsKey(standardMasterMileId) && masterToProjectMileStone.get(standardMasterMileId)!=null)
-                        {
-                            IPM_Milestone__c projectMilestone =   masterToProjectMileStone.get(standardMasterMileId);
-                            gateDueDate = projectMilestone.IPM_Due_Date__c;             
-                        }
-                    
-                        if(gateDueDate!=null && gateDueDate < incomingDate)
-                        {
-                           incomingMileWrap.errorRecord = true;
-                           errorPresent = true;                       
-                        }
-                        else
-                        {
-                            incomingMileWrap.errorRecord = false;
-                            mileStoneWrapToBeProcessed.add(incomingMileWrap); 
-                        }
-                    }
+                	errorPresent= getStandardMilestone(incomingMileWrap,masterToProjectMileStone,mileStoneWrapToBeProcessed);
                 }
                 
                 if(!errorPresent && !mileStoneWrapToBeProcessed.isEmpty())
@@ -297,6 +275,42 @@ public with sharing class IPM_Milestone {
         }
         return null;  
     }
+    
+    /***************************************************************
+     *@Description: This method is created to resolve nPath Complexity issue
+     *@Return: Booean value 
+    ****************************************************************/
+    public boolean getStandardMilestone(MilestoneWrapper incomingMileWrap, Map<Id,IPM_Milestone__c> msProjectMileStone,List<MilestoneWrapper> processingMilestones)
+    	{
+    		        if (incomingMileWrap.checked)
+                    { 
+                        Date gateDueDate = null;
+                        Date incomingDate = incomingMileWrap.mile.IPM_Due_Date__c;
+                        Id standardMasterMileId = incomingMileWrap.mile.IPM_Milestone__c;
+                    
+                        if(msProjectMileStone.containsKey(standardMasterMileId) && msProjectMileStone.get(standardMasterMileId)!=null)
+                        {
+                            IPM_Milestone__c projectMilestone =   msProjectMileStone.get(standardMasterMileId);
+                            gateDueDate = projectMilestone.IPM_Due_Date__c;             
+                        }
+                    
+                        if(gateDueDate!=null && gateDueDate < incomingDate)
+                        {
+                           incomingMileWrap.errorRecord = true; 
+                           return true;                       
+                        }
+                        else
+                        {
+                            incomingMileWrap.errorRecord = false;
+                            processingMilestones.add(incomingMileWrap); 
+                        	return false;
+                        }
+                    
+                    }
+                    else{
+                    	return false;
+                    }
+    	}
     
     
     // wrapper class
@@ -432,6 +446,7 @@ public with sharing class IPM_Milestone {
         try
         {
             //Perform Mandatory Checks
+            boolean validate =true;
             String resultString = mandatoryFieldChecks();
             if(!String.isBlank(resultString) )
             {
@@ -504,6 +519,30 @@ public with sharing class IPM_Milestone {
                     }
                     
                    // Check if Milestone type is standard
+                    validate = partialValidateMilestoneLogic( incomingMilestone, milestonePhase, milestoneDueDate, projectSpecificMilestoneList);
+                    return validate;
+                }
+            }
+        }
+        catch(Exception ex)
+        {
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MILESTONE_STR,'validateMilestone',ex.getMessage(),ex, STR_ERROR, null, null, null, null);
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, Label.IPM_Generic_ErrorMessage));
+            return false;
+        }
+        
+        return true;
+    }
+    
+    /***************************************************************
+     *@Description: This method is created to resolve nPath Complexity issue
+     *@Return: Booean value 
+    ****************************************************************/
+   
+    public boolean  partialValidateMilestoneLogic(IPM_Milestone__c incomingMilestone, string milestonePhase,Date milestoneDueDate,List<IPM_Milestone__c> projectSpecificMilestoneList)
+		{
+                   	
+                    // Check if Milestone type is standard
                     if(IPM_Utils.IPM_Type_of_Milestone == incomingMilestone.IPM_Type_of_Milestone__c)
                     {
                         if(milestoneObj!=null && milestoneObj.IPM_Due_Date__c < System.today())
@@ -578,18 +617,8 @@ public with sharing class IPM_Milestone {
                         }
                         
                     }
-                }
-            }
+                    return true;
         }
-        catch(Exception ex)
-        {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MILESTONE_STR,'validateMilestone',ex.getMessage(),ex, STR_ERROR, null, null, null, null);
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, Label.IPM_Generic_ErrorMessage));
-            return false;
-        }
-        
-        return true;
-    }
      /********************************************************************************
     *@Description : To display the prompt with options to update task related to current milestone phase
      @return : Returns to milestone page

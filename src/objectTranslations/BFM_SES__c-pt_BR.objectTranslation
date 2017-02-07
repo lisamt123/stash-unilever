@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>FRS</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>FRSs</value>
+    </caseValues>
+    <fields>
+        <label>Conta Contábil</label>
+        <name>Accouting_Account__c</name>
+    </fields>
+    <fields>
+        <label>Categ.Classif.Contábil</label>
+        <name>Acctount_Assingment_Category__c</name>
+    </fields>
+    <fields>
+        <label>CFOP</label>
+        <name>CFOP__c</name>
+    </fields>
+    <fields>
+        <label>Alíquota COFINS</label>
+        <name>COFINS_Aliquot__c</name>
+    </fields>
+    <fields>
+        <label>Base Calculo COFINS</label>
+        <name>COFINS_Calculation_Base__c</name>
+    </fields>
+    <fields>
+        <label>Valor COFINS</label>
+        <name>COFINS_Value__c</name>
+    </fields>
+    <fields>
+        <label>Cod.Lei COFINS</label>
+        <name>COFINS_law__c</name>
+    </fields>
+    <fields>
+        <label>FRS Cancelada?</label>
+        <name>Cancelled__c</name>
+    </fields>
+    <fields>
+        <label>Centro de Custo</label>
+        <name>Cost_Center__c</name>
+    </fields>
+    <fields>
+        <label>Número Doc.Custo</label>
+        <name>Cost_Document_Number__c</name>
+    </fields>
+    <fields>
+        <label>Data de Criação</label>
+        <name>Creation_Date__c</name>
+    </fields>
+    <fields>
+        <label>Exibição</label>
+        <name>Display__c</name>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100</masterLabel>
+            <translation><!-- 100 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>200</masterLabel>
+            <translation><!-- 200 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25</masterLabel>
+            <translation><!-- 25 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50</masterLabel>
+            <translation><!-- 50 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Data Carga do Documento</label>
+        <name>Document_Upload_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label>Ind.Frete Grátis</label>
+        <name>Free_Freight__c</name>
+    </fields>
+    <fields>
+        <label>Valor Bruto</label>
+        <name>Gross_Value_net_tax__c</name>
+    </fields>
+    <fields>
+        <label>Alíquota ICMS</label>
+        <name>ICMS_Aliquot__c</name>
+    </fields>
+    <fields>
+        <label>Base de Calculo ICMS</label>
+        <name>ICMS_Calculation_Base__c</name>
+    </fields>
+    <fields>
+        <label>Isento ICMS</label>
+        <name>ICMS_Exempt__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Lei ICMS</label>
+        <name>ICMS_Law__c</name>
+    </fields>
+    <fields>
+        <label>Crédito Presumido ICMS</label>
+        <name>ICMS_Presumed_Credit__c</name>
+    </fields>
+    <fields>
+        <label>ICMS Alíq.Base Reduzida</label>
+        <name>ICMS_Reduzed_base_percentage__c</name>
+    </fields>
+    <fields>
+        <label>ST ICMS</label>
+        <name>ICMS_ST__c</name>
+    </fields>
+    <fields>
+        <label>Valor ICMS</label>
+        <name>ICMS_Value__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Lei IPI</label>
+        <name>IPI_law__c</name>
+    </fields>
+    <fields>
+        <label>Alíquota ISS</label>
+        <name>ISS_Aliquot__c</name>
+    </fields>
+    <fields>
+        <label>Base Calculo ISS</label>
+        <name>ISS_Calculation_base__c</name>
+    </fields>
+    <fields>
+        <label>Valor ISS</label>
+        <name>ISS_Value__c</name>
+    </fields>
+    <fields>
+        <label>Ordem Interna</label>
+        <name>Internal_Order__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Lei ISS</label>
+        <name>IssLaw__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Min.Clientes p/One CT-e</label>
+        <name>Minimum_number_of_customers__c</name>
+    </fields>
+    <fields>
+        <label>Data Modificação</label>
+        <name>Modification_Date__c</name>
+    </fields>
+    <fields>
+        <label>Valor Líquido</label>
+        <name>Net_Value__c</name>
+    </fields>
+    <fields>
+        <label>Núm. Ocorrência</label>
+        <name>Occurrence_Number__c</name>
+    </fields>
+    <fields>
+        <label>Ocorrência</label>
+        <name>Occurrence__c</name>
+        <relationshipLabel>FRSs</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Alíquota PIS</label>
+        <name>PIS_Aliquot__c</name>
+    </fields>
+    <fields>
+        <label>Base de Calculo PIS</label>
+        <name>PIS_Calculation_Base__c</name>
+    </fields>
+    <fields>
+        <label>Valor PIS</label>
+        <name>PIS_Value__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Lei PIS</label>
+        <name>PIS_law__c</name>
+    </fields>
+    <fields>
+        <label>Tipo PO</label>
+        <name>PO_Type__c</name>
+    </fields>
+    <fields>
+        <label>PO Guarda-Chuva</label>
+        <name>PO_Umbrella_Number__c</name>
+    </fields>
+    <fields>
+        <label>Criado por</label>
+        <name>Register_Creation_Responsible_User__c</name>
+        <relationshipLabel>FRSs</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Moeda FRS</label>
+        <name>SES_Currency__c</name>
+    </fields>
+    <fields>
+        <label>Descrição FRS</label>
+        <name>SES_Line_Description__c</name>
+    </fields>
+    <fields>
+        <label>Número FRS</label>
+        <name>SES_Number__c</name>
+    </fields>
+    <fields>
+        <label>Código Planta FRS</label>
+        <name>SES_Plant_Code__c</name>
+    </fields>
+    <fields>
+        <label>Tipo Doc.Transporte</label>
+        <name>Shipment_Doc_Type__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Interno SF-DT</label>
+        <name>Shipment__c</name>
+        <relationshipLabel>FRSs</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Opção p/Simples</label>
+        <name>Simple_Option__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Interno SF-Etapa</label>
+        <name>Stage__c</name>
+        <relationshipLabel>FRSs</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Código Imposto</label>
+        <name>Tax_Code__c</name>
+    </fields>
+    <fields>
+        <label>Fornecedor</label>
+        <name>Vendor_Code__c</name>
+    </fields>
+    <fields>
+        <label>Nome Fornecedor</label>
+        <name>Vendor_Name__c</name>
+    </fields>
+    <gender>Feminine</gender>
+    <nameFieldLabel>Núm.Interno SF-FRS</nameFieldLabel>
+</CustomObjectTranslation>

@@ -1,135 +1,50 @@
-<apex:page readOnly="true" docType="html-5.0" sidebar="false" standardStylesheets="false" showHeader="false">
-    <!-- sylesheets -->
-    <style>
-        body{
-            background: none repeat scroll 0 0 #2a94d6 !important;
-        }
-        div.lms-container {
-            background-color: #2a94d6 !important;
-        }
-        
-        
-        .wrapper.wrapper-sub-frame {
-            background: transparent url("{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/Desk_Body.png')}") no-repeat top!important;
-            background-size: 88% 496px!important;
-            margin-top: 2px!important;
-        }
-        .home-detail {
-            margin-right: 10%!important;
-            color:black!important
-        }
-    </style>
+<apex:page controller="PBS_MyProfileController_CC" readOnly="true" docType="html-5.0" sidebar="false" standardStylesheets="false" showHeader="false">
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_Container.css')}" />
-   <apex:composition template="PBS_Header_Template_clone"/>
-   
-    <div class="wrapper wrapper-sub-frame" style="min-height:500px;height:500px;">
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_New_UI_Changes.css')}" />
     
-    <div class="row bodyRow">
-    <!--<div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>-->
-        <div class="col-xs-6 home-detail">
-            {!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;|&nbsp;&nbsp;<a style="font-size:13px; font-weight:bold;" href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a>
+    
+    
+  <apex:composition template="PBS_Header_Template_clone"/>
+       <div class="wrapper wrapper-sub-frame">
+        <div class="row bodyRow">
+        <!--<div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>-->
+        <!-- Start Anusha Edited -->
+            <div class="col-xs-6 home-detail" style="font-size:13px;cursor:Pointer" >
+            <a style="text-transform: uppercase; color: #007DBB">Welcome Back
+                 {!$User.FirstName} {!$User.LastName} &nbsp;&nbsp;&nbsp;&nbsp; </a>
             
+                <!--<a style="font-size:13px; font-weight:bold;" href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a>
+                <a style="font-size:13px; font-weight:bold;cursor:Pointer" data-toggle="modal" data-target="#myModal1" target="_self" title="PBS Edit profile" href="" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="20,244,134,209,184,359,112,383,113,404,100,392,89,408,69,396" shape="poly">EDIT PROFILE</a> -->
+            </div>
+            <!-- End Anusha Edited -->
         </div>
-    </div>
-        <!--<div class="row">
-            <div class="col-md-12 col-lg-12">
-                <div class="heading">
-                    PlanCraft
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-12">
-                <div class="subheading">
-                    Welcome to PlanCraft. This portal brings together knowledge and best practise from across the Planning Community.
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 col-lg-12">
-                <div class="profileArea group">
-                    <div class="headerBox">
-                        Overview
-                    </div>
+        <div class="mainContainer">
+            <apex:image title="" value="{!URLFOR($Resource.PCResources, 'img/desk_links.jpg')}" usemap="#homeLinks" styleClass="deskLinks" />
+            <map name="homeLinks" id="homeLinks">
+                <area target="_new" alt="Games" title="Games" href="http://play.trivie.com/#/home/" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="67,159,167,139,147,40,50,58,58,114" shape="poly" />
+                <area target="_self" alt="Plan Business School" title="Plan Business School" href="{!$page.PBS_WelcomePage_clone}" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="205,114,245,105,285,104,326,94,373,95,412,87,453,88,469,243,423,246,387,253,341,253,302,263,259,262,221,271" shape="poly"/>
+                <area target="" alt="Click here to Collaborate! with the PBS via Chatter" title="Click here to Collaborate! with the PBS via Chatter" href="{!$Page.PC_Forum_clone}" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="481,34,644,86,611,113,608,133,597,125,553,161" shape="poly"/>
+                <area data-toggle="modal" data-target="#myModal1" data-backdrop="static" data-keyboard="false" target="_self" alt="Manage your Profile" title="Manage your Profile" href="" onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" coords="20,244,134,209,184,359,112,383,113,404,100,392,89,408,69,396" shape="poly"/>
+                <area target="" alt="Your Achievements" title="Your Achievements" href="" coords="310,298,334,305,359,298,377,315,398,324,392,355,368,384,349,398,329,404,314,385,303,355,302,332" shape="poly"/>
+                <area target="" alt="Top Students" title="Top Students" href="" coords="512,254,579,244,582,237,670,270,618,405,562,385,528,389" shape="poly"/>
+            </map>
+     
 
-                    <div class="headerBox left">
-                        Coming Soon
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-5 col-lg-5">
-                            <apex:image value="{!URLFOR($Resource.PCResources, 'img/DEInfoArea.png')}" />
-                        </div>
-
-                        <div class="col-md-3 col-lg-3">
-                            <apex:image value="{!URLFOR($Resource.PCResources, 'img/badges.png')}" />
-                        </div>
-
-                        <div class="col-md-4 col-lg-4">
-
-                            <apex:include pageName="PC_RankingTable" />
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <!--<div class="row" style="text-align: center;margin-bottom: 15px;">
+            <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/Plancraft_Logo.png')}" />
         </div>-->
+        
+   
 
-        <!-- body -->
-        <div class="row">
-            <div class="col-md-12 col-lg-12" style="top: 20px; ">
-                
-                <div class="col-md-4 col-lg-4"  style="text-align: right;right: 85px;">
-                    
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="Quizup" href="http://play.trivie.com/#/home/" target="_new" >
-                        <!--<apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_pbs.svg')}" />-->
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/RUBIX_CUBE.png')}" />
-                        
-                    </a>
-                </div>
-                <div class="col-md-4 col-lg-4" style="text-align: center;">
-                    
-                    <a disableOnClick="true">
-                        <!--<apex:image title="Collaborate!" value="{!URLFOR($Resource.PCResources, 'img/hexacon_collaborate.png')}" />-->
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/BADGE.png')}" />
-                    </a>
-                </div>                               
-                <div class="col-md-4 col-lg-4" style="left: 48px;">
-                        <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="Collaborate!" href="{!$Page.PC_Forum_clone}" target="_self">
-                        <!--<apex:image title="Trivie" value="{!URLFOR($Resource.PCResources, 'img/hexicons_quizup_new.png')}" />-->
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/AIRPLANE.png')}" />
-                    </a>
-                </div>  
-               
+        <apex:define name="body">
 
-            </div>
-            <div class="col-md-12 col-lg-12" style="top: 35px;">
-               
-                <div class="col-md-4 col-lg-4" style="text-align: right;text-align: right;right: 30px;">
-                <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PBS_MyProfile}" target="_self">
-                   <!--<apex:image title="My Profile" value="{!URLFOR($Resource.PCResources, 'img/hexicons_profile.svg')}" />-->
-                   <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/COURSES.png')}" />
-                 </a>
-                </div> 
-                
-                <div class="col-md-4 col-lg-4" style="text-align: center;top: 15px;">
-                <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$page.PBS_WelcomePage_clone}" target="_self" disableOnClick="true">
-                   <!--<apex:image title="My Profile" value="{!URLFOR($Resource.PCResources, 'img/hexicons_profile.svg')}" />-->
-                   <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/MAP.png')}" />
-                 </a>
-                </div>  
-                <div class="col-md-4 col-lg-4" style="text-align: center;top: 32px;right: 30px;">
-                <a disableOnClick="true">
-                   <!--<apex:image title="My Profile" value="{!URLFOR($Resource.PCResources, 'img/hexicons_profile.svg')}" />-->
-                   <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/TOP_TRUMPS.png')}" />
-                 </a>
-                </div>             
-                <!--<div class="chatterWrapper zen chatterWrapper-new-height1">
-                   <chatter:newsfeed />
-                </div>-->
-            </div>
+          
+          </apex:define>
+           
+       
         </div>
-    </div>
-    <div class="row" style="text-align: center;margin-bottom: 15px;">
-        <apex:image title="PBS" value="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/Plancraft_Logo.png')}" />
-    </div>
-</apex:page>
+            </div><!--<button type="button" class="close pcr-close" data-dismiss="modal"></button>-->
+                  
+                                                                                               
+                   </apex:page>

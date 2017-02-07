@@ -33,8 +33,7 @@ jq(document).ready(function() {
     });
     dropDownFilter();
     chkAll();
-    chkSub();
-   
+    chkSub();   
 });
 
 function chkAll() {
@@ -50,11 +49,11 @@ function chkAll() {
             }
         }else{
             if (jq(this).is(":checked")) {
-            jq(this).closest("ul.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", true);
-            jq(this).closest("ul").find("input[type=checkbox]:not('[disabled]')").next().addClass("selected");
-        } else {
-            jq(this).closest("ul.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", false);
-            jq(this).closest("ul").find("input[type=checkbox]:not('[disabled]')").next().removeClass("selected");
+                jq(this).closest("ul.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", true);
+                jq(this).closest("ul").find("input[type=checkbox]:not('[disabled]')").next().addClass("selected");
+            } else {
+                jq(this).closest("ul.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", false);
+                jq(this).closest("ul").find("input[type=checkbox]:not('[disabled]')").next().removeClass("selected");
             }
         }
     });
@@ -86,7 +85,8 @@ function chkAll() {
 function chkSub() {
     /* Below script works on click event. It reloads the current page. */
     jq(document).on('click', '#resetFilterBtnNew', function() {
-        window.location.reload();
+        var topLoc = window.top.location;
+		window.top.location = topLoc;
     });
     /* Below script works on click event. Based on condition it checks for a specific class in below conditions.
 Also if the checkbox is checked it will check its own related child checkboxes. */
@@ -200,9 +200,6 @@ function unCheckParent(str) {
         }
     });
 }
-
-
-
 
 function wrapGeography() {
         geoAll = jq('#geographyAll').is(":checked");

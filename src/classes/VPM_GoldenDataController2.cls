@@ -21,6 +21,8 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 5.0      Samrin      2 Nov 2016        IAVMD-1857 - Changes on maintain scenario are not visible to approver
 6.0      Samrin      4 Nov 2016        IAVMD-2325 : L2 Approvals for Sirius and Cordillera not working ( if there's no Custom Setting for the Country, the L2 approval doesn't get triggered)
 7.0      Samrin      7 Nov 2016        IAVMD-2299 : Block-Delete Vendor - Warning message on new page
+8.0      Samrin      21 Dec 2016       Chnages in Approval Logic to Check and implement global & Regional Extend Request 
+9.0      Samirn      09 Jan 2017       IAVMD-2767  : Implement change to Approval criteria for Adopt Scan Date 
 ****************************************************************************/
 
 
@@ -95,10 +97,13 @@ with Sharing public class VPM_GoldenDataController2 {
     public Boolean isCreate{get;set;}   
     public boolean isMaintainRecord{get;set;} 
     public static final string VENDOR_COUNTRY = 'BR_Brazil';
+    public static string PIVendorType = '';
     public  List<SelectOption> purchasingOrg{get;set;}
     public string vendorPurchasingOrg{get;set;}
     public  List<SelectOption> CashManagementGrp{get;set;}
     public  List<SelectOption> tradePartnerTypeList{get;set;}
+    public List<SelectOption> termsofPaymentOptions{get;set;}
+    public string termsOFPayment{get;set;}
     public  string tradepartnerType{get;set;}
     public string vendorCashManagementGrp{get;set;}
     public string shippingConditionsDefValue{get;set;}
@@ -154,7 +159,10 @@ with Sharing public class VPM_GoldenDataController2 {
    public string NewPaymentTerms {get; set;} 
    public string OldPaymentTerms {get; set;} 
    public string OldPaymentMethod{get;set;}
-   public string NewPaymentMethod{get;set;}               
+   public string NewPaymentMethod{get;set;}  
+    public string ExtendType{get;set;}
+        public string PaymentBlock{get;set;}
+    public string ReconciliationAccount{get;set;}
     
     ApexPages.StandardController newController;
 
@@ -169,7 +177,7 @@ with Sharing public class VPM_GoldenDataController2 {
         newController = controller;
     try
     {
-        purchReqVar = [SELECT Id,VPM_TaxJurisdictionCode__c,VPM_RequestLastWithGroup__c,VPM_RequestGroupTime__c,VPM_Industry__c,VPM_IsLock__c,VPM_Status__c, VPM_VendorType__c,VPM_TradePartnerType__c,VPM_Commodity__c ,VPM_Commodity_Family__c,recordTypeId,
+        purchReqVar = [SELECT Id,VPM_TaxJurisdictionCode__c,VPM_RequestLastWithGroup__c,VPM_TermsOfPayment__c,VPM_RequestGroupTime__c,VPM_Industry__c,VPM_IsLock__c,VPM_Status__c, VPM_VendorType__c,VPM_TradePartnerType__c,VPM_Commodity__c ,VPM_Commodity_Family__c,recordTypeId,
                        VPM_AdvancedFormSubmitted__c, VPM_FinanceApprovalRequired__c,VPM_Street1__c,VPM_CheckDoubleInvoices__c,VPM_VendorContactDetail__c,
                        VPM_ProcurementApprovalRequired__c,VPM_Location__c,VPM_City__C,VPM_TaxNumber1__c ,VPM_ExtensionType__c,VPM_GlobalFieldChanged__c,VPM_RegionalFieldChanged__c,
                        VPM_OrderingEmailAddress__c,VPM_PaymentTerms__c,VPM_BankCountryKey__c,VPM_Country__c,VPM_Fieldtype__c,VPM_ClerksInternet__c,
@@ -231,6 +239,7 @@ with Sharing public class VPM_GoldenDataController2 {
         //vendorPurchasingOrg = purchReqVar.VPM_PurchasingOrganisation__c;
         tradepartnerType=purchReqVar.VPM_TradePartnerType__c;
         vendorPaymentTerms = purchReqVar.VPM_PaymentTerms__c;
+         termsOFPayment = purchReqVar.VPM_TermsOfPayment__c; 
          vendorAccountStatement=purchReqVar.VPM_AccountStatement__c;
          
         Errormsgblock= false ;
@@ -282,7 +291,7 @@ with Sharing public class VPM_GoldenDataController2 {
         
        //make spend visible for create and global extend
             
-        if(recordTypeId==STR_CONST_CREATE || (recordTypeId==STR_CONST_EXTEND && purchReqVar.VPM_ExtensionType__c==STR_CONST_GLOBAL))
+        if(recordTypeId==STR_CONST_CREATE || (recordTypeId==STR_CONST_EXTEND))
         {isReqSpend=true;}
         else
         {isReqSpend=false;}
@@ -312,14 +321,26 @@ with Sharing public class VPM_GoldenDataController2 {
         
         purid = entity.id;
         
+         if((purchReqVar.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI)) || (purchReqVar.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (purchReqVar.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM)))){
+                        PIVendorType ='PI';
+                    } else if(!purchReqVar.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) && (purchReqVar.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && !purchReqVar.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))){
+                        
+                        PIVendorType ='Non PI';
+                    } else{
+                        PIVendorType ='other';
+                    }
+                    system.debug('@@ PI Vendor Type' + PIVendorType);
+                    paymentTerms = VPM_RecordTypeHelper.paymentTermsMetaData(entity.VPM_ECC__c,PIVendorType,vendorPaymentTerms);
+                     termsOfPaymentOptions = VPM_RecordTypeHelper.paymentTermsMetaData(entity.VPM_ECC__c,PIVendorType,termsOFPayment);
         
         purchasingOrg = getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c, PURCHASING_ORG,vendorPurchasingOrg);
         CashManagementGrp = getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c, CASH_MGMT,vendorCashManagementGrp);
-        paymentTerms = getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c, PAYMENT_TERMS,vendorPaymentTerms);
+        //paymentTerms = getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c, PAYMENT_TERMS,vendorPaymentTerms);
         tradePartnerTypeList = getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c,TRADE_PARTNER_TYPE,tradepartnerType);
         //taxJuriCodeOptions = getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c,TAX_JURIDICATION_CODE,taxJuriCodeDefValue);
         AccountStatement = getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c, ACCOUNT_STAT, vendorAccountStatement);
         industryOptions = getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c,INDUSTRY,industryOptionsDefValue);
+        //termsofPaymentOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c, PAYMENT_TERMS,termsOFPayment);
         shippingConditionsOptions =VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c,VPM_PicklistHelper.SHIPPING_CONDITION,shippingConditionsDefValue);
         
         /*if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA){        
@@ -365,16 +386,19 @@ with Sharing public class VPM_GoldenDataController2 {
       system.debug('@@ LATAm Countries:' + obj);
         latam = obj.VPM_CountryName__c;
         
-        system.debug('@@ LATAm Countries:' + latam);
+      //  system.debug('@@ LATAm Countries:' + latam);
         IF(purchReqVar.VPM_Country__c == VENDOR_COUNTRY)
         {   isRequiredFieldCountry = true; }
         else 
         { isRequiredFieldCountry = false;  }
-                   
+        
+        if(purchReqVar.VPM_Country__c <> null || String.isNotBlank(latam))
+        {           
         if(purchReqVar.VPM_Country__c == VENDOR_COUNTRY || latam.contains(purchReqVar.VPM_Country__c))      
         { isRequiredtax1 = true; }
         else
         { isRequiredtax1 = false; }
+        }
 
        
         /*//modified for IAPR-605
@@ -515,15 +539,23 @@ with Sharing public class VPM_GoldenDataController2 {
         
          //modified by Vaishali nagar for IAPR-605
            
-            if(purchReqVar.VPM_Country__c <> null)
+            if(purchReqVar.VPM_Country__c <> null || String.isNotBlank(latam))
             {
-                if(latam.contains(purchReqVar.VPM_Country__c) || purchReqVar.VPM_Country__c == VENDOR_COUNTRY){
+                if(purchReqVar.VPM_Country__c == VENDOR_COUNTRY){
                     isRequiredtax1 = true;
+                }else if(String.isNotBlank(latam))
+                {
+                  if(latam.contains(purchReqVar.VPM_Country__c))
+                  {
+                     isRequiredtax1 = true;
+                  }
+                  else{
+                    isRequiredtax1=false; }
                 } 
                 else
                 {
                     isRequiredtax1=false; }
-                    system.debug('@@ latam' + latam);
+                    //system.debug('@@ latam' + latam);
                     system.debug('@@ purchReqVar.VPM_Country__c' + purchReqVar.VPM_Country__c);
                     system.debug('@@ tax number 1' + purchReqVar.VPM_TaxNumber1__c);
                 
@@ -603,16 +635,22 @@ with Sharing public class VPM_GoldenDataController2 {
                 if(string.isBlank(vendorName)){                
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_VendorNamePageMessage);
                 }
-                /***********Added by Epsita -IAVMD-2320   **********/
+                
                 system.debug('@@purchReqVar.VPM_Country__c' + purchReqVar.VPM_Country__c);
-                if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA &&  purchReqVar.VPM_Country__c == VENDOR_COUNTRY && string.isBlank(taxJuriCodeDefValue)) {
+                //commented as Per IAVMD-3045 on 01/11/2017
+                /*if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA &&  purchReqVar.VPM_Country__c == VENDOR_COUNTRY && string.isBlank(taxJuriCodeDefValue)) {
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_TaxJuriCodeErrorMessage);               
-                }
+                }*/
                 if(string.isNotBlank(taxJuriCodeDefValue) && taxJuriCodeDefValue.length() > 15) {
                     myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, System.label.VPM_TaxJuriLengthMessage);  
                 }                
             }else{
                 
+                 if(string.isBlank(termsOfPayment))
+                {
+                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_TermsOfPayment);
+            
+                }
                 
                 if(string.isBlank(tradepartnertype)){
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_TradePartnerTypepageMessage);
@@ -698,8 +736,9 @@ with Sharing public class VPM_GoldenDataController2 {
         purchReqVar.VPM_TaxJurisdictionCode__c = taxJuriCodeDefValue;
         purchReqVar.VPM_Industry__c = industryOptionsDefValue;
         purchReqVar.VPM_AccountStatement__c = vendorAccountStatement;
-        
+         purchReqVar.VPM_TermsOfPayment__c = termsOFPayment;
         update purchReqVar;
+        VPM_CheckRecursive.run = true;
         newController.save();
         System.debug('@@@@@@@  purchReqVar ------' +purchReqVar);
     }
@@ -917,8 +956,8 @@ public void approvalCallMethod()
                                 VPM_BankName__c,VPM_SwiftKey__c,VPM_RequestFromFLSOrBR__c,VPM_PartnerBankType__c,VPM_RequestType__c,
                                 RecordType.DeveloperName,VPM_CountryRequestingVendor__c,VPM_RequestGroupTime__c ,
                                 VPM_Company_Code_Value__c,VPM_VendorBlockUnblockDelete__c,VPM_BankDataValidationRequired__c,
-                                VPM_Commodity__r.VPM_CommodityClass__c,VPM_VATRegistrationNumber__c ,VPM_IsChangedVAT__c
-                                FROM VPM_PurchasingRequests__c WHERE Id =: entity.id];                       
+                                VPM_Commodity__r.VPM_CommodityClass__c,VPM_VATRegistrationNumber__c ,VPM_IsChangedVAT__c, VPM_VendorCodeLookup__r.mdm_ecc__c,
+                                VPM_CompanyCode__r.ECC__c, VPM_AdoptScanDate__c FROM VPM_PurchasingRequests__c WHERE Id =: entity.id];                       
         System.debug('@@pr ' + pr ); 
         System.debug('@@op ' + op ); 
         // Start : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
@@ -940,13 +979,13 @@ public void approvalCallMethod()
          {
         if(pr.VPM_RequestFromFLSOrBR__c.containsIgnoreCase('FLS') ) 
         {
-        pr.VPM_Status__c='FLS Approved';
+        //pr.VPM_Status__c='FLS Approved';
         pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
        
         }
         else if( pr.VPM_RequestFromFLSOrBR__c != null)
         {
-            pr.VPM_Status__c='';
+            //pr.VPM_Status__c='';
             pr.VPM_RequestLastWithGroup__c = STR_CONST_BR;
             pr.VPM_RequestGroupTime__c = system.now();
         }
@@ -1019,13 +1058,21 @@ public void approvalCallMethod()
                 // End Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016    
                 
                     
-                if(String.isNotBlank(OldPaymentTerms))
+            /*    if(String.isNotBlank(OldPaymentTerms))
                 {
-                    if(!(NewPaymentTerms.contains(OldPaymentTerms)))
+                    //if(!(NewPaymentTerms.contains(OldPaymentTerms)))
                     { pr.VPM_ProvidedPaymentTerms__c= true; }
                     else 
                     { pr.VPM_ProvidedPaymentTerms__c= False; }
-                }
+                } */
+                
+                if((!(NewPaymentTerms.contains(OldPaymentTerms)))
+                  ||
+                   (op.CompanyData[0].AdoptScanDate != pr.VPM_AdoptScanDate__c)
+                  )
+                  { pr.VPM_ProvidedPaymentTerms__c= true; }
+                  else 
+                  { pr.VPM_ProvidedPaymentTerms__c= False; }
 
                 // VAT Related Change 
                     if((String.isBlank(pr.VPM_VATRegistrationNumber__c) != String.isBlank(op.VATRegistrationNumber)))
@@ -1039,11 +1086,14 @@ public void approvalCallMethod()
                 { 
                      NewCashManagementGroup= pr.VPM_CashManagementGroup__c== null?'': pr.VPM_CashManagementGroup__c;
                      OldCashManagementGroup = op.CompanyData[0].CashManagementGroup == null?'': op.CompanyData[0].CashManagementGroup;
+                     ReconciliationAccount = op.CompanyData[0].ReconciliationAccount == null?'': op.CompanyData[0].ReconciliationAccount;
+                    PaymentBlock = op.CompanyData[0].PaymentBlock == null?'':op.CompanyData[0].PaymentBlock;
                      NewSortKey= pr.VPM_SortKey__c== null?'': pr.VPM_SortKey__c;
                      OldSortKey = op.CompanyData[0].SortKey == null?'': op.CompanyData[0].SortKey;
-  
+                    System.debug('op.CompanyData[0].ReconciliationAccount ----'+     pr.VPM_ReconciliationAccount__c!=null);
+                    System.debug('pr.VPM_ReconciliationAccount__c ----'+ (pr.VPM_ReconciliationAccount__c != op.CompanyData[0].ReconciliationAccount));
                      if((
-                            ( pr.VPM_ReconciliationAccount__c!=null && (String.isBlank(pr.VPM_ReconciliationAccount__c) != String.isBlank(op.CompanyData[0].ReconciliationAccount))))
+                            ( pr.VPM_ReconciliationAccount__c!=null && (pr.VPM_ReconciliationAccount__c != ReconciliationAccount)))
                                 ||
                             // ((pr.VPM_PaymentMethod__c  !=null && (String.isBlank(pr.VPM_PaymentMethod__c) != String.isBlank(op.CompanyData[0].PaymentMethod))))
                             // Above line Commneted : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016
@@ -1055,7 +1105,7 @@ public void approvalCallMethod()
                            // ((pr.VPM_SortKey__c !=null && (String.isBlank(pr.VPM_SortKey__c) != String.isBlank(op.CompanyData[0].SortKey))))
                            (!(NewSortKey.contains(OldSortKey)))
                                 ||
-                            (pr.VPM_PaymentBlock__c !=null &&(String.isBlank(pr.VPM_PaymentBlock__c)!= String.isBlank(op.CompanyData[0].PaymentBlock)))
+                            (pr.VPM_PaymentBlock__c !=null && (pr.VPM_PaymentBlock__c!= PaymentBlock))
                                 ||
                             ((pr.VPM_CheckDoubleInvoices__c !=null && (pr.VPM_CheckDoubleInvoices__c!=op.CompanyData[0].CheckDoubleInvoices)))     
                         )
@@ -1067,11 +1117,18 @@ public void approvalCallMethod()
                 }
             else{
                  //Payment terms Flag  set
-                    IF(pr.VPM_PaymentTerms__c !=null)
+                    IF((pr.VPM_PaymentTerms__c !=null)|| 
+                       (pr.VPM_AdoptScanDate__c)     
+                      )
                     {  pr.VPM_ProvidedPaymentTerms__c= true; }
                     else 
                     { pr.VPM_ProvidedPaymentTerms__c= false; }
-        
+                    
+                    // is VAT changes in Extend/Create 
+                    IF(pr.VPM_VATRegistrationNumber__c!=null)
+                    {pr.VPM_IsChangedVAT__c= true;}
+                    else 
+                    {pr.VPM_IsChangedVAT__c= false;}
                 // FinanciallySensitive Flag Set
          
                     if((pr.VPM_ReconciliationAccount__c!=null)||(pr.VPM_PaymentMethod__c !=null)||
@@ -1109,90 +1166,102 @@ public void approvalCallMethod()
                                 pr.VPM_ProvidedBankDetails__c= false;
                             }                
                  }
-        if(pr.VPM_VendorType__c!=null)
-        {
-            if(pr.VPM_VendorType__c.contains(STR_CONST_RUSSIAN))
+                 
+                 if (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND)
+                 {
+                  if(pr.VPM_VendorCodeLookup__r.mdm_ecc__c.containsIgnoreCase(pr.VPM_CompanyCode__r.ECC__c))
+                   { ExtendType   ='Regional';}
+                  else{ ExtendType='Global';}
+                 }
+        // changes made as per IAVMD-3085 23/1/2016
+        if(pr.VPM_Commodity__r.VPM_CommodityCode__c.equals(System.label.VPM_Out_of_Approval_Scope)) {
+            pr.VPM_NumberofApprovalsRequired__c=0;
+        }else {     
+            if(pr.VPM_VendorType__c!=null)
             {
-                pr.VPM_RussianTaxApprovalRequired__c =true;
-                pr.VPM_FreightApprovalRequired__c  =false;   
-            }
-            
-            else if(pr.VPM_VendorType__c.contains(STR_CONST_FREIGHT))
-            {
-                pr.VPM_FreightApprovalRequired__c  =true;
-                pr.VPM_RussianTaxApprovalRequired__c =false; 
-                // Changes for Bug 346
-                if((pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) && ((!pr.VPM_ProvidedBlockDelete__c) && (!pr.VPM_ProvidedUnblockUndelete__c)  && (!pr.VPM_ProvidedPaymentTerms__c)))
-               // {
-                     //if ((!pr.VPM_ProvidedBlockDelete__c) && (!pr.VPM_ProvidedUnblockUndelete__c)  && (!pr.VPM_ProvidedPaymentTerms__c))
-                     { pr.VPM_FreightApprovalRequired__c  =false; }
-               // }
-                //End  Changes for Bug 346
-            }
-        }
-        
-         GlobalAuthorisationGroup= pr.VPM_GlobalAuthorisationGroup__c== null?'': pr.VPM_GlobalAuthorisationGroup__c;
-        // Call to the function setProcurementApprovalRequired() which set the flag Procurement approval is required 
-        setProcurementApprovalRequired();
-        
-        // Call to the function setFinanceApprovalRequired() which set the flag Finance approval is required 
-        setFinanceApprovalRequired();
-
-        System.debug(' End @@@@@@ VPM_FinanceApprovalRequired__c--------------------' +pr.VPM_FinanceApprovalRequired__c);
-        System.debug(' End @@@@@@ VPM_ProcurementApprovalRequired__c--------------------' +pr.VPM_ProcurementApprovalRequired__c);
-        System.debug(' End @@@@@@ VPM_FreightApprovalRequired__c--------------------' +pr.VPM_FreightApprovalRequired__c);
-        System.debug(' End @@@@@@ VPM_RussianTaxApprovalRequired__c--------------------' +pr.VPM_RussianTaxApprovalRequired__c);
-        System.debug(' End @@@@@@ VPM_ProvidedPaymentTerms__c--------------------' +pr.VPM_ProvidedPaymentTerms__c);
-        System.debug(' End @@@@@@ VPM_ProvidedBankDetails__c--------------------' +pr.VPM_ProvidedBankDetails__c);
-        System.debug(' End @@@@@@ VPM_ProvidedFinancialSensitive__c--------------------' +pr.VPM_ProvidedFinancialSensitive__c);
-        System.debug(' End @@@@@@ VPM_ProvidedBlockDelete__c--------------------' +pr.VPM_ProvidedBlockDelete__c);
-        System.debug(' End @@@@@@ VPM_ProvidedUnblockUndelete__c--------------------' +pr.VPM_ProvidedUnblockUndelete__c);
-
-        // Setting VPM_NumberofApprovalsRequired__c flag 
-        if((pr.VPM_FinanceApprovalRequired__c)|| (pr.VPM_ProcurementApprovalRequired__c)|| (pr.VPM_FreightApprovalRequired__c)|| (pr.VPM_RussianTaxApprovalRequired__c))
-        {
-            if ((pr.VPM_FinanceApprovalRequired__c ) && (pr.VPM_FreightApprovalRequired__c)) 
-            { pr.VPM_NumberofApprovalsRequired__c=2; }
-
-            else if((pr.VPM_FinanceApprovalRequired__c ) && (pr.VPM_ProcurementApprovalRequired__c))
-            {  pr.VPM_NumberofApprovalsRequired__c=2; }
-
-            else if((pr.VPM_FreightApprovalRequired__c ) && (pr.VPM_ProcurementApprovalRequired__c))
-            { pr.VPM_NumberofApprovalsRequired__c=2; }              
-            else
-            { pr.VPM_NumberofApprovalsRequired__c=1;}
-        } 
-        else
-        { pr.VPM_NumberofApprovalsRequired__c=0; }
-        
-        // Call to the function setLevelApproval : which decide 3 Level  of approval for Maintain  & L2  need  Excluded/included for Creaate/Extend 
-        setLevelApproval();
-        /* Start Changes By Samrin : on 2 Nov 2016 : IAVMD-1857 - Changes on maintain scenario are not visible to approver */
-        if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) 
-        {
-            RecordTypeApprovalChanges='';
-            if(pr.VPM_ProvidedPaymentTerms__c)
-            {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangePaymentTermsDetails + ' ,' ; }
-            
-            if(pr.VPM_ProvidedBankDetails__c)
-            { RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeBankDetails + ' ,' ; }
-            
-            if(pr.VPM_ProvidedFinancialSensitive__c)
-            {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeFinancialSensitive + ' ,'; }
-            
-            if (pr.VPM_ProvidedBlockDelete__c)
-            {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeBlockDelete+ ' ,'; }
-            
-            if(pr.VPM_ProvidedUnblockUndelete__c)
-            { RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeUnBlockUnDelete + ' ,'; }
+                if(pr.VPM_VendorType__c.contains(STR_CONST_RUSSIAN))
+                {
+                    pr.VPM_RussianTaxApprovalRequired__c =true;
+                    pr.VPM_FreightApprovalRequired__c  =false;   
+                }
                 
-            if(pr.VPM_IsChangedVAT__c)
-            {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeGeneralVendorDetails + ' ,'; }
+                else if(pr.VPM_VendorType__c.contains(STR_CONST_FREIGHT))
+                {
+                    pr.VPM_FreightApprovalRequired__c  =true;
+                    pr.VPM_RussianTaxApprovalRequired__c =false; 
+                    // Changes for Bug 346
+                    if((pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) && ((!pr.VPM_ProvidedBlockDelete__c) && (!pr.VPM_ProvidedUnblockUndelete__c)  && (!pr.VPM_ProvidedPaymentTerms__c)))
+                   // {
+                         //if ((!pr.VPM_ProvidedBlockDelete__c) && (!pr.VPM_ProvidedUnblockUndelete__c)  && (!pr.VPM_ProvidedPaymentTerms__c))
+                         { pr.VPM_FreightApprovalRequired__c  =false; }
+                   // }
+                    //End  Changes for Bug 346
+                }
+            }
             
-            RecordTypeApprovalChanges = RecordTypeApprovalChanges.removeEnd(',');
-            pr.VPM_RequestType__c=RecordTypeApprovalChanges;
+             GlobalAuthorisationGroup= pr.VPM_GlobalAuthorisationGroup__c== null?'': pr.VPM_GlobalAuthorisationGroup__c;
+            // Call to the function setProcurementApprovalRequired() which set the flag Procurement approval is required 
+            setProcurementApprovalRequired(ExtendType);
             
-        
+            // Call to the function setFinanceApprovalRequired() which set the flag Finance approval is required 
+            setFinanceApprovalRequired(ExtendType);
+    
+            System.debug(' End @@@@@@ VPM_FinanceApprovalRequired__c--------------------' +pr.VPM_FinanceApprovalRequired__c);
+            System.debug(' End @@@@@@ VPM_ProcurementApprovalRequired__c--------------------' +pr.VPM_ProcurementApprovalRequired__c);
+            System.debug(' End @@@@@@ VPM_FreightApprovalRequired__c--------------------' +pr.VPM_FreightApprovalRequired__c);
+            System.debug(' End @@@@@@ VPM_RussianTaxApprovalRequired__c--------------------' +pr.VPM_RussianTaxApprovalRequired__c);
+            System.debug(' End @@@@@@ VPM_ProvidedPaymentTerms__c--------------------' +pr.VPM_ProvidedPaymentTerms__c);
+            System.debug(' End @@@@@@ VPM_ProvidedBankDetails__c--------------------' +pr.VPM_ProvidedBankDetails__c);
+            System.debug(' End @@@@@@ VPM_ProvidedFinancialSensitive__c--------------------' +pr.VPM_ProvidedFinancialSensitive__c);
+            System.debug(' End @@@@@@ VPM_ProvidedBlockDelete__c--------------------' +pr.VPM_ProvidedBlockDelete__c);
+            System.debug(' End @@@@@@ VPM_ProvidedUnblockUndelete__c--------------------' +pr.VPM_ProvidedUnblockUndelete__c);
+    
+            // Setting VPM_NumberofApprovalsRequired__c flag 
+            if((pr.VPM_FinanceApprovalRequired__c)|| (pr.VPM_ProcurementApprovalRequired__c)|| (pr.VPM_FreightApprovalRequired__c)|| (pr.VPM_RussianTaxApprovalRequired__c))
+            {
+                if ((pr.VPM_FinanceApprovalRequired__c ) && (pr.VPM_FreightApprovalRequired__c)) 
+                { pr.VPM_NumberofApprovalsRequired__c=2; }
+    
+                else if((pr.VPM_FinanceApprovalRequired__c ) && (pr.VPM_ProcurementApprovalRequired__c))
+                {  pr.VPM_NumberofApprovalsRequired__c=2; }
+    
+                else if((pr.VPM_FreightApprovalRequired__c ) && (pr.VPM_ProcurementApprovalRequired__c))
+                { pr.VPM_NumberofApprovalsRequired__c=2; }              
+                else
+                { pr.VPM_NumberofApprovalsRequired__c=1;}
+            } 
+            else
+            { pr.VPM_NumberofApprovalsRequired__c=0; }
+            
+            // Call to the function setLevelApproval : which decide 3 Level  of approval for Maintain  & L2  need  Excluded/included for Creaate/Extend 
+            setLevelApproval(ExtendType);
+            /* Start Changes By Samrin : on 2 Nov 2016 : IAVMD-1857 - Changes on maintain scenario are not visible to approver */
+            if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) 
+            {
+                RecordTypeApprovalChanges='';
+                if(pr.VPM_ProvidedPaymentTerms__c)
+                {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangePaymentTermsDetails + ' ,' ; }
+                
+                if(pr.VPM_ProvidedBankDetails__c)
+                { RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeBankDetails + ' ,' ; }
+                
+                if(pr.VPM_ProvidedFinancialSensitive__c)
+                {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeFinancialSensitive + ' ,'; }
+                
+                if (pr.VPM_ProvidedBlockDelete__c)
+                {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeBlockDelete+ ' ,'; }
+                
+                if(pr.VPM_ProvidedUnblockUndelete__c)
+                { RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeUnBlockUnDelete + ' ,'; }
+                    
+                if(pr.VPM_IsChangedVAT__c)
+                {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeGeneralVendorDetails + ' ,'; }
+                
+                RecordTypeApprovalChanges = RecordTypeApprovalChanges.removeEnd(',');
+                pr.VPM_RequestType__c=RecordTypeApprovalChanges;
+                
+            
+            }
         }
         /* End Changes By Samrin   : on 2 Nov 2016 : IAVMD-1857 - Changes on maintain scenario are not visible to approver */
 
@@ -1206,7 +1275,7 @@ public void approvalCallMethod()
     Description  : VPM - Used to set setProcurementApprovalRequired Based on the fields
     Return Type  : null
     ********************************************************************/
-public void setProcurementApprovalRequired()
+public void setProcurementApprovalRequired(string ExdType)
 {
 if(((pr.VPM_VendorType__c!=null) && (!pr.VPM_FinanceApprovalRequired__c) && (!pr.VPM_RussianTaxApprovalRequired__c) && (pr.VPM_GlobalAuthorisationGroup__c!=null))
    && 
@@ -1271,8 +1340,12 @@ if(((pr.VPM_VendorType__c!=null) && (!pr.VPM_FinanceApprovalRequired__c) && (!pr
     Description  : VPM - Used to set setFinanceApprovalRequired field which will trigger the Fiance approval process  Based on the fields update & Vendor Type 
     Return Type  : null
     ********************************************************************/
-public void setFinanceApprovalRequired()
+public void setFinanceApprovalRequired(String ExdType)
 {
+    System.debug('@@@@@@  ExdType'+ ExdType);
+    System.debug('pr.VPM_IsChangedVAT__c@@@@@@ '+ pr.VPM_IsChangedVAT__c );
+    
+    
     if((pr.VPM_VendorType__c!=null && (!pr.VPM_RussianTaxApprovalRequired__c) &&  GlobalAuthorisationGroup !=null)
       && 
        (
@@ -1321,7 +1394,9 @@ public void setFinanceApprovalRequired()
                     (   
                                 pr.VPM_ProvidedBankDetails__c  || pr.VPM_IsChangedVAT__c  || pr.VPM_ProvidedFinancialSensitive__c 
                     ) */ 
-                    ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE || pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND
+                    ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE ||
+                      (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Global' && pr.VPM_IsChangedVAT__c  )
+                     
                     || ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && (  pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c ) )
                     )
                 )
@@ -1384,15 +1459,92 @@ public void setFinanceApprovalRequired()
     Description  : VPM - Used to set L3 Approval process for Maintain Request & L2 should need to inculde/Exculde  for Create/Extend Request 
     Return Type  : null
     ********************************************************************/
-Public void setLevelApproval()
+Public void setLevelApproval(string ExdType)
 {
-if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) 
+         if (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN)
         {
+            VPM_L2InculdeApproval__c  approvalRequired = VPM_L2InculdeApproval__c.getInstance(pr.VPM_CountryRequestingVendor__c);
+            System.debug('approvalRequired ' + approvalRequired);
+            
+           System.debug('@@@@ Reg  '  + (!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Regional' && pr.VPM_ProvidedBankDetails__c ) 
+                       ));
+            System.debug('@@@@ Global  '+  (!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Global' && pr.VPM_IsChangedVAT__c ) ));
+          if((approvalRequired != null) && (approvalRequired.VPM_L2CreateExtendApproval__c && pr.VPM_NumberofApprovalsRequired__c == 2  && pr.VPM_FinanceApprovalRequired__c )  )
+{
+
+                        if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND)
+                        {
+                            if(ExdType=='Global')
+                            {
+                              if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Global' && pr.VPM_IsChangedVAT__c ) )
+                              {
+                                    System.debug('!!! Global ');
+                                    pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
+                                    pr.VPM_FinanceApprovalRequired__c= false;
+                              }
+                            }
+                            else if(ExdType=='Regional')
+                            {
+                                if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Regional' && pr.VPM_ProvidedBankDetails__c ) )
+                                {
+                                    System.debug('!!! Regional ');
+                                    pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
+                                    pr.VPM_FinanceApprovalRequired__c= false;
+                                    
+                                }
+                            }
+                        }
+                        else 
+                        {
+                            System.debug('!!! my ');
+                            pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
+                            pr.VPM_FinanceApprovalRequired__c= false;
+                        }
+}
+else if(approvalRequired==null && pr.VPM_FinanceApprovalRequired__c) // Changes for the bug  By Samrin on 4th Nov :  IAVMD-2325 : L2 Approvals for Sirius and Cordillera not working 
+{
+      if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND)
+      {
+            if(ExdType=='Global')
+            {
+                if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Global' && pr.VPM_IsChangedVAT__c ) )
+                {
+                     System.debug('!!! 22222  Global ');
+                     pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
+                     pr.VPM_FinanceApprovalRequired__c= false;
+                }
+            }
+            else if(ExdType=='Regional')
+            {
+                if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Regional' && pr.VPM_ProvidedBankDetails__c ) )
+                {
+                    System.debug('!!!  2222   Regional ');
+                    pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
+                    pr.VPM_FinanceApprovalRequired__c= false;
+                                    
+                }
+            }
+     }
+     else 
+     {
+            System.debug('!!! my ');
+            pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
+            pr.VPM_FinanceApprovalRequired__c= false;
+     }
+}
+            // End Changes for the bug  By Samrin on 4th Nov :  IAVMD-2325 : L2 Approvals for Sirius and Cordillera not working 
+        }
+    // Set Bank Details Approval for all record Type  for Maintain & Extend of Type : Regional 
+        System.debug('1');
+        if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN || (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Regional' )) 
+        {
+             System.debug('2');
              if((pr.VPM_FinanceApprovalRequired__c)|| (pr.VPM_ProcurementApprovalRequired__c)|| (pr.VPM_FreightApprovalRequired__c))
              {
                  //  Samrin Shaikh : Change for Bug No : 1285 : on 16 sept 2016 
+                 System.debug('3');
                 if((pr.VPM_ProvidedBankDetails__c) &&  (!pr.VPM_ProvidedBlockDelete__c) && (!pr.VPM_ProvidedUnblockUndelete__c))
-                {    
+                {   System.debug('4'); 
                     pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c +1; 
                     pr.VPM_BankDataValidationRequired__c=true;
                 }
@@ -1421,24 +1573,7 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
              //  Samrin Shaikh : End of  Change for Bug No : 1409 : on 29 sept 2016 
                  
         }
-        else  if (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN)
-        {
-            VPM_L2InculdeApproval__c  approvalRequired = VPM_L2InculdeApproval__c.getInstance(pr.VPM_CountryRequestingVendor__c);
-            if((approvalRequired != null) && (approvalRequired.VPM_L2CreateExtendApproval__c && pr.VPM_NumberofApprovalsRequired__c == 2  && pr.VPM_FinanceApprovalRequired__c )  )
-            {
-               // if(approvalRequired.VPM_L2CreateExtendApproval__c && pr.VPM_NumberofApprovalsRequired__c == 2  && pr.VPM_FinanceApprovalRequired__c ) // True mean Excluded
-               // {
-                    pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
-                    pr.VPM_FinanceApprovalRequired__c= false;
-                //}   
-            }
-            else if(approvalRequired==null && pr.VPM_FinanceApprovalRequired__c) // Changes for the bug  By Samrin on 4th Nov :  IAVMD-2325 : L2 Approvals for Sirius and Cordillera not working 
-            {
-                pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
-                pr.VPM_FinanceApprovalRequired__c= false; 
-            }
-            // End Changes for the bug  By Samrin on 4th Nov :  IAVMD-2325 : L2 Approvals for Sirius and Cordillera not working 
-        }
+         
 }
  /*  End of Function setLevelApproval  : VPM - Used to set L3 Approval process for Maintain Request & L2 should need to inculde/Exculde  for Create /Extend Request */
    
@@ -1528,7 +1663,7 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
             ApexPages.Message msg = null;
             System.debug('ApprovalMaintain1');
             
-            if(purchReqVar.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)    
+            if(purchReqVar.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN || purchReqVar.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND)    
              {
                 if(string.isNotBlank(purchReqVar.VPM_DeletionBlockFlag__c))
                 {

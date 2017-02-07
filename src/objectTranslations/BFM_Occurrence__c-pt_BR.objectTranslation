@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Ocorrência</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Ocorrências</value>
+    </caseValues>
+    <fields>
+        <label>Data Aprovação 1</label>
+        <name>Approval_Date_1__c</name>
+    </fields>
+    <fields>
+        <label>Data Aprovação 2</label>
+        <name>Approval_Date_2__c</name>
+    </fields>
+    <fields>
+        <label>Data Aprovação 3</label>
+        <name>Approval_Date_3__c</name>
+    </fields>
+    <fields>
+        <label>Data Aprovação 4</label>
+        <name>Approval_Date_4__c</name>
+    </fields>
+    <fields>
+        <label>Data Aprovação 5</label>
+        <name>Approval_Date_5__c</name>
+    </fields>
+    <fields>
+        <label>Data Aprovação 6</label>
+        <name>Approval_Date_6__c</name>
+    </fields>
+    <fields>
+        <label>Nome Fornecedor</label>
+        <name>Carrier_Account__c</name>
+        <relationshipLabel>Ocorrências</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Cód.Fornecedor</label>
+        <name>Carrier_Vendor_Code__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Empresa</label>
+        <name>Company_Code__c</name>
+    </fields>
+    <fields>
+        <label>Criado por</label>
+        <name>CreatedBy__c</name>
+    </fields>
+    <fields>
+        <label>Data Criação</label>
+        <name>Created_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery System Description --></label>
+        <name>Delivery_System_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery System --></label>
+        <name>Delivery_System__c</name>
+    </fields>
+    <fields>
+        <label>Tipo Equip.</label>
+        <name>Equip_Type__c</name>
+    </fields>
+    <fields>
+        <label>Desc.Tipo Equip.</label>
+        <name>Equip_Type_description__c</name>
+    </fields>
+    <fields>
+        <label>Documento Fiscal</label>
+        <name>Fiscal_Documents__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Deleted in SAP --></label>
+        <name>Is_Deleted_in_SAP__c</name>
+    </fields>
+    <fields>
+        <label>Data Última Atualização</label>
+        <name>Last_Occurrence_Update__c</name>
+    </fields>
+    <fields>
+        <label>Desc.Tipo de Carga</label>
+        <name>Load_Type_Description__c</name>
+    </fields>
+    <fields>
+        <label>Tipo de Carga</label>
+        <name>Load_Type__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Ocorrência</label>
+        <name>Occurrence_Code__c</name>
+    </fields>
+    <fields>
+        <label>Desc.Ocorrência</label>
+        <name>Occurrence_Description__c</name>
+    </fields>
+    <fields>
+        <label>Num.Ocorrência</label>
+        <name>Occurrence_Number__c</name>
+    </fields>
+    <fields>
+        <label>Qtde Ocorrência</label>
+        <name>Occurrence_Quantity__c</name>
+    </fields>
+    <fields>
+        <label>Valor Líquido</label>
+        <name>Occurrence_Value__c</name>
+    </fields>
+    <fields>
+        <label>Cod.Planta</label>
+        <name>Plant__c</name>
+    </fields>
+    <fields>
+        <label>Placas Veículo</label>
+        <name>Plate_Number__c</name>
+    </fields>
+    <fields>
+        <label>Data Serviço Inicial</label>
+        <name>Range_of_Extent_of_Occurrence_From__c</name>
+    </fields>
+    <fields>
+        <label>Data Serviço Final</label>
+        <name>Range_of_Extent_of_Occurrence_To__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Motivo</label>
+        <name>Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>Desc.Motivo</label>
+        <name>Reason_Description__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Motivo Rejeição</label>
+        <name>Reason_for_Rejection__c</name>
+    </fields>
+    <fields>
+        <label>Desc.Motivo Rejeição</label>
+        <name>Rejection_Description__c</name>
+    </fields>
+    <fields>
+        <label>Documento Transporte</label>
+        <name>Shipment_Document_Number__c</name>
+    </fields>
+    <fields>
+        <label>Tipo de DT</label>
+        <name>Shipment_Type__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Interno SF-DT</label>
+        <name>Shipment__c</name>
+        <relationshipLabel>Ocorrências</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Desc.Processo da DT</label>
+        <name>Shipping_Process_Description__c</name>
+    </fields>
+    <fields>
+        <label>Processo da DT</label>
+        <name>Shipping_Process__c</name>
+    </fields>
+    <fields>
+        <label>Desc.Status</label>
+        <name>Status_Description__c</name>
+    </fields>
+    <fields>
+        <label>Status</label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <label>Valor Impostos</label>
+        <name>Tax__c</name>
+    </fields>
+    <fields>
+        <label>URL de teste</label>
+        <name>Test_URL__c</name>
+    </fields>
+    <fields>
+        <label>Valor Total</label>
+        <name>Total__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <nameFieldLabel>Núm.Interno SF-OCOR</nameFieldLabel>
+    <webLinks>
+        <label>Selecionar Ocorrência BFM</label>
+        <name>Get_BFM_Occurrence</name>
+    </webLinks>
+    <webLinks>
+        <label>Pesquisar Ocorrência BFM</label>
+        <name>Search_BFM_Occurrence</name>
+    </webLinks>
+    <webLinks>
+        <label>Atualizar Ocorrência</label>
+        <name>Update_Occurrence</name>
+    </webLinks>
+</CustomObjectTranslation>

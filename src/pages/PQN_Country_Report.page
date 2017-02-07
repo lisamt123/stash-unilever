@@ -1,0 +1,92 @@
+<apex:page controller="PQN_Country_Report" showHeader="false" contentType="{!If($CurrentPage.parameters.export=='yes' ,'application/vnd.ms-excel#Global_Country_Report.xls','')}" readOnly="true">
+<div style="padding-left:200px;">
+   <!-- <apex:chart height="400" width="1000" data="{!xChartdata}">
+       <apex:axis type="Numeric" position="left" fields="chartdata" title="Record Count"/>
+        <apex:axis type="Category" position="bottom" fields="chartXAxis" title="Region"/>
+        <apex:barSeries orientation="vertical" axis="left" xField="chartXAxis" yField="chartdata"/>
+    </apex:chart>-->
+    </div>
+<style>
+        
+
+        table {
+            width: 100%!important;
+        }
+
+        thead, tbody, tr, td, th { display: block; }
+
+        tr:after {
+            content: ' ';
+            display: block!important;
+            visibility: hidden!important;
+            clear: both!important;
+        }
+
+        thead th {
+            height: 60px!important;
+        }
+        
+        tbody td {
+            height: 30px!important;
+            //text-align: center;
+            
+        }
+
+        tbody {
+            height: 500px!important;
+            overflow-y: auto!important;
+        }
+
+        thead {
+            /* fallback */
+        }
+        tbody td, thead th {
+            width: 20%!important;
+            float: left!important;
+            white-space: normal!important;
+            text-align: center;
+            
+        }
+
+        tbody td:first-child, thead th:first-child {
+            width: 20%!important;
+            float: left!important;
+            text-align: left;
+        }
+        
+        
+</style>
+
+
+<body>
+    <div id="wrapper">
+        <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+            <c:PQN_Navigation navigationName="Reports" subNavName="countryreport"/>
+        </apex:outputPanel>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+ <apex:form >
+    <apex:outputPanel rendered="{!If($CurrentPage.parameters.export=='yes' ,false,true)}">
+        <a class="btn" href="./PQN_Country_Report?export=yes" target="_blank" role="button">Export Report</a>
+    </apex:outputPanel>
+   <apex:pageBlock >
+     <apex:pageBlockTable value="{!mapofcountry}" var="cntry">
+     <apex:column headerValue="Country" value="{!cntry}"/>
+     <apex:column headerValue="Sum of Number Pallets Affected" value="{!mapofcountry[cntry]}"/>
+     
+    </apex:pageBlockTable>
+   </apex:pageBlock>
+ </apex:form>
+ </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+</body>  
+<style>
+        [hidden],template {
+            display: block!important;
+        }
+    </style>
+
+</apex:page>

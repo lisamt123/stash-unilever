@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Category detail Submitted for approval</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TO_Letter_Head</letterhead>
+    <name>BEN Submitted for approval GPL</name>
+    <style>freeForm</style>
+    <subject>Test Result Submitted For Approval</subject>
+    <textOnly>Hi  {!BEN_Category_Details__c.CreatedBy},
+
+Test result &apos;{!BEN_Category_Details__c.Name} &apos;  is submitted for your approval.
+
+You can access the result via the link below;
+{!BEN_Category_Details__c.Link}
+
+Category submitted for : {!BEN_Category_Details__c.Product_Category__c}
+Submitted by : {!BEN_Category_Details__c.CreatedBy}
+Approved by : {!User.Name}
+Date of Submission : {!BEN_Category_Details__c.dt_Date_of_Submission__c}
+Date of approval : {!BEN_Category_Details__c.LastModifiedDate}
+
+This is an automatically generated email, please do not reply.
+Thanks,
+{!User.Name}</textOnly>
+    <type>html</type>
+</EmailTemplate>

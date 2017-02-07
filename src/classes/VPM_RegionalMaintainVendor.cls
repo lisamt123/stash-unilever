@@ -18,7 +18,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 3.0 -    Ajay         10 Oct 2016      Trigger handler         Update Vendor ECC with Commodity ECC.
 4.0 -    Vaishali     06 Nov 2016      Trigger handler         Set SLA for different queue.
 ************************************************************************************************************/
-public with sharing class VPM_RegionalMaintainVendor {
+public without sharing class VPM_RegionalMaintainVendor {
 
     /******************************************************************** 
     Created By   : Ajay
@@ -27,6 +27,19 @@ public with sharing class VPM_RegionalMaintainVendor {
     Description  : Track field updated in Advance form.Update Vendor ECC with Commodity ECC.
     Return Type  : Contructor no return type.
     ********************************************************************/
+    final static string STR_CONST_PurchasingOrg = 'Payment Terms and Purchasing Org Details Changed';
+    final static string STR_CONST_FinancialDetails = 'Financial Details Section Changed';
+    final static string STR_CONST_RegionalSpec = 'Regional Specific Section Changed';
+    final static string STR_CONST_BankDetails = 'Bank Details Section Changed';
+    final static string STR_CONST_GeneralVendorDetails = 'General Vendor Details Section Changed';
+    final static string STR_CONST_PIVendor = 'PI Vendor Section Changed';
+    final static string STR_CONST_SAPBPMError = 'MDM Insert/Update Status Message';
+    static boolean feedCreated = false;
+    Static Map<string,string> FormatedFeed=  new Map<string,string>{STR_CONST_PurchasingOrg =>'',STR_CONST_FinancialDetails =>'',STR_CONST_RegionalSpec =>'',STR_CONST_BankDetails=>'', STR_CONST_GeneralVendorDetails => '',STR_CONST_PIVendor =>'',STR_CONST_SAPBPMError  =>''};
+    static Set<Id> oldRegionSet = new Set<Id>();
+    //static Set<Id> newRegionSet = new Set<Id>();
+
+
 
   public static void updateAndCheckFieldUpdate(List<VPM_PurchasingRequests__c> updatedVendorRequest , Map<Id,VPM_PurchasingRequests__c> OldVendorRequestValueList)
   {
@@ -41,6 +54,15 @@ public with sharing class VPM_RegionalMaintainVendor {
        //if(vendorRequest.RecordTypeId == devRecordTypeId)
        {
         vendorRequestCompanyCode.add(vendorRequest.VPM_CompanyCode__c);
+        if(vendorRequest.VPM_Regions__c != null)  {
+              
+            oldRegionSet .add(vendorRequest.VPM_Regions__c);
+        }
+        if(OldVendorRequestValueList.get(vendorRequest.Id).VPM_Regions__c != null)
+        {
+            oldRegionSet.add(OldVendorRequestValueList.get(vendorRequest.Id).VPM_Regions__c);
+        }
+        
        }
     }
     if(!vendorRequestCompanyCode.isEmpty())
@@ -92,6 +114,17 @@ public with sharing class VPM_RegionalMaintainVendor {
 
         // Save updated field
     Map<String, Schema.SObjectField> M = Schema.SObjectType.VPM_PurchasingRequests__c.fields.getMap(); 
+
+    //Schema.SObjectType leadSchema = Schema.getGlobalDescribe().get('VPM_PurchasingRequests__c');
+    //Map<String, Schema.SObjectField> fieldMap = leadSchema.getDescribe().fields.getMap();
+    //String chatterText='';
+
+    //boolean isChatterUpdateRequired = false;
+    //Adding a Text post
+    //FeedItem post = new FeedItem();
+    
+    
+    
      System.debug('M: ' + M);
     for (String str : M.keyset()) 
     { 
@@ -99,6 +132,7 @@ public with sharing class VPM_RegionalMaintainVendor {
         { 
             for(VPM_PurchasingRequests__c vendorReq : updatedVendorRequest)
             {
+                //post.ParentId = vendorReq.id; //eg. Opportunity id, custom object id..
            // if(!(OldVendorRequestValueList.get(vendorReq.id).get('VPM_checkForFieldUpdate__c') ==true))
            if(!VPM_SearchVendor1.CheckFlag)
            {
@@ -111,21 +145,27 @@ public with sharing class VPM_RegionalMaintainVendor {
                         if( vendorReq.VPM_fieldUpdated__c != null){
                         if(!vendorReq.VPM_fieldUpdated__c.contains(str))
                         {
-                             vendorReq.VPM_fieldUpdated__c =str+','+vendorReq.VPM_fieldUpdated__c ;
+                          vendorReq.VPM_fieldUpdated__c =str+','+vendorReq.VPM_fieldUpdated__c ;
+
                         }
                         
                         }
                         else
+                        {
                         vendorReq.VPM_fieldUpdated__c = str+',';
+                      }
+                      
                     } 
                 }
             }
             
             
             }
+           
         }
          catch (Exception e) { System.debug('Error: ' + e); } 
     }
+
   }
 
 
@@ -234,7 +274,14 @@ public static void requireRejectionComment(List<VPM_PurchasingRequests__c> updat
              if((inv.VPM_CheckHours__c))
              {
             system.debug('VPM_VendorSLA__c '+inv.VPM_VendorSLA__c);
-             inv.VPM_StoreHours__c=inv.VPM_VendorSLA__c;
+            if( inv.VPM_VendorSLA__c < = 0)
+            {
+              inv.VPM_StoreHours__c= 0.01;
+            }
+            else
+            {
+             inv.VPM_StoreHours__c= inv.VPM_VendorSLA__c;
+            }
              
              }
     
@@ -285,9 +332,126 @@ public static void requireRejectionComment(List<VPM_PurchasingRequests__c> updat
            pi.Steps[0].Comments.trim().length() == 0))
       {
         rejectedStatements.get(pi.TargetObjectId).addError(
-          'Operation Cancelled: Please provide a rejection reason!');
+          'Please provide a rejection reason!');
       }
     }  
   }
 }
+
+ /******************************************************************** 
+    Created By   : Vaishali
+    Created Date : 9th Dec 2016
+    Last Modify  : 13th Dec 2016
+    Description  : Logic for chatter feed istory
+    Return Type  : Contructor no return type.
+    ********************************************************************/
+public static void updateChatterFeed(List<VPM_PurchasingRequests__c> updatedVendorRequest , Map<Id,VPM_PurchasingRequests__c> OldVendorRequestValueList){
+    //FormatedFeed = new Map<string,string>{STR_CONST_PurchasingOrg =>'',STR_CONST_FinancialDetails =>'',STR_CONST_RegionalSpec =>'',STR_CONST_BankDetails=>'', STR_CONST_GeneralVendorDetails => ''};
+   
+
+    List<VPM_ListOfRegionalandGlobalField__c> globalFields = VPM_ListOfRegionalandGlobalField__c.getall().values();
+     
+    Schema.SObjectType leadSchema = Schema.getGlobalDescribe().get('VPM_PurchasingRequests__c');
+    Map<String, Schema.SObjectField> fieldMap = leadSchema.getDescribe().fields.getMap();
+    String chatterText='<ul><li>';
+    boolean isChatterUpdateRequired = false;
+    //Adding a Text post
+    FeedItem post = new FeedItem();
+    system.debug('@@@@ VendorReqWithRegion  '+oldRegionSet);
+                          
+    Map<id,VPM_Region__c> VendorReqWithRegion = new Map<id,VPM_Region__c >([SELECT ID, Name from VPM_Region__c where id in :oldRegionSet]);
+    for (VPM_ListOfRegionalandGlobalField__c fieldApi : globalFields) 
+    { 
+    try 
+        { 
+          for(VPM_PurchasingRequests__c vendorReq : updatedVendorRequest)
+            {
+            VPM_PurchasingRequests__c OldVendorRequestValue =OldVendorRequestValueList.get(vendorReq.id);
+                post.ParentId = vendorReq.id; //eg. Opportunity id, custom object id..
+           
+                      // Vaishali Nagar : Logic for chatter feed istory
+                       if(!VPM_SearchVendor1.CheckFlag && vendorReq.VPM_checkForFieldUpdate__c)
+                          {
+               
+                           if(vendorReq.get(fieldApi.VPM_ApiName__c) != OldVendorRequestValue.get(fieldApi.VPM_ApiName__c))
+                          {
+                          
+                            String oldValue=String.ValueOf(OldVendorRequestValue.get(fieldApi.VPM_ApiName__c));
+                            String newValue=String.ValueOf(vendorReq.get(fieldApi.VPM_ApiName__c));
+                             system.debug('@@@@ VendorReqWithRegion  '+VendorReqWithRegion);
+                          
+                             if(fieldApi.VPM_ApiName__c =='VPM_Regions__c' && !string.isBlank(newValue))
+                             {
+                             newValue = VendorReqWithRegion.get(newValue).Name;
+                             }
+                              if(fieldApi.VPM_ApiName__c =='VPM_Regions__c' && !string.isBlank(oldValue))
+                             {
+                             oldValue= VendorReqWithRegion.get(oldValue).Name;
+                             }
+                                
+                             if(string.isBlank(newValue))
+                             {
+                                newValue='Blank Value';
+                             }
+                            
+                              if(string.isBlank(oldValue))
+                             {
+                                oldValue='Blank Value';
+                             }
+                             
+                            chatterText= 'Changed '+fieldMap.get(fieldApi.VPM_ApiName__c).getDescribe().getLabel()+' from '+oldValue+' to '+newValue;
+                             if(!string.isBlank(string.ValueOf(fieldApi.VPM_SectionName__c))){
+                                 
+                                 
+                                
+                                 createHTMLFormatedFeed(chatterText ,String.ValueOf(fieldApi.VPM_SectionName__c));
+                                 isChatterUpdateRequired =true;
+                             }
+                           
+                             
+                           }
+                           }
+                    } 
+                } catch (Exception e) { System.debug('Error: ' + e); } 
+            }
+    if(isChatterUpdateRequired)
+    {
+      chatterText ='';
+      for(string objectName : FormatedFeed.keySet())
+      {
+      system.debug('chatter Feed 1'+FormatedFeed.get(objectName));
+      if( FormatedFeed.get(objectName) != '' && FormatedFeed.get(objectName) !=null)
+        chatterText = chatterText + FormatedFeed.get(objectName)+'</ul>';
+      }
+      system.debug('Chatter Feed '+chatterText  );
+      if(!feedCreated)
+      {
+        post.Body = chatterText;
+        post.IsRichText =true;
+        
+        insert post;
+        feedCreated = true;
+        
+        }
+        else
+        {
+        FeedItem feedItems = [SELECT Id FROM FeedItem WHERE CreatedById = :UserInfo.getUserId() ORDER BY CreatedDate DESC limit 1];
+        feedItems.body = chatterText;
+         feedItems.IsRichText =true;
+         update feedItems;
+        
+}
+        }
+    }
+
+
+ public static void createHTMLFormatedFeed(String feedToformat, String SectionName)
+ {
+    if(FormatedFeed.get(SectionName) == '')
+    {
+      FormatedFeed.put(SectionName,'<p><b>'+SectionName+'</b></p><ul><li>'+feedToformat+'</li>');
+    }
+    else
+     FormatedFeed.put(SectionName,FormatedFeed.get(SectionName)+'<li>'+feedToformat+'</li>');
+  }
 }

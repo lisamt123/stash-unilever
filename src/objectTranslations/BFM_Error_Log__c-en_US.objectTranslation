@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Error Log</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Error Logs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Error Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- NF-e --></label>
+        <name>BFM_NF_e__c</name>
+        <relationshipLabel><!-- Error Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Occurrence --></label>
+        <name>BFM_Occurrence__c</name>
+        <relationshipLabel><!-- Error Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SES --></label>
+        <name>BFM_SES__c</name>
+        <relationshipLabel><!-- Error Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Shipment --></label>
+        <name>BFM_Shipment__c</name>
+        <relationshipLabel><!-- Error Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Error Code --></label>
+        <name>Error_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Error log --></label>
+        <name>Error_log__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason --></label>
+        <name>Reason__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

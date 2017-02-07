@@ -43,7 +43,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=no" />
     </head>
     <body>
-    <div class="lms-container" style="height:125px">
+    <div class="lms-container">
         <c:PBS_Container_Header_clone />
     </div>
     </body>

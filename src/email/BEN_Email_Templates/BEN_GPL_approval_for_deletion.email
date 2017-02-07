@@ -1,0 +1,12 @@
+Hi, 
+
+ Test result for " {!BEN_Category_Details__c.Product_Category__c}" has been marked for deletion. Reason for deletion indicated "{!BEN_Category_Details__c.txt_Reason_for_Deletion__c} "
+
+You can access the Benchmarking test details via the link below; 
+{!BEN_Category_Details__c.Link}
+
+
+This is an automatically generated email, please do not reply.
+
+Thanks,
+{!User.Name}

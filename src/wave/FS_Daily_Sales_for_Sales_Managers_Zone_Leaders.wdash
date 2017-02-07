@@ -1,0 +1,2691 @@
+{
+    "label": "FS Daily Sales for Sales Managers (Zone Leaders)",
+    "description": "New Daily Sales for Sales Managers (Zone Leaders)",
+    "state": {
+        "dataSourceLinks": [],
+        "gridLayouts": [
+            {
+                "name": "Default",
+                "numColumns": 12,
+                "pages": [
+                    {
+                        "widgets": [
+                            {
+                                "colspan": 4,
+                                "column": 2,
+                                "name": "text_1",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_1",
+                                "row": 17,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "container_3",
+                                "row": 17,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 6,
+                                "name": "listselector_1",
+                                "row": 8,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 3,
+                                "name": "listselector_2",
+                                "row": 8,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_3",
+                                "row": 17,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 6,
+                                "name": "text_4",
+                                "row": 17,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "bottom"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_2",
+                                "row": 3,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": [
+                                        "all"
+                                    ]
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "image_1",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_5",
+                                "row": 2,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_7",
+                                "row": 5,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 9,
+                                "name": "listselector_3",
+                                "row": 8,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 8,
+                                "name": "globalfilters_1",
+                                "row": 33,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 0,
+                                "name": "listselector_4",
+                                "row": 8,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_5",
+                                "row": 25,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "container_7",
+                                "row": 25,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 6,
+                                "name": "text_2",
+                                "row": 25,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_8",
+                                "row": 25,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 8,
+                                "name": "container_10",
+                                "row": 2,
+                                "rowspan": 6,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 12,
+                                "column": 0,
+                                "name": "container_11",
+                                "row": 8,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 0,
+                                "name": "number_9",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 8,
+                                "column": 0,
+                                "name": "container_12",
+                                "row": 2,
+                                "rowspan": 6,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "number_6",
+                                "row": 3,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 4,
+                                "name": "number_8",
+                                "row": 3,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 2,
+                                "name": "number_10",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 4,
+                                "name": "number_11",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 6,
+                                "name": "number_12",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 6,
+                                "name": "number_13",
+                                "row": 3,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [
+                                        "all"
+                                    ],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 6,
+                                "name": "number_14",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "container_8",
+                                "row": 9,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "container_9",
+                                "row": 9,
+                                "rowspan": 8,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 0,
+                                "name": "text_11",
+                                "row": 9,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 6,
+                                "name": "text_12",
+                                "row": 9,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 10,
+                                "name": "listselector_6",
+                                "row": 0,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 5,
+                                "name": "pillbox_3",
+                                "row": 2,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 4,
+                                "column": 6,
+                                "name": "container_2",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 8,
+                                "name": "pillbox_4",
+                                "row": 0,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 10,
+                                "name": "chart_1",
+                                "row": 2,
+                                "rowspan": 3,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 10,
+                                "name": "chart_2",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 8,
+                                "name": "chart_3",
+                                "row": 6,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 2,
+                                "column": 8,
+                                "name": "chart_4",
+                                "row": 2,
+                                "rowspan": 3,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_5",
+                                "row": 26,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "table_1",
+                                "row": 26,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_7",
+                                "row": 18,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "table_2",
+                                "row": 18,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 0,
+                                "name": "chart_6",
+                                "row": 10,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 6,
+                                "column": 6,
+                                "name": "table_3",
+                                "row": 10,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "rowHeight": "normal",
+                "selectors": [],
+                "style": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "backgroundColor": "#F2F6FA",
+                    "cellSpacingX": 8,
+                    "cellSpacingY": 8,
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "version": 1
+            }
+        ],
+        "layouts": [],
+        "steps": {
+            "NSV_PY_MTD_2": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "View",
+                            [
+                                "Today"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Direct_Indirect",
+                            [
+                                "DIRECT"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "PickupNSV_MTD_3": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "PickupNSV_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "View",
+                            [
+                                "Today"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Direct_Indirect",
+                            [
+                                "DIRECT"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_PY_MTD_3": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Account.Zone__c",
+                            [
+                                "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "PickupNSV_MTD_2": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "PickupNSV_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "View",
+                            [
+                                "Today"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Account.Region__c",
+                            [
+                                "{{cell(Account_Region__c_3.result, 0, \"Account.Region__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "ZoneLeader_Name_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Zone__c"
+                    ],
+                    "filters": [
+                        [
+                            "Direct_Indirect",
+                            [
+                                "INDIRECT"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "singlerequired",
+                "start": [
+                    "55 West Zone"
+                ],
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "PickupNSV_MTD_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "PickupNSV_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Account.Zone__c",
+                            [
+                                "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Account_Region__c_Ty_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
+                        ],
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Region__c",
+                        "Type"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "stackhbar",
+                    "options": {}
+                }
+            },
+            "Product_SubSector__c_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product.SubSector__c"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "Account_Region__c_Ty_2": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
+                        ],
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
+                        ],
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Region__c",
+                        "Type"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "stackhbar",
+                    "options": {}
+                }
+            },
+            "Account_Zone__c_100": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD",
+                            "C",
+                            {
+                                "display": "PROGRESS VS TARGET",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_CY_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "filters": [
+                                    [
+                                        "Account.Zone__c",
+                                        [
+                                            "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                                        ]
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "filters": [
+                                    [
+                                        "Account.Zone__c",
+                                        [
+                                            "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                                        ]
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "formula": "A / B"
+                            },
+                            "format": "percentage",
+                            "header": "PROGRESS VS TARGET"
+                        }
+                    ],
+                    "groups": [
+                        "Account.Zone__c"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
+            "Product_ProductCateg_200": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
+                        ],
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
+                        ]
+                    ],
+                    "groups": [
+                        "Product.ProductCategory__c",
+                        "Type"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "stackhbar",
+                    "options": {}
+                }
+            },
+            "ORDER_DAYS_ELAPSED_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "ORDER_DAYS_ELAPSED"
+                        ]
+                    ],
+                    "filters": []
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Parent_Name_Type_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
+                        ],
+                        [
+                            "sum",
+                            "NSV_PY_MTD"
+                        ]
+                    ],
+                    "groups": [
+                        "Parent.Name",
+                        "Type"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "stackhbar",
+                    "options": {}
+                }
+            },
+            "Account_Zone__c_300": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD",
+                            "C",
+                            {
+                                "display": "PROGRESS VS PY",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_CY_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "filters": [
+                                    [
+                                        "Account.Zone__c",
+                                        [
+                                            "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                                        ]
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PY_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "filters": [
+                                    [
+                                        "Account.Zone__c",
+                                        [
+                                            "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                                        ]
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Account.Zone__c"
+                                ],
+                                "formula": "A / B"
+                            },
+                            "format": "percentage",
+                            "header": "PROGRESS VS PY"
+                        }
+                    ],
+                    "groups": [
+                        "Account.Zone__c"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
+            "all_3": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": true,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Direct_Indirect",
+                            [
+                                "INDIRECT"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_PLANNED_MTD_700": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD",
+                            "C",
+                            {
+                                "display": "PROGRESS VS PY",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_CY_MTD"
+                                    ]
+                                ],
+                                "filters": [
+                                    [
+                                        "Direct_Indirect",
+                                        [
+                                            "DIRECT"
+                                        ],
+                                        "in"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PY_MTD"
+                                    ]
+                                ],
+                                "filters": [
+                                    [
+                                        "Direct_Indirect",
+                                        [
+                                            "DIRECT"
+                                        ],
+                                        "in"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "formula": "A / B"
+                            },
+                            "format": "percentage",
+                            "header": "PROGRESS VS PY"
+                        }
+                    ],
+                    "filters": []
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
+            "NSV_PLANNED_MTD_2": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "View",
+                            [
+                                "Today"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Direct_Indirect",
+                            [
+                                "INDIRECT"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Account_Name_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Name"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "NSV_CY_MTD_2": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Account.Zone__c",
+                            [
+                                "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Parent_Name_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Parent.Name"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "NSV_PLANNED_MTD_600": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD",
+                            "C",
+                            {
+                                "display": "PROGRESS VS TARGET",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_CY_MTD"
+                                    ]
+                                ],
+                                "filters": [
+                                    [
+                                        "Direct_Indirect",
+                                        [
+                                            "DIRECT"
+                                        ],
+                                        "in"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "filters": [
+                                    [
+                                        "Direct_Indirect",
+                                        [
+                                            "INDIRECT"
+                                        ],
+                                        "in"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "sum",
+                                        "NSV_PLANNED_MTD"
+                                    ]
+                                ],
+                                "formula": "A / B"
+                            },
+                            "format": "percentage",
+                            "header": "PROGRESS VS TARGET"
+                        }
+                    ],
+                    "filters": []
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
+            "NSV_CY_MTD_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Account.Region__c",
+                            [
+                                "{{cell(Account_Region__c_3.result, 0, \"Account.Region__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_CY_MTD_3": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_CY_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "View",
+                            [
+                                "Today"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Country",
+                            [
+                                "NA"
+                            ],
+                            "in"
+                        ],
+                        [
+                            "Direct_Indirect",
+                            [
+                                "DIRECT"
+                            ],
+                            "in"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "NSV_PLANNED_MTD_3": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "NSV_PLANNED_MTD"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Account.Zone__c",
+                            [
+                                "{{cell(Account_Zone__c_2.result, 0, \"Account.Zone__c\").asObject()}}"
+                            ]
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Account_Region__c_3": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Region__c"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "CurrentDay_Year_Curr_100": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "CurrentDay_Year",
+                            "CurrentDay_Month",
+                            "CurrentDay_Day"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Account_Zone__c_2": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Account.Zone__c"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": false,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            },
+            "Product_ProductCateg_3": {
+                "datasets": [
+                    {
+                        "id": "0Fb4C000000GmpJSAS",
+                        "label": "FS_DailySales_NA",
+                        "name": "FS_DailySales_NA",
+                        "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product.ProductCategory__c"
+                    ]
+                },
+                "selectMode": "multi",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "options": {}
+                }
+            }
+        },
+        "widgetStyle": {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#E6ECF2",
+            "borderEdges": [],
+            "borderRadius": 0,
+            "borderWidth": 1
+        },
+        "widgets": {
+            "number_12": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_PY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_PY_MTD_2",
+                    "textAlignment": "center",
+                    "title": "NSV PY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_11": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_PLANNED_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_PLANNED_MTD_2",
+                    "textAlignment": "center",
+                    "title": "NSV Planned MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_10": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_CY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_CY_MTD_3",
+                    "textAlignment": "center",
+                    "title": "NSV CY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_14": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": true,
+                    "measureField": "avg_ORDER_DAYS_ELAPSED",
+                    "numberColor": "#335779",
+                    "numberSize": 24,
+                    "step": "ORDER_DAYS_ELAPSED_1",
+                    "textAlignment": "center",
+                    "title": "% Days Elapsed",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "text_12": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV Detail by Region",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "number_13": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_PY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_PY_MTD_3",
+                    "textAlignment": "center",
+                    "title": "NSV PY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "text_11": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV by Region",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "container_1": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_2": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_3": {
+                "parameters": {
+                    "alignmentX": "center",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_5": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "text_3": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV by Parent Account",
+                    "textAlignment": "center",
+                    "textColor": "#000000"
+                },
+                "type": "text"
+            },
+            "chart_6": {
+                "parameters": {
+                    "autoFitMode": "keepLabels",
+                    "showValues": true,
+                    "legend": {
+                        "showHeader": true,
+                        "show": true,
+                        "customSize": "auto",
+                        "position": "bottom-center",
+                        "inside": false
+                    },
+                    "axisMode": "sync",
+                    "visualizationType": "stackhbar",
+                    "exploreLink": true,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "normalize": false,
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "NSV CY MTD, NSV PY MTD, NSV PLANNED MTD",
+                        "referenceLine": null
+                    },
+                    "step": "Account_Region__c_Ty_2",
+                    "theme": "wave",
+                    "dimensionAxis": {
+                        "showTitle": false,
+                        "customSize": "auto",
+                        "showAxis": true,
+                        "title": ""
+                    }
+                },
+                "type": "chart"
+            },
+            "container_7": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "text_2": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV Detail by Product Category",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "chart_5": {
+                "parameters": {
+                    "autoFitMode": "keepLabels",
+                    "showValues": true,
+                    "legend": {
+                        "showHeader": true,
+                        "show": true,
+                        "customSize": "auto",
+                        "position": "bottom-center",
+                        "inside": false
+                    },
+                    "axisMode": "sync",
+                    "visualizationType": "stackhbar",
+                    "exploreLink": true,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "normalize": false,
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "NSV CY MTD, NSV PY MTD, NSV PLANNED MTD",
+                        "referenceLine": null
+                    },
+                    "step": "Product_ProductCateg_200",
+                    "theme": "wave",
+                    "dimensionAxis": {
+                        "showTitle": false,
+                        "customSize": "auto",
+                        "showAxis": true,
+                        "title": ""
+                    }
+                },
+                "type": "chart"
+            },
+            "text_5": {
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "Zone (Indirect)",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "container_8": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "text_4": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV Detail by Parent Account",
+                    "textAlignment": "center",
+                    "textColor": "#000000"
+                },
+                "type": "text"
+            },
+            "container_9": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "chart_7": {
+                "parameters": {
+                    "autoFitMode": "keepLabels",
+                    "showValues": true,
+                    "legend": {
+                        "showHeader": true,
+                        "show": true,
+                        "customSize": "auto",
+                        "position": "bottom-center",
+                        "inside": false
+                    },
+                    "axisMode": "sync",
+                    "visualizationType": "stackhbar",
+                    "exploreLink": true,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": ""
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "measureAxis2": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "",
+                        "referenceLine": null
+                    },
+                    "normalize": false,
+                    "measureAxis1": {
+                        "sqrtScale": false,
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": "NSV CY MTD, NSV PY MTD, NSV PLANNED MTD",
+                        "referenceLine": null
+                    },
+                    "step": "Parent_Name_Type_1",
+                    "theme": "wave",
+                    "dimensionAxis": {
+                        "showTitle": false,
+                        "customSize": "auto",
+                        "showAxis": true,
+                        "title": ""
+                    }
+                },
+                "type": "chart"
+            },
+            "text_7": {
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "North America (Direct)",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "chart_2": {
+                "parameters": {
+                    "max": 1,
+                    "legend": {
+                        "showHeader": true,
+                        "show": false,
+                        "position": "right-top",
+                        "inside": false
+                    },
+                    "visualizationType": "flatgauge",
+                    "exploreLink": true,
+                    "medium": 0.5,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": "Progress vs PY"
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "colors": {
+                        "mediumColor2": "#F29946",
+                        "mediumColor1": "#FED444",
+                        "lowColor1": "#F71979",
+                        "lowColor2": "#CC203D",
+                        "highColor1": "#7BDE4E",
+                        "highColor2": "#169913"
+                    },
+                    "high": 0.8,
+                    "min": 0,
+                    "valueType": "compactNumber",
+                    "step": "NSV_PLANNED_MTD_700",
+                    "theme": "wave",
+                    "referenceLine": null
+                },
+                "type": "chart"
+            },
+            "text_6": {
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "Region (Indirect)",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "chart_1": {
+                "parameters": {
+                    "max": 1,
+                    "legend": {
+                        "showHeader": true,
+                        "show": false,
+                        "position": "right-top",
+                        "inside": false
+                    },
+                    "visualizationType": "flatgauge",
+                    "exploreLink": true,
+                    "medium": 0.5,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": "Progress vs PY"
+                    },
+                    "trellis": {
+                        "enable": true,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "colors": {
+                        "mediumColor2": "#F29946",
+                        "mediumColor1": "#FED444",
+                        "lowColor1": "#F71979",
+                        "lowColor2": "#CC203D",
+                        "highColor1": "#7BDE4E",
+                        "highColor2": "#169913"
+                    },
+                    "high": 0.8,
+                    "min": 0,
+                    "valueType": "compactNumber",
+                    "step": "Account_Zone__c_300",
+                    "theme": "wave",
+                    "referenceLine": null
+                },
+                "type": "chart"
+            },
+            "chart_4": {
+                "parameters": {
+                    "max": 1,
+                    "legend": {
+                        "showHeader": true,
+                        "show": false,
+                        "position": "right-top",
+                        "inside": false
+                    },
+                    "visualizationType": "flatgauge",
+                    "exploreLink": true,
+                    "medium": 0.5,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": "Progress vs Target"
+                    },
+                    "trellis": {
+                        "enable": true,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "colors": {
+                        "mediumColor2": "#F29946",
+                        "mediumColor1": "#FED444",
+                        "lowColor1": "#F71979",
+                        "lowColor2": "#CC203D",
+                        "highColor1": "#7BDE4E",
+                        "highColor2": "#169913"
+                    },
+                    "high": 0.8,
+                    "min": 0,
+                    "valueType": "compactNumber",
+                    "step": "Account_Zone__c_100",
+                    "theme": "wave",
+                    "referenceLine": null
+                },
+                "type": "chart"
+            },
+            "text_8": {
+                "parameters": {
+                    "fontSize": 18,
+                    "text": "NSV by Product Category",
+                    "textAlignment": "center",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "chart_3": {
+                "parameters": {
+                    "max": 1,
+                    "legend": {
+                        "showHeader": true,
+                        "show": false,
+                        "position": "right-top",
+                        "inside": false
+                    },
+                    "visualizationType": "flatgauge",
+                    "exploreLink": true,
+                    "medium": 0.5,
+                    "title": {
+                        "label": "",
+                        "align": "center",
+                        "subtitleLabel": "Progress vs Target"
+                    },
+                    "trellis": {
+                        "enable": false,
+                        "type": "x",
+                        "chartsPerLine": 4
+                    },
+                    "colors": {
+                        "mediumColor2": "#F29946",
+                        "mediumColor1": "#FED444",
+                        "lowColor1": "#F71979",
+                        "lowColor2": "#CC203D",
+                        "highColor1": "#7BDE4E",
+                        "highColor2": "#169913"
+                    },
+                    "high": 0.8,
+                    "min": 0,
+                    "valueType": "compactNumber",
+                    "step": "NSV_PLANNED_MTD_600",
+                    "theme": "wave",
+                    "referenceLine": null
+                },
+                "type": "chart"
+            },
+            "text_1": {
+                "parameters": {
+                    "fontSize": 24,
+                    "text": "Daily Sales for Sales Managers (Zone Leaders)",
+                    "textAlignment": "center",
+                    "textColor": "#335779"
+                },
+                "type": "text"
+            },
+            "number_5": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": false,
+                    "measureField": "sum_PickupNSV_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "PickupNSV_MTD_2",
+                    "textAlignment": "center",
+                    "title": "Pickup NSV",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_2": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": false,
+                    "measureField": "sum_PickupNSV_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "PickupNSV_MTD_1",
+                    "textAlignment": "center",
+                    "title": "Pickup NSV",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_1": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_CY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_CY_MTD_1",
+                    "textAlignment": "center",
+                    "title": "NSV CY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "image_1": {
+                "parameters": {
+                    "alignmentX": "center",
+                    "alignmentY": "center",
+                    "fit": "fitwidth",
+                    "image": {
+                        "name": "UnileverFoodSolution_8x3jpg4",
+                        "namespace": ""
+                    }
+                },
+                "type": "image"
+            },
+            "container_12": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_11": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_10": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "number_9": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": false,
+                    "measureField": "sum_PickupNSV_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "PickupNSV_MTD_3",
+                    "textAlignment": "center",
+                    "title": "Pickup NSV",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_8": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_PLANNED_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_PLANNED_MTD_3",
+                    "textAlignment": "center",
+                    "title": "NSV Planned MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "number_6": {
+                "parameters": {
+                    "compact": true,
+                    "exploreLink": true,
+                    "measureField": "sum_NSV_CY_MTD",
+                    "numberColor": "#335779",
+                    "numberSize": 20,
+                    "step": "NSV_CY_MTD_2",
+                    "textAlignment": "center",
+                    "title": "NSV CY MTD",
+                    "titleColor": "#335779",
+                    "titleSize": 14
+                },
+                "type": "number"
+            },
+            "listselector_6": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": false,
+                    "measureField": "none",
+                    "step": "ZoneLeader_Name_1",
+                    "title": "Zone"
+                },
+                "type": "listselector"
+            },
+            "listselector_3": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": false,
+                    "measureField": "none",
+                    "step": "Account_Name_1",
+                    "title": "Account Name"
+                },
+                "type": "listselector"
+            },
+            "listselector_2": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": false,
+                    "measureField": "none",
+                    "step": "Product_SubSector__c_1",
+                    "title": "Product Sub Sector"
+                },
+                "type": "listselector"
+            },
+            "listselector_4": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": false,
+                    "measureField": "none",
+                    "step": "Product_ProductCateg_3",
+                    "title": "Product Sector"
+                },
+                "type": "listselector"
+            },
+            "globalfilters_1": {
+                "parameters": {
+                    "step": "all_3"
+                },
+                "type": "globalfilters"
+            },
+            "table_1": {
+                "parameters": {
+                    "customBulkActions": [],
+                    "exploreLink": true,
+                    "step": "Product_ProductCateg_200"
+                },
+                "type": "table"
+            },
+            "table_2": {
+                "parameters": {
+                    "customBulkActions": [],
+                    "exploreLink": true,
+                    "step": "Parent_Name_Type_1"
+                },
+                "type": "table"
+            },
+            "table_3": {
+                "parameters": {
+                    "customBulkActions": [],
+                    "exploreLink": true,
+                    "step": "Account_Region__c_Ty_2"
+                },
+                "type": "table"
+            },
+            "pillbox_2": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": false,
+                    "measureField": "none",
+                    "step": "Account_Region__c_3"
+                },
+                "type": "pillbox"
+            },
+            "pillbox_1": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": false,
+                    "measureField": "none",
+                    "step": "Account_Zone__c_2"
+                },
+                "type": "pillbox"
+            },
+            "pillbox_4": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": false,
+                    "measureField": "none",
+                    "step": "CurrentDay_Year_Curr_100"
+                },
+                "type": "pillbox"
+            },
+            "pillbox_3": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": false,
+                    "measureField": "count",
+                    "step": "Account_Zone__c_2"
+                },
+                "type": "pillbox"
+            },
+            "listselector_1": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": false,
+                    "measureField": "none",
+                    "step": "Parent_Name_1",
+                    "title": "Parent Account Name"
+                },
+                "type": "listselector"
+            }
+        }
+    },
+    "datasets": [
+        {
+            "id": "0Fb4C000000GmpJSAS",
+            "label": "FS_DailySales_NA",
+            "name": "FS_DailySales_NA",
+            "url": "/services/data/v39.0/wave/datasets/0Fb4C000000GmpJSAS"
+        }
+    ]
+}

@@ -4525,6 +4525,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.FS_CHD_Lock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.FS_ChainTargetingModel__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -32647,11 +32652,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_TemporaryProductDiscount__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.FS_UniqueProduct__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -103,7 +103,7 @@
                 <fullName>Agency</fullName>
                 <default>false</default>
             </picklistValues>
-			<picklistValues>
+            <picklistValues>
                 <fullName>Approver</fullName>
                 <default>false</default>
             </picklistValues>
@@ -235,6 +235,230 @@
         <label>CannotChangeMC</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DPS_Demographics__c</fullName>
+        <externalId>false</externalId>
+        <label>Demographics</label>
+        <picklist>
+            <picklistValues>
+                <fullName>PHILIPPINES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VIETNAM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INDONESIA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>DPS_Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CONDITIONER**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>COOKING AIDS**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DEODORANTS &amp; FRAGRANCES**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DRESSINGS**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FABRIC CONDITIONERS**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FABRICS CLEANING**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FACE CARE**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HAIR CARE**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HAND &amp; BODY CARE**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HOUSEHOLD CARE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ICE CREAM**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LAUNDRY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MEN ZONE**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ORAL CARE**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OUTLET-BASED</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OUTLET-BASED**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAVOURY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SHAMPOO**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SKIN CARE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SKIN CLEANSING**</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TEA AND SOY &amp; FRUIT BEVERAGES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>DPS_Sales_Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales_Region</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CENTRAL LUZON</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DINH CONG TRI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EAST VISAYAS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GMA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GREATER MANILA AREA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NGUYEN HONG VAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NGUYEN THI THU THAO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NORTH LUZON</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NORTH MINDANAO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PHAM PHUOC HAI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PHAM TRONG CHINH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SOUTH LUZON</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SOUTH MINDANAO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SOUTHERN TAGALOG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TRINH VIET TRI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VU QUOC DAT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>DPS_Trade_Format__c</fullName>
+        <externalId>false</externalId>
+        <label>Trade Format</label>
+        <picklist>
+            <picklistValues>
+                <fullName>MT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LMT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Debit_Card_Refund_Limit__c</fullName>
@@ -607,6 +831,7 @@
             <picklistValues>
                 <fullName>Chinese</fullName>
                 <default>false</default>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Hong Kong</controllingFieldValues>
                 <controllingFieldValues>Taiwan</controllingFieldValues>
             </picklistValues>
@@ -990,7 +1215,7 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
-    <fields>
+     <fields>
         <fullName>Market__c</fullName>
         <externalId>false</externalId>
         <label>Market</label>
@@ -1013,6 +1238,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Brazil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>China</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1229,6 +1458,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1265,6 +1495,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1301,6 +1532,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1337,6 +1569,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1373,6 +1606,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1409,6 +1643,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1445,6 +1680,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1481,6 +1717,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1517,6 +1754,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1553,6 +1791,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1589,6 +1828,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1625,6 +1865,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1661,6 +1902,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1697,6 +1939,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1733,6 +1976,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1769,6 +2013,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1805,6 +2050,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1841,6 +2087,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1877,6 +2124,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1913,6 +2161,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1949,6 +2198,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -1985,6 +2235,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2021,6 +2272,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2057,6 +2309,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2093,6 +2346,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2129,6 +2383,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2165,6 +2420,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2201,6 +2457,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2237,6 +2494,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2273,6 +2531,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2309,6 +2568,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2345,6 +2605,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2381,6 +2642,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2417,6 +2679,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -2453,6 +2716,7 @@
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Brazil</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
@@ -3088,139 +3352,6 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>agf__External_ID__c</fullName>
-        <caseSensitive>true</caseSensitive>
-        <deprecated>false</deprecated>
-        <externalId>true</externalId>
-        <label>External ID</label>
-        <length>32</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>agf__GUS_User_Type__c</fullName>
-        <deprecated>false</deprecated>
-        <description>Full Time Employee - This will be used to identify all FTEs in GUS
-Contractor - This will be used to identify all Contractors in GUS
-Team User - This will be used to identify all Team Users in GUS
-API user - This will be used to identify all API users in GUS</description>
-        <externalId>false</externalId>
-        <label>GUS User Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Full Time Employee</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Contractor</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Team User</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>API User</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>agf__Notification_Level__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>Adjusts how often you are sent emails about Work.
-
-Bread &amp; Butter:  User comments and added as an Assignee
-Meat &amp; Potatoes: User comments, status changes and added as Assignee
-The Whole Enchilada: All notifications (Default)</inlineHelpText>
-        <label>Work Notification Level</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Bread &amp; Butter</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Meat &amp; Potatoes</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>The Whole Enchilada</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>agf__Show_All_Work_Comments__c</fullName>
-        <defaultValue>true</defaultValue>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>Show All Work Comments</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>agf__Summary__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>Summary</label>
-        <length>32000</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>agf__Team_Member_Allocation__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <formula>HYPERLINK(&apos;/apex/adm_teammemberallocation?Id=&apos; +  Id, &apos;view&apos; )</formula>
-        <label>Team Member Allocation</label>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>agf__Wall_Preference__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>Wall Preference</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>agf__Work_User_Interface__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>Determines which version of the Work page you will see for Bugs and User Stories.</inlineHelpText>
-        <label>Work User Interface</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Classic</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Next Generation</fullName>
-                <default>true</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>dgai__active_user_settings__c</fullName>
