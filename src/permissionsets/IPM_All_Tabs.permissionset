@@ -2447,7 +2447,7 @@
         <apexClass>IPM_ApproverList</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>IPM_sObjectListController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -36055,10 +36055,6 @@
     </tabSettings>
     <tabSettings>
         <tab>FAU_Webinar__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>FA_Course_ChatterGroup__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
