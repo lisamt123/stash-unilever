@@ -590,6 +590,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           for (PermissionSetAssignment psa: lstcurrentUserPerSet ) {
           if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) {
               isFLS = true;
+			  return;
           } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_MDM)) {
               isMDM = true;
               return ;
