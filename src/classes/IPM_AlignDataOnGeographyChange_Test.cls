@@ -160,7 +160,7 @@ public class IPM_AlignDataOnGeographyChange_Test {
         Test.startTest();
         List<IPM_project__c>project = [SELECT ID, name FROM IPM_project__c WHERE IPMProject_Span__c = 'Global'];
         System.assertEquals(2,project.size(),'Global Project not created');
-        rish_alignDataonGeographyChange_batch adgc = new rish_alignDataonGeographyChange_batch();
+        IPM_AlignDataOnGeographyChange_Batch adgc = new IPM_AlignDataOnGeographyChange_Batch();
         Database.executeBatch(adgc,1);
         Test.stopTest();
      }
@@ -176,7 +176,7 @@ public class IPM_AlignDataOnGeographyChange_Test {
         System.assertEquals(rolloutList.size(),2,'Local Rollout Not Created');
 		List<IPM_Financial__c>finList = [Select Id,Financial_External_ID__c ,IPM_Key_Financial__c ,(Select Id, External_Id__c,Financial_External_Id__c from IPM_Financial_Years__r) from IPM_Financial__c];	
         System.assert(TRUE,finList.size()>0);
-        rish_alignDataonGeographyChange_batch adgc = new rish_alignDataonGeographyChange_batch();
+        IPM_AlignDataOnGeographyChange_Batch adgc = new IPM_AlignDataOnGeographyChange_Batch();
         Database.executeBatch(adgc,1);
         Test.stopTest();
     }

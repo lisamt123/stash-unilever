@@ -8,8 +8,7 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
     List<String> applicableGKMs = New List<String>{'GKM1','GKM2','GKM3','GKM4'}; 
     
     Set<String> impactedCountryIds = new Set<String>();  
-	
-	Map<Id,IPM_Country__c> countryMap = new  Map<Id,IPM_Country__c>(); 
+    
      
     //Map to hold MCO short names 
     Map<String,IPM_MCO_Short_Names__c> mapMCOCodeToShortName =  IPM_MCO_Short_Names__c.getAll();  
@@ -23,16 +22,19 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
     public void execute(Database.BatchableContext batchContext ,List<IPM_Project__c> geoImpactedProjects)    
     {
         
-        Map<Id,IPM_Project__c> projectMap = new   Map<Id,IPM_Project__c>(geoImpactedProjects);
+        Map<Id,IPM_Country__c> countryMap = new  Map<Id,IPM_Country__c>(); 
+        
+
+		Map<Id,IPM_Project__c> projectMap = new   Map<Id,IPM_Project__c>(geoImpactedProjects);
         
         //list to hold the country records associated with a project , they will be further operated on to identify the geography  change
-        List<IPM_Country__c> countryList = [Select Id,isActive__c,MCO_Name__c, Local_Rollout__r.IPM_CharterApproved__c,Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.MCO__c,  
+        List<IPM_Country__c> countryList = [Select Id,isActive__c,MCO_Name__c, Local_Rollout__r.IPM_CharterApproved__c,Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.MCO__c,  Local_Rollout__r.MCO_Name__c,
         IPM_Rollout_Status__c ,  Local_Rollout__r.KeyMCO__c,IPM_Regional_Project__r.IPM_Target_Launch_Dates__c,IPM_Project__r.IPM_Target_Launch_Dates__c,
         Local_Rollout__r.Regional_Rollout__r.IPM_Rollout_Project__c , Local_Rollout__r.name, Local_Rollout__r.IPM_Rollout_Project__c, Country_Code__c,Local_Rollout__r.Project_Sustainability_Period__c,Local_Rollout__r.Target_Launch_Date__c,IPM_Regional_Project__r.IPM_Project_Name__c   From IPM_Country__c  Where    Local_Rollout__c !=Null  AND 
        (IPM_Project__c IN : projectMap.keySet() OR  IPM_Regional_Project__c IN :   projectMap.keySet() ) ]; 
-	   
-	    Map<Id,IPM_Country__c> countryListDeepCloneMap = new  Map<Id,IPM_Country__c>([Select Id,isActive__c,MCO_Name__c, Local_Rollout__r.IPM_CharterApproved__c,Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.IPM_Rollout_Span__c,
-		Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_Company_Card__c, Local_Rollout__r.IPM_Regional_PL_Text__c, Local_Rollout__r.IPM_Regional_Rollout_Status__c, Local_Rollout__r.IPM_Rollout_Gatekeeper__c, Local_Rollout__r.isActive__c,  Local_Rollout__r.IPM_Local_Rollout_Status__c, Local_Rollout__r.Market_Cluster_Name__c, Local_Rollout__r.Market_Cluster__c, Local_Rollout__r.MCO_Name__c, Local_Rollout__r.Regional_Project_Span__c, Local_Rollout__r.Regional_Project_Sustainability_Period__c, Local_Rollout__r.Regional_Rollout_External_Id__c, Local_Rollout__r.Regional_Rollout_Phase__c, Local_Rollout__r.IPM_Regional_PL__c, Local_Rollout__r.MCO__c, Local_Rollout__r.IPM_Rollout_Type__c , Local_Rollout__r.IPM_Brand__c,Local_Rollout__r.External_Id__c,Local_Rollout__r.Type__c,Local_Rollout__r.IPM_StoppedByProject__c,Local_Rollout__r.IPM_Status__c,Local_Rollout__r.IPM_Small_C__c,Local_Rollout__r.IPM_ShowAtRegional__c,Local_Rollout__r.IPM_ShowAtGlobal__c,Local_Rollout__r.IPM_ShowAtLocal__c,
+       
+        Map<Id,IPM_Country__c> countryListDeepCloneMap = new  Map<Id,IPM_Country__c>([Select Id,isActive__c,MCO_Name__c, Local_Rollout__r.IPM_CharterApproved__c,Local_Rollout__r.IPM_Project__c,Local_Rollout__r.Regional_Rollout__c, Local_Rollout__r.Regional_Project__c, Local_Rollout__c, IPM_Project__c, MDO_Geography__r.mdm_Id__c, MCO_Code__c,Market_Cluster_Code__c, IPM_Project__r.IPM_Project_Name__c, IPM_Regional_Project__r.IPM_ProjectGKM__c, IPM_Regional_Project__c, Local_Rollout__r.IPM_Rollout_Span__c,
+        Local_Rollout__r.Global_Regional_Finance_Leader_Email__c, Local_Rollout__r.IPM_Company_Card__c, Local_Rollout__r.IPM_Regional_PL_Text__c, Local_Rollout__r.IPM_Regional_Rollout_Status__c, Local_Rollout__r.IPM_Rollout_Gatekeeper__c, Local_Rollout__r.isActive__c,  Local_Rollout__r.IPM_Local_Rollout_Status__c, Local_Rollout__r.Market_Cluster_Name__c, Local_Rollout__r.Market_Cluster__c, Local_Rollout__r.MCO_Name__c, Local_Rollout__r.Regional_Project_Span__c, Local_Rollout__r.Regional_Project_Sustainability_Period__c, Local_Rollout__r.Regional_Rollout_External_Id__c, Local_Rollout__r.Regional_Rollout_Phase__c, Local_Rollout__r.IPM_Regional_PL__c, Local_Rollout__r.MCO__c, Local_Rollout__r.IPM_Rollout_Type__c , Local_Rollout__r.IPM_Brand__c,Local_Rollout__r.Type__c,Local_Rollout__r.IPM_StoppedByProject__c,Local_Rollout__r.IPM_Status__c,Local_Rollout__r.IPM_Small_C__c,Local_Rollout__r.IPM_ShowAtRegional__c,Local_Rollout__r.IPM_ShowAtGlobal__c,Local_Rollout__r.IPM_ShowAtLocal__c,
         IPM_Rollout_Status__c ,  Local_Rollout__r.KeyMCO__c,IPM_Regional_Project__r.IPM_Target_Launch_Dates__c,IPM_Project__r.IPM_Target_Launch_Dates__c,
         Local_Rollout__r.Regional_Rollout__r.IPM_Rollout_Project__c , Local_Rollout__r.name, Local_Rollout__r.IPM_Rollout_Project__c, Country_Code__c,Local_Rollout__r.Project_Sustainability_Period__c,Local_Rollout__r.Target_Launch_Date__c,IPM_Regional_Project__r.IPM_Project_Name__c   From IPM_Country__c  Where    Local_Rollout__c !=Null  AND  
        (IPM_Project__c IN : projectMap.keySet() OR  IPM_Regional_Project__c IN :   projectMap.keySet() ) ]);
@@ -93,13 +95,13 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
         {
             for(IPM_Country__c ipmCountry : countryList)  
             {
-                countryMap.put(ipmCountry.Id, ipmCountry);
-				
-				countryAssoLocalRollouts.add(ipmCountry.Local_Rollout__c);
                 
-                if(ipmCountry.MCO_Code__c!=null && mapMCOCodeToShortName.ContainsKey(ipmCountry.MCO_Code__c) && ipmCountry.Local_Rollout__r.name!=null && ((!ipmCountry.Local_Rollout__r.name.endsWith(IPM_ConstantUtils.UNDERSCORE+mapMCOCodeToShortName.get(ipmCountry.MCO_Code__c).Short_Name__c)) || ipmCountry.MCO_Code__c != ipmCountry.Local_Rollout__r.MCO__c ))
+                countryAssoLocalRollouts.add(ipmCountry.Local_Rollout__c);
+                
+                if(ipmCountry.MCO_Code__c!=null && mapMCOCodeToShortName.ContainsKey(ipmCountry.MCO_Code__c) && ipmCountry.Local_Rollout__r.name!=null && ((!ipmCountry.Local_Rollout__r.name.endsWith(IPM_ConstantUtils.UNDERSCORE+mapMCOCodeToShortName.get(ipmCountry.MCO_Code__c).Short_Name__c) && ipmCountry.IPM_Rollout_Status__c !=IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE ) || (!ipmCountry.Local_Rollout__r.name.endsWith(IPM_ConstantUtils.UNDERSCORE+ipmCountry.Country_Code__c) && ipmCountry.IPM_Rollout_Status__c == IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE ) || ipmCountry.MCO_Code__c != ipmCountry.Local_Rollout__r.MCO__c || ipmCountry.MCO_Name__c!=ipmCountry.Local_Rollout__r.MCO_Name__c ))
                 { 
                     
+                    countryMap.put(ipmCountry.Id, ipmCountry);  
 
 					impactedCountryIds.add(ipmCountry.Id);
                     
@@ -122,7 +124,20 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
                         
                         mcoCodeToRolloutMap.put(ipmCountry.Local_Rollout__c,new IPM_Project_Rollout__c(MCO__c=ipmCountry.MCO_Code__c,MCO_Name__c=ipmCountry.MCO_Name__c,name=rolloutName,IPM_Rollout_Project__c=
                         
-                        rolloutExternalId,Id=ipmCountry.Local_Rollout__c) );
+                        rolloutExternalId,Id=ipmCountry.Local_Rollout__c) );  
+						
+						//if mco  rename conflicts with existing one , the country will be reparented , the old parent mco will result into duplicate error and later would be inactivated/deleted 
+						IPM_Country__c ipmNewCountry = new IPM_Country__c();
+                            
+						ipmNewCountry.Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c=rolloutExternalId);
+						
+						ipmNewCountry.Project_Country__c =  rolloutName.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE) + IPM_ConstantUtils.UNDERSCORE + ipmCountry.Country_Code__c;
+						
+						ipmNewCountry.Id =ipmCountry.Id;
+						
+						ipmNewCountry.IsActive__c = ipmCountry.isActive__c ;
+						
+						updateCountryRolloutAssoMap.put(ipmCountry.Id,ipmNewCountry); 
 
                     } 
                     else
@@ -158,9 +173,10 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
                         IPM_Project_Rollout__c clonedRollout = ipmCountry.Local_Rollout__r.clone(false, false, false, false);
                         
                          //updating rollout name and external id , not required when there is only change in mco code of the country and no change in the short name.Like country moved to middle America from central America,short name not updated but country geo changed and so as the mco code and mdm id of geo
-						if(ipmCountry.Local_Rollout__r.name!=null && !ipmCountry.Local_Rollout__r.name.endsWith(IPM_ConstantUtils.UNDERSCORE+mapMCOCodeToShortName.get(ipmCountry.MCO_Code__c).Short_Name__c) )
-						{
-							clonedRollout.name=rolloutName;
+                        if(ipmCountry.Local_Rollout__r.name!=null && ((!ipmCountry.Local_Rollout__r.name.endsWith(IPM_ConstantUtils.UNDERSCORE+mapMCOCodeToShortName.get(ipmCountry.MCO_Code__c).Short_Name__c) && ipmCountry.IPM_Rollout_Status__c !=IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE ) || (!ipmCountry.Local_Rollout__r.name.endsWith(IPM_ConstantUtils.UNDERSCORE+ipmCountry.Country_Code__c) && ipmCountry.IPM_Rollout_Status__c == IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE )))
+                        {
+                            
+                            clonedRollout.name=rolloutName;
                         
                             clonedRollout.IPM_Rollout_Project__c=rolloutExternalId;
                             
@@ -192,7 +208,10 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
             {
                 mcoCodeToRolloutMap.remove(null);
                 
-                update  mcoCodeToRolloutMap.values() ;
+			    //During renaming ,countries can be reparented,the renaming of rollout may result into an error as the same name rollout may already exist,in this scenario the errorneous rollout would be later inactivated,deleted,but the country should get reparented,so no transaction  failure should occur in this scenario.  
+                
+				Database.update(mcoCodeToRolloutMap.values(),false) ;
+				
             } 
 
             Set<String> existingRollouts = new Set<String>();
@@ -248,18 +267,23 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
 						//toBeReferencedFinIds.add(extId.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+'_NONKEY');
 						newOldExtMap.put(extId.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+'_NONKEY',newToOldExtIdMap.get(extId).substringBeforeLast(IPM_ConstantUtils.UNDERSCORE)+'_NONKEY');
 
-					}
-					
-				}
-				
-				
-				for(IPM_Financial__c fin : [Select id ,Financial_External_ID__c,IPM_Project_Rollout__c from  IPM_Financial__c where Financial_External_ID__c IN : newOldExtMap.values()])
-				{
-					finExtIdToParentRegRolloutMap.put(fin.Financial_External_ID__c,fin.IPM_Project_Rollout__c);
-				}
+                    }
+                    
+                }
                 
+                for(IPM_Financial__c fin : [Select id ,Financial_External_ID__c,IPM_Project_Rollout__c from  IPM_Financial__c where Financial_External_ID__c IN : newOldExtMap.values()])
+                {
+                    finExtIdToParentRegRolloutMap.put(fin.Financial_External_ID__c,fin.IPM_Project_Rollout__c);
+                }
+                try{
                 upsert  mcoCodeToRolloutUpsertMap.values() IPM_Rollout_Project__c ;
-				
+                }
+                catch(Exception ex)
+                {
+                
+                }
+                               
+                
             } 
 
             if( !updateCountryRolloutAssoMap.isEmpty())
@@ -462,7 +486,20 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
 					update toBeupdateFin.values();
 			}
 			
-       
+        List<IPM_Country__c> lstUpdateCountry = new List<IPM_Country__c>();
+
+        for(IPM_Country__c ipmCountry :[Select Id, isActive__c, Local_Rollout__r.Local_Project__c, Local_Rollout__c,IPM_Project__c,IPM_Regional_Project__c,IPM_Local_Project__c from IPM_Country__c where ID IN :countryMap.keyset() ])
+        {
+            ipmCountry.isActive__c = countryMap.get(ipmCountry.Id).isActive__c;
+			ipmCountry.IPM_Local_Project__c = ipmCountry.Local_Rollout__r.Local_Project__c;
+            lstUpdateCountry.add(ipmCountry);
+        }
+        
+        if(!lstUpdateCountry.isEmpty())
+        {
+            update lstUpdateCountry;
+        }
+      
         }
        
         
@@ -481,26 +518,15 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
         Set<String> impactedLocalRolloutIds = new Set<String>(); 
         
         Set<String> impactedProjIds = new Set<String>(); 
-		
-		List<IPM_Country__c> lstUpdateCountry = new List<IPM_Country__c>();
-
-
+        
         for(IPM_Country__c ipmCountry :[Select Id, isActive__c,  Local_Rollout__c,IPM_Project__c,IPM_Regional_Project__c,IPM_Local_Project__c from IPM_Country__c where ID IN :impactedCountryIds ])
         {
             impactedLocalRolloutIds.add(ipmCountry.Local_Rollout__c);
             
             impactedProjIds.addAll(new Set<String> {ipmCountry.IPM_Project__c,ipmCountry.IPM_Regional_Project__c,ipmCountry.IPM_Local_Project__c});
-			
-			ipmCountry.isActive__c = countryMap.get(ipmCountry.Id).isActive__c;
-            
-            lstUpdateCountry.add(ipmCountry);
+           
         }
-		
-		if(!lstUpdateCountry.isEmpty())
-		{
-            update lstUpdateCountry;
-        }
-        
+      
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         
         String[] toAddresses = new String[] {UserInfo.getUserEmail()}; 
