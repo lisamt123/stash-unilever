@@ -8349,7 +8349,7 @@
         <enabled>true</enabled>
     </pageAccesses>
 	<pageAccesses>
-        <apexPage>PM_Company_CardList</apexPage>
+        <apexPage>IPM_Company_CardList</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 	<pageAccesses>
