@@ -1,9 +1,5 @@
 src
-src/pages
-src/staticresources
-src/pages/CEC_PreChatFormPortugese.page
-src/pages/CEC_PreChatFormPortugese.page-meta.xml
-src/staticresources/CEC_ChatOfflineOmoBrazilPortugese.resource
-src/staticresources/CEC_ChatOfflineOmoBrazilPortugese.resource-meta.xml
-src/staticresources/CEC_ChatOnlineOmoBrazilPortugese.resource
-src/staticresources/CEC_ChatOnlineOmoBrazilPortugese.resource-meta.xml
+src/queues
+src/queues/CEC_North_America_Letter_Canada.queue
+src/queues/CEC_North_America_Letter_USA.queue
+src/queues/CEC_North_America_Social_Escalations.queue
