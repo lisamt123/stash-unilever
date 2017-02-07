@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-        <applicationVisibilities>
-        <application>IPM_NG</application>
-        <visible>false</visible>
+	<applicationVisibilities>
+		<application>IPM_NG</application>
+	<visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
         <apexClass>IPM_AddManageSection</apexClass>
@@ -9197,7 +9196,7 @@
         <recordType>IPM_Project__c.IPM_Cluster_Layout</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <recordTypeVisibilities>
+    <recordTypeVisibilities> 
         <recordType>IPM_Questionnaire__c.Corporate_Risk</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

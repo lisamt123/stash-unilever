@@ -8469,4 +8469,5 @@
         <tab>IPM_User_Profile__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+	
 </PermissionSet>
