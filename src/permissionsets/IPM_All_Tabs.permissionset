@@ -36057,10 +36057,7 @@
         <tab>FAU_Webinar__c</tab>
         <visibility>None</visibility>
     </tabSettings>
-    <tabSettings>
-        <tab>Assign_Category</tab>
-        <visibility>None</visibility>
-    </tabSettings>
+    
     <tabSettings>
         <tab>FA_Course__c</tab>
         <visibility>None</visibility>
