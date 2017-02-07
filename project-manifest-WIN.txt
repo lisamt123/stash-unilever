@@ -37,6 +37,8 @@ src/pages/Win_Dictionary.page
 src/pages/Win_Dictionary.page-meta.xml
 src/pages/Win_BrandLogoPage.page
 src/pages/Win_BrandLogoPage.page-meta.xml
+src/pages/Win_Retailer_Logo_Page.page
+src/pages/Win_Retailer_Logo_Page.page-meta.xml
 src
 src/labels
 src/labels/Wings.labels
@@ -98,6 +100,10 @@ src/classes/Win_BrandController.cls
 src/classes/Win_BrandController.cls-meta.xml
 src/classes/Win_BrandController_Test.cls
 src/classes/Win_BrandController_Test.cls-meta.xml
+src/classes/Win_RetailerController.cls
+src/classes/Win_RetailerController.cls-meta.xml
+src/classes/Win_RetailerController_Test.cls
+src/classes/Win_RetailerController_Test.cls-meta.xml
 src
 src/customMetadata
 src/customMetadata/Win_Configuration.Win_Homepage_Logout.md

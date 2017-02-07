@@ -1,0 +1,7 @@
+<apex:page standardController="Win_Retailer__c" Extensions="Win_RetailerController" showHeader="false">
+    <apex:form >
+    <apex:pageBlock >
+        <apex:image id="theImage" value="{!Win_Retailer__c.Retailer_Logo__c}" width="400" height="400"/> 
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

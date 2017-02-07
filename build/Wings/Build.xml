@@ -71,6 +71,7 @@
       <runTest>Win_MetadataEndpoint_Test</runTest>
       <runTest>Win_UploadEndpoint_Test</runTest>
       <runTest>Win_BrandController_Test</runTest>
+      <runTest>Win_RetailerController_Test</runTest>
     </sf:deploy>
   </target>  
 
