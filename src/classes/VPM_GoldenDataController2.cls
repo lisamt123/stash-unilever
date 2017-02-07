@@ -1,5 +1,5 @@
 /**********************************************************************
-Name :  VPM_GoldenDataController2()
+Name:  VPM_GoldenDataController2()
 Copyright ? 2016  Unilever
 ======================================================================
 ======================================================================
@@ -291,7 +291,7 @@ with Sharing public class VPM_GoldenDataController2 {
         
        //make spend visible for create and global extend
             
-        if(recordTypeId==STR_CONST_CREATE || (recordTypeId==STR_CONST_EXTEND && purchReqVar.VPM_ExtensionType__c==STR_CONST_GLOBAL))
+        if(recordTypeId==STR_CONST_CREATE || (recordTypeId==STR_CONST_EXTEND))
         {isReqSpend=true;}
         else
         {isReqSpend=false;}
