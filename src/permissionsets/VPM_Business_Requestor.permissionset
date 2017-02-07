@@ -115,7 +115,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_RussainCustomTaxApprovedByEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -130,14 +130,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_AbortReason__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_AbortTrue__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -430,7 +430,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_BankValidationApprovedByEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -970,7 +970,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FLSApprovedByEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -987,7 +987,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FTRStatus__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1015,7 +1015,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FinanceApprovedByEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1080,7 +1080,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FreightApprovedByEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1515,7 +1515,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_MasterDataApprovedByEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1805,7 +1805,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_ProcurementApprovedByEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1930,7 +1930,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_RejectedByEmail__c</field>
         <readable>true</readable>
     </fieldPermissions>
