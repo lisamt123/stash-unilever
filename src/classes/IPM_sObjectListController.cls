@@ -91,7 +91,7 @@ public with sharing class IPM_sObjectListController {
         }
         SOQLQueryStr += ' ORDER BY '+sortColumn+' '+ sortOrder + ' LIMIT 10000 '; 
 
-        standardSetCtrl = new ApexPages.StandardSetController(database.getQueryLocator(String.escapeSingleQuotes(SOQLQueryStr)));
+        standardSetCtrl = new ApexPages.StandardSetController(database.getQueryLocator(SOQLQueryStr)); 
         standardSetCtrl.setPageSize(PAGE_SIZE); 
         noOfRecords = standardSetCtrl.getResultSize(); 
     }

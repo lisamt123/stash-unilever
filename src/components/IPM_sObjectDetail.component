@@ -14,7 +14,7 @@
             </apex:repeat>
         </apex:pageBlockButtons>
                 
-        <apex:detail rendered="{!$Permission[viewActionPermission]}" relatedList="false" relatedListHover="false" inlineEdit="false" showChatter="false" />
+        <apex:detail rendered="{!AND($Permission[viewActionPermission],NOT($Permission[fullPermission]))}" relatedList="false" relatedListHover="false" inlineEdit="false" showChatter="false" />
         <apex:detail rendered="{!$Permission[fullPermission]}" />
         
         <!-- Error Message to be displayed -->
