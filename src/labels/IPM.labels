@@ -10462,5 +10462,69 @@ If you discover that stopping this project was a mistake you can undo this actio
 		<shortDescription>IPM Volume Unit Misalignment Message</shortDescription>
 		<value>Please ensure volume selected is the same within Category and Country financial views</value>
 	</labels>
+	<labels>
+        <fullName>IPM_Clusters_Clear_Selection</fullName>
+        <categories>IPM_Clusters__c</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Clusters_Clear_Selection</shortDescription>
+        <value>Clear Selection</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Clusters_Add_Projects</fullName>
+        <categories>IPM_Clusters__c</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Clusters_Add_Projects</shortDescription>
+        <value>Add Projects</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Clusters_Available_Projects</fullName>
+        <categories>IPM_Clusters__c</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Clusters_Available_Projects</shortDescription>
+        <value>AVAILABLE PROJECTS FOR CLUSTER</value>
+    </labels>
+	<labels>
+        <fullName>IPM_First</fullName>
+        <categories>IPM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_First</shortDescription>
+        <value>First</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Previous</fullName>
+        <categories>IPM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Last</fullName>
+        <categories>IPM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Last</shortDescription>
+        <value>Last</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Clusters_Remove_Projects</fullName>
+        <categories>IPM_Clusters__c</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Clusters_Remove_Projects</shortDescription>
+        <value>Remove Projects</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Clusters_Existing_Projects</fullName>
+        <categories>IPM_Clusters__c</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Clusters_Existing_Projects</shortDescription>
+        <value>EXISTING PROJECTS IN CLUSTER</value>
+    </labels>
 
 	
