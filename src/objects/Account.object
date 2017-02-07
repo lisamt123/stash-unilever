@@ -7674,6 +7674,34 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Picklist</type>
     </fields>
     <listViews>
+        <fullName>ANZ_Account_names</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <columns>CREATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <filters>
+            <field>PC_ADDRESS2_COUNTRY</field>
+            <operation>contains</operation>
+            <value>Austra,New Zea</value>
+        </filters>
+        <label>ANZ Account names</label>
+        <language>fr</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_Manager_SEAA</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>AllAccounts</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>Demandware_ID__c</columns>
