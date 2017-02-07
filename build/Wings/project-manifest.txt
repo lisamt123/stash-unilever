@@ -1,5 +1,6 @@
 src
 src/objects
+src/objects/Account.object
 src/objects/Win_Brand_Configuration__c.object
 src/objects/Win_Category__c.object
 src/objects/Win_Configuration__mdt.object
@@ -10,12 +11,36 @@ src/objects/Win_Retailer__c.object
 src/objects/Win_Tracked_Object_Config__c.object
 src/objects/Win_User_Region__c.object
 src
-src/labels
-src/labels/Wings.labels
+src/tabs
+src/tabs/Win_Brand_Configuration__c.tab
+src/tabs/Win_Category__c.tab
+src/tabs/Win_Country__c.tab
+src/tabs/Win_Region__c.tab
+src/tabs/Win_Retailer__c.tab
+src/tabs/Win_User_Region__c.tab
+src
+src/layouts/Account-Stores Layout.layout
+src/layouts/Win_Brand_Configuration__c-Brand Configuration Layout.layout
+src/layouts/Win_Category__c-Category Layout.layout
+src/layouts/Win_Configuration__mdt-Win_Configuration Layout.layout
+src/layouts/Win_Country__c-Country Layout.layout
+src/layouts/Win_Local_Assignment__c-Wings Local Assignment Layout.layout
+src/layouts/Win_Region__c-Region Layout.layout
+src/layouts/Win_Retailer__c-Retailer Layout.layout
+src/layouts/Win_User_Region__c-User Region Layout.layout
+src
+src/applications
+src/applications/Wings.app
 src
 src/pages
 src/pages/Win_Dictionary.page
 src/pages/Win_Dictionary.page-meta.xml
+src/pages/Win_BrandLogoPage.page
+src/pages/Win_Brand
+LogoPage.page-meta.xml
+src
+src/labels
+src/labels/Wings.labels
 src
 src/classes
 src/classes/WIN_ChatterDeletedEndpoint.cls
