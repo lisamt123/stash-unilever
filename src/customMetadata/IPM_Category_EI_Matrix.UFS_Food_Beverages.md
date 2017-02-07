@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>UFS_Food_Beverages</label>
+    <label>UFS Refreshment Beverages</label>
     <protected>false</protected>
     <values>
         <field>Category_Group_Category_Name__c</field>
-        <value xsi:type="xsd:string">FOOD SOLUTIONS_UFS Beverages</value>
+        <value xsi:type="xsd:string">Food Solutions_UFS Tea and Soy &amp; Fruit Beverages</value>
     </values>
     <values>
         <field>Greenhouse_Gases_g__c</field>
