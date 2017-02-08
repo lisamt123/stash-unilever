@@ -44,7 +44,7 @@
                     <th>Product Number (SKU)</th>
                     <th>Reporting DC</th>
                     <th>Date</th>
-                    
+                    <th>No Pallets per SKU non compliant</th>                    
                     
                 </tr>
                 </thead>
@@ -62,6 +62,8 @@
                         <td>{!nc.SKU__c}</td>
                         <td>{!nc.Reporting_DC__c}</td>
                         <td></td>
+                        <td>{!nc.Number_of_Pallets_Per_SKU_Non_Compliant__c}</td>
+                        
                     </tr>
                 </apex:repeat>
                 </tbody>

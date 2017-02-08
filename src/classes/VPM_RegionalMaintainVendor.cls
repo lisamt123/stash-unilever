@@ -33,8 +33,9 @@ public without sharing class VPM_RegionalMaintainVendor {
     final static string STR_CONST_BankDetails = 'Bank Details Section Changed';
     final static string STR_CONST_GeneralVendorDetails = 'General Vendor Details Section Changed';
     final static string STR_CONST_PIVendor = 'PI Vendor Section Changed';
+    final static string STR_CONST_SAPBPMError = 'MDM Insert/Update Status Message';
     static boolean feedCreated = false;
-    Static Map<string,string> FormatedFeed=  new Map<string,string>{STR_CONST_PurchasingOrg =>'',STR_CONST_FinancialDetails =>'',STR_CONST_RegionalSpec =>'',STR_CONST_BankDetails=>'', STR_CONST_GeneralVendorDetails => '', STR_CONST_PIVendor=>''};
+    Static Map<string,string> FormatedFeed=  new Map<string,string>{STR_CONST_PurchasingOrg =>'',STR_CONST_FinancialDetails =>'',STR_CONST_RegionalSpec =>'',STR_CONST_BankDetails=>'', STR_CONST_GeneralVendorDetails => '',STR_CONST_PIVendor =>'',STR_CONST_SAPBPMError  =>''};
     static Set<Id> oldRegionSet = new Set<Id>();
     //static Set<Id> newRegionSet = new Set<Id>();
 
@@ -273,7 +274,14 @@ public static void requireRejectionComment(List<VPM_PurchasingRequests__c> updat
              if((inv.VPM_CheckHours__c))
              {
             system.debug('VPM_VendorSLA__c '+inv.VPM_VendorSLA__c);
-             inv.VPM_StoreHours__c=inv.VPM_VendorSLA__c;
+            if( inv.VPM_VendorSLA__c < = 0)
+            {
+              inv.VPM_StoreHours__c= 0.01;
+            }
+            else
+            {
+             inv.VPM_StoreHours__c= inv.VPM_VendorSLA__c;
+            }
              
              }
     
@@ -439,6 +447,8 @@ public static void updateChatterFeed(List<VPM_PurchasingRequests__c> updatedVend
 
  public static void createHTMLFormatedFeed(String feedToformat, String SectionName)
  {
+     feedToformat =feedToformat.replace('<','&lt;');
+     feedToformat =feedToformat.replace('>','&gt;');
     if(FormatedFeed.get(SectionName) == '')
     {
       FormatedFeed.put(SectionName,'<p><b>'+SectionName+'</b></p><ul><li>'+feedToformat+'</li>');

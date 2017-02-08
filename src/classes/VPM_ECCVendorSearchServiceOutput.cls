@@ -69,15 +69,17 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String BeneficiaryCountry;
     public String BeneficiaryName;*/
     public String BExchangeLimit;
-    public Boolean Blocked;
+    //public Boolean Blocked;
+    public Boolean CentralPostingBlock;
+    public Boolean CentralPurchasingBlock;
     public String BlockFunction;
     public String CarFreightGroup;
     public String CashManagementGroup;
     public String IndicatorPantLevel;
     public Boolean IndicatorVendorSubRangeRelevant;
-    public String CentralDeletionFlag;
-    public String CentralPostingBlock;
-    public String CentralPurchasingBlock;
+   // public String CentralDeletionFlag;
+    //public String CentralPostingBlock;
+    //public String CentralPurchasingBlock;
     public String CENVAT;
     public String CertificateWithholdingTaxExemption;
     public String CertificationDate;
@@ -105,7 +107,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String DataLine;
     public String DateOfBirth;
     public boolean DefaultPartner;
-    public Boolean Deleted;
+    public Boolean CentralDeletionFlag;
     public String Department;
     public String DepartmentDescription;
     public String DepartmentNumber;
@@ -364,6 +366,8 @@ global class VPM_ECCVendorSearchServiceOutput {
         public String AccountWithVendor;
         public String PROATControlProof;
         public boolean SRVBasedVendorID;
+        public Boolean PostingBlock;
+        public Boolean DeletionFlag;
         public List<Functions> Functions;
     }
     public class Dunning {
@@ -415,8 +419,10 @@ global class VPM_ECCVendorSearchServiceOutput {
         public List<WtaxType> WtaxType;
         public String AccountClerkTelephoneNumber;
         public boolean AdoptScanDate;
-        public Boolean Blocked;
-        public Boolean Deleted;
+        //public Boolean Blocked;
+        //public Boolean Deleted;
+        public Boolean PostingBlock;
+        public Boolean DeletionFlag;
         public String CompanyCode;
         public String ThirdPartyAddress1;
         public String ThirdPartyAddress2;
