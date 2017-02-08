@@ -26,7 +26,7 @@ public without sharing class UL_ComponentVisibility {
     
         for(UL_Component_Visibility__mdt component : [SELECT Id,UL_Visible_Components__c, UL_Sales_Org__c, UL_Status__c, UL_Components__c, Common_for_Sales_Org__c, UL_Attribute__c, UL_is_Child_Promotion__c 
                                                             FROM UL_Component_Visibility__mdt
-                                                            WHERE UL_Sales_Org__c=:salesOrg AND UL_Attribute__c=:ul_utility.UIElement LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
+                                                            WHERE UL_Sales_Org__c=:UL_Sales_Org_Mapping__c.getValues(salesOrg).UL_Sales_Org__c AND UL_Attribute__c=:ul_utility.UIElement LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
             if(component.UL_Status__c == Status || component.Common_for_Sales_Org__c || (isChildPromotion && component.UL_is_Child_Promotion__c)){
                 if(component.UL_Components__c!=null){                
                 List<String> componentSplit = component.UL_Components__c.split(ul_utility.semiColon);
