@@ -64,15 +64,19 @@ public without sharing class UL_ThresholdTemplateExtensions {
           approvalProcessList.add(custOption);
       }
       
-      for(ProcessInstanceNode processsteps : [select processnodename from ProcessInstanceNode where ProcessInstanceId in (select id FROM ProcessInstance where processdefinitionid=:approvalids.get(thrtemp.UL_Workflow__c)) limit:(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
-          stepNames.add(processsteps.processnodename);
+      for(processnode processsteps : [select description from processnode where processdefinitionid=:approvalids.get(thrtemp.UL_Workflow__c) limit:(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
+          stepNames.add(processsteps.description);
       }
+       if(!stepNames.isempty()){
        
        for(String steps : stepNames){
+       if(steps!=null){
           SelectOption custOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
                 custOption.setValue(steps);
                 custOption.setLabel(steps);
           approvalProcessSteps.add(custOption);
+          }
+       }
        }
     }
     /*******************************************************************
@@ -126,6 +130,11 @@ public without sharing class UL_ThresholdTemplateExtensions {
     ********************************************************************/
     public pagereference save(){
         try{
+            if(thrtemp.UL_Workflow__c==null || thrtemp.UL_TemplateDescription__c==null || thrtemp.UL_Next_Status__c==null){
+               ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.TPM_ThresholdTemplate_MandatoryFields);  
+                ApexPages.addMessage(msg);
+                return null;
+            } 
             database.upsert(thrtemp);
             viewMode = true;
             editMode = false;

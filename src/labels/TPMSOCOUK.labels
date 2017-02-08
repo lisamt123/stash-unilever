@@ -28521,3 +28521,10 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>Weekly Split</shortDescription>
         <value>Weekly Split</value>
     </labels>
+	<labels>
+        <fullName>TPM_ThresholdTemplate_MandatoryFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>refere in VF page</shortDescription>
+        <value>Fields-Workflow, Next Status and Description are mandatory fields</value>
+    </labels>
