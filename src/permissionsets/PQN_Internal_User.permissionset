@@ -785,4 +785,8 @@
         <tab>PQN_User_Creation_Request__c</tab>
         <visibility>None</visibility>
     </tabSettings>
+    <tabSettings>
+        <tab>Pallet_Quality_Non_Conformance_VF</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>
