@@ -101,6 +101,10 @@ src/classes/BFM_ShipmentHandler.cls
 src/classes/BFM_ShipmentHandler.cls-meta.xml
 src/classes/BFM_ShipmentHandlerTest.cls
 src/classes/BFM_ShipmentHandlerTest.cls-meta.xml
+src/classes/BFM_ShipmentHandlerActions.cls
+src/classes/BFM_ShipmentHandlerActions.cls-meta.xml
+src/classes/BFM_ShipmentHandlerActions_Test.cls
+src/classes/BFM_ShipmentHandlerActions_Test.cls-meta.xml
 src/classes/BFM_ShipmentUpdate_CC.cls
 src/classes/BFM_ShipmentUpdate_CC.cls-meta.xml
 src/classes/BFM_ShipmentUpdate_CCTest.cls

@@ -1095,7 +1095,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BFM_Occurrence__c.Is_Deleted_in_SAP__c</field>
         <readable>true</readable>
     </fieldPermissions>

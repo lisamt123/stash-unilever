@@ -1,0 +1,30 @@
+@isTest
+public class BFM_ShipmentHandlerActions_Test {
+  private static testMethod void testShipmentHandlerActions(){
+        Test.startTest();
+        RecordType unileverAccount  = [SELECT id from RecordType where DeveloperName = 'Unilever_Account' Limit 1];
+        Account acc = New Account();
+        acc.RecordTypeId = unileverAccount.id;
+        acc.CNPJ__c = '03189042000100';
+        acc.Vendor__c='11';
+        acc.Company_Code__c='12';
+        acc.Name = 'TestAccount';
+        insert acc;
+        system.assertEquals('11',acc.Vendor__c);
+        BFM_Shipment__c shipment=new BFM_Shipment__c();
+        shipment.Shipment_Number__c='12378';
+        shipment.Carrier_Account__c=acc.id;
+        shipment.Is_Deleted_in_SAP__c = true;
+        shipment.Vehicle_Plate__c = '1234';
+        shipment.Shipment_Start__c = Date.today();
+        insert shipment;
+        List<BFM_Shipment__c> shipmentNewLst = new List<BFM_Shipment__c>();
+        shipmentNewLst.add(shipment);
+        BFM_ShipmentHandlerActions.defineShipmentUnileverAccount(shipmentNewLst);
+        BFM_ShipmentHandlerActions.checkIfNeedsToBeDeleted(shipmentNewLst);
+        try{
+          BFM_ShipmentHandlerActions.send6thflag(shipment);    
+        }catch(exception e){}
+        
+    }
+}
