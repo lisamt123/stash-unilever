@@ -44,6 +44,10 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_ApprovedByFLSEmail</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangeReworkStatusNo</name>
             <type>FieldUpdate</type>
         </action>
@@ -76,6 +80,14 @@
         </action>
         <action>
             <name>VPM_FLSApprovedTime</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_RejectedByEmail</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_RequestLastwithGroupFLS</name>
             <type>FieldUpdate</type>
         </action>
         <action>

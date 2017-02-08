@@ -22,12 +22,17 @@ public without sharing class BET_MasterDataService{
 		Throws: -
 	*************************************************************/
 
-	public static List<sObject> getBETCategoryGroups(){
-		System.debug('Entering getBETCategoryGroups');
-		List<sObject> categoryGroups = [select id,name from MDO_Category__c where category_type__c = 'Category Group' and status__c = 'Active' order by name asc];
-		System.debug('Exit getBETCategoryGroups : ' + categoryGroups);
-		return categoryGroups;
-	}
+	  public static List<sObject> getBETCategoryGroups(){
+	        System.debug('Entering getBETCategoryGroups');
+	        list<BET_Not_Valid_Categories__c> nonbetcatgroup=[select name from BET_Not_Valid_Categories__c];
+	        list<string> nonbetcategorygroup=new list<string>();
+	        for(BET_Not_Valid_Categories__c catgroup:nonbetcatgroup)
+	        nonbetcategorygroup.add(catgroup.name);
+	        List<sObject> categoryGroups = [select id,name from MDO_Category__c where category_type__c = 'Category Group' and status__c = 'Active' and name not in :nonbetcategorygroup order by name asc];
+	        System.debug('Exit getBETCategoryGroups : ' + categoryGroups);
+	        return categoryGroups;
+	    }
+    
 	
 
 	/************************************************************

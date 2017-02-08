@@ -21,6 +21,10 @@
                 <behavior>Edit</behavior>
                 <field>VPM_Region__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_CommodityDescription__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

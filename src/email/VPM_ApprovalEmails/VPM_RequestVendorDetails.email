@@ -1,4 +1,4 @@
-<messaging:emailTemplate subject="Invitiation to Share Company Details with Unilever" recipientType="User" relatedToType="VPM_PurchasingRequests__c">
+<messaging:emailTemplate subject="{!$Label.VPM_InvitationLabel}" recipientType="User" relatedToType="VPM_PurchasingRequests__c" language="{!relatedTo.VPM_LanguageISOCode__c}">
 <messaging:htmlEmailBody >
 <html><head>
 <title>UNILEVER MOVES FROM PAPER TO ELECTRONIC INVOICES</title>

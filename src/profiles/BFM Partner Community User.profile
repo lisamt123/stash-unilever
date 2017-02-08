@@ -1879,7 +1879,7 @@
         <layout>BFM_Stage__c-Stage Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>BFM_UserCreationRequest__c-BFM User Creation Request Layout</layout>
+        <layout>BFM_UserCreationRequest__c-BFM Carrier User Request Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>BFM_User_Creation_Request_Error__c-BFM User Creation Request Error Layout</layout>
