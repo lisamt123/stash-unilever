@@ -38,6 +38,8 @@ src/classes/VPM_PicklistHelper.cls
 src/classes/VPM_PicklistHelper.cls-meta.xml
 src/classes/VPM_PurchaseRequestsControllerExtension.cls
 src/classes/VPM_PurchaseRequestsControllerExtension.cls-meta.xml
+src/classes/VPM_PurchaseRequestsExtensionTest.cls
+src/classes/VPM_PurchaseRequestsExtensionTest.cls-meta.xml
 src/classes/VPM_RecordTypeHelper.cls
 src/classes/VPM_RecordTypeHelper.cls-meta.xml
 src/classes/VPM_RegionalMaintainVendor.cls
