@@ -18,8 +18,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
+        <content>MyPromotionPlanning2</content>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Standard</type>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -3115,6 +3116,7 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
     <label>Promotion</label>
     <listViews>
         <fullName>ACCL__All</fullName>
+        <columns>ACCL__Anchor_Account__c</columns>
         <columns>NAME</columns>
         <columns>UL_Promotion_Name_URL__c</columns>
         <columns>ACCL__Parent_Promotion__c</columns>
@@ -3125,7 +3127,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <columns>UL_Current_Status__c</columns>
         <columns>ACCL__Date_From__c</columns>
         <columns>ACCL__Date_Thru__c</columns>
-        <columns>ACCL__Anchor_Account__c</columns>
         <columns>ACCL__Anchor_Account_Set__c</columns>
         <columns>ACCL__Sales_Org__c</columns>
         <columns>CREATEDBY_USER</columns>
@@ -3174,6 +3175,31 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         </filters>
         <label>Category</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Event_and_Special</fullName>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>ACCL__Promotion_Template_Description__c</columns>
+        <columns>UL_Promotion_Template_Type__c</columns>
+        <columns>ACCL__Sales_Org__c</columns>
+        <columns>ACCL__Slogan_Language_1__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCL__Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>contains</operation>
+            <value>UK</value>
+        </filters>
+        <label>Event and Special</label>
+        <language>en_GB</language>
+        <sharedTo>
+            <group>UK_Planner_CAM</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Finance_Check_Dynamic_Queue_Promotion</fullName>
@@ -3527,10 +3553,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
             </values>
             <values>
                 <fullName>Parent Promotion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Past Dated%2FUrgent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4111,10 +4133,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Past Dated%2FUrgent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SpecialHoliday</fullName>
                 <default>false</default>
             </values>
@@ -4282,7 +4300,13 @@ Id=VLOOKUP
         <errorConditionFormula>AND(  ISPICKVAL(ACCL__Phase__c , &apos;Committed&apos;),  ISCHANGED( Name )  )</errorConditionFormula>
         <errorMessage>Name should not be edited when the Phase is Committed.</errorMessage>
     </validationRules>
-   <validationRules>
+    <validationRules>
+        <fullName>TPM_Past_Date_Validation_For_SOCO</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF(NOT( ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c) &amp;&amp; (ACCL__Date_From__c&lt;Today() || ACCL__Date_Thru__c&lt;Today()), true, false)</errorConditionFormula>
+        <errorMessage>Date From/Thru should not be in past</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>UL_Default_Sold_To_Mandatory_Rule</fullName>
         <active>true</active>
         <errorConditionFormula>IF( (  ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Promotion&apos;))&amp;&amp; ACCL__Promotion_Template__r.UL_Calculate_Slogan_Name__c &amp;&amp; ISBLANK( ACCL__Anchor_Account__c) , true, false)</errorConditionFormula>
@@ -4356,7 +4380,7 @@ Id=VLOOKUP
         <active>true</active>
         <description>Past Dated promotion creation validation rule</description>
         <errorConditionFormula>IF(NOT(ISPICKVAL($User.ACCL__Sales_Org__c , &apos;UK SO&apos;)) 
-&amp;&amp; ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;)
+&amp;&amp; ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c
 &amp;&amp; NOT(CONTAINS(CreatedBy.UserRole.DeveloperName, &apos;Account_Manager&apos;))
 &amp;&amp; NOT(CONTAINS(CreatedBy.UserRole.DeveloperName, &apos;Finance_Admin&apos;))
 ,TRUE,FALSE)</errorConditionFormula>
@@ -4367,7 +4391,7 @@ Id=VLOOKUP
         <fullName>UL_PastDated_Urgent_Promotion_Validation</fullName>
         <active>true</active>
         <description>Past Dated validation rule</description>
-        <errorConditionFormula>IF( NOT(ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;)) &amp;&amp; ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;)&amp;&amp;(ACCL__Date_From__c &gt;= TODAY() || ACCL__Date_Thru__c &lt;= TODAY()),TRUE,FALSE )</errorConditionFormula>
+        <errorConditionFormula>IF( NOT(ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;)) &amp;&amp; ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c &amp;&amp;(ACCL__Date_From__c &gt;= TODAY() || ACCL__Date_Thru__c &lt;= TODAY()),TRUE,FALSE )</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>From date must be in the past, Thru date must be in the future for Past Dated/Urgent Promotion</errorMessage>
     </validationRules>
