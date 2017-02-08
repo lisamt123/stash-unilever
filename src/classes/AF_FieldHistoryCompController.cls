@@ -138,9 +138,14 @@ public with sharing class AF_FieldHistoryCompController {
                             wh.OldValue =  oopseh.OldValue; 
                         }
                         try{
+                        if(newvalueno !=null){
                             newvalueno=double.valueOf(oopseh.NewValue);
                             newvaluestring = String.format(newvalueno.format(), args);
                             wh.NewValue =newvaluestring;
+                            }
+                            else{
+                         wh.NewValue =oopseh.NewValue;
+                         }
                         }
                         catch(TypeException te)
                         {
@@ -292,8 +297,8 @@ public with sharing class AF_FieldHistoryCompController {
         }
         catch(Exception ex)
         {
-            //AF_ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
-            system.debug(ex);
+            AF_ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+            //system.debug(ex);
         } 
         return wrp;
     } 
