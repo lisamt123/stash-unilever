@@ -390,7 +390,7 @@ Throws : N/A
                 
                 //Before submitting promotion for approval, check if each tactic has a fund associated
                 if(!hasTacticAssignedFund(promoId)){
-                    //throw new UL_CustomException(Label.UL_TACTIC_FUND_ASSOCIATION);
+                    throw new UL_CustomException(Label.UL_TACTIC_FUND_ASSOCIATION);
                 }
                 
                  //Validatation-At least one dummy product per each off-invoice payment method Tactic.
@@ -2039,7 +2039,8 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                             tacticIdSet.remove(tacticFund.ACCL__Tactic__c);
                         }
                     
-                        if(tacticIdSet.size() == 0){
+                        //if(tacticIdSet.size() == 0){
+						if(tacticIdSet.size() > 0){
                             result = UL_Utility.BOOLEAN_FALSE;
                         }
                     }
