@@ -45,6 +45,6 @@
         <label><!-- External Id --></label>
         <name>External_Id__c</name>
     </fields>
-    <gender><!-- Feminine --></gender>
+    <gender>Feminine</gender>
     <nameFieldLabel><!-- Bank Information Name --></nameFieldLabel>
 </CustomObjectTranslation>
