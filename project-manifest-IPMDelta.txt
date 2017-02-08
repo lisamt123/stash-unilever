@@ -12,6 +12,10 @@ src/classes/IPM_ProjectResourceTriggerHandler.cls-meta.xml
 src/classes/IPM_Utils.cls
 src/classes/IPM_Utils.cls-meta.xml
 
+src/objects
+src/objects/IPM_Category__c.object
+
+
 src/labels
 src/labels/CustomLabels.labels
 
