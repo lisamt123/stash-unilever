@@ -1,17 +1,34 @@
+
 src
 src/classes
+src/classes/IPM_ChangProjectDocumentStatusController.cls
+src/classes/IPM_ChangProjectDocumentStatusController.cls-meta.xml
+src/classes/IPM_ProjectCountryDetails.cls
+src/classes/IPM_ProjectCountryDetails.cls-meta.xml
+src/classes/IPM_ProjectHandler.cls
+src/classes/IPM_ProjectHandler.cls-meta.xml
+src/classes/IPM_ProjectResourceTriggerHandler.cls
+src/classes/IPM_ProjectResourceTriggerHandler.cls-meta.xml
+src/classes/IPM_Utils.cls
+src/classes/IPM_Utils.cls-meta.xml
 src/classes/IPM_sObjectListController.cls
 src/classes/IPM_sObjectListController.cls-meta.xml
 src/components
 src/components/IPM_sObjectDetail.component
 src/components/IPM_sObjectDetail.component-meta.xml
+src/labels
+src/labels/CustomLabels.labels
 src/layouts
 src/layouts/IPM_Clusters__c-IPM Project Clusters Layout.layout
 src/layouts/IPM_Clusters__c-IPM_Clusters_Layout.layout
 src/layouts/IPM_Company_Card__c-IPM Company Card Layout.layout
 src/layouts/IPM_Company_Card__c-IPM Regional Company Card Layout.layout
 src/permissionsets
+src/permissionsets/IPM_All_Tabs.permissionset
 src/permissionsets/IPM_Central_Team.permissionset
 src/permissionsets/IPM_Finance_Team.permissionset
 src/permissionsets/IPM_ProjectLeader.permissionset
 src/permissionsets/IPM_System_Administrator_Permissions.permissionset
+src/staticresources
+src/staticresources/IPM_Resource.resource
+src/staticresources/IPM_Resource.resource-meta.xml
