@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Promotion --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Promotion --></value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>ACCL__Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregation Category --></label>
+        <name>ACCL__Aggregation_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Anchor Customer Set --></label>
+        <name>ACCL__Anchor_Account_Set__c</name>
+        <relationshipLabel><!-- Promotions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Anchor Customer --></label>
+        <name>ACCL__Anchor_Account__c</name>
+        <relationshipLabel><!-- Promotions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Commit Date --></label>
+        <name>ACCL__Commit_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date From --></label>
+        <name>ACCL__Date_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Thru --></label>
+        <name>ACCL__Date_Thru__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment Date From --></label>
+        <name>ACCL__Delivery_Date_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment Date Thru --></label>
+        <name>ACCL__Delivery_Date_Thru__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Text Language 1 --></label>
+        <name>ACCL__Group_Text_Language_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Text Language 2 --></label>
+        <name>ACCL__Group_Text_Language_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Text Language 3 --></label>
+        <name>ACCL__Group_Text_Language_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Text Language 4 --></label>
+        <name>ACCL__Group_Text_Language_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Text --></label>
+        <name>ACCL__Group_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- In Calculation Time Frame --></label>
+        <name>ACCL__In_Calculation_Time_Frame__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manual Calculation Input --></label>
+        <name>ACCL__Manual_Calculation_Input__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Date From --></label>
+        <name>ACCL__Order_Date_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Date Thru --></label>
+        <name>ACCL__Order_Date_Thru__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Promotion --></label>
+        <name>ACCL__Parent_Promotion__c</name>
+        <relationshipLabel><!-- Derived Promotions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Phase --></label>
+        <name>ACCL__Phase__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Committed</masterLabel>
+            <translation><!-- Committed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ForApproval</masterLabel>
+            <translation><!-- ForApproval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning</masterLabel>
+            <translation><!-- Planning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Instore Date From --></label>
+        <name>ACCL__Placement_Date_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Instore Date Thru --></label>
+        <name>ACCL__Placement_Date_Thru__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion Template Description --></label>
+        <name>ACCL__Promotion_Template_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion Template --></label>
+        <name>ACCL__Promotion_Template__c</name>
+        <relationshipLabel><!-- Promotions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales Org --></label>
+        <name>ACCL__Sales_Org__c</name>
+    </fields>
+    <fields>
+        <label><!-- Slogan Language 1 --></label>
+        <name>ACCL__Slogan_Language_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Slogan Language 2 --></label>
+        <name>ACCL__Slogan_Language_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Slogan Language 3 --></label>
+        <name>ACCL__Slogan_Language_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Slogan Language 4 --></label>
+        <name>ACCL__Slogan_Language_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Slogan --></label>
+        <name>ACCL__Slogan__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer --></label>
+        <name>UL_Account__c</name>
+        <relationshipLabel><!-- Promotions (Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>UL_Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cannibalisation Override --></label>
+        <name>UL_Cannibalisation_Override__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cannibalisation Rate (%) --></label>
+        <name>UL_Cannibalisation_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>UL_Category__c</name>
+    </fields>
+    <fields>
+        <help><!-- determines if the promotion is closed --></help>
+        <label><!-- Closed --></label>
+        <name>UL_Closed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Status --></label>
+        <name>UL_Current_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Banded Pack Approved</masterLabel>
+            <translation><!-- Banded Pack Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director Check</masterLabel>
+            <translation><!-- Director Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>End Date</masterLabel>
+            <translation><!-- End Date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance Check</masterLabel>
+            <translation><!-- Finance Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manager Check</masterLabel>
+            <translation><!-- Manager Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning</masterLabel>
+            <translation><!-- Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Delivery Profile --></label>
+        <name>UL_Delivery_Profile__c</name>
+        <picklistValues>
+            <masterLabel>Custom</masterLabel>
+            <translation><!-- Custom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ireland Profile</masterLabel>
+            <translation><!-- Ireland Profile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ireland with Customer</masterLabel>
+            <translation><!-- Ireland with Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK Profile</masterLabel>
+            <translation><!-- UK Profile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK with Customer</masterLabel>
+            <translation><!-- UK with Customer --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- UL_EnableChild --></label>
+        <name>UL_EnableChild__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feature --></label>
+        <name>UL_Feature__c</name>
+    </fields>
+    <fields>
+        <label><!-- Finance Check Approvers --></label>
+        <name>UL_Finance_Check_Approvers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Free Text --></label>
+        <name>UL_Free_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Front Margin --></label>
+        <name>UL_Front_Margin__c</name>
+    </fields>
+    <fields>
+        <label><!-- IIBB Tax --></label>
+        <name>UL_IIBB_Tax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lift % --></label>
+        <name>UL_Lift__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manager Check Approvers --></label>
+        <name>UL_Manager_Check_Approvers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>UL_Market__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mechanic --></label>
+        <name>UL_Mechanic__c</name>
+        <picklistValues>
+            <masterLabel>Loyalty Points</masterLabel>
+            <translation><!-- Loyalty Points --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Buy</masterLabel>
+            <translation><!-- Multi-Buy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Mechanics</masterLabel>
+            <translation><!-- Other Mechanics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pipefill/Plinth</masterLabel>
+            <translation><!-- Pipefill/Plinth --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price Reduction</masterLabel>
+            <translation><!-- Price Reduction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special Pack - Extra Free</masterLabel>
+            <translation><!-- Special Pack - Extra Free --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special Pack - Other</masterLabel>
+            <translation><!-- Special Pack - Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special Pack - Price Marked Pack</masterLabel>
+            <translation><!-- Special Pack - Price Marked Pack --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Next Status --></label>
+        <name>UL_Next_Status__c</name>
+        <picklistValues>
+            <masterLabel>NO</masterLabel>
+            <translation><!-- NO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YES</masterLabel>
+            <translation><!-- YES --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Parent Locker Promotion --></label>
+        <name>UL_Parent_Locker_Promotion__c</name>
+        <relationshipLabel><!-- Promotions (Parent Locker Promotion) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- UL Parent Push Id --></label>
+        <name>UL_Parent_Push_Id__c</name>
+        <relationshipLabel><!-- Promotions (UL Parent Push Id) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Post Dip End Date --></label>
+        <name>UL_Post_Dip_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pre Evaluation Comment --></label>
+        <name>UL_Pre_Evaluation_Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Objective --></label>
+        <name>UL_Primary_Objective__c</name>
+        <picklistValues>
+            <masterLabel>AWOP</masterLabel>
+            <translation><!-- AWOP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clearance</masterLabel>
+            <translation><!-- Clearance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gap Fill</masterLabel>
+            <translation><!-- Gap Fill --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NPD</masterLabel>
+            <translation><!-- NPD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Penetration</masterLabel>
+            <translation><!-- Penetration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reactive / Defensive</masterLabel>
+            <translation><!-- Reactive / Defensive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- UL_PromotionTemplateType --></label>
+        <name>UL_PromotionTemplateType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion ID --></label>
+        <name>UL_Promotion_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion Name --></label>
+        <name>UL_Promotion_Name_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion Type --></label>
+        <name>UL_Promotion_Template_Type__c</name>
+        <picklistValues>
+            <masterLabel>Account Plan</masterLabel>
+            <translation><!-- Account Plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account Specific Promotion</masterLabel>
+            <translation><!-- Account Specific Promotion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CustomerEvent</masterLabel>
+            <translation><!-- CustomerEvent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LTA</masterLabel>
+            <translation><!-- LTA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MarketingEvent</masterLabel>
+            <translation><!-- MarketingEvent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent Promotion</masterLabel>
+            <translation><!-- Parent Promotion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SpecialHoliday</masterLabel>
+            <translation><!-- SpecialHoliday --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Promotion Type --></label>
+        <name>UL_Promotion_Type__c</name>
+        <picklistValues>
+            <masterLabel>Value Only</masterLabel>
+            <translation><!-- Value Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volume Only</masterLabel>
+            <translation><!-- Volume Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volume and Value</masterLabel>
+            <translation><!-- Volume and Value --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>UL_Sales_Organization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Secondary Objective --></label>
+        <name>UL_Secondary_Objective__c</name>
+        <picklistValues>
+            <masterLabel>Incremental Profit</masterLabel>
+            <translation><!-- Incremental Profit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incremental TO</masterLabel>
+            <translation><!-- Incremental TO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pipeline Filling</masterLabel>
+            <translation><!-- Pipeline Filling --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sequence --></label>
+        <name>UL_Sequence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sharing Type Formula --></label>
+        <name>UL_Sharing_Type_Form__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sharing Type Text --></label>
+        <name>UL_Sharing_Type_Txt__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Mechanic --></label>
+        <name>UL_Sub_Mechanic__c</name>
+        <picklistValues>
+            <masterLabel>1/3 off </masterLabel>
+            <translation><!-- 1/3 off  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12 for 10 (C&amp;C Case Deal) </masterLabel>
+            <translation><!-- 12 for 10 (C&amp;C Case Deal)  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 for £1.50 </masterLabel>
+            <translation><!-- 2 for £1.50  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 for £1 </masterLabel>
+            <translation><!-- 2 for £1  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 for £2.50 </masterLabel>
+            <translation><!-- 2 for £2.50  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 for £2 </masterLabel>
+            <translation><!-- 2 for £2  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 for £3 </masterLabel>
+            <translation><!-- 2 for £3  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 for £4 </masterLabel>
+            <translation><!-- 2 for £4  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 for £5 </masterLabel>
+            <translation><!-- 2 for £5  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 for £6 </masterLabel>
+            <translation><!-- 2 for £6  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 for £7 </masterLabel>
+            <translation><!-- 2 for £7  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20%off </masterLabel>
+            <translation><!-- 20%off  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25% Xtra FREE </masterLabel>
+            <translation><!-- 25% Xtra FREE  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25%off </masterLabel>
+            <translation><!-- 25%off  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 for the Price of 2 </masterLabel>
+            <translation><!-- 3 for the Price of 2  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 for £3 </masterLabel>
+            <translation><!-- 3 for £3  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 for £5 </masterLabel>
+            <translation><!-- 3 for £5  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 for £6 </masterLabel>
+            <translation><!-- 3 for £6  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50% Xtra FREE </masterLabel>
+            <translation><!-- 50% Xtra FREE  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6 for 5 (C&amp;C Case Deal) </masterLabel>
+            <translation><!-- 6 for 5 (C&amp;C Case Deal)  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B2G3rdF </masterLabel>
+            <translation><!-- B2G3rdF  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOGOF </masterLabel>
+            <translation><!-- BOGOF  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Banded Pack</masterLabel>
+            <translation><!-- Banded Pack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Better Than Half Price </masterLabel>
+            <translation><!-- Better Than Half Price  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bonus Points</masterLabel>
+            <translation><!-- Bonus Points --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Half Price </masterLabel>
+            <translation><!-- Half Price  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Link-save </masterLabel>
+            <translation><!-- Link-save  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Buy</masterLabel>
+            <translation><!-- Multi-Buy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Buy 2 for £2.50; TPR £1 </masterLabel>
+            <translation><!-- Multi-Buy 2 for £2.50; TPR £1  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Buy 2 for £2.50 </masterLabel>
+            <translation><!-- Multi-Buy 2 for £2.50  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Buy BOGOF </masterLabel>
+            <translation><!-- Multi-Buy BOGOF  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Buy Offer</masterLabel>
+            <translation><!-- Multi-Buy Offer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Buy; Price Reduction</masterLabel>
+            <translation><!-- Multi-Buy; Price Reduction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Buy;Price Reduction</masterLabel>
+            <translation><!-- Multi-Buy;Price Reduction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Buy </masterLabel>
+            <translation><!-- Multi-Buy  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Pack Marked</masterLabel>
+            <translation><!-- On Pack Marked --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Pack Offer (ONO) Price Mark Pack</masterLabel>
+            <translation><!-- On Pack Offer (ONO) Price Mark Pack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pipefill/Plinth</masterLabel>
+            <translation><!-- Pipefill/Plinth --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pipefill </masterLabel>
+            <translation><!-- Pipefill  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plinth </masterLabel>
+            <translation><!-- Plinth  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price Cut (TPR) </masterLabel>
+            <translation><!-- Price Cut (TPR)  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price Reduction</masterLabel>
+            <translation><!-- Price Reduction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price Reduction-Price Reduction (TPR £4)</masterLabel>
+            <translation><!-- Price Reduction-Price Reduction (TPR £4) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price Reduction; TPR £4</masterLabel>
+            <translation><!-- Price Reduction; TPR £4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price Reduction;Multi-Buy</masterLabel>
+            <translation><!-- Price Reduction;Multi-Buy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price Reduction </masterLabel>
+            <translation><!-- Price Reduction  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Save 1/3 </masterLabel>
+            <translation><!-- Save 1/3  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Save £0.50 </masterLabel>
+            <translation><!-- Save £0.50  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Save £0.75 </masterLabel>
+            <translation><!-- Save £0.75  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special Pack - Extra Free</masterLabel>
+            <translation><!-- Special Pack - Extra Free --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special Pack - Other</masterLabel>
+            <translation><!-- Special Pack - Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special Pack - Price Marked Pack</masterLabel>
+            <translation><!-- Special Pack - Price Marked Pack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £0.50 </masterLabel>
+            <translation><!-- TPR £0.50  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £0.75 </masterLabel>
+            <translation><!-- TPR £0.75  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £0.99 </masterLabel>
+            <translation><!-- TPR £0.99  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £1.50 </masterLabel>
+            <translation><!-- TPR £1.50  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £1;Multi-Buy (2 for £2.50) </masterLabel>
+            <translation><!-- TPR £1;Multi-Buy (2 for £2.50)  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £1;Multi-Buy </masterLabel>
+            <translation><!-- TPR £1;Multi-Buy  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £1 </masterLabel>
+            <translation><!-- TPR £1  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £2.50 </masterLabel>
+            <translation><!-- TPR £2.50  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £2 </masterLabel>
+            <translation><!-- TPR £2  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £3.50 </masterLabel>
+            <translation><!-- TPR £3.50  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £3 </masterLabel>
+            <translation><!-- TPR £3  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £4 </masterLabel>
+            <translation><!-- TPR £4  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPR £5 </masterLabel>
+            <translation><!-- TPR £5  --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Threshold Violated --></label>
+        <name>UL_ThresholdViolated__c</name>
+    </fields>
+    <fields>
+        <help><!-- To display Threshold Check Result --></help>
+        <label><!-- Threshold Result --></label>
+        <name>UL_Threshold_Result__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threshold Window Result --></label>
+        <name>UL_Threshold_Window_Result__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Type --></label>
+        <name>UL_Volume_Type__c</name>
+        <picklistValues>
+            <masterLabel>Consumption</masterLabel>
+            <translation><!-- Consumption --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shipment</masterLabel>
+            <translation><!-- Shipment --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Workflow State --></label>
+        <name>UL_WorkflowState__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>End Date</masterLabel>
+            <translation><!-- End Date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance Check</masterLabel>
+            <translation><!-- Finance Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manager Check</masterLabel>
+            <translation><!-- Manager Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning</masterLabel>
+            <translation><!-- Planning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted for Approval</masterLabel>
+            <translation><!-- Submitted for Approval --></translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <nameFieldLabel><!-- Promotion Name --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- Promotion --></label>
+        <name>Promotion</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SellablePromotion --></label>
+        <name>SellablePromotion</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- The Commit Date must be the same day or sooner than Date Thru. --></errorMessage>
+        <name>ACCL__Commit_Date_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date From must be the same day or sooner than Date Thru. --></errorMessage>
+        <name>ACCL__Date_From_Date_Thru_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Delivery Date From cannot be later than Delivery Date Thru. --></errorMessage>
+        <name>ACCL__Delivery_Date_From_and_Thru_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Order Date From cannot be later than Order Date Thru. --></errorMessage>
+        <name>ACCL__Order_Date_From_and_Thru_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Placement Date From cannot be later than Placement Date Thru. --></errorMessage>
+        <name>ACCL__Placement_Date_From_and_Thru_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Promotion Name already exists, please enter different Name. --></errorMessage>
+        <name>ACCL__Prevent_Name_Duplication</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot change the Promotion Template once the Promotion is created. --></errorMessage>
+        <name>ACCL__Prevent_Promotion_Template_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Name should not be edited when the Phase is Committed. --></errorMessage>
+        <name>ACCL__Read_Only_Name_Field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date From/Thru should not be in past --></errorMessage>
+        <name>TPM_Past_Date_Validation_For_SOCO</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- All promotions must have a sold-to assigned to them. If no sold-to appears in the list for your account, please contact your support team for guidance. --></errorMessage>
+        <name>UL_Default_Sold_To_Mandatory_Rule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- For an End Dated promotion, Thru Date can&apos;t be a date in the past OR can&apos;t be extended beyond the original Thru Date. --></errorMessage>
+        <name>UL_End_Date_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can set Workflow State from &apos;Approved&apos; to &apos;Planning&apos; only if the Promotion is not currently running --></errorMessage>
+        <name>UL_FromDate_Planning</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- UL_UtilityController.errorMessage(&apos;The start date on LTAs should be greater than or equal to today&apos;) --></errorMessage>
+        <name>UL_LTA_StartDate_Should_Not_Be_PastDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- LTA duration is exceeding maximum permissible value --></errorMessage>
+        <name>UL_LTA_Time_Period_of_Longer_Than_a_Year</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An LTA Promotion can&apos;t be associated with a Customer at All Customers (top) level, please select other customer --></errorMessage>
+        <name>UL_LTA_Validation_Rule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A Marketing Event can only be associated with a Customer at All Customers (top) level --></errorMessage>
+        <name>UL_MarketingEventValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A Marketing Event can only be associated with a Customer at All Customers (top) level --></errorMessage>
+        <name>UL_MarketingEvent_Validation_Rule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Past Dated promotions can only be created by Account Manager and Finance Manager. --></errorMessage>
+        <name>UL_PastDated_Urgent_Promotion_Creation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Fechas de Promociones Urgentes deben comenzar en el pasado y finalizar en el futuro</errorMessage>
+        <name>UL_PastDated_Urgent_Promotion_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Dates(Shipment or Instore) are not with in Promotion dates range. --></errorMessage>
+        <name>UL_WithIn_DateFrom_DateThru</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date should be greater than today date --></errorMessage>
+        <name>in_store_date_from_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date should be greater than today date --></errorMessage>
+        <name>in_store_date_thru_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Dates range should be more than 1 day or below 91 days --></errorMessage>
+        <name>validation_for_date_ranges</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Derive --></label>
+        <name>ACCL__Derive</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Copy --></label>
+        <name>Copy</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Derive2 --></label>
+        <name>Derive2</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- UL_Close_Promotion --></label>
+        <name>UL_Close_Promotion</name>
+    </webLinks>
+</CustomObjectTranslation>
