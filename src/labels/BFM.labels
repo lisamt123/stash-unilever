@@ -1174,10 +1174,3 @@ Response message: {2}</value>
         <shortDescription>Update_Shipment</shortDescription>
         <value>Atualizar DT</value>
     </labels>
-	<labels>
-        <fullName>BFM_Error_Setting_6thflag</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BFM_Error_Setting_6thflag</shortDescription>
-        <value>There should be an NF-e before setting the 6th flag. Please update this shipment to check if there is no NF-e. For further information talk to System Administrator</value>
-    </labels>

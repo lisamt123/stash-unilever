@@ -11,7 +11,7 @@ public class BFM_ShipmentHandlerActions {
      * Date : 01/24/2017
      */
     public static void defineShipmentUnileverAccount(List<BFM_Shipment__c> shipmentNewLst) {
-        RecordType unileverAccount  = [SELECT id from RecordType where DeveloperName = 'Unilever_Account' Limit 1];
+        RecordType unileverAccount  = [SELECT id from RecordType where DeveloperName = 'BFM_Unilever_Account' Limit 1];
         List<Account> acc = [SELECT id from Account where RecordType.id =: unileverAccount.id];
         for(BFM_Shipment__c item : shipmentNewLst){
             item.Unilever_Company__c = acc.get(0).Id;

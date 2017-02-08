@@ -2,15 +2,15 @@
 public class BFM_ShipmentHandlerActions_Test {
   private static testMethod void testShipmentHandlerActions(){
         Test.startTest();
-        RecordType unileverAccount  = [SELECT id from RecordType where DeveloperName = 'Unilever_Account' Limit 1];
+        RecordType unileverAccount  = [SELECT id from RecordType where DeveloperName = 'BFM_Unilever_Account' Limit 1];
         Account acc = New Account();
         acc.RecordTypeId = unileverAccount.id;
-        acc.CNPJ__c = '03189042000100';
-        acc.Vendor__c='11';
-        acc.Company_Code__c='12';
+        acc.BFM_CNPJ__c = '03189042000100';
+        acc.BFM_Vendor__c='11';
+        acc.BFM_Company_Code__c='12';
         acc.Name = 'TestAccount';
         insert acc;
-        system.assertEquals('11',acc.Vendor__c);
+        system.assertEquals('11',acc.BFM_Vendor__c);
         BFM_Shipment__c shipment=new BFM_Shipment__c();
         shipment.Shipment_Number__c='12378';
         shipment.Carrier_Account__c=acc.id;

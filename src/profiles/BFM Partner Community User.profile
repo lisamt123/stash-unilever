@@ -2070,7 +2070,7 @@
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>BFM_AccountAccessRequest__c</tab>
-        <visibility>None</visibility>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>BFM_Shipment__c</tab>
