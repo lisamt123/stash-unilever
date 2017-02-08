@@ -24878,7 +24878,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
     <listViews>
         <fullName>IPM_a7I0L000000H9ng_IPM_Project</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000H9ng</label>
+        <label>IPM_EASE</label>
         <queue>IPM_a7I0L000000H9ng</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -26068,6 +26068,105 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <filterScope>Queue</filterScope>
         <label>IPM_LENNONW2_NA</label>
         <queue>IPM_a7I0L000000HBes</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBex_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HBex</label>
+        <queue>IPM_a7I0L000000HBex</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBf2_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_INCREDIBLES_N&amp;R</label>
+        <queue>IPM_a7I0L000000HBf2</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBfC_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_EUREKA SEAA ID</label>
+        <queue>IPM_a7I0L000000HBfC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBfH_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HBfH</label>
+        <queue>IPM_a7I0L000000HBfH</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBfM_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HBfM</label>
+        <queue>IPM_a7I0L000000HBfM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBfR_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SKY2 W2</label>
+        <queue>IPM_a7I0L000000HBfR</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBfW_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HBfW</label>
+        <queue>IPM_a7I0L000000HBfW</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBfb_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_VIKING II</label>
+        <queue>IPM_a7I0L000000HBfb</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBfl_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HBfl</label>
+        <queue>IPM_a7I0L000000HBfl</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBfq_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HBfq</label>
+        <queue>IPM_a7I0L000000HBfq</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBfv_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HBfv</label>
+        <queue>IPM_a7I0L000000HBfv</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

@@ -3833,6 +3833,33 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>ANZ_Duplicate</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>contains</operation>
+            <value>duplicate</value>
+        </filters>
+        <filters>
+            <field>Case_ISO_Country_Code__c</field>
+            <operation>equals</operation>
+            <value>AU,NZ</value>
+        </filters>
+        <label>ANZ Duplicate</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>ANZ_My_Emails</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -6996,12 +7023,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.CREATED_DATE</field>
             <operation>greaterOrEqual</operation>
-            <value>12/1/2016 12:00 AM</value>
+            <value>1/1/2017 12:00 AM</value>
         </filters>
         <filters>
             <field>CASES.CREATED_DATE</field>
             <operation>lessOrEqual</operation>
-            <value>12/31/2016 12:00 AM</value>
+            <value>1/31/2017 12:00 AM</value>
         </filters>
         <label>CEC Philippines-CurrentMonth_COMPLAINTS</label>
         <language>en_US</language>
@@ -7061,19 +7088,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Web,Web North America,Email,SMS / Text Messages</value>
-        </filters>
-        <filters>
             <field>PII_Warning_Check__c</field>
             <operation>equals</operation>
             <value>1</value>
         </filters>
         <filters>
             <field>CASES.CREATED_DATE</field>
-            <operation>lessOrEqual</operation>
-            <value>1/31/2017 12:00 AM</value>
+            <operation>greaterOrEqual</operation>
+            <value>1/1/2017 12:00 AM</value>
         </filters>
         <filters>
             <field>CASES.SUBJECT</field>
@@ -8336,7 +8358,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>CEC Southern Cone Queue,CEC Southern Cone Escalation Queue,acous,mlore,aport</value>
         </filters>
-        <label>Casos en progreso</label>
+        <label>CEC SoCo Casos en progreso</label>
         <language>es_MX</language>
     </listViews>
     <listViews>
@@ -8718,7 +8740,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>My_Open_Cases_EMAIL_WEB_DO_NOT_EDIT</fullName>
-        <columns>PII_Warning_Check__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>CASES.SUBJECT</columns>
@@ -8741,6 +8762,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>My_Open_Cases_E_MAIL_WEB_DO_NOT_EDIT</fullName>
+        <columns>PII_Warning_Check__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -8765,6 +8787,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>My_Open_Cases_SMS_DO_NOT_EDIT2</fullName>
+        <columns>PII_Warning_Check__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>Search_Phone__c</columns>
@@ -8790,6 +8813,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>My_Open_Cases_SMS_DO_NOT_EDIT3</fullName>
+        <columns>PII_Warning_Check__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
