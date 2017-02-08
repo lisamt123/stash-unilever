@@ -43,6 +43,10 @@ src
 src/labels
 src/labels/Wings.labels
 src
+src/permissionsets
+src/permissionsets/Win_Admin.permissionset
+src/permissionsets/Win_Sales_Rep.permissionset
+src
 src/classes
 src/classes/WIN_ChatterDeletedEndpoint.cls
 src/classes/WIN_ChatterDeletedEndpoint.cls-meta.xml
