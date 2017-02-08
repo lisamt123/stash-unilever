@@ -4025,7 +4025,7 @@ today = new Date(yyyy,mm,dd);
 result = sforce.connection.query(&quot;select Id,pkl_Status__c, TNF_Status__c from CPA_Project_Work_Order__c where Name = &apos;&quot;+PWO_ID__c+&quot;&apos;&quot;); 
 var pwoRecords = result.getArray(&quot;records&quot;); 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; AND WHERE PermissionSet.Name = &apos;CPA_ADM &apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
