@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>UL_Sales_Org__c</field>
-        <value xsi:type="xsd:string">AR01</value>
+        <value xsi:type="xsd:string">SoCo</value>
     </values>
     <values>
         <field>UL_Status__c</field>

@@ -4,23 +4,6 @@ Copyright © 2016 Accenture
 ======================================================
 Purpose:
 A class to implement Promotion related functionalities.
-======================================================
-History
--------
-VERSION     AUTHOR        DATE           DETAIL                 Description
-1.0         Alok Pandey   05/01/2017     INITIAL DEV            Promotion Type Atrribute functionality implemented.
-***************************************************************/
-public with sharing class UL_CreatePromotionControllerSoCo{  
-    public final ACCL__Promotion__c relatedRecord { get;  set; }    
-    public static string promotionTypeValue{get;set;}
-    private List<ACCL__Promotion_Template__c> promotionMasterList = null;
-    public List<SelectOption> PromotionTemplates {get;set;}  
-    public string promotionTypeString;  /***************************************************************
-Name: UL_CreatePromotionControllerSoCo
-Copyright © 2016 Accenture
-======================================================
-Purpose:
-A class to implement Promotion related functionalities.
 Class will get invoke after click on New button from Promotion List View
 ======================================================
 History
@@ -118,7 +101,7 @@ public with sharing class UL_CreatePromotionControllerSoCo{
       try{
         Boolean userIsAccountManager = UL_TeamConcept.isAccountManager;        
         Boolean userIsAccountSetManager = UL_TeamConcept.isAccountSetManager;
-        system.debug(userIsAccountManager + '>>>.>>>>>>>' + userIsAccountSetManager);
+        
         if(userIsAccountManager && userIsAccountSetManager) {
             promotionMasterList = [SELECT Id, ACCL__Description__c, UL_Promo_Type_ControlView__c, ACCL__Anchor_Type__c, ACCL__Sales_Org__c FROM ACCL__Promotion_Template__c WHERE ACCL__Active__c = :UL_Utility.BOOLEAN_TRUE  AND  ACCL__Creation_Platform__c <> :UL_Utility.PROMOTION_TEMPLATE_MOBILITY ORDER BY ACCL__Description__c];
         } else if (userIsAccountManager) {
@@ -143,7 +126,9 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         }
         private set;
     } 
-    /*******************************************************************
+    
+    
+  /*******************************************************************
     Purpose: get all valid accounts for Selected promotion template and promotion date ranges
     Version 1.0
     Parameters: NA
@@ -151,6 +136,58 @@ public with sharing class UL_CreatePromotionControllerSoCo{
     Throws : N/A 
   ********************************************************************/   
     public void reloadAccounts() {  
+       try{   
+        list<Account> validAccounts= new list<Account>();
+        Accounts= new List<SelectOption>();
+        promotionTemplateSalesOrg=salesOrgs.get(relatedRecord.ACCL__Promotion_Template__c);          
+        if(relatedRecord.ACCL__Date_From__c != null)
+            if(promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_ACCOUNT_SPECIFIC_PROMOTION || 
+               promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_LTA || 
+               promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_ACCOUNT_PLAN || 
+               promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_CUSTOMEREVENT){
+                validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.ACCL__Sales_Org__c = :promotionTemplateSalesOrg AND 
+                                 UL_Customer_Hierarchy_Level__c = :UL_Utility.LEVEL8 AND account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :relatedRecord.ACCL__Date_From__c) AND account.Id IN (SELECT ACCL__Account__c FROM ACCL__Account_Manager__c WHERE ACCL__Account_Manager__c.ACCL__Active__c = true AND ACCL__Account_Manager__c.ACCL__User__c = :userinfo.getUserId() AND ACCL__Account_Manager__c.ACCL__Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Manager__c.ACCL__Valid_Thru__c>= :relatedRecord.ACCL__Date_From__c)ORDER BY account.Name Limit:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];          
+            }
+        else if(promotionTypeString == UL_Utility.PARENT_PROMOTION){
+            List<String> Levels = new List<String>{UL_Utility.LEVEL6, UL_Utility.LEVEL7};
+            validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.ACCL__Sales_Org__c = :promotionTemplateSalesOrg AND 
+                             UL_Customer_Hierarchy_Level__c IN:(Levels) AND account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :relatedRecord.ACCL__Date_From__c) AND account.Id IN (SELECT ACCL__Account__c FROM ACCL__Account_Manager__c WHERE ACCL__Account_Manager__c.ACCL__Active__c = true AND ACCL__Account_Manager__c.ACCL__User__c = :userinfo.getUserId() AND ACCL__Account_Manager__c.ACCL__Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Manager__c.ACCL__Valid_Thru__c>= :relatedRecord.ACCL__Date_From__c)ORDER BY account.Name Limit:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];          
+        }
+        else if(promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_SPECIALHOLIDAY ||  
+                promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT){
+            validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.UL_Is_AllCustomer_Level1__c = true AND account.ACCL__Sales_Org__c = :promotionTemplateSalesOrg ];
+        
+        }
+        else{
+            validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.Id != null 
+                             AND account.ACCL__Sales_Org__c =:promotionTemplateSalesOrg AND 
+                             account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :relatedRecord.ACCL__Date_From__c)
+                             AND account.Id IN (SELECT ACCL__Account__c FROM ACCL__Account_Manager__c WHERE ACCL__Account_Manager__c.ACCL__Active__c = true AND ACCL__Account_Manager__c.ACCL__User__c = :userinfo.getUserId() AND ACCL__Account_Manager__c.ACCL__Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Manager__c.ACCL__Valid_Thru__c>= :relatedRecord.ACCL__Date_From__c) ORDER BY account.Name Limit:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];
+            
+        }
+        if(validAccounts.size()>0){
+            for(Account acnt : validAccounts){
+                SelectOption custOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
+                custOption.setValue(acnt.Id);
+                custOption.setLabel(acnt.name + UL_Utility.HYPHEN + acnt.ACCL__Sales_Org__c);
+                Accounts.add(custOption);
+            }   
+        }
+       }
+       catch(Exception ex){
+            UL_Utility.logError(ex, UserInfo.getUserId());
+        }
+    }
+    
+    
+   /*******************************************************************
+    Purpose: get all valid accounts for Selected promotion template and promotion date ranges
+    Version 1.0
+    Parameters: NA
+    Returns: 
+    Throws : N/A 
+  ********************************************************************/   
+    public void reloadAccountsOLD() {  
        try{   
         list<Account> validAccounts= new list<Account>();
         Accounts= new List<SelectOption>();
