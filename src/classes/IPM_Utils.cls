@@ -688,14 +688,25 @@ public without sharing class IPM_Utils {
         return  targetProjectType;     
     }
     
-    /**************************************************************
-    * @description: Helper method that recursively invokes and get the Previous phases across Spans.Project Type Framework
-        Used for Project back Ground Process.
+   /**************************************************************
+    * @description: Helper method that recursively invokes and get allCustomSettingCategory.
       @param1 currentProjectType : current Project Type of the incoming Project.
-      @param2 originalProjectType: Orignally passed project Type
-      @param3 withGate : whether gate has to be considered.
       
     */
+    
+    public static IPM_Category__c retrieveProjectCategoryType(IPM_Project__c project)
+    {
+        List<IPM_Category__c> allCustomSettingCategory = IPM_Category__c.getAll().Values();
+        
+        	for(IPM_Category__c categ : allCustomSettingCategory){
+			if(categ.IPM_Category_Group__c.equalsIgnoreCase(project.IPM_Category_Group__c)){
+				return categ;
+			}
+		}
+		return null;
+    }
+    
+
     
     /**************************************************************
     * @description: Get previous Phase for the Current Project based on Various Params. Project Type Framework
@@ -1537,7 +1548,7 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
     * @param1 proj : project record
     */
     public static Boolean isProjectToBeSyncedToEcoDesign(IPM_Project__c proj){
-        if(retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG || proj.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL
+        if(retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG || proj.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || (retrieveProjectCategoryType(proj) != null && !retrieveProjectCategoryType(proj).IPM_SyncTo_Eco_Design__c)
         ){
             return false;
         }
