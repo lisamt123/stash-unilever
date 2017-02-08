@@ -8,14 +8,9 @@
         <enabled>true</enabled>
         <name>EditableFastTrack</name>
     </customPermissions>
-    
 	<customPermissions>
         <enabled>true</enabled>
-        <name>IPM_Company_CardView</name>
-    </customPermissions>
-	<customPermissions>
-        <enabled>true</enabled>
-        <name>IPM_User_ProfileView</name>
+        <name>IPM_ProjectView</name>
     </customPermissions>
 
 	<applicationVisibilities>
