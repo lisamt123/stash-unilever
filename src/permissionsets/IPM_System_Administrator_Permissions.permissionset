@@ -3,14 +3,6 @@
 	
 	<customPermissions>
         <enabled>true</enabled>
-        <name>IPM_Company_CardFull</name>
-    </customPermissions>
-	<customPermissions>
-        <enabled>true</enabled>
-        <name>IPM_User_ProfileFull</name>
-    </customPermissions>
-	<customPermissions>
-        <enabled>true</enabled>
         <name>IPM_ProjectFull</name>
     </customPermissions>
 	<customPermissions> 
@@ -7814,5 +7806,44 @@
         <tab>IPM_My_To_Do_List</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-    
+	<tabSettings>
+        <tab>Exception_Log__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Company_Card__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_CorePara_helps_example__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Document_Template__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Exchange_Rate__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Milestone__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Clusters__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Questionnaire__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Section__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Task__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

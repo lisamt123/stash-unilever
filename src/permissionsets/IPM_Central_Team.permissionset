@@ -1,37 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-	
-	<customPermissions>
-        <enabled>true</enabled>
-        <name>IPM_Company_CardView</name>
-    </customPermissions>
-	<customPermissions>
-        <enabled>true</enabled>
-        <name>IPM_Company_CardEdit</name>
-    </customPermissions>
-	<customPermissions>
-        <enabled>true</enabled>
-        <name>IPM_Company_CardList</name>
-    </customPermissions>
-	
-	<customPermissions>
-        <enabled>true</enabled>
-        <name>IPM_User_ProfileView</name>
-    </customPermissions>
-	<customPermissions>
-        <enabled>true</enabled>
-        <name>IPM_User_ProfileEdit</name>
-    </customPermissions>
-	<customPermissions>
-        <enabled>true</enabled>
-        <name>IPM_User_ProfileEdit</name>
-    </customPermissions>
-	
 	<customPermissions>
         <enabled>true</enabled>
         <name>IPM_ProjectFull</name>
     </customPermissions>
-
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_MilestoneView</name>
+    </customPermissions>
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_MilestoneList</name>
+    </customPermissions>
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_QuestionnaireFull</name>
+    </customPermissions>
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_TaskFull</name>
+    </customPermissions>
+	
     <customPermissions>
         <enabled>true</enabled>
         <name>IPM_TeamMembers_ExtractDownloadable</name>
@@ -8462,7 +8451,23 @@
         <visibility>Visible</visibility>
     </tabSettings>
 	<tabSettings>
+        <tab>IPM_CorePara_helps_example__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Exchange_Rate__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
         <tab>IPM_Project__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Milestone__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Questionnaire__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 	<tabSettings>
@@ -8471,6 +8476,10 @@
     </tabSettings>
 	<tabSettings>
         <tab>IPM_User_Profile__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>IPM_Task__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 	

@@ -9767,8 +9767,6 @@
         <recordType>IPM_Task__c.IPM_Tasks</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    
-    
     <tabSettings>
         <tab>All_Projects</tab>
         <visibility>Visible</visibility>
