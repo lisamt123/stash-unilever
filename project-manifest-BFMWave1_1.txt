@@ -201,6 +201,8 @@ src/objects/Account.object
 src/objects/Contact.object
 src/objects/BFM_User_Creation_Request_Error__c.object
 src/objects/BFM_UserCreationRequest__c.object
+src/objectTranslations/BFM_AccountAccessRequest__c-en_US.objectTranslation
+src/objectTranslations/BFM_AccountAccessRequest__c-pt_BR.objectTranslation
 src/objectTranslations/BFM_Bank_Information__c-en_US.objectTranslation
 src/objectTranslations/BFM_Bank_Information__c-pt_BR.objectTranslation
 src/objectTranslations/BFM_Delivery__c-en_US.objectTranslation

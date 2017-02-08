@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value><!-- Bank Information --></value>
+        <value>Informação bancária</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value><!-- Bank Information --></value>
+        <value>Informações Bancárias</value>
     </caseValues>
     <fields>
         <label>Conta Corrente</label>
