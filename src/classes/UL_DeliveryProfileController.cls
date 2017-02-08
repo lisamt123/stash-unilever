@@ -234,5 +234,9 @@ Throws: N/A
             }
     }
     
-    
+   public PageReference cancel(){   
+        PageReference pageRef = new PageReference('/aEt/o');
+        pageRef.setRedirect(true);
+        return pageRef;
+    }
 }
