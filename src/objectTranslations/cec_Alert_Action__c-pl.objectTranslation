@@ -144,6 +144,10 @@
             <translation><!-- Chile --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Colombia</masterLabel>
             <translation><!-- Colombia --></translation>
         </picklistValues>
@@ -232,8 +236,8 @@
             <translation><!-- Japan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea</masterLabel>
-            <translation><!-- Korea --></translation>
+            <masterLabel>Korea, Republic Of</masterLabel>
+            <translation><!-- Korea, Republic Of --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Latvia</masterLabel>

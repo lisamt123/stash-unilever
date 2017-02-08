@@ -56,6 +56,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_China_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals China - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_China</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_China</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Cyprus_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Cyprus – Manager</label>

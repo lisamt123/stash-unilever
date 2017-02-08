@@ -7786,6 +7786,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Category</value>
     </labels>
     <labels>
+        <fullName>CEC_CategorySelectAlert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CategorySelectAlert</shortDescription>
+        <value>Please select a value for Category</value>
+    </labels>
+    <labels>
         <fullName>CEC_ChatSurveySchedulerName</fullName>
         <categories>CEC: Label</categories>
         <language>en_GB</language>
@@ -8222,7 +8229,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>To display Last Name required message</shortDescription>
-        <value>Last Name: You must enter a value</value>
+        <value>Last Name:You must enter Last Name to search a Consumer</value>
     </labels>
     <labels>
         <fullName>CEC_Latitude</fullName>
@@ -8770,6 +8777,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
     </labels>
     <labels>
         <fullName>CEC_ValidEmailTemplate</fullName>
+        <categories>CEC : Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_ValidEmailTemplate</shortDescription>

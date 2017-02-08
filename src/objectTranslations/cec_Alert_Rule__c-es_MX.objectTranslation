@@ -107,6 +107,10 @@
             <translation><!-- Brazil --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Czech Republic</masterLabel>
             <translation><!-- Czech Republic --></translation>
         </picklistValues>

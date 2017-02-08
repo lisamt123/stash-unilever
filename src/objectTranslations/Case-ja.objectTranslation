@@ -280,6 +280,10 @@
             <translation><!-- Chile --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Colombia</masterLabel>
             <translation><!-- Colombia --></translation>
         </picklistValues>
@@ -360,8 +364,8 @@
             <translation><!-- Japan --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Korea</masterLabel>
-            <translation><!-- Korea --></translation>
+            <masterLabel>Korea, Republic Of</masterLabel>
+            <translation><!-- Korea, Republic Of --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Latvia</masterLabel>
@@ -761,6 +765,10 @@
             <translation><!-- Email Brazil --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email China</masterLabel>
+            <translation><!-- Email China --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Cyprus</masterLabel>
             <translation><!-- Email Cyprus --></translation>
         </picklistValues>
@@ -944,6 +952,10 @@
     <fields>
         <label>住所フィールドを修正</label>
         <name>Override_From_Address__c</name>
+        <picklistValues>
+            <masterLabel>CEC.China@unilever.com</masterLabel>
+            <translation><!-- CEC.China@unilever.com --></translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>CEC.Korea@unilever.com</masterLabel>
             <translation><!-- CEC.Korea@unilever.com --></translation>
@@ -1336,6 +1348,10 @@
             <translation><!-- Praise --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Sample Request</masterLabel>
+            <translation><!-- Sample Request --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Suggestion</masterLabel>
             <translation><!-- Suggestion --></translation>
         </picklistValues>
@@ -1479,6 +1495,10 @@
     </fields>
     <fields>
         <name>Status</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Factory Response</masterLabel>
             <translation>調査中</translation>

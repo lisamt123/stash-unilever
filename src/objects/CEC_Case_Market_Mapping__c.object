@@ -547,6 +547,15 @@ esle if GMT-9.30 then enter -9.50</inlineHelpText>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_China_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC China Queue</label>
+        <queue>CEC_China_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Cyprus_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Cyprus Queue</label>

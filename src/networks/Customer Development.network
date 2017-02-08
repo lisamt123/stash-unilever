@@ -2,7 +2,7 @@
 <Network xmlns="http://soap.sforce.com/2006/04/metadata">
     <allowMembersToFlag>false</allowMembersToFlag>
     <branding>
-        <pageHeader>SharedDocuments/UL_Logo.jpg</pageHeader>
+        <pageHeader>SEAA_Perfect_Store/UL_Logo.png</pageHeader>
         <primaryColor>#022072</primaryColor>
         <primaryComplementColor>#FFFFFF</primaryComplementColor>
         <quaternaryColor>#C3DFFC</quaternaryColor>

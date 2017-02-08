@@ -212,6 +212,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_China_Queue_cec_Case_QC_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC China Queue</label>
+        <queue>CEC_China_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Cyprus_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Cyprus Queue</label>

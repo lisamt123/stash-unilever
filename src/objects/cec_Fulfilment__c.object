@@ -446,6 +446,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>China</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Colombia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -534,7 +538,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Korea</fullName>
+                <fullName>Korea, Republic Of</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1588,6 +1592,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Bulgaria</controllingFieldValues>
                 <controllingFieldValues>Canada</controllingFieldValues>
                 <controllingFieldValues>Chile</controllingFieldValues>
+                <controllingFieldValues>China</controllingFieldValues>
                 <controllingFieldValues>Colombia</controllingFieldValues>
                 <controllingFieldValues>Costa Rica</controllingFieldValues>
                 <controllingFieldValues>Croatia</controllingFieldValues>
@@ -1610,7 +1615,6 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Japan</controllingFieldValues>
-                <controllingFieldValues>Korea</controllingFieldValues>
                 <controllingFieldValues>Latvia</controllingFieldValues>
                 <controllingFieldValues>Lithuania</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
@@ -1792,6 +1796,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <filterScope>Queue</filterScope>
         <label>CEC Brazil Queue</label>
         <queue>CEC_Brazil_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_China_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC China Quality Check</label>
+        <queue>CEC_China_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_China_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC China Queue</label>
+        <queue>CEC_China_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

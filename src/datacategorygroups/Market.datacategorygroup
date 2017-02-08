@@ -144,12 +144,8 @@
         </dataCategory>
         <dataCategory>
             <dataCategory>
-                <label>Korea</label>
-                <name>kor</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Taiwan</label>
-                <name>Taiwan</name>
+                <label>China</label>
+                <name>China</name>
             </dataCategory>
             <dataCategory>
                 <label>Hong Kong</label>
@@ -158,6 +154,14 @@
             <dataCategory>
                 <label>Japan</label>
                 <name>Japan</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Korea</label>
+                <name>kor</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Taiwan</label>
+                <name>Taiwan</name>
             </dataCategory>
             <label>North Asia</label>
             <name>North_Asia</name>

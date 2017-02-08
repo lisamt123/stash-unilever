@@ -280,6 +280,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>China</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Czech Republic</fullName>
                 <default>false</default>
             </picklistValues>
@@ -666,6 +670,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC Brazil Queue</label>
         <queue>CEC_Brazil_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_China_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC China Queue</label>
+        <queue>CEC_China_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

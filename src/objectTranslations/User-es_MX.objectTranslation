@@ -99,6 +99,194 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Demographics --></label>
+        <name>DPS_Demographics__c</name>
+        <picklistValues>
+            <masterLabel>INDONESIA</masterLabel>
+            <translation><!-- INDONESIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PHILIPPINES</masterLabel>
+            <translation><!-- PHILIPPINES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VIETNAM</masterLabel>
+            <translation><!-- VIETNAM --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Category --></label>
+        <name>DPS_Product_Category__c</name>
+        <picklistValues>
+            <masterLabel>CONDITIONER**</masterLabel>
+            <translation><!-- CONDITIONER** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COOKING AIDS**</masterLabel>
+            <translation><!-- COOKING AIDS** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DEODORANTS &amp; FRAGRANCES**</masterLabel>
+            <translation><!-- DEODORANTS &amp; FRAGRANCES** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DRESSINGS**</masterLabel>
+            <translation><!-- DRESSINGS** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FABRIC CONDITIONERS**</masterLabel>
+            <translation><!-- FABRIC CONDITIONERS** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FABRICS CLEANING**</masterLabel>
+            <translation><!-- FABRICS CLEANING** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FACE CARE**</masterLabel>
+            <translation><!-- FACE CARE** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HAIR CARE**</masterLabel>
+            <translation><!-- HAIR CARE** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HAND &amp; BODY CARE**</masterLabel>
+            <translation><!-- HAND &amp; BODY CARE** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HOUSEHOLD CARE</masterLabel>
+            <translation><!-- HOUSEHOLD CARE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ICE CREAM**</masterLabel>
+            <translation><!-- ICE CREAM** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LAUNDRY</masterLabel>
+            <translation><!-- LAUNDRY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MEN ZONE**</masterLabel>
+            <translation><!-- MEN ZONE** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ORAL CARE**</masterLabel>
+            <translation><!-- ORAL CARE** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OUTLET-BASED</masterLabel>
+            <translation><!-- OUTLET-BASED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OUTLET-BASED**</masterLabel>
+            <translation><!-- OUTLET-BASED** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAVOURY</masterLabel>
+            <translation><!-- SAVOURY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SHAMPOO**</masterLabel>
+            <translation><!-- SHAMPOO** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SKIN CARE</masterLabel>
+            <translation><!-- SKIN CARE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SKIN CLEANSING**</masterLabel>
+            <translation><!-- SKIN CLEANSING** --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TEA AND SOY &amp; FRUIT BEVERAGES</masterLabel>
+            <translation><!-- TEA AND SOY &amp; FRUIT BEVERAGES --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sales_Region --></label>
+        <name>DPS_Sales_Region__c</name>
+        <picklistValues>
+            <masterLabel>CENTRAL LUZON</masterLabel>
+            <translation><!-- CENTRAL LUZON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DINH CONG TRI</masterLabel>
+            <translation><!-- DINH CONG TRI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EAST VISAYAS</masterLabel>
+            <translation><!-- EAST VISAYAS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GMA</masterLabel>
+            <translation><!-- GMA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GREATER MANILA AREA</masterLabel>
+            <translation><!-- GREATER MANILA AREA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NGUYEN HONG VAN</masterLabel>
+            <translation><!-- NGUYEN HONG VAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NGUYEN THI THU THAO</masterLabel>
+            <translation><!-- NGUYEN THI THU THAO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NORTH LUZON</masterLabel>
+            <translation><!-- NORTH LUZON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NORTH MINDANAO</masterLabel>
+            <translation><!-- NORTH MINDANAO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PHAM PHUOC HAI</masterLabel>
+            <translation><!-- PHAM PHUOC HAI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PHAM TRONG CHINH</masterLabel>
+            <translation><!-- PHAM TRONG CHINH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SOUTH LUZON</masterLabel>
+            <translation><!-- SOUTH LUZON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SOUTH MINDANAO</masterLabel>
+            <translation><!-- SOUTH MINDANAO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SOUTHERN TAGALOG</masterLabel>
+            <translation><!-- SOUTHERN TAGALOG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRINH VIET TRI</masterLabel>
+            <translation><!-- TRINH VIET TRI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VU QUOC DAT</masterLabel>
+            <translation><!-- VU QUOC DAT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Trade Format --></label>
+        <name>DPS_Trade_Format__c</name>
+        <picklistValues>
+            <masterLabel>DT</masterLabel>
+            <translation><!-- DT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LMT</masterLabel>
+            <translation><!-- LMT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MT</masterLabel>
+            <translation><!-- MT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label>Límite reembolso tarjeta de débito</label>
         <name>Debit_Card_Refund_Limit__c</name>
     </fields>
@@ -685,6 +873,10 @@
         <picklistValues>
             <masterLabel>Brazil</masterLabel>
             <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Czech Republic</masterLabel>
@@ -1609,6 +1801,10 @@ The Whole Enchilada: All notifications (Default) --></help>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- DPS Settings --></label>
+            <section>DPS Settings</section>
         </sections>
     </layouts>
 </CustomObjectTranslation>
