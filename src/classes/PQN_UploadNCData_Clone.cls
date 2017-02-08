@@ -13,7 +13,7 @@ global without sharing class PQN_UploadNCData_Clone{
     
     @RemoteAction
     global static Database.UpsertResult[] getSheetData(List<PQN_Pallet_Quality_Non_Conformance__c> xPQN, String selectedFileType,String timeStamp) {
-        Delete [select id From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true and createdbyid=:UserInfo.getUserId()];
+        Delete [select id From PQN_Pallet_Quality_Non_Conformance__c where Is_Error__c=true and createdbyid=:UserInfo.getUserId()];
         system.debug(xPQN);
         
         List<PQN_Pallet_Quality_Non_Conformance__c> xPQNLIST= xPQN;
@@ -60,10 +60,10 @@ global without sharing class PQN_UploadNCData_Clone{
             }
         }
         if(selectedFileType=='Cannock'){
-            xAcc = [Select Id,Name from Account where name ='Cannock DC' limit 1];
+            xAcc = [Select Id,Name from Account where name ='Cannock' limit 1];
         }
         if(selectedFileType=='Heilbronn'){
-            xAcc = [Select Id,Name from Account where name ='Heilbronn DC' limit 1];
+            xAcc = [Select Id,Name from Account where name ='Heilbronn auto' limit 1];
         }
         Id errAccId = [Select Id,Name from Account where Name='Error DC' limit 1].Id;
         
@@ -89,12 +89,12 @@ global without sharing class PQN_UploadNCData_Clone{
             if(selectedFileType=='Cannock'){
                 if(xAcc.size()>0){
                     xP.Account__c =xAcc[0].Id;
-                     if(mapdcdata.get('Cannock DC')!=null){
-                        xP.Region__c = mapdcdata.get('Cannock DC').region__c;
-                        xP.DC_Country__c = mapdcdata.get('Cannock DC').country__c;
-                        xP.Cluster__c = mapdcdata.get('Cannock DC').cluster__c;
-                        xP.Sub_Cluster__c = mapdcdata.get('Cannock DC').sub_cluster__c;                 
-                        xP.MCO__c = mapdcdata.get('Cannock DC').mco__c;
+                     if(mapdcdata.get('Cannock')!=null){
+                        xP.Region__c = mapdcdata.get('Cannock').region__c;
+                        xP.DC_Country__c = mapdcdata.get('Cannock').country__c;
+                        xP.Cluster__c = mapdcdata.get('Cannock').cluster__c;
+                        xP.Sub_Cluster__c = mapdcdata.get('Cannock').sub_cluster__c;                 
+                        xP.MCO__c = mapdcdata.get('Cannock').mco__c;
                     }
                 }else{
                     xP.Account__c =errAccId;
@@ -106,12 +106,12 @@ global without sharing class PQN_UploadNCData_Clone{
             
                 if(xAcc.size()>0){
                     xP.Account__c =xAcc[0].Id;
-                    if(mapdcdata.get('Heilbronn DC')!=null){
-                        xP.Region__c = mapdcdata.get('Heilbronn DC').region__c;
-                        xP.DC_Country__c = mapdcdata.get('Heilbronn DC').country__c;
-                        xP.Cluster__c = mapdcdata.get('Heilbronn DC').cluster__c;
-                        xP.Sub_Cluster__c = mapdcdata.get('Heilbronn DC').sub_cluster__c;                 
-                        xP.MCO__c = mapdcdata.get('Heilbronn DC').mco__c;
+                    if(mapdcdata.get('Heilbronn auto')!=null){
+                        xP.Region__c = mapdcdata.get('Heilbronn auto').region__c;
+                        xP.DC_Country__c = mapdcdata.get('Heilbronn auto').country__c;
+                        xP.Cluster__c = mapdcdata.get('Heilbronn auto').cluster__c;
+                        xP.Sub_Cluster__c = mapdcdata.get('Heilbronn auto').sub_cluster__c;                 
+                        xP.MCO__c = mapdcdata.get('Heilbronn auto').mco__c;
                     }
                 }else{
                     xP.Account__c =errAccId;

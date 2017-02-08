@@ -1,0 +1,71 @@
+{
+  "objects": [
+    {
+      "connector": "CSV",
+      "fullyQualifiedName": "DPS_SEA_Top20_Enrol_csv",
+      "label": "DPS_SEA_Top20_Enrol.csv",
+      "name": "DPS_SEA_Top20_Enrol_csv",
+      "fields": [
+        {
+          "fullyQualifiedName": "Record_Id",
+          "name": "Record_Id",
+          "type": "Text",
+          "label": "Record_Id",
+          "isUniqueId": true
+        },
+        {
+          "fullyQualifiedName": "Date",
+          "name": "Date",
+          "type": "Date",
+          "label": "Date",
+          "format": "yyyy-MM-dd"
+        },
+        {
+          "fullyQualifiedName": "Year",
+          "name": "Year",
+          "type": "Text",
+          "label": "Year"
+        },
+        {
+          "fullyQualifiedName": "Month",
+          "name": "Month",
+          "type": "Text",
+          "label": "Month"
+        },
+        {
+          "fullyQualifiedName": "Country_Code",
+          "name": "Country_Code",
+          "type": "Text",
+          "label": "Country Code"
+        },
+        {
+          "fullyQualifiedName": "Country",
+          "name": "Country",
+          "type": "Text",
+          "label": "Country"
+        },
+        {
+          "fullyQualifiedName": "Customer_Id",
+          "name": "Customer_Id",
+          "type": "Text",
+          "label": "Customer Id"
+        },
+        {
+          "fullyQualifiedName": "Customer",
+          "name": "Customer",
+          "type": "Text",
+          "label": "Customer"
+        },
+        {
+          "fullyQualifiedName": "Enrollment_No",
+          "name": "Enrollment_No",
+          "type": "Numeric",
+          "label": "Enrollment No",
+          "precision": 18,
+          "defaultValue": "0",
+          "scale": 3
+        }
+      ]
+    }
+  ]
+}

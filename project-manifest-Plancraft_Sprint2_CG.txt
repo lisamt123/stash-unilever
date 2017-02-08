@@ -61,6 +61,8 @@ src/classes/PC_ForumController_CC.cls
 src/classes/PC_ForumController_CC.cls-meta.xml
 src/classes/PBS_LibraryController_CC.cls
 src/classes/PBS_LibraryController_CC.cls-meta.xml
+src/classes/PBS_LibraryController_Test.cls
+src/classes/PBS_LibraryController_Test.cls-meta.xml
 src/classes/PC_ForumController_Test.cls
 src/classes/PC_ForumController_Test.cls-meta.xml
 src/pages/PBS_ReportHome.page

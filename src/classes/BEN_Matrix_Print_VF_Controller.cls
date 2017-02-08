@@ -29,6 +29,7 @@ public class BEN_Matrix_Print_VF_Controller {
     public String lossLoss_20 { get; set; }
     public String lossParity_21 { get; set; }
     public String lossWin_22 { get; set; }
+    public String errorMsg {get; set;}
     
     //Costructor
     public BEN_Matrix_Print_VF_Controller(){
@@ -49,6 +50,9 @@ public class BEN_Matrix_Print_VF_Controller {
         this.lossLoss_20 = params.get('lossLoss_20');
         this.lossParity_21 = params.get('lossParity_21');
         this.lossWin_22 = params.get('lossWin_22');
+        if(Integer.valueOf(this.totalRecCount) <30){
+            this.errorMsg = 'WARNING: The total tested records are not upto mark : Small Base Size (30)' ;
+        }
         
     }
 }

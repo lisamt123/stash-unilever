@@ -33,11 +33,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>pkl_Benchmark__c</field>
-            <table>BEN_Category_Details__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>pkl_Blind_OO__c</field>
             <table>BEN_Category_Details__c</table>
         </columns>
@@ -99,11 +94,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>pkl_CTI_Director_Deletion_Request__c</field>
-            <table>BEN_Category_Details__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>lkp_CUC_Codes__c</field>
             <table>BEN_Category_Details__c</table>
         </columns>
         <columns>
@@ -339,6 +329,41 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>pkl_Year__c</field>
+            <table>BEN_Category_Details__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Product_Category__c.pkl_Super_Category__c</field>
+            <table>BEN_Category_Details__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>lkp_Benchmark__c</field>
+            <table>BEN_Category_Details__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>txt_CUC_Code__c</field>
+            <table>BEN_Category_Details__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>lkp_CS_GTIN__c</field>
+            <table>BEN_Category_Details__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pkl_Category_Master__c</field>
+            <table>BEN_Category_Details__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>lkp_CU_GTIN__c</field>
+            <table>BEN_Category_Details__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>txt_Reason_for_Deletion__c</field>
             <table>BEN_Category_Details__c</table>
         </columns>
         <masterLabel>Category Details</masterLabel>

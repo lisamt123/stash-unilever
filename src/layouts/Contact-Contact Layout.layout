@@ -21,6 +21,10 @@
                 <behavior>Required</behavior>
                 <field>AccountId</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Title</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ICB_Type__c</field>

@@ -26,8 +26,8 @@ public with sharing class VPM_CreateVendorFetchFieldDetails {
         string eccVal ='';
        // Integer reqNum = VPM_HttpUtil.generateRandomNumber();
         Map<String,String> mapUserDetails = VPM_HttpUtil.fetchUserDetails();
-        List<VPM_PurchasingRequests__c> vendorList =[SELECT id,VPM_VendorType__c,VPM_SAPBPMRequestID__c,VPM_TaxType__c, VPM_CountryRequestingVendor__c, VPM_GlobalAuthorisationGroup__c, VPM_ECC__c, VPM_TradePartnerType__c, VPM_AccountGroup__c, VPM_VendorName1__c, VPM_SearchTerm_1__c, VPM_Street1__c, VPM_ZIPPostCode__c, VPM_City__c,
-                                                     VPM_Country__c, VPM_HouseNumber__c, VPM_Regions__r.VPM_Code__c, VPM_IsVendorSME__C, VPM_IsVendorException__c, VPM_ExceptionType__c, VPM_TaxNumber1__c, VPM_TaxNumber3__c, VPM_TaxJurisdictionCode__c, VPM_SupplierFinancialStabilityCheck__c, VPM_ReasonNoFinancialCheck__C, VPM_SupplierAchillesRegistration__c, VPM_AchillesExceptionDetails__C, 
+        List<VPM_PurchasingRequests__c> vendorList =[SELECT id,VPM_VendorType__c,VPM_SAPBPMRequestID__c,VPM_ExistingTradePartnerID__c,VPM_ForaNewPartnerLinktoexistingTrade__c,VPM_TaxType__c, VPM_CountryRequestingVendor__c, VPM_GlobalAuthorisationGroup__c, VPM_ECC__c, VPM_TradePartnerType__c, VPM_AccountGroup__c, VPM_VendorName1__c, VPM_SearchTerm_1__c, VPM_Street1__c, VPM_ZIPPostCode__c, VPM_City__c,
+                                                     VPM_Country__c, VPM_HouseNumber__c, VPM_Regions__r.VPM_Code__c, VPM_IsVendorSME__C, VPM_IsVendorException__c, VPM_ExceptionType__c, VPM_TaxNumber1__c,VPM_TaxNumAtResponsibleTaxAuthority__c,VPM_TaxNumber3__c, VPM_TaxJurisdictionCode__c, VPM_SupplierFinancialStabilityCheck__c, VPM_ReasonNoFinancialCheck__C, VPM_SupplierAchillesRegistration__c, VPM_AchillesExceptionDetails__C, 
                                                      VPM_SupplierPositiveAssuranceQuality__c, VPM_SupPosAssExcepDetailsQual__c, VPM_SupplierAssessmentQuestionnaireQual__c, VPM_DetailsofPlannedActivitiesQual__c, VPM_SupAudDetailsOfPlannedActivities__c, VPM_SupplierPositiveAssuranceSourcing__C, VPM_SupPosAssExcepDetailsSour__C, VPM_SupplierAssessmentQuestionnaireSour__C, 
                                                      VPM_DetailsofPlannedActivitiesSour__c, VPM_SupplierAuditSourcing__c, VPM_DetailsOfPlannedActivitiesSour2__c, VPM_MDMBPMRequestorName__c, VPM_MDMBPMRequestorPhone__c, VPM_MDMBPMRequestorEmail__c, VPM_MDMBPMRequestorDepartment__c, VPM_MDMBPMOriginatoEmail__c, VPM_MDMBPMRequestDate__c , 
                                                      VPM_AchillesRegistrationCode__c, VPM_DetailsTypeCheck__c, VPM_DUNSHierarchyInvestigationReq__c, VPM_GroupingKey__c, VPM_SMEComment__c, VPM_VATRegistrationNumber__c, VPM_CheckDigit__c, VPM_Comments__c, VPM_District__c, VPM_HouseNumSupplement__c, VPM_IsNaturalPerson__c, VPM_POBox__c, VPM_POBoxPostCode__c, VPM_SearchTerm2__c, VPM_Street2__c, VPM_Street3__c, VPM_Street4__c, VPM_TaxNumber2__c, VPM_TaxNumber4__c, VPM_TaxNumberType__c, VPM_VendorName2__c, VPM_Name3__c, VPM_Name4__c, VPM_PurchasingOrg__r.Name, VPM_CreditInfoNumber__c, VPM_TradingPartner__c, VPM_IntLocationNumber1__c, VPM_IntLocationNumber2__c, VPM_ExtManufacturer__c, VPM_SupplierAuditQuality__c from VPM_PurchasingRequests__c where id =: VendorRequestId LIMIT 1];
@@ -137,7 +137,7 @@ public with sharing class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.IsSupplierAssessmentQuestionnaireSour = vendorList.get(0).VPM_SupplierAssessmentQuestionnaireSour__C == null ? false : VPM_HttpUtil.convertYesNoToBoolean(vendorList.get(0).VPM_SupplierAssessmentQuestionnaireSour__C);
             VPM_InterfaceFieldDetails.poBox = vendorList.get(0).VPM_POBox__c == null ? '' : vendorList.get(0).VPM_POBox__c;
             VPM_InterfaceFieldDetails.poPostalCode = vendorList.get(0).VPM_POBoxPostCode__c == null ? '' : vendorList.get(0).VPM_POBoxPostCode__c;
-            VPM_InterfaceFieldDetails.taxNumber = vendorList.get(0).VPM_TaxNumber1__c == null ? '' : vendorList.get(0).VPM_TaxNumber1__c;
+            VPM_InterfaceFieldDetails.taxNumber = vendorList.get(0).VPM_TaxNumAtResponsibleTaxAuthority__c == null ? '' : vendorList.get(0).VPM_TaxNumAtResponsibleTaxAuthority__c;
             
             VPM_InterfaceFieldDetails.cordillera = false;
             VPM_InterfaceFieldDetails.sirius = false;
@@ -175,6 +175,8 @@ public with sharing class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.InternationalLocationNumber1 = vendorList.get(0).VPM_IntLocationNumber1__c == null ? '' : vendorList.get(0).VPM_IntLocationNumber1__c;
             VPM_InterfaceFieldDetails.InternationalLocationNumber2 = vendorList.get(0).VPM_IntLocationNumber2__c == null ? '' : vendorList.get(0).VPM_IntLocationNumber2__c;
             VPM_InterfaceFieldDetails.ExternalManufacturer = vendorList.get(0).VPM_ExtManufacturer__c == null ? '' : vendorList.get(0).VPM_ExtManufacturer__c;
+             VPM_InterfaceFieldDetails.ExistingTradePartnerType  = vendorList.get(0).VPM_ForaNewPartnerLinktoexistingTrade__c==null ?  '': vendorList.get(0).VPM_ForaNewPartnerLinktoexistingTrade__c;
+            VPM_InterfaceFieldDetails.ExistingTradePartnerID  = vendorList.get(0).VPM_ExistingTradePartnerID__c==null ? '' : vendorList.get(0).VPM_ExistingTradePartnerID__c;
             
             // need to map to vendor request object
             VPM_InterfaceFieldDetails.AttachmentLink = URL.getSalesforceBaseUrl().toExternalForm()+'/'+ vendorList.get(0).id;

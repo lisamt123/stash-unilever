@@ -1,0 +1,33 @@
+<apex:page controller="BEN_KPIProgressReprtHandler">
+    
+    <apex:form >
+        <apex:pageBlock title="KPI Progress Report">
+            <apex:pageBlockSection >
+                <apex:outputLabel value="Select Year and Quarter  : " style="font-weight:800"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection >
+                <apex:selectList value="{!YearQuarterSelected}" label="Year/Quarter " multiselect="true" size="6">
+                    <apex:selectOptions value="{!YearQuarter}"/>
+                </apex:selectList> 
+            </apex:pageBlockSection>
+            
+            <apex:pageblockButtons location="bottom">
+                <apex:commandButton value="Get Report" action="{!getReport}" reRender="reportPanel" /> 
+            </apex:pageblockButtons>
+            
+        </apex:pageBlock>
+        <apex:outputPanel id="reportPanel">
+            
+            <apex:pageBlock title="" id="pageBlockProcessed" rendered="{!renderBlock}">
+                <apex:pageMessages id="errorMsg"/>
+                <apex:pageblockButtons >
+                    <apex:commandButton value="Download as PDF" action="{!getdownloadPage}" /> 
+                </apex:pageblockButtons> 
+                
+                <apex:iframe height="1200px"  width="900px" src="/apex/BEN_KPIProgressReport_Generator?YearQuarterSelected={!YearQuarterSelected}"/>
+                
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>        
+    
+</apex:page>

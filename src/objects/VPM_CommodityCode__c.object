@@ -388,6 +388,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_CommodityDescription__c</fullName>
+        <description>VPM. This field stores description of particular commodity</description>
+        <externalId>false</externalId>
+        <label>Commodity Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>VPM_CommodityFamily__c</fullName>
         <description>VPM. Field to hold Commodity Family</description>
         <externalId>false</externalId>
@@ -459,7 +468,7 @@
         <fullName>VPM_CommodityRegionUnique__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>VPM.  Stores the concatenated value of Commodity Name plus Region to ensure duplicates are not created</description>
-        <externalId>false</externalId>
+        <externalId>true</externalId>
         <label>Commodity Region (Unique)</label>
         <length>255</length>
         <required>false</required>
@@ -546,6 +555,7 @@
         <customTabListAdditionalFields>VPM_VendorType__c</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>VPM_CommodityClass__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>VPM_CommodityFamily__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>VPM_CommodityDescription__c</lookupDialogsAdditionalFields>
         <lookupFilterFields>VPM_CommodityClass__c</lookupFilterFields>
         <lookupFilterFields>VPM_CommodityFamily__c</lookupFilterFields>
         <lookupFilterFields>NAME</lookupFilterFields>
@@ -554,6 +564,7 @@
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>VPM_CommodityClass__c</searchFilterFields>
         <searchFilterFields>VPM_CommodityFamily__c</searchFilterFields>
+        <searchResultsAdditionalFields>VPM_CommodityDescription__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

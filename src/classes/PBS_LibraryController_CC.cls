@@ -5,8 +5,7 @@
      */
     public with sharing class PBS_LibraryController_CC
     {
-        public String searchstring { get; set; }
-        
+        public String searchstring { get; set; }        
         private static final string STR_AND = ' AND ';
         private static final string STR_TITLE = 'Title';
         public Integer getSearchCount {get;set;}
@@ -15,17 +14,13 @@
          * Holds user language
          */
         public String language {get; set;}
-        
-        /**
-         * Holds user language
-         */
+     
         public String groupNameSearch{get; set;}
                 
         /**
          * Map of knowledgeArtileId to stats
          */
-        public Map<String, Decimal> ranking {get; set;}
-        
+        public Map<String, Decimal> ranking {get; set;}        
         public Map<String, String> groupnameMap{get; set;}
         public Map<String, String> groupnameMap1{get; set;}
         /**
@@ -121,31 +116,33 @@
                        
                 if(PbsArticleSearchList.size()>0){
                        QueryPBS_WIKI += ' AND Id in' +idStrings;
-                /*
+                
                 if((groupNameSearch !=''  && groupNameSearch != null) &&  groupNameSearch != 'All'){
-                   QueryPBS_WIKI += ' AND Group_Name__c=\'System and Process\' ';
-            	}
-                 */   
+                   QueryPBS_WIKI += ' AND Group_Name__c=\''+groupNameSearch+'\' ';
+              }
+                    
                 System.debug('QueryPBS_WIK====>'+ QueryPBS_WIKI);
                     
-                //groupnameMap1.clear(); 
-                    
+                groupnameMap1.clear(); 
+                   
                 for(PBS_Wiki__kav xWIKI: Database.query(QueryPBS_WIKI)){
-                        System.debug('xWIKI--->'+xWIKI.Group_Name__c);                    	
+                        System.debug('xWIKI--->'+xWIKI.Group_Name__c);                      
                         xWIKI.Group_Name__c = xWIKI.Group_Name__c==null ? '':xWIKI.Group_Name__c;
                         groupnameMap.put(xWIKI.Id,xWIKI.Group_Name__c);
-                    	//groupnameMap1.put(xWIKI.Id,xWIKI.Group_Name__c);	
+                      groupnameMap1.put(xWIKI.Id,xWIKI.Group_Name__c);  
                     }
-                   System.debug('groupnameMap--->'+groupnameMap); 
+                   System.debug('groupnameMap--->'+groupnameMap);
+                   System.debug('groupnameMap1--->'+groupnameMap1); 
                 }
-            	 /*	
+               
                  PbsArticleSearchList1.clear();
-				 for(KnowledgeArticleVersion  list1: PbsArticleSearchList){
-				 if(groupnameMap1.containsKey(list1.id)){
-				   PbsArticleSearchList1 .add(list1);
-				 }		
-				 }
-                 */
+         for(KnowledgeArticleVersion  list1: PbsArticleSearchList){
+         if(groupnameMap1.containsKey(list1.id)){
+           PbsArticleSearchList1 .add(list1);
+         }    
+         }
+                 PbsArticleSearchList.clear();
+               PbsArticleSearchList.addAll(PbsArticleSearchList1);
                 // load stats 
                 getPbsArticleStats(PbsArticleSearchList);
                 return PbsArticleSearchList;         
@@ -171,10 +168,10 @@
               //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Search term must be longer than one character'));
               pbsKnowledgeArticleList();
               return null ;                      
-        	} 
-       		if(searchstring != null && searchstring != '' && this.currentPage > 1){
+          } 
+           if(searchstring != null && searchstring != '' && this.currentPage > 1){
              this.currentPage = 1;
-        	}  
+          }  
             //String searchQueryCount = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId WHERE PublishStatus=\'Online\' AND Language=\'en_US\'';
             //searchQueryCount += ' ORDER BY ' + sortField + ' ' + sortDir + (sortField != STR_TITLE ? ', Title ASC' : '') + ')';
             searchQueryCount = 'FIND \'' + searchstring + '*\' IN ALL FIELDS RETURNING PBS_Wiki__kav(Id,KnowledgeArticleId,Group_Name__c WHERE PublishStatus=\'Online\'';
@@ -262,7 +259,7 @@
             query += ' WHERE ';
             
             query += ' language = \'' + language + '\'';
-			
+      
             query += STR_AND;
                 query += ' PublishStatus = \'Online\' ';
             query += STR_AND;
@@ -527,10 +524,10 @@
                 }
             }  
                 /*         
-				PbsArticleSearchList1.clear();
-				for(KnowledgeArticleVersion  list1: PbsArticleSearchList){
-				    PbsArticleSearchList1 .add(list1);
-				}              
+        PbsArticleSearchList1.clear();
+        for(KnowledgeArticleVersion  list1: PbsArticleSearchList){
+            PbsArticleSearchList1 .add(list1);
+        }              
                 */
             getPbsArticleStats(PbsArticleSearchList);
             }
