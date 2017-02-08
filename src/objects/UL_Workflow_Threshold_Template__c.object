@@ -69,55 +69,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>UL_Compare_Value_Data_Type__c</fullName>
-        <externalId>false</externalId>
-        <label>Compare Value Data Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Number</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>UL_Compare_Value__c</fullName>
-        <externalId>false</externalId>
-        <label>Compare Value</label>
-        <picklist>
-            <picklistValues>
-                <fullName>&gt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&lt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&lt;=</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&gt;=</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>&gt;&lt;</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>UL_Evaluate_Thresholds__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -154,22 +105,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>UL_WorkflowApproval__c</fullName>
-        <externalId>false</externalId>
-        <label>Related Workflow Approval</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Soco Approval</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>UL_Workflow__c</fullName>
         <externalId>false</externalId>
         <label>Workflow</label>
@@ -178,7 +113,7 @@
                 <fullName>Soco Approval</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>

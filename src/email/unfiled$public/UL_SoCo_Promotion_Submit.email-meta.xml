@@ -6,18 +6,8 @@
     <name>SoCo_Promotion_Submit</name>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>5</minorNumber>
-        <namespace>ACSFUL001</namespace>
-    </packageVersions>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>4</minorNumber>
-        <namespace>Comparator</namespace>
-    </packageVersions>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>1</minorNumber>
-        <namespace>ctu</namespace>
+        <minorNumber>0</minorNumber>
+        <namespace>ACCL</namespace>
     </packageVersions>
     <packageVersions>
         <majorNumber>1</majorNumber>

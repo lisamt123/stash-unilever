@@ -5,7 +5,4 @@ The Promotion {!ACCL__Promotion__c.Name} is about to start in 1 week.
 Kindly take the appropriate action by checking the record in application by clicking on following link.
 {!ACCL__Promotion__c.Link}
 <br></br>
-<br></br>
-Thanks. 
-<br/>
-{!Approval_Requesting_User.Name}
+Thanks.

@@ -4,7 +4,4 @@ This is to notify that the Promotion {!ACCL__Promotion__c.Name} is about to end 
 <br></br>
 Kindly take an action if required
 <br></br>
-<br></br>
-Thanks. 
-<br/>
-{!Approval_Requesting_User.Name}
+Thanks.

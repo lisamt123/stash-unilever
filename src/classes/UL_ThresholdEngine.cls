@@ -196,6 +196,9 @@
                 if(promobj.UL_Threshold_Window_Result__c!=null && promobj.UL_Threshold_Window_Result__c.containsIgnoreCase(fail)){
                  promobj.UL_ThresholdViolated__c=true;
                 }
+                else {
+                promobj.UL_ThresholdViolated__c=false;
+                }
                try{
                     Database.update(promobj);
                 }
