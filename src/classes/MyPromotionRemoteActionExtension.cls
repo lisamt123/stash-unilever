@@ -738,15 +738,20 @@ Throws : N/A
             System.debug('promo.UL_PromotionTemplateType__c::::::::::'+promo.UL_PromotionTemplateType__c);
             //for hiding lift field from Tactic page if tactic template is Long Term Agreement
             if(promo.UL_PromotionTemplateType__c == 'LTA'){
-                //for(List<ACCL__tactic__c> tactList : [SELECT Id, ACCL__Tactic_Template__r.Name,ACCL__Promotion__c FROM ACCL__tactic__c WHERE ACCL__Tactic_Template__r.Name = 'Long Term Agreement AR']){
-                    EARUI tacticObject = new EARUI();
-                    tacticObject.Name = 'Lift__c';
-                    tacticObject.Type = UtilityEnum.Attribute.Name();
-                    tacticObject.visible = false; 
-                    System.debug('tacticObject.visible'); 
-                    earBOTactic.add(tacticObject);
-                    
-                //}   
+                EARUI tacticObject = new EARUI();
+                tacticObject.Name = 'Lift__c';
+                tacticObject.Type = UtilityEnum.Attribute.Name();
+                tacticObject.visible = false; 
+                System.debug('tacticObject.visible'); 
+                earBOTactic.add(tacticObject); 
+            }
+            else{
+                EARUI tacticObject = new EARUI();
+                tacticObject.Name = 'Lift__c';
+                tacticObject.Type = UtilityEnum.Attribute.Name();
+                tacticObject.editable= false; 
+                System.debug('tacticObject.visible'); 
+                earBOTactic.add(tacticObject); 
             }
             
             boolean isChildPromotion = promo.UL_Parent_Push_Id__c!=null ? true : false;
