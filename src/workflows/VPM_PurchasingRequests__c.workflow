@@ -49,7 +49,18 @@
         <senderAddress>supplier.information@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestVendorDetails</template>
-    </alerts>
+    </alerts>	
+    <fieldUpdates>
+        <fullName>VPM_RequestLastwithGroupFLS</fullName>
+        <description>VPM - USed to set the Request Last with . which will be used in Report</description>
+        <field>VPM_RequestLastWithGroup__c</field>
+        <literalValue>FLS</literalValue>
+        <name>VPM - Request Last with Group FLS</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_ApprovedByBankValidationEmail</fullName>
         <description>VPM - captures the email of bank Validation Approver.</description>

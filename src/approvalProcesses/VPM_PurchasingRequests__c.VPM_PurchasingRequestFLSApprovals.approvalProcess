@@ -87,6 +87,10 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_RequestLastwithGroupFLS</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_RequestRejectNotification</name>
             <type>Alert</type>
         </action>
