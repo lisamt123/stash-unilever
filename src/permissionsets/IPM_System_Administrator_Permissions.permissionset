@@ -7806,7 +7806,6 @@
         <tab>IPM_My_To_Do_List</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-	----------------
 	<tabSettings>
         <tab>Exception_Log__c</tab>
         <visibility>Visible</visibility>
