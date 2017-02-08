@@ -1,7 +1,7 @@
 @isTest
 public class BFM_ShipmentHandlerActions_Test {
   private static testMethod void testShipmentHandlerActions(){
-        Test.startTest();
+        //Test.startTest();
         RecordType unileverAccount  = [SELECT id from RecordType where DeveloperName = 'BFM_Unilever_Account' Limit 1];
         Account acc = New Account();
         acc.RecordTypeId = unileverAccount.id;
@@ -22,9 +22,12 @@ public class BFM_ShipmentHandlerActions_Test {
         shipmentNewLst.add(shipment);
         BFM_ShipmentHandlerActions.defineShipmentUnileverAccount(shipmentNewLst);
         BFM_ShipmentHandlerActions.checkIfNeedsToBeDeleted(shipmentNewLst);
-        try{
-          BFM_ShipmentHandlerActions.send6thflag(shipment);    
-        }catch(exception e){}
+        Test.startTest();        
+        Test.setMock(HttpCalloutMock.class, new BFM_MockHttpResponse());
+        BFM_ShipmentHandlerActions.send6thflag(shipment);
+        BFM_UpdateFreightData upfreight = new BFM_UpdateFreightData(shipment.Id);
+        BFM_UpdateFreightData.send6thFlagUpdate(shipment.Id);
+        Test.stopTest();
         
     }
 }

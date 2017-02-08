@@ -37,6 +37,9 @@ private static testMethod void testShipmentHandler(){
     shipHandler.afterDelete(shipment);
     Test.startTest();
     Test.setMock(HttpCalloutMock.class, new BFM_MockHttpResponse());
+    BFM_ShipmentHandlerActions shiphandleraction = new BFM_ShipmentHandlerActions();
+    BFM_UpdateFreightData.send6thFlagUpdate(shipment.Id);
+    BFM_UpdateFreightData.sendUpdateShipmentRequestFuture(shipment.Id);
     Test.stopTest();
     }
 }
