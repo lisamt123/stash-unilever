@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Product Locator --></value>
+    </caseValues>
+    <fields>
+        <label>주소</label>
+        <name>Address__c</name>
+    </fields>
+    <fields>
+        <label>케이스 저장 ID</label>
+        <name>CaseStoreId__c</name>
+    </fields>
+    <fields>
+        <label>케이스</label>
+        <name>Case__c</name>
+        <relationshipLabel>제품 위치</relationshipLabel>
+    </fields>
+    <fields>
+        <label>도시</label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <help>Miles에 있는 우편번호의 중심에서 상점까지의 거리</help>
+        <label>거리</label>
+        <name>Distance__c</name>
+    </fields>
+    <fields>
+        <label>위도</label>
+        <name>Latitude__c</name>
+    </fields>
+    <fields>
+        <label>경도</label>
+        <name>Longitude__c</name>
+    </fields>
+    <fields>
+        <label>이름</label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label>전화</label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label>주</label>
+        <name>State__c</name>
+    </fields>
+    <fields>
+        <label>상점 ID</label>
+        <name>Store_Id__c</name>
+    </fields>
+    <fields>
+        <label>상점 번호</label>
+        <name>Store_Number__c</name>
+    </fields>
+    <fields>
+        <label>UPC 코드</label>
+        <name>UPC_Code__c</name>
+    </fields>
+    <fields>
+        <label>우편번호</label>
+        <name>Zip_Code__c</name>
+    </fields>
+    <nameFieldLabel><!-- Product Locator Number --></nameFieldLabel>
+</CustomObjectTranslation>

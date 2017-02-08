@@ -85,7 +85,17 @@ private class IPM_GateRiskSection_Test{
             System.assertEquals(quesListObj[0].RecordTypeId,Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId,'ques not created');
             
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
-            where IPM_Project_Document__c=:projDocList[0].Id];            
+            where IPM_Project_Document__c=:projDocList[0].Id];  
+            PageReference pageRef = Page.IPM_Risk_QuestionnaireViewPage;            
+            Test.setCurrentPageReference(pageRef);
+            ApexPages.CurrentPage().getparameters().put('getProjectId', project.Id);
+            ApexPages.CurrentPage().getparameters().put('gateType', IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE);          
+            ipm_gaterisksection=new IPM_GateRiskSection();
+            ApexPages.CurrentPage().getparameters().put('gateType', IPM_ConstantUtils.MARKET_READY_GATE);          
+            ipm_gaterisksection=new IPM_GateRiskSection();
+            ApexPages.CurrentPage().getparameters().put('gateType', IPM_ConstantUtils.CHARTER_GATE);          
+            ipm_gaterisksection=new IPM_GateRiskSection();
+            ApexPages.CurrentPage().getparameters().put('gateType', IPM_ConstantUtils.CONTRACT_GATE);          
             ipm_gaterisksection=new IPM_GateRiskSection();
         }
     }
@@ -98,6 +108,15 @@ private class IPM_GateRiskSection_Test{
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();
+            boolean IsEditable = ipm_gaterisksection.IsEditable;
+            ipm_gaterisksection.IsEditable = true;
+            IsEditable = ipm_gaterisksection.IsEditable;
+            Id projDocSecId = ipm_gaterisksection.projDocSecId;
+            Apexpages.currentpage().getparameters().put('getProjectSectionId',projectDocSecListObj[0].Id);
+            projDocSecId = ipm_gaterisksection.projDocSecId;
+            boolean edit = ipm_gaterisksection.edit;
+            ipm_gaterisksection.edit = true;
+            edit = ipm_gaterisksection.edit;
             ipm_gaterisksection.projDocType=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
             ipm_gaterisksection.projectId=project.Id;
             ipm_gaterisksection.projDocType=IPM_ConstantUtils.MARKET_READY_GATE;

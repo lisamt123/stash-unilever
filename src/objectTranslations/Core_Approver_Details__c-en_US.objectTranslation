@@ -36,6 +36,10 @@
             <translation><!-- DRFT --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>PAPP</masterLabel>
             <translation><!-- PAPP --></translation>
         </picklistValues>

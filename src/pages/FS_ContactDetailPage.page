@@ -155,7 +155,7 @@ function isNumberKey(evt)
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel value="{!$Label.FS_Comment}" />
                    
-                     <apex:inputText value="{!varContactDetail.MailingStreet}" />
+                     <apex:inputTextArea value="{!varContactDetail.MailingStreet}" />
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
             <apex:pageBlockButtons >

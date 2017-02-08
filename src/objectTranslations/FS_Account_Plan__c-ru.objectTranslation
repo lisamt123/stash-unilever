@@ -237,6 +237,10 @@
         <name>FS_End_Date_Before_Start_Date</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- The Customer is in Temporary status. Account Plan cannot be created with a temporary Customer --></errorMessage>
+        <name>FS_Temporary_Account</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>Вы не можете вносить изменения в план по клиенту после согласования</errorMessage>
         <name>Restrict_approved_Account_Plan_change</name>
     </validationRules>

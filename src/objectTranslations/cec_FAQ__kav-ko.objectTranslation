@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- FAQ --></value>
+    </caseValues>
+    <fields>
+        <label>추가적인 정보</label>
+        <name>Additional_Information__c</name>
+    </fields>
+    <fields>
+        <help>기사에 민감한 정보가 있을 시 표시해주세요.</help>
+        <label>추가적인 민감한 정보</label>
+        <name>Additional_Sensitive_Information__c</name>
+    </fields>
+    <fields>
+        <label>응답</label>
+        <name>Answer__c</name>
+    </fields>
+    <fields>
+        <label>법적 승인</label>
+        <name>Approved_by_Legal__c</name>
+    </fields>
+    <fields>
+        <label>레거시 텍스트</label>
+        <name>Legacy_Text__c</name>
+    </fields>
+    <fields>
+        <label>매타태그</label>
+        <name>Meta_Tags__c</name>
+    </fields>
+    <fields>
+        <label>질문</label>
+        <name>Question__c</name>
+    </fields>
+    <fields>
+        <label>연관된 PDF 2</label>
+        <name>Related_PDF_2__c</name>
+    </fields>
+    <fields>
+        <label>연관된 PDF 3</label>
+        <name>Related_PDF_3__c</name>
+    </fields>
+    <fields>
+        <label>연관된 PDF</label>
+        <name>Related_PDF__c</name>
+    </fields>
+    <fields>
+        <help>민감한 지식 허용 세트에 접근 가능한유저에게만 가능한 텍스트</help>
+        <label>민감한 내용</label>
+        <name>Sensitive_Text__c</name>
+    </fields>
+</CustomObjectTranslation>

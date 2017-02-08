@@ -1963,6 +1963,21 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Multi Brand Positioning --></label>
+        <name>Multi_Brand_Positioning__c</name>
+        <relationshipLabel><!-- Amr Job Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Multi Brand --></label>
+        <name>Multi_Brand__c</name>
+        <relationshipLabel><!-- Amr Job Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Multi Category --></label>
+        <name>Multi_Category__c</name>
+        <relationshipLabel><!-- Amr Job Details --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- NewOriginalMasterCinemaAudio --></label>
         <name>NewOriginalMasterCinemaAudio__c</name>
     </fields>
@@ -4464,6 +4479,19 @@
     <fields>
         <label><!-- Saving Record count --></label>
         <name>Saving_Record_count__c</name>
+    </fields>
+    <fields>
+        <help><!-- Single or Multiply --></help>
+        <label><!-- Single or multiply project --></label>
+        <name>Single_or_multiply_project__c</name>
+        <picklistValues>
+            <masterLabel>Multiply</masterLabel>
+            <translation><!-- Multiply --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Single</masterLabel>
+            <translation><!-- Single --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <help><!-- If your registation is across multiple Production Activity types then please select based on the timing of the 1st activity.  If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cutdown, Re-edit) your timing selection is based on --></help>

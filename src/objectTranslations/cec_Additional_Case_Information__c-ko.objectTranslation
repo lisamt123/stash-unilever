@@ -1,0 +1,1084 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Additional Case Information --></value>
+    </caseValues>
+    <fields>
+        <label>응답001</label>
+        <name>Answer001__c</name>
+    </fields>
+    <fields>
+        <label>응답002</label>
+        <name>Answer002__c</name>
+    </fields>
+    <fields>
+        <label>응답003</label>
+        <name>Answer003__c</name>
+    </fields>
+    <fields>
+        <label>응답004</label>
+        <name>Answer004__c</name>
+    </fields>
+    <fields>
+        <label>응답005</label>
+        <name>Answer005__c</name>
+    </fields>
+    <fields>
+        <label>응답006</label>
+        <name>Answer006__c</name>
+    </fields>
+    <fields>
+        <label>응답007</label>
+        <name>Answer007__c</name>
+    </fields>
+    <fields>
+        <label>응답008</label>
+        <name>Answer008__c</name>
+    </fields>
+    <fields>
+        <label>응답009</label>
+        <name>Answer009__c</name>
+    </fields>
+    <fields>
+        <label>응답010</label>
+        <name>Answer010__c</name>
+    </fields>
+    <fields>
+        <label>응답011</label>
+        <name>Answer011__c</name>
+    </fields>
+    <fields>
+        <label>응답012</label>
+        <name>Answer012__c</name>
+    </fields>
+    <fields>
+        <label>응답013</label>
+        <name>Answer013__c</name>
+    </fields>
+    <fields>
+        <label>응답014</label>
+        <name>Answer014__c</name>
+    </fields>
+    <fields>
+        <label>응답015</label>
+        <name>Answer015__c</name>
+    </fields>
+    <fields>
+        <label>응답016</label>
+        <name>Answer016__c</name>
+    </fields>
+    <fields>
+        <label>응답017</label>
+        <name>Answer017__c</name>
+    </fields>
+    <fields>
+        <label>응답018</label>
+        <name>Answer018__c</name>
+    </fields>
+    <fields>
+        <label>응답019</label>
+        <name>Answer019__c</name>
+    </fields>
+    <fields>
+        <label>응답020</label>
+        <name>Answer020__c</name>
+    </fields>
+    <fields>
+        <label>응답021</label>
+        <name>Answer021__c</name>
+    </fields>
+    <fields>
+        <label>응답022</label>
+        <name>Answer022__c</name>
+    </fields>
+    <fields>
+        <label>응답023</label>
+        <name>Answer023__c</name>
+    </fields>
+    <fields>
+        <label>응답024</label>
+        <name>Answer024__c</name>
+    </fields>
+    <fields>
+        <label>응답025</label>
+        <name>Answer025__c</name>
+    </fields>
+    <fields>
+        <label>응답026</label>
+        <name>Answer026__c</name>
+    </fields>
+    <fields>
+        <label>응답027</label>
+        <name>Answer027__c</name>
+    </fields>
+    <fields>
+        <label>응답028</label>
+        <name>Answer028__c</name>
+    </fields>
+    <fields>
+        <label>응답029</label>
+        <name>Answer029__c</name>
+    </fields>
+    <fields>
+        <label>응답030</label>
+        <name>Answer030__c</name>
+    </fields>
+    <fields>
+        <label>응답031</label>
+        <name>Answer031__c</name>
+    </fields>
+    <fields>
+        <label>응답032</label>
+        <name>Answer032__c</name>
+    </fields>
+    <fields>
+        <label>응답033</label>
+        <name>Answer033__c</name>
+    </fields>
+    <fields>
+        <label>응답034</label>
+        <name>Answer034__c</name>
+    </fields>
+    <fields>
+        <label>응답035</label>
+        <name>Answer035__c</name>
+    </fields>
+    <fields>
+        <label>응답036</label>
+        <name>Answer036__c</name>
+    </fields>
+    <fields>
+        <label>응답037</label>
+        <name>Answer037__c</name>
+    </fields>
+    <fields>
+        <label>응답038</label>
+        <name>Answer038__c</name>
+    </fields>
+    <fields>
+        <label>응답039</label>
+        <name>Answer039__c</name>
+    </fields>
+    <fields>
+        <label>응답040</label>
+        <name>Answer040__c</name>
+    </fields>
+    <fields>
+        <label>응답041</label>
+        <name>Answer041__c</name>
+    </fields>
+    <fields>
+        <label>응답042</label>
+        <name>Answer042__c</name>
+    </fields>
+    <fields>
+        <label>응답043</label>
+        <name>Answer043__c</name>
+    </fields>
+    <fields>
+        <label>응답044</label>
+        <name>Answer044__c</name>
+    </fields>
+    <fields>
+        <label>응답045</label>
+        <name>Answer045__c</name>
+    </fields>
+    <fields>
+        <label>응답046</label>
+        <name>Answer046__c</name>
+    </fields>
+    <fields>
+        <label>응답047</label>
+        <name>Answer047__c</name>
+    </fields>
+    <fields>
+        <label>응답048</label>
+        <name>Answer048__c</name>
+    </fields>
+    <fields>
+        <label>응답049</label>
+        <name>Answer049__c</name>
+    </fields>
+    <fields>
+        <label>응답050</label>
+        <name>Answer050__c</name>
+    </fields>
+    <fields>
+        <label>응답051</label>
+        <name>Answer051__c</name>
+    </fields>
+    <fields>
+        <label>응답052</label>
+        <name>Answer052__c</name>
+    </fields>
+    <fields>
+        <label>응답053</label>
+        <name>Answer053__c</name>
+    </fields>
+    <fields>
+        <label>응답054</label>
+        <name>Answer054__c</name>
+    </fields>
+    <fields>
+        <label>응답055</label>
+        <name>Answer055__c</name>
+    </fields>
+    <fields>
+        <label>응답056</label>
+        <name>Answer056__c</name>
+    </fields>
+    <fields>
+        <label>응답057</label>
+        <name>Answer057__c</name>
+    </fields>
+    <fields>
+        <label>응답058</label>
+        <name>Answer058__c</name>
+    </fields>
+    <fields>
+        <label>응답059</label>
+        <name>Answer059__c</name>
+    </fields>
+    <fields>
+        <label>응답060</label>
+        <name>Answer060__c</name>
+    </fields>
+    <fields>
+        <label>응답061</label>
+        <name>Answer061__c</name>
+    </fields>
+    <fields>
+        <label>응답062</label>
+        <name>Answer062__c</name>
+    </fields>
+    <fields>
+        <label>응답063</label>
+        <name>Answer063__c</name>
+    </fields>
+    <fields>
+        <label>응답064</label>
+        <name>Answer064__c</name>
+    </fields>
+    <fields>
+        <label>응답065</label>
+        <name>Answer065__c</name>
+    </fields>
+    <fields>
+        <label>응답066</label>
+        <name>Answer066__c</name>
+    </fields>
+    <fields>
+        <label>응답067</label>
+        <name>Answer067__c</name>
+    </fields>
+    <fields>
+        <label>응답068</label>
+        <name>Answer068__c</name>
+    </fields>
+    <fields>
+        <label>응답069</label>
+        <name>Answer069__c</name>
+    </fields>
+    <fields>
+        <label>응답070</label>
+        <name>Answer070__c</name>
+    </fields>
+    <fields>
+        <label>응답071</label>
+        <name>Answer071__c</name>
+    </fields>
+    <fields>
+        <label>응답072</label>
+        <name>Answer072__c</name>
+    </fields>
+    <fields>
+        <label>응답073</label>
+        <name>Answer073__c</name>
+    </fields>
+    <fields>
+        <label>응답074</label>
+        <name>Answer074__c</name>
+    </fields>
+    <fields>
+        <label>응답075</label>
+        <name>Answer075__c</name>
+    </fields>
+    <fields>
+        <label>응답076</label>
+        <name>Answer076__c</name>
+    </fields>
+    <fields>
+        <label>응답077</label>
+        <name>Answer077__c</name>
+    </fields>
+    <fields>
+        <label>응답078</label>
+        <name>Answer078__c</name>
+    </fields>
+    <fields>
+        <label>응답079</label>
+        <name>Answer079__c</name>
+    </fields>
+    <fields>
+        <label>응답080</label>
+        <name>Answer080__c</name>
+    </fields>
+    <fields>
+        <label>응답081</label>
+        <name>Answer081__c</name>
+    </fields>
+    <fields>
+        <label>응답082</label>
+        <name>Answer082__c</name>
+    </fields>
+    <fields>
+        <label>응답083</label>
+        <name>Answer083__c</name>
+    </fields>
+    <fields>
+        <label>응답084</label>
+        <name>Answer084__c</name>
+    </fields>
+    <fields>
+        <label>응답085</label>
+        <name>Answer085__c</name>
+    </fields>
+    <fields>
+        <label>응답086</label>
+        <name>Answer086__c</name>
+    </fields>
+    <fields>
+        <label>응답087</label>
+        <name>Answer087__c</name>
+    </fields>
+    <fields>
+        <label>응답088</label>
+        <name>Answer088__c</name>
+    </fields>
+    <fields>
+        <label>응답089</label>
+        <name>Answer089__c</name>
+    </fields>
+    <fields>
+        <label>응답090</label>
+        <name>Answer090__c</name>
+    </fields>
+    <fields>
+        <label>응답091</label>
+        <name>Answer091__c</name>
+    </fields>
+    <fields>
+        <label>응답092</label>
+        <name>Answer092__c</name>
+    </fields>
+    <fields>
+        <label>응답093</label>
+        <name>Answer093__c</name>
+    </fields>
+    <fields>
+        <label>응답094</label>
+        <name>Answer094__c</name>
+    </fields>
+    <fields>
+        <label>응답095</label>
+        <name>Answer095__c</name>
+    </fields>
+    <fields>
+        <label>응답096</label>
+        <name>Answer096__c</name>
+    </fields>
+    <fields>
+        <label>응답097</label>
+        <name>Answer097__c</name>
+    </fields>
+    <fields>
+        <label>응답098</label>
+        <name>Answer098__c</name>
+    </fields>
+    <fields>
+        <label>응답099</label>
+        <name>Answer099__c</name>
+    </fields>
+    <fields>
+        <label>응답100</label>
+        <name>Answer100__c</name>
+    </fields>
+    <fields>
+        <label>케이스</label>
+        <name>Case__c</name>
+        <relationshipLabel>추가적인 케이스 정보</relationshipLabel>
+    </fields>
+    <fields>
+        <label>대화키</label>
+        <name>ChatKey__c</name>
+    </fields>
+    <fields>
+        <label>당신의 발행에 대한 우리 대답이 발송되었습니다.</label>
+        <name>Close_Case_2__c</name>
+    </fields>
+    <fields>
+        <label>충성 고객으로 기분 좋게 만들었습니다.</label>
+        <name>Close_Case_3__c</name>
+    </fields>
+    <fields>
+        <label>기타 추천</label>
+        <name>Close_Case_4__c</name>
+    </fields>
+    <fields>
+        <label>코멘트</label>
+        <name>Close_Case_5__c</name>
+    </fields>
+    <fields>
+        <label>발급하다</label>
+        <name>Issue__c</name>
+        <relationshipLabel>추가적인 케이스 정보</relationshipLabel>
+    </fields>
+    <fields>
+        <label>질문 001</label>
+        <name>Question001__c</name>
+    </fields>
+    <fields>
+        <label>질문 002</label>
+        <name>Question002__c</name>
+    </fields>
+    <fields>
+        <label>질문 003</label>
+        <name>Question003__c</name>
+    </fields>
+    <fields>
+        <label>질문 004</label>
+        <name>Question004__c</name>
+    </fields>
+    <fields>
+        <label>질문 005</label>
+        <name>Question005__c</name>
+    </fields>
+    <fields>
+        <label>질문 006</label>
+        <name>Question006__c</name>
+    </fields>
+    <fields>
+        <label>질문 007</label>
+        <name>Question007__c</name>
+    </fields>
+    <fields>
+        <label>질문 008</label>
+        <name>Question008__c</name>
+    </fields>
+    <fields>
+        <label>질문 009</label>
+        <name>Question009__c</name>
+    </fields>
+    <fields>
+        <label>질문 010</label>
+        <name>Question010__c</name>
+    </fields>
+    <fields>
+        <label>질문 011</label>
+        <name>Question011__c</name>
+    </fields>
+    <fields>
+        <label>질문 012</label>
+        <name>Question012__c</name>
+    </fields>
+    <fields>
+        <label>질문 013</label>
+        <name>Question013__c</name>
+    </fields>
+    <fields>
+        <label>질문 014</label>
+        <name>Question014__c</name>
+    </fields>
+    <fields>
+        <label>질문 015</label>
+        <name>Question015__c</name>
+    </fields>
+    <fields>
+        <label>질문 016</label>
+        <name>Question016__c</name>
+    </fields>
+    <fields>
+        <label>질문 017</label>
+        <name>Question017__c</name>
+    </fields>
+    <fields>
+        <label>질문 018</label>
+        <name>Question018__c</name>
+    </fields>
+    <fields>
+        <label>질문 019</label>
+        <name>Question019__c</name>
+    </fields>
+    <fields>
+        <label>질문 020</label>
+        <name>Question020__c</name>
+    </fields>
+    <fields>
+        <label>질문 021</label>
+        <name>Question021__c</name>
+    </fields>
+    <fields>
+        <label>질문 022</label>
+        <name>Question022__c</name>
+    </fields>
+    <fields>
+        <label>질문 023</label>
+        <name>Question023__c</name>
+    </fields>
+    <fields>
+        <label>질문 024</label>
+        <name>Question024__c</name>
+    </fields>
+    <fields>
+        <label>질문 025</label>
+        <name>Question025__c</name>
+    </fields>
+    <fields>
+        <label>질문 026</label>
+        <name>Question026__c</name>
+    </fields>
+    <fields>
+        <label>질문 027</label>
+        <name>Question027__c</name>
+    </fields>
+    <fields>
+        <label>질문 028</label>
+        <name>Question028__c</name>
+    </fields>
+    <fields>
+        <label>질문 029</label>
+        <name>Question029__c</name>
+    </fields>
+    <fields>
+        <label>질문 030</label>
+        <name>Question030__c</name>
+    </fields>
+    <fields>
+        <label>질문 031</label>
+        <name>Question031__c</name>
+    </fields>
+    <fields>
+        <label>질문 032</label>
+        <name>Question032__c</name>
+    </fields>
+    <fields>
+        <label>질문 033</label>
+        <name>Question033__c</name>
+    </fields>
+    <fields>
+        <label>질문 034</label>
+        <name>Question034__c</name>
+    </fields>
+    <fields>
+        <label>질문 035</label>
+        <name>Question035__c</name>
+    </fields>
+    <fields>
+        <label>질문 036</label>
+        <name>Question036__c</name>
+    </fields>
+    <fields>
+        <label>질문 037</label>
+        <name>Question037__c</name>
+    </fields>
+    <fields>
+        <label>질문 038</label>
+        <name>Question038__c</name>
+    </fields>
+    <fields>
+        <label>질문 039</label>
+        <name>Question039__c</name>
+    </fields>
+    <fields>
+        <label>질문 040</label>
+        <name>Question040__c</name>
+    </fields>
+    <fields>
+        <label>질문 041</label>
+        <name>Question041__c</name>
+    </fields>
+    <fields>
+        <label>질문 042</label>
+        <name>Question042__c</name>
+    </fields>
+    <fields>
+        <label>질문 043</label>
+        <name>Question043__c</name>
+    </fields>
+    <fields>
+        <label>질문 044</label>
+        <name>Question044__c</name>
+    </fields>
+    <fields>
+        <label>질문 045</label>
+        <name>Question045__c</name>
+    </fields>
+    <fields>
+        <label>질문 046</label>
+        <name>Question046__c</name>
+    </fields>
+    <fields>
+        <label>질문 047</label>
+        <name>Question047__c</name>
+    </fields>
+    <fields>
+        <label>질문 048</label>
+        <name>Question048__c</name>
+    </fields>
+    <fields>
+        <label>질문 049</label>
+        <name>Question049__c</name>
+    </fields>
+    <fields>
+        <label>질문 050</label>
+        <name>Question050__c</name>
+    </fields>
+    <fields>
+        <label>질문 051</label>
+        <name>Question051__c</name>
+    </fields>
+    <fields>
+        <label>질문 052</label>
+        <name>Question052__c</name>
+    </fields>
+    <fields>
+        <label>질문 053</label>
+        <name>Question053__c</name>
+    </fields>
+    <fields>
+        <label>질문 054</label>
+        <name>Question054__c</name>
+    </fields>
+    <fields>
+        <label>질문 055</label>
+        <name>Question055__c</name>
+    </fields>
+    <fields>
+        <label>질문 056</label>
+        <name>Question056__c</name>
+    </fields>
+    <fields>
+        <label>질문 057</label>
+        <name>Question057__c</name>
+    </fields>
+    <fields>
+        <label>질문 058</label>
+        <name>Question058__c</name>
+    </fields>
+    <fields>
+        <label>질문 059</label>
+        <name>Question059__c</name>
+    </fields>
+    <fields>
+        <label>질문 060</label>
+        <name>Question060__c</name>
+    </fields>
+    <fields>
+        <label>질문 061</label>
+        <name>Question061__c</name>
+    </fields>
+    <fields>
+        <label>질문 062</label>
+        <name>Question062__c</name>
+    </fields>
+    <fields>
+        <label>질문 063</label>
+        <name>Question063__c</name>
+    </fields>
+    <fields>
+        <label>질문 064</label>
+        <name>Question064__c</name>
+    </fields>
+    <fields>
+        <label>질문 065</label>
+        <name>Question065__c</name>
+    </fields>
+    <fields>
+        <label>질문 066</label>
+        <name>Question066__c</name>
+    </fields>
+    <fields>
+        <label>질문 067</label>
+        <name>Question067__c</name>
+    </fields>
+    <fields>
+        <label>질문 068</label>
+        <name>Question068__c</name>
+    </fields>
+    <fields>
+        <label>질문 069</label>
+        <name>Question069__c</name>
+    </fields>
+    <fields>
+        <label>질문 070</label>
+        <name>Question070__c</name>
+    </fields>
+    <fields>
+        <label>질문 071</label>
+        <name>Question071__c</name>
+    </fields>
+    <fields>
+        <label>질문 072</label>
+        <name>Question072__c</name>
+    </fields>
+    <fields>
+        <label>질문 073</label>
+        <name>Question073__c</name>
+    </fields>
+    <fields>
+        <label>질문 074</label>
+        <name>Question074__c</name>
+    </fields>
+    <fields>
+        <label>질문 075</label>
+        <name>Question075__c</name>
+    </fields>
+    <fields>
+        <label>질문 076</label>
+        <name>Question076__c</name>
+    </fields>
+    <fields>
+        <label>질문 077</label>
+        <name>Question077__c</name>
+    </fields>
+    <fields>
+        <label>질문 078</label>
+        <name>Question078__c</name>
+    </fields>
+    <fields>
+        <label>질문 079</label>
+        <name>Question079__c</name>
+    </fields>
+    <fields>
+        <label>질문 080</label>
+        <name>Question080__c</name>
+    </fields>
+    <fields>
+        <label>질문 081</label>
+        <name>Question081__c</name>
+    </fields>
+    <fields>
+        <label>질문 082</label>
+        <name>Question082__c</name>
+    </fields>
+    <fields>
+        <label>질문 083</label>
+        <name>Question083__c</name>
+    </fields>
+    <fields>
+        <label>질문 084</label>
+        <name>Question084__c</name>
+    </fields>
+    <fields>
+        <label>질문 085</label>
+        <name>Question085__c</name>
+    </fields>
+    <fields>
+        <label>질문 086</label>
+        <name>Question086__c</name>
+    </fields>
+    <fields>
+        <label>질문 087</label>
+        <name>Question087__c</name>
+    </fields>
+    <fields>
+        <label>질문 088</label>
+        <name>Question088__c</name>
+    </fields>
+    <fields>
+        <label>질문 089</label>
+        <name>Question089__c</name>
+    </fields>
+    <fields>
+        <label>질문 090</label>
+        <name>Question090__c</name>
+    </fields>
+    <fields>
+        <label>질문 091</label>
+        <name>Question091__c</name>
+    </fields>
+    <fields>
+        <label>질문 092</label>
+        <name>Question092__c</name>
+    </fields>
+    <fields>
+        <label>질문 093</label>
+        <name>Question093__c</name>
+    </fields>
+    <fields>
+        <label>질문 094</label>
+        <name>Question094__c</name>
+    </fields>
+    <fields>
+        <label>질문 095</label>
+        <name>Question095__c</name>
+    </fields>
+    <fields>
+        <label>질문 096</label>
+        <name>Question096__c</name>
+    </fields>
+    <fields>
+        <label>질문 097</label>
+        <name>Question097__c</name>
+    </fields>
+    <fields>
+        <label>질문 098</label>
+        <name>Question098__c</name>
+    </fields>
+    <fields>
+        <label>질문 099</label>
+        <name>Question099__c</name>
+    </fields>
+    <fields>
+        <label>질문 100</label>
+        <name>Question100__c</name>
+    </fields>
+    <fields>
+        <label>기록 유형 개발자 명</label>
+        <name>Record_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- URL --></label>
+        <name>URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- q10 --></label>
+        <name>q10__c</name>
+    </fields>
+    <fields>
+        <label><!-- q11 --></label>
+        <name>q11__c</name>
+    </fields>
+    <fields>
+        <label>q 12</label>
+        <name>q12__c</name>
+    </fields>
+    <fields>
+        <label><!-- q13 --></label>
+        <name>q13__c</name>
+    </fields>
+    <fields>
+        <label><!-- q14 --></label>
+        <name>q14__c</name>
+    </fields>
+    <fields>
+        <label><!-- q15 --></label>
+        <name>q15__c</name>
+    </fields>
+    <fields>
+        <label><!-- q16 --></label>
+        <name>q16__c</name>
+    </fields>
+    <fields>
+        <label><!-- q17 --></label>
+        <name>q17__c</name>
+    </fields>
+    <fields>
+        <label><!-- q18 --></label>
+        <name>q18__c</name>
+    </fields>
+    <fields>
+        <label><!-- q19 --></label>
+        <name>q19__c</name>
+    </fields>
+    <fields>
+        <label><!-- q1 --></label>
+        <name>q1__c</name>
+    </fields>
+    <fields>
+        <label><!-- q20 --></label>
+        <name>q20__c</name>
+    </fields>
+    <fields>
+        <label><!-- q21 --></label>
+        <name>q21__c</name>
+    </fields>
+    <fields>
+        <label><!-- q22 --></label>
+        <name>q22__c</name>
+    </fields>
+    <fields>
+        <label><!-- q23 --></label>
+        <name>q23__c</name>
+    </fields>
+    <fields>
+        <label><!-- q24 --></label>
+        <name>q24__c</name>
+    </fields>
+    <fields>
+        <label><!-- q25 --></label>
+        <name>q25__c</name>
+    </fields>
+    <fields>
+        <label><!-- q26 --></label>
+        <name>q26__c</name>
+    </fields>
+    <fields>
+        <label><!-- q27 --></label>
+        <name>q27__c</name>
+    </fields>
+    <fields>
+        <label><!-- q28 --></label>
+        <name>q28__c</name>
+    </fields>
+    <fields>
+        <label><!-- q29 --></label>
+        <name>q29__c</name>
+    </fields>
+    <fields>
+        <label><!-- q2 --></label>
+        <name>q2__c</name>
+    </fields>
+    <fields>
+        <label><!-- q30 --></label>
+        <name>q30__c</name>
+    </fields>
+    <fields>
+        <label><!-- q31 --></label>
+        <name>q31__c</name>
+    </fields>
+    <fields>
+        <label><!-- q32 --></label>
+        <name>q32__c</name>
+    </fields>
+    <fields>
+        <label><!-- q33 --></label>
+        <name>q33__c</name>
+    </fields>
+    <fields>
+        <label><!-- q34 --></label>
+        <name>q34__c</name>
+    </fields>
+    <fields>
+        <label><!-- q35 --></label>
+        <name>q35__c</name>
+    </fields>
+    <fields>
+        <label><!-- q36 --></label>
+        <name>q36__c</name>
+    </fields>
+    <fields>
+        <label><!-- q37 --></label>
+        <name>q37__c</name>
+    </fields>
+    <fields>
+        <label><!-- q38 --></label>
+        <name>q38__c</name>
+    </fields>
+    <fields>
+        <label><!-- q39 --></label>
+        <name>q39__c</name>
+    </fields>
+    <fields>
+        <label><!-- q3 --></label>
+        <name>q3__c</name>
+    </fields>
+    <fields>
+        <label><!-- q40 --></label>
+        <name>q40__c</name>
+    </fields>
+    <fields>
+        <label><!-- q41 --></label>
+        <name>q41__c</name>
+    </fields>
+    <fields>
+        <label><!-- q42 --></label>
+        <name>q42__c</name>
+    </fields>
+    <fields>
+        <label><!-- q43 --></label>
+        <name>q43__c</name>
+    </fields>
+    <fields>
+        <label><!-- q44 --></label>
+        <name>q44__c</name>
+    </fields>
+    <fields>
+        <label><!-- q45 --></label>
+        <name>q45__c</name>
+    </fields>
+    <fields>
+        <label><!-- q46 --></label>
+        <name>q46__c</name>
+    </fields>
+    <fields>
+        <label><!-- q47 --></label>
+        <name>q47__c</name>
+    </fields>
+    <fields>
+        <label><!-- q48 --></label>
+        <name>q48__c</name>
+    </fields>
+    <fields>
+        <label><!-- q49 --></label>
+        <name>q49__c</name>
+    </fields>
+    <fields>
+        <label><!-- q4 --></label>
+        <name>q4__c</name>
+    </fields>
+    <fields>
+        <label><!-- q50 --></label>
+        <name>q50__c</name>
+    </fields>
+    <fields>
+        <label><!-- q51 --></label>
+        <name>q51__c</name>
+    </fields>
+    <fields>
+        <label><!-- q52 --></label>
+        <name>q52__c</name>
+    </fields>
+    <fields>
+        <label><!-- q53 --></label>
+        <name>q53__c</name>
+    </fields>
+    <fields>
+        <label><!-- q54 --></label>
+        <name>q54__c</name>
+    </fields>
+    <fields>
+        <label><!-- q5 --></label>
+        <name>q5__c</name>
+    </fields>
+    <fields>
+        <label><!-- q6 --></label>
+        <name>q6__c</name>
+    </fields>
+    <fields>
+        <label><!-- q7 --></label>
+        <name>q7__c</name>
+    </fields>
+    <fields>
+        <label><!-- q8 --></label>
+        <name>q8__c</name>
+    </fields>
+    <fields>
+        <label><!-- q9 --></label>
+        <name>q9__c</name>
+    </fields>
+    <layouts>
+        <layout>Additional Information Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Cosmetovigilance Page Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Additional Information Name --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- Adviser Questionaire --></label>
+        <name>Adviser_Questionaire</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Close Case Survey --></label>
+        <name>Close_Case_Survey</name>
+    </recordTypes>
+</CustomObjectTranslation>

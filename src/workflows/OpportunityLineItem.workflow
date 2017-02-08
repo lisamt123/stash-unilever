@@ -78,16 +78,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>FS_UpdateuniqueProduct</fullName>
-        <description>Update the unique product field to restrict adding same products to opportunity.</description>
-        <field>FS_UniqueProduct__c</field>
-        <formula>OpportunityId+Product2Id</formula>
-        <name>FS Update unique Product</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Update_FS_NSV_CALCULATION</fullName>
         <description>Update FS NSV CALCULATION</description>
         <field>FS_NSV_CALCULATION__c</field>
@@ -98,17 +88,6 @@
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
-    <rules>
-        <fullName>FS Adding Unique Products</fullName>
-        <actions>
-            <name>FS_UpdateuniqueProduct</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>Created to restrict adding same products to opportunity.</description>
-        <formula>AND($Profile.Name=&quot;Unilever Food Solution - Russia&quot;,  Opportunity.RecordType.Name =&quot;RUFS Opportunity TPR&quot;)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
     <rules>
         <fullName>FS Copy DIST TMI and COGS To Non Formula Field</fullName>
         <actions>

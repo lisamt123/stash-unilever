@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Issue --></value>
+    </caseValues>
+    <fields>
+        <label>品牌</label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label>CEC_产品</label>
+        <name>CEC_Product__c</name>
+        <relationshipLabel>问题</relationshipLabel>
+    </fields>
+    <fields>
+        <label>案例</label>
+        <name>Case__c</name>
+        <relationshipLabel>问题</relationshipLabel>
+    </fields>
+    <fields>
+        <label>生产日期</label>
+        <name>Date_of_Manufacture__c</name>
+    </fields>
+    <fields>
+        <label>生产日期</label>
+        <name>Date_of_Manufacture_str__c</name>
+    </fields>
+    <fields>
+        <label>日期代码</label>
+        <name>DayCode__c</name>
+    </fields>
+    <fields>
+        <label>限用日期</label>
+        <name>Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <label>产品_品类</label>
+        <name>L0_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>产品_品类第一层</label>
+        <name>L1_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>问题_分类第二层</label>
+        <name>L2_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>产品_品类第三层</label>
+        <name>L3_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>产品_品类第四层</label>
+        <name>L4_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>产品_品类第五层</label>
+        <name>L5_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>产品_品类第六层</label>
+        <name>L6_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>产品_品类第七层</label>
+        <name>L7_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>市场</label>
+        <name>Market__c</name>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK &amp; Ireland</masterLabel>
+            <translation><!-- UK &amp; Ireland --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- MyVerb --></label>
+        <name>MyVerb__c</name>
+    </fields>
+    <fields>
+        <label>P0 代码</label>
+        <name>P0_Code__c</name>
+    </fields>
+    <fields>
+        <label>P1_代码</label>
+        <name>P1_Code__c</name>
+    </fields>
+    <fields>
+        <label>P2_代码</label>
+        <name>P2_Code__c</name>
+    </fields>
+    <fields>
+        <label>P3_代码</label>
+        <name>P3_Code__c</name>
+    </fields>
+    <fields>
+        <label>P4_代码</label>
+        <name>P4_Code__c</name>
+    </fields>
+    <fields>
+        <label>P5_代码</label>
+        <name>P5_Code__c</name>
+    </fields>
+    <fields>
+        <label>P6_代码</label>
+        <name>P6_Code__c</name>
+    </fields>
+    <fields>
+        <label>P7_代码</label>
+        <name>P7_Code__c</name>
+    </fields>
+    <fields>
+        <label>产品规则级别</label>
+        <name>Product_Rule_level__c</name>
+    </fields>
+    <fields>
+        <label>产品条形码</label>
+        <name>Product_UPC__c</name>
+    </fields>
+    <fields>
+        <label>生产批次</label>
+        <name>Production_Code__c</name>
+    </fields>
+    <fields>
+        <label>购买日期</label>
+        <name>Purchase_Date__c</name>
+    </fields>
+    <fields>
+        <label>原因代码</label>
+        <name>Reason_Code__c</name>
+        <relationshipLabel>问题</relationshipLabel>
+    </fields>
+    <fields>
+        <label>原因 L0 代码</label>
+        <name>Reason_L0_Code__c</name>
+    </fields>
+    <fields>
+        <label>原因_ L0_描述</label>
+        <name>Reason_L0_desc__c</name>
+    </fields>
+    <fields>
+        <label>原因 L1 代码</label>
+        <name>Reason_L1_Code__c</name>
+    </fields>
+    <fields>
+        <label>原因_ L1_描述</label>
+        <name>Reason_L1_desc__c</name>
+    </fields>
+    <fields>
+        <label>原因 L2 代码</label>
+        <name>Reason_L2_Code__c</name>
+    </fields>
+    <fields>
+        <label>原因_ L2_描述</label>
+        <name>Reason_L2_desc__c</name>
+    </fields>
+    <fields>
+        <label>原因 L3 代码</label>
+        <name>Reason_L3_Code__c</name>
+    </fields>
+    <fields>
+        <label>原因_ L3_描述</label>
+        <name>Reason_L3_desc__c</name>
+    </fields>
+    <fields>
+        <label>原因 L4 代码</label>
+        <name>Reason_L4_Code__c</name>
+    </fields>
+    <fields>
+        <label>原因_ L4_描述</label>
+        <name>Reason_L4_desc__c</name>
+    </fields>
+    <fields>
+        <label>原因 L5 代码</label>
+        <name>Reason_L5_Code__c</name>
+    </fields>
+    <fields>
+        <label>原因_ L5_简短_描述</label>
+        <name>Reason_L5_Short_desc__c</name>
+    </fields>
+    <fields>
+        <label>原因_ L5_描述</label>
+        <name>Reason_L5_desc__c</name>
+    </fields>
+    <fields>
+        <label>原因_规则_级别</label>
+        <name>Reason_Rule_level__c</name>
+    </fields>
+    <fields>
+        <label>零售店地点</label>
+        <name>Store_Location__c</name>
+    </fields>
+    <fields>
+        <label>零售店</label>
+        <name>Store__c</name>
+        <relationshipLabel>问题</relationshipLabel>
+    </fields>
+    <fields>
+        <label>条形码代码详情</label>
+        <name>UPC_Code_Detail__c</name>
+    </fields>
+    <fields>
+        <label>专属账号</label>
+        <name>Unique_ID__c</name>
+    </fields>
+    <fields>
+        <label>详细说明</label>
+        <name>Verbatim__c</name>
+    </fields>
+    <fields>
+        <label>是否知道产品形态</label>
+        <name>isFormKnown__c</name>
+    </fields>
+    <fields>
+        <label>是否知道包装大小</label>
+        <name>isPacksizeKnown__c</name>
+    </fields>
+    <fields>
+        <label>是否知道产品系列</label>
+        <name>isVariantKnown__c</name>
+    </fields>
+    <layouts>
+        <layout>Issue Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Issue Number --></nameFieldLabel>
+    <webLinks>
+        <label><!-- Cosmetovigilence --></label>
+        <name>Cosmetovigilence</name>
+    </webLinks>
+</CustomObjectTranslation>

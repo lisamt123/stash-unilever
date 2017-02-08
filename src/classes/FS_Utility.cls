@@ -63,13 +63,33 @@ public with sharing Class FS_Utility{
         
         for(Account a : accounts){
            FS_User_Territory__c ut = FS_User_Territory__c.getInstance(a.ownerId);
-           acts.add(new Account(Id=a.Id, Region__c = ut.Region__c, Zone__c=ut.Zone__c, Territory__c=ut.Territory__c));
+            Account tempAcc = new Account();           
+           //acts.add(new Account(Id=a.Id, Region__c = ut.Region__c,FS_CHD_Lock__c=true, Zone__c=ut.Zone__c, Territory__c=ut.Territory__c));//CurrencyIsoCode='CAD'
+            tempAcc.Id=a.Id;
+            tempAcc.Region__c = ut.Region__c;
+            tempAcc.FS_CHD_Lock__c=true; 
+            tempAcc.Zone__c=ut.Zone__c; 
+            tempAcc.Territory__c=ut.Territory__c;
+            
+         if(!String.ISBLANK(a.SubSegment__c)&& String.ISBLANK(a.Segment__c)){
+               List<string> strList = new List<String>();
+               strList =a.SubSegment__c.split('\\.');
+               FS_CHD_GFCCode__c uts = FS_CHD_GFCCode__c.getInstance(strList[0].trim());
+                
+                if(!String.ISBLANK(uts.Segment__c)){
+                     // actlist.add(new Account(Id=acts.Id,FS_CHD_Lock__c=true,Segment__c= ut.Segment__c.trim()));
+                     tempAcc.Segment__c= uts.Segment__c.trim();
+                     }
+            } 
+        acts.add(tempAcc);
         }
         try{
             update acts;
         }catch(Exception e){
             system.debug(e);
         }
-    }    
+    }  
+   
+   
     
    }

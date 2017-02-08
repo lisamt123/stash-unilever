@@ -43,9 +43,9 @@
         <permissionSet>CI_R2R_KUN_user_Community</permissionSet>
         <permissionSet>CI_R2R_Admin_Community</permissionSet>
         <permissionSet>GEL_Admin_Community</permissionSet>
-        <profile>Admin</profile>
-        <profile>Customer Community Login User</profile>
-        <profile>Customer Community User</profile>
+        <profile>admin</profile>
+        <profile>customer community login user</profile>
+        <profile>customer community user</profile>
     </networkMemberGroups>
     <picassoSite>Global_Finance1</picassoSite>
     <selfRegistration>false</selfRegistration>

@@ -378,7 +378,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>(1 OR 3) AND 2</booleanFilter>
+        <booleanFilter>(1 OR 3 OR 4) AND 2</booleanFilter>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
@@ -391,7 +391,12 @@
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
-            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan</value>
+            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan,Email Korea,Email Taiwan,Email Hong Kong</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>contains</operation>
+            <value>Email Turkey</value>
         </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
         <triggerType>onAllChanges</triggerType>

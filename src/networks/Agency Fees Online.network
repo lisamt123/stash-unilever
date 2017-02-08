@@ -26,7 +26,7 @@
     <enableReputation>false</enableReputation>
     <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <networkMemberGroups>
-        <profile>AF - Agency Portal User</profile>
+        <profile>af - agency portal user</profile>
     </networkMemberGroups>
     <newSenderAddress>Agency.Fees@unilever.com</newSenderAddress>
     <picassoSite>Agency_Fees_Online1</picassoSite>

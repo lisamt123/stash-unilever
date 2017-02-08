@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <fields>
+        <label>Dış Kaynaklı Link</label>
+        <name>Additional_Information__c</name>
+    </fields>
+    <fields>
+        <label>Ek Ürün Bilgisi</label>
+        <name>Additional_Product_Information__c</name>
+    </fields>
+    <fields>
+        <label>Ek Özel Durum Bilgisi</label>
+        <name>Additional_Sensitive_Information__c</name>
+    </fields>
+    <fields>
+        <label>Hukuk tarafından Onaylandı</label>
+        <name>Approved_by_Legal__c</name>
+    </fields>
+    <fields>
+        <label>Bulunabilirlik</label>
+        <name>Availability__c</name>
+    </fields>
+    <fields>
+        <label>Yararlanma</label>
+        <name>Benefit__c</name>
+    </fields>
+    <fields>
+        <label>Marka</label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label>Tarih Kodu Lokasyon</label>
+        <name>Date_Code_Location__c</name>
+    </fields>
+    <fields>
+        <label>GTIN Kodu Son 4</label>
+        <name>GTIN_Code_Last_4__c</name>
+    </fields>
+    <fields>
+        <label>İçerik</label>
+        <name>Ingredients__c</name>
+    </fields>
+    <fields>
+        <label>Eski Metin</label>
+        <name>Legacy_Text__c</name>
+    </fields>
+    <fields>
+        <label>Meta etiket</label>
+        <name>Meta_Tags__c</name>
+    </fields>
+    <fields>
+        <label>Beslenme Bilgisi</label>
+        <name>Nutrition_Information__c</name>
+    </fields>
+    <fields>
+        <label>PDF versiyonu 2</label>
+        <name>PDF_Version_2__c</name>
+    </fields>
+    <fields>
+        <label>PDF versiyonu 3</label>
+        <name>PDF_Version_3__c</name>
+    </fields>
+    <fields>
+        <label>PDF versiyonu</label>
+        <name>PDF_Version__c</name>
+    </fields>
+    <fields>
+        <label>Paket çekimi</label>
+        <name>Pack_Shot__c</name>
+    </fields>
+    <fields>
+        <label>Ambalaj Açıklaması</label>
+        <name>Packaging_Description__c</name>
+    </fields>
+    <fields>
+        <label>Ürün Kodu</label>
+        <name>Product_Code__c</name>
+    </fields>
+    <fields>
+        <label>Ürün De-list edildi</label>
+        <name>Product_De_listed__c</name>
+    </fields>
+    <fields>
+        <label>Ürün Açıklaması</label>
+        <name>Product_Description__c</name>
+    </fields>
+    <fields>
+        <label>Tarif Önerileri</label>
+        <name>Recipe_Suggestions__c</name>
+    </fields>
+    <fields>
+        <label>Geri Dönüşüm bilgisi</label>
+        <name>Recycling_Info__c</name>
+    </fields>
+    <fields>
+        <label>Hassas Metin</label>
+        <name>Sensitive_Text__c</name>
+    </fields>
+    <fields>
+        <label>Raf Ömrü</label>
+        <name>Shelf_Life__c</name>
+    </fields>
+    <fields>
+        <label>Boyut</label>
+        <name>Size__c</name>
+    </fields>
+    <fields>
+        <label>Depolama</label>
+        <name>Storage__c</name>
+    </fields>
+    <fields>
+        <label>Uygunluk</label>
+        <name>Suitability__c</name>
+    </fields>
+    <fields>
+        <label>Telefon Numarası</label>
+        <name>Telephone_Numbers__c</name>
+    </fields>
+    <fields>
+        <label>Kullanım</label>
+        <name>Usage__c</name>
+    </fields>
+    <fields>
+        <label>Varyant</label>
+        <name>Variant__c</name>
+    </fields>
+    <layouts>
+        <layout>Product Information Layout</layout>
+        <sections>
+            <label><!-- Extended Data --></label>
+            <section>Extended Data</section>
+        </sections>
+        <sections>
+            <label><!-- External Links --></label>
+            <section>External Links</section>
+        </sections>
+        <sections>
+            <label><!-- Nutrition Information --></label>
+            <section>Nutrition Information</section>
+        </sections>
+        <sections>
+            <label><!-- Product &amp; Packaging --></label>
+            <section>Product &amp; Packaging</section>
+        </sections>
+        <sections>
+            <label><!-- Recipe Information --></label>
+            <section>Recipe Information</section>
+        </sections>
+        <sections>
+            <label><!-- Storage &amp; Usage --></label>
+            <section>Storage &amp; Usage</section>
+        </sections>
+        <sections>
+            <label><!-- Telephone Numbers --></label>
+            <section>Telephone Numbers</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

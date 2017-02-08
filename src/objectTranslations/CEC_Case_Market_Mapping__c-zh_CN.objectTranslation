@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <fields>
+        <label>活跃帐户持有人标记</label>
+        <name>Account_Owner_Active_Flag__c</name>
+    </fields>
+    <fields>
+        <label>品牌专家 品牌</label>
+        <name>Brand_Ambassador_Brands__c</name>
+    </fields>
+    <fields>
+        <label>办公时间</label>
+        <name>Business_Hours__c</name>
+        <relationshipLabel>市场配对</relationshipLabel>
+    </fields>
+    <fields>
+        <label>CSAT 延误</label>
+        <name>CSAT_Delay__c</name>
+    </fields>
+    <fields>
+        <label>CSAT 电邮百分比</label>
+        <name>CSAT_Email_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>CSAT 热线电话百分比</label>
+        <name>CSAT_Phone_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>CSAT 社交平台百分比</label>
+        <name>CSAT_Social_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>CSAT 问卷单号</label>
+        <name>CSAT_Survey_Id__c</name>
+    </fields>
+    <fields>
+        <label>CSAT 网页百分比</label>
+        <name>CSAT_Web_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>案例来源</label>
+        <name>CaseOrigin__c</name>
+    </fields>
+    <fields>
+        <label>支票位数</label>
+        <name>Cheque_Decimals__c</name>
+        <picklistValues>
+            <masterLabel>Display as fraction</masterLabel>
+            <translation><!-- Display as fraction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Display as text</masterLabel>
+            <translation><!-- Display as text --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>公司地址</label>
+        <name>Company_Address__c</name>
+    </fields>
+    <fields>
+        <label>公司电话</label>
+        <name>Company_Phone__c</name>
+    </fields>
+    <fields>
+        <label>消费者电话号码检索</label>
+        <name>Consumer_Phone_Search_Digits__c</name>
+    </fields>
+    <fields>
+        <label>国家</label>
+        <name>Country__c</name>
+        <relationshipLabel>市场配对</relationshipLabel>
+    </fields>
+    <fields>
+        <label>默认账户持有人</label>
+        <name>DefaultAccountOwnerId__c</name>
+        <relationshipLabel>市场配对</relationshipLabel>
+    </fields>
+    <fields>
+        <label>默认案例处理人</label>
+        <name>DefaultCaseOwnerId__c</name>
+    </fields>
+    <fields>
+        <label>根据住址默认</label>
+        <name>Default_From_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enable Skill Routing --></label>
+        <name>Enable_Skill_Routing__c</name>
+    </fields>
+    <fields>
+        <label>语言</label>
+        <name>Language__c</name>
+        <picklistValues>
+            <masterLabel>Bosnian</masterLabel>
+            <translation><!-- Bosnian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bulgarian</masterLabel>
+            <translation><!-- Bulgarian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chinese</masterLabel>
+            <translation><!-- Chinese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Croatian</masterLabel>
+            <translation><!-- Croatian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech</masterLabel>
+            <translation><!-- Czech --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Danish</masterLabel>
+            <translation><!-- Danish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dutch</masterLabel>
+            <translation><!-- Dutch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English</masterLabel>
+            <translation><!-- English --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finnish</masterLabel>
+            <translation><!-- Finnish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flemish</masterLabel>
+            <translation><!-- Flemish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>French</masterLabel>
+            <translation><!-- French --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>German</masterLabel>
+            <translation><!-- German --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greek</masterLabel>
+            <translation><!-- Greek --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungarian</masterLabel>
+            <translation><!-- Hungarian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italian</masterLabel>
+            <translation><!-- Italian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japanese</masterLabel>
+            <translation><!-- Japanese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korean</masterLabel>
+            <translation><!-- Korean --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Moldavian</masterLabel>
+            <translation><!-- Moldavian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Norwegian</masterLabel>
+            <translation><!-- Norwegian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Polish</masterLabel>
+            <translation><!-- Polish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portuguese</masterLabel>
+            <translation><!-- Portuguese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Serbian</masterLabel>
+            <translation><!-- Serbian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovak</masterLabel>
+            <translation><!-- Slovak --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovenian</masterLabel>
+            <translation><!-- Slovenian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spanish</masterLabel>
+            <translation><!-- Spanish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Swedish</masterLabel>
+            <translation><!-- Swedish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkish</masterLabel>
+            <translation><!-- Turkish --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>场所</label>
+        <name>Locale__c</name>
+    </fields>
+    <fields>
+        <label>市场</label>
+        <name>Market__c</name>
+    </fields>
+    <fields>
+        <help>输入电子邮件模板创建者名字，名字中不能有空格</help>
+        <label>产品生产工厂电子邮件模板</label>
+        <name>Product_Factory_Email_Template__c</name>
+    </fields>
+    <fields>
+        <label>标签</label>
+        <name>Tag__c</name>
+        <picklistValues>
+            <masterLabel>CEC</masterLabel>
+            <translation><!-- CEC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>George</masterLabel>
+            <translation><!-- George --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>输入电子邮件模板创建者名字，名字中不能有空格</help>
+        <label>纺织品工厂电子邮件模板</label>
+        <name>Textile_Factory_Email_Template__c</name>
+    </fields>
+    <fields>
+        <help>若格林尼治标准时间是+5.30, 请输入 5.50\ 若格林尼治标准时间-7, 请输入-7\若格林尼治标准时间+13.45, 请输入13.75\若格林尼治标准时间-9.3, 请输入-9.5</help>
+        <label>时间差别 格林威治标准时间</label>
+        <name>TimeZone_Difference_GMT__c</name>
+    </fields>
+    <layouts>
+        <layout>Case Market Mapping Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Settings --></label>
+            <section>Fulfilment Settings</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Case Market Mapping Name --></nameFieldLabel>
+</CustomObjectTranslation>

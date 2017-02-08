@@ -67,7 +67,6 @@
         <customTabListAdditionalFields>ARTICLE_NUMBER</customTabListAdditionalFields>
         <customTabListAdditionalFields>LAST_PUBLISHED_DATE</customTabListAdditionalFields>
         <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
-        <customTabListAdditionalFields>ABSTRACT</customTabListAdditionalFields>
         <searchResultsAdditionalFields>TITLE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ABSTRACT</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ARTICLE_NUMBER</searchResultsAdditionalFields>

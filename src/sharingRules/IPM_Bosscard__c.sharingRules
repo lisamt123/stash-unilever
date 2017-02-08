@@ -19,7 +19,7 @@
         <description>To give access to Business Partners for Dressings</description>
         <label>IPM_Food_Dressing_Business_Partners</label>
         <sharedTo>
-            <group>IPM_Food_Dressing_Business_Partners</group>
+            <group>IPM_Food_Dressings_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -46,7 +46,7 @@
         <description>To give access to Business Partners for Other Foods</description>
         <label>IPM_Food_Other_Foods_Business_Partners</label>
         <sharedTo>
-            <group>IPM_Food_Other_Foods_Business_Partners</group>
+            <group>IPM_Food_Other_Foods_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -73,7 +73,7 @@
         <description>To give access to Business Partners for Savoury</description>
         <label>IPM_Food_Savoury_Business_Partners</label>
         <sharedTo>
-            <group>IPM_Food_Savoury_Business_Partners</group>
+            <group>IPM_Food_Savoury_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -100,7 +100,7 @@
         <description>To give access to Business Partners for Spreads</description>
         <label>IPM_Food_Spreads_Business_Partners</label>
         <sharedTo>
-            <group>IPM_Food_Spreads_Business_Partners</group>
+            <group>IPM_Food_Spreads_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -127,7 +127,7 @@
         <accessLevel>Edit</accessLevel>
         <label>IPM_HC_HHC_Business_Partners</label>
         <sharedTo>
-            <group>IPM_HC_HHC_Business_Partners</group>
+            <group>IPM_HC_Household_Care_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -140,7 +140,7 @@
         <accessLevel>Edit</accessLevel>
         <label>IPM_HC_Laundry_Business_Partners</label>
         <sharedTo>
-            <group>IPM_HC_Laundry_Business_Partners</group>
+            <group>IPM_HC_Laundry_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -245,7 +245,7 @@
         <description>To give access to Business Partners for Deodorants &amp; Fragrances</description>
         <label>IPM_PC_Deo_Fragrance_Business_Partners</label>
         <sharedTo>
-            <group>IPM_PC_Deo_Fragrance_Business_Partners</group>
+            <group>IPM_PC_Deodorants_N_Fragrances_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -259,7 +259,7 @@
         <description>To give access to Business Partners for Hair Care</description>
         <label>IPM_PC_Hair_Care_Business_Partners</label>
         <sharedTo>
-            <group>IPM_PC_Hair_Care_Business_Partners</group>
+            <group>IPM_PC_Hair_Care_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -273,7 +273,7 @@
         <description>To give access to Business Partners for Oral Care</description>
         <label>IPM_PC_Oral_Care_Business_Partners</label>
         <sharedTo>
-            <group>IPM_PC_Oral_Care_Business_Partners</group>
+            <group>IPM_PC_Oral_Care_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -287,7 +287,7 @@
         <description>To give access to Business Partners for Skin Care</description>
         <label>IPM_PC_Skin_Care_Business_Partners</label>
         <sharedTo>
-            <group>IPM_PC_Skin_Care_Business_Partners</group>
+            <group>IPM_PC_Skin_Care_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -301,7 +301,7 @@
         <description>To give access to Business Partners for Skin Cleansing</description>
         <label>IPM_PC_Skin_Cleansing_Business_Partners</label>
         <sharedTo>
-            <group>IPM_PC_Skin_Cleansing_Business_Partners</group>
+            <group>IPM_PC_Skin_Cleansing_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -393,7 +393,7 @@
         <description>To give access to Business Partners for Tea and Soy &amp; Fruit Beverages</description>
         <label>IPM_Refr_Beverages_Business_Partners</label>
         <sharedTo>
-            <group>IPM_Refr_Beverages_Business_Partners</group>
+            <group>IPM_Ref_Tea_and_Soy_N_Fruit_Beverages_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -407,7 +407,7 @@
         <description>To give access to Business Partners for Coffee &amp; Snacks</description>
         <label>IPM_Refr_Coffee_Snacks_Business_Partners</label>
         <sharedTo>
-            <group>IPM_Refr_Coffee_Snacks_Business_Partners</group>
+            <group>IPM_Ref_Coffee_Snacks_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -421,7 +421,7 @@
         <description>To give access to Business Partners for Ice Cream</description>
         <label>IPM_Refr_Ice_Cream_Business_Partners</label>
         <sharedTo>
-            <group>IPM_Refr_Ice_Cream_Business_Partners</group>
+            <group>IPM_Ref_Ice_Cream_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>
@@ -435,7 +435,7 @@
         <description>To give access to Business Partners for Water Purification Category</description>
         <label>IPM_Refr_Water_Purify_Business_Partners</label>
         <sharedTo>
-            <group>IPM_Refr_Water_Purify_Business_Partners</group>
+            <group>IPM_Ref_Water_Purify_BP</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Category__c</field>

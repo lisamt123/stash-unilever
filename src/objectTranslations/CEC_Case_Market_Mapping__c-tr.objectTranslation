@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <fields>
+        <label>Hesap Sahibi Aktif İşaretli</label>
+        <name>Account_Owner_Active_Flag__c</name>
+    </fields>
+    <fields>
+        <label>Marka Elçisi</label>
+        <name>Brand_Ambassador_Brands__c</name>
+    </fields>
+    <fields>
+        <label>Çalışma Saatleri</label>
+        <name>Business_Hours__c</name>
+        <relationshipLabel>Vaka Pazarı Haritası</relationshipLabel>
+    </fields>
+    <fields>
+        <label>CSAT Geciktirme</label>
+        <name>CSAT_Delay__c</name>
+    </fields>
+    <fields>
+        <label>CSAT Mail Oranı</label>
+        <name>CSAT_Email_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>CSAT Telefon Oranı</label>
+        <name>CSAT_Phone_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>CSAT Sosyal Oranı</label>
+        <name>CSAT_Social_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>CSAT Anket Id</label>
+        <name>CSAT_Survey_Id__c</name>
+    </fields>
+    <fields>
+        <label>CSAT Web Oranı</label>
+        <name>CSAT_Web_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>VakaKökeni</label>
+        <name>CaseOrigin__c</name>
+    </fields>
+    <fields>
+        <label>Çek Desimali</label>
+        <name>Cheque_Decimals__c</name>
+        <picklistValues>
+            <masterLabel>Display as fraction</masterLabel>
+            <translation><!-- Display as fraction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Display as text</masterLabel>
+            <translation><!-- Display as text --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Firma Adresi</label>
+        <name>Company_Address__c</name>
+    </fields>
+    <fields>
+        <label>Firma Telefonu</label>
+        <name>Company_Phone__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Telefon Arama Hanesi</label>
+        <name>Consumer_Phone_Search_Digits__c</name>
+    </fields>
+    <fields>
+        <label>Ülke</label>
+        <name>Country__c</name>
+        <relationshipLabel>Vaka Pazarı Haritası</relationshipLabel>
+    </fields>
+    <fields>
+        <label>VarsayılanHesapSahibiId</label>
+        <name>DefaultAccountOwnerId__c</name>
+        <relationshipLabel>Vaka Pazarı Haritası</relationshipLabel>
+    </fields>
+    <fields>
+        <label>VarsayılanVakaSahibiId</label>
+        <name>DefaultCaseOwnerId__c</name>
+    </fields>
+    <fields>
+        <label>Varsayılan Adres</label>
+        <name>Default_From_Address__c</name>
+    </fields>
+    <fields>
+        <label>Beceri Yönlendirmesini Etkinleştir</label>
+        <name>Enable_Skill_Routing__c</name>
+    </fields>
+    <fields>
+        <label>Dil</label>
+        <name>Language__c</name>
+        <picklistValues>
+            <masterLabel>Bosnian</masterLabel>
+            <translation><!-- Bosnian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bulgarian</masterLabel>
+            <translation><!-- Bulgarian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chinese</masterLabel>
+            <translation><!-- Chinese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Croatian</masterLabel>
+            <translation><!-- Croatian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech</masterLabel>
+            <translation><!-- Czech --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Danish</masterLabel>
+            <translation><!-- Danish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dutch</masterLabel>
+            <translation><!-- Dutch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English</masterLabel>
+            <translation><!-- English --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finnish</masterLabel>
+            <translation><!-- Finnish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flemish</masterLabel>
+            <translation><!-- Flemish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>French</masterLabel>
+            <translation><!-- French --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>German</masterLabel>
+            <translation><!-- German --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greek</masterLabel>
+            <translation><!-- Greek --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungarian</masterLabel>
+            <translation><!-- Hungarian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italian</masterLabel>
+            <translation><!-- Italian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japanese</masterLabel>
+            <translation><!-- Japanese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korean</masterLabel>
+            <translation><!-- Korean --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Moldavian</masterLabel>
+            <translation><!-- Moldavian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Norwegian</masterLabel>
+            <translation><!-- Norwegian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Polish</masterLabel>
+            <translation><!-- Polish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portuguese</masterLabel>
+            <translation><!-- Portuguese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Serbian</masterLabel>
+            <translation><!-- Serbian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovak</masterLabel>
+            <translation><!-- Slovak --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovenian</masterLabel>
+            <translation><!-- Slovenian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spanish</masterLabel>
+            <translation><!-- Spanish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Swedish</masterLabel>
+            <translation><!-- Swedish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkish</masterLabel>
+            <translation><!-- Turkish --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Yerel Ayar</label>
+        <name>Locale__c</name>
+    </fields>
+    <fields>
+        <label>Pazar</label>
+        <name>Market__c</name>
+    </fields>
+    <fields>
+        <help>Arada boşluk olmadan Taslak Hazırlayan adını gir.</help>
+        <label>Ürün Fabrika Email Taslağı</label>
+        <name>Product_Factory_Email_Template__c</name>
+    </fields>
+    <fields>
+        <label>Etiket</label>
+        <name>Tag__c</name>
+        <picklistValues>
+            <masterLabel>CEC</masterLabel>
+            <translation><!-- CEC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>George</masterLabel>
+            <translation><!-- George --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Arada boşluk olmadan Taslak Hazırlayan adını gir.</help>
+        <label>Tekstil Fabrikası Mail Taslağı</label>
+        <name>Textile_Factory_Email_Template__c</name>
+    </fields>
+    <fields>
+        <help>Eğer saat dilimi GMT+5.30 ise 5.50\GMT-7 ise -7\GMT+13.45 ise 13.75\GMT-9.30 ise -9.50 girilecek</help>
+        <label>Saatdilimi Farkı GMT</label>
+        <name>TimeZone_Difference_GMT__c</name>
+    </fields>
+    <layouts>
+        <layout>Case Market Mapping Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Settings --></label>
+            <section>Fulfilment Settings</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Case Market Mapping Name --></nameFieldLabel>
+</CustomObjectTranslation>

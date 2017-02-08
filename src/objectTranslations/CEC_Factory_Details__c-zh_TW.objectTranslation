@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Factory Detail --></value>
+    </caseValues>
+    <fields>
+        <label>國家名稱</label>
+        <name>Country_Name__c</name>
+    </fields>
+    <fields>
+        <label>國家</label>
+        <name>Country__c</name>
+        <relationshipLabel>工廠資料</relationshipLabel>
+    </fields>
+    <fields>
+        <label>電郵</label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label>種類</label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Product</masterLabel>
+            <translation>產品</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Textile</masterLabel>
+            <translation>紡織品</translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Factory Details Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- FactoryName --></nameFieldLabel>
+</CustomObjectTranslation>

@@ -9,6 +9,10 @@
         <value>Vendor Requests</value>
     </caseValues>
     <fields>
+        <label><!-- TestAutoNumer --></label>
+        <name>TestAutoNumer__c</name>
+    </fields>
+    <fields>
         <label><!-- ABC Indicator --></label>
         <name>VPM_ABCIndicator__c</name>
     </fields>
@@ -553,6 +557,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Adopt Scan Date Formula --></label>
+        <name>VPM_AdoptScanDateFormula__c</name>
+    </fields>
+    <fields>
         <label><!-- Adopt Scan Date --></label>
         <name>VPM_AdoptScanDate__c</name>
     </fields>
@@ -726,6 +734,10 @@
     <fields>
         <label><!-- Auto Eval GR Setmt Ret --></label>
         <name>VPM_AutoEvalGRSetmtRet__c</name>
+    </fields>
+    <fields>
+        <label><!-- AutoGen of Purch Order Allowed Formula --></label>
+        <name>VPM_AutoGenOfPurchOrderAllowedFormula__c</name>
     </fields>
     <fields>
         <label><!-- AutoGeneration of Purchase Order Allowed --></label>
@@ -3088,6 +3100,10 @@
         <name>VPM_CheckDigit__c</name>
     </fields>
     <fields>
+        <label><!-- Check Double Invoices Formula --></label>
+        <name>VPM_CheckDoubleInvoicesFormula__c</name>
+    </fields>
+    <fields>
         <label><!-- Check Double Invoices --></label>
         <name>VPM_CheckDoubleInvoices__c</name>
     </fields>
@@ -3124,8 +3140,16 @@
         <name>VPM_ClerksInternet__c</name>
     </fields>
     <fields>
+        <label><!-- Clicktools Language --></label>
+        <name>VPM_ClicktoolsLanguage__c</name>
+    </fields>
+    <fields>
         <label><!-- Clicktools Source Country --></label>
         <name>VPM_ClicktoolsSourceCountry__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM_ClicktoolsSurveyURL --></label>
+        <name>VPM_ClicktoolsSurveyURL__c</name>
     </fields>
     <fields>
         <label><!-- Collection Authorization --></label>
@@ -3153,6 +3177,10 @@
         <label><!-- Commodity --></label>
         <name>VPM_Commodity__c</name>
         <relationshipLabel><!-- Vendor Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Company Code Changes --></label>
+        <name>VPM_CompanyCodeChanges__c</name>
     </fields>
     <fields>
         <label><!-- Company Code ECC --></label>
@@ -5733,6 +5761,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_CreatedDateFormulaField__c</name>
     </fields>
     <fields>
+        <label><!-- Creation/Maintenance Details Changes --></label>
+        <name>VPM_CreationMaintenanceDetailsChanges__c</name>
+    </fields>
+    <fields>
         <label><!-- Creator is Current User --></label>
         <name>VPM_CreatorIsCurrentUser__c</name>
     </fields>
@@ -6117,6 +6149,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Ease of Use Rating (1-5) --></label>
+        <name>VPM_EaseOfUseRating15__c</name>
+    </fields>
+    <fields>
         <label><!-- E-mail 2 --></label>
         <name>VPM_Email2__c</name>
     </fields>
@@ -6269,6 +6305,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_FinanceApproval__c</name>
     </fields>
     <fields>
+        <label><!-- Finance Detail Changes --></label>
+        <name>VPM_FinanceDetailChanges__c</name>
+    </fields>
+    <fields>
         <label><!-- Finance Reworls --></label>
         <name>VPM_FinanceReworls__c</name>
     </fields>
@@ -6331,6 +6371,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <masterLabel>Yes</masterLabel>
             <translation><!-- Yes --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- GR based IV Formula --></label>
+        <name>VPM_GRbasedIVFormula__c</name>
     </fields>
     <fields>
         <label><!-- GR based IV --></label>
@@ -6629,6 +6673,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_HoursSpentWithMDMOps__c</name>
     </fields>
     <fields>
+        <label><!-- Hours Spent With Master Data --></label>
+        <name>VPM_HoursSpentWithMasterData__c</name>
+    </fields>
+    <fields>
         <label><!-- Hours Spent With Procurement --></label>
         <name>VPM_HoursSpentWithProcurement__c</name>
     </fields>
@@ -6789,6 +6837,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Indicator Pay Items Separately Formula --></label>
+        <name>VPM_IndicatorPayItemsSeparatelyFormula__c</name>
+    </fields>
+    <fields>
         <label><!-- Indicator Pay all Items Separately ? --></label>
         <name>VPM_IndicatorPayItemsSeparately__c</name>
     </fields>
@@ -6803,6 +6855,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
     <fields>
         <label><!-- Indicator Vendor Sub Range Relevant --></label>
         <name>VPM_IndicatorVendorSubRangeRelevant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Individual Payment Formula --></label>
+        <name>VPM_IndividualPaymentFormula__c</name>
     </fields>
     <fields>
         <label><!-- Individual Payment --></label>
@@ -7581,6 +7637,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- International Version Changes --></label>
+        <name>VPM_InternationalVersionChanges__c</name>
+    </fields>
+    <fields>
         <label><!-- International Version --></label>
         <name>VPM_InternationalVersion__c</name>
         <picklistValues>
@@ -7696,6 +7756,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
     <fields>
         <label><!-- LST No. --></label>
         <name>VPM_LSTno__c</name>
+    </fields>
+    <fields>
+        <label><!-- Language ISO Code --></label>
+        <name>VPM_LanguageISOCode__c</name>
     </fields>
     <fields>
         <label><!-- Language Key_COCode --></label>
@@ -7970,6 +8034,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_MDMOpsReview__c</name>
     </fields>
     <fields>
+        <label><!-- MDM Ops Reworks --></label>
+        <name>VPM_MDMOpsReworks__c</name>
+    </fields>
+    <fields>
         <label><!-- MDM Ops Submitted --></label>
         <name>VPM_MDMOpsSubmitted__c</name>
         <picklistValues>
@@ -7980,6 +8048,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
             <masterLabel>Yes</masterLabel>
             <translation><!-- Yes --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Master Data Management Approval --></label>
+        <name>VPM_MasterDataManagementApproval__c</name>
     </fields>
     <fields>
         <label><!-- Minimum Order Value --></label>
@@ -9818,6 +9890,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_OurAccNumWithVendor__c</name>
     </fields>
     <fields>
+        <label><!-- Overall Experience Rating (1-5) --></label>
+        <name>VPM_OverallExperienceRating15__c</name>
+    </fields>
+    <fields>
         <label><!-- Owner Formula Field --></label>
         <name>VPM_OwnerFormulaField__c</name>
     </fields>
@@ -10208,6 +10284,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
     <fields>
         <label><!-- Payment terms/Purchasing Data Changed --></label>
         <name>VPM_PaymentTermsAndPurchasingDataChanged__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Terms and Purchasing Details Cha --></label>
+        <name>VPM_PaymentTermsAndPurchasingDetailsCha__c</name>
     </fields>
     <fields>
         <label><!-- Payment Terms if none Selected --></label>
@@ -13367,6 +13447,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
     <fields>
         <label><!-- SMS Indicator --></label>
         <name>VPM_SMSIndicator__c</name>
+    </fields>
+    <fields>
+        <label><!-- SRV Based Vendor ID Formula --></label>
+        <name>VPM_SRVBasedVendorIDFormula__c</name>
     </fields>
     <fields>
         <label><!-- SRV Based Vendor ID --></label>
@@ -18844,6 +18928,42 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_UnitOfMeasureGrp__c</name>
     </fields>
     <fields>
+        <label><!-- User Survey Comments --></label>
+        <name>VPM_UserSurveyComments__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Survey Reminder Email Subject --></label>
+        <name>VPM_UserSurveyReminderEmailSubject__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Survey Status --></label>
+        <name>VPM_UserSurveyStatus__c</name>
+        <picklistValues>
+            <masterLabel>Not sent - Request Incomplete</masterLabel>
+            <translation><!-- Not sent - Request Incomplete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reminder 1 sent</masterLabel>
+            <translation><!-- Reminder 1 sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reminder 2 sent</masterLabel>
+            <translation><!-- Reminder 2 sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reminder 3 sent</masterLabel>
+            <translation><!-- Reminder 3 sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Survey Completed</masterLabel>
+            <translation><!-- Survey Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Survey Ignored</masterLabel>
+            <translation><!-- Survey Ignored --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- VATCountry --></label>
         <name>VPM_VATCountry__c</name>
         <picklistValues>
@@ -19938,6 +20058,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_VendorContactDetailsChanges__c</name>
     </fields>
     <fields>
+        <label><!-- Vendor Details Changes --></label>
+        <name>VPM_VendorDetailsChanges__c</name>
+    </fields>
+    <fields>
         <label><!-- Vendor Name 1 [Int] --></label>
         <name>VPM_VendorName1Int__c</name>
     </fields>
@@ -19965,6 +20089,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
     <fields>
         <label><!-- Vendor Name and Address Changes --></label>
         <name>VPM_VendorNameAddressChanges__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Name and Details Chatter Trigger --></label>
+        <name>VPM_VendorNameAndDetailsChatterTrigger__c</name>
     </fields>
     <fields>
         <help><!-- Exclude international dialling code as this is added automatically based on the Country of the Vendor --></help>

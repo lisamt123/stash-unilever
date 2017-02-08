@@ -163,6 +163,15 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Big C</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>MDO_Category__c.category_type__c</field>
+                <operation>equals</operation>
+                <value>Category Group</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>MDO_Category__c</referenceTo>
         <relationshipLabel>Amr Summary Plans (Big C)</relationshipLabel>
         <relationshipName>Amr_Summary_Plans1</relationshipName>
@@ -355,6 +364,15 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Small C</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>MDO_Category__c.category_type__c</field>
+                <operation>equals</operation>
+                <value>Category</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>MDO_Category__c</referenceTo>
         <relationshipLabel>Amr Summary Plans</relationshipLabel>
         <relationshipName>Amr_Summary_Plans</relationshipName>

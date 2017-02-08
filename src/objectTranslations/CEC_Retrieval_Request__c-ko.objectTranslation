@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <fields>
+        <label>약속일</label>
+        <name>Appointment_Date__c</name>
+    </fields>
+    <fields>
+        <label>최고 방문 시간</label>
+        <name>Best_Visiting_Hour__c</name>
+    </fields>
+    <fields>
+        <label>빈 칸 1</label>
+        <name>Blank_Field1__c</name>
+    </fields>
+    <fields>
+        <label>빈 칸 2</label>
+        <name>Blank_Field2__c</name>
+    </fields>
+    <fields>
+        <label>빈 칸 3</label>
+        <name>Blank_Field3__c</name>
+    </fields>
+    <fields>
+        <label>케이스 국가 이름</label>
+        <name>Case_Country_Name__c</name>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>케이스 시장</label>
+        <name>Case_Market__c</name>
+    </fields>
+    <fields>
+        <label>케이스 제품</label>
+        <name>Case_Product__c</name>
+    </fields>
+    <fields>
+        <label>케이스</label>
+        <name>Case__c</name>
+        <relationshipLabel>회수 요청</relationshipLabel>
+    </fields>
+    <fields>
+        <label>회사 주소</label>
+        <name>Company_Address__c</name>
+    </fields>
+    <fields>
+        <label>회사 명</label>
+        <name>Company_Name__c</name>
+    </fields>
+    <fields>
+        <label>회사 번호</label>
+        <name>Company_Phone__c</name>
+    </fields>
+    <fields>
+        <label>고객 집 번호</label>
+        <name>Consumer_Home_Phone__c</name>
+    </fields>
+    <fields>
+        <label>고객 휴대전화</label>
+        <name>Consumer_Mobile__c</name>
+    </fields>
+    <fields>
+        <label>고객 이름</label>
+        <name>Consumer_Name__c</name>
+    </fields>
+    <fields>
+        <label>고객 기타 번호</label>
+        <name>Consumer_Other_Phone__c</name>
+    </fields>
+    <fields>
+        <label>고객 번호</label>
+        <name>Consumer_Phone__c</name>
+    </fields>
+    <fields>
+        <label>고객 전화번호</label>
+        <name>Consumer_Telephone_Number__c</name>
+    </fields>
+    <fields>
+        <label>택배사 이메일 전송</label>
+        <name>Courier_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label>이메일 제목</label>
+        <name>Email_Subject__c</name>
+    </fields>
+    <fields>
+        <label>플래그 교환</label>
+        <name>Exchange_Flag__c</name>
+    </fields>
+    <fields>
+        <label>공장 이메일</label>
+        <name>Factory_Email__c</name>
+    </fields>
+    <fields>
+        <label>이행 승인됨</label>
+        <name>Fulfilment_Approved__c</name>
+    </fields>
+    <fields>
+        <label>이행 ID</label>
+        <name>Fulfilment_Id__c</name>
+        <relationshipLabel>회수 요청</relationshipLabel>
+    </fields>
+    <fields>
+        <label>글로벌 제품 CD</label>
+        <name>Global_Product_Cd__c</name>
+    </fields>
+    <fields>
+        <label>선물을 포함하다</label>
+        <name>Include_Gift__c</name>
+    </fields>
+    <fields>
+        <label>내부 코드 1</label>
+        <name>Internal_Code_1__c</name>
+    </fields>
+    <fields>
+        <label>내부 코드 2</label>
+        <name>Internal_Code_2__c</name>
+    </fields>
+    <fields>
+        <label>내부 코드 3</label>
+        <name>Internal_Code_3__c</name>
+    </fields>
+    <fields>
+        <label>메일 주소</label>
+        <name>Mailing_Address__c</name>
+    </fields>
+    <fields>
+        <label>제품 CU 기술(영어)</label>
+        <name>Product_CU_Description_English__c</name>
+    </fields>
+    <fields>
+        <label>제품 CU MRDR 코드</label>
+        <name>Product_CU_MRDR_Code__c</name>
+    </fields>
+    <fields>
+        <label>제품 공장 이메일 발송</label>
+        <name>Product_Factory_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label>제품 공장</label>
+        <name>Product_Factory__c</name>
+        <relationshipLabel>회수 요청(공장 제품)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>제품 노트</label>
+        <name>Product_Notes__c</name>
+    </fields>
+    <fields>
+        <label>벌크 수량</label>
+        <name>Quantity_of_Bulks__c</name>
+    </fields>
+    <fields>
+        <label>회수 조치</label>
+        <name>Retrieval_Action__c</name>
+        <picklistValues>
+            <masterLabel>Clothing Retrieval</masterLabel>
+            <translation>의류 회수</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliver Gift with Appointment</masterLabel>
+            <translation>선물 전달</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliver New Product with Appointment</masterLabel>
+            <translation>새로운 제품 전달</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product &amp; Clothing Retrieval</masterLabel>
+            <translation>제품과 의류 회수</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product &amp; Clothing Retrieval with Replacement</masterLabel>
+            <translation>교환 제품과 의류 회수</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product &amp; Foreign Matter Retrieval with Replacement(Factory)</masterLabel>
+            <translation>교환 제품과 이물 회수(공장)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval</masterLabel>
+            <translation>제품 회수</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval with Replacement(Disposal)</masterLabel>
+            <translation>맞교환 제품(처리)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval with Replacement(Factory Study)</masterLabel>
+            <translation>맞교환 제품(공장 연구)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval with Replacement(Factory)</masterLabel>
+            <translation>맞교환 제품(공장)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval(Factory)</masterLabel>
+            <translation>제품 회수(공장)</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>회수 메시지</label>
+        <name>Retrieval_Message__c</name>
+    </fields>
+    <fields>
+        <label>회수 노트</label>
+        <name>Retrieval_Notes__c</name>
+    </fields>
+    <fields>
+        <label>회수 수량</label>
+        <name>Retrieval_Quantity__c</name>
+    </fields>
+    <fields>
+        <label>회수 상태</label>
+        <name>Retrieval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Appointment Booked</masterLabel>
+            <translation>예약된 약속</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation>취소됨</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation>닫힘</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clothing Delivered</masterLabel>
+            <translation>전달된 의루</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clothing Delivery Initiated</masterLabel>
+            <translation>의류 전달</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Errored</masterLabel>
+            <translation>에러</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiate Clothing Delivery</masterLabel>
+            <translation>최초 의류 배달</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiate Product Analysis</masterLabel>
+            <translation>최초 제품 분석</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiated</masterLabel>
+            <translation>최초</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation>새로운</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebook Appointment</masterLabel>
+            <translation>재예약 약속</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resolved</masterLabel>
+            <translation>해결됨</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retrieval Complete</masterLabel>
+            <translation>회수 완료</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation>제출됨</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>제줄 일자</label>
+        <name>Submitted_Date__c</name>
+    </fields>
+    <fields>
+        <label>섬유 공장 이메일 발송</label>
+        <name>Textile_Factory_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label>섬유 공장</label>
+        <name>Textile_Factory__c</name>
+        <relationshipLabel>회수 요청</relationshipLabel>
+    </fields>
+    <fields>
+        <label>줄기 ID</label>
+        <name>Thread_Id__c</name>
+    </fields>
+    <fields>
+        <label>전체 무게 Kg</label>
+        <name>Total_Weight_KG__c</name>
+    </fields>
+    <fields>
+        <label>무게</label>
+        <name>Weight_KG__c</name>
+    </fields>
+    <layouts>
+        <layout>Retrieval Request Layout</layout>
+        <sections>
+            <label>케이스 세부사항</label>
+            <section>Case Detail</section>
+        </sections>
+        <sections>
+            <label>고객 상세</label>
+            <section>Consumer Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>이행 세부사항</label>
+            <section>Fulfilment Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Retrieval Request Layout(Read Only)</layout>
+        <sections>
+            <label>케이스 세부사항</label>
+            <section>Case Detail</section>
+        </sections>
+        <sections>
+            <label>고객 상세</label>
+            <section>Consumer Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>이행 세부사항</label>
+            <section>Fulfilment Detail</section>
+        </sections>
+        <sections>
+            <label>정보</label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label>시스템 정보</label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Retrieval Request Number --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- Default --></label>
+        <name>Default</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Read Only --></label>
+        <name>Read_Only</name>
+    </recordTypes>
+    <webLinks>
+        <label>제품을 분석하다</label>
+        <name>Analyse_Product</name>
+    </webLinks>
+    <webLinks>
+        <label>의류 전달</label>
+        <name>Delivery_Clothing</name>
+    </webLinks>
+    <webLinks>
+        <label>새로운 회수 요청</label>
+        <name>New_Retrieval_Request</name>
+    </webLinks>
+    <webLinks>
+        <label>재예약</label>
+        <name>Rebook</name>
+    </webLinks>
+    <webLinks>
+        <label>제출합니다.</label>
+        <name>Submit</name>
+    </webLinks>
+</CustomObjectTranslation>

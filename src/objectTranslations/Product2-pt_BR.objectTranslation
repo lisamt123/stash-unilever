@@ -1199,8 +1199,8 @@
             <translation><!-- Hellmann&apos;s Real (5L/2.5L) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Knorr Asian Sauces</masterLabel>
-            <translation><!-- Knorr Asian Sauces --></translation>
+            <masterLabel>Knorr Asian line</masterLabel>
+            <translation><!-- Knorr Asian line --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Knorr Beef Boullion 2/8 KG</masterLabel>
@@ -1933,6 +1933,13 @@
     <fields>
         <label><!-- Profitability Target --></label>
         <name>ProfitabilityTarget__c</name>
+    </fields>
+    <fields>
+        <name>QuantityUnitOfMeasure</name>
+        <picklistValues>
+            <masterLabel>Each</masterLabel>
+            <translation><!-- Each --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Resource Type --></label>
@@ -4486,5 +4493,9 @@
     <recordTypes>
         <label><!-- Products --></label>
         <name>Products</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Telesales --></label>
+        <name>TEL_Telesales</name>
     </recordTypes>
 </CustomObjectTranslation>

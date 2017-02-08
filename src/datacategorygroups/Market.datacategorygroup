@@ -120,6 +120,14 @@
         </dataCategory>
         <dataCategory>
             <dataCategory>
+                <label>Turkey</label>
+                <name>Turkey</name>
+            </dataCategory>
+            <label>NAMETRUB</label>
+            <name>NAMETRUB</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
                 <label>Canada</label>
                 <name>Canada</name>
             </dataCategory>
@@ -135,6 +143,18 @@
             <name>North_America</name>
         </dataCategory>
         <dataCategory>
+            <dataCategory>
+                <label>Korea</label>
+                <name>kor</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Taiwan</label>
+                <name>Taiwan</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Hong Kong</label>
+                <name>Hong_Kong</name>
+            </dataCategory>
             <dataCategory>
                 <label>Japan</label>
                 <name>Japan</name>

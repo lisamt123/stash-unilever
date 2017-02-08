@@ -254,10 +254,6 @@
         <name>FS_TemporaryProductDiscount__c</name>
     </fields>
     <fields>
-        <label><!-- Unique Product --></label>
-        <name>FS_UniqueProduct__c</name>
-    </fields>
-    <fields>
         <label>Кол-во в коробе</label>
         <name>FS_UnitConversionFactor__c</name>
     </fields>

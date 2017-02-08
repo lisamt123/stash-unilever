@@ -361,6 +361,10 @@
             <translation><!-- Bulgarian --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Chinese</masterLabel>
+            <translation><!-- Chinese --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Croatian</masterLabel>
             <translation><!-- Croatian --></translation>
         </picklistValues>
@@ -459,6 +463,10 @@
         <picklistValues>
             <masterLabel>Thai</masterLabel>
             <translation><!-- Thai --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkish</masterLabel>
+            <translation><!-- Turkish --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Vietnamese</masterLabel>
@@ -695,6 +703,10 @@
             <translation><!-- Greece --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Hungary</masterLabel>
             <translation><!-- Hungary --></translation>
         </picklistValues>
@@ -763,8 +775,16 @@
             <translation><!-- Sri Lanka --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Thailand</masterLabel>
             <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>United Kingdom</masterLabel>

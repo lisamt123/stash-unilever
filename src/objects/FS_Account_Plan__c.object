@@ -463,6 +463,14 @@
         <errorMessage>End date can not be before start date.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>FS_Temporary_Account</fullName>
+        <active>true</active>
+        <description>Account Plan cannot be created with a temporary Account</description>
+        <errorConditionFormula>IF(AND($Profile.Name = &apos;Unilever Food Solution - NA&apos;, TEXT(FS_Customer__r.Status__c)=&apos;Temporary&apos;),true,false)</errorConditionFormula>
+        <errorDisplayField>FS_Customer__c</errorDisplayField>
+        <errorMessage>The Customer is in Temporary status. Account Plan cannot be created with a temporary Customer</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Restrict_approved_Account_Plan_change</fullName>
         <active>true</active>
         <description>Sales rep are not allowed to make certain changes in account plan once it is approved</description>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Alert Tracker --></value>
+    </caseValues>
+    <fields>
+        <label>경고 규정</label>
+        <name>Alert_Rule_Id__c</name>
+        <relationshipLabel>경고 트래커</relationshipLabel>
+    </fields>
+    <fields>
+        <label>경고 한계치</label>
+        <name>Alert_Threshold__c</name>
+    </fields>
+    <fields>
+        <label>경고 트래커 아이템 카운트</label>
+        <name>Alert_Tracker_Item_count__c</name>
+    </fields>
+    <fields>
+        <label>통화 한계치</label>
+        <name>Current_Threshold__c</name>
+    </fields>
+    <fields>
+        <label>일 코드</label>
+        <name>DayCode__c</name>
+    </fields>
+    <fields>
+        <label>L5 원인 코드</label>
+        <name>L5_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>제품 사이즈 없음</label>
+        <name>Product_No_Size__c</name>
+    </fields>
+    <fields>
+        <label>규정 유형</label>
+        <name>Rule_Type__c</name>
+    </fields>
+    <fields>
+        <label>트리거 배치</label>
+        <name>Trigger_Batch__c</name>
+    </fields>
+    <fields>
+        <label>독특한 ID</label>
+        <name>Unique_Id__c</name>
+    </fields>
+    <layouts>
+        <layout>Alert Tracker Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Alert Tracker Number --></nameFieldLabel>
+</CustomObjectTranslation>

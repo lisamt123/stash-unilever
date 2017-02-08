@@ -725,11 +725,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>CurrencyIsoCode</field>
-            <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Is_Accepted_Terms_Condition__c</field>
             <table>User.aa_Agent_App_User_Preference__c$OwnerId</table>
         </columns>

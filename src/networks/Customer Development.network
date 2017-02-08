@@ -35,7 +35,7 @@
     </navigationLinkSet>
     <networkMemberGroups>
         <permissionSet>WIN_POS_Agency_User</permissionSet>
-        <profile>Admin</profile>
+        <profile>admin</profile>
     </networkMemberGroups>
     <picassoSite>Customer_Development1</picassoSite>
     <selfRegistration>false</selfRegistration>

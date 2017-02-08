@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Brand Logo --></value>
+    </caseValues>
+    <fields>
+        <label>국가</label>
+        <name>Country__c</name>
+        <relationshipLabel>브랜드 로고들</relationshipLabel>
+    </fields>
+    <fields>
+        <label>로고</label>
+        <name>Logo__c</name>
+    </fields>
+    <nameFieldLabel><!-- Brand Logo Name --></nameFieldLabel>
+</CustomObjectTranslation>

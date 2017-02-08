@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>NF-e</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>NF-es</value>
+    </caseValues>
+    <fields>
+        <label><!-- Address Number Cargo Dispatcher --></label>
+        <name>Address_Number_Cargo_Dispatcher__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Number Destination --></label>
+        <name>Address_Number_Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Number Goods Sender --></label>
+        <name>Address_Number_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Number Issuer --></label>
+        <name>Address_Number_Issuer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Number Recipient --></label>
+        <name>Address_Number_Recipient__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Number Taker --></label>
+        <name>Address_Number_Taker__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Document --></label>
+        <name>Billing_Document__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNPJ Cargo Dispatcher --></label>
+        <name>CNPJ_Cargo_Dispatcher__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNPJ Goods Sender --></label>
+        <name>CNPJ_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNPJ Recipient --></label>
+        <name>CNPJ_Recipient__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNPJ destination --></label>
+        <name>CNPJ_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNPJ issuer --></label>
+        <name>CNPJ_issuer__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPF destination --></label>
+        <name>CPF_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Cargo Dispatcher --></label>
+        <name>City_Cargo_Dispatcher__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Code Cargo Dispatcher --></label>
+        <name>City_Code_Cargo_Dispatcher__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Code Destination --></label>
+        <name>City_Code_Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Code Goods Sender --></label>
+        <name>City_Code_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Code Issuer --></label>
+        <name>City_Code_Issuer__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Code Recipient --></label>
+        <name>City_Code_Recipient__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Code Taker --></label>
+        <name>City_Code_Taker__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Destination --></label>
+        <name>City_Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Goods Sender --></label>
+        <name>City_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Issuer --></label>
+        <name>City_Issuer__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Recipient --></label>
+        <name>City_Recipient_c__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Taker --></label>
+        <name>City_Taker__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complement Goods Sender --></label>
+        <name>Complement_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complement destination --></label>
+        <name>Complement_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complementary information --></label>
+        <name>Complementary_information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country Code Goods Sender --></label>
+        <name>Country_Code_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country Name Goods Sender --></label>
+        <name>Country_Name_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country code destination --></label>
+        <name>Country_code_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country name destination --></label>
+        <name>Country_name_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery --></label>
+        <name>Delivery__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Destination Address Number --></label>
+        <name>Destination_Address_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- District Cargo Dispatcher --></label>
+        <name>District_Cargo_Dispatcher__c</name>
+    </fields>
+    <fields>
+        <label><!-- District Goods Sender --></label>
+        <name>District_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- District Issuer --></label>
+        <name>District_Issuer__c</name>
+    </fields>
+    <fields>
+        <label><!-- District Recipient --></label>
+        <name>District_Recipient__c</name>
+    </fields>
+    <fields>
+        <label><!-- District Taker --></label>
+        <name>District_Taker__c</name>
+    </fields>
+    <fields>
+        <label><!-- District destination --></label>
+        <name>District_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross weight --></label>
+        <name>Gross_weight__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterms --></label>
+        <name>Incoterms__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Usage --></label>
+        <name>Material_Usage__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF55 Created? --></label>
+        <name>NF55_Created__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e Total Value --></label>
+        <name>NF_e_Total_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e access key --></label>
+        <name>NF_e_access_key__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e creation date --></label>
+        <name>NF_e_creation_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e item specie --></label>
+        <name>NF_e_item_specie__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e number --></label>
+        <name>NF_e_number__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e serie --></label>
+        <name>NF_e_serie__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name Cargo Dispatcher --></label>
+        <name>Name_Cargo_Dispatcher__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name Goods Sender --></label>
+        <name>Name_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name Issuer --></label>
+        <name>Name_Issuer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name Recipient --></label>
+        <name>Name_Recipient__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name Taker --></label>
+        <name>Name_Taker__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name destination --></label>
+        <name>Name_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nf-e total quantity --></label>
+        <name>Nf_e_total_quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Occurrence --></label>
+        <name>Occurrence__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Phone Goods Sender --></label>
+        <name>Phone_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone destination --></label>
+        <name>Phone_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code Cargo Dispatcher --></label>
+        <name>Postal_Code_Cargo_Dispatcher__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code Goods Sender --></label>
+        <name>Postal_Code_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code Issuer --></label>
+        <name>Postal_Code_Issuer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code Recipient --></label>
+        <name>Postal_Code_Recipient__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code Taker --></label>
+        <name>Postal_Code_Taker__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone Goods Sender --></label>
+        <name>Postal_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal code destination --></label>
+        <name>Postal_code_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Predominant product --></label>
+        <name>Predominant_product__c</name>
+    </fields>
+    <fields>
+        <label><!-- SES Number --></label>
+        <name>SES_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- SES --></label>
+        <name>SES__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SUFRAMA Registration Goods Sender --></label>
+        <name>SUFRAMA_Registration_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- SUFRAMA registration --></label>
+        <name>SUFRAMA_registration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment --></label>
+        <name>Shipment__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Stage registration destination --></label>
+        <name>Stage_registration_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Cargo Dispatcher --></label>
+        <name>State_Cargo_Dispatcher__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Goods Sender --></label>
+        <name>State_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Issuer --></label>
+        <name>State_Issuer__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Recipient --></label>
+        <name>State_Recipient__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Registration Destination --></label>
+        <name>State_Registration_Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Registration Goods Sender --></label>
+        <name>State_Registration_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Taker --></label>
+        <name>State_Taker__c</name>
+    </fields>
+    <fields>
+        <label><!-- State destination --></label>
+        <name>State_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Cargo Dispatcher --></label>
+        <name>Street_Cargo_Dispatcher__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Destination --></label>
+        <name>Street_Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Goods Sender --></label>
+        <name>Street_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Issuer --></label>
+        <name>Street_Issuer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Recipient --></label>
+        <name>Street_Recipient__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Taker --></label>
+        <name>Street_Taker__c</name>
+    </fields>
+    <fields>
+        <label><!-- Taker CNPJ --></label>
+        <name>Taker_CNPJ__c</name>
+    </fields>
+    <fields>
+        <label><!-- Taker Name --></label>
+        <name>Taker_Name__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>NF-e Layout</layout>
+        <sections>
+            <label><!-- Cargo Dispatcher Details --></label>
+            <section>Cargo Dispatcher Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Destination Details --></label>
+            <section>Destination Details</section>
+        </sections>
+        <sections>
+            <label><!-- Freight Doc Issuer --></label>
+            <section>Freight Doc Issuer</section>
+        </sections>
+        <sections>
+            <label><!-- Goods Sender Details --></label>
+            <section>Goods Sender Details</section>
+        </sections>
+        <sections>
+            <label><!-- Recipient Details --></label>
+            <section>Recipient Details</section>
+        </sections>
+        <sections>
+            <label><!-- Taker Details --></label>
+            <section>Taker Details</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

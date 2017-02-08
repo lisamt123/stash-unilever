@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- FAQ --></value>
+    </caseValues>
+    <fields>
+        <label>其他信息</label>
+        <name>Additional_Information__c</name>
+    </fields>
+    <fields>
+        <help>如文章里有敏感信息，会加亮标示</help>
+        <label>附加敏感信息</label>
+        <name>Additional_Sensitive_Information__c</name>
+    </fields>
+    <fields>
+        <label>答复</label>
+        <name>Answer__c</name>
+    </fields>
+    <fields>
+        <label>已批准 (法务部)</label>
+        <name>Approved_by_Legal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Text --></label>
+        <name>Legacy_Text__c</name>
+    </fields>
+    <fields>
+        <label>数据标签</label>
+        <name>Meta_Tags__c</name>
+    </fields>
+    <fields>
+        <label>问题</label>
+        <name>Question__c</name>
+    </fields>
+    <fields>
+        <label>相关文档 2</label>
+        <name>Related_PDF_2__c</name>
+    </fields>
+    <fields>
+        <label>相关文档 3</label>
+        <name>Related_PDF_3__c</name>
+    </fields>
+    <fields>
+        <label>相关文档</label>
+        <name>Related_PDF__c</name>
+    </fields>
+    <fields>
+        <help>该文本只对有权访问信息知识库的用户开放</help>
+        <label>敏感内容</label>
+        <name>Sensitive_Text__c</name>
+    </fields>
+</CustomObjectTranslation>

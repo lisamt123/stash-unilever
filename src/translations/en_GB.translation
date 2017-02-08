@@ -21,6 +21,10 @@
         <name>Brand_Centre_Management</name>
     </customApplications>
     <customApplications>
+        <label><!-- Brazil Freight Collaboration Tool --></label>
+        <name>Brazil_Freight_Collaboration_Tool</name>
+    </customApplications>
+    <customApplications>
         <label><!-- CEC Admin --></label>
         <name>CEC_Admin</name>
     </customApplications>
@@ -203,6 +207,18 @@
     <customTabs>
         <label><!-- All Projects --></label>
         <name>All_Projects</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Search Occurrence --></label>
+        <name>BFM_Search_Occurrence</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- BFM Search Shipment --></label>
+        <name>BFM_Search_Shipment</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Search Shipment Ct-e --></label>
+        <name>BFM_Search_Shipment_Cte</name>
     </customTabs>
     <customTabs>
         <label><!-- Brand Centres --></label>
@@ -429,25 +445,6 @@
         <name>im_Issues</name>
     </customTabs>
     <globalPicklists>
-        <name>VPM_ECC</name>
-        <picklistValues>
-            <masterLabel>Cordillera</masterLabel>
-            <translation><!-- Cordillera --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Fusion</masterLabel>
-            <translation><!-- Fusion --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Sirius</masterLabel>
-            <translation><!-- Sirius --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>U2K2</masterLabel>
-            <translation><!-- U2K2 --></translation>
-        </picklistValues>
-    </globalPicklists>
-    <globalPicklists>
         <name>Country</name>
         <picklistValues>
             <masterLabel>CAM</masterLabel>
@@ -468,6 +465,25 @@
         <picklistValues>
             <masterLabel>Venezuela</masterLabel>
             <translation><!-- Venezuela --></translation>
+        </picklistValues>
+    </globalPicklists>
+    <globalPicklists>
+        <name>VPM_ECC</name>
+        <picklistValues>
+            <masterLabel>Cordillera</masterLabel>
+            <translation><!-- Cordillera --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fusion</masterLabel>
+            <translation><!-- Fusion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sirius</masterLabel>
+            <translation><!-- Sirius --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U2K2</masterLabel>
+            <translation><!-- U2K2 --></translation>
         </picklistValues>
     </globalPicklists>
 </Translations>

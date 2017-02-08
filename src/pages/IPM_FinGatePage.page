@@ -1,0 +1,20 @@
+<!--  
+*************************************************************************************************************************************************************
+*@Description:Component to show the financial details in the gate document
+*@Author: Cognizant
+*@Created Date: 13/03/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************************************************************************************************
+-->
+<apex:page sidebar="false" showHeader="false">
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>  
+    <apex:composition template="IPM_TemplateForPlainStyling">  
+        <apex:define name="body">
+            <apex:form > 
+                <c:IPM_FinGate projId="{!$CurrentPage.parameters.projId}">
+                </c:IPM_FinGate>
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/iframeResizer.contentWindow.min.js')}" type="text/javascript"></script>
+</apex:page>

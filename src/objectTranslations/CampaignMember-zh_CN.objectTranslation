@@ -51,7 +51,7 @@
         <name>Salutation</name>
         <picklistValues>
             <masterLabel>Dr.</masterLabel>
-            <translation><!-- Dr. --></translation>
+            <translation>博士</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Miss</masterLabel>
@@ -59,7 +59,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Mr.</masterLabel>
-            <translation><!-- Mr. --></translation>
+            <translation>先生</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Mr./Ms.</masterLabel>
@@ -67,15 +67,15 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Mrs.</masterLabel>
-            <translation><!-- Mrs. --></translation>
+            <translation>太太</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Ms.</masterLabel>
-            <translation><!-- Ms. --></translation>
+            <translation>女士</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Prof.</masterLabel>
-            <translation><!-- Prof. --></translation>
+            <translation>教授</translation>
         </picklistValues>
     </fields>
     <fields>

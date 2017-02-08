@@ -318,6 +318,10 @@
             <translation><!-- Honduras --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Hungary</masterLabel>
             <translation><!-- Hungary --></translation>
         </picklistValues>
@@ -340,6 +344,10 @@
         <picklistValues>
             <masterLabel>Japan</masterLabel>
             <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Latvia</masterLabel>
@@ -418,8 +426,16 @@
             <translation><!-- Switzerland --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Thailand</masterLabel>
             <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>United Kingdom</masterLabel>
@@ -751,6 +767,10 @@
             <translation><!-- Email Greece --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Hong Kong</masterLabel>
+            <translation><!-- Email Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Hungary</masterLabel>
             <translation><!-- Email Hungary --></translation>
         </picklistValues>
@@ -769,6 +789,10 @@
         <picklistValues>
             <masterLabel>Email Japan</masterLabel>
             <translation><!-- Email Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Korea</masterLabel>
+            <translation><!-- Email Korea --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email Middle Americas</masterLabel>
@@ -823,8 +847,16 @@
             <translation><!-- Email TO France --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Taiwan</masterLabel>
+            <translation><!-- Email Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Thailand</masterLabel>
             <translation><!-- Email Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Turkey</masterLabel>
+            <translation><!-- Email Turkey --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email UK</masterLabel>
@@ -899,6 +931,10 @@
         <label><!-- Override From Address --></label>
         <name>Override_From_Address__c</name>
         <picklistValues>
+            <masterLabel>CEC.Korea@unilever.com</masterLabel>
+            <translation><!-- CEC.Korea@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Careline.bd@unilever.com</masterLabel>
             <translation><!-- Careline.bd@unilever.com --></translation>
         </picklistValues>
@@ -947,6 +983,10 @@
             <translation><!-- bertollioliveoilusa@deoleo.com --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>callcenter.tr@unilever.com</masterLabel>
+            <translation><!-- callcenter.tr@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>carapelliusa@deoleo.com</masterLabel>
             <translation><!-- carapelliusa@deoleo.com --></translation>
         </picklistValues>
@@ -955,8 +995,16 @@
             <translation><!-- carbonellusa@deoleo.com --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>cec.hk@unilever.com</masterLabel>
+            <translation><!-- cec.hk@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>cec.philippines@unilever.com</masterLabel>
             <translation><!-- cec.philippines@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>cec.taiwan@unilever.com</masterLabel>
+            <translation><!-- cec.taiwan@unilever.com --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>comments@talentigelato.com</masterLabel>
@@ -1456,6 +1504,10 @@
         <picklistValues>
             <masterLabel>Pending with Courier</masterLabel>
             <translation><!-- Pending with Courier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Reopened</masterLabel>

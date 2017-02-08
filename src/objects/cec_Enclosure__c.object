@@ -229,6 +229,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -254,6 +258,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korea</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -361,7 +369,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -593,6 +609,25 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_DACH_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Active__c</columns>
+        <filterScope>Queue</filterScope>
+        <label>CEC DACH Queue</label>
+        <language>en_US</language>
+        <queue>CEC_DACH_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_DACH</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_User_DACH</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_France_Queue_cec_Enclosure</fullName>
         <columns>NAME</columns>
         <columns>Country__c</columns>
@@ -649,6 +684,15 @@
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_Greece</role>
             <role>CEC_User_Greece</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Hong_Kong_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Hong Kong Queue</label>
+        <queue>CEC_Hong_Kong_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -741,6 +785,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Korea_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Korea Queue</label>
+        <queue>CEC_Korea_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Middle_Americas_Queue_cec_Enclosure</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Middle Americas Queue</label>
@@ -778,11 +831,6 @@
         <columns>Total_Used_Quantity__c</columns>
         <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
-        <filters>
-            <field>Brand__c</field>
-            <operation>notContain</operation>
-            <value>SUN,Bertolli,R&amp;B</value>
-        </filters>
         <label>CEC North America Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
@@ -893,10 +941,28 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Taiwan_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Taiwan Queue</label>
+        <queue>CEC_Taiwan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Thailand_Queue_cec_Enclosure</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Thailand Queue</label>
         <queue>CEC_Thailand_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Turkey_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Turkey Queue</label>
+        <queue>CEC_Turkey_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -911,6 +977,16 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>alle_DACH_Enclosures1</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Active__c</columns>
+        <columns>Country__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>alle DACH-Enclosures</label>
+        <language>de</language>
+    </listViews>
+    <listViews>
         <fullName>test</fullName>
         <columns>NAME</columns>
         <columns>Active__c</columns>
@@ -920,7 +996,7 @@
         <columns>MailItemName__c</columns>
         <columns>MaximumQty__c</columns>
         <filterScope>Everything</filterScope>
-        <label>CEC DACH Queue</label>
+        <label>test D</label>
         <language>de</language>
     </listViews>
     <nameField>

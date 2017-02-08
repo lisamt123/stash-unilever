@@ -17,6 +17,11 @@ private class IPM_GlobalFinancialActionStandards_Test{
     private static List<IPM_Project_Document_Section__c> projectDocSecListObj =new List<IPM_Project_Document_Section__c>();
     private static IPM_Financial_Action_Standards__c finAction=new IPM_Financial_Action_Standards__c();
     private static List<IPM_Financial_Action_Standards__c> finActionLst=new List<IPM_Financial_Action_Standards__c>();
+    private static string gate = 'gate';
+    private static string isEditable = 'isEditable';
+    private static string secId = 'secId';
+    private static string projId = 'projId';
+            
     /*************************************************************************************************************************
     * @description Test Data
     */
@@ -89,7 +94,7 @@ private class IPM_GlobalFinancialActionStandards_Test{
             
         }
     }
-    
+        
     /*************************************************************************************************************************
             * @description Running Test Script
         */ 
@@ -97,15 +102,26 @@ private class IPM_GlobalFinancialActionStandards_Test{
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();
-            ipnmGlobFinActionStn.finActionId=finAction.Id;
-            ipnmGlobFinActionStn.gateType=IPM_ConstantUtils.CHARTER_GATE;
-            ipnmGlobFinActionStn.editTable=true;
-            ipnmGlobFinActionStn.finActionSpan=IPM_ConstantUtils.IPMREGIONAL;
-            ipnmGlobFinActionStn.projDocSecId=projectDocSecListObj[0].Id;
-            ipnmGlobFinActionStn.numValue=1;
+            ApexPages.CurrentPage().getParameters().put(gate,IPM_ConstantUtils.CHARTER_GATE);
+            ApexPages.CurrentPage().getParameters().put(isEditable,IPM_ConstantUtils.IPM_false);
+            ApexPages.CurrentPage().getParameters().put(secId,projectDocSecListObj[0].Id);
+            ApexPages.CurrentPage().getParameters().put(projId,project.Id);
+            ipnmGlobFinActionStn=new IPM_GlobalFinancialActionStandards();
+            //Check for parameters
+            string gateTypeSt=ipnmGlobFinActionStn.gateType;
+            System.assertEquals(gateTypeSt,IPM_ConstantUtils.CHARTER_GATE,'Parameter not set properly');
+            boolean isEdit=ipnmGlobFinActionStn.isEditable;
+            boolean edit=ipnmGlobFinActionStn.editTable;
+            System.assertEquals(isEdit,false,'Parameter not set properly');
+            ApexPages.CurrentPage().getParameters().put('isEditable',IPM_ConstantUtils.IPM_true);
+            isEdit=ipnmGlobFinActionStn.isEditable;
+            edit=ipnmGlobFinActionStn.editTable;
+            System.assertEquals(isEdit,true,'Parameter not set properly');
             
-            ipnmGlobFinActionStn.setprojectId(project.Id);
-            finActionLst=[select Id,IPM_Project_Span__c from IPM_Financial_Action_Standards__c WHERE IPM_Project__c=:ipnmGlobFinActionStn.project.Id 
+            ipnmGlobFinActionStn.finActionId=finAction.Id;
+            ipnmGlobFinActionStn.finActionSpan=IPM_ConstantUtils.IPMREGIONAL;
+            ipnmGlobFinActionStn.numValue=1;
+            finActionLst=[select Id,IPM_Project_Span__c from IPM_Financial_Action_Standards__c WHERE IPM_Project__c=:ipnmGlobFinActionStn.projectId 
                           AND IPM_Project_Document_Section__c=:ipnmGlobFinActionStn.projDocSecId];
             System.assertEquals(finActionLst[0].IPM_Project_Span__c,IPM_ConstantUtils.IPMREGIONAL,'Financial Action standard record is not there');
             
@@ -121,13 +137,18 @@ private class IPM_GlobalFinancialActionStandards_Test{
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();
+            ApexPages.CurrentPage().getParameters().put(gate,IPM_ConstantUtils.CHARTER_GATE);
+            ApexPages.CurrentPage().getParameters().put(isEditable,IPM_ConstantUtils.IPM_true);
+            ApexPages.CurrentPage().getParameters().put(secId,projectDocSecListObj[0].Id);
+            ApexPages.CurrentPage().getParameters().put(projId,project.Id);
+            ipnmGlobFinActionStn=new IPM_GlobalFinancialActionStandards();
             ipnmGlobFinActionStn.finActionId=finAction.Id;
             ipnmGlobFinActionStn.gateType=IPM_ConstantUtils.CHARTER_GATE;
             
             ipnmGlobFinActionStn.finActionSpan=IPM_ConstantUtils.IPMREGIONAL;
             ipnmGlobFinActionStn.projDocSecId=projectDocSecListObj[0].Id;
             
-            ipnmGlobFinActionStn.setprojectId(project.Id);
+            ipnmGlobFinActionStn.projectId=project.Id;
             
             ipnmGlobFinActionStn.field= 'Incremental';
             ipnmGlobFinActionStn.updateActionStandards();

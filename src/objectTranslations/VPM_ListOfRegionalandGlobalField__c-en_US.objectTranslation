@@ -21,6 +21,10 @@
         <name>VPM_JSONFieldName__c</name>
     </fields>
     <fields>
+        <label><!-- Section Name --></label>
+        <name>VPM_SectionName__c</name>
+    </fields>
+    <fields>
         <label><!-- fieldDatatype --></label>
         <name>VPM_fieldDatatype__c</name>
     </fields>

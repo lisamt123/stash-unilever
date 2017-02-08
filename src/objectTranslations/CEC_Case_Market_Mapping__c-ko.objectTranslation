@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Case Market Mapping --></value>
+    </caseValues>
+    <fields>
+        <label>계정 소유자 활성화 플래그</label>
+        <name>Account_Owner_Active_Flag__c</name>
+    </fields>
+    <fields>
+        <label>홍보대사 브랜드</label>
+        <name>Brand_Ambassador_Brands__c</name>
+    </fields>
+    <fields>
+        <label>근무 시간</label>
+        <name>Business_Hours__c</name>
+        <relationshipLabel>케이스 시장 매핑</relationshipLabel>
+    </fields>
+    <fields>
+        <label>CSAT 연기</label>
+        <name>CSAT_Delay__c</name>
+    </fields>
+    <fields>
+        <label>CSAT 이메일 비율</label>
+        <name>CSAT_Email_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>CSAT 전화 비율</label>
+        <name>CSAT_Phone_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>CSAT 소셜미디어 비율</label>
+        <name>CSAT_Social_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>CSAT 서베이 ID</label>
+        <name>CSAT_Survey_Id__c</name>
+    </fields>
+    <fields>
+        <label>CSAT 웹 비율</label>
+        <name>CSAT_Web_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>케이스 근원</label>
+        <name>CaseOrigin__c</name>
+    </fields>
+    <fields>
+        <label>수표 소수점</label>
+        <name>Cheque_Decimals__c</name>
+        <picklistValues>
+            <masterLabel>Display as fraction</masterLabel>
+            <translation><!-- Display as fraction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Display as text</masterLabel>
+            <translation><!-- Display as text --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>회사 주소</label>
+        <name>Company_Address__c</name>
+    </fields>
+    <fields>
+        <label>회사 번호</label>
+        <name>Company_Phone__c</name>
+    </fields>
+    <fields>
+        <label>고객 번호 검색 숫자</label>
+        <name>Consumer_Phone_Search_Digits__c</name>
+    </fields>
+    <fields>
+        <label>국가</label>
+        <name>Country__c</name>
+        <relationshipLabel>케이스 시장 매핑</relationshipLabel>
+    </fields>
+    <fields>
+        <label>계정 소유자 ID 기본값</label>
+        <name>DefaultAccountOwnerId__c</name>
+        <relationshipLabel>케이스 시장 매핑</relationshipLabel>
+    </fields>
+    <fields>
+        <label>케이스 소유자 ID 기본값</label>
+        <name>DefaultCaseOwnerId__c</name>
+    </fields>
+    <fields>
+        <label>주소 기본값</label>
+        <name>Default_From_Address__c</name>
+    </fields>
+    <fields>
+        <label>기술 라우팅 사용</label>
+        <name>Enable_Skill_Routing__c</name>
+    </fields>
+    <fields>
+        <label>언어</label>
+        <name>Language__c</name>
+        <picklistValues>
+            <masterLabel>Bosnian</masterLabel>
+            <translation><!-- Bosnian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bulgarian</masterLabel>
+            <translation><!-- Bulgarian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chinese</masterLabel>
+            <translation><!-- Chinese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Croatian</masterLabel>
+            <translation><!-- Croatian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech</masterLabel>
+            <translation><!-- Czech --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Danish</masterLabel>
+            <translation><!-- Danish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dutch</masterLabel>
+            <translation><!-- Dutch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English</masterLabel>
+            <translation><!-- English --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finnish</masterLabel>
+            <translation><!-- Finnish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flemish</masterLabel>
+            <translation><!-- Flemish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>French</masterLabel>
+            <translation><!-- French --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>German</masterLabel>
+            <translation><!-- German --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greek</masterLabel>
+            <translation><!-- Greek --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungarian</masterLabel>
+            <translation><!-- Hungarian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italian</masterLabel>
+            <translation><!-- Italian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japanese</masterLabel>
+            <translation><!-- Japanese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korean</masterLabel>
+            <translation><!-- Korean --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Moldavian</masterLabel>
+            <translation><!-- Moldavian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Norwegian</masterLabel>
+            <translation><!-- Norwegian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Polish</masterLabel>
+            <translation><!-- Polish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portuguese</masterLabel>
+            <translation><!-- Portuguese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Serbian</masterLabel>
+            <translation><!-- Serbian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovak</masterLabel>
+            <translation><!-- Slovak --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovenian</masterLabel>
+            <translation><!-- Slovenian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spanish</masterLabel>
+            <translation><!-- Spanish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Swedish</masterLabel>
+            <translation><!-- Swedish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkish</masterLabel>
+            <translation><!-- Turkish --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>현장</label>
+        <name>Locale__c</name>
+    </fields>
+    <fields>
+        <label>시장</label>
+        <name>Market__c</name>
+    </fields>
+    <fields>
+        <help>이메일 템플릿의 개발자 이름을 입력하세요. 개발자 입력은 빈칸없이 입력해주세요.</help>
+        <label>제품 공장 이메일 템플릿</label>
+        <name>Product_Factory_Email_Template__c</name>
+    </fields>
+    <fields>
+        <label>태그</label>
+        <name>Tag__c</name>
+        <picklistValues>
+            <masterLabel>CEC</masterLabel>
+            <translation><!-- CEC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>George</masterLabel>
+            <translation><!-- George --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>이메일 템플릿의 개발자 이름을 입력하세요. 개발자 입력은 빈칸없이 입력해주세요.</help>
+        <label>섬유 공장 이메일 템플릿</label>
+        <name>Textile_Factory_Email_Template__c</name>
+    </fields>
+    <fields>
+        <help>표준시간대가 그리니치 표준시 + 5.30 이면 5.30을 선택, -7이면 -7, +13.45명 13.75, -9.30이면 -9.50을 입력하세요.</help>
+        <label>표준시간대 차이 그리니치 표준시</label>
+        <name>TimeZone_Difference_GMT__c</name>
+    </fields>
+    <layouts>
+        <layout>Case Market Mapping Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Settings --></label>
+            <section>Fulfilment Settings</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Case Market Mapping Name --></nameFieldLabel>
+</CustomObjectTranslation>

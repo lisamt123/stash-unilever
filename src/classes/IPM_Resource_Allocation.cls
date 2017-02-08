@@ -434,11 +434,33 @@ public with sharing class IPM_Resource_Allocation {
               uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
               
           }
-          
-          else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY){
-            
-            
-            if(ipmproject.IPM_ProjectGKM__c==GKM3 )
+          else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY)
+          {
+            uQuery = partialFilterTeamMember1(uQuery); 
+          }
+        else if(searchTeambyCat==IPM_ConstantUtils.TEAM_ALLCATEGORY )
+        {
+            uQuery = partialFilterTeamMember2(uQuery);
+        }
+        try
+        {
+            partialFilterTeamMember3(uQuery,lstuser,querySearchTeamMem,uniqueUsers);
+        }
+        catch(QueryException ex)
+        {
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
+            'filterTeamMember',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
+        }
+    }
+    
+    /*****************************************************************************
+        @Description: This method is created to resolve nPath Complexity issue  
+        @Return: Void
+    *****************************************************************************/
+    private String  partialFilterTeamMember1(string uQuery){
+        
+        if(ipmproject.IPM_ProjectGKM__c==GKM3 )
             {
               String filterCat = ipmproject.IPM_ProjectGKM__c==GKM3 ? filterCatList :CAT_STRNG; 
                 UQuery=IPM_ConstantUtils.BLANK;
@@ -471,11 +493,17 @@ public with sharing class IPM_Resource_Allocation {
               uQuery=uQuery+' AND (IPM_User__r.name LIKE :querySearchTeamMem  OR ';
               uQuery=uQuery+SRCH_FILTER;
               uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
-             
-          }
-        else if(searchTeambyCat==IPM_ConstantUtils.TEAM_ALLCATEGORY )
-        {
-            if(roleType==IPM_ConstantUtils.TEAM_GUEST)
+             return uQuery;
+    }
+    
+    
+    /*****************************************************************************
+        @Description: This method is created to resolve nPath Complexity issue  
+        @Return: Void
+    *****************************************************************************/
+    private String partialFilterTeamMember2(string uQuery)
+    {
+        if(roleType==IPM_ConstantUtils.TEAM_GUEST)
             {
                 uQuery=uQuery+' IPM_HoldCategory__c !=null AND';
                 uQuery=uQuery+'(IPM_User__r.name LIKE :querySearchTeamMem  OR IPM_User__r.email LIKE :querySearchTeamMem OR ';
@@ -488,10 +516,16 @@ public with sharing class IPM_Resource_Allocation {
                 uQuery=uQuery+SRCH_FILTER;
                 uQuery=uQuery+'AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT; 
             }
-        }
-        try
-        {
-            
+            return uQuery;
+    }
+    
+    
+    /*****************************************************************************
+        @Description: This method is created to resolve nPath Complexity issue  
+        @Return: Void
+    *****************************************************************************/
+    private void partialFilterTeamMember3(string uQuery,list<IPM_User_Profile__c>lstuser,string querySearchTeamMem,map<id,id>uniqueUsers)
+    {
             lstuser=database.query(uQuery);
             List<IPM_User_Profile__c>plDPLUserList=new List<IPM_User_Profile__c>();
             if(!projectPLDPLSet.isEmpty()){
@@ -529,14 +563,10 @@ public with sharing class IPM_Resource_Allocation {
         {
             teamMembers.add(new wrapperclass(u));
             }
-        }
-        catch(QueryException ex)
-        {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
-            'filterTeamMember',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
-        }
+        
+        
     }
+    
     /*************************************************************************************************************
     * @description:Add members FROM same category which are SELECTed FROM page
     */
@@ -642,22 +672,25 @@ public with sharing class IPM_Resource_Allocation {
         {
             buttonLabel=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
             strCoreMem=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
+            SelecetedCoreMember=Ipmproject.IPM_Project_Leader__c;
         }
         else if(IPM_ConstantUtils.TEAM_COREDPL==coreMembers)
         {
             buttonLabel=IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER;
             strCoreMem=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
-            
+            SelecetedCoreMember=Ipmproject.Deputy_Project_Leader__c;
         }
         else if(IPM_ConstantUtils.TEAM_COREGATEK==coreMembers)
         {
             buttonLabel=IPM_ConstantUtils.TEAM_GATEKEEPER;
             strCoreMem=IPM_ConstantUtils.TEAM_GATEKEEPER;
+            SelecetedCoreMember=Ipmproject.IPM_Project_Gatekeeper__c;
         }
         else if(IPM_ConstantUtils.TEAM_CORETPL==coreMembers)
         {
             buttonLabel=IPM_ConstantUtils.TEAM_TECHNICAL_PROJECT_LEADER;
             strCoreMem=IPM_ConstantUtils.TEAM_RESEARCH_DEVELOPMENT;
+            SelecetedCoreMember=Ipmproject.IPM_Technical_Project_Leader__c;
             uQuery=BEGIN_QUERY;
             uQuery=uQuery+QUERY_FIELDS_STR;
             uQuery=uQuery+QUERY_WHERE_STR;
@@ -1018,20 +1051,20 @@ public with sharing class IPM_Resource_Allocation {
         {  
            if(IPM_ConstantUtils.TEAM_MYCATEGORY.equalsIgnoreCase(SearchLeaderbyCat))
            {    
-            	if(ipmproject.IPM_ProjectGKM__c==GKM3)
+                if(ipmproject.IPM_ProjectGKM__c==GKM3)
                 {
-			        String QUERY_STRING = BEGIN_QUERY_TEAM + MID_QUERY_TEAM + QUERY_STRING_PROFILE ; 
-					String resolvedField =  cntxtRLOut.MCO_Name__c;
-					UQuery = QUERY_STRING +MCO_STRING+ resolvedField +USER_FUNCTION_STRING+project_Leader+BCKWRD_SLASH+QUERY_LIMIT;
+                    String QUERY_STRING = BEGIN_QUERY_TEAM + MID_QUERY_TEAM + QUERY_STRING_PROFILE ; 
+                    String resolvedField =  cntxtRLOut.MCO_Name__c;
+                    UQuery = QUERY_STRING +MCO_STRING+ resolvedField +USER_FUNCTION_STRING+project_Leader+BCKWRD_SLASH+QUERY_LIMIT;
                 }                
                 else
                 {
-	                UQuery=IPM_ConstantUtils.BLANK;
-	                UQuery = BEGIN_QUERY_TEAM;
-	                UQuery = UQuery+MID_QUERY_TEAM;
-	                UQuery = UQuery+QUERY_STRING_PROFILE;
-	                UQuery = UQuery+USERECAT_CLAUSE+holdCategory;
-	                UQuery= UQuery + FNCT_STRNG+project_Leader+BCKWRD_SLASH+QUERY_LIMIT;
+                    UQuery=IPM_ConstantUtils.BLANK;
+                    UQuery = BEGIN_QUERY_TEAM;
+                    UQuery = UQuery+MID_QUERY_TEAM;
+                    UQuery = UQuery+QUERY_STRING_PROFILE;
+                    UQuery = UQuery+USERECAT_CLAUSE+holdCategory;
+                    UQuery= UQuery + FNCT_STRNG+project_Leader+BCKWRD_SLASH+QUERY_LIMIT;
                 }
                 
             }
@@ -1039,20 +1072,20 @@ public with sharing class IPM_Resource_Allocation {
             {
                  if(ipmproject.IPM_ProjectGKM__c==GKM3)
                 {
-	                UQuery = BEGIN_QUERY_TEAM;
-	                UQuery = UQuery+MID_QUERY_TEAM;
-	                UQuery = UQuery+QUERY_PORTION2;
-	                UQuery = UQuery+FNCT_STRNG+project_Leader+BCKWRD_SLASH;
-	                UQuery = UQuery+QUERY_LIMIT;
+                    UQuery = BEGIN_QUERY_TEAM;
+                    UQuery = UQuery+MID_QUERY_TEAM;
+                    UQuery = UQuery+QUERY_PORTION2;
+                    UQuery = UQuery+FNCT_STRNG+project_Leader+BCKWRD_SLASH;
+                    UQuery = UQuery+QUERY_LIMIT;
                 } 
                 else
                 {  
-	                UQuery=IPM_ConstantUtils.BLANK;
-	                UQuery =BEGIN_QUERY_TEAM;
-	                UQuery = UQuery+MID_QUERY_TEAM;
-	                UQuery = UQuery+QUERY_PORTION2;
-	                UQuery = UQuery+HLD_CAT_STRNG+holdCategory+FNCT_STRNG+project_Leader+BCKWRD_SLASH;
-	                UQuery = UQuery+QUERY_LIMIT;
+                    UQuery=IPM_ConstantUtils.BLANK;
+                    UQuery =BEGIN_QUERY_TEAM;
+                    UQuery = UQuery+MID_QUERY_TEAM;
+                    UQuery = UQuery+QUERY_PORTION2;
+                    UQuery = UQuery+HLD_CAT_STRNG+holdCategory+FNCT_STRNG+project_Leader+BCKWRD_SLASH;
+                    UQuery = UQuery+QUERY_LIMIT;
                 }
                
             }
@@ -1065,14 +1098,14 @@ public with sharing class IPM_Resource_Allocation {
                 
                 if(cntxtRLOut.IPM_Rollout_Span__c==IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL)
                 { 
-	                UQuery = UQuery+USERECAT_CLAUSE+holdCategory;
-	                UQuery= UQuery + FNCT_STRNG +project_Leader+BCKWRD_SLASH+QUERY_LIMIT;
+                    UQuery = UQuery+USERECAT_CLAUSE+holdCategory;
+                    UQuery= UQuery + FNCT_STRNG +project_Leader+BCKWRD_SLASH+QUERY_LIMIT;
                 }
                 else 
                 {
-                	 String resolvedField =  cntxtRLOut.MCO_Name__c;
-                	 UQuery = UQuery+MCO_STRING+ resolvedField+BCKWRD_SLASH;
-	                 UQuery= UQuery + FNCT_STRNG+project_Leader+BCKWRD_SLASH+QUERY_LIMIT;
+                     String resolvedField =  cntxtRLOut.MCO_Name__c;
+                     UQuery = UQuery+MCO_STRING+ resolvedField+BCKWRD_SLASH;
+                     UQuery= UQuery + FNCT_STRNG+project_Leader+BCKWRD_SLASH+QUERY_LIMIT;
                 }
             }
         }
@@ -1083,18 +1116,18 @@ public with sharing class IPM_Resource_Allocation {
            {
                 if(ipmproject.IPM_ProjectGKM__c==GKM3)
                 {
-			        String QUERY_STRING = BEGIN_QUERY_TEAM + MID_QUERY_TEAM + QUERY_STRING_PROFILE ; 
-					String resolvedField =  cntxtRLOut.MCO_Name__c;
-					UQuery = QUERY_STRING +MCO_STRING+ resolvedField +'AND IPM_User_Role__c = \''+function_Leader+BCKWRD_SLASH+QUERY_LIMIT; 
+                    String QUERY_STRING = BEGIN_QUERY_TEAM + MID_QUERY_TEAM + QUERY_STRING_PROFILE ; 
+                    String resolvedField =  cntxtRLOut.MCO_Name__c;
+                    UQuery = QUERY_STRING +MCO_STRING+ resolvedField +'AND IPM_User_Role__c = \''+function_Leader+BCKWRD_SLASH+QUERY_LIMIT; 
                 } 
                 else
                 {
-	                UQuery=IPM_ConstantUtils.BLANK;
-	                UQuery = BEGIN_QUERY_TEAM;
-	                UQuery = UQuery+MID_QUERY_TEAM;
-	                UQuery = UQuery+QUERY_STRING_PROFILE;
-	                UQuery = UQuery+USERECAT_CLAUSE+holdCategory;
-	                UQuery= UQuery + USER_ROLE_STRNG+function_Leader+BCKWRD_SLASH+QUERY_LIMIT;// l
+                    UQuery=IPM_ConstantUtils.BLANK;
+                    UQuery = BEGIN_QUERY_TEAM;
+                    UQuery = UQuery+MID_QUERY_TEAM;
+                    UQuery = UQuery+QUERY_STRING_PROFILE;
+                    UQuery = UQuery+USERECAT_CLAUSE+holdCategory;
+                    UQuery= UQuery + USER_ROLE_STRNG+function_Leader+BCKWRD_SLASH+QUERY_LIMIT;// l
                 }
                 
             }
@@ -1102,20 +1135,20 @@ public with sharing class IPM_Resource_Allocation {
             {
                  if(ipmproject.IPM_ProjectGKM__c==GKM3)
                 {
-	                UQuery = BEGIN_QUERY_TEAM;
-	                UQuery = UQuery+MID_QUERY_TEAM;
-	                UQuery = UQuery+QUERY_PORTION2;
-	                UQuery = UQuery+USER_ROLE_STRNG+function_Leader+BCKWRD_SLASH;
-	                UQuery = UQuery+QUERY_LIMIT; 
+                    UQuery = BEGIN_QUERY_TEAM;
+                    UQuery = UQuery+MID_QUERY_TEAM;
+                    UQuery = UQuery+QUERY_PORTION2;
+                    UQuery = UQuery+USER_ROLE_STRNG+function_Leader+BCKWRD_SLASH;
+                    UQuery = UQuery+QUERY_LIMIT; 
                 } 
                 else
                 {
-	                UQuery=IPM_ConstantUtils.BLANK;
-	                UQuery =BEGIN_QUERY_TEAM;
-	                UQuery = UQuery+MID_QUERY_TEAM;
-	                UQuery = UQuery+QUERY_PORTION2;
-	                UQuery = UQuery+HLD_CAT_STRNG+holdCategory+USER_ROLE_STRNG+function_Leader+BCKWRD_SLASH;
-	                UQuery = UQuery+QUERY_LIMIT;
+                    UQuery=IPM_ConstantUtils.BLANK;
+                    UQuery =BEGIN_QUERY_TEAM;
+                    UQuery = UQuery+MID_QUERY_TEAM;
+                    UQuery = UQuery+QUERY_PORTION2;
+                    UQuery = UQuery+HLD_CAT_STRNG+holdCategory+USER_ROLE_STRNG+function_Leader+BCKWRD_SLASH;
+                    UQuery = UQuery+QUERY_LIMIT;
                 }
             }
             else 
@@ -1127,14 +1160,14 @@ public with sharing class IPM_Resource_Allocation {
                
                 if(cntxtRLOut.IPM_Rollout_Span__c==IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL)
                 { 
-	                UQuery = UQuery+USERECAT_CLAUSE+holdCategory;
-	                UQuery= UQuery + '  ) AND IPM_User_Role__c =\''+function_Leader+BCKWRD_SLASH+QUERY_LIMIT;
+                    UQuery = UQuery+USERECAT_CLAUSE+holdCategory;
+                    UQuery= UQuery + '  ) AND IPM_User_Role__c =\''+function_Leader+BCKWRD_SLASH+QUERY_LIMIT;
                 }
                 else 
                 {    
-                	 String resolvedField =  cntxtRLOut.MCO_Name__c;
-                	 UQuery = UQuery+' IPM_Company_Card__r.IPM_MCO__c =\''+resolvedField+BCKWRD_SLASH; 
-	                 UQuery= UQuery + USER_ROLE_STRNG +function_Leader+BCKWRD_SLASH+QUERY_LIMIT;
+                     String resolvedField =  cntxtRLOut.MCO_Name__c;
+                     UQuery = UQuery+' IPM_Company_Card__r.IPM_MCO__c =\''+resolvedField+BCKWRD_SLASH; 
+                     UQuery= UQuery + USER_ROLE_STRNG +function_Leader+BCKWRD_SLASH+QUERY_LIMIT;
                 }
                 
             }

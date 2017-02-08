@@ -100,6 +100,17 @@
         <template>VPM_ApprovalEmails/VPM_RequestReviewNotification</template>
     </alerts>
     <alerts>
+        <fullName>VPM_RequestforUsertoCompleteVendorRequestSurvey</fullName>
+        <description>Request for User to Complete Vendor Request Survey</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_UserSurveyRequest</template>
+    </alerts>
+    <alerts>
         <fullName>VPM_RequesthasbeenloggedMDM</fullName>
         <description>VPM_RequesthasbeenloggedMDM</description>
         <protected>false</protected>
@@ -1053,7 +1064,7 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             <name>VPM_ChangeOwnerIdtoMDMOpsQueue</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
             <operation>contains</operation>

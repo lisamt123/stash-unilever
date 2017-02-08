@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Exception Log --></value>
+    </caseValues>
+    <fields>
+        <label>에러 사항 기술</label>
+        <name>Error_Description__c</name>
+    </fields>
+    <fields>
+        <label>참고 ID</label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label>소스 구성명</label>
+        <name>Source_Component_Name__c</name>
+    </fields>
+    <fields>
+        <label>소스 방법 명</label>
+        <name>Source_Method_Name__c</name>
+    </fields>
+    <fields>
+        <label>소스 유형</label>
+        <name>Source_Type__c</name>
+        <picklistValues>
+            <masterLabel>Controller</masterLabel>
+            <translation><!-- Controller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scheduler</masterLabel>
+            <translation><!-- Scheduler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trigger</masterLabel>
+            <translation><!-- Trigger --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>사용자</label>
+        <name>User__c</name>
+        <relationshipLabel>예외 로그</relationshipLabel>
+    </fields>
+    <nameFieldLabel><!-- Exception Log Name --></nameFieldLabel>
+</CustomObjectTranslation>

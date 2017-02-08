@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Alert Tracker Item --></value>
+    </caseValues>
+    <fields>
+        <label>活躍</label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label>警報準則 (編號)</label>
+        <name>Alert_Rule_Id__c</name>
+    </fields>
+    <fields>
+        <label>警報追蹤</label>
+        <name>Alert_Tracker_Id__c</name>
+        <relationshipLabel>警報追蹤項目</relationshipLabel>
+    </fields>
+    <fields>
+        <label>案件_編號</label>
+        <name>Case_Id__c</name>
+        <relationshipLabel>警報追蹤項目</relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Alert Tracker Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Alert Tracker Item Number --></nameFieldLabel>
+</CustomObjectTranslation>

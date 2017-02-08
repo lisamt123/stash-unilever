@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Reason Information --></value>
+    </caseValues>
+    <fields>
+        <label>추가적인 민감한 정보</label>
+        <name>Additional_Sensitive_Information__c</name>
+    </fields>
+    <fields>
+        <label>법적 승인</label>
+        <name>Approved_by_Legal__c</name>
+    </fields>
+    <fields>
+        <label>원인 기술</label>
+        <name>Reason_Description__c</name>
+    </fields>
+    <fields>
+        <label>고객 응대</label>
+        <name>Response_to_Consumer__c</name>
+    </fields>
+    <fields>
+        <label>민감한 내용</label>
+        <name>Sensitive_Text__c</name>
+    </fields>
+    <fields>
+        <label>짧은 코드</label>
+        <name>Short_Code__c</name>
+    </fields>
+</CustomObjectTranslation>

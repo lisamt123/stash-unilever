@@ -39,8 +39,8 @@
         <permissionSet>ICB_Mobile_Channel_Operator_PCL</permissionSet>
         <permissionSet>ICB_Mobile_Channel_Salesmen_PCL</permissionSet>
         <permissionSet>ICB_Mobile_Channel_Console_PCL</permissionSet>
-        <profile>Admin</profile>
-        <profile>Partner Community User</profile>
+        <profile>admin</profile>
+        <profile>partner community user</profile>
     </networkMemberGroups>
     <newSenderAddress>ana.lins@unilever.com</newSenderAddress>
     <picassoSite>Eu_Sou_Kibon1</picassoSite>

@@ -223,7 +223,18 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         	showActiveTask = false;
         	showArchievedProjectTask = true;
         }
-        String soql  =  'SELECT IPM_Task_Name__c, IPM_Phase__c,IPM_Master_Section_Name__c,IPM_Master_Section_Sequence__c,IPM_Project_Document_Section__r.IPM_Section_Name__c,IPM_Assignee__c,';
+              
+        return partialGetQuery(soqlWHERE,showActiveTask,showArchievedProjectTask);  
+    }
+    
+    /***************************************************************************
+    @Description: This method is created to resolve nPath Complexity issue
+    @Return: String Query
+    ***************************************************************************/
+    
+    public String partialGetQuery(string soqlWHERE,Boolean showActiveTask,Boolean showArchievedProjectTask )
+    {
+    	String soql  =  'SELECT IPM_Task_Name__c, IPM_Phase__c,IPM_Master_Section_Name__c,IPM_Master_Section_Sequence__c,IPM_Project_Document_Section__r.IPM_Section_Name__c,IPM_Assignee__c,';
                soql += 'IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,';
                soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
                soql += 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,IPM_Project__r.IPM_Current_Document_Status__c,';
@@ -266,7 +277,6 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         }
         soql += ' limit 1000'; 
         return soql;  
-        
     }
     
     /**

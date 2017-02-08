@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Product Information --></value>
+    </caseValues>
+    <fields>
+        <label>외부 링크</label>
+        <name>Additional_Information__c</name>
+    </fields>
+    <fields>
+        <label>추가적인 제품 정보</label>
+        <name>Additional_Product_Information__c</name>
+    </fields>
+    <fields>
+        <label>추가적인 민감한 정보</label>
+        <name>Additional_Sensitive_Information__c</name>
+    </fields>
+    <fields>
+        <label>법적 승인</label>
+        <name>Approved_by_Legal__c</name>
+    </fields>
+    <fields>
+        <label>유효성</label>
+        <name>Availability__c</name>
+    </fields>
+    <fields>
+        <label>이득</label>
+        <name>Benefit__c</name>
+    </fields>
+    <fields>
+        <label>브랜드</label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label>코드 위치 날짜</label>
+        <name>Date_Code_Location__c</name>
+    </fields>
+    <fields>
+        <label>GTIN 코드 라스트 4</label>
+        <name>GTIN_Code_Last_4__c</name>
+    </fields>
+    <fields>
+        <label>섭취</label>
+        <name>Ingredients__c</name>
+    </fields>
+    <fields>
+        <label>레거시 텍스트</label>
+        <name>Legacy_Text__c</name>
+    </fields>
+    <fields>
+        <label>매타태그</label>
+        <name>Meta_Tags__c</name>
+    </fields>
+    <fields>
+        <label>영양 정보</label>
+        <name>Nutrition_Information__c</name>
+    </fields>
+    <fields>
+        <label>PDF 버전 2</label>
+        <name>PDF_Version_2__c</name>
+    </fields>
+    <fields>
+        <label>PDF 버전 3</label>
+        <name>PDF_Version_3__c</name>
+    </fields>
+    <fields>
+        <label>PDF 버전</label>
+        <name>PDF_Version__c</name>
+    </fields>
+    <fields>
+        <label>팩 사진</label>
+        <name>Pack_Shot__c</name>
+    </fields>
+    <fields>
+        <label>팩키지 묘사</label>
+        <name>Packaging_Description__c</name>
+    </fields>
+    <fields>
+        <label>제품 코드</label>
+        <name>Product_Code__c</name>
+    </fields>
+    <fields>
+        <label>단종 제품</label>
+        <name>Product_De_listed__c</name>
+    </fields>
+    <fields>
+        <label>제품 기술</label>
+        <name>Product_Description__c</name>
+    </fields>
+    <fields>
+        <label>레시피 제안</label>
+        <name>Recipe_Suggestions__c</name>
+    </fields>
+    <fields>
+        <label>재활용 정보</label>
+        <name>Recycling_Info__c</name>
+    </fields>
+    <fields>
+        <label>민감한 내용</label>
+        <name>Sensitive_Text__c</name>
+    </fields>
+    <fields>
+        <label>품질 수명</label>
+        <name>Shelf_Life__c</name>
+    </fields>
+    <fields>
+        <label>사이즈</label>
+        <name>Size__c</name>
+    </fields>
+    <fields>
+        <label>저장</label>
+        <name>Storage__c</name>
+    </fields>
+    <fields>
+        <label>적합성</label>
+        <name>Suitability__c</name>
+    </fields>
+    <fields>
+        <label>전화 번호</label>
+        <name>Telephone_Numbers__c</name>
+    </fields>
+    <fields>
+        <label>사용법</label>
+        <name>Usage__c</name>
+    </fields>
+    <fields>
+        <label>종류</label>
+        <name>Variant__c</name>
+    </fields>
+    <layouts>
+        <layout>Product Information Layout</layout>
+        <sections>
+            <label><!-- Extended Data --></label>
+            <section>Extended Data</section>
+        </sections>
+        <sections>
+            <label><!-- External Links --></label>
+            <section>External Links</section>
+        </sections>
+        <sections>
+            <label><!-- Nutrition Information --></label>
+            <section>Nutrition Information</section>
+        </sections>
+        <sections>
+            <label><!-- Product &amp; Packaging --></label>
+            <section>Product &amp; Packaging</section>
+        </sections>
+        <sections>
+            <label><!-- Recipe Information --></label>
+            <section>Recipe Information</section>
+        </sections>
+        <sections>
+            <label><!-- Storage &amp; Usage --></label>
+            <section>Storage &amp; Usage</section>
+        </sections>
+        <sections>
+            <label><!-- Telephone Numbers --></label>
+            <section>Telephone Numbers</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

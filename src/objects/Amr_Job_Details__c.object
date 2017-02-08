@@ -52,7 +52,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -3406,6 +3406,48 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Multi_Brand_Positioning__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Multi Brand Positioning</label>
+        <referenceTo>Amr_Multi_Brand_Positioning__c</referenceTo>
+        <relationshipLabel>Amr Job Details</relationshipLabel>
+        <relationshipName>Amr_Job_Details</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Multi_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Multi Brand</label>
+        <referenceTo>Amr_Multi_Brand__c</referenceTo>
+        <relationshipLabel>Amr Job Details</relationshipLabel>
+        <relationshipName>Amr_Job_Details</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Multi_Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Multi Category</label>
+        <referenceTo>Amr_Multi_Category__c</referenceTo>
+        <relationshipLabel>Amr Job Details</relationshipLabel>
+        <relationshipName>Amr_Job_Details</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>NewOriginalMasterCinemaAudio__c</fullName>
@@ -7020,6 +7062,28 @@
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>Single_or_multiply_project__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Single or Multiply</inlineHelpText>
+        <label>Single or multiply project</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Single</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multiply</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Stage_of_Production_Activity__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>If your registation is across multiple Production Activity types then please select based on the timing of the 1st activity.  If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cutdown, Re-edit) your timing selection is based on</inlineHelpText>
@@ -7159,21 +7223,20 @@
     <label>Amr Job Details</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>OWNER.LAST_NAME</columns>
         <columns>AdManagerText__c</columns>
-        <columns>Brand_Final__c</columns>
-        <columns>Brand_Position__c</columns>
+        <columns>Project_Description__c</columns>
+        <columns>Single_or_multiply_project__c</columns>
+        <columns>Multi_Category__c</columns>
+        <columns>Multi_Brand_Positioning__c</columns>
+        <columns>Multi_Brand__c</columns>
         <columns>ProductCategory__c</columns>
+        <columns>Brand_Position__c</columns>
+        <columns>Brand_Final__c</columns>
         <columns>Job_Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <columns>Project_Leader_Cluster__c</columns>
-        <columns>Lead_Creative_Agency_name__c</columns>
-        <columns>Unilever_Project_Leader_Email__c</columns>
+        <columns>Project_Leader_Country__c</columns>
         <columns>CREATED_DATE</columns>
-        <columns>Currency_Conversion_Country_List__c</columns>
-        <columns>Brodcast_Market__c</columns>
-        <columns>Project_Details__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>

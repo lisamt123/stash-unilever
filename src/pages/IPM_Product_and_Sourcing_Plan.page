@@ -54,6 +54,7 @@
                 </div>
             </div>
             <apex:outputpanel id="sourceProductTable" layout="block">
+			<!-- Changing the Value on DOM ready --->
             <script type="text/javscript">
             	jq(document).ready(function() {
     				jq('[id*="sourcingUnitList"]').val('Select Sourcing Unit');
@@ -307,7 +308,7 @@
                                                                 <tr>
                                                                     <td width="6%" class="custNameWidth"><span >{!prodPlan.productPlan.IPM_Product_Name__c}</span></td>
                                                                     <td width="6%"><span >{!prodPlan.productPlan.IPM_Format__c}</span></td>
-                                                                    <td class="formCustWidth" width="6%"><span >{!prodPlan.productPlan.IPM_Formulation__c}</span></td>
+                                                                    <td class="formCustWidth" width="7%"><span >{!prodPlan.productPlan.IPM_Formulation__c}</span></td>
                                                                     <td width="6%"><span >{!prodPlan.productPlan.IPM_Packing__c}</span></td>
                                                                     <td width="11%" class="custSizeWidth"><span >{!prodPlan.productPlan.IPM_ProductSize__c}</span>
                                                                                     <span >{!prodPlan.productPlan.IPM_ProductSizeMetrics__c}</span></td>

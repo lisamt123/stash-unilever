@@ -33,8 +33,8 @@
     </navigationLinkSet>
     <networkMemberGroups>
         <permissionSet>UID_Partner_Community_User_Permission_Set</permissionSet>
-        <profile>Admin</profile>
-        <profile>CD Partner Community User</profile>
+        <profile>admin</profile>
+        <profile>cd partner community user</profile>
     </networkMemberGroups>
     <picassoSite>Unilever_International_Distributor1</picassoSite>
     <selfRegistration>false</selfRegistration>

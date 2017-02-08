@@ -28,8 +28,8 @@
     <networkMemberGroups>
         <permissionSet>Oblix_SWOP_AG_1_Agency</permissionSet>
         <permissionSet>Oblix_SWOP_AG_3_Agency</permissionSet>
-        <profile>Admin</profile>
-        <profile>Community Profile</profile>
+        <profile>admin</profile>
+        <profile>community profile</profile>
     </networkMemberGroups>
     <picassoSite>Agencies1</picassoSite>
     <selfRegistration>false</selfRegistration>

@@ -5,7 +5,7 @@
         <name>ACCC_Survey__c</name>
     </fields>
     <fields>
-        <label><!-- Action Taken --></label>
+        <label>조치</label>
         <name>Action_Taken__c</name>
     </fields>
     <fields>
@@ -41,7 +41,7 @@
         <name>Brand_Reporting__c</name>
     </fields>
     <fields>
-        <label><!-- Contact us Brand --></label>
+        <label>브랜드 컨택어스</label>
         <name>Brand__c</name>
     </fields>
     <fields>
@@ -49,28 +49,28 @@
         <name>Breakdown_Machine__c</name>
     </fields>
     <fields>
-        <label><!-- Product Hierarchy --></label>
+        <label>제품 체계</label>
         <name>CEC_Product_Hierarchy__c</name>
     </fields>
     <fields>
-        <label><!-- CEC Product Reporting Name --></label>
+        <label>CEC 제품 보고자 명</label>
         <name>CEC_Product_Reporting_Name__c</name>
     </fields>
     <fields>
-        <label><!-- CEC Product Reporting Name (no size) --></label>
+        <label>CEC 제품 보고자 명(사이즈 없음)</label>
         <name>CEC_Product_Reporting_Name_no_size__c</name>
     </fields>
     <fields>
-        <label><!-- CEC_Product --></label>
+        <label>CEC 제품</label>
         <name>CEC_Product__c</name>
-        <relationshipLabel><!-- Cases --></relationshipLabel>
+        <relationshipLabel>케이스</relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Reason Code --></label>
+        <label>원인 코드</label>
         <name>CEC_Reason_Code__c</name>
     </fields>
     <fields>
-        <label><!-- Reason Hierarchy --></label>
+        <label>원인 체계</label>
         <name>CEC_Reason_Hierarchy__c</name>
     </fields>
     <fields>
@@ -215,11 +215,11 @@
         <name>Claims_Notes__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Email --></label>
+        <label>고객 이메일</label>
         <name>Consumer_Email__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Note --></label>
+        <label>고객 노트</label>
         <name>Consumer_Note__c</name>
     </fields>
     <fields>
@@ -227,7 +227,7 @@
         <name>Consumer_Product_Descriptor_no_size__c</name>
     </fields>
     <fields>
-        <label><!-- Country Name --></label>
+        <label>국가명</label>
         <name>Country_Name__c</name>
         <picklistValues>
             <masterLabel>Argentina</masterLabel>
@@ -318,6 +318,10 @@
             <translation><!-- Honduras --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Hungary</masterLabel>
             <translation><!-- Hungary --></translation>
         </picklistValues>
@@ -340,6 +344,10 @@
         <picklistValues>
             <masterLabel>Japan</masterLabel>
             <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Latvia</masterLabel>
@@ -418,8 +426,16 @@
             <translation><!-- Switzerland --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Thailand</masterLabel>
             <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>United Kingdom</masterLabel>
@@ -443,7 +459,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Country --></label>
+        <label>국가</label>
         <name>Country__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
     </fields>
@@ -460,11 +476,11 @@
         <name>Date_of_Manufacture__c</name>
     </fields>
     <fields>
-        <label><!-- Date of Manufacture --></label>
+        <label>제조년월</label>
         <name>Date_of_Manufacture_str__c</name>
     </fields>
     <fields>
-        <label><!-- DayCode --></label>
+        <label>일 코드</label>
         <name>DayCode__c</name>
     </fields>
     <fields>
@@ -472,7 +488,7 @@
         <name>DefaultCMMAccountOwner_Id__c</name>
     </fields>
     <fields>
-        <label><!-- Default From Address --></label>
+        <label>주소 기본값</label>
         <name>Default_From_Address__c</name>
     </fields>
     <fields>
@@ -553,7 +569,7 @@
         <name>Inconsistent_Case__c</name>
     </fields>
     <fields>
-        <label><!-- Ingestion --></label>
+        <label>섭취</label>
         <name>Ingestion__c</name>
     </fields>
     <fields>
@@ -633,7 +649,7 @@
         <name>L7_Product_Reporting__c</name>
     </fields>
     <fields>
-        <label><!-- Language --></label>
+        <label>언어</label>
         <name>Language__c</name>
     </fields>
     <fields>
@@ -645,27 +661,27 @@
         <name>Machine_ID__c</name>
     </fields>
     <fields>
-        <label><!-- Manual Override Reason --></label>
+        <label>매뉴얼 중단 원인</label>
         <name>Manual_Override_Reason__c</name>
         <picklistValues>
             <masterLabel>1-Legal</masterLabel>
-            <translation><!-- 1-Legal --></translation>
+            <translation>1-법적인</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>2-Customer Request</masterLabel>
-            <translation><!-- 2-Customer Request --></translation>
+            <translation>2-고객 요청(Customer)</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>3-Default</masterLabel>
-            <translation><!-- 3-Default --></translation>
+            <translation>3-기본</translation>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Manual Retention Override --></label>
+        <label>매뉴얼 보유 중단</label>
         <name>Manual_Retention_Override__c</name>
     </fields>
     <fields>
-        <label><!-- Market --></label>
+        <label>시장</label>
         <name>Market__c</name>
         <picklistValues>
             <masterLabel>Benelux</masterLabel>
@@ -693,7 +709,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Matching Response --></label>
+        <label>매칭 응대</label>
         <name>Matching_Response__c</name>
     </fields>
     <fields>
@@ -704,11 +720,11 @@
         <name>Origin</name>
         <picklistValues>
             <masterLabel>Chat</masterLabel>
-            <translation><!-- Chat --></translation>
+            <translation>대화</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email</masterLabel>
-            <translation><!-- Email --></translation>
+            <translation>이메일</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email ANZ</masterLabel>
@@ -751,6 +767,10 @@
             <translation><!-- Email Greece --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Hong Kong</masterLabel>
+            <translation><!-- Email Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Hungary</masterLabel>
             <translation><!-- Email Hungary --></translation>
         </picklistValues>
@@ -769,6 +789,10 @@
         <picklistValues>
             <masterLabel>Email Japan</masterLabel>
             <translation><!-- Email Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Korea</masterLabel>
+            <translation><!-- Email Korea --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email Middle Americas</masterLabel>
@@ -823,8 +847,16 @@
             <translation><!-- Email TO France --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Taiwan</masterLabel>
+            <translation><!-- Email Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Thailand</masterLabel>
             <translation><!-- Email Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Turkey</masterLabel>
+            <translation><!-- Email Turkey --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email UK</masterLabel>
@@ -836,35 +868,35 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Face to face</masterLabel>
-            <translation><!-- Face to face --></translation>
+            <translation>대면</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Fax</masterLabel>
-            <translation><!-- Fax --></translation>
+            <translation>팩스</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Interactive Voice Response</masterLabel>
-            <translation><!-- Interactive Voice Response --></translation>
+            <translation>상호 음성 반응</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Letter</masterLabel>
-            <translation><!-- Letter --></translation>
+            <translation>문자</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
+            <translation>다른</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Phone</masterLabel>
-            <translation><!-- Phone --></translation>
+            <translation>전화</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>SMS / Text Messages</masterLabel>
-            <translation><!-- SMS / Text Messages --></translation>
+            <translation>SMS/ 텍스트 메시지</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Social</masterLabel>
-            <translation><!-- Social --></translation>
+            <translation>소셜</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Social Media North America</masterLabel>
@@ -872,11 +904,11 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Store</masterLabel>
-            <translation><!-- Store --></translation>
+            <translation>상점</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Web</masterLabel>
-            <translation><!-- Web --></translation>
+            <translation>웹</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Web North America</masterLabel>
@@ -884,20 +916,24 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>White Mail</masterLabel>
-            <translation><!-- White Mail --></translation>
+            <translation>화이트 메일</translation>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Original Description --></label>
+        <label>최초 기술</label>
         <name>Original_Description__c</name>
     </fields>
     <fields>
-        <label><!-- Out of Hours --></label>
+        <label>근무시간 외에</label>
         <name>Out_of_Hours__c</name>
     </fields>
     <fields>
-        <label><!-- Override From Address --></label>
+        <label>주소가 무효화되다</label>
         <name>Override_From_Address__c</name>
+        <picklistValues>
+            <masterLabel>CEC.Korea@unilever.com</masterLabel>
+            <translation><!-- CEC.Korea@unilever.com --></translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>Careline.bd@unilever.com</masterLabel>
             <translation><!-- Careline.bd@unilever.com --></translation>
@@ -947,6 +983,10 @@
             <translation><!-- bertollioliveoilusa@deoleo.com --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>callcenter.tr@unilever.com</masterLabel>
+            <translation><!-- callcenter.tr@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>carapelliusa@deoleo.com</masterLabel>
             <translation><!-- carapelliusa@deoleo.com --></translation>
         </picklistValues>
@@ -955,8 +995,16 @@
             <translation><!-- carbonellusa@deoleo.com --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>cec.hk@unilever.com</masterLabel>
+            <translation><!-- cec.hk@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>cec.philippines@unilever.com</masterLabel>
             <translation><!-- cec.philippines@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>cec.taiwan@unilever.com</masterLabel>
+            <translation><!-- cec.taiwan@unilever.com --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>comments@talentigelato.com</masterLabel>
@@ -1057,30 +1105,30 @@
     </fields>
     <fields>
         <help><!-- Green: No PII Data ; Red: PII Data present in the Description field --></help>
-        <label><!-- PII Data Check --></label>
+        <label>PII 데이터 체크</label>
         <name>PII_Data_Check__c</name>
     </fields>
     <fields>
-        <label><!-- PII Warning Check --></label>
+        <label>PII 경고 체크</label>
         <name>PII_Warning_Check__c</name>
     </fields>
     <fields>
-        <label><!-- Personal Care --></label>
+        <label>개인 케이스</label>
         <name>Personal_Care__c</name>
     </fields>
     <fields>
         <name>Priority</name>
         <picklistValues>
             <masterLabel>1 - High</masterLabel>
-            <translation><!-- 1 - High --></translation>
+            <translation>1-높음</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>2 - Medium</masterLabel>
-            <translation><!-- 2 - Medium --></translation>
+            <translation>2-중간</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>3 - Low</masterLabel>
-            <translation><!-- 3 - Low --></translation>
+            <translation>3-낮음</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1096,7 +1144,7 @@
         <name>Product_ISO_Country_Code__c</name>
     </fields>
     <fields>
-        <label><!-- Product Skill --></label>
+        <label>제품 기술</label>
         <name>Product_Skill__c</name>
         <picklistValues>
             <masterLabel>Bluewater</masterLabel>
@@ -1240,15 +1288,15 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Product UPC --></label>
+        <label>제품 UPC</label>
         <name>Product_UPC__c</name>
     </fields>
     <fields>
-        <label><!-- Production Code --></label>
+        <label>생산 코드</label>
         <name>Production_Code__c</name>
     </fields>
     <fields>
-        <label><!-- Purchase Date --></label>
+        <label>구입 일자</label>
         <name>Purchase_Date__c</name>
     </fields>
     <fields>
@@ -1259,7 +1307,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Duplicate</masterLabel>
-            <translation><!-- Duplicate --></translation>
+            <translation>복사</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Enquiry</masterLabel>
@@ -1267,7 +1315,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Existing problem</masterLabel>
-            <translation><!-- Existing problem --></translation>
+            <translation>기존 문제</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Praise</masterLabel>
@@ -1279,13 +1327,13 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Reason Code Retention Days --></label>
+        <label>원인 코드 보유 일자</label>
         <name>Reason_Code_Retention_Days__c</name>
     </fields>
     <fields>
-        <label><!-- Reason Code --></label>
+        <label>원인 코드</label>
         <name>Reason_Code__c</name>
-        <relationshipLabel><!-- Cases --></relationshipLabel>
+        <relationshipLabel>케이스</relationshipLabel>
     </fields>
     <fields>
         <label><!-- Reason L0 desc --></label>
@@ -1423,39 +1471,43 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Information from Consumer</masterLabel>
-            <translation><!-- Awaiting Information from Consumer --></translation>
+            <translation>고객으로부터 대기중인 정보</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Knowledge Response</masterLabel>
-            <translation><!-- Awaiting Knowledge Response --></translation>
+            <translation>대기중인 지식 기반 응답</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed</masterLabel>
-            <translation><!-- Closed --></translation>
+            <translation>닫힘</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed as Duplicate</masterLabel>
-            <translation><!-- Closed as Duplicate --></translation>
+            <translation>복사가 금지됨</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Escalated</masterLabel>
-            <translation><!-- Escalated --></translation>
+            <translation>보고됨</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>In Progress</masterLabel>
-            <translation><!-- In Progress --></translation>
+            <translation>진행 중인</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>New</masterLabel>
-            <translation><!-- New --></translation>
+            <translation>새로운</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>On Hold</masterLabel>
-            <translation><!-- On Hold --></translation>
+            <translation>보류된</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Pending with Courier</masterLabel>
             <translation><!-- Pending with Courier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Reopened</masterLabel>
@@ -1463,15 +1515,15 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Review Needed</masterLabel>
-            <translation><!-- Review Needed --></translation>
+            <translation>검토가 필요함</translation>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Store Location --></label>
+        <label>상점 위치</label>
         <name>Store_Location__c</name>
     </fields>
     <fields>
-        <label><!-- Store --></label>
+        <label>상점</label>
         <name>Store__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
     </fields>
@@ -1526,7 +1578,7 @@
 -Regular User : Used This Exact Product &amp; Variant Before
 
 -Unknown : Information Not Available --></help>
-        <label><!-- Used Product Previously --></label>
+        <label>사전에 사용된 제품</label>
         <name>Used_Product_Previously__c</name>
         <picklistValues>
             <masterLabel>Brand</masterLabel>
@@ -1660,15 +1712,15 @@
         <name>dgai__Template_ID__c</name>
     </fields>
     <fields>
-        <label><!-- isFormKnown --></label>
+        <label>형식을 알고 있습니까?</label>
         <name>isFormKnown__c</name>
     </fields>
     <fields>
-        <label><!-- isPacksizeKnown --></label>
+        <label>팩사이즈를 알고 있습니까?</label>
         <name>isPacksizeKnown__c</name>
     </fields>
     <fields>
-        <label><!-- isVariantKnown --></label>
+        <label>종류를 알고 있습니까?</label>
         <name>isVariantKnown__c</name>
     </fields>
     <fields>
@@ -1686,11 +1738,11 @@
     <layouts>
         <layout>Case Feed Layout</layout>
         <sections>
-            <label><!-- Additional Issue Information --></label>
+            <label>추가적인 이슈 정보</label>
             <section>Additional Issue Information</section>
         </sections>
         <sections>
-            <label><!-- Attachments --></label>
+            <label>첨부</label>
             <section>Attachments</section>
         </sections>
         <sections>
@@ -1698,15 +1750,15 @@
             <section>CosmetoVigilance links</section>
         </sections>
         <sections>
-            <label><!-- Issue Information --></label>
+            <label>정보를 발급하다</label>
             <section>Issue Information</section>
         </sections>
         <sections>
-            <label><!-- Related Cases --></label>
+            <label>연관된 케이스</label>
             <section>Related Cases</section>
         </sections>
         <sections>
-            <label><!-- Related Contact Roles --></label>
+            <label>연관된 연락처</label>
             <section>Related Contact Roles</section>
         </sections>
         <sections>
@@ -1721,14 +1773,14 @@
     <layouts>
         <layout>Case Layout</layout>
         <sections>
-            <label><!-- Issue Information --></label>
+            <label>정보를 발급하다</label>
             <section>Issue Information</section>
         </sections>
     </layouts>
     <layouts>
         <layout>Case QC Spam Layout</layout>
         <sections>
-            <label><!-- Issue Information --></label>
+            <label>정보를 발급하다</label>
             <section>Issue Information</section>
         </sections>
     </layouts>
@@ -1760,23 +1812,23 @@
         <name>CEC_Check_CV_Status</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Country and Verbatim is mandatory for this case. --></errorMessage>
+        <errorMessage>이 케이스의 경우 국가와 줄임말은 의무입니다.</errorMessage>
         <name>CEC_Country_and_Verbatim_fields</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Please populate the &apos;Manual Retention Override&apos; field. --></errorMessage>
+        <errorMessage>매뉴얼 리텐션 오버라이드 라을 채워주세요.</errorMessage>
         <name>CEC_RetentionDetailCheck</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &apos;Used Product Previously&apos; field is mandatory for Complaint cases. --></errorMessage>
+        <errorMessage>사전에 사용된 제품란은 불만 케이스의 경우 의무사항 입니다.</errorMessage>
         <name>CEC_UsedProductPreviouslyCheck</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- You Must Select a Product Code &amp; Reason code --></errorMessage>
+        <errorMessage>제품 코드와 원인 코드를 선택해야 합니다.</errorMessage>
         <name>Product_and_Reason_Code_Required</name>
     </validationRules>
     <webLinks>
-        <label><!-- Add_Issue --></label>
+        <label>이슈 추가</label>
         <name>Add_Issue</name>
     </webLinks>
     <webLinks>
@@ -1792,11 +1844,11 @@
         <name>Ingestion_Cosmetovigilence</name>
     </webLinks>
     <webLinks>
-        <label><!-- New_Case --></label>
+        <label>새로운 케이스</label>
         <name>New_Case</name>
     </webLinks>
     <webLinks>
-        <label><!-- Next_Case --></label>
+        <label>다음 케이스</label>
         <name>Next_Case</name>
     </webLinks>
     <webLinks>

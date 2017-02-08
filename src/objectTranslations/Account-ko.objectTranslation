@@ -344,6 +344,86 @@
         <name>Awards__c</name>
     </fields>
     <fields>
+        <label><!-- BFM_Active_CNPJ --></label>
+        <name>BFM_Active_CNPJ__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Code --></label>
+        <name>BFM_Address_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address No --></label>
+        <name>BFM_Address_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address --></label>
+        <name>BFM_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNPJ --></label>
+        <name>BFM_CNPJ__c</name>
+    </fields>
+    <fields>
+        <label><!-- Carrier Name --></label>
+        <name>BFM_Carrier_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Carrier Region --></label>
+        <name>BFM_Carrier_Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- Central Deletion Flag for Master Record --></label>
+        <name>BFM_Central_Del_Flag_Master_Record__c</name>
+    </fields>
+    <fields>
+        <label><!-- Central Posting Block --></label>
+        <name>BFM_Central_Posting_Block__c</name>
+    </fields>
+    <fields>
+        <label><!-- Centrally Imposed_Purchasing Block --></label>
+        <name>BFM_Centrally_Imposed_Purchasing_Block__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>BFM_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>BFM_Company_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>BFM_Company_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Number --></label>
+        <name>BFM_Customer_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant Code --></label>
+        <name>BFM_Plant_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Registration --></label>
+        <name>BFM_State_Registration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tax Jurisdiction --></label>
+        <name>BFM_Tax_Jurisdiction__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Account Group --></label>
+        <name>BFM_Vendor_Account_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor UF (State) --></label>
+        <name>BFM_Vendor_UF_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor --></label>
+        <name>BFM_Vendor__c</name>
+    </fields>
+    <fields>
         <label><!-- Bazaarvoice Username --></label>
         <name>Bazaarvoice_Username__c</name>
     </fields>
@@ -1633,6 +1713,10 @@ Branded are essential = 5 --></help>
         <name>FS_CHDNumber__c</name>
     </fields>
     <fields>
+        <label><!-- CHD Lock --></label>
+        <name>FS_CHD_Lock__c</name>
+    </fields>
+    <fields>
         <label><!-- Chain Targeting Model --></label>
         <name>FS_ChainTargetingModel__c</name>
         <picklistValues>
@@ -2712,8 +2796,8 @@ At least 3 out of 4 = 5 --></help>
         <name>KeyCustomerLevel6Name__c</name>
     </fields>
     <fields>
-        <help><!-- Select type of consumer --></help>
-        <label><!-- Known Consumer --></label>
+        <help>고객 유형을 선택하세요.</help>
+        <label>알려진 고객</label>
         <name>Known_Consumer__c</name>
         <picklistValues>
             <masterLabel>Frequent</masterLabel>
@@ -2729,11 +2813,11 @@ At least 3 out of 4 = 5 --></help>
         <name>Latest_Case_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Latest Case Product Code --></label>
+        <label>최신 케이스 제품 코드</label>
         <name>Latest_Case_Product_Code__c</name>
     </fields>
     <fields>
-        <label><!-- Latest Case Reason Code --></label>
+        <label>최신 케이스 제품 코드</label>
         <name>Latest_Case_Reason_Code__c</name>
     </fields>
     <fields>
@@ -2778,7 +2862,7 @@ At least 3 out of 4 = 5 --></help>
         <name>Local_Identifier_No_Special_Char__c</name>
     </fields>
     <fields>
-        <label><!-- Local Identifier --></label>
+        <label>로컬 식별자</label>
         <name>Local_Identifier__c</name>
     </fields>
     <fields>
@@ -2835,11 +2919,19 @@ At least 3 out of 4 = 5 --></help>
         <name>Ownership_Status__c</name>
     </fields>
     <fields>
+        <label><!-- PQN Cluster --></label>
+        <name>PQN_Cluster__c</name>
+    </fields>
+    <fields>
+        <label><!-- PQN Country --></label>
+        <name>PQN_Country__c</name>
+    </fields>
+    <fields>
         <label><!-- Phone No Special Char --></label>
         <name>Phone_No_Special_Char__c</name>
     </fields>
     <fields>
-        <label><!-- Preferred Channel --></label>
+        <label>선호되는 채널</label>
         <name>Preferred_Channel__c</name>
         <picklistValues>
             <masterLabel>Email</masterLabel>
@@ -4713,19 +4805,19 @@ At least 3 out of 4 = 5 --></help>
         <name>Unilever_Opt_In__c</name>
         <picklistValues>
             <masterLabel>Brand</masterLabel>
-            <translation><!-- Brand --></translation>
+            <translation>브랜드</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Neutral</masterLabel>
-            <translation><!-- Neutral --></translation>
+            <translation>중립의</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>No</masterLabel>
-            <translation><!-- No --></translation>
+            <translation>없음</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Yes</masterLabel>
-            <translation><!-- Yes --></translation>
+            <translation>맞습니다.</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -4789,6 +4881,13 @@ At least 3 out of 4 = 5 --></help>
         <sections>
             <label><!-- Procurement Team --></label>
             <section>Procurement Team</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Carrier</layout>
+        <sections>
+            <label><!-- Tax Info --></label>
+            <section>Tax Info</section>
         </sections>
     </layouts>
     <layouts>
@@ -4914,7 +5013,7 @@ At least 3 out of 4 = 5 --></help>
         <layout>Person Account Layout</layout>
         <layoutType>PersonAccount</layoutType>
         <sections>
-            <label><!-- Additional Address Information --></label>
+            <label>추가적인 주소지 정보</label>
             <section>Additional Address Information</section>
         </sections>
         <sections>
@@ -4922,15 +5021,15 @@ At least 3 out of 4 = 5 --></help>
             <section>Debit Card</section>
         </sections>
         <sections>
-            <label><!-- Identifier Information --></label>
+            <label>식별자 정보</label>
             <section>Identifier Information</section>
         </sections>
         <sections>
-            <label><!-- Preferences --></label>
+            <label>선호</label>
             <section>Preferences</section>
         </sections>
         <sections>
-            <label><!-- Social Information --></label>
+            <label>소셜 정보</label>
             <section>Social Information</section>
         </sections>
     </layouts>
@@ -4955,6 +5054,14 @@ At least 3 out of 4 = 5 --></help>
         <name>Agency_Fee</name>
     </recordTypes>
     <recordTypes>
+        <label><!-- Carrier --></label>
+        <name>BFM_Carrier</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- BFM Unilever Account --></label>
+        <name>BFM_Unilever_Account</name>
+    </recordTypes>
+    <recordTypes>
         <label><!-- Business Account --></label>
         <name>Business_Account</name>
     </recordTypes>
@@ -4969,6 +5076,10 @@ At least 3 out of 4 = 5 --></help>
     <recordTypes>
         <label><!-- Operator --></label>
         <name>Operators</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Pallet Quality NC --></label>
+        <name>Pallet_Quality_NC</name>
     </recordTypes>
     <recordTypes>
         <label><!-- Pitch Agency --></label>
@@ -5015,7 +5126,7 @@ At least 3 out of 4 = 5 --></help>
         <name>FS_UserNotabletochangetheCity</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Invalid CPF number (Should contain 11 digit numeric value) --></errorMessage>
+        <errorMessage>인식 불가능한 CPF 수(11숫자값을 포함해야함)</errorMessage>
         <name>LocalIdentifier_Length_Validation</name>
     </validationRules>
     <validationRules>
@@ -5044,6 +5155,10 @@ Shipping Country --></errorMessage>
         <name>E2F__Search_on_FindAPI</name>
     </webLinks>
     <webLinks>
+        <label><!-- FS_Update_Child_Accounts --></label>
+        <name>FS_Update_Child_Accounts</name>
+    </webLinks>
+    <webLinks>
         <label><!-- GoogleMaps --></label>
         <name>GoogleMaps</name>
     </webLinks>
@@ -5066,6 +5181,22 @@ Shipping Country --></errorMessage>
     <webLinks>
         <label><!-- YahooMaps --></label>
         <name>YahooMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Address_Finder --></label>
+        <name>pca__Address_Finder</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Address_Finder_Link --></label>
+        <name>pca__Address_Finder_Link</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Person_Address_Finder --></label>
+        <name>pca__Person_Address_Finder</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Person_Address_Finder_Link --></label>
+        <name>pca__Person_Address_Finder_Link</name>
     </webLinks>
     <webLinks>
         <label><!-- Get_Author_Info --></label>

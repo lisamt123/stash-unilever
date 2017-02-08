@@ -1231,7 +1231,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalGrossProfit__c</fullName>
-        <description>Created To display the sum of GrossProfit	from Opportunity Product.</description>
+        <description>Created To display the sum of GrossProfit  from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total GP</label>
         <summarizedField>OpportunityLineItem.FS_grossProfit__c</summarizedField>
@@ -1391,7 +1391,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalproductCost__c</fullName>
-        <description>Created To display the sum of productCost	from Opportunity Product.</description>
+        <description>Created To display the sum of productCost  from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total PC</label>
         <summarizedField>OpportunityLineItem.FS_productCost__c</summarizedField>
@@ -1403,7 +1403,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     </fields>
     <fields>
         <fullName>FS_TotalsupplyCost__c</fullName>
-        <description>Created To display the sum of supplyCost	from Opportunity Product.</description>
+        <description>Created To display the sum of supplyCost   from Opportunity Product.</description>
         <externalId>false</externalId>
         <label>Total SC</label>
         <summarizedField>OpportunityLineItem.FS_supplyCost__c</summarizedField>
@@ -2543,33 +2543,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <forecastCategory>Pipeline</forecastCategory>
                 <probability>10</probability>
                 <won>false</won>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Scheduled</fullName>
-                <default>false</default>
-                <description>Indicate when the telesales team schedule the opportunity to make a future call to start the negotiation to make a sales.</description>
-                <closed>false</closed>
-                <forecastCategory>Pipeline</forecastCategory>
-                <probability>15</probability>
-                <won>false</won>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Released</fullName>
-                <default>false</default>
-                <description>Indicate that the Telesales team made a sales and the request order was made.</description>
-                <closed>false</closed>
-                <forecastCategory>BestCase</forecastCategory>
-                <probability>80</probability>
-                <won>false</won>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Transmitted</fullName>
-                <default>false</default>
-                <description>Indicate that the sales order requested by the telesales team was generated and processed with success.</description>
-                <closed>true</closed>
-                <forecastCategory>Closed</forecastCategory>
-                <probability>100</probability>
-                <won>true</won>
             </picklistValues>
             <picklistValues>
                 <fullName>Canceled</fullName>
@@ -5429,6 +5402,14 @@ Enter competitor pricing if available</inlineHelpText>
 &amp;&amp; NOT ( ISBLANK (FS_startDateTPR__c))
 &amp;&amp; FS_startDateTPR__c &lt;=  TODAY()</errorConditionFormula>
         <errorMessage>Start Date TPR should not be on previous date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FS_Temporary_Account</fullName>
+        <active>true</active>
+        <description>Food Solution Opportunity cannot be created with a temporary Account</description>
+        <errorConditionFormula>IF(AND($Profile.Name = &apos;Unilever Food Solution - NA&apos;, TEXT(Account.Status__c)=&apos;Temporary&apos;),true,false)</errorConditionFormula>
+        <errorDisplayField>AccountId</errorDisplayField>
+        <errorMessage>The Account is in Temporary status. Opportunity cannot be created with a temporary Account</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_For_Reason_Description</fullName>

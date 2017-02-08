@@ -1,0 +1,1090 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Fulfilment --></value>
+    </caseValues>
+    <fields>
+        <label>Hesap Kart Numarası</label>
+        <name>Account_Card_Number__c</name>
+    </fields>
+    <fields>
+        <label>Hesap Kart Durumu</label>
+        <name>Account_Card_Status__c</name>
+    </fields>
+    <fields>
+        <label>Hesap Id</label>
+        <name>Account_Id__c</name>
+    </fields>
+    <fields>
+        <label>MT Adı</label>
+        <name>Advisor_Name__c</name>
+    </fields>
+    <fields>
+        <label>MT Adı</label>
+        <name>Advisor_Nameold__c</name>
+    </fields>
+    <fields>
+        <label>MT ID</label>
+        <name>AgentID__c</name>
+    </fields>
+    <fields>
+        <label>MT Görevi</label>
+        <name>AgentIDold__c</name>
+    </fields>
+    <fields>
+        <label>MT Görevi</label>
+        <name>AgentPosition__c</name>
+        <picklistValues>
+            <masterLabel>Careline Advisor</masterLabel>
+            <translation><!-- Careline Advisor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Careline Escalations</masterLabel>
+            <translation><!-- Careline Escalations --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Marka Logosu</label>
+        <name>Brand_Logo__c</name>
+        <relationshipLabel>Tamamlama</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Vaka Markası</label>
+        <name>CaseBrand__c</name>
+    </fields>
+    <fields>
+        <label>Vaka Pazarı</label>
+        <name>Case_Market__c</name>
+    </fields>
+    <fields>
+        <label>Vaka Ürün Kategorisi</label>
+        <name>Case_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>Vaka</label>
+        <name>Case__c</name>
+        <relationshipLabel>Tamamlama</relationshipLabel>
+    </fields>
+    <fields>
+        <label>ÇekDefteri</label>
+        <name>ChequeBook__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Çek Desimali</label>
+        <name>Cheque_Decimals__c</name>
+    </fields>
+    <fields>
+        <label>Çek numarası</label>
+        <name>Cheque_Number__c</name>
+    </fields>
+    <fields>
+        <label>Çek Gönderildi</label>
+        <name>Cheque_Sent__c</name>
+    </fields>
+    <fields>
+        <label>Çek İptal Edildi</label>
+        <name>Cheque_Voided__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Döküman Numarası</label>
+        <name>Consumer_Document_Number__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Döküman Türü</label>
+        <name>Consumer_Document_Type__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici İlk Adı</label>
+        <name>Consumer_First_Name__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Ev Telefonu Numarası</label>
+        <name>Consumer_Home_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Soyadı</label>
+        <name>Consumer_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Cep Telefonu Numarası</label>
+        <name>Consumer_Mobile_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Diğer Telefon Numarası</label>
+        <name>Consumer_Other_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Telefon Numarası</label>
+        <name>Consumer_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label>Ülke &amp; MarkaLogosu</label>
+        <name>Country_BrandLogo__c</name>
+    </fields>
+    <fields>
+        <label>Ülke</label>
+        <name>Country__c</name>
+        <picklistValues>
+            <masterLabel>Argentina</masterLabel>
+            <translation><!-- Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Australia</masterLabel>
+            <translation><!-- Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Austria</masterLabel>
+            <translation><!-- Austria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bangladesh</masterLabel>
+            <translation><!-- Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Belgium</masterLabel>
+            <translation><!-- Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bolivia</masterLabel>
+            <translation><!-- Bolivia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bosnia and Herzegovina</masterLabel>
+            <translation><!-- Bosnia and Herzegovina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bulgaria</masterLabel>
+            <translation><!-- Bulgaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada</masterLabel>
+            <translation><!-- Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chile</masterLabel>
+            <translation><!-- Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colombia</masterLabel>
+            <translation><!-- Colombia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Costa Rica</masterLabel>
+            <translation><!-- Costa Rica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Croatia</masterLabel>
+            <translation><!-- Croatia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech Republic</masterLabel>
+            <translation><!-- Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denmark</masterLabel>
+            <translation><!-- Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ecuador</masterLabel>
+            <translation><!-- Ecuador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>El Salvador</masterLabel>
+            <translation><!-- El Salvador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Estonia</masterLabel>
+            <translation><!-- Estonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finland</masterLabel>
+            <translation><!-- Finland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Germany</masterLabel>
+            <translation><!-- Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greece</masterLabel>
+            <translation><!-- Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guatemala</masterLabel>
+            <translation><!-- Guatemala --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honduras</masterLabel>
+            <translation><!-- Honduras --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungary</masterLabel>
+            <translation><!-- Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Iceland</masterLabel>
+            <translation><!-- Iceland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ireland</masterLabel>
+            <translation><!-- Ireland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Latvia</masterLabel>
+            <translation><!-- Latvia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lithuania</masterLabel>
+            <translation><!-- Lithuania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Luxembourg</masterLabel>
+            <translation><!-- Luxembourg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Macedonia, the Former Yugoslav Republic of</masterLabel>
+            <translation><!-- Macedonia, the Former Yugoslav Republic of --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mlodova, Republic of</masterLabel>
+            <translation><!-- Mlodova, Republic of --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Montenegro</masterLabel>
+            <translation><!-- Montenegro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Netherlands</masterLabel>
+            <translation><!-- Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Zealand</masterLabel>
+            <translation><!-- New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nicaragua</masterLabel>
+            <translation><!-- Nicaragua --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Norway</masterLabel>
+            <translation><!-- Norway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pakistan</masterLabel>
+            <translation><!-- Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Panama</masterLabel>
+            <translation><!-- Panama --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paraguay</masterLabel>
+            <translation><!-- Paraguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Peru</masterLabel>
+            <translation><!-- Peru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poland</masterLabel>
+            <translation><!-- Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portugal</masterLabel>
+            <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Romania</masterLabel>
+            <translation><!-- Romania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Serbia</masterLabel>
+            <translation><!-- Serbia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovakia</masterLabel>
+            <translation><!-- Slovakia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovenia</masterLabel>
+            <translation><!-- Slovenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spain</masterLabel>
+            <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sweden</masterLabel>
+            <translation><!-- Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Switzerland</masterLabel>
+            <translation><!-- Switzerland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thailand</masterLabel>
+            <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United Kingdom</masterLabel>
+            <translation><!-- United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United States</masterLabel>
+            <translation><!-- United States --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uruguay</masterLabel>
+            <translation><!-- Uruguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Venezuela</masterLabel>
+            <translation><!-- Venezuela --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnam</masterLabel>
+            <translation><!-- Vietnam --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Para Birimi_Basamak_Yazı</label>
+        <name>Currency_Decimal_Text__c</name>
+    </fields>
+    <fields>
+        <label>Para Birimi_Yazı</label>
+        <name>Currency_Text__c</name>
+    </fields>
+    <fields>
+        <label>Tarih Onaylandı</label>
+        <name>Date_Approved__c</name>
+    </fields>
+    <fields>
+        <label>Doğum Tarihi</label>
+        <name>Date_of_Birth__c</name>
+    </fields>
+    <fields>
+        <label><!-- Debit Card Detail Card Value --></label>
+        <name>Debit_Card_Detail_Card_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Debit Card Number --></label>
+        <name>Debit_Card_Number__c</name>
+        <relationshipLabel><!-- Debit Card Detail --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Debit Card Value --></label>
+        <name>Debit_Card_Value__c</name>
+    </fields>
+    <fields>
+        <label>Doktor Onayı</label>
+        <name>Document_Approval__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-Voucher Expiry Date --></label>
+        <name>E_Voucher_Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-Voucher Number --></label>
+        <name>E_Voucher_Number__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- E-Voucher Value --></label>
+        <name>E_Voucher_Value__c</name>
+    </fields>
+    <fields>
+        <label>Ek1 Notları</label>
+        <name>Enclosure1_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Ek1 Boyutu</label>
+        <name>Enclosure1_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Ek1</label>
+        <name>Enclosure1__c</name>
+        <relationshipLabel>Tamamlama</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Ek2 Notları</label>
+        <name>Enclosure2_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Ek2 Boyutu</label>
+        <name>Enclosure2_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Ek2</label>
+        <name>Enclosure2__c</name>
+        <relationshipLabel>Tamamlama (Ek2)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Ek3 Notları</label>
+        <name>Enclosure3_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Ek3 Boyutu</label>
+        <name>Enclosure3_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Ek3</label>
+        <name>Enclosure3__c</name>
+        <relationshipLabel>Tamamlama (Ek3)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Ek4 Notları</label>
+        <name>Enclosure4_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Ek4 Boyutu</label>
+        <name>Enclosure4_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Ek4</label>
+        <name>Enclosure4__c</name>
+        <relationshipLabel>Tamamlama (Ek4)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Ek5 Notları</label>
+        <name>Enclosure5_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Ek5 Boyutu</label>
+        <name>Enclosure5_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Ek5</label>
+        <name>Enclosure5__c</name>
+        <relationshipLabel>Tamamlama (Ek5)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Tahmini Total Ürün Değeri</label>
+        <name>EstimatedTotalProductValue__c</name>
+    </fields>
+    <fields>
+        <label>TETT</label>
+        <name>Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <label>Tamamlandı</label>
+        <name>Fulfilled__c</name>
+    </fields>
+    <fields>
+        <label>Tam AdSoyad</label>
+        <name>Full_Name__c</name>
+    </fields>
+    <fields>
+        <label>TamAdSoyad</label>
+        <name>Fullname__c</name>
+    </fields>
+    <fields>
+        <label>TamAdSoyadESKİ</label>
+        <name>Fullnameold__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID --></label>
+        <name>ID__c</name>
+    </fields>
+    <fields>
+        <label>Hediye ekle</label>
+        <name>Include_Gift__c</name>
+    </fields>
+    <fields>
+        <label>Lokal basıldı</label>
+        <name>IsPrintedLocally__c</name>
+    </fields>
+    <fields>
+        <label>Durum Kartı</label>
+        <name>Issue_Card__c</name>
+    </fields>
+    <fields>
+        <label>Yerel Kimlik Doğrulayıcı</label>
+        <name>Local_Identifier__c</name>
+    </fields>
+    <fields>
+        <label>Posta Adresi</label>
+        <name>Mailing_Address__c</name>
+    </fields>
+    <fields>
+        <label>Pazar</label>
+        <name>Market__c</name>
+    </fields>
+    <fields>
+        <label>Mesaj</label>
+        <name>Message__c</name>
+    </fields>
+    <fields>
+        <label>Değişim öğesi yok</label>
+        <name>No_of_Replacement_Items__c</name>
+    </fields>
+    <fields>
+        <label>Ödenebilir</label>
+        <name>Payable_To__c</name>
+    </fields>
+    <fields>
+        <label>Kişi Maili</label>
+        <name>PersonEmail__c</name>
+    </fields>
+    <fields>
+        <label>Mesaj seçeneği</label>
+        <name>PostOption__c</name>
+    </fields>
+    <fields>
+        <label>Ürün Notları</label>
+        <name>Product_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Ürün Gönderildi</label>
+        <name>Product_Sent__c</name>
+    </fields>
+    <fields>
+        <label>QA bayrağı</label>
+        <name>QA_flag__c</name>
+    </fields>
+    <fields>
+        <label>Para iadesi cinsi</label>
+        <name>Refund_Currency__c</name>
+    </fields>
+    <fields>
+        <label>Para iadesi değeri</label>
+        <name>Refund_Value__c</name>
+    </fields>
+    <fields>
+        <label>Para iadesi değeri - yazı ile</label>
+        <name>Refund_Value_in_Words__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resend E-Voucher Email --></label>
+        <name>Resend_E_Voucher_Email__c</name>
+    </fields>
+    <fields>
+        <label>Değişim Id</label>
+        <name>Retrieval_Id__c</name>
+        <relationshipLabel>Tamamlama</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Değişim Durumu</label>
+        <name>Retrieval_Status__c</name>
+    </fields>
+    <fields>
+        <label>Selamlama</label>
+        <name>Salutation__c</name>
+    </fields>
+    <fields>
+        <label>SelamlamaEski</label>
+        <name>Salutationold__c</name>
+    </fields>
+    <fields>
+        <label>Kupon olarak gönder</label>
+        <name>SendAsCoupon__c</name>
+    </fields>
+    <fields>
+        <label>Toplam Ek Değeri</label>
+        <name>TotalEnclosureValue__c</name>
+    </fields>
+    <fields>
+        <label>Toplam Karşılama Değeri</label>
+        <name>TotalFulfilmentValue__c</name>
+    </fields>
+    <fields>
+        <label>Tip</label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Dosing Request</masterLabel>
+            <translation><!-- Dosing Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Remuneration</masterLabel>
+            <translation><!-- Remuneration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard Letter</masterLabel>
+            <translation>Standart Mektup</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Onaylandı</label>
+        <name>isApproved__c</name>
+    </fields>
+    <fields>
+        <label>Gönderildi</label>
+        <name>isSubmitted__c</name>
+    </fields>
+    <layouts>
+        <layout>Fulfilment Layout</layout>
+        <sections>
+            <label><!-- ChequeBook Details --></label>
+            <section>ChequeBook Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Debit Card Details --></label>
+            <section>Debit Card Details</section>
+        </sections>
+        <sections>
+            <label><!-- E-Voucher Details --></label>
+            <section>E-Voucher Details</section>
+        </sections>
+        <sections>
+            <label>Ekler</label>
+            <section>Enclosures</section>
+        </sections>
+        <sections>
+            <label>Mektup ve Tüketici Detayı</label>
+            <section>Letter and Consumer Details</section>
+        </sections>
+        <sections>
+            <label>Mesaj</label>
+            <section>Message</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label>Ürün Detayı</label>
+            <section>Product Details</section>
+        </sections>
+        <sections>
+            <label>Değişim Talebi Detayları</label>
+            <section>Retrieval Request Details</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage>Tamamlama</errorMessage>
+        <name>Case_Information_Vlidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The fulfillment is already approved, cannot update debit card information --></errorMessage>
+        <name>DebitCard_Value_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The fulfilment is already approved, cannot update E Voucher details information. --></errorMessage>
+        <name>E_Voucher_Value_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Ek boyutu zorunlu</errorMessage>
+        <name>Enclosure_Quantity_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Tür&apos; açıklaması olmadan kayıt düzenlenemiyor.Uygun &apos;Ülke&apos;yi seçiniz.</errorMessage>
+        <name>FulfilmentType_MandatoryCheck</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Para iadesi değeri Max seviyeyi geçti</errorMessage>
+        <name>Max_Refund_value_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Para iadesi değeri güncellenemiyor, çek önceden gönderildi</errorMessage>
+        <name>RefundValue_Not_Editable_ChequeSent</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Add_Cheque_Details --></label>
+        <name>Add_Cheque_Details</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Add_Debit_Card_Details --></label>
+        <name>Add_Debit_Card_Details</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Add_E_Voucher_Details --></label>
+        <name>Add_E_Voucher_Details</name>
+    </webLinks>
+    <webLinks>
+        <label>Ürün Yenileme İsteği</label>
+        <name>Add_Retrieval_Request</name>
+    </webLinks>
+    <webLinks>
+        <label>Yeni Düzenleme</label>
+        <name>New_Fulfilment</name>
+    </webLinks>
+</CustomObjectTranslation>

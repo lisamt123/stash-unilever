@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Alert Tracker --></value>
+    </caseValues>
+    <fields>
+        <label>警報規則</label>
+        <name>Alert_Rule_Id__c</name>
+        <relationshipLabel>警報追蹤</relationshipLabel>
+    </fields>
+    <fields>
+        <label>警報界定值</label>
+        <name>Alert_Threshold__c</name>
+    </fields>
+    <fields>
+        <label>警報追蹤項目總數量</label>
+        <name>Alert_Tracker_Item_count__c</name>
+    </fields>
+    <fields>
+        <label>目前界定值</label>
+        <name>Current_Threshold__c</name>
+    </fields>
+    <fields>
+        <label>日期編號</label>
+        <name>DayCode__c</name>
+    </fields>
+    <fields>
+        <label>L5 產品種類</label>
+        <name>L5_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>產品 (沒有規格大小)</label>
+        <name>Product_No_Size__c</name>
+    </fields>
+    <fields>
+        <label>規則種類</label>
+        <name>Rule_Type__c</name>
+    </fields>
+    <fields>
+        <label>問題批號</label>
+        <name>Trigger_Batch__c</name>
+    </fields>
+    <fields>
+        <label>獨特 (編號)</label>
+        <name>Unique_Id__c</name>
+    </fields>
+    <layouts>
+        <layout>Alert Tracker Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Alert Tracker Number --></nameFieldLabel>
+</CustomObjectTranslation>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Case Reason Product --></value>
+    </caseValues>
+    <fields>
+        <label>케이스 제품</label>
+        <name>Case_Product__c</name>
+        <relationshipLabel>케이스 원인 제품</relationshipLabel>
+    </fields>
+    <fields>
+        <label>원인 코드</label>
+        <name>Reason_Code__c</name>
+        <relationshipLabel>케이스 원인 제품</relationshipLabel>
+    </fields>
+    <fields>
+        <label>독특한 ID</label>
+        <name>Unique_ID__c</name>
+    </fields>
+    <layouts>
+        <layout>Reason Product Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Reason Product Name --></nameFieldLabel>
+</CustomObjectTranslation>

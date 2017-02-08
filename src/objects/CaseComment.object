@@ -53,6 +53,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Hungary</fullName>
                 <default>false</default>
             </picklistValues>
@@ -70,6 +74,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Email Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Korea</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -121,11 +129,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Thailand</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Email TO France</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Turkey</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Fiscal Documents</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Fiscal Documents</value>
+    </caseValues>
+    <fields>
+        <label><!-- Fiscal Document Number --></label>
+        <name>Fiscal_Document_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Occurrence --></label>
+        <name>Occurrence__c</name>
+        <relationshipLabel><!-- Fiscal Documents --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

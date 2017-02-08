@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Case Action --></value>
+    </caseValues>
+    <fields>
+        <label>경고 트래커 아이템</label>
+        <name>Alert_Tracker_Item__c</name>
+        <relationshipLabel>케이스 작업</relationshipLabel>
+    </fields>
+    <fields>
+        <label>케이스 ID</label>
+        <name>Case_Id__c</name>
+        <relationshipLabel>케이스 작업</relationshipLabel>
+    </fields>
+    <fields>
+        <label>q10 데이터</label>
+        <name>Q10_Data__c</name>
+    </fields>
+    <fields>
+        <label>q10</label>
+        <name>Q10__c</name>
+    </fields>
+    <fields>
+        <label>q11 데이터</label>
+        <name>Q11_Data__c</name>
+    </fields>
+    <fields>
+        <label>q11</label>
+        <name>Q11__c</name>
+    </fields>
+    <fields>
+        <label>q 12 데이터</label>
+        <name>Q12_Data__c</name>
+    </fields>
+    <fields>
+        <label>q 12</label>
+        <name>Q12__c</name>
+    </fields>
+    <fields>
+        <label>q2 데이터</label>
+        <name>Q2_Data__c</name>
+    </fields>
+    <fields>
+        <label>q2</label>
+        <name>Q2__c</name>
+    </fields>
+    <fields>
+        <label>q3 데이터</label>
+        <name>Q3_Data__c</name>
+    </fields>
+    <fields>
+        <label>q3</label>
+        <name>Q3__c</name>
+    </fields>
+    <fields>
+        <label>q4 데이터</label>
+        <name>Q4_Data__c</name>
+    </fields>
+    <fields>
+        <label>q4</label>
+        <name>Q4__c</name>
+    </fields>
+    <fields>
+        <label>q5 데이터</label>
+        <name>Q5_Data__c</name>
+    </fields>
+    <fields>
+        <label>q5</label>
+        <name>Q5__c</name>
+    </fields>
+    <fields>
+        <label>q6 데이터</label>
+        <name>Q6_Data__c</name>
+    </fields>
+    <fields>
+        <label>q6</label>
+        <name>Q6__c</name>
+    </fields>
+    <fields>
+        <label>q7 데이터</label>
+        <name>Q7_Data__c</name>
+    </fields>
+    <fields>
+        <label>q7</label>
+        <name>Q7__c</name>
+    </fields>
+    <fields>
+        <label>q8 데이터</label>
+        <name>Q8_Data__c</name>
+    </fields>
+    <fields>
+        <label>q8</label>
+        <name>Q8__c</name>
+    </fields>
+    <fields>
+        <label>q9 데이터</label>
+        <name>Q9_Data__c</name>
+    </fields>
+    <fields>
+        <label>q9</label>
+        <name>Q9__c</name>
+    </fields>
+    <fields>
+        <label>서베이 ID</label>
+        <name>Survey_Id__c</name>
+    </fields>
+    <fields>
+        <label>서베이 명</label>
+        <name>Survey_Name__c</name>
+    </fields>
+    <layouts>
+        <layout>Case Action Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Case Action Number --></nameFieldLabel>
+</CustomObjectTranslation>

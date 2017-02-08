@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Alert Rule --></value>
+    </caseValues>
+    <fields>
+        <label>활성화</label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label>경고 유형</label>
+        <name>Alert_Type_Image__c</name>
+    </fields>
+    <fields>
+        <help>선택 시, 마켓 필드와 관계없이 모든 마켓에 규정은 적용될 것 입니다.</help>
+        <label>모든 마켓</label>
+        <name>All_Market__c</name>
+    </fields>
+    <fields>
+        <label>케이스 제품</label>
+        <name>Case_Product__c</name>
+        <relationshipLabel>경고 규정</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Consumer Product Descriptor (no size) --></label>
+        <name>Consumer_Product_Descriptor_no_size__c</name>
+    </fields>
+    <fields>
+        <help>선택할 때, 추적할 수 있도록 케이스들은 생산 코드와 일자 코드를 가지고 있어야 합니다.</help>
+        <label>일별 그룹</label>
+        <name>Group_By_Day_Code__c</name>
+    </fields>
+    <fields>
+        <label>L0 제품 카테고리</label>
+        <name>L0_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>L1 제품 카테고리</label>
+        <name>L1_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>L1 원인 코드</label>
+        <name>L1_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>L2 제품 카테고리</label>
+        <name>L2_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>L2 원인 코드</label>
+        <name>L2_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>L3 제품 카테고리</label>
+        <name>L3_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>L3 원인 코드</label>
+        <name>L3_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>L4 제품 카테고리</label>
+        <name>L4_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>L4 원인 코드</label>
+        <name>L4_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>L5 제품 카테고리</label>
+        <name>L5_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>L5 원인 코드</label>
+        <name>L5_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>L7 제품 카테고리</label>
+        <name>L7_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>시장</label>
+        <name>Market__c</name>
+        <picklistValues>
+            <masterLabel>ANZ</masterLabel>
+            <translation><!-- ANZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Baltics</masterLabel>
+            <translation><!-- Baltics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bangladesh</masterLabel>
+            <translation><!-- Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Benelux</masterLabel>
+            <translation><!-- Benelux --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech Republic</masterLabel>
+            <translation><!-- Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DACH</masterLabel>
+            <translation><!-- DACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greece</masterLabel>
+            <translation><!-- Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungary</masterLabel>
+            <translation><!-- Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Middle Americas</masterLabel>
+            <translation><!-- Middle Americas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nordic</masterLabel>
+            <translation><!-- Nordic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North America</masterLabel>
+            <translation><!-- North America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pakistan</masterLabel>
+            <translation><!-- Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poland</masterLabel>
+            <translation><!-- Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portugal</masterLabel>
+            <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Southern Cone</masterLabel>
+            <translation><!-- Southern Cone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spain</masterLabel>
+            <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sri Lanka</masterLabel>
+            <translation><!-- Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thailand</masterLabel>
+            <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United Kingdom</masterLabel>
+            <translation><!-- United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnam</masterLabel>
+            <translation><!-- Vietnam --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Category Concat Value --></label>
+        <name>Product_Category_Concat_Value__c</name>
+    </fields>
+    <fields>
+        <label>제품 카테고리</label>
+        <name>Product_Category__c</name>
+        <relationshipLabel>경고 규정</relationshipLabel>
+    </fields>
+    <fields>
+        <help>제품 카테고리를 선택한 후에, 일치하는 레벨을 해당 란에서 체크해주세요.</help>
+        <label>제품 레벨</label>
+        <name>Product_Level__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>연락처 값 코드 원인</label>
+        <name>ReasonCode_Concat_Value__c</name>
+    </fields>
+    <fields>
+        <label>원인 코드</label>
+        <name>Reason_Code__c</name>
+        <relationshipLabel>경고 규정</relationshipLabel>
+    </fields>
+    <fields>
+        <help>원인 코드를 선택한 후에, 일치하는 레벨을 해당 란에서 체크해주세요.</help>
+        <label>원인 레벨</label>
+        <name>Reason_Level__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>일치 기록의 수가 같거나 해당 값보다 클 때, 경고 조치가 연동될 것 입니다.</help>
+        <label>줄기 old</label>
+        <name>Threshold__c</name>
+    </fields>
+    <fields>
+        <label>유형</label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Quality</masterLabel>
+            <translation><!-- Quality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safety</masterLabel>
+            <translation><!-- Safety --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>30일 기한</label>
+        <name>X30_Days_Limit__c</name>
+    </fields>
+    <layouts>
+        <layout>Alert Rule Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product --></label>
+            <section>Product</section>
+        </sections>
+        <sections>
+            <label><!-- Product Category --></label>
+            <section>Product Category</section>
+        </sections>
+        <sections>
+            <label><!-- Reason --></label>
+            <section>Reason</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Alert Rule Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to select ‘Group By Day Code’ when Threshold is 1 --></errorMessage>
+        <name>GroupByDayCode_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>제품 카테고리의 &apos;분류명&apos;은 안전성을 위해  null이 아니어야 합니다.</errorMessage>
+        <name>L0_Product_Category_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please make sure that the Product Category&apos;s &apos;Category Name&apos; is not null for &apos;Quality&apos; alerts. --></errorMessage>
+        <name>L2_Product_Category_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>아래 레벨 5 중에 선택해주세요. 만약 원인 코드가 비어있지 않고,  글로벌 리스닝 트리의 레벨 5 값이 비워져 있지 않다면, 유형란의 값을 선택해주세요.</errorMessage>
+        <name>L5_ReasonCode_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>마켓이나 수표 모든 마켓란을 구체화하세요</errorMessage>
+        <name>Market_And_Global_Flag_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only one of  &apos;Product Category&apos; or &apos;Case Product&apos; value is allowed. --></errorMessage>
+        <name>Product_Mandatory_Alert_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify the Product Level and its corresponding Product Category value : &apos;Category Name(L2)&apos; or  &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Quality&apos;. --></errorMessage>
+        <name>QualityAlert_Product_Category_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify the Product Level and its corresponding Product Category value : &apos;Division Name(L0)&apos; or &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Safety&apos;. --></errorMessage>
+        <name>SafetyAlert_Product_Category_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

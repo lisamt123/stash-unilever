@@ -6,6 +6,15 @@
         <name>AF_Send_Email_Notification__c</name>
     </fields>
     <fields>
+        <help><!-- Please type numbers only --></help>
+        <label><!-- CPF --></label>
+        <name>BFM_CPF__c</name>
+    </fields>
+    <fields>
+        <label><!-- BFM Carrier User Approved --></label>
+        <name>BFM_CarrierUserApproved__c</name>
+    </fields>
+    <fields>
         <label><!-- CHD Contact ID --></label>
         <name>CHD__CHD_Contact_ID__c</name>
     </fields>
@@ -866,6 +875,26 @@
         <name>Sapient_Language_Preference__c</name>
     </fields>
     <fields>
+        <label><!-- Preferred Contact Method --></label>
+        <name>TEL_Preferred_Contact_Method__c</name>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile</masterLabel>
+            <translation><!-- Mobile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone</masterLabel>
+            <translation><!-- Phone --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Telephone Extension --></label>
+        <name>TEL_Telephone_Extension__c</name>
+    </fields>
+    <fields>
         <label><!-- Facebook Id --></label>
         <name>hoot2sf_FacebookId__c</name>
     </fields>
@@ -1054,6 +1083,10 @@
         <name>Agency_Contact</name>
     </recordTypes>
     <recordTypes>
+        <label><!-- Carrier Contact --></label>
+        <name>BFM_Carrier_Contact</name>
+    </recordTypes>
+    <recordTypes>
         <label>FS_Контакт</label>
         <name>FS_Contact</name>
     </recordTypes>
@@ -1076,6 +1109,10 @@
     <recordTypes>
         <label>Основной контакт</label>
         <name>Standard_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- WWP contact layout --></label>
+        <name>WWP_contact_layout</name>
     </recordTypes>
     <validationRules>
         <errorMessage><!-- Please verify if CNPJ is correct. --></errorMessage>
@@ -1128,6 +1165,14 @@
     <webLinks>
         <label><!-- YahooWeather --></label>
         <name>YahooWeather</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Address_Finder --></label>
+        <name>pca__Address_Finder</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Address_Finder_Link --></label>
+        <name>pca__Address_Finder_Link</name>
     </webLinks>
     <webLinks>
         <label><!-- Get_Author_Info --></label>

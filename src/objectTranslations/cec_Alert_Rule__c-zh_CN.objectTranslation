@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Alert Rule --></value>
+    </caseValues>
+    <fields>
+        <label>活跃</label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label>警报类别</label>
+        <name>Alert_Type_Image__c</name>
+    </fields>
+    <fields>
+        <help>一旦选择，无论当前是什么市场，此规则会适用于所有市场</help>
+        <label>所有市场</label>
+        <name>All_Market__c</name>
+    </fields>
+    <fields>
+        <label>产品</label>
+        <name>Case_Product__c</name>
+        <relationshipLabel>警报规则</relationshipLabel>
+    </fields>
+    <fields>
+        <label>消费者产品描述 (不含大小)</label>
+        <name>Consumer_Product_Descriptor_no_size__c</name>
+    </fields>
+    <fields>
+        <help>所选案例必须有一个生产代码/日期编码来用于跟进</help>
+        <label>以日期编号组合?</label>
+        <name>Group_By_Day_Code__c</name>
+    </fields>
+    <fields>
+        <label>产品品类</label>
+        <name>L0_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>产品品类第一层</label>
+        <name>L1_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>问题分类第一层</label>
+        <name>L1_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>产品品类第二层</label>
+        <name>L2_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>问题分类第二层</label>
+        <name>L2_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>产品品类第三层</label>
+        <name>L3_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>问题分类第三层</label>
+        <name>L3_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>产品品类第四层</label>
+        <name>L4_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>问题分类第四层</label>
+        <name>L4_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>产品品类第五层</label>
+        <name>L5_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>问题分类第五层</label>
+        <name>L5_Reason_Code__c</name>
+    </fields>
+    <fields>
+        <label>产品品类第七层</label>
+        <name>L7_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label>市场</label>
+        <name>Market__c</name>
+        <picklistValues>
+            <masterLabel>ANZ</masterLabel>
+            <translation><!-- ANZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Baltics</masterLabel>
+            <translation><!-- Baltics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bangladesh</masterLabel>
+            <translation><!-- Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Benelux</masterLabel>
+            <translation><!-- Benelux --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech Republic</masterLabel>
+            <translation><!-- Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DACH</masterLabel>
+            <translation><!-- DACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greece</masterLabel>
+            <translation><!-- Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungary</masterLabel>
+            <translation><!-- Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Middle Americas</masterLabel>
+            <translation><!-- Middle Americas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nordic</masterLabel>
+            <translation><!-- Nordic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North America</masterLabel>
+            <translation><!-- North America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pakistan</masterLabel>
+            <translation><!-- Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poland</masterLabel>
+            <translation><!-- Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portugal</masterLabel>
+            <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Southern Cone</masterLabel>
+            <translation><!-- Southern Cone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spain</masterLabel>
+            <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sri Lanka</masterLabel>
+            <translation><!-- Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thailand</masterLabel>
+            <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United Kingdom</masterLabel>
+            <translation><!-- United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnam</masterLabel>
+            <translation><!-- Vietnam --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Category Concat Value --></label>
+        <name>Product_Category_Concat_Value__c</name>
+    </fields>
+    <fields>
+        <label>产品种类</label>
+        <name>Product_Category__c</name>
+        <relationshipLabel>警报规则</relationshipLabel>
+    </fields>
+    <fields>
+        <help>选择产品类别后, 此栏决定配对级别。</help>
+        <label>产品级别</label>
+        <name>Product_Level__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>原因代码联系价值</label>
+        <name>ReasonCode_Concat_Value__c</name>
+    </fields>
+    <fields>
+        <label>原因代码</label>
+        <name>Reason_Code__c</name>
+        <relationshipLabel>警报规则</relationshipLabel>
+    </fields>
+    <fields>
+        <help>选择原因代码后, 此栏决定配对级别。</help>
+        <label>原因级别</label>
+        <name>Reason_Level__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>当配对的记录等于或大于此数值, 适用于这条规则的警报系统会被触动</help>
+        <label>界定值</label>
+        <name>Threshold__c</name>
+    </fields>
+    <fields>
+        <label>品类</label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Quality</masterLabel>
+            <translation><!-- Quality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safety</masterLabel>
+            <translation><!-- Safety --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>30天限制</label>
+        <name>X30_Days_Limit__c</name>
+    </fields>
+    <layouts>
+        <layout>Alert Rule Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product --></label>
+            <section>Product</section>
+        </sections>
+        <sections>
+            <label><!-- Product Category --></label>
+            <section>Product Category</section>
+        </sections>
+        <sections>
+            <label><!-- Reason --></label>
+            <section>Reason</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Alert Rule Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to select ‘Group By Day Code’ when Threshold is 1 --></errorMessage>
+        <name>GroupByDayCode_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>请确定产品类别的&apos;分类名称&apos; 并不会因&apos;安全&apos;警报而无效</errorMessage>
+        <name>L0_Product_Category_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please make sure that the Product Category&apos;s &apos;Category Name&apos; is not null for &apos;Quality&apos; alerts. --></errorMessage>
+        <name>L2_Product_Category_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>请检查: -\ 问题分类是否分为五层, 
+ 如问题分类不为空及全球问题数的第五层代码不为空及
+ 选择种类栏</errorMessage>
+        <name>L5_ReasonCode_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>请注明市场或检查所有市场字段</errorMessage>
+        <name>Market_And_Global_Flag_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only one of  &apos;Product Category&apos; or &apos;Case Product&apos; value is allowed. --></errorMessage>
+        <name>Product_Mandatory_Alert_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify the Product Level and its corresponding Product Category value : &apos;Category Name(L2)&apos; or  &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Quality&apos;. --></errorMessage>
+        <name>QualityAlert_Product_Category_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify the Product Level and its corresponding Product Category value : &apos;Division Name(L0)&apos; or &apos;Sector Name(L4)&apos; is populated and not null for the type &apos;Safety&apos;. --></errorMessage>
+        <name>SafetyAlert_Product_Category_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

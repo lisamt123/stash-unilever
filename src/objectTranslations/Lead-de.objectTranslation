@@ -393,6 +393,14 @@
         <name>YahooMaps</name>
     </webLinks>
     <webLinks>
+        <label><!-- Address_Finder --></label>
+        <name>pca__Address_Finder</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Address_Finder_Link --></label>
+        <name>pca__Address_Finder_Link</name>
+    </webLinks>
+    <webLinks>
         <label><!-- Get_Author_Info_Massive --></label>
         <name>sf4twitter__Get_Author_Info_Massive</name>
     </webLinks>

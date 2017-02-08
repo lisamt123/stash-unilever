@@ -21,6 +21,10 @@
         <name>Brand_Centre_Management</name>
     </customApplications>
     <customApplications>
+        <label><!-- Brazil Freight Collaboration Tool --></label>
+        <name>Brazil_Freight_Collaboration_Tool</name>
+    </customApplications>
+    <customApplications>
         <label><!-- CEC Admin --></label>
         <name>CEC_Admin</name>
     </customApplications>
@@ -203,6 +207,18 @@
     <customTabs>
         <label><!-- All Projects --></label>
         <name>All_Projects</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Search Occurrence --></label>
+        <name>BFM_Search_Occurrence</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- BFM Search Shipment --></label>
+        <name>BFM_Search_Shipment</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Search Shipment Ct-e --></label>
+        <name>BFM_Search_Shipment_Cte</name>
     </customTabs>
     <customTabs>
         <label><!-- Brand Centres --></label>

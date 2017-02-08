@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Ablative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>None</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>First</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <possessive>Second</possessive>
+        <value><!-- Retrieval Request --></value>
+    </caseValues>
+    <fields>
+        <label>Randevu Günü</label>
+        <name>Appointment_Date__c</name>
+    </fields>
+    <fields>
+        <label>En iyi Ziyaret Zamanı</label>
+        <name>Best_Visiting_Hour__c</name>
+    </fields>
+    <fields>
+        <label>Boş Alan1</label>
+        <name>Blank_Field1__c</name>
+    </fields>
+    <fields>
+        <label>Boş Alan2</label>
+        <name>Blank_Field2__c</name>
+    </fields>
+    <fields>
+        <label>Boş Alan3</label>
+        <name>Blank_Field3__c</name>
+    </fields>
+    <fields>
+        <label>Vaka Ülke Adı</label>
+        <name>Case_Country_Name__c</name>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Vaka Pazarı</label>
+        <name>Case_Market__c</name>
+    </fields>
+    <fields>
+        <label>Vaka Ürünü</label>
+        <name>Case_Product__c</name>
+    </fields>
+    <fields>
+        <label>Vaka</label>
+        <name>Case__c</name>
+        <relationshipLabel>Değişim Talepleri</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Firma Adresi</label>
+        <name>Company_Address__c</name>
+    </fields>
+    <fields>
+        <label>Firma Adı</label>
+        <name>Company_Name__c</name>
+    </fields>
+    <fields>
+        <label>Firma Telefonu</label>
+        <name>Company_Phone__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Ev Telefonu</label>
+        <name>Consumer_Home_Phone__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Cep Telefonu</label>
+        <name>Consumer_Mobile__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Adı</label>
+        <name>Consumer_Name__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Diğer Telefonu</label>
+        <name>Consumer_Other_Phone__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Telefonu</label>
+        <name>Consumer_Phone__c</name>
+    </fields>
+    <fields>
+        <label>Tüketici Telefon Numaraıs</label>
+        <name>Consumer_Telephone_Number__c</name>
+    </fields>
+    <fields>
+        <label>Kargo Mail Gönderildi</label>
+        <name>Courier_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label>Mail Konusu</label>
+        <name>Email_Subject__c</name>
+    </fields>
+    <fields>
+        <label>Değişim Bayrağı</label>
+        <name>Exchange_Flag__c</name>
+    </fields>
+    <fields>
+        <label>Fabrika Maili</label>
+        <name>Factory_Email__c</name>
+    </fields>
+    <fields>
+        <label>Tamamlama Onaylandı</label>
+        <name>Fulfilment_Approved__c</name>
+    </fields>
+    <fields>
+        <label>Tamamlama Id</label>
+        <name>Fulfilment_Id__c</name>
+        <relationshipLabel>Değişim Talepleri</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Global Ürün Cd</label>
+        <name>Global_Product_Cd__c</name>
+    </fields>
+    <fields>
+        <label>Hediye ekle</label>
+        <name>Include_Gift__c</name>
+    </fields>
+    <fields>
+        <label>Dahili Kod 1</label>
+        <name>Internal_Code_1__c</name>
+    </fields>
+    <fields>
+        <label>Dahili Kod 2</label>
+        <name>Internal_Code_2__c</name>
+    </fields>
+    <fields>
+        <label>Dahili Kod 3</label>
+        <name>Internal_Code_3__c</name>
+    </fields>
+    <fields>
+        <label>Posta Adresi</label>
+        <name>Mailing_Address__c</name>
+    </fields>
+    <fields>
+        <label>Ürün CU Açıklaması (İngilizce)</label>
+        <name>Product_CU_Description_English__c</name>
+    </fields>
+    <fields>
+        <label>Ürün CU MRDR Kodu</label>
+        <name>Product_CU_MRDR_Code__c</name>
+    </fields>
+    <fields>
+        <label>Ürün Fabrika Email Gönderimi</label>
+        <name>Product_Factory_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label>Ürün Fabrikası</label>
+        <name>Product_Factory__c</name>
+        <relationshipLabel>Değişim Talepleri (Ürün Fabrikası)</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Ürün Notları</label>
+        <name>Product_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Toplu Miktar</label>
+        <name>Quantity_of_Bulks__c</name>
+    </fields>
+    <fields>
+        <label>Değişim Aksiyonu</label>
+        <name>Retrieval_Action__c</name>
+        <picklistValues>
+            <masterLabel>Clothing Retrieval</masterLabel>
+            <translation>Kıyafet Değişimi</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliver Gift with Appointment</masterLabel>
+            <translation>Randevu ile Hediye Gönderimi</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliver New Product with Appointment</masterLabel>
+            <translation>Randevu ile Yeni Ürün Gönderimi</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product &amp; Clothing Retrieval</masterLabel>
+            <translation>Ürün &amp; Kıyafet Değişimi</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product &amp; Clothing Retrieval with Replacement</masterLabel>
+            <translation>Ürün &amp; Kıyafet Değişimi ve Yenileme</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product &amp; Foreign Matter Retrieval with Replacement(Factory)</masterLabel>
+            <translation>Ürün &amp; Yabancı Madde Değişimi ve Yenileme (fabrika)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval</masterLabel>
+            <translation>Ürün Değişimi</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval with Replacement(Disposal)</masterLabel>
+            <translation>Ürün Değişimi ve Yenileme (İmha)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval with Replacement(Factory Study)</masterLabel>
+            <translation>Ürün Değişimi ve Yenileme (Fabrika Çalışması)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval with Replacement(Factory)</masterLabel>
+            <translation>Ürün Değişimi ve Yenileme (Fabrika)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Retrieval(Factory)</masterLabel>
+            <translation>Ürün Değişimi (Fabrika)</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Değişim Mesajı</label>
+        <name>Retrieval_Message__c</name>
+    </fields>
+    <fields>
+        <label>Değişim Notları</label>
+        <name>Retrieval_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Değişim Miktarı</label>
+        <name>Retrieval_Quantity__c</name>
+    </fields>
+    <fields>
+        <label>Değişim Durumu</label>
+        <name>Retrieval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Appointment Booked</masterLabel>
+            <translation>Randevu Alındı</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation>İptal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation>Kapandı</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clothing Delivered</masterLabel>
+            <translation>Kıyafet Alındı</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clothing Delivery Initiated</masterLabel>
+            <translation>Kıyafet Alımı Başlatıldı</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Errored</masterLabel>
+            <translation>Hata</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiate Clothing Delivery</masterLabel>
+            <translation>Kıyafet Teslimini Başlat</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiate Product Analysis</masterLabel>
+            <translation>Ürün Analizini Başlat</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiated</masterLabel>
+            <translation>Başlatıldı</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation>Yeni</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebook Appointment</masterLabel>
+            <translation>Yeniden Randevu Ayarla</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resolved</masterLabel>
+            <translation>Çözüldü</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retrieval Complete</masterLabel>
+            <translation>Değişim tamamlandı</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation>Gönderildi</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Gönderim Tarihi</label>
+        <name>Submitted_Date__c</name>
+    </fields>
+    <fields>
+        <label>Tekstil Fabrikası Mail Gönderimi</label>
+        <name>Textile_Factory_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label>Tekstil Fabrikası</label>
+        <name>Textile_Factory__c</name>
+        <relationshipLabel>Değişim Talepleri</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Eşik Id</label>
+        <name>Thread_Id__c</name>
+    </fields>
+    <fields>
+        <label>Toplam Ağırlık</label>
+        <name>Total_Weight_KG__c</name>
+    </fields>
+    <fields>
+        <label>Ağırlık KG</label>
+        <name>Weight_KG__c</name>
+    </fields>
+    <layouts>
+        <layout>Retrieval Request Layout</layout>
+        <sections>
+            <label>Vaka Detayı</label>
+            <section>Case Detail</section>
+        </sections>
+        <sections>
+            <label>Tüketici Detayı</label>
+            <section>Consumer Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Tamamlama Detayı</label>
+            <section>Fulfilment Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Retrieval Request Layout(Read Only)</layout>
+        <sections>
+            <label>Vaka Detayı</label>
+            <section>Case Detail</section>
+        </sections>
+        <sections>
+            <label>Tüketici Detayı</label>
+            <section>Consumer Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Tamamlama Detayı</label>
+            <section>Fulfilment Detail</section>
+        </sections>
+        <sections>
+            <label>Bilgi</label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label>Sistem Bilgisi</label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Retrieval Request Number --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- Default --></label>
+        <name>Default</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Read Only --></label>
+        <name>Read_Only</name>
+    </recordTypes>
+    <webLinks>
+        <label>Ürün Analizi</label>
+        <name>Analyse_Product</name>
+    </webLinks>
+    <webLinks>
+        <label>Kıyafet Gönderimi</label>
+        <name>Delivery_Clothing</name>
+    </webLinks>
+    <webLinks>
+        <label>Yeni Değişim Talebi</label>
+        <name>New_Retrieval_Request</name>
+    </webLinks>
+    <webLinks>
+        <label>Yeniden Ayarla</label>
+        <name>Rebook</name>
+    </webLinks>
+    <webLinks>
+        <label>Gönder</label>
+        <name>Submit</name>
+    </webLinks>
+</CustomObjectTranslation>

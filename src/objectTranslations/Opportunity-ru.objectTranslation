@@ -956,20 +956,8 @@ Enter competitor pricing if available --></help>
             <translation><!-- Qualification --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Released</masterLabel>
-            <translation><!-- Released --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Replace Existing Business</masterLabel>
             <translation><!-- Replace Existing Business --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Scheduled</masterLabel>
-            <translation><!-- Scheduled --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Transmitted</masterLabel>
-            <translation><!-- Transmitted --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Value Proposition</masterLabel>
@@ -1095,6 +1083,10 @@ Enter competitor pricing if available --></help>
     <validationRules>
         <errorMessage>Дата начала TPR - должна быть будущей датой</errorMessage>
         <name>FS_StartDate_should_be_future_date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Account is in Temporary status. Opportunity cannot be created with a temporary Account --></errorMessage>
+        <name>FS_Temporary_Account</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Enter valid reason in the Reason Description field according to the selection of Stage field. --></errorMessage>
