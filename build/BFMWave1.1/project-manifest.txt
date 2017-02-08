@@ -164,6 +164,7 @@ src/email/BFM_Email_Templates/BFM_User_Creation_Carrier_Approval.email
 src/email/BFM_Email_Templates/BFM_User_Creation_Carrier_Approval.email-meta.xml
 src/groups/BFM_Governance.group
 src/homePageLayouts/BFM Home Page.homePageLayout
+src/labels/BFM.labels
 src/layouts/Account-BFM Unilever Account.layout
 src/layouts/Account-Carrier.layout
 src/layouts/Contact-Carrier Contact Layout.layout
@@ -310,6 +311,7 @@ src/tabs/BFM_Email_Information__c.tab
 src/tabs/BFM_UserCreationRequest__c.tab
 src/tabs/BFM_Payment_Method__c.tab
 src/tabs/BFM_Withhold_Tax__c.tab
+src/translations/pt_BR.translation
 src/triggers/BFM_Occurrence.trigger
 src/triggers/BFM_Occurrence.trigger-meta.xml
 src/triggers/BFM_Shipment.trigger

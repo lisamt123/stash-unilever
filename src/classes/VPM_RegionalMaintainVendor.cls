@@ -447,6 +447,8 @@ public static void updateChatterFeed(List<VPM_PurchasingRequests__c> updatedVend
 
  public static void createHTMLFormatedFeed(String feedToformat, String SectionName)
  {
+     feedToformat =feedToformat.replace('<','&lt;');
+     feedToformat =feedToformat.replace('>','&gt;');
     if(FormatedFeed.get(SectionName) == '')
     {
       FormatedFeed.put(SectionName,'<p><b>'+SectionName+'</b></p><ul><li>'+feedToformat+'</li>');
