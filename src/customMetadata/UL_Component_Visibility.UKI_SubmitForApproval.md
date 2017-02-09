@@ -12,19 +12,19 @@
     </values>
     <values>
         <field>UL_Components__c</field>
-        <value xsi:type="xsd:string">TOOLBAR_BTN_SIMULATION;TOOLBAR_BTN_MODEL;TOOLBAR_BTN_PLANNED;TOOLBAR_BTN_CANCELLED;TOOLBAR_BTN_STOPPED;TOOLBAR_BTN_SUBMITTEDFORAPPROVAL</value>
+        <value xsi:type="xsd:string">TOOLBAR_BTN_SIMULATION;TOOLBAR_BTN_MODEL;TOOLBAR_BTN_PLANNED;TOOLBAR_BTN_STOPPED;TOOLBAR_BTN_SUBMITTEDFORAPPROVAL</value>
     </values>
     <values>
         <field>UL_Sales_Org__c</field>
-        <value xsi:type="xsd:string">UK SO</value>
+        <value xsi:type="xsd:string">UKI</value>
     </values>
     <values>
         <field>UL_Status__c</field>
-        <value xsi:type="xsd:string">Requires Approval</value>
+        <value xsi:type="xsd:string">Submitted for Approval</value>
     </values>
     <values>
         <field>UL_Visible_Components__c</field>
-        <value xsi:type="xsd:string">TOOLBAR_BTN_REJECTED;TOOLBAR_BTN_FINALISED</value>
+        <value xsi:type="xsd:string">TOOLBAR_BTN_REJECTED;TOOLBAR_BTN_FINALISED;TOOLBAR_BTN_CANCELLED</value>
     </values>
     <values>
         <field>UL_is_Child_Promotion__c</field>

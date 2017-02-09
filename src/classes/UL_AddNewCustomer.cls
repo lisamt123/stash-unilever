@@ -236,7 +236,8 @@ public with sharing class UL_AddNewCustomer{
     Throws N/A
     ********************************************************************/
     private String getFilterClause(){
-       String result = ' WHERE ACCL__Sales_Org__c=:salesOrgId';
+       //String result = ' WHERE ACCL__Sales_Org__c=:salesOrgId and UL_Customer_Hierarchy_Level__c=:ul_utility.level8';
+       String result = ' WHERE ACCL__Sales_Org__c=:salesOrgId and UL_Customer_Hierarchy_Level__c='+'\'level 8'+'\'';
        String filterClause=UL_Utility.EMPTY_STRING;
        if(string.isNotEmpty(field1)){
          filterClause += ' UL_Customer_Group_Description__c LIKE ' + LIKE_CLAUSE_START + String.escapeSingleQuotes(field1.trim()) + LIKE_CLAUSE_END;

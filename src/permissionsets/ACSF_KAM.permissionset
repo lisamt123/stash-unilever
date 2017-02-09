@@ -126,7 +126,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>UL_Utility</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>UL_UtilityController</apexClass>
@@ -1705,6 +1705,10 @@
         <apexPage>MyPromotionPlanning</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
+	<pageAccesses>
+        <apexPage>myTradeCalendar</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>MyViewPromotion</apexPage>
         <enabled>false</enabled>
@@ -1739,6 +1743,10 @@
     </recordTypeVisibilities>
     <tabSettings>
         <tab>ACSFUL001__Org_Unit_User__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>My_Trade_Promoton_Calendar</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>

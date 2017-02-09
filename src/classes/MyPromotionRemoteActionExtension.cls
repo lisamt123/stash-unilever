@@ -2447,32 +2447,33 @@ Throws : N/A
     ********************************************************************/     
   @RemoteAction
     public static List<ACCL.PromotionRemoteActionExtension.PromotionGroup> readLOCalPromotions(String txId, String uiview){
-       system.debug(JSON.serialize(uiview));
+      // system.debug(JSON.serialize(uiview));
        ACCL.PromotionRemoteActionExtension.UIViewDefinition incomingParams = ( ACCL.PromotionRemoteActionExtension.UIViewDefinition)JSON.deserialize(uiview, ACCL.PromotionRemoteActionExtension.UIViewDefinition.class);
            
-        DateTime dateFromTime =  objToDate(incomingParams.date_from);
+        DateTime dateFromTime =   Ul_Utility.objToDate(incomingParams.date_from);
         Date dateFrom =  dateFromTime.date();
-        DateTime dateThruTime =  objToDate(incomingParams.date_thru);
+        DateTime dateThruTime =   Ul_Utility.objToDate(incomingParams.date_thru);
         Date dateThru =  dateThruTime.date();
-        String currentSalesOrg = getSalesOrg(UserInfo.getUserId());
-        
+        String currentSalesOrg = Ul_Utility.getSalesOrg(UserInfo.getUserId());
 
         List<ACCL.PromotionRemoteActionExtension.PromotionGroup> result = ACCL.PromotionRemoteActionExtension.readLOCalPromotions(txId, uiview);
-          system.debug('result: ' + result);
+         // system.debug('result: ' + result);
+
+        //result = PromotionRemoteActionExtensionEdo.checkRemoveDouplexPromotions(result,currentSalesOrg, dateFrom, dateThru );
       
        //  return PromotionRemoteActionExtensionEdo.readLOCalPromotions(txId, uiview);
           
-        String slogan = '';
+        //String slogan = '';
         Integer countGoups = 0;
 
         List <ACCL.PromotionRemoteActionExtension.CalendarPromotion> listCalProm = new List<ACCL.PromotionRemoteActionExtension.CalendarPromotion> ();
         ACCL__Promotion__c lastevent ; 
-        String lastAddPromGroup = null;
+        String lastAddPromGroup = ''; //null;
 
         for (ACCL__Promotion__c event :  [ SELECT Id, Name, ACCL__Active__c, ACCL__Date_From__c, ACCL__Date_Thru__c, 
-                                                ACCL__Phase__c, ACCL__Sales_Org__c, ACCL__Promotion_Template__c, 
+                                                ACCL__Phase__c, ACCL__Sales_Org__c, ACCL__Promotion_Template__c, ACCL__Promotion_Template__r.id,
                                                 ACCL__Promotion_Template__r.ACCL__Trade_Calendar_Color__c,
-                                                ACCL__Slogan__c, ACCL__Anchor_Account__c, ACCL__Anchor_Account__r.name 
+                                                ACCL__Slogan__c, ACCL__Anchor_Account__c, ACCL__Anchor_Account__r.Id, ACCL__Anchor_Account__r.name 
                                             FROM ACCL__Promotion__c
                                             Where
                                                 ACCL__Active__c = true
@@ -2482,34 +2483,40 @@ Throws : N/A
                                                 and ACCL__Promotion_Template__r.ACCL__Trade_Calendar_Relevant__c= :UL_Utility.PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_YES 
                                                 and ACCL__Promotion_Template__r.ACCL__Promotion_Type__c = :UL_Utility.PROMOTION_TEMPLATE_PROMOTION_TYPE_PROMOTION
                                                 and (ACCL__Date_Thru__c >= :dateFrom and ACCL__Date_From__c <= : dateThru)  
-                                                order by ACCL__Slogan__c]){
+                                                order by ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, ACCL__Anchor_Account__c, ACCL__Slogan__c]){
 
          
             
-             System.debug('Event ' + event);
+           //  System.debug('Event ' + event);
             if (event != null){
 
                  ACCL.PromotionRemoteActionExtension.CalendarPromotion calProm =  new ACCL.PromotionRemoteActionExtension.CalendarPromotion(event.ACCL__Phase__c, event.Id, event.ACCL__Date_From__c,event.ACCL__Date_Thru__c ); // prepareDataForPromotion (event);
             
-                if (!slogan.equals(event.ACCL__Slogan__c)){
-                    System.debug (' Slogan is different of previous');
+                //if (!slogan.equals(event.ACCL__Slogan__c)){
+                String currentGroupSlogan = String.format('{0} {1} {2}', new List<String>{event.ACCL__Promotion_Template__r.Id, event.ACCL__Anchor_Account__r.Id, event.ACCL__Slogan__c} ); 
+                if (!lastAddPromGroup.equals(currentGroupSlogan)){
+                  //  System.debug (' Slogan is different of previous');
                     if (listCalProm.size()>0 ){
                          ACCL.PromotionRemoteActionExtension.PromotionGroup promGroup = new ACCL.PromotionRemoteActionExtension.PromotionGroup(lastevent.ACCL__Slogan__c, 
                             listCalProm, lastevent.ACCL__Promotion_Template__c, lastevent.ACCL__Anchor_Account__c, null, lastevent.ACCL__Promotion_Template__r.ACCL__Trade_Calendar_Color__c,
                            0, lastevent.ACCL__Anchor_Account__r.name , '' );
-                         lastAddPromGroup = promGroup.Slogan;
+                         //lastAddPromGroup = promGroup.Slogan;
+                         //modification 07_02_2017
+                         // Ich glaube die Zeile ist doppelt, und kann raus
+                         lastAddPromGroup = String.format('{0} {1} {2}', new List<String>{promGroup.Promotion_Template, promGroup.Account_Id, promGroup.Slogan} );
 
-                         System.debug ('lastAddPromGroup ' + lastAddPromGroup);
+                        // System.debug ('lastAddPromGroup ' + lastAddPromGroup);
                          result.add(countGoups,promGroup);
                          countGoups  = countGoups + 1;
 
-                         System.debug (' new group created');
+                       //  System.debug (' new group created');
 
                     }
 
                     listCalProm = new List<ACCL.PromotionRemoteActionExtension.CalendarPromotion> ();
                     listCalProm.add (calProm);
-                    slogan = event.ACCL__Slogan__c;
+                    //slogan = event.ACCL__Slogan__c;
+                    lastAddPromGroup = currentGroupSlogan;
                 } else {
                     listCalProm.add (calProm);
                 }
@@ -2521,8 +2528,8 @@ Throws : N/A
 
 
         }  // for 
-         System.debug('countGoups' + countGoups);
-         System.debug('result[countGoups-1].Slogan  - ' + result[0].Slogan);
+        // System.debug('countGoups' + countGoups);
+        // System.debug('result[countGoups-1].Slogan  - ' + result[0].Slogan);
 
         if (listCalProm.size()>0  && result.size() >0 &&  countGoups >0 && result.size() >= countGoups && lastAddPromGroup !=null && !result[countGoups-1].Slogan.equals(lastAddPromGroup) ){
              ACCL.PromotionRemoteActionExtension.PromotionGroup promGroup = new ACCL.PromotionRemoteActionExtension.PromotionGroup(lastevent.ACCL__Slogan__c, 
@@ -2530,7 +2537,7 @@ Throws : N/A
                        null, lastevent.ACCL__Anchor_Account__r.name , null );
                      lastAddPromGroup = lastevent.ACCL__Slogan__c;
 
-                     System.debug ('lastAddPromGroup ' + lastAddPromGroup);
+                  //   System.debug ('lastAddPromGroup ' + lastAddPromGroup);
                      result.add(countGoups,promGroup);
                      countGoups  = countGoups + 1;
 
@@ -2540,39 +2547,6 @@ Throws : N/A
         return result;
     }
 
-    private static String getSalesOrg (String userId){
-        String salesOrg = null;
-        List<User> user = [ SELECT ACCL__Sales_Org__c, Id FROM User where Id = : userId];
-        if (user.size()>0){
-            return user[0].ACCL__Sales_Org__c;
-        }
-        else return salesOrg;
-    }
-
-    public static Date objToDate(Object o){
-        if (o == null){
-            return null;
-        }
-        else if (o instanceof Date){
-            return (Date)o;
-        }
-        else if (o instanceof Long) {
-            Long i = (Long)o;
-            DateTime dt = DateTime.newInstance(i);
-            return dt.dateGmt();
-        }
-        else if (o instanceof Integer) {
-            Integer i = (Integer)o;
-            DateTime dt = DateTime.newInstance(i);
-            return dt.dateGmt();
-        }
-        else if (o instanceof String) {
-            String s = (String)o;
-            return Date.valueOf(s);
-        }
-        else{
-            return  null; //Constants.MIN_DATE;}
-        }
-    }
+   
  
 }

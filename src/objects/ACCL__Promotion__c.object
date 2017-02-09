@@ -378,12 +378,12 @@
         <fullName>UL_SoCo_Approved</fullName>
         <description>In promotion planning workflow when the promotion is in the Approved status</description>
         <displayedFields>
-            <field>ACCL__Promotion_Template__c</field>
+            <field>ACCL__Slogan__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Slogan__c</field>
+            <field>ACCL__Promotion_Template__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -401,11 +401,6 @@
             <field>UL_Current_Status__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Free_Text__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
         </displayedFields>
         <displayedFields>
             <field>ACCL__Phase__c</field>
@@ -553,14 +548,14 @@
         <fullName>UL_SoCo_Branded_Pack_Approved</fullName>
         <description>In promotion planning workflow when the promotion is in the Branded Pack Approved status</description>
         <displayedFields>
-            <field>UL_IIBB_Tax__c</field>
+            <field>ACCL__Slogan__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>UL_Free_Text__c</field>
+            <field>UL_IIBB_Tax__c</field>
             <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
+            <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>ACCL__Promotion_Template__c</field>
@@ -728,9 +723,9 @@
         <fullName>UL_SoCo_Director_check</fullName>
         <description>In promotion planning workflow when the promotion is in the Director check status</description>
         <displayedFields>
-            <field>UL_Free_Text__c</field>
+            <field>ACCL__Slogan__c</field>
             <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
+            <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>UL_Current_Status__c</field>
@@ -903,9 +898,9 @@
         <fullName>UL_SoCo_End_Date</fullName>
         <description>In promotion planning workflow when the promotion is in the Enda Date status</description>
         <displayedFields>
-            <field>UL_Free_Text__c</field>
+            <field>ACCL__Slogan__c</field>
             <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
+            <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>UL_Current_Status__c</field>
@@ -1073,14 +1068,14 @@
         <fullName>UL_SoCo_Finance_Check</fullName>
         <description>In promotion planning workflow when the promotion is in the Finance check status</description>
         <displayedFields>
-            <field>ACCL__Promotion_Template__c</field>
+            <field>ACCL__Slogan__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>UL_Free_Text__c</field>
+            <field>ACCL__Promotion_Template__c</field>
             <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
+            <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>ACCL__Phase__c</field>
@@ -1278,9 +1273,9 @@
         <fullName>UL_SoCo_Manager_Check</fullName>
         <description>In promotion planning workflow when the promotion is in the Manager check status</description>
         <displayedFields>
-            <field>UL_Free_Text__c</field>
+            <field>ACCL__Slogan__c</field>
             <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
+            <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>UL_Current_Status__c</field>
@@ -1453,6 +1448,11 @@
         <fullName>UL_SoCo_PendingApproved</fullName>
         <description>This field set is used for the fields which should not be edit when promotion is in approved/Finance Check/Manager check state</description>
         <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Promotion_Template__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1614,11 +1614,6 @@
         <description>Field sets refer when Promotion is in Planning status</description>
         <displayedFields>
             <field>ACCL__Anchor_Account_Set__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Free_Text__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
