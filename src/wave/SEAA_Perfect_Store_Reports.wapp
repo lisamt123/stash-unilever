@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <folder>SEAA_Perfect_Store_Reports</folder>
+    <masterLabel>SEAA Perfect Store Reports</masterLabel>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>salesforcesupport@idc.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>DPS_Perfect_Reporting</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </shares>
+</WaveApplication>

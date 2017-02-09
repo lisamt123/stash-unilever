@@ -173,6 +173,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>China</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Colombia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -261,7 +265,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Korea</fullName>
+                <fullName>Korea, Republic Of</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -567,6 +571,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC Brazil Queue</label>
         <queue>CEC_Brazil_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_China_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC China Queue</label>
+        <queue>CEC_China_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

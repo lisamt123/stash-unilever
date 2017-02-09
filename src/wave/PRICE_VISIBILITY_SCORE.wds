@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveDataset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <application>SEAA_Perfect_Store_Reports</application>
+    <masterLabel>PRICE_VISIBILITY_SCORE</masterLabel>
+</WaveDataset>
