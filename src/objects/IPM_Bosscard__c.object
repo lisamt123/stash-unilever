@@ -20333,7 +20333,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <listViews>
         <fullName>IPM_a7I0L000000H7tC1_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000H7tC</label>
+        <label>IPM_CREM SMARAGD</label>
         <queue>IPM_a7I0L000000H7tC1</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -22828,6 +22828,60 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <filterScope>Queue</filterScope>
         <label>IPM_a7I0L000000HBhc</label>
         <queue>IPM_a7I0L000000HBhc</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBhh_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_EUREKA GC</label>
+        <queue>IPM_a7I0L000000HBhh</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBhr_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_CARNATION</label>
+        <queue>IPM_a7I0L000000HBhr</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBhw_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PICO1W7EU_EU</label>
+        <queue>IPM_a7I0L000000HBhw</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBi1_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MOONSTONEW2</label>
+        <queue>IPM_a7I0L000000HBi1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBi6_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MENDI</label>
+        <queue>IPM_a7I0L000000HBi6</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000HBiB_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000HBiB</label>
+        <queue>IPM_a7I0L000000HBiB</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
