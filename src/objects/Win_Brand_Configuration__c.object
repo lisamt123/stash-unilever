@@ -79,6 +79,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Brand_Priority__c</fullName>
+        <description>Brand Priority</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Brand Priority</inlineHelpText>
+        <label>Brand Priority</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Country_Id__c</fullName>
         <externalId>false</externalId>
         <label>Country Id</label>
