@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -122,6 +126,28 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+    <fields>
+        <fullName>promo_temp_name__c</fullName>
+        <externalId>false</externalId>
+        <formula>ACCL__Promotion_Template__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>promo temp name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>tactic_temp_name__c</fullName>
+        <externalId>false</externalId>
+        <formula>ACCL__Tactic_Template__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>tactic temp name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Promotion Template Tactic Template</label>
     <listViews>
         <fullName>All</fullName>
@@ -143,5 +169,4 @@
         <errorConditionFormula>TEXT(ACCL__Tactic_Template__r.ACCL__Sales_Org__c) &lt;&gt; TEXT(ACCL__Promotion_Template__r.ACCL__Sales_Org__c)</errorConditionFormula>
         <errorMessage>The Sales Org of Promotion Template and Tactic Template should be same</errorMessage>
     </validationRules>
-    <visibility>Public</visibility>
 </CustomObject>

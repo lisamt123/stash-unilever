@@ -270,7 +270,7 @@
                 <field>ACCL__Criterion_3_Product__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>ACCL__Product_Type__c</field>
             </layoutItems>
             <layoutItems>
