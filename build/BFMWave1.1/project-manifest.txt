@@ -101,6 +101,10 @@ src/classes/BFM_ShipmentHandler.cls
 src/classes/BFM_ShipmentHandler.cls-meta.xml
 src/classes/BFM_ShipmentHandlerTest.cls
 src/classes/BFM_ShipmentHandlerTest.cls-meta.xml
+src/classes/BFM_ShipmentHandlerActions.cls
+src/classes/BFM_ShipmentHandlerActions.cls-meta.xml
+src/classes/BFM_ShipmentHandlerActions_Test.cls
+src/classes/BFM_ShipmentHandlerActions_Test.cls-meta.xml
 src/classes/BFM_ShipmentUpdate_CC.cls
 src/classes/BFM_ShipmentUpdate_CC.cls-meta.xml
 src/classes/BFM_ShipmentUpdate_CCTest.cls
@@ -201,6 +205,8 @@ src/objects/Account.object
 src/objects/Contact.object
 src/objects/BFM_User_Creation_Request_Error__c.object
 src/objects/BFM_UserCreationRequest__c.object
+src/objectTranslations/BFM_AccountAccessRequest__c-en_US.objectTranslation
+src/objectTranslations/BFM_AccountAccessRequest__c-pt_BR.objectTranslation
 src/objectTranslations/BFM_Bank_Information__c-en_US.objectTranslation
 src/objectTranslations/BFM_Bank_Information__c-pt_BR.objectTranslation
 src/objectTranslations/BFM_Delivery__c-en_US.objectTranslation

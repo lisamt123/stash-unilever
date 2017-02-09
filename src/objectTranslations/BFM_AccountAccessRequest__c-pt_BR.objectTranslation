@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Solicitações de acesso à conta</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Solicitações de acesso à conta</value>
+    </caseValues>
+    <fields>
+        <label>Conta</label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Account Access Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Carrier CNPJ</label>
+        <name>Carrier_CNPJ__c</name>
+    </fields>
+    <fields>
+        <label>Cidade</label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label>Pedido de Criação de Usuário</label>
+        <name>UserCreationRequest__c</name>
+        <relationshipLabel><!-- Account Access Requests --></relationshipLabel>
+    </fields>
+    <gender>Feminine</gender>
+    <nameFieldLabel><!-- BFM Account Access Request Name --></nameFieldLabel>
+</CustomObjectTranslation>

@@ -4145,6 +4145,10 @@
 <name>BFM_Error_Creating_Access_Request</name>
 </customLabels>
 <customLabels>
+<label>É necessário um registro de NF-e vinculada a esse Documento de Transporte antes de definir o 6º flag. Por favor, atualize este documento para verificar se a nota ainda não foi aprovada. Para mais informações, por favor entre em contato com o administrator do sistema</label>
+<name>BFM_Error_Setting_6thflag</name>
+</customLabels>
+<customLabels>
 <label><!-- BFM FRS Tax Code --></label>
 <name>BFM_FRS_Tax_Code</name>
 </customLabels>
