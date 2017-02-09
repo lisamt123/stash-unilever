@@ -69,7 +69,6 @@
 			<runTest>CEC_IRIProductLocator_CalloutMock</runTest>
 			<runTest>CEC_LiveAgentControllerSpanishTest</runTest>
 			<runTest>CEC_LiveAgentControllerTest</runTest>
-			<runTest>CEC_NewAccountControllerTest</runTest>
 			<runTest>CEC_OCWidgetRedirectControllerTest</runTest>
 			<runTest>CEC_ProductRangeControllerTest</runTest>
 			<runTest>CEC_RetrievalRequestTriggerHelperTest</runTest>
