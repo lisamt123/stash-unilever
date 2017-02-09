@@ -873,7 +873,7 @@
     </validationRules>
     <validationRules>
         <errorMessage>Fechas de Promociones Urgentes deben comenzar en el pasado y finalizar en el futuro</errorMessage>
-        <name>UL_PastDated_Urgent_Promotion_Validation</name>
+        <name>UL_PastDated_Urgent_Promotion_Validation</name> 
     </validationRules>
     <validationRules>
         <errorMessage><!-- Dates(Shipment or Instore) are not with in Promotion dates range. --></errorMessage>
