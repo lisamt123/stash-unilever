@@ -2,11 +2,11 @@
 public class BFM_TriggerFactory_Test {
     static testMethod void bfm_TriggerTestMethod(){
         //Test.startTest();
-        RecordType unileverAccount  = [SELECT id from RecordType where DeveloperName = 'Unilever_Account' Limit 1];
+        RecordType unileverAccount  = [SELECT id from RecordType where DeveloperName = 'BFM_Unilever_Account' Limit 1];
         Account acc = new Account();
         acc.RecordTypeId = unileverAccount.id;
         acc.Name ='TestAccount';
-        acc.Vendor__c='11';
+        acc.BFM_Vendor__c='11';
         insert acc;
         
         BFM_Shipment__c ship = new BFM_Shipment__c();
