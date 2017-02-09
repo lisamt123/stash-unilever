@@ -144,7 +144,6 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           try{
           GstdController =stdController;
           recId = stdController.getRecord().Id; 
-         
           //errorMsg=getError();
           userLanguage = UserInfo.getLanguage();
           this.pr= (VPM_PurchasingRequests__c)stdController.getRecord(); 
@@ -165,7 +164,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           isRequired = false;
         
           vendorDetailList =[select OwnerId,VPM_VendorType__c,VPM_GlobalAuthorisationGroup__c, VPM_IsVendorSME__c,VPM_ECC__c, VPM_PaymentTerms__c,VPM_VendorCode__c,
-          VPM_PaymentTermsIfNoneSelected__c,VPM_Country__c,VPM_CompanyCode__r.VPM_CompanyCode__c, VPM_CompanyCode__r.ECC__c, 
+          VPM_PaymentTermsIfNoneSelected__c,VPM_Country__c,VPM_CompanyCode__r.VPM_CompanyCode__c, VPM_CompanyCode__r.ECC__c, VPM_isBR__c,
           VPM_ApprovalWorker__c, VPM_ApprovalWorkerID__c, VPM_ExceptionType__c, VPM_InternationalVersion__c, 
           VPM_Status__c, VPM_CountryRequestingVendor__c,VPM_FLSInCountryReqVen__c,VPM_BankKey__c,VPM_BankAccountNumber__c from VPM_PurchasingRequests__c where id =: recId];
           System.debug('%%%%vendorDetailList ===='+vendorDetailList );
@@ -620,6 +619,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       @RemoteAction
       global static String checkLoggedInUserRole() {
           String userRole='';
+          
           // List<PermissionSetAssignment> lstcurrentUserPerSet= new  List<PermissionSetAssignment>();
           List<PermissionSetAssignment> lstcurrentUserPerSet = [SELECT Id, PermissionSet.Name,PermissionSet.Label, AssigneeId
                                                                 FROM PermissionSetAssignment
@@ -657,7 +657,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                /* End Changes for 490 Bank Data Validation Approver */
               
           }
-          userRole = 'BUR';
+          userRole = 'BUR';          
           return userRole;
       }
        
@@ -1305,4 +1305,13 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               }
          
      }
+    
+    public void brStatusMethod() {
+        VPM_PurchasingRequests__c brpr =[select id , vpm_isBr__c from VPM_PurchasingRequests__c where id =: recid];
+         system.debug('@@vpm_isBr__c' + brpr.vpm_isBr__c);
+        if(isBR) {
+          brpr.VPM_isBR__c = true;
+          update brPr;
+        }
+    }
 }

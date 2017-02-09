@@ -63,6 +63,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         pur1.VPM_Status__c ='MDM Ops Review - block';
         UPDATE pur1;
          VendorDetail.ManuallyMarkAsCompleteAction();
+         VendorDetail.brStatusMethod();
        
     }
     
@@ -290,8 +291,8 @@ public class VPM_PurchaseRequestsExtensionTest{
         
     }
     
-	
-	    static testMethod void reworkActionMDM() {
+    
+        static testMethod void reworkActionMDM() {
     
             User u = insertUser();
         
@@ -325,8 +326,8 @@ public class VPM_PurchaseRequestsExtensionTest{
          test.stopTest();
         } 
      }
-	 
-	  static testMethod void reworkActionMDM2() {
+     
+      static testMethod void reworkActionMDM2() {
     
             User u = insertUser();
         
@@ -360,7 +361,7 @@ public class VPM_PurchaseRequestsExtensionTest{
          test.stopTest();
         } 
      }
-	
+    
     
       static testMethod void reworkActionTest1() {
     
@@ -1250,7 +1251,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'FRGT_Freight Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='Freight_Freight';        
-       	purId.VPM_FreightApprovalRequired__c=true;
+        purId.VPM_FreightApprovalRequired__c=true;
         
         
        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
@@ -1313,7 +1314,7 @@ public class VPM_PurchaseRequestsExtensionTest{
          pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
          pur.VPM_RussianTaxApprovalRequired__c=false;
-      	
+        
          pur.VPM_Rework__c='No';
          pur.VPM_AdvancedFormSubmitted__c='Yes';
          pur.VPM_RussiaSubmitted__c='No';
@@ -1421,7 +1422,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-    	purId.VPM_BankDataValidationRequired__c=true;
+        purId.VPM_BankDataValidationRequired__c=true;
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
        // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
@@ -1582,7 +1583,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         purcReqlst.add(purId);
         VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
     }
-	
+    
     static VPM_PurchasingRequests__c TestDataPositive3(){
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
@@ -1740,7 +1741,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
     }
     
-	static VPM_PurchasingRequests__c TestDataPositive5(){
+    static VPM_PurchasingRequests__c TestDataPositive5(){
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
         
