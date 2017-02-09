@@ -16,7 +16,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>pkl_Region__c</field>
+                <field>pkl_Category_Master__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -25,6 +25,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_Other_Brand__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_Region__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -59,8 +63,8 @@
                 <field>txt_Competitor_SKU__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>lkp_CUC_Codes__c</field>
+                <behavior>Edit</behavior>
+                <field>lkp_CS_GTIN__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -74,6 +78,18 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
+                <field>pkl_Product_Format__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Other_Product_Format__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>lkp_Benchmark__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>pkl_Country__c</field>
             </layoutItems>
             <layoutItems>
@@ -83,18 +99,6 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>pkl_Product__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_Benchmark__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_Product_Format__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Other_Product_Format__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -111,6 +115,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_Type_of_Test__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_CUC_Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>lkp_CU_GTIN__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

@@ -99,6 +99,8 @@ public class VPM_CreateVendorFieldDetailsWrapper {
     public string TaxType{get; set;}
     //public string VendorName3 {get; set;}
     //public string VendorName4 {get; set;}
+    public string ExistingTradePartnerType  {get; set;}
+     public string ExistingTradePartnerID  {get; set;}
 
     public string CreditInformationNumber {get; set;}
     public string TradingPartner {get; set;}

@@ -207,6 +207,78 @@
         <label><!-- Awards --></label>
         <name>Awards__c</name>
     </fields>
+	<fields>
+        <label><!-- BFM_Active_CNPJ --></label>
+        <name>BFM_Active_CNPJ__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Endereço</label>
+        <name>BFM_Address_Code__c</name>
+    </fields>
+    <fields>
+        <label>Nº do Endereço</label>
+        <name>BFM_Address_No__c</name>
+    </fields>
+    <fields>
+        <label>Endereço</label>
+        <name>BFM_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNPJ --></label>
+        <name>BFM_CNPJ__c</name>
+    </fields>
+    <fields>
+        <label>País</label>
+        <name>BFM_Carrier_Region__c</name>
+    </fields>
+    <fields>
+        <label>Marcado p/Deletar</label>
+        <name>BFM_Central_Del_Flag_Master_Record__c</name>
+    </fields>
+    <fields>
+        <label>Bloqueio Lçto Central</label>
+        <name>BFM_Central_Posting_Block__c</name>
+    </fields>
+    <fields>
+        <label>Bloq.Org.Compras Central</label>
+        <name>BFM_Centrally_Imposed_Purchasing_Block__c</name>
+    </fields>
+    <fields>
+        <label>Cidade</label>
+        <name>BFM_City__c</name>
+    </fields>
+    <fields>
+        <label>Código Empresa</label>
+        <name>BFM_Company_Code__c</name>
+    </fields>
+    <fields>
+        <label>Cód. Cliente</label>
+        <name>BFM_Customer_Number__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Planta</label>
+        <name>BFM_Plant_Code__c</name>
+    </fields>
+    <fields>
+        <label>Inscrição Estadual</label>
+        <name>BFM_State_Registration__c</name>
+    </fields>
+    <fields>
+        <label>Domicílio Fiscal</label>
+        <name>BFM_Tax_Jurisdiction__c</name>
+    </fields>
+    <fields>
+        <label>Grp Conta Fornecedor</label>
+        <name>BFM_Vendor_Account_Group__c</name>
+    </fields>
+    <fields>
+        <label>UF</label>
+        <name>BFM_Vendor_UF_State__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Fornecedor</label>
+        <name>BFM_Vendor__c</name>
+    </fields>
     <fields>
         <help><!-- Please indicate the type of business activities your organisation is currently involved in. Please also distinguish between those that are currently provided to Unilever, and those that are not. --></help>
         <label>Tipo de Atividade de Negócio</label>
@@ -1666,6 +1738,14 @@
     <recordTypes>
         <label><!-- Agency Fee --></label>
         <name>Agency_Fee</name>
+    </recordTypes>
+	<recordTypes>
+        <label>Conta do Negócio</label>
+        <name>BFM_Carrier</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- BFM Unilever Account --></label>
+        <name>BFM_Unilever_Account</name>
     </recordTypes>
     <recordTypes>
         <label>Conta do Negócio</label>

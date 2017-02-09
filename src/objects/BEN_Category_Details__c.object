@@ -104,6 +104,17 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>BEN_Is_Approver__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Boolean to check Login User as Approver</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Approver</inlineHelpText>
+        <label>BEN Is Approver</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Current_Market_Status__c</fullName>
         <externalId>false</externalId>
         <label>Current Market Status</label>
@@ -146,7 +157,7 @@
         <relationshipName>md_Product_Category</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>true</reparentableMasterDetail>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>true</writeRequiresMasterRead>
@@ -242,26 +253,40 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>fml_Year_Quater__c</fullName>
-        <description>Concatenating Year and Quater</description>
+        <fullName>lkp_Benchmark__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
         <externalId>false</externalId>
-        <formula>TEXT(pkl_Year__c)+&quot;/&quot;+TEXT(pkl_Quarter__c)</formula>
-        <label>Year&amp;Quater</label>
+        <label>Benchmark</label>
+        <referenceTo>BEN_Benchmark__c</referenceTo>
+        <relationshipLabel>Category Details</relationshipLabel>
+        <relationshipName>Category_Details</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_CS_GTIN__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CS-GTIN</label>
+        <referenceTo>BEN_CS_GTIN__c</referenceTo>
+        <relationshipLabel>Category Details</relationshipLabel>
+        <relationshipName>Category_Details</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>lkp_CUC_Codes__c</fullName>
-        <deleteConstraint>Restrict</deleteConstraint>
+        <fullName>lkp_CU_GTIN__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>CUC Codes</label>
-        <referenceTo>BEN_Category_CUC_Codes__c</referenceTo>
+        <label>CU-GTIN</label>
+        <referenceTo>BEN_CU_GTIN__c</referenceTo>
         <relationshipLabel>Category Details</relationshipLabel>
-        <relationshipName>lkp_Category_Details</relationshipName>
-        <required>true</required>
+        <relationshipName>Category_Details</relationshipName>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -299,199 +324,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <type>Percent</type>
     </fields>
     <fields>
-        <fullName>pkl_Benchmark__c</fullName>
-        <externalId>false</externalId>
-        <label>Benchmark</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Ahmad</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Arosa</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Baggio</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Barrys Gold</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Barrys Gold - Plain Black Leaf Tea</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Biedronka Rosehip Infusion - Raspberry</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Carrefour</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Caykur</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Chakra Gold</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DD LP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Del Valle</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dilmah</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Gopek</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Great Value (Walmart)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Greenfield Barberry Garden</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Greenfield Lemon Spark</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Greenfield Speciality - Flying Dragon</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Greenfield Speciality - Golden Ceylon</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Greenfield Tropical Marvel</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Jumex</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Kannan Devan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KD (Kennan Devan)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Luzianne</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Minutka</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mohani</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mohani LP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Princess Noori</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Rabea</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Rabea Green Leaf - Mint</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Rabea Green Leaf - Pure</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sapat Pariwar</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sosro</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sud</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tapal Danedar</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tata Agni</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tata Gold</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tata Premium</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tetley</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Top Tea</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TTG</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Twinings</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Twinings Mint</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Twinings Pure Green</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ULoveIt</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Yoki</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>true</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>pkl_Blind_OO__c</fullName>
         <externalId>false</externalId>
         <label>Blind OO</label>
@@ -521,37 +353,46 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <externalId>false</externalId>
         <label>Brand</label>
         <picklist>
+            <controllingField>pkl_Category_Master__c</controllingField>
             <picklistValues>
                 <fullName>AdeS Soy/Fruit Juice</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>AdeS Soy Milk</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Amino</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Amora</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Axe</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Axe/Lynx</fullName>
                 <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Baltimore</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bango</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Becel</fullName>
@@ -560,50 +401,62 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <picklistValues>
                 <fullName>Ben &amp; Jerry&apos;s</fullName>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bertolli</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Blue Band</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Breeze</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Breyers</fullName>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Brooke Bond</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Brooke Bond 3 Roses</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Brooke Bond Red Label</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Brooke Bond Taaza</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Brooke Bond Taj Mahal</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Café Zero</fullName>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Calve</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Calvé</fullName>
@@ -612,238 +465,314 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <picklistValues>
                 <fullName>Camay</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Carte d&apos;Or &amp; Equiv</fullName>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cif</fullName>
                 <default>false</default>
+                <controllingFieldValues>HHC</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Citra</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Clear</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Clinic Plus</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Close Up</fullName>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Colmans</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Comfort / Snuggle</fullName>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cornetto</fullName>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Country Crock</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Crème Silk</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Delma</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Desserts</fullName>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>DiG</fullName>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Domestos</fullName>
                 <default>false</default>
+                <controllingFieldValues>HHC</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dove</fullName>
                 <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dove men</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Duschdas</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Everyman</fullName>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>F&amp;</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>F&amp;L</fullName>
+                <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Flora</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Fruco</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Fruit d&apos;Or</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Fruttare</fullName>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Geisha</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hamam</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>HB Desserts</fullName>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hellmann&apos;s</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>ICBINB</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Kissan</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Knorr</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Knorrox</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ladies Choice</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Laetta</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lakme</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lifebuoy</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ligeresa</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lipton</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lipton (Flavoured B&amp;G)</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lipton Celtic</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lipton Green Leaf</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lipton Milk Tea</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lipton Red &amp; Yellow</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lipton-Savory</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lipton Yellow Label</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lux</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lyons</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lysoform</fullName>
                 <default>false</default>
+                <controllingFieldValues>HHC</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Magnum</fullName>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Maille</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mentadent</fullName>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+                <controllingFieldValues>HHC</controllingFieldValues>
+                <controllingFieldValues>Hair</controllingFieldValues>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+                <controllingFieldValues>Laundry</controllingFieldValues>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>P/S</fullName>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pears</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pepsodent</fullName>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>PG</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Planta</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ponds</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Primavera</fullName>
@@ -852,22 +781,28 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <picklistValues>
                 <fullName>Promise</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Radiant</fullName>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Radox</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Rama</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Rexona</fullName>
                 <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Rexona / Degree / Sure</fullName>
@@ -876,86 +811,107 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <picklistValues>
                 <fullName>Robertson</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Royco</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Saga</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sana</fullName>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sariwangi</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Signal</fullName>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Simple</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skip</fullName>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>ssk</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Suave</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sun</fullName>
                 <default>false</default>
+                <controllingFieldValues>HHC</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sunlight</fullName>
                 <default>false</default>
+                <controllingFieldValues>HHC</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sunsilk</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Surf</fullName>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Timotei</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tresemme</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Vaseline</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Vim</fullName>
                 <default>false</default>
+                <controllingFieldValues>HHC</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Zest</fullName>
                 <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Zhonghua</fullName>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Zong Hua</fullName>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>true</sorted>
@@ -1036,6 +992,68 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Category_Master__c</fullName>
+        <description>Product</description>
+        <externalId>false</externalId>
+        <label>Category Master</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Beverages</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HHC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ice Cream</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>true</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1346,6 +1364,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1386,6 +1408,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklist>
             <picklistValues>
                 <fullName>Cleans clothes thoroughly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Key Attribute 2 description</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -1430,6 +1456,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1472,6 +1502,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1512,6 +1546,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklist>
             <picklistValues>
                 <fullName>Win on DIG stains</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Key Attribute 5 description</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -1659,7 +1697,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <fullName>pkl_Overall_score__c</fullName>
         <description>copied the same value as overall score</description>
         <externalId>false</externalId>
-        <label>Overall score</label>
+        <label>Report Overall score</label>
         <picklist>
             <picklistValues>
                 <fullName>Win</fullName>
@@ -1714,153 +1752,294 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <externalId>false</externalId>
         <label>Product Format</label>
         <picklist>
+            <controllingField>pkl_Category_Master__c</controllingField>
             <picklistValues>
                 <fullName>Flavoured &amp; Speciality</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Herbal Infusions</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hot Tea Powders</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Plain Black Tea</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Plain Green Tea</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Soy Drinks</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other</fullName>
                 <default>false</default>
+                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+                <controllingFieldValues>HHC</controllingFieldValues>
+                <controllingFieldValues>Hair</controllingFieldValues>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+                <controllingFieldValues>Laundry</controllingFieldValues>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>APA</fullName>
                 <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>RO</fullName>
                 <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Deo stick</fullName>
                 <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>BS</fullName>
                 <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>AP stick</fullName>
                 <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mayo</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dressings</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ketchup</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mustard</fullName>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Shampoo</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Treatment</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>LO Cream</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sh/Co</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hairspray</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Gel</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Shampoo Sachet</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Co</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sh</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>cc</fullName>
                 <default>false</default>
+                <controllingFieldValues>Hair</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>n/a</fullName>
                 <default>false</default>
+                <controllingFieldValues>HHC</controllingFieldValues>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Powder</fullName>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Liquid</fullName>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Conc</fullName>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Bar</fullName>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>toothpaste</fullName>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>CCA Cook in sauces and Mealmakers</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Soup regular Dry</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sauces Pasta</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sauces pour-over</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>CCA Bouillon Cube</fullName>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Body Wash</fullName>
+                <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CCA Bouillon Jelly</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CCA Bouillon Powder/Granule</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CCA Seasoning</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Face care</fullName>
+                <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Facial AA Cream</fullName>
+                <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Facial Cleanser</fullName>
+                <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Facial Lightening Cream</fullName>
+                <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Handwash</fullName>
+                <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HBL</fullName>
+                <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lipstick</fullName>
+                <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Margarine</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Meals &amp; Side dishes</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Soup Dry</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Soup Instant &amp; Snack foods</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Soup regular wet aseptic</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Soup Wet aseptic</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wipes</fullName>
+                <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
@@ -2398,7 +2577,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <fullName>txt_CUC_Code__c</fullName>
         <externalId>false</externalId>
         <label>CUC Code</label>
-        <length>255</length>
+        <length>250</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2493,15 +2672,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>win_check__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>win check</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
     <label>Category Details</label>
     <listViews>
         <fullName>All</fullName>
@@ -2516,7 +2686,32 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <label>All</label>
         <language>en_US</language>
         <sharedTo>
+            <group>BEN_Beverages_Category_Approver_Editor</group>
+            <group>BEN_Beverages_Category_Viewer</group>
+            <group>BEN_Deodorants_Category_Approver_Editor</group>
+            <group>BEN_Deodorants_Category_Viewer</group>
+            <group>BEN_Dressings_Category_Approver_Editor</group>
+            <group>BEN_Dressings_Category_Viewer</group>
             <group>BEN_GPL_User</group>
+            <group>BEN_HHC_Category_Approver_Editor</group>
+            <group>BEN_HHC_Category_Viewer</group>
+            <group>BEN_Hair_Category_Approver_Editor</group>
+            <group>BEN_Hair_Category_Viewer</group>
+            <group>BEN_Ice_Cream_Category_Approver_Editor</group>
+            <group>BEN_Ice_Cream_Category_Viewer</group>
+            <group>BEN_Laundry_Category_Approver_Editor</group>
+            <group>BEN_Laundry_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
+            <group>BEN_Oral_Care_Category_Approver_Editor</group>
+            <group>BEN_Oral_Care_Category_Viewer</group>
+            <group>BEN_Savoury_Category_Approver_Editor</group>
+            <group>BEN_Savoury_Category_Viewer</group>
+            <group>BEN_Skin_Care_Category_Approver_Editor</group>
+            <group>BEN_Skin_Care_Category_Viewer</group>
+            <group>BEN_Skin_Cleansing_Cat_Approver_Editor</group>
+            <group>BEN_Skin_Cleansing_Category_Viewer</group>
+            <group>BEN_Spreads_Category_Approver_Editor</group>
+            <group>BEN_Spreads_Category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2526,9 +2721,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <columns>pkl_Status__c</columns>
         <columns>pkl_Product__c</columns>
         <columns>CREATED_DATE</columns>
-        <columns>pkl_Year__c</columns>
-        <columns>pkl_Quarter__c</columns>
-        <columns>fml_Year_Quarter__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Product_Category__c</field>
@@ -2546,6 +2738,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_Beverages_Category_Approver_Editor</group>
             <group>BEN_Beverages_Category_Viewer</group>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2598,6 +2791,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_Dressings_Category_Approver_Editor</group>
             <group>BEN_Dressings_Category_Viewer</group>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2624,6 +2818,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_GPL_User</group>
             <group>BEN_HHC_Category_Approver_Editor</group>
             <group>BEN_HHC_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2650,6 +2845,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_GPL_User</group>
             <group>BEN_Hair_Category_Approver_Editor</group>
             <group>BEN_Hair_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2676,6 +2872,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_GPL_User</group>
             <group>BEN_Ice_Cream_Category_Approver_Editor</group>
             <group>BEN_Ice_Cream_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2702,6 +2899,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             <group>BEN_GPL_User</group>
             <group>BEN_Laundry_Category_Approver_Editor</group>
             <group>BEN_Laundry_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2726,6 +2924,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Oral_Care_Category_Approver_Editor</group>
             <group>BEN_Oral_Care_Category_Viewer</group>
         </sharedTo>
@@ -2752,6 +2951,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Savoury_Category_Approver_Editor</group>
             <group>BEN_Savoury_Category_Viewer</group>
         </sharedTo>
@@ -2778,6 +2978,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Skin_Care_Category_Approver_Editor</group>
             <group>BEN_Skin_Care_Category_Viewer</group>
         </sharedTo>
@@ -2804,6 +3005,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Skin_Cleansing_Cat_Approver_Editor</group>
             <group>BEN_Skin_Cleansing_Category_Viewer</group>
         </sharedTo>
@@ -2830,6 +3032,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <language>en_US</language>
         <sharedTo>
             <group>BEN_GPL_User</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Spreads_Category_Approver_Editor</group>
             <group>BEN_Spreads_Category_Viewer</group>
         </sharedTo>
@@ -2885,189 +3088,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
             <values>
                 <fullName>innovation</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>pkl_Benchmark__c</picklist>
-            <values>
-                <fullName>Ahmad</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arosa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Baggio</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barrys Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barrys Gold - Plain Black Leaf Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Biedronka Rosehip Infusion - Raspberry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Carrefour</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Caykur</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chakra Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DD LP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Del Valle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dilmah</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gopek</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Great Value %28Walmart%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Barberry Garden</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Lemon Spark</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Speciality - Flying Dragon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Speciality - Golden Ceylon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Tropical Marvel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jumex</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KD %28Kennan Devan%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kannan Devan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Luzianne</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Minutka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mohani</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mohani LP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Princess Noori</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea Green Leaf - Mint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea Green Leaf - Pure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sapat Pariwar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sosro</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sud</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TTG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tapal Danedar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Agni</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Premium</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tetley</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings Mint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings Pure Green</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ULoveIt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yoki</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3173,10 +3193,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
-                <fullName>Calvé</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Camay</fullName>
                 <default>false</default>
             </values>
@@ -3257,7 +3273,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
-                <fullName>F%26</fullName>
+                <fullName>F%26L</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3571,6 +3587,57 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Category_Master__c</picklist>
+            <values>
+                <fullName>Beverages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HHC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ice Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Claims__c</picklist>
             <values>
                 <fullName>Negative</fullName>
@@ -3781,6 +3848,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_1_description__c</picklist>
             <values>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -3806,6 +3877,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Cleans clothes thoroughly</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Key Attribute 2 description</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_Sensory__c</picklist>
@@ -3824,6 +3899,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -3847,6 +3926,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_4_description__c</picklist>
             <values>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -3868,6 +3951,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_5_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 5 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -4005,11 +4092,27 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Body Wash</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CCA Bouillon Cube</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>CCA Bouillon Jelly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CCA Bouillon Powder%2FGranule</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CCA Cook in sauces and Mealmakers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CCA Seasoning</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4029,6 +4132,22 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Face care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial AA Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial Cleanser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial Lightening Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Flavoured %26 Speciality</fullName>
                 <default>false</default>
             </values>
@@ -4037,7 +4156,15 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>HBL</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hairspray</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handwash</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4057,11 +4184,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Lipstick</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Liquid</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Margarine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Mayo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meals %26 Side dishes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4113,7 +4252,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Soup Dry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Instant %26 Snack foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Wet aseptic</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Soup regular Dry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup regular wet aseptic</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4122,6 +4277,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
             <values>
                 <fullName>Treatment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wipes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4598,189 +4757,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>pkl_Benchmark__c</picklist>
-            <values>
-                <fullName>Ahmad</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arosa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Baggio</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barrys Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barrys Gold - Plain Black Leaf Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Biedronka Rosehip Infusion - Raspberry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Carrefour</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Caykur</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chakra Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DD LP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Del Valle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dilmah</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gopek</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Great Value %28Walmart%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Barberry Garden</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Lemon Spark</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Speciality - Flying Dragon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Speciality - Golden Ceylon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Tropical Marvel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jumex</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KD %28Kennan Devan%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kannan Devan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Luzianne</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Minutka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mohani</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mohani LP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Princess Noori</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea Green Leaf - Mint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea Green Leaf - Pure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sapat Pariwar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sosro</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sud</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TTG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tapal Danedar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Agni</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Premium</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tetley</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings Mint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings Pure Green</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ULoveIt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yoki</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>pkl_Blind_OO__c</picklist>
             <values>
                 <fullName>Loss</fullName>
@@ -4882,10 +4858,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
-                <fullName>Calvé</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Camay</fullName>
                 <default>false</default>
             </values>
@@ -4966,7 +4938,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
-                <fullName>F%26</fullName>
+                <fullName>F%26L</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5280,6 +5252,57 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Category_Master__c</picklist>
+            <values>
+                <fullName>Beverages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HHC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ice Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Claims__c</picklist>
             <values>
                 <fullName>Negative</fullName>
@@ -5490,6 +5513,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_1_description__c</picklist>
             <values>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -5515,6 +5542,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Cleans clothes thoroughly</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Key Attribute 2 description</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_Sensory__c</picklist>
@@ -5533,6 +5564,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -5556,6 +5591,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_4_description__c</picklist>
             <values>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -5577,6 +5616,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_5_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 5 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -5714,11 +5757,27 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Body Wash</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CCA Bouillon Cube</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>CCA Bouillon Jelly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CCA Bouillon Powder%2FGranule</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CCA Cook in sauces and Mealmakers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CCA Seasoning</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5738,6 +5797,22 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Face care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial AA Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial Cleanser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial Lightening Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Flavoured %26 Speciality</fullName>
                 <default>false</default>
             </values>
@@ -5746,7 +5821,15 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>HBL</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hairspray</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handwash</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5766,11 +5849,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Lipstick</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Liquid</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Margarine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Mayo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meals %26 Side dishes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5822,7 +5917,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Soup Dry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Instant %26 Snack foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Wet aseptic</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Soup regular Dry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup regular wet aseptic</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5831,6 +5942,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
             <values>
                 <fullName>Treatment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wipes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6327,189 +6442,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>pkl_Benchmark__c</picklist>
-            <values>
-                <fullName>Ahmad</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arosa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Baggio</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barrys Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barrys Gold - Plain Black Leaf Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Biedronka Rosehip Infusion - Raspberry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Carrefour</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Caykur</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chakra Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DD LP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Del Valle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dilmah</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gopek</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Great Value %28Walmart%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Barberry Garden</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Lemon Spark</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Speciality - Flying Dragon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Speciality - Golden Ceylon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Tropical Marvel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jumex</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KD %28Kennan Devan%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kannan Devan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Luzianne</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Minutka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mohani</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mohani LP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Princess Noori</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea Green Leaf - Mint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea Green Leaf - Pure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sapat Pariwar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sosro</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sud</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TTG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tapal Danedar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Agni</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Premium</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tetley</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings Mint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings Pure Green</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ULoveIt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yoki</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>pkl_Blind_OO__c</picklist>
             <values>
                 <fullName>Loss</fullName>
@@ -6611,10 +6543,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
-                <fullName>Calvé</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Camay</fullName>
                 <default>false</default>
             </values>
@@ -6695,7 +6623,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
-                <fullName>F%26</fullName>
+                <fullName>F%26L</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7009,6 +6937,57 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Category_Master__c</picklist>
+            <values>
+                <fullName>Beverages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HHC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ice Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Claims__c</picklist>
             <values>
                 <fullName>Negative</fullName>
@@ -7219,6 +7198,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_1_description__c</picklist>
             <values>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -7244,6 +7227,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Cleans clothes thoroughly</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Key Attribute 2 description</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_Sensory__c</picklist>
@@ -7262,6 +7249,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -7285,6 +7276,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_4_description__c</picklist>
             <values>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -7306,6 +7301,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_5_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 5 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -7443,11 +7442,27 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Body Wash</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CCA Bouillon Cube</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>CCA Bouillon Jelly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CCA Bouillon Powder%2FGranule</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CCA Cook in sauces and Mealmakers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CCA Seasoning</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7467,6 +7482,22 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Face care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial AA Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial Cleanser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial Lightening Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Flavoured %26 Speciality</fullName>
                 <default>false</default>
             </values>
@@ -7475,7 +7506,15 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>HBL</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hairspray</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handwash</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7495,11 +7534,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Lipstick</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Liquid</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Margarine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Mayo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meals %26 Side dishes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7551,7 +7602,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Soup Dry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Instant %26 Snack foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Wet aseptic</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Soup regular Dry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup regular wet aseptic</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7560,6 +7627,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
             <values>
                 <fullName>Treatment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wipes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8056,189 +8127,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>pkl_Benchmark__c</picklist>
-            <values>
-                <fullName>Ahmad</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arosa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Baggio</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barrys Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barrys Gold - Plain Black Leaf Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Biedronka Rosehip Infusion - Raspberry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Carrefour</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Caykur</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chakra Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DD LP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Del Valle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dilmah</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gopek</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Great Value %28Walmart%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Barberry Garden</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Lemon Spark</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Speciality - Flying Dragon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Speciality - Golden Ceylon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Tropical Marvel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jumex</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KD %28Kennan Devan%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kannan Devan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Luzianne</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Minutka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mohani</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mohani LP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Princess Noori</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea Green Leaf - Mint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea Green Leaf - Pure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sapat Pariwar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sosro</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sud</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TTG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tapal Danedar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Agni</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Premium</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tetley</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings Mint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings Pure Green</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ULoveIt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yoki</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>pkl_Blind_OO__c</picklist>
             <values>
                 <fullName>Loss</fullName>
@@ -8340,10 +8228,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
-                <fullName>Calvé</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Camay</fullName>
                 <default>false</default>
             </values>
@@ -8424,7 +8308,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
-                <fullName>F%26</fullName>
+                <fullName>F%26L</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8738,6 +8622,57 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Category_Master__c</picklist>
+            <values>
+                <fullName>Beverages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HHC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ice Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Claims__c</picklist>
             <values>
                 <fullName>Negative</fullName>
@@ -8948,6 +8883,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_1_description__c</picklist>
             <values>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -8973,6 +8912,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Cleans clothes thoroughly</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Key Attribute 2 description</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_Sensory__c</picklist>
@@ -8991,6 +8934,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -9014,6 +8961,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_4_description__c</picklist>
             <values>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -9035,6 +8986,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_5_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 5 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -9172,11 +9127,27 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Body Wash</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CCA Bouillon Cube</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>CCA Bouillon Jelly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CCA Bouillon Powder%2FGranule</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CCA Cook in sauces and Mealmakers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CCA Seasoning</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9196,6 +9167,22 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Face care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial AA Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial Cleanser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial Lightening Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Flavoured %26 Speciality</fullName>
                 <default>false</default>
             </values>
@@ -9204,7 +9191,15 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>HBL</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hairspray</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handwash</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9224,11 +9219,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Lipstick</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Liquid</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Margarine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Mayo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meals %26 Side dishes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9280,7 +9287,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Soup Dry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Instant %26 Snack foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Wet aseptic</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Soup regular Dry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup regular wet aseptic</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9289,6 +9312,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
             <values>
                 <fullName>Treatment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wipes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9769,189 +9796,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>pkl_Benchmark__c</picklist>
-            <values>
-                <fullName>Ahmad</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arosa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Baggio</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barrys Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barrys Gold - Plain Black Leaf Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Biedronka Rosehip Infusion - Raspberry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Carrefour</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Caykur</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chakra Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DD LP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Del Valle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dilmah</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gopek</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Great Value %28Walmart%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Barberry Garden</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Lemon Spark</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Speciality - Flying Dragon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Speciality - Golden Ceylon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greenfield Tropical Marvel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jumex</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KD %28Kennan Devan%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kannan Devan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Luzianne</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Minutka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mohani</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mohani LP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Princess Noori</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea Green Leaf - Mint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rabea Green Leaf - Pure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sapat Pariwar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sosro</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sud</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TTG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tapal Danedar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Agni</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Gold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tata Premium</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tetley</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top Tea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings Mint</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Twinings Pure Green</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ULoveIt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yoki</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>pkl_Blind_OO__c</picklist>
             <values>
                 <fullName>Loss</fullName>
@@ -10053,10 +9897,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
-                <fullName>Calvé</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Camay</fullName>
                 <default>false</default>
             </values>
@@ -10137,7 +9977,7 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
-                <fullName>F%26</fullName>
+                <fullName>F%26L</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10451,6 +10291,57 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Category_Master__c</picklist>
+            <values>
+                <fullName>Beverages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HHC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ice Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Claims__c</picklist>
             <values>
                 <fullName>Negative</fullName>
@@ -10661,6 +10552,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_1_description__c</picklist>
             <values>
+                <fullName>Key Attribute 1 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -10686,6 +10581,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <fullName>Cleans clothes thoroughly</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Key Attribute 2 description</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_Sensory__c</picklist>
@@ -10704,6 +10603,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_3_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 3 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -10727,6 +10630,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <picklistValues>
             <picklist>pkl_Key_Attribute_4_description__c</picklist>
             <values>
+                <fullName>Key Attribute 4 description</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
             </values>
@@ -10748,6 +10655,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         </picklistValues>
         <picklistValues>
             <picklist>pkl_Key_Attribute_5_description__c</picklist>
+            <values>
+                <fullName>Key Attribute 5 description</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Win on DIG stains</fullName>
                 <default>false</default>
@@ -10885,11 +10796,27 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Body Wash</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CCA Bouillon Cube</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>CCA Bouillon Jelly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CCA Bouillon Powder%2FGranule</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>CCA Cook in sauces and Mealmakers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CCA Seasoning</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10909,6 +10836,22 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Face care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial AA Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial Cleanser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facial Lightening Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Flavoured %26 Speciality</fullName>
                 <default>false</default>
             </values>
@@ -10917,7 +10860,15 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>HBL</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hairspray</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handwash</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10937,11 +10888,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Lipstick</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Liquid</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Margarine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Mayo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meals %26 Side dishes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10993,7 +10956,23 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
                 <default>false</default>
             </values>
             <values>
+                <fullName>Soup Dry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Instant %26 Snack foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Wet aseptic</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Soup regular Dry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup regular wet aseptic</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11002,6 +10981,10 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
             </values>
             <values>
                 <fullName>Treatment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wipes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11457,14 +11440,12 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <customTabListAdditionalFields>pkl_Country__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>pkl_Brand__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>pkl_Product__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>pkl_Benchmark__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>pkl_Year__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>pkl_Quarter__c</customTabListAdditionalFields>
         <searchFilterFields>pkl_Region__c</searchFilterFields>
         <searchFilterFields>pkl_Country__c</searchFilterFields>
         <searchFilterFields>pkl_Brand__c</searchFilterFields>
         <searchFilterFields>pkl_Product__c</searchFilterFields>
-        <searchFilterFields>pkl_Benchmark__c</searchFilterFields>
         <searchFilterFields>pkl_Product_Format__c</searchFilterFields>
         <searchFilterFields>pkl_Year__c</searchFilterFields>
         <searchFilterFields>pkl_Quarter__c</searchFilterFields>
@@ -11474,12 +11455,28 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <searchResultsAdditionalFields>pkl_Country__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>pkl_Brand__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>pkl_Product__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>pkl_Benchmark__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>pkl_Product_Format__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>pkl_Year__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>pkl_Quarter__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>BEN_CUC_Code_validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( ISBLANK( lkp_CS_GTIN__c ), ISBLANK( txt_CUC_Code__c ) , ISBLANK( lkp_CU_GTIN__c )  )</errorConditionFormula>
+        <errorMessage>Kindly add receipe on at-least one aspects from CU-GTIN,CS-GTIN or CUC Code.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>BEN_CUC_Validation</fullName>
+        <active>true</active>
+        <description>To validate CU_GTN and CS_GTN against Product Category</description>
+        <errorConditionFormula>OR
+(
+IF(NOT(ISBLANK(lkp_CU_GTIN__c)) ,IF(lkp_CU_GTIN__r.lkp_Product_Category__r.Name == Product_Category__r.Name ,false,true),false),
+IF(NOT(ISBLANK(lkp_CS_GTIN__c)) ,IF(lkp_CS_GTIN__r.lkp_Product_Category__r.Name == Product_Category__r.Name ,false,true),false)
+)</errorConditionFormula>
+        <errorMessage>CU_GTN or CS_GTN Value should be Same as Product Category</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>BEN_Claim_Mandatory</fullName>
         <active>true</active>
@@ -11550,6 +11547,14 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
         <errorMessage>Product Format selected as Other, please specify Other Product Format</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>BEN_Product_category_and_Category_Master</fullName>
+        <active>true</active>
+        <description>product category and category master has to be same</description>
+        <errorConditionFormula>NOT( CONTAINS(Product_Category__r.Name,TEXT( pkl_Category_Master__c )))</errorConditionFormula>
+        <errorDisplayField>pkl_Category_Master__c</errorDisplayField>
+        <errorMessage>Product category and category master has to be same</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>BEN_USLPMandatory</fullName>
         <active>true</active>
         <description>USLP is mandatory to select if &apos;&apos;Launched Status&quot; is &apos;will launch&apos;.</description>
@@ -11559,54 +11564,6 @@ NOT(ISPICKVAL(pkl_Key_Attributes__c,&apos;&apos;))),
     </validationRules>
     <validationRules>
         <fullName>BEN_launchstatusMandatory</fullName>
-        <active>true</active>
-        <description>Launched status  is mandatory to select if  &apos;&apos;Current Market Status&quot; is not null.</description>
-        <errorConditionFormula>NOT(ISPICKVAL(Current_Market_Status__c, &quot;&quot;))  &amp;&amp;  ((ISPICKVAL ( pkl_Launch_Not_Launched_information__c, &quot;&quot;)) || (ISPICKVAL(pkl_Launch_Not_Launched_information__c, &quot;NONE&quot;)))</errorConditionFormula>
-        <errorDisplayField>pkl_Launch_Not_Launched_information__c</errorDisplayField>
-        <errorMessage>Kindly provide the current market status. If undecided, you can add &quot;Undecided at this time&quot; and update later.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>MarginMandatry_If_LaunchStatus_wilLaunch</fullName>
-        <active>true</active>
-        <description>Margin is mandatory to select if &apos;&apos;Launched Status&quot; is &apos;will launch&apos;.</description>
-        <errorConditionFormula>TEXT(pkl_Launch_Not_Launched_information__c) == &apos;Will launch&apos; &amp;&amp;  ((ISPICKVAL ( pkl_Margin__c , &quot;&quot;)) || (ISPICKVAL(pkl_Margin__c , &quot;NONE&quot;)))</errorConditionFormula>
-        <errorDisplayField>pkl_Margin__c</errorDisplayField>
-        <errorMessage>Margin is mandatory as &apos;Launched Status&apos; is &apos;will launch&apos;</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>OtherBrandFieldMandatory</fullName>
-        <active>true</active>
-        <description>When the filed &apos;Brand&apos; is Null then &apos;Other Country&apos; field is mandatory.</description>
-        <errorConditionFormula>TEXT(pkl_Brand__c) == &apos;Other&apos; &amp;&amp;  (ISNULL(txt_Other_Brand__c) || txt_Other_Brand__c==&apos;&apos;)</errorConditionFormula>
-        <errorDisplayField>txt_Other_Brand__c</errorDisplayField>
-        <errorMessage>Brand selected as Other, please specify brand</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>OtherCountryFieldMandatory</fullName>
-        <active>true</active>
-        <description>When the filed &apos;Country&apos; is null then &apos;Other Country&apos; field is mandatory.</description>
-        <errorConditionFormula>TEXT(pkl_Country__c) == &apos;Other&apos; &amp;&amp;  (ISNULL(txt_Other_Country__c) || txt_Other_Country__c ==&apos;&apos;)</errorConditionFormula>
-        <errorDisplayField>txt_Other_Country__c</errorDisplayField>
-        <errorMessage>Country selected as Other, please specify country</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>OtherProductFormatFieldMandatory</fullName>
-        <active>true</active>
-        <description>When the filed &apos;Product Format&apos; is null then &apos;Other Country&apos;field is mandatory.</description>
-        <errorConditionFormula>TEXT( pkl_Product_Format__c ) == &apos;Other&apos; &amp;&amp;  (ISNULL( txt_Other_Product_Format__c ) || txt_Other_Product_Format__c ==&apos;&apos;)</errorConditionFormula>
-        <errorDisplayField>txt_Other_Product_Format__c</errorDisplayField>
-        <errorMessage>Product Format selected as Other, please specify Other Product Format</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>USLPMandatory_If_LaunchStatus_willLaunch</fullName>
-        <active>true</active>
-        <description>USLP is mandatory to select if &apos;&apos;Launched Status&quot; is &apos;will launch&apos;.</description>
-        <errorConditionFormula>TEXT(pkl_Launch_Not_Launched_information__c) == &apos;Will launch&apos; &amp;&amp;  ((ISPICKVAL ( pkl_USLP__c , &quot;&quot;)) || (ISPICKVAL(pkl_USLP__c , &quot;NONE&quot;)))</errorConditionFormula>
-        <errorDisplayField>pkl_USLP__c</errorDisplayField>
-        <errorMessage>USLP is mandatory as &apos;Launched Status&apos; is &apos;will launch&apos;</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>launchstatusMandatry_If_Currentlaunchval</fullName>
         <active>true</active>
         <description>Launched status  is mandatory to select if  &apos;&apos;Current Market Status&quot; is not null.</description>
         <errorConditionFormula>NOT(ISPICKVAL(Current_Market_Status__c, &quot;&quot;))  &amp;&amp;  ((ISPICKVAL ( pkl_Launch_Not_Launched_information__c, &quot;&quot;)) || (ISPICKVAL(pkl_Launch_Not_Launched_information__c, &quot;NONE&quot;)))</errorConditionFormula>
@@ -11636,13 +11593,17 @@ p.id = &quot;{!BEN_Category_Details__c.Id}&quot;;
 p.bln_Mark_for_Deletion__c = &quot;{!BEN_Category_Details__c.bln_Mark_for_Deletion__c}&quot;
 
 
-if(ApproverUser == &quot;true&quot; &amp;&amp; p.bln_Mark_for_Deletion__c == 0 ){
+/*if(ApproverUser == &quot;true&quot; &amp;&amp; p.bln_Mark_for_Deletion__c == 0 ){
 throw new Error(&quot;Approver not Allowed to submit, except mark of deletion approval&quot;);
+}*/
+if(ApproverUser == &quot;true&quot; &amp;&amp; p.bln_Mark_for_Deletion__c == 0){
+p.BEN_Is_Approver__c = &quot;true&quot;;
 }
+else{
 p.In_Approval__c = &quot;true&quot;;
+}
 p.RecordTypeId =records[0].Id;
 p.pkl_Status__c = &quot;Submitted&quot;;
-
 result = sforce.connection.update([p]);
 location.reload(true);</url>
     </webLinks>

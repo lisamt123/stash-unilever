@@ -11,3 +11,5 @@ src/permissionsets/FS_Admin.permissionset
 src/permissionsets/FS_RussiaSalesRep.permissionset
 src/classes/FS_Utility.cls
 src/classes/FS_Utility.cls-meta.xml
+src/objects/Account_Relationship__c.object
+src/permissionsets/FS_Integration_User.permissionset

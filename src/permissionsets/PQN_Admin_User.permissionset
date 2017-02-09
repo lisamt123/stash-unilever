@@ -109,10 +109,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_Global_Overview_Category_Report</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PQN_Global_Overview_Geography</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -787,6 +783,10 @@
     </tabSettings>
     <tabSettings>
         <tab>PQN_User_Creation_Request__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Pallet_Quality_Non_Conformance_VF</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>

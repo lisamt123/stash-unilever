@@ -1,24 +1,34 @@
 @isTest 
 private class PQN_UploadNCData_CloneTest {
     static testMethod void PQN_M1() {
+        
+        List<PQN_DC_Hierarchy__c> pdh = new List<PQN_DC_Hierarchy__c>();
+        PQN_DC_Hierarchy__c dc1 = new PQN_DC_Hierarchy__c(name ='Cannock',dc__c = 'Cannock',region__c = 'Americas',cluster__c = 'Latin America',sub_cluster__c = 'Latin America',mco__c ='mco');
+        PQN_DC_Hierarchy__c dc2 = new PQN_DC_Hierarchy__c(name ='Heilbronn auto',dc__c = 'Heilbronn auto',region__c = 'Americas',cluster__c = 'Latin America',sub_cluster__c = 'Latin America',mco__c ='mco');
+        PQN_DC_Hierarchy__c dc3 = new PQN_DC_Hierarchy__c(name ='DC1',dc__c = 'DC1',region__c = 'Americas',cluster__c = 'Latin America',sub_cluster__c = 'Latin America',mco__c ='mco');
+        pdh.add(dc1);
+        pdh.add(dc2);
+        pdh.add(dc3);
+        insert pdh;
+    
         List<Account> listacc = new List<Account>();    
           Account acc=new account();
           acc.name='Error DC';
           listacc.add(acc);
           Account acc1=new account();
-          acc1.name='ULDC';
+          acc1.name='DC1';
           listacc.add(acc1);
           Account acc2=new account();
-          acc2.name='Cannock DC';
+          acc2.name='Cannock';
           listacc.add(acc2);
           Account acc3=new account();
-          acc3.name='Heilbronn DC';
+          acc3.name='Heilbronn auto';
           listacc.add(acc3);
           insert listacc;
-            PQN_DC_Volumes__c dcv=PQN_TestLibraryUtil.createDCvolumes();
-     insert dcv;
-     PQN_Supplier__c  sup=PQN_TestLibraryUtil.createSupplier();
-     insert sup;
+          PQN_DC_Volumes__c dcv=PQN_TestLibraryUtil.createDCvolumes();
+            insert dcv;
+            PQN_Supplier__c  sup=PQN_TestLibraryUtil.createSupplier();
+            insert sup;
           
          PQN_Pallet_Quality_Non_Conformance__c pqn=PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(sup.id,acc.id,dcv.id);
          pqn.Reporting_DC__c = 'ULDC';

@@ -1,56 +1,1176 @@
 <labels>
-<fullName>BFM_Invalid_CPF_Format</fullName>
-<language>en_US</language>
-<protected>false</protected>
-<shortDescription>The CPF must be exactly 11 numeric characters long.</shortDescription>
-<value>Forum</value>
-</labels>
-<labels>
-<fullName>BFM_Freight_Ok</fullName>
-<language>en_US</language>
-<protected>false</protected>
-<shortDescription>BFM_Freight Ok</shortDescription>
-<value>Documento de Transporte atualizado</value>
-</labels>
-<labels>
-<fullName>BFM_NF_e_Information</fullName>
-<language>en_US</language>
-<protected>false</protected>
-<shortDescription>BFM_NF-e Information</shortDescription>
-<value>NF-e Information</value>
-</labels>
-<labels>
-<fullName>BFM_Cancel</fullName>
-<language>en_US</language>
-<protected>false</protected>
-<shortDescription>BFM_Cancel</shortDescription>
-<value>Cancel</value>
-</labels>
-<labels>
-<fullName>BFM_NF_e</fullName>
-<language>en_US</language>
-<protected>false</protected>
-<shortDescription>BFM_NF-e</shortDescription>
-<value>NF-e</value>
-</labels>
-<labels>
-<fullName>BFM_Approval_No_Attachment_Found</fullName>
-<language>en_US</language>
-<protected>false</protected>
-<shortDescription>BFM Approval No Attachment Found</shortDescription>
-<value>Error approving this record: No attachment was found.</value>
-</labels>
-<labels>
-<fullName>BFM_CPF_Already_in_Use</fullName>
-<language>en_US</language>
-<protected>false</protected>
-<shortDescription>BFM CPF Already in Use</shortDescription>
-<value>This CPF is already in use.</value>
-</labels>
-<labels>
-<fullName>BFM_Self_Service_No_Carrier_Email</fullName>
-<language>en_US</language>
-<protected>false</protected>
-<shortDescription>BFM Self Service No Carrier Email</shortDescription>
-<value>No email was found for the requested carriers. An internal workflow has been fired, please contact &email for further informati</value>
-</labels>
+        <fullName>BFM_5_years_records</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_5 years records</shortDescription>
+        <value>BFM records with created date less than 5 years will be deleted</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Addinfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Addinfo</shortDescription>
+        <value>Additional account information</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Aplly</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Aplly</shortDescription>
+        <value>Aplica ?</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Approval_No_Attachment_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Approval No Attachment Found</shortDescription>
+        <value>Error approving this record: No attachment was found.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_At_Least_one_Permission</fullName>
+        <categories>BFM, login, self-registration, error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM At Least one Permission</shortDescription>
+        <value>Please choose at least one of the permissions for the user.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Back</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Base_Calc</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Base Calc</shortDescription>
+        <value>Valor Base Calc</value>
+    </labels>
+    <labels>
+        <fullName>BFM_CNPJ_Carier</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM CNPJ Carier</shortDescription>
+        <value>CNPJ Carrier</value>
+    </labels>
+    <labels>
+        <fullName>BFM_CNPJ_Length_Error_Message</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>BFM CNPJ Length Error Message</shortDescription>
+        <value>CNPJ must be 8 digit.Please enter valid CNPJ</value>
+    </labels>
+    <labels>
+        <fullName>BFM_CPF_Already_in_Use</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM CPF Already in Use</shortDescription>
+        <value>This CPF is already in use.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_CT_e_Carrier_Assignment_Erro</fullName>
+        <categories>BFM, CT-e, error, Carrier, Assignment</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_CT_e_Carrier_Assignment_Erro</shortDescription>
+        <value>No Carrier Account found for the Issuer CNPJ of this CT-e</value>
+    </labels>
+    <labels>
+        <fullName>BFM_CT_e_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM CT-e Details</shortDescription>
+        <value>CT-e Details</value>
+    </labels>
+    <labels>
+        <fullName>BFM_CT_e_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM CT-e Search</shortDescription>
+        <value>CT-e Search</value>
+    </labels>
+    <labels>
+        <fullName>BFM_CT_e_doesn_t_have_SES</fullName>
+        <categories>BFM, CT-e, error, link, SES</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM CT-e doesn&apos;t have SES</shortDescription>
+        <value>Error: CT-e {0} doesn\&apos;t have a SES linked</value>
+    </labels>
+    <labels>
+        <fullName>BFM_CTe</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_CTe</shortDescription>
+        <value>CTe</value>
+    </labels>
+    <labels>
+        <fullName>BFM_CTestatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_CTestatus</shortDescription>
+        <value>CT-e Status</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Carrier_Email_Task_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Carrier Email Task Description</shortDescription>
+        <value>Carrier employee requested access but no email was found. Please review and contact back at:</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Carrvendor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Carrvendor</shortDescription>
+        <value>carrieraccvendor</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Choose_CNPJ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Choose CNPJ</shortDescription>
+        <value>Choose CNPJ</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Clear</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Clear</shortDescription>
+        <value>Clear</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Close</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Close</shortDescription>
+        <value>Voltar</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Convname</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Convname</shortDescription>
+        <value>Conveyor name</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Cpf</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Cpf</shortDescription>
+        <value>Cpf</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Dateadjust</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Dateadjust</shortDescription>
+        <value>Date Adjustment</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Debit_Note</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Debit Note</shortDescription>
+        <value>Debit Note</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Destination</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Destination</shortDescription>
+        <value>Destination</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Different_Aliquot_Information</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Different Aliquot Information</shortDescription>
+        <value>Atenção : Alíquota de ICMS diverge entre FRS e CT-e!</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Different_ISS_Aliquot_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Different ISS Aliquot Information</shortDescription>
+        <value>Warning : ISS Aliquot is not the same between FRS and NFS !</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Doctype</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Doctype</shortDescription>
+        <value>Doc type Transp</value>
+    </labels>
+    <labels>
+        <fullName>BFM_DuplicateRecord</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>BFM_DuplicateRecord</shortDescription>
+        <value>Duplicate Record</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Email</shortDescription>
+        <value>email</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Error_Creating_Access_Request</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Error Creating Access Request</shortDescription>
+        <value>There was an error creating the User Access Request:</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Error_Setting_6thflag</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Error_Setting_6thflag</shortDescription>
+        <value>There should be an NF-e before setting the 6th flag. Please update this shipment to check if there is no NF-e. For further information talk to System Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_FRS_Tax_Code</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM FRS Tax Code</shortDescription>
+        <value>Cód.Imposto da FRS</value>
+    </labels>
+    <labels>
+        <fullName>BFM_File</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_File</shortDescription>
+        <value>File</value>
+    </labels>
+    <labels>
+        <fullName>BFM_FileFormatMatchFileType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_FileFormatMatchFileType</shortDescription>
+        <value>File format should match with file type</value>
+    </labels>
+    <labels>
+        <fullName>BFM_FileSizeLess10MB</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_FileSizeLess10MB</shortDescription>
+        <value>File size should be less than 10 MB</value>
+    </labels>
+    <labels>
+        <fullName>BFM_File_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_File Type</shortDescription>
+        <value>Select Filetype</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Files_Uploaded_Successfully</fullName>
+        <categories>BFM, File, Success</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Files_Uploaded_Successfully</shortDescription>
+        <value>File(s) Sent Successfully</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Filetype</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Filetype</shortDescription>
+        <value>File Type</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Filleupload</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Filleupload</shortDescription>
+        <value>File upload</value>
+    </labels>
+    <labels>
+        <fullName>BFM_First</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_First</shortDescription>
+        <value>First</value>
+    </labels>
+    <labels>
+        <fullName>BFM_First_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM First Page</shortDescription>
+        <value>First page</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Firstname</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Firstname</shortDescription>
+        <value>First Name :</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Fiscal_Document_ICMS_Aliquot</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Fiscal Document ICMS Aliquot</shortDescription>
+        <value>Alíquota ICMS do Documento Fiscal</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Fiscal_Document_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Fiscal Document Information</shortDescription>
+        <value>Fiscal Document Information</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Freight_Ok</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Freight Ok</shortDescription>
+        <value>Documento de Transporte atualizado</value>
+    </labels>
+    <labels>
+        <fullName>BFM_GNRE_Upload</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_GNRE Upload</shortDescription>
+        <value>GNRE Upload</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Gross_value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Gross value</shortDescription>
+        <value>Gross value</value>
+    </labels>
+    <labels>
+        <fullName>BFM_ICMS_isnt_same_accross_SES</fullName>
+        <categories>BFM, Tax Validation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM ICMS isnt same accross SES</shortDescription>
+        <value>The ICMS value isn&apos;t the same across all SESs.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_IVA_Information</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM IVA Information</shortDescription>
+        <value>Informações da IVA</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Integration_Failure</fullName>
+        <categories>Integration, Error, Failure</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Integration Failure</shortDescription>
+        <value>There was an integration failure.
+Error Code: {0} - {1}
+Response message: {2}</value>
+    </labels>
+    <labels>
+        <fullName>BFM_InvalidCNPJ</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>BFM_InvalidCNPJ</shortDescription>
+        <value>Invalid Service Taker CNPJ</value>
+    </labels>
+    <labels>
+        <fullName>BFM_InvalidIssuerCNPJ</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>BFM_InvalidIssuerCNPJ</shortDescription>
+        <value>Invalid Issuer CNPJ</value>
+    </labels>
+    <labels>
+        <fullName>BFM_InvalidServiceTakerCNPJ</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>BFM_InvalidServiceTakerCNPJ</shortDescription>
+        <value>Invalid Service Taker CNPJ</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Invalid_CNPJ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Self Service Invalid CNPJ</shortDescription>
+        <value>Invalid CNPJ. Please enter a valid CNPJ.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Invalid_CPF_Format</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Invalid CPF Format</shortDescription>
+        <value>The CPF must be exactly 11 numeric characters long.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Invalid_Withhold_Tax</fullName>
+        <categories>Withhold Tax, Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Invalid Withhold Tax</shortDescription>
+        <value>Invalid withhold tax: {0} {1}</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Iva_Notes</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Iva Notes</shortDescription>
+        <value>Informações de Retenções somente serão exibidas de acordo com informação do cadastro do fornecedor, e detalhes de Impostos serão apresentados após efetuar classificação fiscal.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Last</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Last</shortDescription>
+        <value>Last</value>
+    </labels>
+    <labels>
+        <fullName>BFM_LastName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM LastName</shortDescription>
+        <value>lastName</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Last_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Last Page</shortDescription>
+        <value>Last page</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Link</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Link</shortDescription>
+        <value>Link</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Load</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Load</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Loading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Manual_Link</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Manual Link</shortDescription>
+        <value>Manual Link</value>
+    </labels>
+    <labels>
+        <fullName>BFM_NFS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM NFS</shortDescription>
+        <value>NFS</value>
+    </labels>
+    <labels>
+        <fullName>BFM_NFS_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_NFS Details</shortDescription>
+        <value>NFS Details</value>
+    </labels>
+    <labels>
+        <fullName>BFM_NFS_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_NFS Name</shortDescription>
+        <value>NFS Name</value>
+    </labels>
+    <labels>
+        <fullName>BFM_NFS_Record</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM NFS Record</shortDescription>
+        <value>NFS Record</value>
+    </labels>
+    <labels>
+        <fullName>BFM_NF_e</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_NF-e</shortDescription>
+        <value>NF-e</value>
+    </labels>
+    <labels>
+        <fullName>BFM_NF_e_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_NF-e Information</shortDescription>
+        <value>NF-e Information</value>
+    </labels>
+    <labels>
+        <fullName>BFM_NFe_Create_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_NFe Create Date</shortDescription>
+        <value>NF-e Creation Date</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Name</shortDescription>
+        <value>Community Nickname</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Next</shortDescription>
+        <value>Next Page</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Nfs_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Nfs Search</shortDescription>
+        <value>NFS Search</value>
+    </labels>
+    <labels>
+        <fullName>BFM_No_Records</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_No Records</shortDescription>
+        <value>No Records Found</value>
+    </labels>
+    <labels>
+        <fullName>BFM_No_Withhold_Tax</fullName>
+        <categories>BFM, Error, Withhold Tax</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM No Withhold Tax</shortDescription>
+        <value>No withhold taxes found for the vendor code {0} and company code {1}</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Norecords</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Norecords</shortDescription>
+        <value>No records meeting the criteria</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Occname</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Occname</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Occurrence</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Update_Occurrence</shortDescription>
+        <value>Update Occurrence</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Occurrence_OK</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Occurrence OK</shortDescription>
+        <value>Occurrence Updated</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Old_Pod_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Old Pod Date</shortDescription>
+        <value>POD Date(old)</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Operation_Failed</fullName>
+        <categories>Generic, Failure, BFM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Operation Failed</shortDescription>
+        <value>The operation has failed</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Operation_Successful</fullName>
+        <categories>BFM, Generic, Success</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Operation Successful</shortDescription>
+        <value>Operation completed successfuly</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Origin</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Origin</shortDescription>
+        <value>Origin</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Origin_Plant</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Origin Plant</shortDescription>
+        <value>Origin Plant</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Payment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Payment</shortDescription>
+        <value>Payment</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Picklist_Select</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Picklist Select</shortDescription>
+        <value>--Select--</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Plant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Plant</shortDescription>
+        <value>Plant</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Pod</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM-Pod</shortDescription>
+        <value>POD</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Podname</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Podname</shortDescription>
+        <value>POD Name</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Pricing_Calculation_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Pricing Calculation Date</shortDescription>
+        <value>Pricing Calculation Date</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Purge</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Purge</shortDescription>
+        <value>Purge</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Purge_days</fullName>
+        <categories>365*5 + 1</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Purge_days</shortDescription>
+        <value>1826</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Query_Payment_Updated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Query Payment Updated</shortDescription>
+        <value>Query Payment successfully Update.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Receipt_Not_Ok</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Receipt Not Ok</shortDescription>
+        <value>To review POD as Receipt its necessary to &quot;POD as Receipt&quot; checkbox field to be checked.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Receipt_Ok</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Receipt Ok</shortDescription>
+        <value>Revision of POD as receipt is Ok!</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Records</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Records</shortDescription>
+        <value>BFM Records</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Recs_del</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Recs del</shortDescription>
+        <value>Records are deleted</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Reset</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Reset</shortDescription>
+        <value>Reset</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Result</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Result</shortDescription>
+        <value>Search Result</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Retention_Code</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Retention Code</shortDescription>
+        <value>Cód. Retenção</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Retention_Description</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Retention Description</shortDescription>
+        <value>Desc.Retenção</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Retention_Type</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Retention Type</shortDescription>
+        <value>Tipo de Retenção</value>
+    </labels>
+    <labels>
+        <fullName>BFM_SES</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_SES</shortDescription>
+        <value>SES</value>
+    </labels>
+    <labels>
+        <fullName>BFM_SES_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM SES Information</shortDescription>
+        <value>SES Information</value>
+    </labels>
+    <labels>
+        <fullName>BFM_SES_Record</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM SES Record</shortDescription>
+        <value>SES Record</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Search_Occ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Search Occ</shortDescription>
+        <value>Search Occurrence</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Search_Result</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Search Result</shortDescription>
+        <value>Search Result</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Search_SES</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Search SES</shortDescription>
+        <value>Search SES</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Search_Shipment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Search Shipment</shortDescription>
+        <value>Search Shipment</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Search_Transport_Doc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Search Transport Doc</shortDescription>
+        <value>Search Transport Document</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Select_Records</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Select Records</shortDescription>
+        <value>Selecione o número de registros:</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Self_Service_CNPJ_Not_Found</fullName>
+        <categories>Error, Validation, CNPJ, BFM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Self Service CNPJ Not Found</shortDescription>
+        <value>No matching CNPJ, please inform an existing CNPJ or contact us for support through the link on the form.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Self_Service_Duplicated_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Self Service Duplicated Email</shortDescription>
+        <value>This email is already in use</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Self_Service_Invalid_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Self Service Invalid Email</shortDescription>
+        <value>This email is not valid, please enter an email on the format &quot;something@somethingelse.com&quot;</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Self_Service_Nickname_already_used</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Self Service Nickname Already Used</shortDescription>
+        <value>This nickname is already in use on this org</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Self_Service_No_Carrier_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Self Service No Carrier Email</shortDescription>
+        <value>No email was found for the requested carriers. An internal workflow has been fired, please contact &amp;email for further information.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Self_Service_Request_Created</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Self Service User Access Request Created</shortDescription>
+        <value>Created a new User Access Request. An email for approval was fired to:</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Self_Service_Search_CNPJ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Self Service Search CNPJ</shortDescription>
+        <value>Search CNPJ (first 8 digits only)</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Self_Service_Search_Carrier_Branches</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Self Service Search Carrier Branches</shortDescription>
+        <value>Search Carrier Branches</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Self_Service_Select_Company</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Self Service Select Company</shortDescription>
+        <value>Please select one of the companies below for access to be granted.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Ses_Do_Not_Exist</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Ses Do Not Exist</shortDescription>
+        <value>Atenção : Esse documento fiscal não possui FRS!</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Ses_Icms_Aliquot</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Ses Icms Aliquot</shortDescription>
+        <value>Alíquota ICMS da FRS</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Ses_Iss_Aliquot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Ses_Iss_Aliquot</shortDescription>
+        <value>FRS ISS Alíquot</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Shipment_Filters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Shipment Filters</shortDescription>
+        <value>Shipment Filters</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Shipment_From</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Shipment From</shortDescription>
+        <value>Shipment From</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Shipment_To</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Shipment To</shortDescription>
+        <value>Shipment To</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Shipnum</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Shipnum</shortDescription>
+        <value>shipmentNumber</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Support_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Support Email</shortDescription>
+        <value>luciana.hama@unilever.com</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Tax_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Tax Code</shortDescription>
+        <value>Tax Code</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Tax_Description</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Tax Description</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Tax_Rate_MIRO</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Tax Rate MIRO</shortDescription>
+        <value>Cód.Imposto MIRO</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Tax_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Tax Type</shortDescription>
+        <value>Tax Type</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Tax_Validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Tax Validation</shortDescription>
+        <value>Tax Validation</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Taxcode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Taxcode</shortDescription>
+        <value>Verify Tax Code</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Total_Aliquot</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Total Aliquot</shortDescription>
+        <value>Total de Alíquota Imposto</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Total_Base_Excluded</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Total Base Excluded</shortDescription>
+        <value>Total de Bases Excluídas</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Total_Base_Value</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Total Base Value</shortDescription>
+        <value>Total de Valor Base Imposto</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Total_Other_Bases</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Total Other Bases</shortDescription>
+        <value>Total de Outras bases</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Total_Tax_Rate</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Total Tax Rate</shortDescription>
+        <value>Total de Valor Imposto</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Totalrecords</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Totalrecords</shortDescription>
+        <value>Total Records Found:</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Totalrecs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Totalrecs</shortDescription>
+        <value>Total Records Found:</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Unilever_Account_CNPJ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Unilever Account CNPJ</shortDescription>
+        <value>Unilever Account CNPJ</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Unilever_Account_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Unilever Account Name</shortDescription>
+        <value>Unilever Account Name</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Update</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Update</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Update_Tax_Classification</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>BFM Update Tax Classification</shortDescription>
+        <value>Dados enviados para o SAP (Query Tax). Verifique o indicador de &quot;Classificação Fiscal Efetuada?&quot; / Log de Erros.</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Upload</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Upload</shortDescription>
+        <value>Upload</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Upload_File</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Upload File</shortDescription>
+        <value>Upload File</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Upload_Files</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Upload Files</shortDescription>
+        <value>Upload File(s)</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Valid_CNPJ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Valid CNPJ</shortDescription>
+        <value>Valid CNPJ</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Validation</shortDescription>
+        <value>Validation</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Validation_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Validation Error</shortDescription>
+        <value>Validation Error</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Validation_OK</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Validation OK</shortDescription>
+        <value>Validation OK</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Vendor_CNPJ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Vendor CNPJ</shortDescription>
+        <value>Vendor CNPJ</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Vendor_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM Vendor Name</shortDescription>
+        <value>Vendor Name</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Wait</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Wait</shortDescription>
+        <value>Please Wait...</value>
+    </labels>
+    <labels>
+        <fullName>BFM_Withhold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFM_Withhold</shortDescription>
+        <value>Withhold</value>
+    </labels>
+    <labels>
+        <fullName>BFM_supportEmail</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>BFM_supportEmail</shortDescription>
+        <value>paulo.guerreiro@unilever.com</value>
+    </labels>
+    <labels>
+        <fullName>BFm_Previous</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BFm_Previous</shortDescription>
+        <value>Previous Page</value>
+    </labels>
+	<labels>
+        <fullName>Update_Shipment</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Update_Shipment</shortDescription>
+        <value>Atualizar DT</value>
+    </labels>

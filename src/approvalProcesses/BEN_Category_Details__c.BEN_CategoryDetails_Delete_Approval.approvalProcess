@@ -47,7 +47,7 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>BEN_Update_Status_to_Deleted</name>
+            <name>BEN_Status_Deleted</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>

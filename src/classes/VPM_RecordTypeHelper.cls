@@ -20,6 +20,7 @@ public with sharing class VPM_RecordTypeHelper {
     public static final string EXTEND = 'Extend';
     public static final string MAINTAIN = 'Maintain';
     public static final string MAINTAIN_2 = 'Maintain2';
+    public static final string EXTEND_2= 'Extend2';
     public static final string GENERIC = 'Generic';
     
     public static final string REGIONAL_REQUEST = 'Regional';
@@ -42,11 +43,12 @@ public with sharing class VPM_RecordTypeHelper {
     
     public static final string PURCH_ORG = '2050'; 
     
-    public static final string PAYMENT_TERM_30DK = '30DK_Within 30 days Due net (30NET)';
-    public static final string PAYMENT_TERM_90DK = '90DK_Within 90 days Due net (90NET)'; 
-    public static final string PAYMENT_TERM_P030 = 'P030_Within 30 days Due net (30NET)'; 
-    public static final string PAYMENT_TERM_S090 = 'S090_Within 90 days Due net (90NET)'; 
-    public static final string PAYMENT_TERM_P090 = 'P090_Within 90 days Due net (90NET)';
+    public static final string PAYMENT_TERM_30DK = '30DK_Within 30 days Due net';
+    public static final string PAYMENT_TERM_90DK = '90DK_Within 90 days Due net'; 
+    public static final string PAYMENT_TERM_P030 = 'P030_Within 30 days Due net'; 
+    public static final string PAYMENT_TERM_S030  ='S030_Within 30 days Due net';
+    public static final string PAYMENT_TERM_S090 = 'S090_Within 90 days Due net'; 
+    public static final string PAYMENT_TERM_P090 = 'P090_Within 90 days Due net';
     
     public static final string YES = 'Yes';
     public static final string NO = 'No';
@@ -157,10 +159,11 @@ public with sharing class VPM_RecordTypeHelper {
     Description  : This method assing value to wrapper class for displaying purpose.
     Return Type  : List of Wrapper Class
     ********************************************************************/
-    public static list<OptionWrapper> setmdmDetailOption(list<mdm_Vendors__c> mdmDeatilList) 
+    public static list<OptionWrapper> setmdmDetailOption(list<mdm_Vendors__c> mdmDeatilList , String ECCValue) 
     {
       List<OptionWrapper> options = new List<OptionWrapper>(); 
-      list<mdm_Vendors__c> mdmDeatilListNew = mdmDeatilList;  
+      list<mdm_Vendors__c> mdmDeatilListNew = mdmDeatilList; 
+      
       //string mdmDisplayName;
       system.debug('@@mdmDeatilList size' + mdmDeatilListNew.size());
       system.debug('@@Heap size Limit' + Limits.getHeapSize());  
@@ -174,8 +177,8 @@ public with sharing class VPM_RecordTypeHelper {
             {
                 OptionWrapper option = new OptionWrapper();
                 option.DetailOption =MDMDetail.VPM_FullDetails__c;
-                option.UniqueId = MDMDetail.id+ CONST_LITERAL1 + VPM_RecordTypeHelper.vendorCodeAssignmentSearchVen(MDMDetail.mdm_vCodeSirius__c,MDMDetail.mdm_vCodeCordillera__c,MDMDetail.mdm_vCodeU2K2__c,MDMDetail.mdm_vCodeFusion__c) 
-                                    +CONST_LITERAL1 +MDMDetail.mdm_ecc__c;
+                option.UniqueId = MDMDetail.id+ CONST_LITERAL1 + VPM_RecordTypeHelper.vendorCodeAssignmentSearchVen(MDMDetail.mdm_vCodeSirius__c,MDMDetail.mdm_vCodeCordillera__c,MDMDetail.mdm_vCodeU2K2__c,MDMDetail.mdm_vCodeFusion__c,ECCValue) 
+                                    +CONST_LITERAL1 +MDMDetail.mdm_ecc__c+CONST_LITERAL1 +MDMDetail.mdm_Name1__c+CONST_LITERAL1 +MDMDetail.mdm_Name2__c+CONST_LITERAL1 +MDMDetail.mdm_Name3__c+CONST_LITERAL1 +MDMDetail.mdm_Name4__c+CONST_LITERAL1 +MDMDetail.mdm_Street__c+CONST_LITERAL1 +MDMDetail.mdm_City__c;
                 
                 options.add(option); 
             }
@@ -195,9 +198,20 @@ public with sharing class VPM_RecordTypeHelper {
     Description  : This method assign the vendor code selected on search vendor screen
     Return Type  : boolean
     ********************************************************************/
-    public static string vendorCodeAssignmentSearchVen(string mdm_vCodeSirius, string mdm_vCodeCordillera ,string mdm_vCodeU2K2,string mdm_vCodeFusion) {
+    public static string vendorCodeAssignmentSearchVen(string mdm_vCodeSirius, string mdm_vCodeCordillera ,string mdm_vCodeU2K2,string mdm_vCodeFusion,String ECCVal) {
         string vendorCodeInput = '';
-        If(string.isNotBlank(mdm_vCodeSirius)) {
+        If(string.isNotBlank(mdm_vCodeSirius) && ECCVal.equalsIgnoreCase('Sirius')) {
+            vendorCodeInput = mdm_vCodeSirius;
+        }else If(string.isNotBlank(mdm_vCodeCordillera) && ECCVal.equalsIgnoreCase('Cordillera')) {
+            vendorCodeInput = mdm_vCodeCordillera;
+        } else If(string.isNotBlank(mdm_vCodeU2K2) && ECCVal.equalsIgnoreCase('U2K2')) {
+            vendorCodeInput = mdm_vCodeU2K2;
+        }else If(string.isNotBlank(mdm_vCodeFusion) && ECCVal.equalsIgnoreCase('Fusion')) {
+            vendorCodeInput = mdm_vCodeFusion;
+        }
+        else
+        {
+           If(string.isNotBlank(mdm_vCodeSirius)) {
             vendorCodeInput = mdm_vCodeSirius;
         }else If(string.isNotBlank(mdm_vCodeCordillera)) {
             vendorCodeInput = mdm_vCodeCordillera;
@@ -205,6 +219,7 @@ public with sharing class VPM_RecordTypeHelper {
             vendorCodeInput = mdm_vCodeU2K2;
         }else If(string.isNotBlank(mdm_vCodeFusion)) {
             vendorCodeInput = mdm_vCodeFusion;
+        }
         }
         vendorCodeInput = (string.isNotBlank(vendorCodeInput) ? vendorCodeInput : '');
         return vendorCodeInput;
@@ -336,6 +351,36 @@ public with sharing class VPM_RecordTypeHelper {
     } 
     
     /******************************************************************** 
+    Created By   : Vaishali nagar
+    Created Date : 27th Jan  2017
+    Last Modify  : 30th Jan 2017
+    Description  : This method pulls payment terms from custom medata types
+    Return Type  : List<Selectoption>
+    ********************************************************************/
+    public static List<SelectOption> paymentTermsMetaData(string ECC, string PIVendorType,string defaultValue) { 
+        List<SelectOption> options = new List<SelectOption>();
+        
+         if(string.isNotBlank(defaultValue)) {
+                options.add(new SelectOption(defaultValue,defaultValue));
+         }
+            
+        ECC = '%' + ECC +'%';
+        List<VPM_PaymentTerms__mdt> metaValues = [select id,VPM_ECC__c,VPM_VendorType__c,VPM_PaymentTermsValue__c from VPM_PaymentTerms__mdt where VPM_ECC__c LIKE :ECC and (VPM_VendorType__c=: PIVendorType OR VPM_VendorType__c= 'other')];
+        
+        for(VPM_PaymentTerms__mdt mdtValue : metaValues) {
+            
+            if(mdtValue.VPM_PaymentTermsValue__c!=defaultValue){
+            
+                options.add(new SelectOption(mdtValue.VPM_PaymentTermsValue__c, mdtValue.VPM_PaymentTermsValue__c)); 
+            }
+        }
+        system.debug('@@Options' + Options);
+        
+        
+        return Options;
+    } 
+    
+    /******************************************************************** 
     Created By   : Piyush Mathur
     Created Date : 28th Sept 2016
     Last Modify  : 5th Oct 2016
@@ -377,7 +422,7 @@ public with sharing class VPM_RecordTypeHelper {
             }
         }else if(ecc.equals(VPM_RecordTypeHelper.ECC_U2K2)) {
             if(string.isNotBlank(isVendorSME) && isVendorSME.equals(VPM_RecordTypeHelper.YES)) {
-                paymentTermValue = VPM_RecordTypeHelper.PAYMENT_TERM_P030; 
+                paymentTermValue = VPM_RecordTypeHelper.PAYMENT_TERM_S030; 
                 //termsOFPayment = VPM_RecordTypeHelper.PAYMENT_TERM_P030;
             }else {
                 paymentTermValue = VPM_RecordTypeHelper.PAYMENT_TERM_S090; 

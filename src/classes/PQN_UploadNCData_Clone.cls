@@ -13,9 +13,18 @@ global without sharing class PQN_UploadNCData_Clone{
     
     @RemoteAction
     global static Database.UpsertResult[] getSheetData(List<PQN_Pallet_Quality_Non_Conformance__c> xPQN, String selectedFileType,String timeStamp) {
-        Delete [select id From PQN_Pallet_Quality_Non_Conformance__c where Multi_Timestamp__c=:timeStamp AND Is_Error__c=true and createdbyid=:UserInfo.getUserId()];
+        Delete [select id From PQN_Pallet_Quality_Non_Conformance__c where Is_Error__c=true and createdbyid=:UserInfo.getUserId()];
         system.debug(xPQN);
+        
         List<PQN_Pallet_Quality_Non_Conformance__c> xPQNLIST= xPQN;
+        Map<string,PQN_DC_Hierarchy__c> mapmasterdata = new Map<string,PQN_DC_Hierarchy__c>();
+        Map<string,PQN_DC_Hierarchy__c> mapdcdata = new Map<string,PQN_DC_Hierarchy__c>();
+        mapmasterdata = PQN_DC_Hierarchy__c.getAll();
+        
+        for(PQN_DC_Hierarchy__c dc: mapmasterdata.values()){
+            mapdcdata.put(dc.dc__c,dc);             
+        }
+        
         String errorDesc = '';
         List<Account> xAcc = new List<Account>();
         Map<String,Id> mapAcc = new Map<String,Id>();
@@ -51,10 +60,10 @@ global without sharing class PQN_UploadNCData_Clone{
             }
         }
         if(selectedFileType=='Cannock'){
-            xAcc = [Select Id,Name from Account where name ='Cannock DC' limit 1];
+            xAcc = [Select Id,Name from Account where name ='Cannock' limit 1];
         }
         if(selectedFileType=='Heilbronn'){
-            xAcc = [Select Id,Name from Account where name ='Heilbronn DC' limit 1];
+            xAcc = [Select Id,Name from Account where name ='Heilbronn auto' limit 1];
         }
         Id errAccId = [Select Id,Name from Account where Name='Error DC' limit 1].Id;
         
@@ -64,6 +73,13 @@ global without sharing class PQN_UploadNCData_Clone{
             if(selectedFileType=='Unilever'){    
                 if(mapAcc.get(xP.Reporting_DC__c)!=null){
                     xP.Account__c =mapAcc.get(xP.Reporting_DC__c);
+                    if(mapdcdata.get(xP.Reporting_DC__c)!=null){
+                        xP.Region__c = mapdcdata.get(xP.Reporting_DC__c).region__c;
+                        xP.DC_Country__c = mapdcdata.get(xP.Reporting_DC__c).country__c;
+                        xP.Cluster__c = mapdcdata.get(xP.Reporting_DC__c).cluster__c;
+                        xP.Sub_Cluster__c = mapdcdata.get(xP.Reporting_DC__c).sub_cluster__c;                 
+                        xP.MCO__c = mapdcdata.get(xP.Reporting_DC__c).mco__c;
+                    }
                 }else{
                     xP.Account__c =errAccId;
                     errorDesc+='Reporting DC is not in system. </br>';
@@ -73,6 +89,13 @@ global without sharing class PQN_UploadNCData_Clone{
             if(selectedFileType=='Cannock'){
                 if(xAcc.size()>0){
                     xP.Account__c =xAcc[0].Id;
+                     if(mapdcdata.get('Cannock')!=null){
+                        xP.Region__c = mapdcdata.get('Cannock').region__c;
+                        xP.DC_Country__c = mapdcdata.get('Cannock').country__c;
+                        xP.Cluster__c = mapdcdata.get('Cannock').cluster__c;
+                        xP.Sub_Cluster__c = mapdcdata.get('Cannock').sub_cluster__c;                 
+                        xP.MCO__c = mapdcdata.get('Cannock').mco__c;
+                    }
                 }else{
                     xP.Account__c =errAccId;
                     errorDesc+='Reporting DC is not in system. </br>';
@@ -83,6 +106,13 @@ global without sharing class PQN_UploadNCData_Clone{
             
                 if(xAcc.size()>0){
                     xP.Account__c =xAcc[0].Id;
+                    if(mapdcdata.get('Heilbronn auto')!=null){
+                        xP.Region__c = mapdcdata.get('Heilbronn auto').region__c;
+                        xP.DC_Country__c = mapdcdata.get('Heilbronn auto').country__c;
+                        xP.Cluster__c = mapdcdata.get('Heilbronn auto').cluster__c;
+                        xP.Sub_Cluster__c = mapdcdata.get('Heilbronn auto').sub_cluster__c;                 
+                        xP.MCO__c = mapdcdata.get('Heilbronn auto').mco__c;
+                    }
                 }else{
                     xP.Account__c =errAccId;
                     errorDesc+='Reporting DC is not in system. </br>';

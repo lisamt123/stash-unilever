@@ -1,4 +1,4 @@
-<apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_Global_Overview_Geography,PQN_Global_Overview_Category_Report" showHeader="false" readOnly="true">
+<apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_Global_Overview_Geography" showHeader="false" readOnly="true">
 <head>
 <script src="{!URLFOR($Resource.PQN_Bootstrap_Admin, 'PQN_Bootstrap_Admin/js/jquery.js')}"></script>   
     <script>
@@ -74,7 +74,7 @@
      function retrieveCatChartData(callback1){
             var dataArray = new Array();
            Visualforce.remoting.Manager.invokeAction(
-           '{!$RemoteAction.PQN_Global_Overview_Category_Report.generateCatStackData}',
+           '{!$RemoteAction.PQN_Global_Overview_Geography.generateCatStackData}',
            '{!catLabel}',
            function(result, event){
                 console.log(result);
@@ -165,7 +165,7 @@
     <div >
    <div class="panel-body">
   
-        <apex:chart data="RemotingstackDosingChart" name="RemotingstackDosingChart" height="500" width="1200">
+        <apex:chart data="RemotingstackDosingChart" name="RemotingstackDosingChart" height="500" width="100%">
             <apex:legend position="bottom" font="bold 14px Calibri"/>
             <apex:axis type="Numeric" position="left" title="NC events {!cuYear}" grid="true" fields="{!dosingKey}" dashSize="2">
              <apex:chartLabel />
@@ -180,7 +180,7 @@
         </div>
         <div>
             
-            <table style="width:1200px;" class="table table-bordered">
+            <table style="width:96%;" class="table table-bordered">
                 <thead>
                 <tr>
                     <th Class="Cyan"></th>
@@ -221,7 +221,7 @@
             </h3></div>  
     <div >
    <div class="panel-body">
-        <apex:chart data="RemotingstackCatDosingChart" name="RemotingstackCatDosingChart" height="500" width="1200">
+        <apex:chart data="RemotingstackCatDosingChart" name="RemotingstackCatDosingChart" height="500" width="100%">
             <apex:legend position="bottom" font="bold 14px Calibri"/>
             <apex:axis type="Numeric" position="left" title="NC events {!cuYear}" grid="true" fields="{!catKey}" dashSize="2">
              <apex:chartLabel />
@@ -237,7 +237,7 @@
          
          <div>
         
-            <table id="CAT_Product" style="width:1200px;" class="table table-bordered">
+            <table id="CAT_Product" style="width:96%;" class="table table-bordered">
                 <thead>
                 <tr>
                     <th Class="Cyan"></th>
@@ -325,13 +325,36 @@
         <div class="container-fluid">
          
  <apex:form >
+ <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">
+                
+            
+            Region: <apex:inputField styleClass="RegionClass" value="{!pqnObj.Region__c}"/>&nbsp;&nbsp;
+            Cluster: <apex:inputField value="{!pqnObj.Cluster__c}"/>&nbsp;&nbsp;
+            Country: <apex:inputField value="{!pqnObj.DC_Country__c}"/>&nbsp;&nbsp;<br/>
+            <br/>
+            Supplier: <apex:selectList value="{!selectedsupplier}" multiselect="false" size="1" >
+                <apex:selectOptions value="{!suppliers}" />
+            </apex:selectList>&nbsp;&nbsp;
+            Product Category: <apex:selectList value="{!selectedcategory}" multiselect="false" size="1" >
+                <apex:selectOptions value="{!categories}" />
+            </apex:selectList><br/>
+            <br/>
+            Start Date: <apex:inputField value="{!pqnObj.Date_Pallet_Received__c}" showDatePicker="true"/>&nbsp;
+            End Date: <apex:inputField value="{!pqnObj.Current_Month_Freeze_Date__c}" showDatePicker="true"/>&nbsp;
+            <apex:commandButton value="Refresh" action="{!Searchby}" reRender="pgb" status="plw"/> 
+            <apex:actionStatus startText="Please Wait..." id="plw"></apex:actionStatus>
+            </h3>
+            </div>  
+            </div>           
+        
             
             
-      <apex:pageBlock >
+      <apex:pageBlock id="pgb" >
           <a id="dlink"  style="display:none;"></a>
           <button type="button" onclick="exporttable();">Export Report</button>
             
-          <apex:pageBlockSection columns="1">
+          <apex:pageBlockSection columns="1" >
               <apex:pageblockTable value="{!xSUWRAPLIST}" var="xD" styleclass="pageblockTableCls" id="pageblockTableId" columnsWidth="22%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6%, 6% 6%" rowClasses="even,odd" >
               <apex:column headerClass="Gray" headerValue="Geography(All categories)" style="font-weight:200">
                   <apex:outputText value="{!xD.Glo}" style="font-weight:800" rendered="{!xD.child}"/>
@@ -394,7 +417,7 @@
               <apex:column headerClass="Pink" headerValue="Trend % " value="{!xD.Trendper}%" styleClass ="{!If(xD.cuYeartarper!=null,If(xD.cuYearPercent!=null,if(xD.cuYearPercent<=xD.cuYeartarper,'GreenBack',if(xD.cuYearPercent<=xD.preYearPercent,'Amber','RedBack')), 'RedBack'),If(xD.cuYearPercent!=null,if(xD.preYearPercent!=null,if(xD.cuYearPercent==xD.preYearPercent,'Amber',if(xD.cuYearPercent>xD.preYearPercent,'RedBack','GreenBack')),'empty'), 'empty'))}"/>
               </apex:pageblockTable>
           </apex:pageBlockSection>
-          
+        
           <apex:pageBlockSection >
           
               <apex:outputText value="{!empty}"/>
