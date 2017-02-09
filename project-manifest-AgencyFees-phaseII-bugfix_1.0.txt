@@ -1,7 +1,5 @@
 src
 src/classes
-src/classes/AF_FieldHistoryCompController.cls
-src/classes/AF_FieldHistoryCompController.cls-meta.xml
 src/classes/AF_AdjustQuater_Homepage_lightbox_Test.cls
 src/classes/AF_AdjustQuater_Homepage_lightbox_Test.cls-meta.xml
 src/classes/AF_AnnualBonus.cls
@@ -14,6 +12,10 @@ src/classes/AF_BrandEstimateController2.cls
 src/classes/AF_BrandEstimateController2.cls-meta.xml
 src/classes/AF_RaisenewPO_Homepage_lightbox.cls
 src/classes/AF_RaisenewPO_Homepage_lightbox.cls-meta.xml
+src/classes/AF_FieldHistoryCompController.cls
+src/classes/AF_FieldHistoryCompController.cls-meta.xml
+src/classes/AF_TestFactory_Helper.cls
+src/classes/AF_TestFactory_Helper.cls-meta.xml
 src/permissionsets
 src/permissionsets/AF_Approver_Platform.permissionset
 src/pages
