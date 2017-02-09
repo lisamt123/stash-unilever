@@ -1,0 +1,6 @@
+src
+src/staticresources
+src/staticresources/ChatOfflineSAKnorr.resource
+src/staticresources/ChatOfflineSAKnorr.resource-meta.xml
+src/staticresources/ChatOnlineSAKnorr.resource
+src/staticresources/ChatOnlineSAKnorr.resource-meta.xml
