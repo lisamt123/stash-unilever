@@ -106,4 +106,8 @@
         <enabled>true</enabled>
         <name>ViewHelpLink</name>
     </userPermissions>
+	<tabVisibilities>
+        <tab>My_Trade_Promoton_Calendar</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
 </Profile>
