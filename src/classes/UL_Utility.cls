@@ -234,7 +234,7 @@
     }
    }
    
-      /*******************************************************************
+     /*******************************************************************
     Purpose: Get SalesOrg of current User 
     Version: 1.0
     Parameters: String userId
@@ -243,12 +243,20 @@
     ********************************************************************/
    public static String getSalesOrg (String userId){
         String salesOrg = '';
-        List<User> user = [ SELECT ACCL__Sales_Org__c, Id FROM User where Id = : userId];
-        if (user.size()>0){
-            return user[0].ACCL__Sales_Org__c;
+        try{
+           
+            List<User> user = [ SELECT ACCL__Sales_Org__c, Id FROM User where Id = : userId];
+            if (user.size()>0){
+                return user[0].ACCL__Sales_Org__c;
+            }
+            else return salesOrg;
+        } 
+        catch(Exception o ){
+            logError(o, UserInfo.getUserId() );
         }
-        else return salesOrg;
+        return salesOrg;
     }
+
 
     /*******************************************************************
     Purpose: Convert Object to Date 
