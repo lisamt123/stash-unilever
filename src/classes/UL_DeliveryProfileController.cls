@@ -235,7 +235,7 @@ Throws: N/A
     }
     
    public PageReference cancel(){   
-        PageReference pageRef = new PageReference('/aEt/o');
+        PageReference pageRef = new PageReference(System.Label.UL_Slash_Char+ctr.getRecord().getSObjectType().getDescribe().getKeyPrefix());
         pageRef.setRedirect(true);
         return pageRef;
     }
