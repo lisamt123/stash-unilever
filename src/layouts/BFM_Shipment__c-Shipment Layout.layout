@@ -39,6 +39,10 @@
                 <behavior>Edit</behavior>
                 <field>Vehicle_Plate__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Is_Deleted_in_SAP__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ANTT__c</field>
