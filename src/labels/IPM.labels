@@ -1247,7 +1247,7 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BACKGROUNDPROCESS_INPROGRESS</shortDescription>
-        <value>Your project is being created.  In a few minutes, please navigate to the IPM Home tab to access it.</value>
+        <value>Your project is being created. The page will refresh shortly and you will then be able to continue with project setup.</value>
     </labels>
     <labels>
         <fullName>IPM_BB</fullName>
