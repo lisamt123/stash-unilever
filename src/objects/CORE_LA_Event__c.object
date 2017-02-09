@@ -58,6 +58,15 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Accessibility_needs__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Accessibility needs</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Agenda__c</fullName>
         <externalId>false</externalId>
         <label>Agenda</label>
@@ -66,6 +75,17 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Banner_Content_Version__c</fullName>
+        <externalId>false</externalId>
+        <label>Banner Content Version</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Banner__c</fullName>
@@ -88,20 +108,45 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Dietary_Needs__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Dietary Needs</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Faclities__c</fullName>
         <externalId>false</externalId>
         <label>Faclities</label>
         <picklist>
-            <picklistValues>
-                <fullName>Translation</fullName>
-                <default>false</default>
-            </picklistValues>
             <picklistValues>
                 <fullName>Wheelchair</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Wifi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Meals</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Refreshments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Accommodation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Translation</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -112,6 +157,28 @@
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Floor_Plan__c</fullName>
+        <externalId>false</externalId>
+        <label>Floor Plan</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FromEventDateTime__c</fullName>
+        <externalId>false</externalId>
+        <label>FromEventDateTime</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>From_Date__c</fullName>
@@ -148,6 +215,16 @@
         <fullName>No_of_Attendees__c</fullName>
         <externalId>false</externalId>
         <label>No of Attendees</label>
+        <summaryFilterItems>
+            <field>CORE_LA_Participant__c.Role__c</field>
+            <operation>equals</operation>
+            <value>Attendee</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>CORE_LA_Participant__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Registered</value>
+        </summaryFilterItems>
         <summaryForeignKey>CORE_LA_Participant__c.Event__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
         <trackTrending>false</trackTrending>
@@ -159,7 +236,6 @@
         <externalId>false</externalId>
         <label>LA_Event</label>
         <referenceTo>CORE_LA_Event__c</referenceTo>
-        <relationshipLabel>LA_Events</relationshipLabel>
         <relationshipName>LA_Events</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -262,7 +338,35 @@
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
-    <label>LA_Event</label>
+    <fields>
+        <fullName>Total_Rating__c</fullName>
+        <description>Total rating for an event where Participant Role=Attendee</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total rating for an event</inlineHelpText>
+        <label>Total Rating</label>
+        <summarizedField>CORE_LA_Participant__c.Rating__c</summarizedField>
+        <summaryFilterItems>
+            <field>CORE_LA_Participant__c.Role__c</field>
+            <operation>equals</operation>
+            <value>Attendee</value>
+        </summaryFilterItems>
+        <summaryForeignKey>CORE_LA_Participant__c.Event__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>toEventDateTime__c</fullName>
+        <externalId>false</externalId>
+        <label>toEventDateTime</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Event</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>

@@ -1,0 +1,116 @@
+<aura:component controller="Core_LA_BaseController" implements="force:appHostable">
+    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
+    <aura:attribute name='eventDetail' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+    <aura:attribute name="isUnregister" type="boolean" default="false"/>
+    <aura:attribute name="isSave" type="boolean" default="false"/>
+    <aura:attribute name="isUnSave" type="boolean" default="false"/> 
+    <aura:attribute name="isSavePopup" type="boolean" default="false"/>
+    <aura:attribute name="isUnSavePopup" type="boolean" default="false"/>
+    <aura:attribute name="isFailurePopup" type="boolean" default="false"/>
+    <aura:attribute name="isUnRegisterPopup" type="boolean" default="false"/>
+    <aura:attribute name="sourcePage" type="String"/>
+    
+    <div>
+        
+        <aura:if isTrue="{!(v.isUnregister == true &amp;&amp; v.isSave == false &amp;&amp; v.isUnSave == false)}">
+            
+            <div class="register_container">
+                <div class="slds-text-body--regular feedback-text">
+                    Hi {!v.eventDetail.ParticipantName}!
+                    <br></br>
+                    click confirm to UnRegister for this Event.
+                    
+                    <br></br>
+                    <img style="padding: 0 43%;" src="/resource/Lightning_designing_style/assets/icons/utility/check_60.png"></img>
+                </div>
+                <hr></hr>
+                <div class="feedback-buttons"  >
+                    <button class="slds-button slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.close}" >
+                        <span class="slds-text-not-selected">
+                            Cancel
+                        </span>
+                    </button>
+                    <button class="slds-button slds-button--brand slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.unRegisterEventNotifi}">
+                        <span class="slds-text-not-selected">
+                            Confirm 
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </aura:if>
+        
+        <aura:if isTrue="{!(v.isUnregister == false &amp;&amp; v.isSave == true &amp;&amp; v.isUnSave == false)}">
+            
+            <div class="register_container">
+                <div class="slds-text-body--regular feedback-text">
+                    Hi {!v.eventDetail.ParticipantName}!
+                    <br></br>
+                    click confirm to Save for this Event.
+                    
+                    <br></br>
+                    <img style="padding: 0 43%;" src="/resource/Lightning_designing_style/assets/icons/utility/check_60.png"></img>
+                </div>
+                <hr></hr>
+                <div class="feedback-buttons"  >
+                    <button class="slds-button slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.close}" >
+                        <span class="slds-text-not-selected">
+                            Cancel
+                        </span>
+                    </button>
+                    <button class="slds-button slds-button--brand slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.saveEventNotifi}">
+                        <span class="slds-text-not-selected">
+                            Confirm 
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </aura:if>
+        
+        <aura:if isTrue="{!(v.isUnregister == false &amp;&amp; v.isSave == false &amp;&amp; v.isUnSave == true)}">
+            <div class="register_container">
+                <div class="slds-text-body--regular feedback-text">
+                    Hi {!v.eventDetail.ParticipantName}!
+                    <br></br>
+                    click confirm to UnSave for this Event.
+                    
+                    <br></br>
+                    <img style="padding: 0 43%;" src="/resource/Lightning_designing_style/assets/icons/utility/check_60.png"></img>
+                </div>
+                <hr></hr>
+                <div class="feedback-buttons"  >
+                    <button class="slds-button slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.close}" >
+                        <span class="slds-text-not-selected">
+                            Cancel
+                        </span>
+                    </button>
+                    <button class="slds-button slds-button--brand slds-button--neutral slds-not-selected" aria-live="assertive" onclick="{!c.unSaveEventNotifi}">
+                        <span class="slds-text-not-selected">
+                            Confirm 
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </aura:if>
+    </div>
+    
+    <aura:if isTrue="{!v.isUnRegisterPopup}">
+        <div class="slds-backdrop slds-backdrop--open">
+            <c:CORE_LA_Confirm sucessRegister="true" ParticipantName="{!v.eventDetail.ParticipantName}" sourcePage="{!v.sourcePage}" eventDetail="{!v.eventDetail}"></c:CORE_LA_Confirm>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.isSavePopup}">
+        <div class="slds-backdrop slds-backdrop--open">
+            <c:CORE_LA_Confirm sucessSave="true" ParticipantName="{!v.eventDetail.ParticipantName}" sourcePage="{!v.sourcePage}" eventDetail="{!v.eventDetail}"></c:CORE_LA_Confirm>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.isUnSavePopup}">
+        <div class="slds-backdrop slds-backdrop--open">
+            <c:CORE_LA_Confirm sucessUnsave="true" ParticipantName="{!v.eventDetail.ParticipantName}" sourcePage="{!v.sourcePage}" eventDetail="{!v.eventDetail}"></c:CORE_LA_Confirm>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.isFailurePopup}">
+        <div class="slds-backdrop slds-backdrop--open">
+            <c:CORE_LA_Confirm sucessFail="false" ParticipantName="{!v.eventDetail.ParticipantName}" sourcePage="{!v.sourcePage}" eventDetail="{!v.eventDetail}"></c:CORE_LA_Confirm>
+        </div>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,38 @@
+.THIS .tabUi{
+    background: white;
+    margin: 0 -10px;
+}
+.THIS .tabUi li{
+    width: 54%;
+    text-align: center;
+}
+.THIS .border{
+    background-color: white;
+}
+.THIS .border_line{
+    background-color: white;
+}
+.THIS.cards{
+    padding: 8px 8px 0;
+    background: white;
+    min-height: 360px;
+    margin-bottom: -48px;
+}
+.THIS .view-up{
+    background: rgb(238, 241, 246);
+    margin: 0px -10px;
+    padding: 10px;    
+}
+.THIS .trainer-detail1{
+    background: white;
+    padding: 15px;
+        margin-bottom: 12px;
+}
+.THIS .slds-tabs__nav-scroller{
+        margin: 0 -7px;
+}
+.THIS .slds-tabs--default__content{
+background: rgb(244, 246, 249);
+    margin: 0 -8px;
+    padding: 10px 10px 1px;
+}

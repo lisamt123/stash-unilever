@@ -1,0 +1,61 @@
+<aura:component controller="CORE_LA_Controller">
+    <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" /> 
+     <aura:attribute name="eventIdneeded" type="String" />
+     <aura:attribute name="attendees" type="CORE_LA_Participant__c[]"/>
+     <aura:attribute name="limitAttendeeRecords" type="Integer" default="100" />
+     <aura:attribute name="OffsetLimitAttendee" type="Integer" default="0"/>
+     <aura:attribute name="myText" type="String" default="Not Joined"/>
+     <aura:handler name="init" value="{!this}" action="{!c.getAttendeeRatingDetails}" />
+     <aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+  
+    
+    <div class="slds-section-title--divider" onclick="{!c.goToEventDetail}">
+            <div class="slds-media slds-media--center" >
+                <img class="slds-icon slds-avatar--small" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" aria-hidden="true" >
+                </img>  
+                <div class="slds-align--absolute-center slds-text-heading--large "> Attendees</div>
+            </div>
+       </div>
+  
+    <lightning:tabset >
+        <lightning:tab label="INVITE">
+            Sample Content One
+        </lightning:tab>
+        <lightning:tab label="ATTENDEE LIST">
+           
+   <div aura:id="listAttende" class="event-attendediv">
+     <aura:iteration items="{!v.attendees}" var="attendeeList"> 
+         <lightning:card variant="narrow">
+            <aura:set attribute="title">
+                     
+                  <p class="slds-p-horizontal--small">
+                   <article  class="slds-post" >
+                    <header class="slds-post__header slds-media slds-media--center" data-aura-rendered-by="49:289;a">
+                        <div class="slds-media__figure" data-aura-rendered-by="50:289;a">
+                            <a class="slds-avatar slds-avatar--circle slds-avatar--large" href="javascript:void(0);"  data-aura-rendered-by="51:289;a">
+                                <img src="{!attendeeList.Participant_Name__r.SmallPhotoUrl}" data-aura-rendered-by="52:289;a" />
+                            </a>
+                        </div>
+                          <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate"  >
+                             <p data-aura-rendered-by="55:289;a">
+                                <a href="javascript:void(0);" title="{!attendeeList.Participant_Name__r.Name}" data-aura-rendered-by="56:289;a">{!attendeeList.Participant_Name__r.Name}</a>
+                                <a class="slds-text-link--reset" href="javascript:void(0);"  data-aura-rendered-by="59:289;a">{!attendeeList.Participant_Name__r.Title}</a>
+                            </p>
+                            
+                          </div>
+                           <aura:if isTrue="{!attendeeList.Status__c=='Invited'}">
+                            <ui:outputText value="{!v.myText}" /> 
+                          </aura:if> 
+                    </header>
+                </article>
+                 </p>
+            </aura:set>
+      
+    </lightning:card>
+  </aura:iteration>           
+ </div>
+        </lightning:tab>
+    </lightning:tabset>
+
+	
+</aura:component>

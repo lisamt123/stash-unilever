@@ -58,24 +58,16 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
-        <fullName>Attending_After_Party__c</fullName>
-        <defaultValue>false</defaultValue>
+        <fullName>Accessibility_Ans__c</fullName>
         <externalId>false</externalId>
-        <label>Attending After Party</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Dietary_Plan__c</fullName>
-        <externalId>false</externalId>
-        <label>Dietary Plan</label>
+        <label>Accessibility Ans</label>
         <picklist>
             <picklistValues>
-                <fullName>Vegetarian</fullName>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Non-Vegetarian</fullName>
+                <fullName>No</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -84,6 +76,50 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Accessibility_needs__c</fullName>
+        <externalId>false</externalId>
+        <label>Accessibility needs</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Dietary_Ans__c</fullName>
+        <externalId>false</externalId>
+        <label>Dietary Ans</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dietary_Plan__c</fullName>
+        <externalId>false</externalId>
+        <label>Dietary Plan</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>EventDate__c</fullName>
+        <externalId>false</externalId>
+        <label>EventDate</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>Event__c</fullName>
@@ -171,6 +207,14 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>ParentUpdateCheck__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>ParentUpdateCheck</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Participant_Name__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Name Of Attendee or Trainer</description>
@@ -184,6 +228,7 @@
     </fields>
     <fields>
         <fullName>Rating__c</fullName>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label>Rating</label>
         <precision>18</precision>

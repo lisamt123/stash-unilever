@@ -1,0 +1,54 @@
+<aura:component controller="CORE_LA_Controller" implements="flexipage:availableForAllPageTypes,force:appHostable">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.occurenceDetailPage}" />
+    <aura:attribute name="occurences" type="CORE_LA_Participant__c[]"/>
+    <aura:attribute name="occurencesPast" type="CORE_LA_Participant__c[]"/>
+    <aura:attribute name="eventId" type="String"/>
+    <aura:attribute name="recurring" type="Boolean"/>
+    <aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+   
+    
+    <!-- Related to Back Button -->
+    <div class="slds-page-header" role="banner" data-aura-rendered-by="4:299;a">
+        <div class="slds-media slds-media--center" data-aura-rendered-by="5:299;a">
+            <img aria-hidden="true" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png"
+                 onclick="{!c.gotoPreviousPage}" class="slds-icon slds-avatar--small"></img>
+            <div class="slds-media__body" data-aura-rendered-by="8:299;a"></div>
+        </div>
+    </div>
+    <div class="cards">
+        
+        <div class="slds-text-heading--small slds-truncate" style="padding:15px 0;"> {!v.event.eventName}</div>
+        <div class="top-register"></div>
+        <img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy2.png"></img>
+        <div style="margin-top:10px;">{!v.event.details}</div>
+        <hr></hr>
+        <lightning:tabset >
+            <lightning:tab label="UP-COMING">
+                <aura:iteration items="{!v.occurences}" var="occList">
+                    <div class="trainer-detail1">
+                        <a>
+                            <span data-record="{!occList.Event__r.Id}" onclick="{!c.goToOccurenceDetail}">{!occList.Event__r.Name}</span>
+                            <!--  <span onclick="{!c.goToOccurenceDetail}">{!occList.Id}</span> -->
+                        </a> <br></br>
+                        <span data-record="{!occList.Event__r.Id}">{!occList.Event__r.From_Date__c}</span><br></br>
+                        <span data-record="{!occList.Event__r.Id}">{!occList.Event__r.To_Date__c}</span><br></br>
+                    </div>
+                </aura:iteration>
+            </lightning:tab>
+            <lightning:tab label="PAST" >
+                <aura:iteration items="{!v.occurencesPast}" var="occListPast">
+                    <div class="trainer-detail1">
+                        <a>
+                            <span data-record="{!occListPast.Event__r.Id}" onclick="{!c.goToOccurenceDetail}">{!occListPast.Event__r.Name}</span>
+                        </a> <br></br>
+                         <span data-record="{!occListPast.Event__r.Id}">{!occListPast.Event__r.From_Date__c}</span><br></br>
+                        <span data-record="{!occListPast.Event__r.Id}">{!occListPast.Event__r.To_Date__c}</span><br></br>
+                    </div>
+                    
+                </aura:iteration>
+            </lightning:tab>
+        </lightning:tabset>
+    </div>
+    
+</aura:component>

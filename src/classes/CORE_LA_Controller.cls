@@ -12,6 +12,22 @@ VERSION     AUTHOR         DATE              DETAIL Description
 ***************************************************************/
 
 public with sharing class CORE_LA_Controller{
+    
+    
+    
+//Display Trainer List Based On Event Used in Event Detail Page , Trainer & Attendee List Page,Trainer Detail Page 
+   @AuraEnabled
+    public static List<CORE_LA_EventWrapperClass.TrainerWrapper> getTrainerWrapper(String eventId){
+       
+        return Core_LA_ControllerHelper.getTrainerWrapperDetails(eventId);
+    }
+    
+ //Event Card Controller use in Profile Page,Upcoming Page ,Trainer Detail Page, Create Page both 'posted' and 'Draft' Section.
+   @AuraEnabled
+    public static List<CORE_LA_EventWrapperClass.Event> retriveAllEvents(String filterType,String sortType,Integer limitRecords,Integer offsetValue,String trainerId,String eventStatus,Boolean showMoreStatus,String externalEmail,Boolean commonActionBarHide){
+      
+        return Core_LA_ControllerHelper.retriveEvents(filterType,sortType,limitRecords,offsetValue,trainerId,eventStatus,showMoreStatus,externalEmail,commonActionBarHide);
+    }
 
 //Display Logged in User Details
     @AuraEnabled
@@ -30,6 +46,22 @@ public with sharing class CORE_LA_Controller{
                        AboutMe FROM User WHERE Id = :trainerId LIMIT 1];
         return toReturn;
     }
+ // Related to  Upcoming occurence
+         @AuraEnabled 
+          public static List<CORE_LA_Participant__c > getOccurenceList(String eventId){
+          String loggedInUserId= UserInfo.getUserId();
+           Date currentDate= date.today();
+         return [ SELECT Event__r.Name,Event__r.From_Date__c,Event__r.To_Date__c FROM CORE_LA_Participant__c  WHERE Event__r.ParentEvent__c = :eventId AND Participant_Name__c = :loggedInUserId AND Event__r.To_Date__c >= :currentDate];
+       
+    }
+ // Related to  Past occurence
+          @AuraEnabled 
+          public static List<CORE_LA_Participant__c > getPastOccurenceList(String eventId){
+           Date currentDatePast= date.today();
+           String loggedInUserId= UserInfo.getUserId();
+           Date currentDate= date.today();
+         return [ SELECT Event__r.Name,Event__r.From_Date__c,Event__r.To_Date__c FROM CORE_LA_Participant__c  WHERE Event__r.ParentEvent__c = :eventId AND Participant_Name__c = :loggedInUserId AND Event__r.To_Date__c < :currentDatePast];
+         }
     
  //Display Attendee List Based On Event 
     @AuraEnabled 
@@ -37,8 +69,8 @@ public with sharing class CORE_LA_Controller{
         Integer recordLimit= integer.valueof(limitRecords);
         Integer  recordOffsetLimit=integer.valueof(OffsetLimit);
   
-    return [ SELECT Participant_Name__c,Participant_Name__r.SmallPhotoUrl,Participant_Name__r.Name,Participant_Name__r.Title
-            FROM CORE_LA_Participant__c WHERE Event__c =:eventId AND Role__c = 'Attendee' ORDER BY Participant_Name__r.Name
+    return [ SELECT Participant_Name__c,Participant_Name__r.SmallPhotoUrl,Participant_Name__r.Name,Participant_Name__r.Title,Rating__c,
+            Feedback__c,Status__c FROM CORE_LA_Participant__c WHERE Event__c =:eventId AND Role__c = 'Attendee' ORDER BY Participant_Name__r.Name
             LIMIT :recordLimit  OFFSET :recordOffsetLimit ]; 
        
     }
@@ -51,41 +83,35 @@ public with sharing class CORE_LA_Controller{
         
     }*/
     
-     
- //Display Trainer List Based On Event Used in Event Detail Page , Trainer & Attendee List Page,Trainer Detail Page 
-   @AuraEnabled
-    public static List<CORE_LA_EventWrapperClass.TrainerWrapper> getTrainerWrapper(String eventId){
-       
-        return Core_LA_ControllerHelper.getTrainerWrapperDetails(eventId);
-    }
-
-    
-    
     /************************************************/
         
-    
+    // related to event detail page
     @AuraEnabled
     public static List<CORE_LA_EventWrapperClass.Event> getEventDetail(String eventId){
-    //String loggedInUserId= UserInfo.getUserId();
-      List<CORE_LA_Event__c > eventData= [SELECT ID,Name,Agenda__c,Banner__c,Details__c,Faclities__c,From_Date__c,Language__c,Location__c,No_of_Attendees__c,Prerequisite__c,Recurring_Details__c,Recurring__c,Short_Description__c,To_Date__c FROM CORE_LA_Event__c Where Id=:eventId ];
+    String loggedInUserId= UserInfo.getUserId();
+     List<CORE_LA_Participant__c > eventData= [SELECT Event__c,Event__r.OwnerId,Event__r.Name,Event__r.No_of_Attendees__c,Event__r.Total_Rating__c,Event__r.Recurring__c,Event__r.Banner__c,Event__r.From_Date__c,Event__r.To_Date__c,Event__r.Location__c,Event__r.Prerequisite__c,Event__r.Agenda__c,Event__r.Details__c,Event__r.Recurring_Details__c,Event__r.Faclities__c,Id,Participant_Name__r.Name,Role__c,Status__c ,Rating__c,Participant_Name__c FROM CORE_LA_Participant__c WHERE Event__c=:eventId AND Participant_Name__c = :loggedInUserId];
       List<CORE_LA_EventWrapperClass.Event> eventList = new List<CORE_LA_EventWrapperClass.Event>();
-      for (CORE_LA_Event__c event: eventData){
+       for (CORE_LA_Participant__c participant : eventData){
         CORE_LA_EventWrapperClass.Event eventDetails= new CORE_LA_EventWrapperClass.Event();
-           
-                  eventDetails.eventId= event.id;
-                  eventDetails.eventName=event.Name;
-                  
-                  eventDetails.recurring= event.Recurring__c;
-                 // eventDetails.contentURLBannerImage=event.Banner__c;
-                  //eventDetails.shortDescription=event.Short_Description__c;
-                  eventDetails.fromDate=event.From_Date__c;
-                  eventDetails.toDate=event.To_Date__c;
-                  eventDetails.location=event.Location__c;
-                  eventDetails.prerequisite=event.Prerequisite__c;
-                  eventDetails.agenda=event.Agenda__c;
-                  eventDetails.details=event.Details__c;
-                  eventDetails.recurringDetails=event.Recurring_Details__c;
-                  eventDetails.facilities=event.Faclities__c;
+            eventDetails.eventId=participant.Event__c;
+            eventDetails.IdofParticicpant=participant.Id;
+            eventDetails.ParticipantName=participant.Participant_Name__r.Name;
+            eventDetails.eventName=participant.Event__r.Name;
+            eventDetails.numberOfAttendees= participant.Event__r.No_of_Attendees__c; 
+            eventDetails.recurring= participant.Event__r.Recurring__c;
+            eventDetails.fromDate=participant.Event__r.From_Date__c;
+            eventDetails.toDate=participant.Event__r.To_Date__c;
+            eventDetails.location=participant.Event__r.Location__c;
+            eventDetails.userRole=participant.Role__c;
+            eventDetails.userRegistrationStatus=participant.Status__c;
+            eventDetails.eventRating=participant.Rating__c;
+            eventDetails.prerequisite=participant.Event__r.Prerequisite__c;
+            eventDetails.agenda=participant.Event__r.Agenda__c;
+            eventDetails.details=participant.Event__r.Details__c;
+            eventDetails.recurringDetails=participant.Event__r.Recurring_Details__c;
+            eventDetails.facilities=participant.Event__r.Faclities__c;
+            Datetime endDate =participant.Event__r.To_Date__c;
+            eventDetails.totalRatingPerEvent= participant.Event__r.Total_Rating__c;
                  eventList.add(eventDetails);
                  
                  List<Attachment> lstAttachment=[SELECT Id FROM Attachment where parentId=:eventId];
@@ -95,7 +121,7 @@ public with sharing class CORE_LA_Controller{
                  //if(attachid!=null){
                  String imageURL ='/servlet/servlet.FileDownload?file=';
              
-                 String fullFileURL = URL.getSalesforceBaseUrl().toExternalForm() + imageURL + '00PV0000001Qvto';
+                 String fullFileURL = URL.getSalesforceBaseUrl().toExternalForm() + imageURL + '00PV0000001mJtO';
                   eventDetails.contentURLBannerImage=fullFileURL;
                   //}
                   
@@ -104,138 +130,81 @@ public with sharing class CORE_LA_Controller{
       
         return eventList ;
     }
+//Related to Agenda List of particular Event
+            @AuraEnabled 
+          public static List<CORE_LA_Agenda__c> getAgendaList(String eventId){
+           Date currentDate= date.today();
+         return [SELECT Name,From_Time__c,To_Time__c,Summary__c FROM CORE_LA_Agenda__c WHERE Event__c =:eventId ORDER BY createdDate ASC];
+         }
+//Admin Add Attendee ,Admin
+   @AuraEnabled
+     public static CORE_LA_EventWrapperClass.TrainerWrapper getParticipantListWrapper(String eventId, List<User> participantList,String Role, String Status){
+         CORE_LA_EventWrapperClass.TrainerWrapper eventDetails= new CORE_LA_EventWrapperClass.TrainerWrapper();
+         system.debug('List'+participantList);
+         
+         If(participantList.size()!=0){
+           for(User u:participantList){  
+               CORE_LA_Participant__c ParticipantObj= new CORE_LA_Participant__c();
+               ParticipantObj.Role__c=Role;
+               ParticipantObj.Event__c= eventId;
+               ParticipantObj.Status__c=Status;
+               ParticipantObj.Participant_Name__c=u.Id;
+               insert ParticipantObj; 
+           }
+         }      
+         return eventDetails;
+     }
+    //*******************************************//
+    /**
+     * Aura enabled method to search a specified SObject for a specific string
+     */
     @AuraEnabled
-    public static List<CORE_LA_EventWrapperClass.Event> getOccurenceDetail(String eventId){
-     List<CORE_LA_Event__c > occurenceData= [SELECT ID,Name,Banner__c,Details__c,From_Date__c,Recurring_Details__c,Recurring__c,Short_Description__c,To_Date__c FROM CORE_LA_Event__c Where Id=:eventId ];
-     List<CORE_LA_EventWrapperClass.Event> occurenceList = new List<CORE_LA_EventWrapperClass.Event>();
-      for (CORE_LA_Event__c occurence: occurenceData){
-        CORE_LA_EventWrapperClass.Event occurenceDetail= new CORE_LA_EventWrapperClass.Event();
-                  occurenceDetail.eventId= occurence.id;
-                  occurenceDetail.eventName=occurence.Name;
-                  
-                  occurenceDetail.recurring= occurence.Recurring__c;
-                 // eventDetails.contentURLBannerImage=event.Banner__c;
-                  
-                  occurenceDetail.fromDate=occurence.From_Date__c;
-                  occurenceDetail.toDate=occurence.To_Date__c;
+    public static Result[] lookup(String searchString, String sObjectAPIName, String recordType)
+    {
+        // Sanitize the input
+        String sanitizedSearchString = String.escapeSingleQuotes(searchString);
+        String sanitizedSObjectAPIName = String.escapeSingleQuotes(sObjectAPIName);
+        String sanitizedSObjectFieldName = String.escapeSingleQuotes(recordType);
+        
+        String searchQuery='';
+        List<Result> results = new List<Result>();
+     
+         // Build our SOSL query
+        if(sanitizedSObjectFieldName == 'null' )
+        {
+            searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + sanitizedSObjectAPIName + '(id,name) Limit 10 '; 
+        }
+        else {
+             searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + sanitizedSObjectAPIName + '(id,name where RecordType.Name=\''+ sanitizedSObjectFieldName +'\') Limit 10'; 
+        }
+       
+        // Execute the Query
+        List<List<SObject>> searchList = search.query(searchQuery);
+ 
+        // Create a list of matches to return
+        for (SObject so : searchList[0])
+        {
+            results.add(new Result((String)so.get('Name'), so.Id));
+        }
+         
+        return results;
+    }
+     
+    /**
+     * Inner class to wrap up an SObject Label and its Id
+     */
+    public class Result
+    {
+        @AuraEnabled public String SObjectLabel {get; set;}
+        @AuraEnabled public Id SObjectId {get; set;}
+         
+        public Result(String sObjectLabel, Id sObjectId)
+        {
+            this.SObjectLabel = sObjectLabel;
+            this.SObjectId = sObjectId;
+        }
+    }
 
-                 
-                
-                  occurenceDetail.details=occurence.Details__c;
-                  occurenceDetail.recurringDetails=occurence.Recurring_Details__c;
-                  
-                 occurenceList.add(occurenceDetail);
     
     
-    }
-    return occurenceList ;
-
-}
-    //Bharath Code
-@AuraEnabled
-    public static List<CORE_LA_EventWrapperClass.Event> retriveAllEvents(String filterType,String sortType,Integer limitRecords,Integer offsetValue,String trainerId,String eventStatus,Boolean showMoreStatus,String externalEmail,Boolean commonActionBarHide){
-        //String loggedInUserId= UserInfo.getUserId();
-        //'AND CreatedById =\''+UserInfo.getUserId()+'\''
-        String registeredClause=' AND Status__c =\''+'Registered'+'\'';
-        String savedClause=' AND Status__c = \''+'Saved'+'\'';
-        String recurringClause=' AND Event__r.Recurring__c= true';
-        String nonRecurringClause= 'AND Event__r.Recurring__c= false';
-        String dateSortClause=' ORDER BY  Event__r.From_Date__c ASC';
-        String nameSortClause=' ORDER BY Event__r.Name ASC';
-        String paginationQuery=' LIMIT '+limitRecords+' OFFSET '+offsetValue;
-        Id loggedInUserId= UserInfo.getUserId();
-        System.debug('LoggedInUserId===> '+loggedInUserId);
-        String loggedInUser='Participant_Name__c =\''+loggedInUserId+'\'';
-        String eventStatusCheck=' AND Event__r.Status__c=\''+eventStatus+'\'';
-        String roleClause=' AND Role__c = \''+'Admin'+'\''; 
-        String trainerClause=' AND Role__c = \''+'Trainer'+'\''; 
-        String externaltrainerAsUser='ExternalTrainerEmail__c=\''+externalEmail+'\'';
-        System.debug('Participant_Name__c===> '+loggedInUser);
-        String trainerAsUser='Participant_Name__c=\''+trainerId+'\'';
-        String soqlQuery='SELECT Event__c,Event__r.OwnerId,Event__r.Name,Event__r.No_of_Attendees__c,Event__r.Recurring__c,Event__r.Banner__c,Event__r.Short_Description__c,Event__r.From_Date__c,Event__r.To_Date__c,Event__r.Location__c,Event__r.Prerequisite__c,Event__r.Agenda__c,Event__r.Details__c,Event__r.Recurring_Details__c,Event__r.Faclities__c,Id,Role__c,Status__c ,Rating__c,Attending_After_Party__c,Dietary_Plan__c,Participant_Name__c FROM CORE_LA_Participant__c WHERE ';
-        List<CORE_LA_Event__c> OwnerIDs=[Select OwnerId from CORE_LA_Event__c];
-        
-        if((trainerId!= null)&& (trainerId!='')){            
-            soqlQuery=soqlQuery+trainerAsUser+trainerClause;
-            System.debug('Inside Trainer===> '+soqlQuery);
-        }
-        
-        else if((externalEmail!= null)&& (externalEmail!='')){
-            soqlQuery=soqlQuery+externaltrainerAsUser+trainerClause;
-        }
-      
-        //For Create Events Page
-        else if(eventStatus=='Posted' || eventStatus=='Draft'){
-            soqlQuery=soqlQuery+loggedInUser+eventStatusCheck+roleClause;
-            System.debug('Inside Create Event==>'+soqlQuery);
-           
-        }
-        //For Profile Page
-        else{
-             soqlQuery=soqlQuery+loggedInUser;
-            System.debug('Inside Participant===> '+soqlQuery);
-        }
-            
-            
-        if((filterType!= null) && (filterType!='')){
-            if(filterType=='Registered'){
-                soqlQuery=soqlQuery+registeredClause;
-            }
-            else if(filterType=='Saved'){
-                soqlQuery=soqlQuery+savedClause;
-            }
-            else if(filterType=='recurring'){
-                soqlQuery=soqlQuery+recurringClause;
-            }
-            else if(filterType=='Non-Recurring'){
-                soqlQuery=soqlQuery+nonRecurringClause;
-            }
-        }
-        
-        if(sortType=='Name')
-        {
-            soqlQuery=soqlQuery+nameSortClause;
-        }
-        else 
-        {
-            soqlQuery=soqlQuery+dateSortClause;
-        }
-        soqlQuery=soqlQuery+paginationQuery;
-        System.debug('Soql Query==>'+soqlQuery);
-        List<CORE_LA_Participant__c > EventParticipants =  database.query(soqlquery);
-        
-        /*List<CORE_LA_Participant__c > EventParticipants= [SELECT Event__c,Event__r.Name,Event__r.No_of_Attendees__c,Event__r.Recurring__c,
-Event__r.Banner__c,Event__r.Short_Description__c,Event__r.From_Date__c,Event__r.To_Date__c,
-Event__r.Location__c,Event__r.Prerequisite__c,Event__r.Agenda__c,
-Event__r.Details__c,Event__r.Recurring_Details__c,Event__r.Faclities__c,Id,Role__c,Status__c ,Rating__c,Attending_After_Party__c,Dietary_Plan__c,Participant_Name__c FROM CORE_LA_Participant__c WHERE Participant_Name__c =: UserInfo.getUserId() ];*/
-        List<CORE_LA_EventWrapperClass.Event> eventParticipantList = new List<CORE_LA_EventWrapperClass.Event>();
-        for (CORE_LA_Participant__c participant :EventParticipants){
-            CORE_LA_EventWrapperClass.Event eventDetails= new CORE_LA_EventWrapperClass.Event();
-            eventDetails.eventID=participant.Event__c;
-            eventDetails.eventName=participant.Event__r.Name;
-            eventDetails.numberOfAttendees= participant.Event__r.No_of_Attendees__c;
-            eventDetails.recurring= participant.Event__r.Recurring__c;
-           // eventDetails.contentURLBannerImage=participant.Event__r.Banner__c;
-            eventDetails.shortDescription=participant.Event__r.Short_Description__c;
-            eventDetails.fromDate=participant.Event__r.From_Date__c;
-            eventDetails.toDate=participant.Event__r.To_Date__c;
-            eventDetails.Location=participant.Event__r.Location__c;
-            eventDetails.userRole=participant.Role__c;
-            eventDetails.userRegistrationStatus=participant.Status__c;
-            eventDetails.eventRating=participant.Rating__c;
-            eventDetails.accessibilityNeeds=true;//participant.Attending_After_Party__c;
-            eventDetails.dietaryPlan=true;//participant.Dietary_Plan__c;
-            eventDetails.prerequisite=participant.Event__r.Prerequisite__c;
-            eventDetails.agenda=participant.Event__r.Agenda__c;
-            eventDetails.details=participant.Event__r.Details__c;
-            eventDetails.recurringDetails=participant.Event__r.Recurring_Details__c;
-            //eventDetails.floorPlan=participant.Event__r.Location__c;
-            //eventDetails.trainer=
-            eventDetails.facilities=participant.Event__r.Faclities__c;
-            eventParticipantList.add(eventDetails);
-        }
-        System.debug('Event list with details======>'+eventParticipantList);
-        
-        return eventParticipantList;
-    }
 }

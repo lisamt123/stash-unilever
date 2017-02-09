@@ -1,0 +1,341 @@
+<aura:component controller="CORE_LA_Controller" implements="flexipage:availableForAllPageTypes,force:appHostable">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.detailPageLoad}" />
+    <aura:attribute name="agendaList" type="CORE_LA_Agenda__c[]"/>
+    <aura:attribute name="occurenceId" type="String"/>
+    <aura:attribute name='actionBarHide' type='Boolean' default="true"/>
+    <aura:attribute name="previousPage" type="String"/>
+    <aura:attribute name="prerequisiteDiv"  type="boolean" default="false"/>
+    <aura:attribute name="agendaDiv" type="boolean" default="false"/>
+    <aura:attribute name="facilitiesDiv" type="boolean" default="false"/>
+    <aura:attribute name="floorPlanDiv" type="boolean" default="false"/>
+    <aura:attribute name="isRegistrationPopup" type="boolean"/>
+    <aura:attribute name="isSharePopup" type="boolean"/>
+    <aura:attribute name="eventId" type="String"/>
+    
+    <aura:attribute name="event" type="CORE_LA_EventWrapperClass.Event" description='Contains detail of the event' />
+    <!-- <aura:attribute name="eventArticle" type="CORE_LA_EventWrapperClass.Event"/> -->
+    <aura:attribute name="trainers" type="CORE_LA_EventWrapperClass.TrainerWrapper" description='Contains detail of the Trainer Based On EventId'/>
+    <aura:attribute name="externalTrainerExists" type="Boolean" default="false" />
+    
+    
+    <style>
+        .slds .slds-publisher .slds-publisher__toggle-visibility li:nth-last-child(1), a#tab-scoped-2__item, a#tab-scoped-1__item, .slds .slds-show, button.slds-button.slds-button--neutral.slds-button.slds-button--icon-border.slds-button--icon-small.slds-m-right--small.uiButton {
+        display: none !important;
+        }
+        .DetailSectionTable{
+        margin-bottom: -7px;
+        }
+        @media screen and (min-width:768px){
+        .feedback_container {
+        top: 39% !important;
+        left: 10% !important;
+        right: 10% !important;
+        }
+        }
+        
+        .slds a > p {
+        white-space: pre-line;
+        width: 227px;
+        word-wrap: break-word;
+        }
+        .gallery1 img {
+        height: 55px !important;
+        width: 55px;
+        }
+        
+        button.slds-button.slds-button--icon-border.slds-button--icon-small.slds-m-right--small {
+        display: none;
+        }
+        ul.slds-list--horizontal.slds-has-dividers--right.slds-text-body--small {
+        display: none;
+        }
+        .slds-avatar.slds-avatar--circle.slds-avatar--small {
+        display: none;
+        }
+        .slds-avatar.slds-avatar--circle.slds-avatar--medium {
+        display: none;
+        }
+        
+        .slds-grid.slds-grid--align-spread.slds-has-flexi-truncate {
+        display: none;
+        }
+        
+        p.slds-text-body--small {
+        display: none;
+        }
+        
+        li.slds-feed__item.cChatterFeedElement {
+        background-color: white;
+        }
+        
+        .slds-grid.slds-grid--align-spread {
+        background-color: white;
+        }
+        
+        .slds-attachments__item.slds-box.slds-box--x-small.slds-theme--shade {
+        background-color: white;
+        border: none;
+        }
+        
+        .slds .slds-input {
+        margin-bottom: 10px;
+        display: none;
+        }
+        li.slds-feed__item.cChatterFeedElement {
+        padding: 0px;
+        margin-bottom: 10px;
+        }
+        li.slds-timeline__item {
+        display: none;
+        }
+        .slds-comment__content.slds-text-longform {
+        font-weight: bold;
+        display: none !important;
+        }
+        
+        .gallery1 img {
+        height: 50px;
+        }
+        .slds .slds-tabs--scoped {
+        width: 0%;
+        }
+        .nav-container>li:nth-child(2),.nav-container>li:nth-child(3){
+        display:none;
+        }
+        .nav-container>li:nth-child(1){
+        text-align:left;
+        padding-left: 10px !important;
+        }
+        
+    </style>
+        <!-- related to back button-->
+    <div class="slds-page-header" role="banner" data-aura-rendered-by="4:299;a">
+        <div class="slds-media slds-media--center" data-aura-rendered-by="5:299;a">
+            <img aria-hidden="true" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png"
+                 onclick="{!c.gotoHomePage}" class="slds-icon slds-avatar--small"></img>
+            <div class="slds-media__body" data-aura-rendered-by="8:299;a"></div>
+        </div>
+    </div>
+    
+    <!-- This is related to event detail page -->
+    <div class="cards">
+        
+        <br></br>
+        <div class="slds-text-heading--small slds-truncate title1" > {!v.event.eventName}</div>
+        <!--<aura:if isTrue="{!v.actionBarHide}">
+               <div class="status-event">{!v.event.userRegistrationStatus}</div>
+         </aura:if>-->
+        <aura:if isTrue="{!v.event.recurring}">
+            <lightning:badge class="events-badges" label="Multi-Event" />            
+        </aura:if>
+        <aura:if isTrue="{!v.event.userEventStatus!=True}">
+            <div class="top-register">
+                <aura:if isTrue="{!v.event.userRegistrationStatus == 'Invited'}">
+                    <div class="action-bar_top">
+                        <c:CORE_LA_CommonActionBar event="{!v.event}" userRegistrationStatus="{!v.event.userRegistrationStatus}" sourcePage="UpcomingDetail"/>
+                    </div>
+                </aura:if>
+            </div> 
+            <div class="top-register">            
+                <aura:if isTrue="{!v.event.userRegistrationStatus == 'Saved'}">
+                    <div class="action-bar_top">
+                        <c:CORE_LA_CommonActionBar event="{!v.event}" userRegistrationStatus="{!v.event.userRegistrationStatus}" sourcePage="UpcomingDetail"/>
+                    </div>
+                </aura:if>
+            </div> 
+        </aura:if>
+        
+        <!-- <div class="date-adress1"> {!v.eventArticle.fromDate}</div> -->
+        <img class="event-banner" src="/resource/CORE_LA_StaticResource/event_app/images/event_image_dummy2.png"></img>
+        <div style="margin-top:6px;">{!v.event.details}</div>
+        
+        <hr></hr>
+        <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png"></img>
+        <span class="date-adress"> {!v.event.fromDate}</span>
+        <br></br>
+        <img class="icons_group2" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+        <span class="date-adress loc1"> {!v.event.location}</span>
+        <hr></hr>
+        <aura:if isTrue="{!v.event.recurring}">
+            <div class="slds-page-header" onclick="{!c.getOccurenceDetail}" style="margin:-9px;">
+                <lightning:button variant="brand" class="slds-button slds-button--neutral view" label="View Occurence" onclick="{!c.getOccurenceDetail}" />
+                
+                
+            </div>
+        </aura:if>
+        <!--	<img class="icons_group1" src="/resource/Lightning_designing_style/assets/icons/utility/bookmark_60.png"></img> -->
+        <div class="slds-tabs--default ">
+            <ul class="slds-tabs--default__nav tabUi " role="tablist">
+                <li aura:id="tab-feed" class="slds-tabs--default__item slds-text-title--caps " title="Item One" role="presentation"  onclick="{!c.feedDisplay}">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">ABOUT</a>
+                </li>
+                <li aura:id="tab-upcoming" class="slds-tabs--default__item slds-text-title--caps  " title="Item Two" role="presentation"  onclick="{!c.upcomingEventDisplay}">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">FEEDS</a>
+                </li>
+            </ul>
+            <div aura:id="upcomingTabContent" id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item" >
+                <article class="slds-card slds-card--narrow">
+                    <c:ChatterPublisherCmp subjectId="{!v.event.eventId}" feedType="Record"/> 
+                    <c:ChatterFeedCmp subjectId="{!v.event.eventId}" feedType="Record"/> 
+                </article>
+            </div>
+            <div aura:id="feedContent" id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item" >
+                <div class="slds-page-header list" role="banner">
+                    <div class="slds-media">
+                        <div class="slds-text-align--left"> Speaker and Attendees</div>
+                        <div class="slds-media__body slds-text-align--right">
+                            <div  onclick="{!c.navigateTrainerDetails}">
+                                <p class=" events-color">
+                                    See all
+                                    <img class="down-arrow1"  src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <article class="">
+                    <div aura:id="listTrainer" class="event-trainercard">
+                        <aura:iteration items="{!v.trainers}" var="trainerList">
+                            <div class="trainer1" >
+                                <div class="trainer-photo">
+                                    <ul>
+                                        <li style="margin-right: 8px;" aura:id="TrainerImage" data-record="{!trainerList.ExternalEmail}" onclick="{!c.goToTrainerExternalDetail}">
+                                            <img title="{!trainerList.ExternalName }" src="{!trainerList.ExternalImage }" ></img> 
+                                        </li>
+                                        <li style="margin-top: -24px;" data-record="{!trainerList.Participant_Id}"  onclick="{!c.goToTrainerDetail}">
+                                            <img title="{!trainerList.Participant_Name}" src="{!trainerList.Participant_SmallPhotoUrl}"></img>
+                                        </li> 
+                                        
+                                    </ul>
+                                </div>
+                                <div class="trainer-detail1">
+                                    <a>
+                                        <span style="">{!trainerList.Participant_Name}
+                                            {!trainerList.ExternalName }
+                                        </span>
+                                    </a>
+                                    <br></br>
+                                    <span style="">{!trainerList.Participant_Title}
+                                        {!trainerList.ExternalTitle }
+                                    </span>
+                                </div>
+                            </div>
+                        </aura:iteration>
+                    </div>
+                </article>
+                <div class="slds-page-header  slds-page-header1" role="banner">
+                    <div class="slds-media">
+                        <div class="slds-media__figure"></div>
+                        <div class="slds-media__body">
+                            <p class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets" onclick="{!c.prerequisiteDiv}">
+                                Prerequisite &amp; Documents</p>
+                            <div id="clicker" class="slds-text-body--regular title" onclick="{!c.prerequisiteDiv}">
+                                <img class="down-arrow" aura:id="myimg1" src="/resource/Lightning_designing_style/assets/icons/utility/chevrondown_60.png"></img>
+                                <img class="up-arrow slds-hide" aura:id="myimg2" src="/resource/Lightning_designing_style/assets/icons/utility/chevronup_60.png"></img>
+                            </div>
+                            <aura:if isTrue="{!v.prerequisiteDiv}">
+                                <div   aura:id="text" class="detail detail-content" >
+                                    <li>{!v.event.prerequisite}</li>
+                                    <div class="feedContent">
+                                        
+                                        
+                                        <c:CORE_LA_ChatterFeed eventFeedId="{!v.event.eventId}"/>
+                                        
+                                        <!--<c:ChatterPublisherCmp subjectId="{!v.event.eventId}" feedType="Record"/> -->
+                                        <!-- <c:ChatterFeedCmp subjectId="{!v.event.eventId}" feedType="Record"/> -->
+                                    </div>
+                                </div>
+                            </aura:if>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-page-header slds-page-header1" role="banner">
+                    <div class="slds-media">
+                        <div class="slds-media__figure"></div>
+                        <div class="slds-media__body" onclick="{!c.agendaDiv}">
+                            <p class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets">
+                                Agenda</p>
+                            <div id="clicker" class="slds-text-body--regular title" >
+                                <img class="down-arrow" aura:id="myimg5" src="/resource/Lightning_designing_style/assets/icons/utility/chevrondown_60.png"></img>
+                                <img class="up-arrow slds-hide" aura:id="myimg6" src="/resource/Lightning_designing_style/assets/icons/utility/chevronup_60.png"></img>
+                            </div>
+                            <aura:if isTrue="{!v.agendaDiv}">
+                                <div aura:id="text2" class="detail detail1 detail-content" >
+                                    <ul>
+                                        <aura:iteration items="{!v.agendaList}" var="agendaListData">
+                                            <ul> 
+                                                <li>{!agendaListData.Name}</li>
+                                                <span>{!agendaListData.From_Time__c}</span> - <span>{!agendaListData.To_Time__c}</span>
+                                                <li>{!agendaListData.Summary__c}</li>
+                                            </ul>
+                                        </aura:iteration>
+                                    </ul>
+                                </div>
+                            </aura:if>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-page-header slds-page-header1" role="banner">
+                    <div class="slds-media">
+                        <div class="slds-media__figure"></div>
+                        <div class="slds-media__body" onclick="{!c.facilitiesDiv}">
+                            <p class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets">
+                                Facilities</p>
+                            <div id="clicker" class="slds-text-body--regular title" >
+                                <img class="down-arrow" aura:id="myimg7" src="/resource/Lightning_designing_style/assets/icons/utility/chevrondown_60.png"></img>
+                                <img class="up-arrow slds-hide" aura:id="myimg8" src="/resource/Lightning_designing_style/assets/icons/utility/chevronup_60.png"></img>
+                            </div>
+                            <aura:if isTrue="{!v.facilitiesDiv}">
+                                <!-- <p>{!v.event.facilities}</p> -->
+                                <div aura:id="text3" class="detail detail-content" >
+                                    <img class="facility" src="/resource/CORE_LA_StaticResource/event_app/images/facility.png"></img>
+                                </div>
+                            </aura:if>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-page-header slds-page-header1" role="banner">
+                    <div class="slds-media">
+                        <div class="slds-media__figure"></div>
+                        <div class="slds-media__body" onclick="{!c.floorPlanDiv}">
+                            <p class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets">
+                                Floor Plan</p>
+                            <div id="clicker" class="slds-text-body--regular title" >
+                                <img class="down-arrow" aura:id="myimg9" src="/resource/Lightning_designing_style/assets/icons/utility/chevrondown_60.png"></img>
+                                <img class="up-arrow slds-hide" aura:id="myimg10" src="/resource/Lightning_designing_style/assets/icons/utility/chevronup_60.png"></img>
+                            </div>
+                            <aura:if isTrue="{!v.floorPlanDiv}">
+                                <div   aura:id="text4" class="detail detail-content" >
+                                    <img src="{!v.event.contentURLBannerImage}"></img>
+                                </div>
+                            </aura:if>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="action-bar">
+        <aura:if isTrue="{!v.actionBarHide}">
+            <aura:if isTrue="{!v.event.userEventStatus!=True}">
+                <c:CORE_LA_CommonActionBar event="{!v.event}" userRegistrationStatus="{!v.event.userRegistrationStatus}" sourcePage="UpcomingDetail"/>
+            </aura:if>
+        </aura:if>
+    </div>
+    <!-- Registration Popup -->
+    <aura:if isTrue="{!v.isRegistrationPopup}">
+        <div class="slds-backdrop slds-backdrop--open">
+            <c:CORE_LA_Registration ></c:CORE_LA_Registration>
+        </div>
+    </aura:if>
+    <!-- Share Popup -->
+    <aura:if isTrue="{!v.isSharePopup}">
+        <div class="slds-backdrop slds-backdrop--open">
+            <c:CORE_LA_share ></c:CORE_LA_share>
+        </div>
+    </aura:if>
+    
+</aura:component>

@@ -1,0 +1,26 @@
+<aura:component controller="CORE_LA_Controller" implements="flexipage:availableForAllPageTypes,force:appHostable">
+    <aura:attribute name="externalName" type="String" />
+    <aura:attribute name="externalTitle" type="String" />
+    <aura:attribute name="externalContact" type="String" />
+    <aura:attribute name="externalEmail" type="String" />
+    <aura:attribute name="externalProfile" type="String" />
+    <div>
+        <form>
+            <lightning:input label="Name" name="name" required="true" value="{!v.externalName}"/><br/>
+            
+            <lightning:input label="Title"  name="title" required="true" value="{!v.externalTitle}"/><br/>
+            
+            <lightning:input type="email" label="Email" name="email"  value="{!v.externalEmail}"/><br/>
+            
+            <ui:inputText label="Phone" class="slds-input" value="{!v.externalContact}" labelClass="slds-form-element__label"/><br/>
+            
+            <ui:inputTextArea label="Profile"  value="{!v.externalProfile}" required="true"/>  <br/><br/> 
+              
+            <ui:button label="Submit" class="slds-button slds-button--neutral" labelClass="label" press="{!c.submitDetail}"/>
+                       
+            <ui:button label="Cancel" class="slds-button slds-button--neutral" labelClass="label"/>
+                       
+         </form>
+        
+    </div>
+</aura:component>

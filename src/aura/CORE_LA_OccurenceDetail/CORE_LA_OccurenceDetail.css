@@ -1,0 +1,236 @@
+.THIS.heading{
+    padding: 8px;    
+}
+.THIS.cards{
+    padding: 8px;
+    background: white;
+    min-height: 360px;
+    margin-bottom: -48px;
+}
+.THIS .banner-image{
+    margin:10px 0;
+}
+.THIS .icons_group{
+    width:17px;
+    height:17px;
+}
+.THIS .icons_group2{
+    width:11px;
+    height:11px;
+}
+.THIS .filter-sort{
+    float: right;
+    margin-top: -30px;
+}
+.THIS hr{
+    margin: 0.5rem -9px !important; 
+}
+.THIS .icons_group1{
+    float: right;
+    margin-top: -14px;
+    width: 25px;
+    height: 25px;
+}
+.THIS .lang{
+    font-size: 10px;
+    color: #afafaf;
+}
+.THIS .num-attendees{
+    font-size: 11px;
+    color: rgb(0, 136, 255);
+}
+.THIS .date-adress{
+    font-size: 11px;
+    color: #afafaf;    
+}
+.THIS .date-adress1{
+	font-size: 11px;
+    color: #afafaf;
+    width: 77%;
+}
+.THIS .event-banner{
+    height:200px;
+    margin: 10px 0;
+}
+.THIS .tabUi{
+    background: white;
+    margin: 0 -10px;
+}
+.THIS .tabUi li{
+    width: 54%;
+    margin: 0px -10px;
+    text-align: center;
+}
+.THIS .body-content{
+    padding: 20px;
+    background: white;
+}
+.THIS .topBackBarIcon{
+    height:22px;
+    width:22px; 
+}
+.THIS.detail{
+    background: white;
+    padding-left: 21px;
+    padding-right: 21px;
+}
+.THIS .seeAll{
+    width: 32px;
+    height: 45px;
+    /* padding-top: 13px; */
+    margin-top: -40px;
+    margin-left: 233px;
+}
+.THIS .backImageStyle {
+    height: 10px;
+    width: 10px;
+    /* display:inline;*/
+    float: right;
+    margin-top:5px;
+}
+.THIS .down-arrow, .THIS .up-arrow{
+    width: 15px;
+    float: right;
+    margin-top: -18px;
+}
+.THIS .down-arrow1{
+    width: 15px;
+}
+.THIS .events-color{
+    color: #0070d2;
+}
+.THIS .list{
+    margin: -16px -10px 0 -10px;
+}
+.THIS .detail-content{
+    background: white;
+    margin: 9px -24px -15px -39px;;
+    padding: 8px 40px 10px 39px;
+}
+.THIS .detail1 li:nth-child(even) {
+    margin-bottom:10px;
+}
+.THIS.action-bar{
+    background: white;
+    margin: 33px 1px;
+    height: 61px;
+}
+.THIS .share-icon{
+    float:left;
+}
+.THIS .register-icon{
+    float:right;
+}
+.THIS .icon-action{
+    margin: 0 15%;
+    /* text-align: center; */
+    width: 12%;
+}
+.THIS .slds-page-header1 {
+    margin: -9px;
+}
+.THIS .facility{
+    width: 48%;
+}
+.THIS .loc{
+    margin-top:10px;
+}
+.THIS .top-register{
+    float:right;
+    margin-top: -11px;
+}
+.THIS .top-register img{
+    width:20px;
+    text-align:center;
+}
+.THIS .slds-text-body--small {
+    font-size: .5rem !important;
+    color: #54698d;
+    text-align: center;
+}
+.THIS .slds-tabs--default__link:focus {
+    border-bottom-width: 2px !important;
+    width: 100%;
+    border-color: #0070d2;
+}
+.THIS .events-imagePadding{
+    padding: 10px;
+    border: white;
+}
+
+.THIS .events-captionPadding{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: white;
+    margin: 6px;
+}
+
+
+.THIS .events-attendeList{
+    background: white;
+}
+
+.THIS .events-font-color{
+    color: #0070d2;
+}
+
+.THIS .events-slds-color{
+    color: rgba(0, 0, 0, 0.4);
+}
+.THIS .slds-image__crop img {
+    max-width: 100% !important;
+}
+.THIS .slds-icon1 {
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 2rem !important;
+    fill: #fff;
+}
+.THIS .trainer1 {
+	height: 83px;
+    background: white;
+    margin: 0px -24px;
+    border-bottom: 5px solid #f7f9fb;
+    padding: 10px 36px;
+}
+.THIS .trainer-detail1{
+    position: absolute;
+    left: 83px;
+    margin-top: 9px;
+}
+.THIS .trainer-detail p {
+    font-size: 10px;
+    margin-top: 44px;
+}
+.THIS .slds-button{
+    width: 94%;
+    margin: 10px 10px;
+}
+.THIS .slds-post {
+    background: #fff;
+    padding: 0.5rem 1rem;
+
+}
+.THIS .trainer-photo {
+    float:left;
+    width: 50px;
+}
+.THIS .back-button{
+    padding: 1rem .75rem;
+    border-bottom: 1px solid #d8dde6;
+    background: #f7f9fb;
+}
+.THIS .title1{
+        width: 80%;
+    float: left;
+}
+.THIS .action-bar_top>div:nth-child(1){
+    margin:0px;
+}
+.THIS .action-bar_top>div>div:nth-child(2){
+    display:none;
+}
+.THIS .events-badges{
+    background-color:#ffb75d;;
+    color:#ffffff;
+}

@@ -11,12 +11,22 @@ public class CORE_LA_EventWrapperClass{
 * @modifiedby  -
 */
     public class Event extends CORE_BaseApplicationWrapper{
+         
+         @AuraEnabled
+        public String occurenceId; // Id of occurence event
+    
         @AuraEnabled
         public String eventId;      //Id of the Event
+         @AuraEnabled
+        public String IdofParticicpant; 
         @AuraEnabled
         public String eventName;            // name of the event
         @AuraEnabled
+        public Decimal totalRatingPerEvent;  
+        @AuraEnabled
         public Decimal numberOfAttendees;           //number of attendees for the event
+        @AuraEnabled
+        public Decimal avgRatingPerEvent;
         @AuraEnabled
         public Boolean recurring;       //event reoccur
         @AuraEnabled
@@ -35,6 +45,8 @@ public class CORE_LA_EventWrapperClass{
         public String userRole;     //Role of the user
         @AuraEnabled
         public String userRegistrationStatus;       //Status of the user for the event
+         @AuraEnabled
+        public Boolean userEventStatus;     //if event completed
         @AuraEnabled
         public Decimal eventRating;     //Rating of the event giving by user
         //@AuraEnabled
@@ -65,6 +77,8 @@ public class CORE_LA_EventWrapperClass{
         public User trainer;            //trainer   
         @AuraEnabled
         public String facilities; //facilities provided on the event
+        @AuraEnabled
+        public String ParticipantName;
        
     }
     
@@ -86,13 +100,22 @@ public class CORE_LA_EventWrapperClass{
         public String ExternalContact;
        //Wrapper for Internal Trainer
         @AuraEnabled
-        public String Participant_Id;
+        public String Participant_Id;//to be used in Admin part also
          @AuraEnabled
         public String Participant_SmallPhotoUrl;
          @AuraEnabled
         public String Participant_Name;
          @AuraEnabled
         public String Participant_Title;
+        //wrapper for Admin Part
+          @AuraEnabled
+        public String Participant_Status;
+         @AuraEnabled
+        public String Participant_Role;
+         @AuraEnabled
+        public String Participant_Event;
+        
+        
         
     }
     

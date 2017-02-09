@@ -1,0 +1,23 @@
+.THIS .events-badgescomplete{
+    background-color:#04844b;
+    color:#ffffff;
+}
+
+.THIS .events-limitname{
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.THIS .more{
+    background:lightblue;
+    color:navy;
+    font-size:13px;
+    padding:3px;
+    cursor:pointer;
+}
+
+.THIS .complete{
+     display:none;
+}

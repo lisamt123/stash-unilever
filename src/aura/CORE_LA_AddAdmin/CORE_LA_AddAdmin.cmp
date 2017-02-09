@@ -1,0 +1,72 @@
+<aura:component controller="CORE_LA_Controller" implements="force:appHostable" >
+    <!-- Attributes -->
+    <aura:attribute name="searchString" type="String" description="The search string to find." />
+    <aura:attribute name="selectedUser" type="Object[]" description="Collection of selected Users"/>
+    <aura:attribute name="newUser" type="Object[]" />
+    <aura:attribute name="showTag" type="Boolean" default="false"/>
+    <aura:attribute name="matches" type="Object[]" />
+    <aura:attribute name="listIconClass" type="String" />
+    <aura:attribute name="listIconSVGPath" type="String" />
+    <aura:attribute name="selectedUserName" type="String" description="The name of the selected users." />
+      <aura:attribute name="Participant_Event" type="String" Default="aDjV00000004D8sKAE"/>
+      <aura:attribute name="Participant_Role" type="String" default="Attendee" />
+      <aura:attribute name="Participant_Status" type="String" default="Invited"/>
+      <aura:attribute name="responseSuccess" type="Boolean" default="false"/>
+     
+    <!-- Events
+    <aura:registerEvent name="updateUserListEvent" type="c:AA_UpdateUserList"/>  
+    <aura:handler name="change" value="{!v.selectedUser}" action="{!c.sendUsers}"/>--> 
+     <ltng:require styles="{!$Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css'}" /> 
+    <!-- Lookup Markup : See https://www.lightningdesignsystem.com/components/lookups -->
+    <div > 
+          <div class="slds-section-title--divider" onclick="{!c.goToEventDetail}">
+            <div class="slds-media slds-media--center" >
+                <img class="slds-icon slds-avatar--small" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" aria-hidden="true" >
+                </img>  
+                <div class="slds-align--absolute-center slds-text-heading--large ">Add Admin</div>
+            </div>
+       </div>
+  
+        <div aura:id="lookup-div" class="slds-lookup slds-has-selection" data-select="multi" data-scope="single" data-typeahead="true">
+            <!-- This is the Input form markup -->
+            <div class="slds-form-element">
+               
+                <ui:inputText aura:id="lookup" value="{!v.searchString}" placeholder="Type @ followed by User Name" class="slds cust-input" updateOn="keyup" keyup="{!c.search}" />
+                <!-- This markup is for when searching for a string -->
+            </div>
+            <!-- This is the lookup list markup. Initially it's hidden -->
+            <div aura:id="lookuplist"  >
+                <ul aura:id="lookuplist-items" class="hide">
+                    <aura:iteration items="{!v.matches}" var="match"  indexVar="ind">
+                        <li >
+                            <a id="{!globalId + '_id_' + match.SObjectId}" data-index="{!ind}" data-name="{!match.Name}" onclick="{!c.select}">
+                                {!match.SObjectLabel}
+                            </a>
+                        </li>
+                    </aura:iteration>
+                </ul>
+            </div>            
+            <div class="slds-form-element notified-users">
+                <aura:if isTrue="{!v.showTag}">
+                    <label class="slds-form-element__label">Users</label>
+                    <aura:iteration var="selectedUser" items="{!v.selectedUser}">
+                        <div class="slds-pill_container slds-m-right--x-small slds-m-bottom--x-small">
+                            <div class="slds-pill">
+                                <span class="slds-pill__label">{!selectedUser.Name}</span> 
+                                <button class="slds-button slds-button--icon-bare slds-pill__remove"  data-record="{!selectedUser.Id}"  label="{!selectedUser.Id}" onclick="{!c.remove}">
+                                    <c:svg class="slds-button__icon" 
+                                           xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#close"  />
+                                    <span class="slds-assistive-text"  >Remove</span>
+                                </button>
+                            </div>
+                        </div>
+                    </aura:iteration>  
+                </aura:if>
+            </div>
+        </div>
+        
+        <lightning:button variant="brand" label="Submit" onclick="{! c.handleAdmin }" />
+        
+      
+    </div>
+</aura:component>

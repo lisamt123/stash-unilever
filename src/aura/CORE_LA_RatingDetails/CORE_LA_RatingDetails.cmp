@@ -1,0 +1,55 @@
+<aura:component controller="CORE_LA_Controller">
+     <aura:attribute name="eventIdneeded" type="String" />
+     <aura:attribute name="attendees" type="CORE_LA_Participant__c[]"/>
+     <aura:attribute name="limitAttendeeRecords" type="Integer" default="1000" />
+     <aura:attribute name="OffsetLimitAttendee" type="Integer" default="0"/>
+     <aura:handler name="init" value="{!this}" action="{!c.getAttendeeRatingDetails}" />
+     <aura:attribute name='event' type='CORE_LA_EventWrapperClass.Event' description='Contains detail of the event' />
+  
+ <div aura:id="listAttende" class="event-attendediv ">
+        <div class="slds-section-title--divider" onclick="{!c.goToHomePage}">
+            <div class="slds-media slds-media--center" >
+                <img class="slds-icon slds-avatar--small" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" aria-hidden="true" >
+                </img>  
+            </div>
+        </div>
+     <aura:iteration items="{!v.attendees}" var="attendeeList"> 
+           <aura:if isTrue="{!attendeeList.Status__c=='Registered'}"><!--only registered attendess comments visible-->
+             <lightning:card variant="narrow">
+                <aura:set attribute="title">
+                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate"  >
+                     <p class="events-limitname">
+                         <a href="javascript:void(0);" title="{!attendeeList.Participant_Name__r.Name}" >{!attendeeList.Participant_Name__r.Name}</a>
+                      </p>
+                  </div>
+                </aura:set>
+              <aura:set attribute="footer">
+                <lightning:badge class="events-badgescomplete" label="{!(attendeeList.Rating__c +' '+'Stars')}"/>
+              </aura:set>
+            
+        <p class="slds-p-horizontal--small">
+           <article  class="slds-post" >
+                    <header class="slds-post__header slds-media slds-media--center" data-aura-rendered-by="49:289;a">
+                        <div class="slds-media__figure" >
+                            <a class="slds-avatar slds-avatar--circle slds-avatar--large" href="javascript:void(0);"  data-aura-rendered-by="51:289;a">
+                                <img src="{!attendeeList.Participant_Name__r.SmallPhotoUrl}" data-aura-rendered-by="52:289;a" />
+                            </a>
+                        </div>
+                        <div class="slds-media__body"  > 
+                            <p class="slds-text-body--small " >
+                                <a class="slds-text-link--reset" href="javascript:void(0);">
+                                    {!attendeeList.Participant_Name__r.Title}
+                                </a>  
+                            </p>
+                             <p class="slds-text-body--small events-limitname">
+                                {!attendeeList.Feedback__c}  
+                             </p> 
+                        </div>
+                    </header>
+                </article>
+              </p>
+          </lightning:card>
+     </aura:if> 
+   </aura:iteration>           
+ </div>
+</aura:component>
