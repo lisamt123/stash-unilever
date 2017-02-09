@@ -8358,6 +8358,10 @@
         <apexPage>IPM_ExportTeamMembersReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+	<pageAccesses>
+        <apexPage>IPM_ProjectsClustersMapping</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
 
     <recordTypeVisibilities>
         <recordType>IPM_Company_Card__c.IPM_Global_Company_Card</recordType>
