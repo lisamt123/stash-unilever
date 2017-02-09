@@ -1,5 +1,5 @@
+src
 src/classes
-
 src/classes/IPM_AlignDataOnGeographyChange_Batch.cls
 src/classes/IPM_AlignDataOnGeographyChange_Batch.cls-meta.xml
 src/classes/IPM_AlignDataOnGeographyChange_Test.cls
@@ -152,6 +152,8 @@ src/classes/IPM_ProjectQuestionnaireHelper.cls
 src/classes/IPM_ProjectQuestionnaireHelper.cls-meta.xml
 src/classes/IPM_ProjectResourceHandler.cls
 src/classes/IPM_ProjectResourceHandler.cls-meta.xml
+src/classes/IPM_ProjectResourceTriggerHandler.cls
+src/classes/IPM_ProjectResourceTriggerHandler.cls-meta.xml
 src/classes/IPM_ProjectRolloutHandler.cls
 src/classes/IPM_ProjectRolloutHandler.cls-meta.xml
 src/classes/IPM_ProjectSearchCtrl.cls
@@ -410,11 +412,9 @@ src/customPermissions/IPM_User_ProfileNew.customPermission
 src/customPermissions/IPM_User_ProfileView.customPermission
 
 src/email
-
 src/email/IPM_Emails
 src/email/IPM_Emails/IPM_Failure_Phase_Change_Template.email
 src/email/IPM_Emails/IPM_Failure_Phase_Change_Template.email-meta.xml
-
 
 src/groups
 src/groups/IPM_Food_Dressings_BP.group
@@ -438,10 +438,10 @@ src/labels
 src/labels/CustomLabels.labels
 
 src/layouts
-
 src/layouts/IPM_Bosscard__c-Bosscard Layout.layout
 src/layouts/IPM_Clusters__c-IPM Project Clusters Layout.layout
-src/layouts/IPM_Clusters__c-IPM_Clusters_Layout.layout
+src/layouts/IPM_Company_Card__c-IPM Company Card Layout.layout
+src/layouts/IPM_Company_Card__c-IPM Regional Company Card Layout.layout
 src/layouts/IPM_Country__c-IPM Country Layout.layout
 src/layouts/IPM_Financial_Year__c-IPM Financial Year Layout.layout
 src/layouts/IPM_Financial__c-IPM Financial Layout.layout
@@ -467,10 +467,9 @@ src/layouts/IPM_Questionnaire__c-IPM Questionnaire Layout.layout
 src/layouts/IPM_Task__c-Task Layout.layout
 src/layouts/IPM_User_Profile__c-User Profile Layout.layout
 
-
 src/objects
-
 src/objects/IPM_Bosscard__c.object
+src/objects/IPM_Category__c.object
 src/objects/IPM_Company_Card__c.object
 src/objects/IPM_Country__c.object
 src/objects/IPM_Financial_Year__c.object
@@ -493,7 +492,6 @@ src/objects/IPM_User_Profile__c.object
 src/objects/MDO_Geography__c.object
 
 src/pages
-
 src/pages/IPM_AssumptionsPage.page
 src/pages/IPM_AssumptionsPage.page-meta.xml
 src/pages/IPM_BCC_ConsolidatePage.page
@@ -516,6 +514,8 @@ src/pages/IPM_ChangeCurrenDocumentStatus.page
 src/pages/IPM_ChangeCurrenDocumentStatus.page-meta.xml
 src/pages/IPM_CommentsPage.page
 src/pages/IPM_CommentsPage.page-meta.xml
+src/pages/IPM_Company_CardList.page
+src/pages/IPM_Company_CardList.page-meta.xml
 src/pages/IPM_Company_CardRedirect.page
 src/pages/IPM_Company_CardRedirect.page-meta.xml
 src/pages/IPM_Consumer_EvidencePage.page
@@ -654,13 +654,10 @@ src/pages/IPM_User_ProfileRedirect.page
 src/pages/IPM_User_ProfileRedirect.page-meta.xml
 src/pages/IPM_ViewAssortmentStrategyPage.page
 src/pages/IPM_ViewAssortmentStrategyPage.page-meta.xml
-src/pages/IPM_Company_CardList.page
-src/pages/IPM_Company_CardList.page-meta.xml
 
 src/permissionsets
-
 src/permissionsets/IPMNG_Basic.permissionset
-
+src/permissionsets/IPM_All_Tabs.permissionset
 src/permissionsets/IPM_Business_Partners.permissionset
 src/permissionsets/IPM_Central_Team.permissionset
 src/permissionsets/IPM_Finance_Team.permissionset
@@ -670,19 +667,16 @@ src/permissionsets/IPM_Research_and_Development.permissionset
 src/permissionsets/IPM_System_Administrator_Permissions.permissionset
 src/permissionsets/IPM_Wave_User.permissionset
 
-
+src/profiles
+src/profiles/Unilever - Salesforce MultiApp Standard.profile
 
 src/sharingRules
 src/sharingRules/IPM_Project__c.sharingRules
 
 src/staticresources
-
 src/staticresources/IPM_Resource.resource
 src/staticresources/IPM_Resource.resource-meta.xml
 
-
 src/workflows
-
 src/workflows/IPM_Project__c.workflow
-
 
