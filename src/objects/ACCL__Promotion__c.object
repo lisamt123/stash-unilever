@@ -383,11 +383,6 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Slogan__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>ACCL__Parent_Promotion__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
