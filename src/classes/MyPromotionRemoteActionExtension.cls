@@ -98,6 +98,9 @@ Throws : N/A
                     if(JSON.serialize(UL_ThresholdEngine.thresholdcheck).containsIgnoreCase(UtilityEnum.fail.Name())){
                         Promotionobj.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_ThresholdViolated__c.getName(),true);
                     }
+					else{
+                       Promotionobj.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_ThresholdViolated__c.getName(),false);
+                    }
                     
                     content = JSON.serialize(contentDeserializedMap);
                     
