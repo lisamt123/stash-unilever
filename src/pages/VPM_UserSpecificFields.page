@@ -1,4 +1,4 @@
-<apex:page standardController="VPM_PurchasingRequests__c" extensions="VPM_PurchaseRequestsControllerExtension" standardStylesheets="true" sidebar="false" showHeader="false">
+<apex:page standardController="VPM_PurchasingRequests__c" extensions="VPM_PurchaseRequestsControllerExtension" standardStylesheets="true" sidebar="false" showHeader="false" action="{!brStatusMethod}">
     <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
     <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
     <apex:includeScript value="{!$Resource.VPM_UserSpecificScript}"/>

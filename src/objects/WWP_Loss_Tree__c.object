@@ -160,12 +160,11 @@
         <fullName>GR_QTY__c</fullName>
         <externalId>false</externalId>
         <label>GR QTY</label>
-        <precision>18</precision>
+        <length>255</length>
         <required>false</required>
-        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -921,12 +920,11 @@
         <fullName>PO_QTY__c</fullName>
         <externalId>false</externalId>
         <label>PO QTY</label>
-        <precision>18</precision>
+        <length>255</length>
         <required>false</required>
-        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
