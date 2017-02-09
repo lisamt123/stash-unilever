@@ -28516,7 +28516,7 @@ Which Communications team do you represent? You must be associated to one Planne
     <labels>
         <fullName>weekShare</fullName>
         <categories>KPI</categories>
-        <language>en_US</language>
+        <language>en_US</language> 
         <protected>false</protected>
         <shortDescription>Weekly Split</shortDescription>
         <value>Weekly Split</value>
@@ -28527,4 +28527,11 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>refere in VF page</shortDescription>
         <value>Fields-Workflow, Next Status and Description are mandatory fields</value>
+    </labels>
+		<labels>
+        <fullName>TPM_Past_Date_Validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TPM_Past Date Validation</shortDescription>
+        <value>Date From/Thru should not be in past</value>
     </labels>
