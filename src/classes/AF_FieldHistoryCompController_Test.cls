@@ -6,7 +6,7 @@
 @Version : 1.0
 @reference : none
 ****************************************************************************************************************************/
-@isTest(SeeAlldata=false)
+@isTest(SeeAlldata=true)
 public class AF_FieldHistoryCompController_Test
 { 
     Static Integer IcurrYear = System.Today().year();
@@ -14,6 +14,7 @@ public class AF_FieldHistoryCompController_Test
     static user userforFieldhistory;
     static string IsViewAllValue;
     public static boolean isAgencyFlag;
+    static string true_Check='true';
     /**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : fieldHistoryCompController
@@ -54,11 +55,16 @@ public class AF_FieldHistoryCompController_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            
+            
+            
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
             System.Assert(AFUnileverEntityQuery[0].Id != null, AF_TestFactory_Helper.UNILEVER_ENTITY);
+            
+            
             //Insert Agency Estimate.
             List<AF_Agency_Estimate__c> AgencyEsitmate = AF_TestFactory_Helper.insertAgencyEstimate(1,false);
             List<AF_Agency_Estimate__c> AgencyEsitmatelist=new List<AF_Agency_Estimate__c>();
@@ -93,7 +99,9 @@ public class AF_FieldHistoryCompController_Test
             List<AF_Bonus_Matrix__c> AFBonusMat = AF_TestFactory_Helper.insertBonusMatrix(1,true);
             List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
             System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
+            
             AF_FieldHistoryCompController f1=new AF_FieldHistoryCompController();
+            
             f1.IsViewAll = AF_Constants.AF_TRUE;
             f1.IsViewAllValue=AgencyEsitmate[0].id;
             f1.ParentObjectType =AF_Constants.SOBJECT_AGENCYESTIMATE_APINAME;
@@ -143,7 +151,7 @@ public class AF_FieldHistoryCompController_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -186,16 +194,39 @@ public class AF_FieldHistoryCompController_Test
             List<AF_Controller_Review__c> conrev =AF_TestFactory_Helper.AfcontrollerReview(1,true);
             List<AF_Controller_Review__c> conrevQuery = [SELECT ID ,Brand_Estimate__c FROM AF_Controller_Review__c WHERE ID IN : conrev LIMIT 1];
             System.assertEquals(conrevQuery[0].Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.CONTROLLERREVIEW_RECORD);
+            
+            //Insert controller review
+            List<AF_Controller_Review__c> AFControllerRev = AF_TestFactory_Helper.AfcontrollerReview(1,true);
+            List<AF_Controller_Review__c> AFControllerReviewQuery = [SELECT id FROM AF_Controller_Review__c where Id IN:AFControllerRev LIMIT 1];
+            
+            
+            
             AF_FieldHistoryCompController f2=new AF_FieldHistoryCompController();
             f2.IsViewAll = AF_Constants.AF_FALSE;
             f2.ParentObjectType = AF_Constants.SOBJECT_AGENCYESTIMATE_APINAME;
             f2.ParentRecordId = AgencyEsitmatelist[0].id;
             f2.getFieldHistoryList();
+            
             AF_FieldHistoryCompController f1=new AF_FieldHistoryCompController();
             f1.IsViewAll = AF_Constants.AF_FALSE;
             f1.ParentObjectType = AF_Constants.SOBJECT_CONTROLLER_REVIEW_APINAME ;
-            f1.ParentRecordId = conrevQuery[0].id;
+            f1.ParentRecordId = AFControllerReviewQuery[0].id;
             f1.getFieldHistoryList();
+            
+            AF_FieldHistoryCompController f12=new AF_FieldHistoryCompController();
+            f12.IsViewAll=AF_Constants.AF_FALSE;
+            f12.ParentObjectType =AF_Constants.SOBJECT_OOPSESTIMATE_APINAME;
+            f12.ParentRecordId = OOPSEstimateListQuery[0].id;
+            f12.getFieldHistoryList();
+            
+            
+            AF_FieldHistoryCompController f=new AF_FieldHistoryCompController();
+            f.IsViewAll=AF_Constants.AF_FALSE;
+            f.ParentObjectType =AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME;
+            f.ParentRecordId = AFBonusSummaryQuery[0].id;
+            f.getFieldHistoryList();
+            
+            
             Test.stopTest();
         }
     }
@@ -239,7 +270,7 @@ public class AF_FieldHistoryCompController_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -266,6 +297,7 @@ public class AF_FieldHistoryCompController_Test
             List<AF_Bonus_Summary__c> AFBonusSummary = AF_TestFactory_Helper.insertBonusSummary(1,true);
             List<AF_Bonus_Summary__c> AFBonusSummaryQuery = [Select AF_Agency__c from AF_Bonus_Summary__c where Id IN:AFBonusSummary LIMIT 1];
             System.assertEquals(AFBonusSummaryQuery[0].AF_Agency__c,acc[0].id, AF_TestFactory_Helper.BONUSSUMMARY_RECORD);
+            
             //Insert Bonus Threshold
             List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,true);
             List<AF_Bonus_Threshold__c> BonusThresholdQuery = [Select Agency_Name__c from AF_Bonus_Threshold__c where Id IN:BonusThreshold LIMIT 1];
@@ -278,20 +310,72 @@ public class AF_FieldHistoryCompController_Test
             List<AF_Bonus_Matrix__c> AFBonusMat = AF_TestFactory_Helper.insertBonusMatrix(1,true);
             List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
             System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
-            AF_Bonus_Matrix__c m1 = [select AF_Value__c from AF_Bonus_Matrix__c where id=:AFBonusMat[0].id];
-            m1.AF_Value__c = 89;
+            
+            /*AF_Bonus_Summary__c m1 = [select id,AF_Status__c from AF_Bonus_Summary__c where id=:AFBonusSummaryQuery[0].id];
+            m1.AF_Status__c = 'Ready For PO';
             update m1;
+            
+            System.assertEquals(m1.AF_Status__c,'Ready For PO');*/
+            
+              //insert controller Review.
+            //List<AF_Controller_Review__c> conrev =AF_TestFactory_Helper.AfcontrollerReview(1,true);
+            //List<AF_Controller_Review__c> conrevQuery = [SELECT ID ,Brand_Estimate__c FROM AF_Controller_Review__c WHERE ID IN : conrev LIMIT 1];
+            //System.assertEquals(conrevQuery[0].Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.CONTROLLERREVIEW_RECORD);
+            AF_Controller_Review__c rev= new AF_Controller_Review__c();
+            rev.Brand_Estimate__c=BrandEst[0].id;
+            rev.AF_Comment__c='';
+            rev.Controller_Group__c='';
+            rev.Review_Completed__c=true;
+            rev.AF_Comment__c='';
+            upsert rev;
+            
             AF_FieldHistoryCompController f3=new AF_FieldHistoryCompController();
             f3.IsViewAll='true';
             f3.ParentObjectType = AF_Constants.SOBJECT_BONUS_MATRIX_APINAME;
             f3.ParentRecordId = AFBonusMat[0].id;
             f3.getFieldHistoryList();
+            
             AF_FieldHistoryCompController f2=new AF_FieldHistoryCompController();
             f2.IsViewAll=AF_Constants.AF_TRUE;
             f2.ParentObjectType =AF_Constants.SOBJECT_OOPSESTIMATE_APINAME;
             f2.ParentRecordId = OOPSEstimateListQuery[0].id;
             f2.getFieldHistoryList();
+            
+            AF_FieldHistoryCompController f1=new AF_FieldHistoryCompController();
+            f1.IsViewAll=AF_Constants.AF_TRUE;
+            f1.ParentObjectType =AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME;
+            f1.ParentRecordId = AFBonusSummaryQuery[0].id;
+            f1.getFieldHistoryList();
+            
+            AF_FieldHistoryCompController fc=new AF_FieldHistoryCompController();
+            fc.IsViewAll=AF_Constants.AF_TRUE;
+            fc.ParentObjectType =AF_Constants.SOBJECT_CONTROLLER_REVIEW_APINAME;
+            fc.ParentRecordId = rev.id;
+            fc.getFieldHistoryList();
+            
+            AF_FieldHistoryCompController f22=new AF_FieldHistoryCompController();
+            f22.IsViewAll=AF_Constants.AF_TRUE;
+            f22.ParentObjectType =AF_Constants.SOBJECT_AGENCYESTIMATE_APINAME;
+            f22.ParentRecordId = AgencyQuery[0].id;
+            f22.getFieldHistoryList();
+            
+    
+            AF_FieldHistoryCompController.WrapperHistory ch = new AF_FieldHistoryCompController.WrapperHistory(); //WrapperHistory invoked
+            ch.FieldLabel = 'Status';
+            ch.FieldName = 'AF_Status__c';
+            ch.Description='test';
+            ch.OldValue = 'With CMCO';
+            ch.NewValue = 'Ready For PO';
+            ch.CreatedBy = 'TestUser';
+            ch.CreatedDate = system.now();
+            AF_FieldHistoryCompController field= new AF_FieldHistoryCompController();
+            field.IsViewAll=true_Check;
+            /*f1.BonusSummaryHistoryCollection  =  [Select ParentId, OldValue,NewValue, IsDeleted, Id, Field, CreatedDate, CreatedBy.Name From AF_Bonus_Summary__History Limit 2];
+            System.assertEQuals(2, f1.BonusSummaryHistoryCollection.size());*/
+            
+            
             Test.stopTest();
+                
         }
     }
 }
