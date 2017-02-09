@@ -790,4 +790,13 @@
         <tab>Pallet_Quality_Non_Conformance_VF</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>PQN_Pallet_Quality_Non_Conformance__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
 </PermissionSet>
