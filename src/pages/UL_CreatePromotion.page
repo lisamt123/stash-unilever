@@ -70,15 +70,16 @@
                     </apex:inputField>
                     
                 </apex:pageBlockSectionItem>
-                
-                <apex:pageBlockSectionItem id="customers" rendered="{! If(isForMorket || isForPromotion || isForLTA ,true,false) }">
+             <!-- remove isForMorket ||-->
+       
+                <apex:pageBlockSectionItem id="customers" rendered="{! If(isForPromotion || isForLTA ,true,false) }">
                     <apex:outputPanel id="AnchorLabelBlock">
                         <apex:outputLabel value="{!$ObjectType.ACCL__Promotion__c.Fields.UL_Account__c.Label}"
                                           for="Customer" id="customerslabel" />
                     </apex:outputPanel>
                     <apex:actionRegion id="customersReg">
                         <apex:outputPanel id="AnchorListBlock" styleClass="requiredInput" layout="block"  >
-                            <apex:outputPanel styleClass="requiredBlock" layout="block" id="customersPanel" rendered="{!!isForMorket}"/>
+                            <apex:outputPanel styleClass="requiredBlock" layout="block" id="customersPanel" rendered="{!!isForMorket }"/>
                             <apex:selectList id="Customer"
                                              value="{!planingLevelCustomers}"
                                              multiselect="false" size="1" required="true">
@@ -86,8 +87,36 @@
                                 <apex:selectOptions value="{!Customers}" id="custOpt"/>
                             </apex:selectList>
                         </apex:outputPanel>
+
+                        
+
                     </apex:actionRegion>
                 </apex:pageBlockSectionItem>
+    <!-- My Part-->
+
+                <apex:pageBlockSectionItem id="customers2" rendered="{!isForMorket}">
+                    <apex:outputPanel id="AnchorLabelBlock2">
+                        <apex:outputLabel value="{!$ObjectType.ACCL__Promotion__c.Fields.UL_Account__c.Label}"
+                                          for="Customer2" id="customerslabel2" />
+                    </apex:outputPanel>
+                  
+                        <apex:outputPanel id="AnchorListBlock" styleClass="requiredInput" layout="block"  >
+                            <apex:outputPanel styleClass="requiredBlock" layout="block" id="customersPanel2" rendered="{!isForMorket }"/>
+                            <apex:actionRegion id="custGener" >
+                            <apex:selectList id="Customer2"
+                                             value="{!planningAndGenericCustomers}"
+                                             multiselect="false" size="1" required="true">
+                                  <apex:actionSupport event="onchange" rerender=""  action="{!DafaultSoldToSet}" status="defaultCustomer" id="custGener_action"/>  
+                                <apex:selectOptions value="{!CustomersAllGeneric}" id="custOpt"/>
+                            </apex:selectList>
+                            </apex:actionRegion>
+                        </apex:outputPanel>
+
+                        
+
+                  
+                </apex:pageBlockSectionItem>
+                <!-- My Part-->
                 
                 <apex:pageBlockSectionItem id="soldCustItem" rendered="{! If(isForPromotion || isForLTA ,true,false) }">
                     <apex:outputLabel value="{!$Label.UL_SOLD_TO}"
@@ -96,7 +125,7 @@
                         <apex:outputPanel styleClass="requiredBlock" layout="block" id="soldCustPanel"/>
                         <apex:actionRegion id="sold_reg" >
                             <apex:selectList value="{!defaultsoldto}"
-                                             multiselect="false" size="1" id="soldto_list">
+                                             multiselect="false" size="1"   id="soldto_list">
                                 <apex:actionSupport event="onchange" rerender=""  action="{!DafaultSoldToSet}" status="defaultCustomer" id="soldto_supp"/>  
                                 <apex:selectOptions value="{!defultsoldtocustomers}" id="soldCust"/>
                             </apex:selectList>
@@ -129,7 +158,7 @@
                         <apex:inputField showDatePicker="true" value="{!relatedRecord.ACCL__Placement_Date_From__c}" required="true" id="Date_From">
                             <apex:actionSupport id="df_supp" event="onchange" rerender="AnchorLabelBlock,AnchorListBlock,DefaultListBlock,Del_profile"  action="{!loadCustomers}"/>  
                         </apex:inputField>
-                    </apex:actionRegion>   
+                    </apex:actionRegion>    
                     
                 </apex:pageBlockSectionItem>
                 

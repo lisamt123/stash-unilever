@@ -403,11 +403,6 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>UL_Free_Text__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>ACCL__Phase__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -561,11 +556,6 @@
             <field>UL_IIBB_Tax__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Free_Text__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
         </displayedFields>
         <displayedFields>
             <field>ACCL__Promotion_Template__c</field>
@@ -736,11 +726,6 @@
             <field>ACCL__Slogan__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Free_Text__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
         </displayedFields>
         <displayedFields>
             <field>UL_Current_Status__c</field>
@@ -918,11 +903,6 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>UL_Free_Text__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>UL_Current_Status__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1096,11 +1076,6 @@
             <field>ACCL__Promotion_Template__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Free_Text__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
         </displayedFields>
         <displayedFields>
             <field>ACCL__Phase__c</field>
@@ -1301,11 +1276,6 @@
             <field>ACCL__Slogan__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Free_Text__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>true</isRequired>
         </displayedFields>
         <displayedFields>
             <field>UL_Current_Status__c</field>
@@ -1644,11 +1614,6 @@
         <description>Field sets refer when Promotion is in Planning status</description>
         <displayedFields>
             <field>ACCL__Anchor_Account_Set__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Free_Text__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>

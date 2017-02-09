@@ -280,10 +280,12 @@ public with sharing class UL_CreatePromotionControllerSoCo{
             if (description == UL_Utility.NULL_VALUE)
                  description = UL_Utility.SPACE;
             
+            //Omkar - Made changes below to populate AccountSet SelectOption - 9-Feb-2017
             //AccountSets.add(new SelectOption(accountSet.Id, description + UL_Utility.SPACE +UL_Utility.HYPHEN + UL_Utility.SPACE +salesOrg));
-            SelectOption accountSets = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
-            accountSets.setValue(accountSet.Id);
-            accountSets.setLabel(description + UL_Utility.SPACE +UL_Utility.HYPHEN + UL_Utility.SPACE +salesOrg);
+            SelectOption accSet = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
+            accSet.setValue(accountSet.Id);
+            accSet.setLabel(description + UL_Utility.SPACE +UL_Utility.HYPHEN + UL_Utility.SPACE +salesOrg);
+            AccountSets.add(accSet);
 
         }
         
