@@ -390,7 +390,7 @@ Throws : N/A
                 
                 //Before submitting promotion for approval, check if each tactic has a fund associated
                 if(!hasTacticAssignedFund(promoId)){
-                    //throw new UL_CustomException(Label.UL_TACTIC_FUND_ASSOCIATION);
+                    throw new UL_CustomException(Label.UL_TACTIC_FUND_ASSOCIATION);
                 }
                 
                  //Validatation-At least one dummy product per each off-invoice payment method Tactic.
@@ -738,15 +738,20 @@ Throws : N/A
             System.debug('promo.UL_PromotionTemplateType__c::::::::::'+promo.UL_PromotionTemplateType__c);
             //for hiding lift field from Tactic page if tactic template is Long Term Agreement
             if(promo.UL_PromotionTemplateType__c == 'LTA'){
-                //for(List<ACCL__tactic__c> tactList : [SELECT Id, ACCL__Tactic_Template__r.Name,ACCL__Promotion__c FROM ACCL__tactic__c WHERE ACCL__Tactic_Template__r.Name = 'Long Term Agreement AR']){
-                    EARUI tacticObject = new EARUI();
-                    tacticObject.Name = 'Lift__c';
-                    tacticObject.Type = UtilityEnum.Attribute.Name();
-                    tacticObject.visible = false; 
-                    System.debug('tacticObject.visible'); 
-                    earBOTactic.add(tacticObject);
-                    
-                //}   
+                EARUI tacticObject = new EARUI();
+                tacticObject.Name = 'Lift__c';
+                tacticObject.Type = UtilityEnum.Attribute.Name();
+                tacticObject.visible = false; 
+                System.debug('tacticObject.visible'); 
+                earBOTactic.add(tacticObject); 
+            }
+            else{
+                EARUI tacticObject = new EARUI();
+                tacticObject.Name = 'Lift__c';
+                tacticObject.Type = UtilityEnum.Attribute.Name();
+                tacticObject.editable= false; 
+                System.debug('tacticObject.visible'); 
+                earBOTactic.add(tacticObject); 
             }
             
             boolean isChildPromotion = promo.UL_Parent_Push_Id__c!=null ? true : false;
@@ -2034,7 +2039,8 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                             tacticIdSet.remove(tacticFund.ACCL__Tactic__c);
                         }
                     
-                        if(tacticIdSet.size() == 0){
+                        //if(tacticIdSet.size() == 0){
+						if(tacticIdSet.size() > 0){
                             result = UL_Utility.BOOLEAN_FALSE;
                         }
                     }

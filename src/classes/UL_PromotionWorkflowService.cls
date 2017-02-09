@@ -83,7 +83,7 @@
                         if(!promotionLst[0].UL_ThresholdViolated__c){                       
                             if(promotionLst[0].UL_Threshold_Window_Result__c == null){                        
                                 listNextapprover = UL_PromotionWorkflowService.getApproverIds(promoId,'Finance User');
-                                if(listNextapprover !=null && listNextapprover.isempty()){
+                                if(listNextapprover.isempty()){
                                   throw new UL_CustomException('role-Finance User '+label.UL_UserNotSetup);
                                 }
                                 queueId = UL_PromotionWorkflowService.addApproverstoQueue(promoId,listNextapprover,'finance'); 
