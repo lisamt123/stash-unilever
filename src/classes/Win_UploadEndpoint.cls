@@ -103,7 +103,7 @@ global with sharing class Win_UploadEndpoint {
             
             //Process DELETE operation
             if (operation == 'DELETE') {
-                manageDeleteOperation(requestId, responseItem, objectRequestIndexesToRemove, objectReadyToRemove, 
+                itemsToProcessFouneded = manageDeleteOperation(requestId, responseItem, objectRequestIndexesToRemove, objectReadyToRemove, 
                     index, recordSObject, originalRequestId, itemsToProcessFouneded);
             } else {
                 //Process Upsert operation
@@ -233,11 +233,11 @@ global with sharing class Win_UploadEndpoint {
         Win_UploadEndpointUtils.saveAssignment(responseItem.requestId, responseItem.responseId, deviceId, newAssignments);
     }
 
-    private static void manageDeleteOperation(String requestId, Win_UploadResponse.Win_UploadResponseItem responseItem,
+    private static Boolean manageDeleteOperation(String requestId, Win_UploadResponse.Win_UploadResponseItem responseItem,
         List<Integer> objectRequestIndexesToRemove, List<sObject> objectReadyToRemove, Integer index, sObject recordSObject,
         String originalRequestId, Boolean itemsToProcessFouneded) {
         
-        Boolean itemsToProcessFounededTmp = itemsToProcessFouneded;
+        Boolean itemsToProcessFounededTmp = false;
         try {
             if (service.isLocalId(requestId)) {
                 responseItem.success = true;
@@ -269,7 +269,7 @@ global with sharing class Win_UploadEndpoint {
             responseItem.operation = Win_UploadResponse.OperationDelete;
         }
 
-        itemsToProcessFouneded = itemsToProcessFounededTmp;
+        return itemsToProcessFouneded && itemsToProcessFounededTmp;
     }
 
     /**
