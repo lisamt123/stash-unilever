@@ -15,6 +15,7 @@
 public with sharing class Win_UploadEndpoint_Test {
 
     private static String TEST_DEVICE = 'testdevice';
+    private static String TQ_ONE = 'TquilaONE';
     private static String ACCOUNT = 'Account';
 
 	/*
@@ -38,7 +39,7 @@ public with sharing class Win_UploadEndpoint_Test {
         };      
 
         
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);
         System.assert(response.body.get(0).responseId != null);
@@ -79,7 +80,7 @@ public with sharing class Win_UploadEndpoint_Test {
             )
         };
         
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -98,11 +99,11 @@ public with sharing class Win_UploadEndpoint_Test {
             )
         };
         
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);
         
-        response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, 'testdevice');
+        response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, 'testdevice');
     }
 
     /*
@@ -120,7 +121,7 @@ public with sharing class Win_UploadEndpoint_Test {
         
         requestItems.addAll(Win_TestUtils.createTQUploadRequestItemList(2));
 
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -138,7 +139,7 @@ public with sharing class Win_UploadEndpoint_Test {
     	
     	List<Win_UploadRequestItem> requestItems = Win_TestUtils.createTQUploadRequestItemList(aL, 'Win_Local_Assignment__c', '"IsDeleted" : true');
 
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -157,7 +158,7 @@ public with sharing class Win_UploadEndpoint_Test {
     	
     	List<Win_UploadRequestItem> requestItems = Win_TestUtils.createTQUploadRequestItemList(aL, 'Win_Local_Assignment__c', '"LastModifiedById" : "Fake_Id"');
 
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -195,82 +196,5 @@ public with sharing class Win_UploadEndpoint_Test {
         response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, 'testdevice');
     }
     */
-   
-   	/*
-     * Test tracked objects
-     */
-    @isTest(SeeAllData=False)
-    static void TQUploadService_Test(){
-        Win_TestUtils.createTrackedObjConfigCustomSetting();
-        Win_UploadService tqUploadSer = new Win_UploadService();
-        tqUploadSer.getUniqueArray(new list<String>{'1','2','3'});
-    }
-    
-    /*
-     * tracked objects with upload requests
-     */
-    @isTest(SeeAllData=False)
-    static void TQUploadRequest_Test(){
-        Win_TestUtils.createTrackedObjConfigCustomSetting();
-        Win_UploadRequest req = new Win_UploadRequest();
-        System.assert(req != null);
-    }
-
-    /*
-     * Test getting fieldsets from the tracking objects
-     */
-    static testMethod void testGettFieldSetFields() {
-		Win_TrackingUtils.FieldSetSelectionCriteria params = new Win_TrackingUtils.FieldSetSelectionCriteria();
-		params.objectAPIName = ACCOUNT;
-		params.fieldSetName = 'FieldSet';
-		List<String> res = Win_TrackingUtils.getFieldSetFields(Win_TrackingUtils.getGlobalDescribe(), params);
-		System.assertEquals(0, res.size());
-	}
-
-    /*
-     * Test multiple insertions
-     */
-    static testMethod void testObjectFieldListMap() {
-        Win_Utils utils = new Win_Utils();
-        System.assert(utils != null);
-        Win_UploadRequestItem item = new Win_UploadRequestItem();
-        System.assert(item != null);
-        Win_WebServiceResponse resp = new Win_UploadResponse();
-        resp.getError();
-
-        Win_Tracked_Object_Config__c t1TrackedObjConfig2 = new Win_Tracked_Object_Config__c();
-        t1TrackedObjConfig2.Active__c = true;
-        t1TrackedObjConfig2.ClientApp_ID__c = 'TestingONE';
-        t1TrackedObjConfig2.Name = 'Case';
-        t1TrackedObjConfig2.Object_Api_Name__c = 'Case';
-        insert t1TrackedObjConfig2;
-
-        Win_UploadService service = new Win_UploadService('TestingONE');
-        //Win_TestUtils.createTrackedObjConfigCustomSetting();
-        Map<String, List<String>> result = service.getObjectFieldListMap();
-        System.assert(result != null);
-    }
-
-    /*
-     * Test multiple insertions
-     */
-    static testMethod void testFeed() {
-        FeedItem item = new FeedItem();
-        Map<String, Object> additionalDataMap = new Map<String, Object>();
-        additionalDataMap.put('ChatterPostContentFileName', 'nameeee');
-        additionalDataMap.put('ChatterPostContentDataBlob', Blob.valueof('Jimmyyy'));
-        ConnectApi.FeedElement result = Win_UploadEndpoint.post(item, additionalDataMap);
-        System.assert(result != null);
-    }
-
-    /*
-     * Test multiple insertions
-     */
-    static testMethod void testObjectPreparation() {
-        Win_UploadService service = new Win_UploadService();
-        Map<String, Object> additionalData = new Map<String, Object>();
-        Map<String, Object> dataMap = new Map<String, Object>();
-        service.prepareAdditionalData(additionalData, dataMap, 'testing', 'Jimmyyy');
-    }
 
 }
