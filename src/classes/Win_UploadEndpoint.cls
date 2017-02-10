@@ -130,9 +130,24 @@ global with sharing class Win_UploadEndpoint {
                     System.debug('using this ' + saveResult);
                         
                     if (isInsert) {
-                        insertRecordItem(recordSObjectToUpsert, additionalDataMap, responseItem, 
-                                requestId, deviceId, saveResult, newAssignments, originalRequestId,
-                                objectReadyToInsert, objectRequestIndexesToInsert, index);
+                        if(recordSObjectToUpsert instanceof FeedItem) {
+                            insertRecordFeedItem(recordSObjectToUpsert, additionalDataMap, responseItem, 
+                                requestId, deviceId, saveResult, newAssignments, originalRequestId);
+                        } else {
+                            //Database.SaveResult insertResult = null;
+                            //if (service.shouldForceSharingInDml(recordSObjectToUpsert,Win_UploadService.INSERT_OPERATION)) {
+                            //    insertResult = service.insertForceSharing(recordSObjectToUpsert);
+                            //} 
+                            ////TMP Fix to DML inside loop
+                            ////else {
+                            ////    insertResult = Database.insert(recordSObjectToUpsert, false); //DML inside loop
+                            ////}
+                            //responseItem.requestId = originalRequestId;
+                            //processItemInsertResult(responseItem, insertResult, deviceId, newAssignments);
+                            //saveResult = insertResult;
+                            objectRequestIndexesToInsert.add(index);
+                            objectReadyToInsert.add(recordSObjectToUpsert);
+                        }
                     }
                     else {
                         if (useDmlBatches){
@@ -188,55 +203,41 @@ global with sharing class Win_UploadEndpoint {
         return itemsToProcessFouneded;          
     }
 
-    private static void insertRecordItem(sObject recordSObjectToUpsert, Map<String, Object> additionalDataMap,
+    private static void insertRecordFeedItem(sObject recordSObjectToUpsert, Map<String, Object> additionalDataMap,
             Win_UploadResponse.Win_UploadResponseItem responseItem, String requestId, String deviceId, 
-            Database.SaveResult saveResult, List<Win_Local_Assignment__c> newAssignments, String originalRequestId,
-            List<sObject> objectReadyToInsert, List<Integer> objectRequestIndexesToInsert, Integer index) {
-        if(recordSObjectToUpsert instanceof FeedItem) {
-            ConnectApi.FeedElement feedElement = Win_UploadEndpointUtils.post((FeedItem) recordSObjectToUpsert, additionalDataMap);
-            responseItem.success = true;
-            responseItem.executed = true; 
-            responseItem.responseId = feedElement.id;
-            
-            assignedIdsMap.put(responseItem.requestId, responseItem.responseId);
-                                
-            Integer newProcessedCount = numberOfProcessedOperationsPerRecord.get(requestId) + 1;
-            numberOfProcessedOperationsPerRecord.put(requestId, newProcessedCount);
-            
-            if (newProcessedCount == numberOfOperationsPerRecord.get(requestId)){
-                Schema.Describesobjectresult objectDescribe = Win_TrackingUtils.getObjectDescribe(responseItem.objectApiName);
-                if (objectDescribe != null && objectDescribe.isQueryable()){
-                    sObject resultSObject = service.getResultSObject(responseItem.objectApiName, responseItem.responseId);
-                    if (resultSObject != null) {
-                        responseItem.record = resultSObject;
-                    } else {
-                        //In case when new record doesn't apply for the download criteria, it should be removed locally
-                        responseItem.operation = Win_UploadResponse.OperationDelete;
-                    }
+            Database.SaveResult saveResult, List<Win_Local_Assignment__c> newAssignments, String originalRequestId) {
+    
+        ConnectApi.FeedElement feedElement = Win_UploadEndpointUtils.post((FeedItem) recordSObjectToUpsert, additionalDataMap);
+        responseItem.success = true;
+        responseItem.executed = true; 
+        responseItem.responseId = feedElement.id;
+        
+        assignedIdsMap.put(responseItem.requestId, responseItem.responseId);
+                            
+        Integer newProcessedCount = numberOfProcessedOperationsPerRecord.get(requestId) + 1;
+        numberOfProcessedOperationsPerRecord.put(requestId, newProcessedCount);
+        
+        if (newProcessedCount == numberOfOperationsPerRecord.get(requestId)){
+            Schema.Describesobjectresult objectDescribe = Win_TrackingUtils.getObjectDescribe(responseItem.objectApiName);
+            if (objectDescribe != null && objectDescribe.isQueryable()){
+                sObject resultSObject = service.getResultSObject(responseItem.objectApiName, responseItem.responseId);
+                if (resultSObject != null) {
+                    responseItem.record = resultSObject;
+                } else {
+                    //In case when new record doesn't apply for the download criteria, it should be removed locally
+                    responseItem.operation = Win_UploadResponse.OperationDelete;
                 }
             }
-            
-            Win_UploadEndpointUtils.saveAssignment(responseItem.requestId, responseItem.responseId, deviceId, newAssignments);
-        } else {
-            //Database.SaveResult insertResult = null;
-            //if (service.shouldForceSharingInDml(recordSObjectToUpsert,Win_UploadService.INSERT_OPERATION)) {
-            //    insertResult = service.insertForceSharing(recordSObjectToUpsert);
-            //} 
-            ////TMP Fix to DML inside loop
-            ////else {
-            ////    insertResult = Database.insert(recordSObjectToUpsert, false); //DML inside loop
-            ////}
-            //responseItem.requestId = originalRequestId;
-            //processItemInsertResult(responseItem, insertResult, deviceId, newAssignments);
-            //saveResult = insertResult;
-            objectRequestIndexesToInsert.add(index);
-            objectReadyToInsert.add(recordSObjectToUpsert);
         }
+        
+        Win_UploadEndpointUtils.saveAssignment(responseItem.requestId, responseItem.responseId, deviceId, newAssignments);
     }
 
     private static void manageDeleteOperation(String requestId, Win_UploadResponse.Win_UploadResponseItem responseItem,
         List<Integer> objectRequestIndexesToRemove, List<sObject> objectReadyToRemove, Integer index, sObject recordSObject,
         String originalRequestId, Boolean itemsToProcessFouneded) {
+        
+        Boolean itemsToProcessFounededTmp = itemsToProcessFouneded;
         try {
             if (service.isLocalId(requestId)) {
                 responseItem.success = true;
@@ -261,12 +262,14 @@ global with sharing class Win_UploadEndpoint {
             responseItem.errorList.add(e.getMessage());
             failedRecordIdSet.add(originalRequestId);
         } finally{
-            itemsToProcessFouneded = true;
+            itemsToProcessFounededTmp = true;
             
             responseItem.requestId = originalRequestId;
             responseItem.responseId = null;
             responseItem.operation = Win_UploadResponse.OperationDelete;
         }
+
+        itemsToProcessFouneded = itemsToProcessFounededTmp;
     }
 
     /**
