@@ -28549,3 +28549,11 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>MSG_ALLOCATION_ERROR</shortDescription>
         <value>% Allocated value needs to match exactly 100% across all funds</value>
     </labels>
+	<labels>
+        <fullName>UL_NOT_FOUND_CUSTOMER_LEVEL_1</fullName>
+        <categories>UL_CreatePromotionController</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Customer Level 1 was found</shortDescription>
+        <value>Sorry the record cannot be saved, no Customer with Level 1 was found in Sales Org :</value>
+    </labels>
