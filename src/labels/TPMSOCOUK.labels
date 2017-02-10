@@ -28542,3 +28542,10 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>MSG_ERROR_ALLOCATION_DIFFERENT</shortDescription>
         <value>% Allocated needs to match exactly 100% across all funds</value>
     </labels>
+	<labels>
+        <fullName>MSG_ALLOCATION_ERROR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MSG_ALLOCATION_ERROR</shortDescription>
+        <value>% Allocated value needs to match exactly 100% across all funds</value>
+    </labels>
