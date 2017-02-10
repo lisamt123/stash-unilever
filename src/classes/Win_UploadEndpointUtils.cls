@@ -13,6 +13,10 @@
 ***************************************************************/
 public with sharing class Win_UploadEndpointUtils {
 
+	@TestVisible public static String TEST_DEVICE = 'testdevice';
+    @TestVisible public static String TQ_ONE = 'TquilaONE';
+    @TestVisible public static String ACCOUNT = 'Account';
+
 	/**
      * Post a feed with an image associated
      */

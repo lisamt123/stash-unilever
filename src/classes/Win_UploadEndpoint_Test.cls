@@ -14,10 +14,6 @@
 @isTest
 private class Win_UploadEndpoint_Test {
 
-    private static String TEST_DEVICE = 'testdevice';
-    private static String TQ_ONE = 'TquilaONE';
-    private static String ACCOUNT = 'Account';
-
 	/*
      * Test a simple insertion
      */
@@ -39,7 +35,7 @@ private class Win_UploadEndpoint_Test {
         };      
 
         
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(Win_UploadEndpointUtils.TQ_ONE, requestItems, Win_UploadEndpointUtils.TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);
         System.assert(response.body.get(0).responseId != null);
@@ -67,11 +63,11 @@ private class Win_UploadEndpoint_Test {
                 '{"Id" : "Local_Id_2", "Name" : "Nik", "LastName": "Tassini", "AccountId" : "Local_Id"}'
             ),
             new Win_UploadRequestItem(
-                ACCOUNT, 'Local_Id',
+                Win_UploadEndpointUtils.ACCOUNT, 'Local_Id',
                 '{"Id" : "Local_Id", "Name" : "Test Account Name 35", "LastModifiedById" : "Fake_Id"}'
             ),
             new Win_UploadRequestItem(
-                ACCOUNT, '0012000001C'+ '' + 'zRAbAAN',
+                Win_UploadEndpointUtils.ACCOUNT, '0012000001C'+ '' + 'zRAbAAN',
                 '{"Id" : "00120000'+ '' + '01CzRAbAAN", "Name" : "Test Account Name 2", "LastModifiedById" : "Fake_Id", "IsDeleted" : true}'
             ),
             new Win_UploadRequestItem(
@@ -80,7 +76,7 @@ private class Win_UploadEndpoint_Test {
             )
         };
         
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(Win_UploadEndpointUtils.TQ_ONE, requestItems, Win_UploadEndpointUtils.TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -94,16 +90,16 @@ private class Win_UploadEndpoint_Test {
     static testMethod void testSecondRequest() {
         List<Win_UploadRequestItem> requestItems = new List<Win_UploadRequestItem>{
             new Win_UploadRequestItem(
-                ACCOUNT, 'Local_Id',
+                Win_UploadEndpointUtils.ACCOUNT, 'Local_Id',
                 '{"Id" : "Local_Id", "Name" : "Test Account Name 35", "LastModifiedById" : "Fake_Id"}'
             )
         };
         
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(Win_UploadEndpointUtils.TQ_ONE, requestItems, Win_UploadEndpointUtils.TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         //TMP Fix System.assert(response.body.get(0).success);
         
-        response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, 'testdevice');
+        response = Win_UploadEndpoint.uploadRequest(Win_UploadEndpointUtils.TQ_ONE, requestItems, 'testdevice');
     }
 
     /*
@@ -114,14 +110,14 @@ private class Win_UploadEndpoint_Test {
     	
         List<Win_UploadRequestItem> requestItems = new List<Win_UploadRequestItem>{
             new Win_UploadRequestItem(
-                ACCOUNT, 'Local_Id',
+                Win_UploadEndpointUtils.ACCOUNT, 'Local_Id',
                 '{"Id" : "Local_Id", "Name" : "Test Account Name 35", "LastModifiedById" : "Fake_Id"}'
             )
         };
         
         requestItems.addAll(Win_TestUtils.createTQUploadRequestItemList(2));
 
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(Win_UploadEndpointUtils.TQ_ONE, requestItems, Win_UploadEndpointUtils.TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -139,7 +135,7 @@ private class Win_UploadEndpoint_Test {
     	
     	List<Win_UploadRequestItem> requestItems = Win_TestUtils.createTQUploadRequestItemList(aL, 'Win_Local_Assignment__c', '"IsDeleted" : true');
 
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(Win_UploadEndpointUtils.TQ_ONE, requestItems, Win_UploadEndpointUtils.TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -158,7 +154,7 @@ private class Win_UploadEndpoint_Test {
     	
     	List<Win_UploadRequestItem> requestItems = Win_TestUtils.createTQUploadRequestItemList(aL, 'Win_Local_Assignment__c', '"LastModifiedById" : "Fake_Id"');
 
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(TQ_ONE, requestItems, TEST_DEVICE);
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest(Win_UploadEndpointUtils.TQ_ONE, requestItems, Win_UploadEndpointUtils.TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);

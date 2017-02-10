@@ -14,8 +14,6 @@
 @isTest
 private class Win_UploadEndpointExt_Test {
 
-	private static String ACCOUNT = 'Account';
-	
    	/*
      * Test tracked object
      */
@@ -41,7 +39,7 @@ private class Win_UploadEndpointExt_Test {
      */
     static testMethod void testGettFieldSetFields() {
 		Win_TrackingUtils.FieldSetSelectionCriteria params = new Win_TrackingUtils.FieldSetSelectionCriteria();
-		params.objectAPIName = ACCOUNT;
+		params.objectAPIName = Win_UploadEndpointUtils.ACCOUNT;
 		params.fieldSetName = 'FieldSet';
 		List<String> res = Win_TrackingUtils.getFieldSetFields(Win_TrackingUtils.getGlobalDescribe(), params);
 		System.assertEquals(0, res.size());

@@ -31,11 +31,7 @@ public with sharing class Win_TrackingUtils {
     
     public static Schema.Describesobjectresult getObjectDescribe(String objectApiName){
         Schema.SObjectType objectType = getGlobalDescribe().get(objectApiName);
-        if (objectType != null) {
-            return objectType.getDescribe();
-        }
-        else 
-            return null;
+        return (objectType != null) ? objectType.getDescribe() : null;
     }
     
     /**
