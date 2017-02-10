@@ -665,9 +665,7 @@ src/permissionsets/IPM_ProjectLeader.permissionset
 src/permissionsets/IPM_Research_and_Development.permissionset
 src/permissionsets/IPM_System_Administrator_Permissions.permissionset
 src/permissionsets/IPM_Wave_User.permissionset
-src/permissionsets/IPM_All_Tabs.permissionset
-src/profiles
-src/profiles/Unilever - Salesforce MultiApp Standard.profile
+
 src/sharingRules
 src/sharingRules/IPM_Project__c.sharingRules
 
