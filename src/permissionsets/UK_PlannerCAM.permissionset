@@ -14568,6 +14568,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>UL_UserCustomerProduct__c.Product__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>UL_UserCustomerProduct__c.User__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -14991,7 +14996,7 @@
         <field>User.isll_SME__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>UK Authoriser</label>
+    <label>UK Planner(CAM)</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
