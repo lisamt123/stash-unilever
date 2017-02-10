@@ -1,0 +1,11 @@
+src/objects
+src/objects/Account.object
+src/objects/Campaign.object
+src/objects/Case.object
+src/objects/Contact.object
+src/objects/Opportunity.object
+src/objects/OpportunityLineItem.object
+src/objects/Product2.object
+src/objects/PricebookEntry.object
+src/objects/TEL_Campaign_Accounts__c.object
+src/objects/TEL_Campaign_Products__c.object
