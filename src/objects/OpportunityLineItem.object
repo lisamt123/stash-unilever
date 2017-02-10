@@ -903,6 +903,62 @@
     <fields>
         <fullName>TotalPrice</fullName>
     </fields>
+	    <fields>
+        <fullName>TEL_GSV__c</fullName>
+        <externalId>false</externalId>
+        <label>GSV</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Net_Weight__c</fullName>
+        <externalId>false</externalId>
+        <label>Net Weight</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Order_Line__c</fullName>
+        <externalId>false</externalId>
+        <label>Order Line</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Rejection_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Rejection Flag</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Sales_Org__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Org</label>
+        <length>4</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Volume_Cases__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume Cases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Turnover__c</fullName>
         <externalId>false</externalId>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOverrides>
         <actionName>AddPricebookEntryOnPricebook</actionName>
@@ -282,6 +284,33 @@ CASE( Product2.FS_VATUA__c,
     <fields>
         <fullName>UseStandardPrice</fullName>
     </fields>
+	    <fields>
+        <fullName>TEL_Channel__c</fullName>
+        <externalId>false</externalId>
+        <label>Channel</label>
+        <length>2</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Division__c</fullName>
+        <externalId>false</externalId>
+        <label>Division</label>
+        <length>2</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Sales_Org__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Org</label>
+        <length>4</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Weight_Value__c</fullName>
         <description>Purpose: Corresponding NetWeight value from product</description>
@@ -302,4 +331,5 @@ CASE( Product2.FS_VATUA__c,
         <searchResultsAdditionalFields>FS_Bracket_1__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PRODUCT.DEFAULT_PRICE</searchResultsAdditionalFields>
     </searchLayouts>
+</CustomObject>
 </CustomObject>

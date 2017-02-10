@@ -1857,6 +1857,942 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>TEL_Account_Contract_Strategy__c</fullName>
+        <description>Telesales - Account Contract strategy for transfer order accounts</description>
+        <externalId>false</externalId>
+        <label>Account Contract Strategy</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Renew every Quarter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Renew every Semester</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Renew every Year</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Av_Price_Meal_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Avg. Price per Meal Code</label>
+        <length>6</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Av_Price_per_Meal__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Av_Price_Meal_Code__c  , 
+&quot;APPM35&quot;, &quot;0&quot;, 
+&quot;APPM37&quot;, &quot;1P - £10&quot;, 
+&quot;APPM38&quot;, &quot;£10.01 - £25&quot;, 
+&quot;APPM39&quot;, &quot;£25.01 +&quot;,
+&quot;APPM40&quot;, &quot;REFUSED&quot;,
+&quot;APPM41&quot;, &quot;DON&apos;T KNOW&quot;,
+&quot; &quot;)</formula>
+        <label>Avg. Price per Meal</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_BP_Role_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>BP Role Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_BP_Role__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_BP_Role_Code__c  ,
+&quot;ZDGLDP&quot;, &quot;GOLD PROSPECT&quot;,
+&quot;ZDGP&quot;, &quot;GREEN PROSPECT&quot;,
+&quot;ZDPT&quot;, &quot;DEX_PARENT&quot;,
+&quot;ZDSTP&quot;, &quot;SOLD-TO PARTY&quot;,
+&quot;ZDWH&quot;, &quot;WHOLESALER&quot;,
+&quot; &quot;)</formula>
+        <label>BP Role</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_CM_Gastroguide_Code__c</fullName>
+        <description>Telesales - Stores the CM Gastroguide Code information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>CM Gastroguide Code</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_CM_Gastroguide__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE( TEL_CM_Gastroguide_Code__c , 
+&quot;GG01&quot;, &quot;Y&quot;, 
+&quot;GG02&quot;, &quot;N&quot;,
+&quot;GG03&quot;, &quot; &quot;,
+&quot; &quot;)</formula>
+        <label>CM Gastroguide</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_CM_Unikit_BI_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>CM Unikit BI Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_CM_Unikit_BI__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_CM_Unikit_BI_Code__c  , 
+&quot;UBI01&quot;, &quot;Y&quot;, 
+&quot;UBI02&quot;, &quot;N&quot;, 
+&quot;UBI03&quot;, &quot; &quot;, 
+&quot; &quot;)</formula>
+        <label>CM Unikit BI</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_CM_Unikit_Care_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>CM Unikit Care Code</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_CM_Unikit_Care__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_CM_Unikit_Care_Code__c  , 
+&quot;WK01&quot;, &quot;Y&quot;, 
+&quot;WK02&quot;, &quot;N&quot;, 
+&quot;WK03&quot;, &quot; &quot;, 
+&quot; &quot;)</formula>
+        <label>CM Unikit Care</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_CM_Unikit_Edu_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>CM Unikit Edu Code</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_CM_Unikit_Edu__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_CM_Unikit_Edu_Code__c  , 
+&quot;UK01&quot;, &quot;Y&quot;, 
+&quot;UK02&quot;, &quot;N&quot;, 
+&quot;UK03&quot;, &quot; &quot;, 
+&quot; &quot;)</formula>
+        <label>CM Unikit Edu</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_CS_Opt_Out__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - CS Opt Out option</description>
+        <externalId>false</externalId>
+        <label>CS Opt Out</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Chain_Indicator_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Chain Indicator Code</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Chef_Rewards__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - indicates if the customer participate in the Chef Rewards program</description>
+        <externalId>false</externalId>
+        <label>Chef Rewards</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Contact_Strategy__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - Stores the Contact Strategy information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>Contact Strategy</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Convenience_Level_Code__c</fullName>
+        <description>Telesales - Stores the Convenience Level Code received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>Convenience Level Code</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Convenience_Level__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE( TEL_Convenience_Level_Code__c , 
+&quot;CL02&quot;, &quot;LOW&quot;, 
+&quot;CL03&quot;, &quot;MEDIUM&quot;,
+&quot;CL04&quot;, &quot;HIGH&quot;,
+&quot; &quot;)</formula>
+        <label>Convenience Level</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_DM_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>DM Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_DM__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_DM_Code__c  , 
+&quot;ADM01&quot;, &quot;YES&quot;, 
+&quot;ADM02&quot;, &quot;NO&quot;, 
+&quot; &quot;)</formula>
+        <label>DM</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Day_Week_Open__c</fullName>
+        <description>Telesales - VERIFY</description>
+        <externalId>false</externalId>
+        <label>Day/Week Open</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Days_Open__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>Days Open</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Dessert_Max_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>Dessert Max Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Dessert_Max__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Dessert_Max_Code__c  , 
+&quot;DM01&quot;, &quot;Y&quot;, 
+&quot;DM02&quot;, &quot;N&quot;, 
+&quot;DM03&quot;, &quot; &quot;, 
+&quot; &quot;)</formula>
+        <label>Dessert Max</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_DoNot_Recalculate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Do Not Recalculate</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_EM_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>EM Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_EM__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_EM_Code__c  , 
+&quot;EO01&quot;, &quot;Yes&quot;, 
+&quot;EO02&quot;, &quot;No&quot;, 
+&quot;EO03&quot;, &quot; &quot;, 
+&quot; &quot;)</formula>
+        <label>EM</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Email_OK_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Telesales - Indicates if the customer authorizes emails to be delivered</description>
+        <externalId>false</externalId>
+        <label>Email OK Flag</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_External_Source__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>External Source</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Food_Spend_Month_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Food Spend Month Code</label>
+        <length>6</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Food_Spend_Month__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Food_Spend_Month_Code__c  ,
+&quot;FSPM51&quot;, &quot;£0&quot;,
+&quot;FSPM52&quot;, &quot;&lt;£1,000&quot;,
+&quot;FSPM53&quot;, &quot;£1,001 - 2,000&quot;,
+&quot;FSPM54&quot;, &quot;£2,001 - 3,000&quot;,
+&quot;FSPM55&quot;, &quot;£3,001 - 4,000&quot;,
+&quot;FSPM56&quot;, &quot;£4,001 - 5,000&quot;,
+&quot;FSPM57&quot;, &quot;£5,001 - 6,000&quot;,
+&quot;FSPM59&quot;, &quot;£6,001 - 7,000&quot;,
+&quot;FSPM60&quot;, &quot;£7,001 - 8,000&quot;,
+&quot;FSPM61&quot;, &quot;£8,001 - 9,000&quot;,
+&quot;FSPM62&quot;, &quot;£9,001 - 10,000&quot;,
+&quot;FSPM63&quot;, &quot;£10,001 - 15,000&quot;,
+&quot;FSPM64&quot;, &quot;£15,001 - 20,000&quot;,
+&quot;FSPM65&quot;, &quot;£20,001 - 25,000&quot;,
+&quot;FSPM66&quot;, &quot;£25,001 - 30,000&quot;,
+&quot;FSPM67&quot;, &quot;£30,000+&quot;,
+&quot;FSPM68&quot;, &quot;REFUSED&quot;,
+&quot;FSPM69&quot;, &quot;DON&apos;T KNOW&quot;,
+&quot;FSPM72&quot;, &quot;&quot;,
+&quot; &quot;)</formula>
+        <label>Food Spend Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_House_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>House Number</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Kitchen_Type_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>Kitchen Type Code</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Kitchen_Type__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Kitchen_Type_Code__c  , 
+&quot;KT01&quot;, &quot;SPRING PROMOTION&quot;, 
+&quot;KT02&quot;, &quot;AUTUMN PROMOTION&quot;, 
+&quot;KT03&quot;, &quot;WINTER PROMOTION&quot;, 
+&quot;KT05&quot;, &quot;GEKOPPELD KOKEN&quot;,
+&quot;KT06&quot;, &quot;ONTKOPPELD KOKEN&quot;,
+&quot;KT08&quot;, &quot;DISCIPLINED&quot;,
+&quot;KT09&quot;, &quot;INDEPENDENT&quot;,
+&quot; &quot;)</formula>
+        <label>Kitchen Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Meal_Served_Day_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Meal Served per Day Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Meal_Served_Day__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Meal_Served_Day_Code__c  , 
+&quot;ANM03&quot;, &quot;101-200&quot;, 
+&quot;ANM04&quot;, &quot;201-300&quot;, 
+&quot;ANM05&quot;, &quot;301-400&quot;, 
+&quot;ANM06&quot;, &quot;401-500&quot;, 
+&quot;ANM07&quot;, &quot;501-600&quot;, 
+&quot;ANM08&quot;, &quot;601-700&quot;, 
+&quot;ANM09&quot;, &quot;701-800&quot;, 
+&quot;ANM29&quot;, &quot;0-100&quot;, 
+&quot;ANM30&quot;, &quot;800+&quot;, 
+&quot; &quot;)</formula>
+        <label>Number of meal served per day</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_NPS_Potential__c</fullName>
+        <externalId>false</externalId>
+        <label>NPS Potential</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TEL_OTM_Reason__c</fullName>
+        <description>Telesales - Used to store the OTM Reason values received from DEX</description>
+        <externalId>false</externalId>
+        <label>OTM Reason</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Updated by Admin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Updated by Program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_OTM__c</fullName>
+        <description>Telesales - Used to store the OTM classification received from DEX</description>
+        <externalId>false</externalId>
+        <label>OTM</label>
+        <picklist>
+            <picklistValues>
+                <fullName>A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A++</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>N</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BAJA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Parent_Segment_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Parent Segment Code</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Parent_Segment__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Parent_Segment_Code__c  ,
+01, &quot;Commercial&quot;,
+02, &quot;Social&quot;,
+03, &quot;Wholesaler&quot;,
+04, &quot;SalesRep&quot;,
+05, &quot;Cash &amp; Carry&quot;,
+06, &quot;Head Office&quot;,
+07, &quot;Vending&quot;,
+08, &quot;Chains&quot;,
+&quot; &quot;)</formula>
+        <label>Parent Segment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Price_Book__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Telesales - Used to store the price book reference for the customer.</description>
+        <externalId>false</externalId>
+        <label>Price Book</label>
+        <referenceTo>Pricebook2</referenceTo>
+        <relationshipLabel>Accounts</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Product_Usage__c</fullName>
+        <description>Indicate how many products the customer buy from of portfolio.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate how many products the customer buy from of portfolio.</inlineHelpText>
+        <label>Product Usage</label>
+        <summaryForeignKey>TEL_Customer_Products__c.TEL_Account__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>TEL_SAP_DEX_ID__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <label>SAP DEX ID</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_SR_6th_Parameter_CS__c</fullName>
+        <description>Telesales - Used to store information received from DEX</description>
+        <externalId>false</externalId>
+        <label>SR 6th Parameter CS</label>
+        <length>8</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_SSD_Allowed_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>SSD Allowed Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_SSD_Allowed__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_SSD_Allowed_Code__c  , 
+&quot;SSD01&quot;, &quot;YES&quot;, 
+&quot;SSD02&quot;, &quot;NO&quot;,
+&quot; &quot;)</formula>
+        <label>SSD Allowed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Sales_Cycle__c</fullName>
+        <description>Indicates how many days was the last sales.</description>
+        <externalId>false</externalId>
+        <label>Sales Cycle</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Sales_Orders__c</fullName>
+        <description>Indicates how much the customer expend making order at the last year.</description>
+        <externalId>false</externalId>
+        <label>Sales Orders</label>
+        <summarizedField>Opportunity.Amount</summarizedField>
+        <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Segment_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Segment Code</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Segment__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(   TEL_Segment_Code__c   ,
+01,&quot;Workplace Canteen&quot;,
+02,&quot;Education&quot;,
+03,&quot;Health&quot;,
+04,&quot;Hotels&quot;,
+05,&quot;Other Commercial&quot;,
+06,&quot;Other Institutions&quot;,
+07,&quot;Restaurants&quot;,
+08,&quot;Wholesaler&quot;,
+09,&quot;CPU&quot;,
+10,&quot;DSR&quot;,
+11,&quot;Elderly homes&quot;,
+12,&quot;Fastfood&quot;,
+13,&quot;Hospitals / Clinics&quot;,
+14,&quot;HMR / Traiteur&quot;,
+15,&quot;Snack &amp; Sandwichbar&quot;,
+16,&quot;Meal Producer&quot;,
+17,&quot;100% home delivery &amp; Take-aways&quot;,
+18,&quot;Pubs, Bars, Coffee and Tea Shops&quot;,
+19,&quot;Travel&quot;,
+20,&quot;Sports &amp; Leisure&quot;,
+21,&quot;Pubs&quot;,
+22,&quot;Travel &amp; Leisure&quot;,
+23,&quot;Fast Food &amp; Café&quot;,
+24,&quot;Health &amp; Welfare&quot;,
+25,&quot;SalesRep&quot;,
+26,&quot;Cash &amp; Carry&quot;,
+27,&quot;head Office&quot;,
+28,&quot;Vending&quot;,
+29,&quot;Bars &amp; Coffe Shop&quot;,
+30,&quot;Leisure&quot;,
+31,&quot;other sectors&quot;,
+32,&quot;social restoration&quot;,
+33,&quot;Chains&quot;,
+34,&quot;HoRe&quot;,
+35,&quot;Canteens&quot;,
+36,&quot;Other Social&quot;,
+37,&quot;Other Services&quot;,
+&quot; &quot;)</formula>
+        <label>Segment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Sexy_Veg_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>Sexy Veg Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Sexy_Veg__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Sexy_Veg_Code__c  , 
+&quot;SV01&quot;, &quot;Y&quot;, 
+&quot;SV02&quot;, &quot;N&quot;, 
+&quot;SV03&quot;, &quot; &quot;, 
+&quot; &quot;)</formula>
+        <label>Sexy Veg</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_SubSegment_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub-segment Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_SubSegment__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <label>Sub-segment</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Sub_Status_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>Sub Status Code</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Sub_Status__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Sub_Status_Code__c  , 
+01, &quot;Transfer Order not allowed&quot;, 
+02, &quot;closed&quot;, 
+03, &quot;seasonal&quot;, 
+04, &quot;datapooling&quot;,
+05, &quot;only vending&quot;,
+06, &quot;&quot;,
+07, &quot;Sales call barred&quot;,
+08, &quot;Cliente Compartido TB&quot;,
+&quot; &quot;)</formula>
+        <label>Sub Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_TM_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>TM Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_TM__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_TM_Code__c  , 
+&quot;TB01&quot;, &quot;YES&quot;, 
+&quot;TB02&quot;, &quot;NO&quot;, 
+&quot;TB03&quot;, &quot; &quot;, 
+&quot; &quot;)</formula>
+        <label>TM</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Visit_Ok_Code__c</fullName>
+        <description>Telesales - Stores information received from DEX interface</description>
+        <externalId>false</externalId>
+        <label>Visit Ok Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Visit_Ok__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Visit_Ok_Code__c  , 
+&quot;V01&quot;, &quot;YES&quot;, 
+&quot;V02&quot;, &quot;NO&quot;, 
+&quot;V03&quot;, &quot; &quot;, 
+&quot; &quot;)</formula>
+        <label>Visit Ok</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Week_Year_Open__c</fullName>
+        <description>Telesales - VERIFY</description>
+        <externalId>false</externalId>
+        <label>Week/Year Open</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>
+
     <fields>
         <fullName>FS_NumberofCategories__c</fullName>
         <description>Created for CTM segmentation</description>

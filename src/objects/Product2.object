@@ -70,6 +70,168 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>CanUseQuantitySchedule</fullName>
         <trackHistory>false</trackHistory>
     </fields>
+	    <fields>
+        <fullName>TEL_Brand_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Channel__c</fullName>
+        <externalId>false</externalId>
+        <label>Channel</label>
+        <length>2</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Color_Code_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Color Code Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Orderable_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Orderable Flag</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Out_Of_Stock__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Out Of Stock</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Product_Group_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Group Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Product_SubGroup_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Sub Group Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Product_Type_Key_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Type Key Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Promoted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Promoted</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Selling_Book_Rank__c</fullName>
+        <externalId>false</externalId>
+        <label>Selling Book Rank Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Technology_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Technology Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_UFS_FLAG__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>UFS FLAG</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TUGTIN__c</fullName>
+        <description>Consumer Unit EAN.</description>
+        <externalId>true</externalId>
+        <label>TUGTIN</label>
+        <length>14</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <recordTypes>
+        <fullName>UK_Products</fullName>
+        <active>true</active>
+        <label>UK Products</label>
+        <picklistValues>
+            <picklist>Family</picklist>
+            <values>
+                <fullName>Food Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Impulse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Funds</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scoop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Take Home</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>QuantityUnitOfMeasure</picklist>
+            <values>
+                <fullName>Each</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <fields>
         <fullName>CanUseRevenueSchedule</fullName>
         <trackHistory>false</trackHistory>

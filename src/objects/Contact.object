@@ -131,6 +131,427 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	    <fields>
+        <fullName>TEL_Account_Change__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Account Change</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Caterer_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Caterer Type</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Contact_DEX__c</fullName>
+        <externalId>true</externalId>
+        <label>Contact DEX Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Contact_Fax_Extension__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Fax Extension</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Contact_Fax_Number_International__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Fax Number International</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Contact_Language__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Language</label>
+        <picklist>
+            <picklistValues>
+                <fullName>EN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Country_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Country Code</label>
+        <length>2</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Country_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Country Name</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_DEX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>DEX Contact</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_DM__c</fullName>
+        <externalId>false</externalId>
+        <label>DM</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_EM__c</fullName>
+        <externalId>false</externalId>
+        <label>EM</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Email_OK_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>E-Mail OK Code</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Email_OK__c</fullName>
+        <externalId>false</externalId>
+        <label>E-Mail OK</label>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Function_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Function Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Function__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Function_Code__c ,
+&quot;Z10&quot;,&quot;EINKÄUFER/ACHETEUR&quot;,
+&quot;Z11&quot;,&quot;GANGLEITER&quot;,
+&quot;Z12&quot;,&quot;GESCHÄFTSFÜHRER/GÉRANT&quot;,
+&quot;Z13&quot;,&quot;BACKSTUBENCHEF/DE BOULANGERIE&quot;,
+&quot;Z14&quot;,&quot;DIREKTOR/DIRECTEUR&quot;,
+&quot;Z15&quot;,&quot;HAUSWIRTSCHAFTER/CONCIERGE&quot;,
+&quot;Z16&quot;,&quot;KEY ACCOUNT MANAGER&quot;,
+&quot;Z17&quot;,&quot;KOCH/CUISINIER&quot;,
+&quot;Z18&quot;,&quot;KÜCHENHILFE/AIDE DE CUISINE&quot;,
+&quot;Z19&quot;,&quot;KÜCHENCHEF/DE CUISINE&quot;,
+&quot;Z2&quot;,&quot;ABT.LEITER/CHEF DE SERVICE&quot;,
+&quot;Z20&quot;,&quot;KUNDENBERATER C&amp;C&quot;,
+&quot;Z21&quot;,&quot;LAGERIST/-LEITER&quot;,
+&quot;Z22&quot;,&quot;PATISSIER/PÂTISSER&quot;,
+&quot;Z23&quot;,&quot;FILIALLEITER/DIRECT.SUCCURSALE&quot;,
+&quot;Z24&quot;,&quot;PÄCHTER/LOCATAIRE&quot;,
+&quot;Z25&quot;,&quot;SEKRETÄR/-IN&quot;,
+&quot;Z26&quot;,&quot;SERVICEANGESTELLTER/SERVEUR&quot;,
+&quot;Z27&quot;,&quot;SOUS-CHEF&quot;,
+&quot;Z28&quot;,&quot;STELLVERTRETER/IN&quot;,
+&quot;Z29&quot;,&quot;TB ANSPRECHPARTNER/PARTENAIRE&quot;,
+&quot;Z3&quot;,&quot;ASSISTENT/ASSISTANT&quot;,
+&quot;Z30&quot;,&quot;VERTRETER/REPRÉSANTANT GROSS.&quot;,
+&quot;Z31&quot;,&quot;RSM&quot;,
+&quot;Z32&quot;,&quot;VERTRIEBSLEITER/IN HANDEL&quot;,
+&quot;Z33&quot;,&quot;F&amp;B MANAGER&quot;,
+&quot;Z34&quot;,&quot;MITGLIED/MEMBRE&quot;,
+&quot;Z35&quot;,&quot;SAUCIER&quot;,
+&quot;Z36&quot;,&quot;VERWALTER/ADMINISTRATEUR&quot;,
+&quot;Z4&quot;,&quot;BESITZER/PROPRIÉTAIRE&quot;,
+&quot;Z5&quot;,&quot;BETR.LEITER/DIRECT.D&apos;ENTREPISE&quot;,
+&quot;Z6&quot;,&quot;BEZIRKSLEITER/IN&quot;,
+&quot;Z7&quot;,&quot;BEZIRKSLEITER/IN HANDEL&quot;,
+&quot;Z70&quot;,&quot;OTHER&quot;,
+&quot;Z8&quot;,&quot;CUSTOMER SERVICE&quot;,
+&quot;Z9&quot;,&quot;DIÄTKOCH/CUISINIER DIÉTÉTIQUE&quot;,
+&quot; &quot;)</formula>
+        <label>Function</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Imported__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Imported</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Key_Decision_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Key Decision Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Key_Decision__c</fullName>
+        <description>Telesales - Displays information based on values received from DEX</description>
+        <externalId>false</externalId>
+        <formula>CASE(  TEL_Key_Decision_Code__c  ,
+&quot;KDM01&quot;,&quot;Yes&quot;,
+&quot;KDM02&quot;,&quot;No&quot;,
+&quot;KDM03&quot;,&quot;Responsible General&quot;,
+&quot;KDM04&quot;,&quot;Responsible Tea&quot;,
+&quot;KDM05&quot;,&quot;Responsible Food&quot;,
+&quot;KDM06&quot;,&quot;Other&quot;,
+&quot;KDM07&quot;,&quot;Director Compras&quot;,
+&quot;KDM08&quot;,&quot;Chef&quot;,
+&quot;KDM09&quot;,&quot;Menu responsible&quot;,
+&quot;KDM10&quot;,&quot;Purchase responsible&quot;,
+&quot;KDM11&quot;,&quot;financial manager&quot;,
+&quot; &quot;)</formula>
+        <label>Key Decision</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Mobile_Phone_International__c</fullName>
+        <externalId>false</externalId>
+        <label>Mobile Phone International</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Post_OK__c</fullName>
+        <externalId>false</externalId>
+        <label>Post OK</label>
+        <picklist>
+            <picklistValues>
+                <fullName>OK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Preferred_Contact_Method__c</fullName>
+        <description>Telesales - preferred method of contact</description>
+        <externalId>false</externalId>
+        <label>Preferred Contact Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Post (letter)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pager/SMS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Printer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Remote Function Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Remote Mail</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Secure Store &amp; Forw.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Telephone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Telex</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Teletex</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>URL (Homepage)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X.400</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FAX and Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Primary_Contact__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Primary Contact</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Priority__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Relationship_Type_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Relationship Type Code</label>
+        <length>6</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Salesforce__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Salesforce</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TEL_Send_Preference__c</fullName>
+        <externalId>false</externalId>
+        <label>Send Preference</label>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TEL_TM__c</fullName>
+        <externalId>false</externalId>
+        <label>TM</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Telephone_Extension__c</fullName>
+        <description>Telesales - Telephone Extension</description>
+        <externalId>false</externalId>
+        <label>Telephone Extension</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TEL_Updated_Relationship__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Updated Relationship</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
 	<fields>
         <fullName>BFM_CarrierUserApproved__c</fullName>
         <defaultValue>false</defaultValue>
