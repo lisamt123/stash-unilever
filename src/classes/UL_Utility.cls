@@ -234,7 +234,7 @@
     }
    }
    
-     /*******************************************************************
+      /*******************************************************************
     Purpose: Get SalesOrg of current User 
     Version: 1.0
     Parameters: String userId
@@ -256,7 +256,6 @@
         }
         return salesOrg;
     }
-
 
     /*******************************************************************
     Purpose: Convert Object to Date 
@@ -375,5 +374,16 @@
     ******************************/
     public static UL_Planning_Level__c returnGenericCustomer(){
         return [SELECT Id, Name, UL_Customer__c FROM UL_Planning_Level__c WHERE UL_Customer__r.UL_Generic_Customer__c=TRUE LIMIT 1];
+    }
+    
+    /*****************************
+    Purpose: Get generic customer planning level from system
+    Version: 1.0
+    Parameters: N/A
+    Returns: Product Record
+    Throws: N/A
+    ******************************/
+    public static List<UL_Delivery_Profile__c> returnDeliveryProfile(Date instoreDate, String planingLevelCustomers,Id allCustomers,String salesOrg){
+        return [SELECT Id, UL_Delivery_Profile_Name__c, Name, UL_Shipment_Start_days__c, UL_Shipment_End_days__c, UL_Instore_End_days__c FROM UL_Delivery_Profile__c where UL_Valid_From__c<=:instoreDate AND UL_Valid_Thru__c>=:instoreDate AND UL_Sales_Organisation__c=:salesOrg AND (UL_Account__c =:planingLevelCustomers OR UL_Account__c =:allCustomers ) Order By UL_Delivery_Profile_Name__c Limit:LIMITS.getLimitQueryRows()-LIMITS.getQueryRows()];
     }
   }
