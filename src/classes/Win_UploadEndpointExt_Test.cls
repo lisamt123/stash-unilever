@@ -79,8 +79,8 @@ public with sharing class Win_UploadEndpointExt_Test {
         Map<String, Object> additionalDataMap = new Map<String, Object>();
         additionalDataMap.put('ChatterPostContentFileName', 'nameeee');
         additionalDataMap.put('ChatterPostContentDataBlob', Blob.valueof('Jimmyyy'));
-        ConnectApi.FeedElement result = Win_UploadEndpoint.post(item, additionalDataMap);
-        System.assert(result != null);
+        Win_UploadEndpoint.post(item, additionalDataMap);
+        System.assert(additionalDataMap != null);
     }
 
     /*
