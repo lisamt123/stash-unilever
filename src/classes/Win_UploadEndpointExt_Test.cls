@@ -12,7 +12,7 @@
     1.0         Nicola Tassini  31/01/2017  Initial Dev     First version
 ***************************************************************/
 @isTest
-public with sharing class Win_UploadEndpointExt_Test {
+private class Win_UploadEndpointExt_Test {
 
 	private static String ACCOUNT = 'Account';
 	

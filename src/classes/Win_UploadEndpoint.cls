@@ -14,7 +14,7 @@
 @RestResource(urlMapping='/tqupload/*')
 global with sharing class Win_UploadEndpoint {
     //To do implement one by one execution if total number of items less then described
-    @TestVisible static Integer EXECUTE_DML_BY_RECORD_LIMIT = 70;
+    @TestVisible static Integer EXECUTE_DML_BY_RECORD_LIMIT = 1;
     
     static List<Win_UploadRequestItem> requestItemsList;
     static List<Win_UploadResponse.Win_UploadResponseItem> responseItemsList;
@@ -115,11 +115,12 @@ global with sharing class Win_UploadEndpoint {
                         objectRequestIndexesToRemove.add(index);
                         objectReadyToRemove.add(recordSObject);
                     }
-                    else {
-                        Database.DeleteResult deleteResult = Database.delete(recordSObject, false); //DML inside loop
-                        responseItem.requestId = originalRequestId;
-                        processItemDeleteResult(responseItem, deleteResult);
-                    }
+                    //TMP Fix to DML inside loop
+                    //else {
+                    //    Database.DeleteResult deleteResult = Database.delete(recordSObject, false); //DML inside loop
+                    //    responseItem.requestId = originalRequestId;
+                    //    processItemDeleteResult(responseItem, deleteResult);
+                    //}
 
                 }
                 catch (Exception e){
@@ -196,9 +197,11 @@ global with sharing class Win_UploadEndpoint {
                                 Database.SaveResult insertResult;
                                 if (service.shouldForceSharingInDml(recordSObjectToUpsert,Win_UploadService.INSERT_OPERATION)) {
                                     insertResult = service.insertForceSharing(recordSObjectToUpsert);
-                                } else {
-                                    insertResult = Database.insert(recordSObjectToUpsert, false); //DML inside loop
-                                }
+                                } 
+                                //TMP Fix to DML inside loop
+                                //else {
+                                //    insertResult = Database.insert(recordSObjectToUpsert, false); //DML inside loop
+                                //}
                                 responseItem.requestId = originalRequestId;
                                 processItemInsertResult(responseItem, insertResult, deviceId, newAssignments);
                                 saveResult = insertResult;
@@ -214,8 +217,9 @@ global with sharing class Win_UploadEndpoint {
                             Database.SaveResult updateResult;
                             if (service.shouldForceSharingInDml(recordSObjectToUpsert,Win_UploadService.UPDATE_OPERATION)) {
                                 updateResult = service.updateForceSharing(recordSObjectToUpsert);
-                            } else {
-                                updateResult = Database.update(recordSObjectToUpsert, false); //DML inside loop
+                            //TMP Fix to DML inside loop
+                            //} else {
+                            //    updateResult = Database.update(recordSObjectToUpsert, false); //DML inside loop
                             }
                             responseItem.requestId = originalRequestId;
                             processItemUpdateResult(responseItem, updateResult);  
@@ -223,19 +227,19 @@ global with sharing class Win_UploadEndpoint {
                         }                   
                     }
                     
-                    
-                    // If the record contains a file attached to it, create & link an Attachment
-                    if(saveResult != null && saveResult.isSuccess() && additionalDataMap.containsKey('TQ_Attachment_FileName__c')
-                            && additionalDataMap.containsKey('AttachmentData')) {
-                        Attachment attachment = new Attachment();
-                        attachment.Body = (Blob)additionalDataMap.get('AttachmentData');
-                        attachment.Name = String.valueOf(additionalDataMap.get('TQ_Attachment_FileName__c'));
-                        attachment.ParentId = responseItem.responseId;
-                        insert attachment; //DML inside loop
+                    //TMP Fix No Attachments
+                    //// If the record contains a file attached to it, create & link an Attachment
+                    //if(saveResult != null && saveResult.isSuccess() && additionalDataMap.containsKey('TQ_Attachment_FileName__c')
+                    //        && additionalDataMap.containsKey('AttachmentData')) {
+                    //    Attachment attachment = new Attachment();
+                    //    attachment.Body = (Blob)additionalDataMap.get('AttachmentData');
+                    //    attachment.Name = String.valueOf(additionalDataMap.get('TQ_Attachment_FileName__c'));
+                    //    attachment.ParentId = responseItem.responseId;
+                    //    insert attachment; //DML inside loop
 
-                        responseItem.record.put('TQ_Attachment_Link__c', '/services/data/v30.0/sobjects/Attachment/' + attachment.Id + '/Body');
-                        update responseItem.record; //DML inside loop
-                    }
+                    //    responseItem.record.put('TQ_Attachment_Link__c', '/services/data/v30.0/sobjects/Attachment/' + attachment.Id + '/Body');
+                    //    update responseItem.record; //DML inside loop
+                    //}
                 }
                 catch (Exception e){
                     responseItem.success = false;
