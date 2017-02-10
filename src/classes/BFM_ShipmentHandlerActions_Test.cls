@@ -6,7 +6,7 @@ private class BFM_ShipmentHandlerActions_Test {
         RecordType unileverAccount  = [SELECT id from RecordType where DeveloperName = 'BFM_Unilever_Account' Limit 1];
         Account acc = New Account();
         acc.RecordTypeId = unileverAccount.id;
-        acc.BFM_BFM_CNPJ__c = '03189042000100';
+        acc.BFM_CNPJ__c = '03189042000100';
         acc.BFM_Vendor__c='11';
         acc.BFM_Company_Code__c='12';
         acc.Name = 'TestAccount';
