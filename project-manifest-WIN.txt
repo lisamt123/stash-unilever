@@ -110,6 +110,8 @@ src/classes/Win_RetailerController_Test.cls
 src/classes/Win_RetailerController_Test.cls-meta.xml
 src/classes/Win_UploadEndpointExt_Test.cls
 src/classes/Win_UploadEndpointExt_Test.cls-meta.xml
+src/classes/Win_UploadEndpointUtils.cls
+src/classes/Win_UploadEndpointUtils.cls-meta.xml
 src
 src/customMetadata
 src/customMetadata/Win_Configuration.Win_Homepage_Logout.md

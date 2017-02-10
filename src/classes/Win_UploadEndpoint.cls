@@ -159,6 +159,7 @@ global with sharing class Win_UploadEndpoint {
                         recordSObjectToUpsert.put('Id', null);
                         
                     Database.SaveResult saveResult = null;
+                    System.debug('using this ' + saveResult);
                         
                     if (isInsert) {
                         if (useDmlBatches){
@@ -167,7 +168,7 @@ global with sharing class Win_UploadEndpoint {
                         }   
                         else {
                             if (recordSObjectToUpsert instanceof FeedItem){
-                                ConnectApi.FeedElement feedElement = post((FeedItem) recordSObjectToUpsert, additionalDataMap);
+                                ConnectApi.FeedElement feedElement = Win_UploadEndpointUtils.post((FeedItem) recordSObjectToUpsert, additionalDataMap);
                                 responseItem.success = true;
                                 responseItem.executed = true; 
                                 responseItem.responseId = feedElement.id;
@@ -191,10 +192,10 @@ global with sharing class Win_UploadEndpoint {
                                     }
                                 }
                                 
-                                saveAssignment(responseItem.requestId, responseItem.responseId, deviceId, newAssignments);
+                                Win_UploadEndpointUtils.saveAssignment(responseItem.requestId, responseItem.responseId, deviceId, newAssignments);
                             }
                             else{
-                                Database.SaveResult insertResult;
+                                Database.SaveResult insertResult = null;
                                 if (service.shouldForceSharingInDml(recordSObjectToUpsert,Win_UploadService.INSERT_OPERATION)) {
                                     insertResult = service.insertForceSharing(recordSObjectToUpsert);
                                 } 
@@ -214,7 +215,7 @@ global with sharing class Win_UploadEndpoint {
                             objectReadyToUpdate.add(recordSObjectToUpsert); 
                         }
                         else {
-                            Database.SaveResult updateResult;
+                            Database.SaveResult updateResult = null;
                             if (service.shouldForceSharingInDml(recordSObjectToUpsert,Win_UploadService.UPDATE_OPERATION)) {
                                 updateResult = service.updateForceSharing(recordSObjectToUpsert);
                             //TMP Fix to DML inside loop
@@ -227,6 +228,7 @@ global with sharing class Win_UploadEndpoint {
                         }                   
                     }
                     
+                    System.debug('using this ' + saveResult);
                     //TMP Fix No Attachments
                     //// If the record contains a file attached to it, create & link an Attachment
                     //if(saveResult != null && saveResult.isSuccess() && additionalDataMap.containsKey('TQ_Attachment_FileName__c')
@@ -298,7 +300,7 @@ global with sharing class Win_UploadEndpoint {
     private static void processItemInsertResult(Win_UploadResponse.Win_UploadResponseItem responseItem, Database.SaveResult insertResult,
                                                 String deviceId, List<Win_Local_Assignment__c> newAssignments){
         String requestId = responseItem.requestId;
-        saveResultToResponse(insertResult, responseItem);
+        Win_UploadEndpointUtils.saveResultToResponse(insertResult, responseItem);
         if (responseItem.success){
             assignedIdsMap.put(responseItem.requestId, responseItem.responseId);
                                 
@@ -319,7 +321,7 @@ global with sharing class Win_UploadEndpoint {
                 }
             }
             
-            saveAssignment(responseItem.requestId, responseItem.responseId, deviceId, newAssignments);
+            Win_UploadEndpointUtils.saveAssignment(responseItem.requestId, responseItem.responseId, deviceId, newAssignments);
         }
         else {
             responseItem.record.put('Id', responseItem.requestId);
@@ -332,7 +334,7 @@ global with sharing class Win_UploadEndpoint {
      */
     private static void processItemUpdateResult(Win_UploadResponse.Win_UploadResponseItem responseItem, Database.SaveResult updateResult){
         String requestId = responseItem.requestId;
-        saveResultToResponse(updateResult, responseItem);
+        Win_UploadEndpointUtils.saveResultToResponse(updateResult, responseItem);
         if (responseItem.success){
             assignedIdsMap.put(responseItem.requestId, responseItem.responseId);
             
@@ -416,8 +418,7 @@ global with sharing class Win_UploadEndpoint {
             Integer recordIndex = recordOperationIndexList.get(index);
             
             if (!responseItem.executed && !failedRecordIdSet.contains(requestId) && 
-                recordIndex == numberOfProcessedOperationsPerRecord.get(requestId))
-            {
+                recordIndex == numberOfProcessedOperationsPerRecord.get(requestId)) {
                 failedRecordIdSet.add(requestId);
                 SObject recordSObject = responseItem.record;
                 
@@ -432,50 +433,15 @@ global with sharing class Win_UploadEndpoint {
                     String errorMessage;
                     if (failedRecordIdSet.contains(relatedId)) {
                         errorMessage = 'Related record for field ' + fieldLabel + ' has been failed';
-                    }
-                    else {
+                    } else {
                         errorMessage = 'Related record for field ' + fieldLabel + ' hasn\'t been founded';
                     }
                     responseItem.errorList.add(errorMessage);
                 }
-            }
-            else if (responseItem.operation == null){
+            } else if (responseItem.operation == null){
                 responseItem.operation = Win_UploadResponse.OperationUpsert;
             }
         }       
-    }
-    
-    /**
-     * Save an assignment
-     */
-    private static void saveAssignment(String localId, String salesforceId, String deviceId, List<Win_Local_Assignment__c> assignments){
-        if (salesforceId != null && localId != salesforceId){
-            Win_Local_Assignment__c assignment = new Win_Local_Assignment__c(
-                Local_Id__c = localId, Salesforce_Id__c = salesforceId, Device_Id__c = deviceId
-            );
-            
-            assignments.add(assignment);
-        }
-    }
-    
-    /**
-     * Save upsert result to the upload response
-     */
-    private static void saveResultToResponse(Database.SaveResult saveResult, Win_UploadResponse.Win_UploadResponseItem responseItem){
-        responseItem.success = saveResult.isSuccess();
-        responseItem.executed = true;       
-        //We should retrieve a new object only if UpsertResult is successful
-        if (responseItem.success) {
-            responseItem.responseId = saveResult.getId();
-        } else {
-            responseItem.responseId = responseItem.requestId;
-        }
-            
-        if (saveResult.getErrors() != null) {
-            for (Database.Error error : saveResult.getErrors()) {
-                responseItem.errorList.add(error.getMessage());
-            }
-        }
     } 
     
     /**
@@ -490,7 +456,7 @@ global with sharing class Win_UploadEndpoint {
         numberOfProcessedOperationsPerRecord = new Map<String, Integer>();  
         recordAdditonalDataList = new List<Map<String, Object>>();
             
-        assignedIdsMap = getAssignmentsMap();
+        assignedIdsMap = Win_UploadEndpointUtils.getAssignmentsMap();
         failedRecordIdSet = new Set<String>();
         
         for (Integer index = 0; index < recordList.size(); index++){
@@ -510,8 +476,7 @@ global with sharing class Win_UploadEndpoint {
                 sObjectConversionSuccess = false;
                 responseItem.errorList.add('Wrong data of ' + requestItem.objectApiName +' : ' + e.getMessage());
                 failedRecordIdSet.add(requestId);
-            }
-            finally {
+            } finally {
                 responseItem.record = recordObject;
                 responseItem.success = false;
                 responseItem.executed = false;
@@ -526,69 +491,10 @@ global with sharing class Win_UploadEndpoint {
                 recordOperationIndexList.add(0);
                 numberOfProcessedOperationsPerRecord.put(requestId, 0);
                 numberOfOperationsPerRecord.put(requestId, 1);
-            }
-            else {
+            } else {
                 recordOperationIndexList.add(operationsNumber);
                 numberOfOperationsPerRecord.put(requestId, operationsNumber + 1);
             }
         }   
     }   
-    
-    /**
-     * Return the map of the assignments 
-     */
-    private static Map<String, String> getAssignmentsMap(){
-        List<Win_Local_Assignment__c> assignments = [SELECT Local_Id__c, Salesforce_Id__c FROM Win_Local_Assignment__c
-                                                    WHERE CreatedById = :UserInfo.getUserId()];
-                                                    
-        Map<String, String> assignmentsMap = new Map<String, String>();
-        for (Win_Local_Assignment__c assignement : assignments){
-            assignmentsMap.put(assignement.Local_Id__c, assignement.Salesforce_Id__c);
-        }
-        return assignmentsMap;
-    }
-    
-    /**
-     * Post a feed with an image associated
-     */
-    public static ConnectApi.FeedElement post(FeedItem myFeedItem, Map<String, Object> additionalDataMap) {
-        // Form a basic post attached to our own feed.
-        ConnectApi.FeedItemInput chatterFeedItem = new ConnectApi.FeedItemInput();
-        chatterFeedItem.subjectId = myFeedItem.ParentId;
-        
-        ConnectApi.MessageBodyInput messageInput = new ConnectApi.MessageBodyInput();
-        messageInput.messageSegments = new List<ConnectApi.MessageSegmentInput>();
-        ConnectApi.TextSegmentInput textSegment = new ConnectApi.TextSegmentInput();
-        textSegment.text = myFeedItem.Body;
-        messageInput.messageSegments.add(textSegment);
-        chatterFeedItem.body = messageInput;
-        
-        System.debug('CHATTER_POSTING ' + additionalDataMap);
-        
-        if(additionalDataMap.containsKey('ChatterPostContentDataBlob') 
-                && additionalDataMap.get('ChatterPostContentDataBlob') != null) {
-            ContentVersion version = new ContentVersion();
-            version.Title = (String) additionalDataMap.get('ChatterPostContentFileName');
-            version.PathOnClient = (String) additionalDataMap.get('ChatterPostContentFileName');
-            version.VersionData = (Blob) additionalDataMap.get('ChatterPostContentDataBlob');
-
-            // Now connect the feeditem to our already uploaded file.
-            chatterFeedItem.capabilities = new ConnectAPI.FeedElementCapabilitiesInput();
-            chatterFeedItem.capabilities.files = new ConnectAPI.FilesCapabilityInput();
-            chatterFeedItem.capabilities.files.items = new List<ConnectAPI.FileIdInput>();
-            ConnectAPI.FileIdInput attachFile = new ConnectAPI.FileIDInput();
-            insert version;
-            
-            // After you insert the ContentVersion object, a base 'ContentDocument' is established
-            // The ID of the ContentDocument is what you need to attach the file to the Chatter post.
-            version = [SELECT ID,ContentDocumentId FROM ContentVersion WHERE ID = :version.id];
-
-            //**** Here is where we attach the specific file to the post!
-            attachFile.id = version.contentDocumentid; 
-            chatterFeedItem.capabilities.files.items.add(attachFile);
-        }
-
-        // Execute the posting
-        return Test.isRunningTest() ? null : ConnectApi.ChatterFeeds.postFeedElement(Network.getNetworkId(), chatterFeedItem);
-    }
 }
