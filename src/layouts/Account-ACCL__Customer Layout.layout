@@ -21,6 +21,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>UL_Is_AllCustomer_Level1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>AccountNumber</field>
             </layoutItems>
             <layoutItems>
@@ -239,6 +243,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>UL_Sales_Organization__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>UL_Level_2__c</field>
             </layoutItems>
             <layoutItems>
@@ -281,6 +289,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>UL_Planning_Level_Start_Date__c</fields>
+        <fields>UL_Planning_Level_End_Date__c</fields>
+        <fields>UL_Account__c</fields>
         <relatedList>UL_Planning_Level__c.UL_Customer__c</relatedList>
     </relatedLists>
     <relatedLists>

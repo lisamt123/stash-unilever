@@ -240,6 +240,8 @@ src/layouts/Account-UL_SoCo_Account_Layout.layout
 src/layouts/ACCL__Promotion_Template__c-SoCo_Promotion_Template_Layout.layout
 src/layouts/IIBBTax__c-IIBBTax_Layout.layout
 src/layouts/Account-ACCL__Customer Layout.layout
+src/layouts/Account-Account Layout.layout
+src/layouts/ACCL__Promotion_Template__c-ACCL__Promotion Template Layout.layout
 src/groups
 src/groups/UL_Account_Manager_AR01.group
 src/groups/UL_AccountManager_AR01.group
@@ -500,6 +502,7 @@ src/classes/UL_PromotionClosureTest.cls
 src/classes/UL_PromotionClosureTest.cls-meta.xml
 src/classes/UL_IIBBTax_TriggerHandler.cls
 src/classes/UL_IIBBTax_TriggerHandler.cls-meta.xml
+src/classes/MyRemoteActionUtility.cls
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml
