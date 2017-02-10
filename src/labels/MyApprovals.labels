@@ -1,7 +1,21 @@
-	<labels>
-        <fullName>CORE_LBL_NA</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CORE_LBL_NA</shortDescription>
-        <value>NA</value>
-    </labels>
+<labels>
+	<fullName>CORE_LBL_NA</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>CORE_LBL_NA</shortDescription>
+	<value>NA</value>
+</labels>
+<labels>
+	<fullName>CORE_CLMLBL_CommittedSpend</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>CORE_CLMLBL_CommittedSpend</shortDescription>
+	<value>Committed Spend</value>
+</labels>
+<labels>
+	<fullName>CORE_CLMLBL_EstimatedSpend</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>CORE_CLMLBL_EstimatedSpend</shortDescription>
+	<value>Estimated Spend</value>
+</labels>

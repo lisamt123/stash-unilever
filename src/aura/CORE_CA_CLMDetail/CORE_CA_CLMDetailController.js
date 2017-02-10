@@ -79,7 +79,7 @@
         if(sourcePage == 'closed'){
             selectEvent.setParams({"closednavigation": "CORE_CA_Closed","filterValue": component.get("v.filterValue")}).fire();}              
 },
-    ApproveAction : function(component, event, helper) {
+    approveAction : function(component, event, helper) {
         if(component.get("v.isDesktop") != 'Lightning Experience'){
             helper.scrollToLocation(component, "top");
         } 
@@ -88,7 +88,7 @@
         component.set("v.spinnercompClm",false);
     },
     
-    RejectAction : function(component, event, helper) {
+    rejectAction : function(component, event, helper) {
         if(component.get("v.isDesktop") != 'Lightning Experience'){
             helper.scrollToLocation(component, "top");
         }

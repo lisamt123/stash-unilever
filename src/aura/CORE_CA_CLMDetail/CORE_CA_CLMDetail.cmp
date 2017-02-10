@@ -399,11 +399,11 @@
                                         
                                     </aura:if>
                                     <aura:if isTrue="{!v.showReject}">
-                                        <td class="alignCenter" onclick ="{!c.RejectAction}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Return.svg" />
+                                        <td class="alignCenter" onclick ="{!c.rejectAction}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Return.svg" />
                                             <div class="font1">{!$Label.c.CORE_LBL_APPREJ_REJC_BTN}</div></td>
                                     </aura:if> 
                                     <aura:if isTrue="{!v.showApprove}">   
-                                        <td class="alignCenter" onclick ="{!c.ApproveAction}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Approve.svg" />
+                                        <td class="alignCenter" onclick ="{!c.approveAction}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Approve.svg" />
                                             <div class="font2">{!$Label.c.CORE_LBL_APPREJ_APPR_BTN}</div></td>
                                     </aura:if>                                     
                                 </tr>
