@@ -60,7 +60,7 @@ public with sharing class IPM_Assumptions_Controller {
     */
     public string getInvokeMethodsForComponent() {
         getAssumptions();
-        return 'Required methods are invoked for component';
+        return IPM_ConstantUtils.methodInvokedForComponent;
     }
     
     /************************************************************************************************************************

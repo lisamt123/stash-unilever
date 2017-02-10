@@ -14,11 +14,15 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
-        <type>Default</type>
+        <content>IPM_ProjectRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <type>Default</type>
+        <content>IPM_ProjectRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -26,11 +30,15 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>List</actionName>
-        <type>Default</type>
+        <content>IPM_ProjectList</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <type>Default</type>
+        <content>IPM_ProjectRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -38,11 +46,15 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
-        <type>Default</type>
+        <content>IPM_ProjectList</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <content>IPM_ProjectRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -55,6 +67,36 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
+    <fieldSets>
+        <fullName>DefaultListView</fullName>
+        <description>Displaying List of Projects</description>
+        <displayedFields>
+            <field>IPM_Project_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Company_Card__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Complexity__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Project_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Project_Leader__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>DefaultListView</label>
+    </fieldSets>
     <fieldSets>
         <fullName>IPM_BETProjectFields</fullName>
         <description>project fields required for bet</description>
@@ -1103,6 +1145,10 @@
                 <fullName>Personal Care</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Food Solutions</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1200,6 +1246,26 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
             </picklistValues>
             <picklistValues>
                 <fullName>Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>UFS Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>UFS Spreads</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>UFS Savoury</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>UFS Other Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>UFS Tea and Soy &amp; Fruit Beverages</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>false</restrictedPicklist>
@@ -1415,6 +1481,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <fullName>Premium</fullName>
                 <default>false</default>
                 <controllingFieldValues>Oral Care</controllingFieldValues>
+				<controllingFieldValues>UFS Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Super Premium</fullName>
@@ -1489,6 +1556,93 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <fullName>Other</fullName>
                 <default>false</default>
                 <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Chains</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Dressings</controllingFieldValues>
+				<controllingFieldValues>UFS Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Expand Salad Dressings</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Dressings</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Trusted Core</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Dressings</controllingFieldValues>
+				<controllingFieldValues>UFS Spreads</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Win with Condiments FOH</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Dressings</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Accelerate the Core</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Exploit World Cuisine</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Get close to scratch cooking</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Penetrate Asian top dishes</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Savoury</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Dairy Free</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Spreads</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Like Dairy</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Spreads</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Core Double Chamber</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Core Pyramid</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Fresh Brew Iced Tea</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>New Tea Experiences</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Desserts - Create</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Other Foods</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Desserts - Finish</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Other Foods</controllingFieldValues>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Desserts - Make</fullName>
+                <default>false</default>
+                <controllingFieldValues>UFS Other Foods</controllingFieldValues>
             </picklistValues>
             <restrictedPicklist>false</restrictedPicklist>
             <sorted>false</sorted>
@@ -3365,7 +3519,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <description>Category  will be auto populated from user record.</description>
         <externalId>false</externalId>
         <label>Category</label>
-        <length>30</length>
+        <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3771,6 +3925,23 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>IPM_Project_Status__c</fullName>
+        <description>This field is used for legacy project as requirement of Release 3.3 and also we can use this field in future</description>
+        <externalId>false</externalId>
+        <label>Project Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Legacy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <label>IPM Project</label>
     <listViews>
@@ -4500,6 +4671,26 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <fullName>Tea and Soy %26 Fruit Beverages</fullName>
                 <default>false</default>
             </values>
+			<values>
+                <fullName>UFS Dressings</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Spreads</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Savoury</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Other Foods</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Tea and Soy %26 Fruit Beverages</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Category_Platform__c</picklist>
@@ -4723,7 +4914,82 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <fullName>Win with strong brands</fullName>
                 <default>false</default>
             </values>
+			<values>
+                <fullName>Chains</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Expand Salad Dressings</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Trusted Core</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Win with Condiments FOH</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Accelerate the Core</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Exploit World Cuisine</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Get close to scratch cooking</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Penetrate Asian top dishes</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Dairy Free</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Like Dairy</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Core Double Chamber</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Core Pyramid</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Fresh Brew Iced Tea</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>New Tea Experiences</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Create</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Finish</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Make</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
+		<picklistValues>
+			<picklist>IPM_Project_Status__c</picklist>
+			<values>
+				<fullName>Legacy</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>IPM_Cluster_Layout</fullName>
@@ -5312,6 +5578,26 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <fullName>Tea and Soy %26 Fruit Beverages</fullName>
                 <default>false</default>
             </values>
+			<values>
+                <fullName>UFS Dressings</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Spreads</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Savoury</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Other Foods</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>UFS Tea and Soy %26 Fruit Beverages</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Category_Platform__c</picklist>
@@ -5535,8 +5821,82 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <fullName>Win with strong brands</fullName>
                 <default>false</default>
             </values>
+			<values>
+                <fullName>Chains</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Expand Salad Dressings</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Trusted Core</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Win with Condiments FOH</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Accelerate the Core</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Exploit World Cuisine</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Get close to scratch cooking</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Penetrate Asian top dishes</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Dairy Free</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Like Dairy</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Core Double Chamber</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Core Pyramid</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Fresh Brew Iced Tea</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>New Tea Experiences</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Create</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Finish</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Desserts - Make</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
-
+		<picklistValues>
+			<picklist>IPM_Project_Status__c</picklist>
+			<values>
+				<fullName>Legacy</fullName>
+				<default>false</default>
+			</values>
+		</picklistValues>
     </recordTypes>
     <searchLayouts>
         <searchResultsAdditionalFields>IPM_Project_Name__c</searchResultsAdditionalFields>

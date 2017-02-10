@@ -213,7 +213,7 @@
                                     <span class="boxTitle">{!$Label.IPM_ASK_IPM}</span>           
                                 </div>
                                 <div class="col-sm-6 centerAlign box4 noPadleft noPadright SecButtonSet" title="{!$Label.IPM_GotoIPMPortal}">
-                                    <a class="icoButton ipmportal" href="http://inside.unilever.com/marketing/IPM/Pages/ipmnav.aspx" target="_blank" title="Navigate to IPM Portal"></a>
+                                    <a class="icoButton ipmportal" href="{!$Label.IPM_GOTO_URL}" target="_blank" title="Navigate to IPM Portal"></a>
                                     <span class="boxTitle"><div>{!$Label.IPM_GO_TO}</div><div>{!$Label.IPM_PORTAL}</div></span>             
                                 </div>
                             </div>  

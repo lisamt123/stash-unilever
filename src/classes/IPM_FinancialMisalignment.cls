@@ -2,7 +2,7 @@ public with sharing class IPM_FinancialMisalignment
  {
     private static final String FINANCIALS_STR1='The financials for projects ';
     private static final String FINANCIALS_STR2=' and ';
-    private static final String FINANCIALS_STR3=' are no longer aligned. Please contact your BD/BB Finance partner to re-align the business cases';
+    private static final String FINANCIALS_STR3=' are no longer aligned. Please contact your Finance partner to re-align the business cases.';
     private static Set<Id> projectIds= new Set<Id>();
     private static Map<Id, String> subjectIdMessageMap = new Map<Id, String>();
     private static Map<Id,Set<Id>> subjectIdMentionIdMap = new Map<Id,Set<Id>>();

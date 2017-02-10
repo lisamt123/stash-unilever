@@ -169,6 +169,9 @@ global without sharing class  IPM_GroupManagement {
     **************************************************************************************************/
   public static void groupNameUpdate(Set<Id> projectId){
     Set<string> queuename = new Set<string>();
+    
+    Set<Id> queueIds = new Set<Id>();
+    
     string projectidstr;
                       
     for(string projid:projectId){
@@ -185,8 +188,10 @@ global without sharing class  IPM_GroupManagement {
         projectidstr = proj.Id;
         if(g.Name.equals(IPM_ConstantUtils.IPM_IPMNNAME+projectidstr.Substring(0,15))){
           g.Name=IPM_ConstantUtils.IPM_IPMNNAME+proj.Name;
+          
+          queueIds.add(g.Id);     
         }
-        if(proj.IPM_Category_Text__c!=null)  
+        if(proj.IPM_Category_Text__c!=null && projCategory==null)  
             {
                projCategory ='%'+proj.IPM_Category_Text__c.replace(' ','_').replace('&','N')+'%_BP%';   
             }
@@ -199,11 +204,38 @@ global without sharing class  IPM_GroupManagement {
           String BPGrpId= catBPGroups.size() > 0 ?catBPGroups[0].id :null;
           if(BPGrpId!=null && grpList[0]!=null && grpList[0].Id!=null)
           {
-            GroupMember member = new GroupMember();
-      
-          member.UserOrGroupId = BPGrpId;
-          member.GroupId = grpList[0].Id;   
-          insert  member;  
+	          List<GroupMember> grpMem = new List<GroupMember>();
+	          
+	          for(Id queueId:queueIds) 
+	          {
+	          	
+	          	GroupMember member = new GroupMember();
+	            
+	            member.UserOrGroupId = BPGrpId;
+	            
+	            member.GroupId = queueId; 
+	            
+	            grpMem.add(member); 
+	            
+	          }
+	          
+	   
+	          if(!Test.isRunningTest())
+	          {
+	          	if(!grpMem.isEmpty())
+	          	{
+	          		Database.insert(grpMem,false);
+	          		system.debug(grpMem.size());
+	          	}
+	          }
+	          else
+	          {
+            	// start new context via system.runAs() for the same user for test code only
+           	 	System.runAs(IPM_TestFactory_Helper.createUserAdmin(false)) 
+           	 	{
+              		Database.insert(grpMem,false);
+          		}
+	          }    
           }
       }
     if(grpList!=null && !grpList.isEmpty()){ 

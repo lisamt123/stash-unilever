@@ -25,6 +25,8 @@ private class IPM_RolloutPlansAddController_Test
     private static final string LV4_GEO0085 = 'LV4_GEO0085';
     private static final string STATUS_ACTIVE = 'Active';
     private static final string ID = 'id';
+   
+    private static final string IPM_FS_Category='UFS Beverages';
     private static Id REGIONAL_ROLLOUT_RECTYPE = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;
     
     /******************************************************************************************************************************************
@@ -103,6 +105,10 @@ private class IPM_RolloutPlansAddController_Test
            		
            		irp.searchCountry = 'Africa'; 
            		irp.searchRolloutCountry();
+
+
+           		irp.searchCountry = 'UFS Australia';
+           		irp.searchRolloutCountry();
            		
            		irp.checkLocalProjectAssociatedOrNot();
            		
@@ -114,7 +120,12 @@ private class IPM_RolloutPlansAddController_Test
         		IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
         		update regionalRollout;
         		IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
-            
+	           
+	                irp.projectcategory = IPM_FS_Category;
+	               
+	                irp.searchRolloutCountry();
+	                irp.getUnileverCountries();
+                
 	         	List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(new List<Id>{projectAssertList[0].Id},globalProjectLeader); 
          	    update projectListPhaseChange;
          	    
@@ -140,6 +151,11 @@ private class IPM_RolloutPlansAddController_Test
 	       		irpRegional.checkLocalProjectAssociatedOrNot();
 	       	
 	       		irp.generateRollouts();
+	       		
+	       		           		
+           		irp.searchCountry = '';
+           		irp.searchRolloutCountry();
+	       		
      		}
       	} 
       	

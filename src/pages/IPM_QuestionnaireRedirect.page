@@ -1,0 +1,5 @@
+<apex:page standardController="IPM_Questionnaire__c" >
+    <apex:form >
+		<c:IPM_sObjectDetail sObjectName="IPM_Questionnaire__c" objectId="{!$CurrentPage.parameters.id}"/>   
+    </apex:form>  
+</apex:page>

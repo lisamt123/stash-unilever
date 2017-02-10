@@ -3,6 +3,8 @@
 @Created Date: July 2015
 @Author: Cognizant
 @Referenced: IPM_CountryHandler
+@Business Logic:    There are no try/Catch blocks in this class for transacation management purposes. We need the transaction to be rollbacked in case of error as 
+                        the methods in this class are invoked from trigger.
 ****************************************************************************/
 public with sharing class IPM_ProjectCountryDetails{
     
@@ -844,7 +846,7 @@ public with sharing class IPM_ProjectCountryDetails{
     *****************************************************************************/
     public static Boolean isProjectReadyToSyncToEcoDesign(IPM_Project__c projectToEvaluate) {
         //Check the sync flag according to criteria specified in Custom Setting 'IPM Project Type'
-        if((IPM_Utils.retrieveProjectType(projectToEvaluate) == null || !IPM_Utils.retrieveProjectType(projectToEvaluate).IPM_Dont_Sync_Proj_To_EcoDesign__c) && projectToEvaluate.IPM_ProjectSubType__c != IPM_ConstantUtils.IPM_BLG && projectToEvaluate.IPM_Project_Type__c != IPM_ConstantUtils.ECODESIGN_PROJECT_TYPE_OPERATIONAL){
+        if((IPM_Utils.retrieveProjectType(projectToEvaluate) == null || !IPM_Utils.retrieveProjectType(projectToEvaluate).IPM_Dont_Sync_Proj_To_EcoDesign__c) && projectToEvaluate.IPM_ProjectSubType__c != IPM_ConstantUtils.IPM_BLG && projectToEvaluate.IPM_Project_Type__c != IPM_ConstantUtils.ECODESIGN_PROJECT_TYPE_OPERATIONAL && (IPM_Utils.retrieveProjectCategoryType(projectToEvaluate) != null && IPM_Utils.retrieveProjectCategoryType(projectToEvaluate).IPM_SyncTo_Eco_Design__c)){
             return TRUE;
         }
         else{
@@ -857,7 +859,7 @@ public with sharing class IPM_ProjectCountryDetails{
     @Params ProjectsToEvaluate:  Set Of Project Ids
     *****************************************************************************/
     public static Map<Id,Boolean> getProjectIdToSyncMap(Set<Id> projectsToEvaluate) {
-        Map<Id,IPM_Project__c> projIdProjectMap =new Map<Id,IPM_Project__c> ([Select Id,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c, IPM_ProjectGKM__c From IPM_Project__c Where Id IN :projectsToEvaluate LIMIT 50000 ]);
+        Map<Id,IPM_Project__c> projIdProjectMap =new Map<Id,IPM_Project__c> ([Select Id,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectSubType__c,IPM_Category_Group__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c, IPM_ProjectGKM__c From IPM_Project__c Where Id IN :projectsToEvaluate LIMIT 50000 ]);
         Map<Id,Boolean> projectIdToSyncMap =  new Map<Id,Boolean>(); //Map of Project Id and Boolean(Whetehr the project is to be synced or not)
         
         for(IPM_Project__c project: projIdProjectMap.values()){

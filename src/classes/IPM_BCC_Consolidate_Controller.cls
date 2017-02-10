@@ -54,19 +54,45 @@ public with sharing class IPM_BCC_Consolidate_Controller
         set;
     } // colomn visibility 
     
+    public Id docId{// to get-set the project document id from the component attribute.
+        get{
+            if(docId == null && Apexpages.currentpage().getparameters().get('docId') != null) {
+                return  Apexpages.currentpage().getparameters().get('docId');
+            }
+            else { return docId; }
+        }
+        set;
+    }
+    public String docStatus{// to get-set the project document status from the component attribute
+        get{
+            if(docStatus == null && Apexpages.currentpage().getparameters().get('docStatus') != null) {
+                return  Apexpages.currentpage().getparameters().get('docStatus');
+            }
+            else { return docStatus; }
+        }
+        set;
+    }
+    
     public IPM_Financial__c financial;
     public static final String CORE_STRATEGIC_INNOVATION='Innovation';
     public static final String Year ='3';
     public transient List<IPM_Financial__c> localFinancialList{get; set;} //used to store query result from IPM_Financial__c object
     public transient IPM_Project__c project{get; set;} //used to store query result from IPM_Project__c object
     public Integer localProjectsCount{get; set;} //used to store count of project where parent project id is equal to current project id
+    public List<IPM_Project_CC_Alignment_Snapshot__c> localFinancialSnapshotList{get; set;}
     
     /************************************************************************************************************************
     * @Description: Methods to run when this controller is invoked from component
     */
     public string getInvokeMethodsForComponent() {
-        showBCC();
-        return 'Required methods are invoked for component';
+        if(IPM_ConstantUtils.STATUS_APPROVED.equalsIgnoreCase(docStatus)){
+        	showSnapshotBCC();
+        }        	
+ 
+        else{
+        	showBCC();
+        }
+        return IPM_ConstantUtils.methodInvokedForComponent;
     }
     
     /************************************************************************************************************************
@@ -138,5 +164,19 @@ public with sharing class IPM_BCC_Consolidate_Controller
                                 FROM IPM_Financial__c 
                                 WHERE isActive__c=true and Local_Project__c=:projId];
         }
-    }          
+    }
+    
+    /*********************************************************************
+    @Description: used for fetching local project count and local financial list fromm the snapshot object
+    @Created Date: 15/04/2015
+    @Author: Cognizant
+    @param: Not Applicable
+    @Referenced: IPM_Bcc_Consolidate Component
+    *********************************************************************/
+    
+    public void showSnapshotBCC(){
+       localFinancialSnapshotList  = new List<IPM_Project_CC_Alignment_Snapshot__c>();
+       localFinancialSnapshotList = [Select Id, Name,IPM_BC_Confirmation_Text__c,IPM_Financial_Aligned__c,IPM_Financial_TLD_Aligned__c,IPM_Y3GTO__c,IPM_Y3ITO__c,IPM_Advertising_Promotions__c,IPM_GM_of_TO_Percentage__c,IPM_Project_Document__c FROM IPM_Project_CC_Alignment_Snapshot__c where IPM_Project_Document__c =:docId ];
+    }    
+              
 }

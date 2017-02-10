@@ -1,0 +1,3 @@
+<apex:page standardController="IPM_Gate_CMI__c" recordSetVar="IPM_Gate_CMI__c">
+    <c:IPM_sObjectList sObjectName="IPM_Gate_CMI__c" fieldSetName="DefaultListView" searchFieldName="Name" />    
+</apex:page>

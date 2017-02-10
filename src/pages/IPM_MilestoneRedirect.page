@@ -1,0 +1,5 @@
+<apex:page standardController="IPM_Milestone__c" >
+    <apex:form >
+		<c:IPM_sObjectDetail sObjectName="IPM_Milestone__c" objectId="{!$CurrentPage.parameters.id}"/>   
+    </apex:form>  
+</apex:page>

@@ -20,6 +20,13 @@
         <value>Global Claims Table</value>
 </labels>
 <labels>
+        <fullName>IPM_GOTO_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_GOTO_URL</shortDescription>
+        <value>https://unilever.sharepoint.com/sites/Marketing/IPM</value>
+    </labels>
+<labels>
         <fullName>IPM_Capability_Confirmed_Help_Text</fullName>
         <categories>EPIC284</categories>
         <language>en_US</language>
@@ -1240,7 +1247,7 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BACKGROUNDPROCESS_INPROGRESS</shortDescription>
-        <value>Your project is being created.  In a few minutes, please navigate to the IPM Home tab to access it.</value>
+        <value>Your project is being created. The page will refresh shortly and you will then be able to continue with project setup.</value>
     </labels>
     <labels>
         <fullName>IPM_BB</fullName>
@@ -2458,7 +2465,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_COMPANY_CARD</shortDescription>
-        <value>70-20-10 Classification</value>
+        <value>Please select 70-20-10 Classification</value>
     </labels>
     <labels>
         <fullName>IPM_COMP_CARD_NAME</fullName>
@@ -6987,7 +6994,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning</shortDescription>
-        <value>Clicking on Change would submit your request for phase change. Once processing is complete, you will be notified via email.</value>
+        <value>Clicking on Change will submit your request for phase change. Once processing is complete, you will be notified via email.</value>
     </labels>
     <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning_Local</fullName>
@@ -7001,7 +7008,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning_Regional</shortDescription>
-        <value>Clicking on save would submit your request for creation of regional project as soon as the regional project leader is assigned.A Regional Rollout project, once projected, cannot be deleted by the project leader and will have to be done via regional project leader through stop project. Once Processing is complete,you will be notified via Email.</value>
+        <value>Clicking on save will submit your request for creation of regional project as soon as the regional project leader is assigned.A Regional Rollout project, once projected, cannot be deleted by the project leader and will have to be done via regional project leader through stop project. Once Processing is complete,you will be notified via Email.</value>
     </labels>
     <labels>
         <fullName>IPM_PhaseChangeInProgressMsg</fullName>
@@ -10455,5 +10462,76 @@ If you discover that stopping this project was a mistake you can undo this actio
 		<shortDescription>IPM Volume Unit Misalignment Message</shortDescription>
 		<value>Please ensure volume selected is the same within Category and Country financial views</value>
 	</labels>
+	<labels>
+        <fullName>IPM_Clusters_Clear_Selection</fullName>
+        <categories>IPM_Clusters__c</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Clusters_Clear_Selection</shortDescription>
+        <value>Clear Selection</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Clusters_Add_Projects</fullName>
+        <categories>IPM_Clusters__c</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Clusters_Add_Projects</shortDescription>
+        <value>Add Projects</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Clusters_Available_Projects</fullName>
+        <categories>IPM_Clusters__c</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Clusters_Available_Projects</shortDescription>
+        <value>AVAILABLE PROJECTS FOR CLUSTER</value>
+    </labels>
+	<labels>
+        <fullName>IPM_First</fullName>
+        <categories>IPM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_First</shortDescription>
+        <value>First</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Previous</fullName>
+        <categories>IPM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Last</fullName>
+        <categories>IPM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Last</shortDescription>
+        <value>Last</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Clusters_Remove_Projects</fullName>
+        <categories>IPM_Clusters__c</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Clusters_Remove_Projects</shortDescription>
+        <value>Remove Projects</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Clusters_Existing_Projects</fullName>
+        <categories>IPM_Clusters__c</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Clusters_Existing_Projects</shortDescription>
+        <value>EXISTING PROJECTS IN CLUSTER</value>
+    </labels>
+	<labels>
+        <fullName>IPM_UNAUTHORIZED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_UNAUTHORIZED</shortDescription>
+        <value>You are not authorized to view this Page.Contact System Admin for Access Elevation</value>
+    </labels>
 
 	

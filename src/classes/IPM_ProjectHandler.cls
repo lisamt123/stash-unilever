@@ -86,6 +86,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     	
                     	project.IPM_Category_Platform__c = IPM_ConstantUtils.PLATFORM_NA;
                     } 
+		   // Set BET Toolkit field to "NO BET" for GKM8 and Food Solutions project 
+                    if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_8 || project.IPM_Category_Group__c == IPM_ConstantUtils.IPM_UFS_CATEGORY_GROUP){
+                         project.IPM_BET_Toolkit__c = IPM_ConstantUtils.NO_BET ;
+               	    }
                     //Set default BET value
                     if(String.isBlank(project.IPM_BET_Toolkit__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
                         project.IPM_BET_Toolkit__c = IPM_ConstantUtils.CREATE_NEW_BET ;
@@ -219,8 +223,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 if(!IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
                 {
                     Boolean isStatusSameFlag = true;
-                    if(!Test.isRunningTest()){
-                        isStatusSameFlag = Trigger.isUpdate && incomingProject.IPM_Project_Job_Status__c!=oldProject.IPM_Project_Job_Status__c;
+                    if(Trigger.isUpdate && !Test.isRunningTest())
+                    {
+                        isStatusSameFlag = incomingProject.IPM_Project_Job_Status__c!=oldProject.IPM_Project_Job_Status__c;
                     }
                     
                     if(isStatusSameFlag && incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null 
@@ -991,7 +996,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         
         //Identify if the fields on the project have changed and marked the project to be synced with ecodesign
         for (FieldSetMember fsm : Schema.SObjectType.IPM_Project__c.fieldSets.IPM_Project_Fields_EcoDesign.getFields()) {
-            if (oldProject.get(fsm.getFieldPath()) != incomingProject.get(fsm.getFieldPath()) && oldProject.First_Sync_To_EcoDesign__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(incomingProject) && String.isNotBlank(incomingProject.Project_Countries__c) ) {
+            if (oldProject.get(fsm.getFieldPath()) != incomingProject.get(fsm.getFieldPath()) && oldProject.First_Sync_To_EcoDesign__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(incomingProject) && String.isNotBlank(incomingProject.Project_Countries__c) && (IPM_Utils.retrieveProjectCategoryType(incomingProject) != null && IPM_Utils.retrieveProjectCategoryType(incomingProject).IPM_SyncTo_Eco_Design__c)) {
                   incomingProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
                   break;
             }

@@ -27,6 +27,24 @@ public with sharing class IPM_Gate_RollOuts_Controller
         }
         set;
     }
+    public Id docId{// to get-set the project document id from the component attribute.
+        get{
+            if(docId == null && Apexpages.currentpage().getparameters().get('docId') != null) {
+                return  Apexpages.currentpage().getparameters().get('docId');
+            }
+            else { return docId; }
+        }
+        set;
+    }
+    public String docStatus{// to get-set the project document status from the component attribute
+        get{
+            if(docStatus == null && Apexpages.currentpage().getparameters().get('docStatus') != null) {
+                return  Apexpages.currentpage().getparameters().get('docStatus');
+            }
+            else { return docStatus; }
+        }
+        set;
+    }
     public String[] headers {get;set;} //Containd table headers 
     public transient List<RegionalRollOutWrapper> regionalRollOutWrapperList {get;set;} 
     public static  ID regionalRecordTypeId =  Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;//used for displaying Regional To Local To Country Mapping ;  
@@ -39,7 +57,7 @@ public with sharing class IPM_Gate_RollOuts_Controller
     */
     public string getInvokeMethodsForComponent() {
         prepareIPMLocalToCountryWrapper();
-        return 'Required methods are invoked for component';
+        return IPM_ConstantUtils.methodInvokedForComponent;
     }
     
     /************************************************************************************************************************
@@ -86,6 +104,10 @@ public with sharing class IPM_Gate_RollOuts_Controller
                 }
                 
                 showEntity = String.format(Label.IPM_ShowEntity,new String[]{projectInContext.IPMProject_Span__c});
+                if(IPM_ConstantUtils.STATUS_APPROVED.equalsIgnoreCase(docStatus)){
+                	getRolloutSnapShot(projectInContext.IPMProject_Span__c);
+                	return;
+                }
                 Map<String,List<IPM_Project_Rollout__c>> regionalToLocalRolloutList = new Map<String,List<IPM_Project_Rollout__c>>();
                 
                 Map<Id,IPM_Project_Rollout__c> completeLocalRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
@@ -174,6 +196,60 @@ public with sharing class IPM_Gate_RollOuts_Controller
     }
     
     /************************************************************************************************************************
+    *  Description Based on the passed Project Span, Identifies the associated local and Regional Rollouts which need to be displayed on the Gate Document Appendix 
+                    section.
+    *  @name getRolloutSnapShot
+    *  @param sProjectSpan
+    *  @return void
+    *  @throws exception
+    */
+    private void getRolloutSnapShot(String sProjectSpan){
+    	
+    	try{
+	    	System.debug('@@sprojectspan'+sProjectSpan);
+            
+	    	List<IPM_Project_Rollout_Snapshot__c> lstProjRollOutSnapShot = new List<IPM_Project_Rollout_Snapshot__c>([SELECT Id, Name, IPM_Brand__c, IPM_Local_Rollout_Name__c, IPM_Project_Span__c, IPM_Rollout_Countries__c, IPM_Rollout_Status__c, IPM_Target_Launch_Date__c FROM IPM_Project_Rollout_Snapshot__c WHERE IPM_Project_Document__c=:docId AND IPM_Project_Span__c =:sProjectSpan]);
+	    	System.debug('snapshot size='+lstProjRollOutSnapShot.size());
+	    	IPM_Project_Rollout__c oLocalRollout = null;
+	    	LocalRolloutWrapper oLocalRolloutWrapper = null;
+	    	List<LocalRolloutWrapper> lstAssociatedLocalWrapper = null;
+	    	Map<String, List<LocalRolloutWrapper>> mapRegionalRollOut = new Map<String, List<LocalRolloutWrapper>>();
+	    	
+	    	for(IPM_Project_Rollout_Snapshot__c oPrjROSnapShot : lstProjRollOutSnapShot){
+	    		oLocalRollout = new IPM_Project_Rollout__c();
+	    		oLocalRollout.Name = oPrjROSnapShot.IPM_Local_Rollout_Name__c;
+	    		oLocalRollout.IPM_Brand__c = oPrjROSnapShot.IPM_Brand__c;
+	    		oLocalRollout.IPM_Status__c = oPrjROSnapShot.IPM_Rollout_Status__c;
+	    		oLocalRollout.IPM_Regional_Rollout_Status__c = oPrjROSnapShot.IPM_Rollout_Status__c;
+	    		oLocalRollout.Target_Launch_Date__c = oPrjROSnapShot.IPM_Target_Launch_Date__c;
+	    		
+	    		oLocalRolloutWrapper = new LocalRolloutWrapper(oLocalRollout, oPrjROSnapShot.IPM_Rollout_Countries__c);
+	    		
+	    		if(mapRegionalRollOut.containskey(oPrjROSnapShot.Name)){
+	    			mapRegionalRollOut.get(oPrjROSnapShot.Name).add(oLocalRolloutWrapper);
+	    		}else{
+	    			lstAssociatedLocalWrapper = new  List<LocalRolloutWrapper>();
+	    			lstAssociatedLocalWrapper.add(oLocalRolloutWrapper);
+	    			mapRegionalRollOut.put(oPrjROSnapShot.Name, lstAssociatedLocalWrapper);
+	    		}
+	    	}
+	    	
+	    	if(mapRegionalRollOut != null){
+	    		RegionalRollOutWrapper oRegionalRollOutWrapper = null;
+	    		for(String sRegionRolloutName : mapRegionalRollOut.keySet()){
+	    			oRegionalRollOutWrapper = new RegionalRollOutWrapper(sRegionRolloutName, mapRegionalRollOut.get(sRegionRolloutName));
+	    			regionalRollOutWrapperList.add(oRegionalRollOutWrapper);
+	    		}
+	    	}
+    	}
+    	catch(Exception ex){
+            // Invoked from Getter/Setter. Removing Exception Log insertion due to platform limitations.
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+        }
+    }
+    
+    
+    /************************************************************************************************************************
     *  Description This class is a wrapper Class for showing dependencies between Regional Rollout and Geo.
     *  @name RegionalRollOutWrapper
     */
@@ -204,6 +280,11 @@ public with sharing class IPM_Gate_RollOuts_Controller
                 }
             }
             associatedCountryString = String.join(associatedGoes,IPM_ConstantUtils.COMMA+' ');
+        }
+        
+        public localRolloutWrapper(IPM_Project_Rollout__c pLocalRollOut, String  pAssociatedCountries){
+        	this.localRollOut = pLocalRollOut;
+            this.associatedCountryString = pAssociatedCountries;
         }
     }
 }

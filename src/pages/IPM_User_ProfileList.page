@@ -1,0 +1,3 @@
+<apex:page standardController="IPM_User_Profile__c" recordSetVar="IPM_User_Profile__c">
+    <c:IPM_sObjectList sObjectName="IPM_User_Profile__c" fieldSetName="DefaultListView" searchFieldName="IPM_User__c" />    
+</apex:page>

@@ -165,11 +165,11 @@ jq(document).ready(function() {
             }
         }
     }
-    var walk_the_DOM = function (node, func) {
+    var walkTheDom = function (node, func) {
         func(node);
         node = node.firstChild;
         while (node) {
-            walk_the_DOM(node, func);
+            walkTheDom(node, func);
             node = node.nextSibling;
         }
     };

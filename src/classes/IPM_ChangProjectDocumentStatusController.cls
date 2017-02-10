@@ -288,7 +288,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         String projectWhereClause = ' WHERE id  =: projectId limit 1';
         projectWhereClause = projectQuery + projectWhereClause;
         List<IPM_Project__c> projList  = database.query(projectWhereClause);
-        if(projList != null && !projList.isEmpty() && IPM_Utils.isProjectToBeSyncedToEcoDesign(projList[0]) && !projList[0].IPM_Exists_AtLeast_OneAssmntPerEICountry__c && !isEcoDesignSecNegotiable){
+        if(projList != null && !projList.isEmpty() && IPM_Utils.isProjectToBeSyncedToEcoDesign(projList[0]) && !projList[0].IPM_Exists_AtLeast_OneAssmntPerEICountry__c && !isEcoDesignSecNegotiable && (IPM_Utils.retrieveProjectCategoryType(projList[0]) != null && IPM_Utils.retrieveProjectCategoryType(projList[0]).IPM_SyncTo_Eco_Design__c)){
             ecoDesignNoAssessmentError = true;  
         }
     }

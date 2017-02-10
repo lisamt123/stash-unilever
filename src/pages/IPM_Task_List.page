@@ -1,0 +1,3 @@
+<apex:page standardController="IPM_Task__c" recordSetVar="IPM_Task__c">
+    <c:IPM_sObjectList sObjectName="IPM_Task__c" fieldSetName="DefaultListView" searchFieldName="IPM_Task_Name__c" />    
+</apex:page>

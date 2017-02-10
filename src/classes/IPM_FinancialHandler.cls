@@ -2,6 +2,8 @@
 * @author:Cognizant
 * @date:06/05/2015
 * @description:Trigger Handler for the IPM_Financial__c SObject. This class implements the ITrigger
+               There are no try/Catch blocks in this class for transacation management purposes. We need the transaction to be rollbacked in case of error as 
+*  	       the methods in this class are invoked from trigger.
 * interface to help ensure the trigger code is bulkified and all in one place.
 */
 public with sharing class IPM_FinancialHandler implements ITrigger
@@ -72,7 +74,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         
         List<IPM_Financial__c> misalignedFinancials = new List<IPM_Financial__c>();
         //IDs of projects associated with misalligned financials, this would be used to send chatter notifications on the event of misallignment.
-        Set<ID> misAlignedFinPrjIds = new Set<ID>();
+       
         if(Trigger.isInsert || Trigger.isUpdate)
         {  
             List<IPM_Financial__c> newFinancialList = (List<IPM_Financial__c>) Trigger.new;
@@ -86,8 +88,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 IPM_FinancialHelper.insertFinancialYears(newFinancialList,upsertFinancialYearMap);    
                 
                 finIdsforProjY3iToSync.addAll(Trigger.newMap.keySet());    
-
-                IPM_FinancialHelper.updateManualMisalignment(newFinancialList,misAlignedFinPrjIds,misAlignedFinancials);
+                
+                misAlignedFinancials.addAll(IPM_FinancialHelper.updateManualMisalignment(newFinancialList));
+               
+                
                 if(!upsertFinancialYearMap.isEmpty())
                 {
                     upsert upsertFinancialYearMap.values() External_ID__c;
@@ -113,7 +117,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                         eligibleForMisalignment.add(financial);
                     }
                 }
-                IPM_FinancialHelper.updateManualMisalignment(eligibleForMisalignment,misAlignedFinPrjIds,misAlignedFinancials);
+                misAlignedFinancials.addAll(IPM_FinancialHelper.updateManualMisalignment(eligibleForMisalignment));
+                
                 
                 // Update Flags on Financial Years && Copy over data from Various Scopes(aye Global to Regional/ Global To charter etc)
                 
@@ -171,10 +176,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             {
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
                 update misAlignedFinancials;
-                if(!misAlignedFinPrjIds.isEmpty())
-            	{
-            		IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(misAlignedFinPrjIds); 
-                } 
+               
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
             }
             

@@ -237,7 +237,7 @@
                                                                         </label>
                                                                         <apex:outputPanel layout="block" id="CompanyMsg">
                                                                         <!-- To display below outputText when company card is empty while saving project   -->
-                                                                            <apex:outputText value="{!$Label.IPM_Company_Card_Mandatory}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Company_Card__c'))}" styleClass="brandErrMsg" escape="false"/>
+                                                                            <apex:outputText value="{!$Label.IPM_COMPANY_CARD}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Company_Card__c'))}" styleClass="brandErrMsg" escape="false"/>
                                                                         </apex:outputPanel>
                                                                     </apex:outputPanel>      
                                                                 </div>

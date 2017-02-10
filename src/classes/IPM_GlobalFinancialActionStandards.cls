@@ -78,7 +78,7 @@ public with sharing class IPM_GlobalFinancialActionStandards {
     */
     public string getInvokeMethodsForComponent() {
         showFinancialActionStandards();
-        return 'Required methods are invoked for component';
+        return IPM_ConstantUtils.methodInvokedForComponent;
     }
     
     /************************************************************************************************************************

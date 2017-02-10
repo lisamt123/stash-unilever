@@ -39,6 +39,19 @@
             <value>Savoury</value>
         </criteriaItems>
     </sharingCriteriaRules>
+	<sharingCriteriaRules>
+        <fullName>IPM_Food_Solutions</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>IPM Food Solutions</label>
+        <sharedTo>
+            <group>IPM_Food_Solutions</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Category_Text__c</field>
+            <operation>equals</operation>
+            <value>UFS Savoury,UFS Other Foods,UFS Other Foods,UFS Spreads,UFS Tea and Soy &amp; Fruit Beverages</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
     <sharingCriteriaRules>
         <fullName>IPM_Food_Spreads</fullName>
         <accessLevel>Read</accessLevel>
@@ -52,32 +65,7 @@
             <value>Spreads</value>
         </criteriaItems>
     </sharingCriteriaRules>
-    <sharingCriteriaRules>
-        <fullName>IPM_HC_HHC_Business_Partners</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>IPM_HC_HHC_Business_Partners</label>
-        <sharedTo>
-            <group>IPM_HC_HHC_Business_Partners</group>
-        </sharedTo>
-        <criteriaItems>
-            <field>IPM_Category_Text__c</field>
-            <operation>equals</operation>
-            <value>Household Care</value>
-        </criteriaItems>
-    </sharingCriteriaRules>
-    <sharingCriteriaRules>
-        <fullName>IPM_HC_Laundry_Business_Partners</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>IPM_HC_Laundry_Business_Partners</label>
-        <sharedTo>
-            <group>IPM_HC_Laundry_Business_Partners</group>
-        </sharedTo>
-        <criteriaItems>
-            <field>IPM_Category_Text__c</field>
-            <operation>equals</operation>
-            <value>Laundry</value>
-        </criteriaItems>
-    </sharingCriteriaRules>
+    
     <sharingCriteriaRules>
         <fullName>IPM_Home_Care_FB_Parent_and_Finance_Category</fullName>
         <accessLevel>Read</accessLevel>

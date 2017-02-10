@@ -52981,7 +52981,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>IPM_Project__c</tab>
-        <visibility>DefaultOff</visibility>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>IPM_Questionnaire__c</tab>

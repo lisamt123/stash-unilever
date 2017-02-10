@@ -227,7 +227,7 @@
                                                 
                                                  <apex:outputPanel id="companyMand">
                                                  <!-- Below render condition is used to provide below output text -->
-                                                   <apex:outputText value="{!$Label.IPM_Company_Card_Mandatory}" rendered="{!company_Booln}" styleclass="fieldErrmsg"/>
+                                                   <apex:outputText value="{!$Label.IPM_COMPANY_CARD}" rendered="{!company_Booln}" styleclass="fieldErrmsg"/>
                                                  </apex:outputPanel>
                                             </div>
                                             

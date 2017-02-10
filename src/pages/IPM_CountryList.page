@@ -1,0 +1,3 @@
+<apex:page standardController="IPM_Country__c" recordSetVar="IPM_Country__c">
+    <c:IPM_sObjectList sObjectName="IPM_Country__c" fieldSetName="DefaultListView" searchFieldName="IPM_Country_Name__c" />    
+</apex:page>

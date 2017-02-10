@@ -46,6 +46,12 @@ public class IPM_ConstantUtils {
     public static String PROJECTNAME_PARAMETER = 'ProjectName';
     public static String PROJECTGATEDOCUMENT_PARAMETER = 'ProjectGateDocument';
     
+    //snapshot variables
+    public static String BCC_CONFIRMED = 'Confirmed';
+    public static String BCC_UNCONFIRMED = 'Confirmed';
+    public static String ALIGNED = 'Aligned';
+    public static String MISALIGNED = 'Misaligned';
+    
     //used across classes to get the gate document type
     public static final String CHARTER_GATE='Charter';
     public static final String CONTRACT_GATE='Contract';
@@ -222,7 +228,7 @@ public class IPM_ConstantUtils {
     public static final string EXCEPTION_REFRESHFROMGLOBAL='refreshFromGlobal';
     public static final string CONSOLIDATED='CONSOLIDATED';
     
-    
+    public static final string methodInvokedForComponent = 'Required methods are invoked for component';
     
     public static String PHASE_IDEAS='Ideas';
     public static String PHASE_FEASIBILITY='Feasibility';
@@ -679,6 +685,14 @@ public class IPM_ConstantUtils {
     public static final string IPM_GEOGRAPHY_UNILEVERCLUSTER = 'Unilever Cluster';
     public static final string IPM_GEOGRAPHY_COUNTRYGROUP = 'country group';
     
+    //changes for Food Solutions
+    public static final string IPM_GEOGRAPHY_UFS_COUNTRY = 'UFS Country';
+    public static final string IPM_GEOGRAPHY_UFS_UNILEVERCLUSTER = 'UFS Unilever Cluster';
+    public static final string IPM_GEOGRAPHY_UFS_COUNTRYGROUP = 'UFS Country Group';
+    Public static final string IPM_Excluded_Apps = 'IPM';
+    public static final String IPM_PROJECT_LEGACY = 'Legacy';
+    public static final String IPM_UFS_CATEGORY_GROUP = 'Food Solutions';
+    
     //ipm company card
     //Constant Declaration
     public static final String CC_RECORD_TYPE_GLOBAL='Global';
@@ -705,8 +719,19 @@ public class IPM_ConstantUtils {
     public static final String IPM_Copy_Team_From_Other_Projects='Copy Team From Other Projects';
     
     //permissions
+    
+    public static final String NEW_ACCESS = 'New';
+    public static final String VIEW_ACCESS = 'View';
     public static final String EDIT_ACCESS = 'Edit';
     public static final String READ_ACCESS = 'Read';
+    public static final String DELETE_ACCESS= 'Delete';
+    public static final String FULL_ACCESS = 'Full';
+    public static final String LIST_ACCESS = 'List';
+    
+    
+    public static final String SORTORDER_ASC = 'asc';
+    public static final String SORTORDER_DESC = 'desc';
+    
     public static final String WL_TWO = 'WL2+';
     
     //For Gate CMI

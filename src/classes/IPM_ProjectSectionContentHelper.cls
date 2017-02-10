@@ -8,6 +8,9 @@
 @Business Logic:This class is invoked when the a Project is created or phase is changed, supporting Project Document Section Content needs to be created
                 Based on teh requirement, these contents should flow into the Next Gate Documents available. Based on the Current or Child projects
                 these contents gets split hence the logic is complex since each section has separate flow.
+                
+                There are no try/Catch blocks in this class for transacation management purposes. We need the transaction to be rollbacked in case of error as 
+                the methods in this class are invoked from trigger.
 */
 
 public with sharing class IPM_ProjectSectionContentHelper 

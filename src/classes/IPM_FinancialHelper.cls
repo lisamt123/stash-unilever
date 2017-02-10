@@ -7,6 +7,8 @@
 *                Creating new Consolidated Financial Years based on Change in TLD
 *                Create new Financial Years based on Sustainability Period.  
 *                Creation relationship maps between Consolidated and associated Financials.
+*		 There are no try/Catch blocks in this class for transacation management purposes. We need the transaction to be rollbacked in case of error as 
+*                the methods in this class are invoked from trigger.
 * @Version 1.0
 ******************************************************************************************************/
 
@@ -78,6 +80,7 @@ public with sharing class IPM_FinancialHelper
           
         for(IPM_Financial__c fin : consolidatedFinLst)
         {
+            //Prepare Financial Year set for consolidated financials
             Set<String> finYrNameSet =  new Set<String>();
             for(IPM_Financial_Year__c finYear : fin.IPM_Financial_Years__r){
             	finYrNameSet.add(finYear.Name);	
@@ -95,6 +98,7 @@ public with sharing class IPM_FinancialHelper
             
         }                              
         
+        //To process individual Financial Record and create Financial Year Records
         for(IPM_Financial__c financial : newFinancials){
             processIPMFinancialYears(financial,upsertFinancialYearMap);
         }  
@@ -110,7 +114,7 @@ public with sharing class IPM_FinancialHelper
     public static void deleteFinancialYears(List<IPM_Financial__c> newFinancials,Map<Id,IPM_Financial__c> oldFinancialMap)      
     {
         Boolean isTLDChangedForAnyFin = false;
-        
+        // check if there is change in TLD for New Financial and Old financial
         for(IPM_Financial__c fin:newFinancials){
         	if(fin.Target_Launch_Date__c != oldFinancialMap.get(fin.Id).Target_Launch_Date__c ){
         		isTLDChangedForAnyFin = true;
@@ -347,6 +351,7 @@ public with sharing class IPM_FinancialHelper
       Set<String> regionalProjectNames = new Set<String>();
         Set<String> globalProjectNamesProject = new Set<String>();
         
+        //get detail map of financial whether changes to specific fields are made or not
         if(newFinancialList!=null && !newFinancialList.isEmpty()){
             financialDetailMap = getFinDetailMap(newFinancialList, oldFinancialMap);
         }
@@ -377,6 +382,13 @@ public with sharing class IPM_FinancialHelper
         return consolidatedFinancialMap;
     }
     
+   /***********************************************************************************************************
+    * @description                              Method used to get detail map of financial to check whether changes to 
+    *						specific fields are made or not
+    * @param newFinancialList      		List of new Financials
+    * @param oldFinancialMap                    Map of ID & Old Financial   
+    * @return                           	Map<Id,IPM_Financial__c>
+    *************************************************************************************************************/
     
     public static Map<Id,IPM_Financial__c> getFinDetailMap(List<IPM_Financial__c> newFinancialList, Map<Id, IPM_Financial__c> oldFinancialMap){
         List<IPM_Financial__c> consolidationChangedFinancialList = new List<IPM_Financial__c>(); 
@@ -386,6 +398,7 @@ public with sharing class IPM_FinancialHelper
             if(oldFinancialMap !=null && oldFinancialMap.containsKey(newfinancial.Id)){
                 oldFinancial = oldFinancialMap.get(newfinancial.Id);
             }
+            // check if consolidation specific fields were changed and prepare set of consolidation specific fields
             Set<String> changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(newfinancial.recordTypeId,newfinancial,oldFinancial,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE,'Financial_External_ID__c'); 
             if(!changedFieldSet.isEmpty()){
                 consolidationChangedFinancialList.add(newfinancial);
@@ -498,6 +511,7 @@ public with sharing class IPM_FinancialHelper
                         IPM_Financial_Year__c financialYear = null;
                         Integer calendarYear = lastCalendarYear + i;
                         Integer index = oldSustainabilityPeriod + i;
+                        // Get Processed Financial Year for Innovation Year
                         if(!setExistingFinancialYears.contains(getFinancialYearExternalId(financialDetail.Financial_External_ID__c, Y_LABEL+index, IPM_ConstantUtils.YEAR_TYPE_INNOVATION, IPM_ConstantUtils.PL_TYPE_GROSS)))
                         {
                             financialYear = processFinancialYear(financialDetail.Financial_External_ID__c, Y_LABEL+index, IPM_ConstantUtils.BLANK+index, IPM_ConstantUtils.YEAR_TYPE_INNOVATION, IPM_ConstantUtils.PL_TYPE_GROSS,financialDetail.recordTypeId, financialDetail.Gate_Keeping_Model__c);
@@ -506,7 +520,7 @@ public with sharing class IPM_FinancialHelper
                             financialYear = processFinancialYear(financialDetail.Financial_External_ID__c, Y_LABEL+index, IPM_ConstantUtils.BLANK+index, IPM_ConstantUtils.YEAR_TYPE_INNOVATION, IPM_ConstantUtils.PL_TYPE_INCREMENTAL,financialDetail.recordTypeId, financialDetail.Gate_Keeping_Model__c);
                             upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
                         }
-                        
+                        // Get Processed Financial Year for Calendar Year
                          if(!setExistingFinancialYears.contains(getFinancialYearExternalId(financialDetail.Financial_External_ID__c, IPM_ConstantUtils.BLANK+calendarYear, IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_GROSS))){
                             
                             financialYear = processFinancialYear(financialDetail.Financial_External_ID__c, IPM_ConstantUtils.BLANK+calendarYear, IPM_ConstantUtils.BLANK+index, IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_GROSS,financialDetail.recordTypeId, financialDetail.Gate_Keeping_Model__c);
@@ -541,6 +555,7 @@ public with sharing class IPM_FinancialHelper
         	if(newFin.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (String.isBlank(newFin.Regional_External_Id__c) || String.isBlank(newFin.Global_External_Id__c))  && !newFin.Charter_Approved__c)
             {            
                 newFinList.add(newFin);
+                // Prepare set of Project Ids of Consolidated Financial
                 if(String.isBlank(newFin.Global_External_Id__c))
                 {
                 	projectIds.add(newFin.Regional_Project__c);
@@ -550,6 +565,7 @@ public with sharing class IPM_FinancialHelper
                 	projectIds.add(newFin.Parent_Project__c);
                 }
             }            
+            // Prepare set of Project Ids of Default Financial
             else if(newFin.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c){
                 newFinList.add(newFin);
                 projectIds.add(newFin.Parent_Project__c);
@@ -574,14 +590,16 @@ public with sharing class IPM_FinancialHelper
                                      IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c=:IPM_ConstantUtils.PHASE_IDEAS];
         }     
         
+        //updates IRR,NVP,PAYBACK values from the Financial object into the Project DocumetnSection Content object
         updateProjDocSecConList(newFinList, projDocSecConList);  
         updateProjectBI(mapNewFinancials);   
     }
     
-     /*********************************************************************************************************************
-    * @description                      It will add new financial or update consolidate financials and BI on IPM Project from IPM Financial record
-    * @param mapNewFinancials           New Consolidated Financial record
-    * @return                           NONE
+    /*********************************************************************************************************************
+    * @description                      		updates IRR,NVP,PAYBACK values from the Financial object into the ProjectDocumetnSectionContent object
+    * @param mapNewFinancials           		List of Financial records
+    * @param project document Section Contents	List of project document Section Contents
+    * @return                           		NONE
     
     **********************************************************************************************************************/
     public static void updateProjDocSecConList( List<IPM_Financial__c> newFinList, List<IPM_Project_Document_Section_Content__c> projDocSecConList){
@@ -611,27 +629,38 @@ public with sharing class IPM_FinancialHelper
         
     }
     
+    /*********************************************************************************************************************
+    * @description                      It will add new financial or update consolidate financials and BI on IPM Project from IPM Financial record
+    * @param mapNewFinancials           New Consolidated Financial record
+    * @return                           NONE
+    
+    **********************************************************************************************************************/
+    
     public static void updateProjectBI(Map<Id, IPM_Financial__c> mapNewFinancials){
             
         /*Update BI on IPM Project from IPM Financial record*/
         List<IPM_Financial__c> newFinList=new List<IPM_Financial__c>();
         Set<Id> projectIds=new Set<Id>();
         for(IPM_Financial__c newFin : mapNewFinancials.values()){
+            // Prepared list of Consolidated financial with their Parent Project list
             if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE){
                 newFinList.add(newFin);
                 projectIds.add(newFin.Parent_Project__c);
             }
+            // Prepared list of Default financial with their Parent Project list
             if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE){
                 newFinList.add(newFin);
                 projectIds.add(newFin.Parent_Project__c);
             }
         }
         
+        // get all Project of related financial list
         List<IPM_Project__c> projList=new List<IPM_Project__c>();
         if(projectIds!=null && !projectIds.isEmpty()){
             projList = [select id,BI__c from IPM_Project__c where id in : projectIds];
         }
         
+        // Update BI field of project
         for(IPM_Financial__c fin:newFinList){
             for(IPM_Project__c proj: projList){
                 if(proj.id==fin.Parent_Project__c){
@@ -665,7 +694,7 @@ public with sharing class IPM_FinancialHelper
         }
         
         Set<Id> updatedProjectsIdSet = new Set<Id>();
-        
+        // Check whether the financials are misalligned or not and accordingly get the list of related project IDs 
         for(IPM_Financial__c financial : financialMisalignQuery)
         {
             IF(( financial.Volume_Unit_Difference__c + financial.NPV_Difference__c + financial.IRR_Difference__c + financial.Payback_Difference__c + financial.CAPEX_Difference__c + financial.BIC_Difference__c + financial.Total_FY_Difference__c ) > 0)
@@ -699,6 +728,7 @@ public with sharing class IPM_FinancialHelper
         Set<Id> projectIdset=new Set<Id>(); 
         Map<Id,IPM_Project__c>projectMap = new Map<Id,IPM_Project__c>(); 
         
+        // get all project related to financial
         for(IPM_Financial__c finance:newFinancials)
         {
             if(finance.Parent_Project__c != null)
@@ -723,6 +753,8 @@ public with sharing class IPM_FinancialHelper
         {
             projectMap = new Map<Id,IPM_Project__c>([Select id, ownerid,IPM_Category_Text__c,IPM_ProjectGKM__c from IPM_Project__c where id IN:projectIdset]); 
         }
+        
+        // Update Financial OwnerId, Category, GKM model from their related project  
         
         if(projectMap != null && projectMap.keyset().size() >0)
         {
@@ -781,6 +813,8 @@ public with sharing class IPM_FinancialHelper
                     String sourceSnapShot = changedFinancialDetail.IPM_Financial_Postfix__c;
                     String sourceCopy,targetCopy = IPM_ConstantUtils.BLANK;
                     String targetSnapshot = IPM_ConstantUtils.BLANK;
+		    
+                    // Set Sourcecopy and TargetCopy as per FieldAPI 
                 
                     if(fieldAPI == 'Copy_Global_to_Regional__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
                         sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
@@ -803,6 +837,7 @@ public with sharing class IPM_FinancialHelper
                         targetCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
                     }
                     
+                    // Set target Snapshot
                     if(fieldAPI == 'Charter_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI)){
                         targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
                         
@@ -822,16 +857,28 @@ public with sharing class IPM_FinancialHelper
                    
     }
     
+    /***********************************************************************************************************
+        *  @description 								    
+           @param1     upsertFinancialYearMap  			Map of FieldPrefix and Fin Year
+           @param2     changedFinancialDetail :         	Financial Record
+           @paramm3    sourceSnapShot :        			string
+           @paramm3    sourceCopy :       			string
+           @paramm3    targetCopy :      			string
+           @paramm3    targetSnapshot :     		    	string
+           @paramm3    fieldAPI :        			string
+    *************************************************************************************************************/
     
     public static void getUpsertFinancialYearMap(Map<String,IPM_Financial_Year__c> upsertFinancialYearMap, IPM_Financial__c changedFinancialDetail, String sourceSnapShot, String sourceCopy, String targetCopy, String targetSnapshot, String fieldAPI){
         
         for(IPM_Financial_Year__c financialYear : changedFinancialDetail.IPM_Financial_Years__r){
             financialYear.put(fieldAPI,changedFinancialDetail.get(fieldAPI));
+            // prepare data from Financial Year Fields present in FY_COPYFIELDS as per project span
             if(!String.isBLank(sourceCopy)){
                 for(String FieldPrefix : FY_COPYFIELDS){
                     financialYear.put(FieldPrefix+targetCopy+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,financialYear.get(FieldPrefix+sourceCopy+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX));
                 }
             }
+            // prepare data from Financial Year Fields present in FY_SNAPSHOTFIELDS as per project span
             if(String.isNotBLank(targetSnapshot)){
                 for(String FieldPrefix : FY_SNAPSHOTFIELDS){
                     financialYear.put(FieldPrefix+targetSnapshot+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,financialYear.get(FieldPrefix+sourceSnapShot+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX));
@@ -1037,9 +1084,10 @@ public with sharing class IPM_FinancialHelper
             {
                 financialList.addAll(IPM_FinancialHandler.deleteFinancialMap.values());
             } 
-    		
-    		for(IPM_Financial__c  ipmFinRec: financialList)
-    		{
+            
+            // Preapare list of Global/Regional/Local/Parent Project IDs of financial of which y3ito needs to be updated
+            for(IPM_Financial__c  ipmFinRec: financialList)
+            {
                if(ipmFinRec.Local_Project__c!=null)
                {
                		projIdsforY3iToSync.add(ipmFinRec.Local_Project__c);
@@ -1065,8 +1113,8 @@ public with sharing class IPM_FinancialHelper
                 IPM_Utils.updateProjectY3ITOValue(projIdsforY3iToSync);  
             } 
     }
-    
-    public static void  updateManualMisalignment(List<IPM_Financial__c> newFinancials,Set<Id> parentPrjctIds,List<IPM_Financial__c> misAlignedFinancials)
+   
+    public static List<IPM_Financial__c> updateManualMisalignment(List<IPM_Financial__c> newFinancials)
     {
         List<IPM_Financial__c> listFinancial = new List<IPM_Financial__c>();
         if(!newFinancials.isEmpty()){
@@ -1076,6 +1124,7 @@ public with sharing class IPM_FinancialHelper
         	listFinancial = Database.Query(finQuery);	
         }
         
+        List<IPM_Financial__c> updatedFinancials = new List<IPM_Financial__c>();
         
         for(IPM_Financial__c financial : listFinancial){
             Decimal TotalDiffrence = financial.Volume_Unit_Difference__c + financial.NPV_Difference__c + financial.IRR_Difference__c + financial.Payback_Difference__c + financial.CAPEX_Difference__c + financial.BIC_Difference__c + financial.Total_FY_Difference__c;
@@ -1084,12 +1133,14 @@ public with sharing class IPM_FinancialHelper
             if(financial.MisalignmentManual__c != tempMisalignment){
                 financial.MisalignmentManual__c = tempMisalignment;
                 financial.MisalignmentDateTime__c = System.now();
-                financial.Misaligned_Date__c = System.today();
-                misAlignedFinancials.add(financial);
-                parentPrjctIds.addAll(new Set<Id> {financial.Local_Project__c,financial.Regional_Project__c});
+                
+                financial.Misaligned_Date__c = System.today(); 
+                
+                updatedFinancials.add(financial);
             }
-        }
-        parentPrjctIds.remove(null);  
+            
+        } 
+        return updatedFinancials;
     }
     
     //Helper method for deleteFinancialyears() method 

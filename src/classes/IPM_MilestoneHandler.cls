@@ -9,7 +9,9 @@
 */
 public with sharing class IPM_MilestoneHandler implements ITrigger{   
    
-    //@description:Constructor
+    /** @description:Constructor
+    *   Calls the initializeExceptionLog method from ExceptionLoggingHelper
+    **/
     public IPM_MilestoneHandler (){
         ExceptionLoggingHelper.initializeExceptionLog(); 
     }
@@ -70,6 +72,11 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
         }
         
     }
+    /**
+    * @description:getBosscard
+    * This method gets the value of bosscard of a project 
+    * It assigns the value for Project Start Date and Bosscard Approval Date of Milestone
+    **/
     public void getBosscard()
     {
     	Map<Id,IPM_Bosscard__c> ipmBosscards = new Map<Id,IPM_Bosscard__c>();
@@ -82,11 +89,13 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
                     lstbosscardIds.add(proj.IPM_Bosscard__c);
                 }
             }
-            
+            // Get the bosscard of related project
             if(!lstbosscardIds.isEmpty()){
                 ipmBosscards=new Map<Id,IPM_Bosscard__c>([SELECT Id,IPM_Bosscord_Approval_Date__c FROM IPM_Bosscard__c WHERE id IN : lstbosscardIds LIMIT 50000]);
             }
         }
+        
+        // assigns the value for Project Start Date and Bosscard Approval Date to the Milestone
         
         for (IPM_Milestone__c updMilestone : (List<IPM_Milestone__c>)Trigger.new) 
         {
@@ -125,6 +134,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
                     lstProjectIds.add(recentUpsertedMilestone.IPM_Project__c);
             }
             
+            // get all IPM Project related to incoming Milestones
             if(!lstProjectIds.isEmpty())
             {
                 String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
@@ -138,6 +148,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
                 for (IPM_Milestone__c incomingMilestone :  incomingMilestoneList)
                 {
                     IPM_Milestone__c oldMilestone =  null;
+                    // get the OldMilestone Record
                     if(Trigger.isUpdate)
                     {   
                         oldMilestone = oldMilestoneMap.get(incomingMilestone.Id);
@@ -163,12 +174,18 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
         } 
     }
     
+    /**
+    * @description:creatingValuesToCopyOver
+    * This method prepares Project and Milestone ready to Copyover the values
+    * @parameter : IPM_Milestone__c(New Milestone), IPM_Milestone__c (Old Milestone)
+    **/
     public void creatingValuesToCopyOver(IPM_Milestone__c incomingMilestone,IPM_Milestone__c oldMilestone)
     {
     	if(incomingMilestone.IPM_Project__c != null && incomingMilestone.IPM_Planned_Date__c !=null &&  
             (Trigger.isInsert || ( Trigger.isUpdate && incomingMilestone.IPM_Planned_Date__c != oldMilestone.IPM_Planned_Date__c ) ) && 
             incomingMilestone.IPM_Type_of_Milestone__c == IPM_ConstantUtils.STANDARD && ipmProjects.containsKey(incomingMilestone.IPM_Project__c) )
        { 
+       		// get Projects and Milestones ready to Copyover
             if(ipmProjects!=null && !ipmProjects.isEmpty())
             {
                 eligibleProjectMapForCopyOver.put(incomingMilestone.IPM_Project__c,ipmProjects.get(incomingMilestone.IPM_Project__c));
@@ -178,7 +195,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
     }
     /**
     * @description:beforeInsert
-    * This method is called iteratively for each record to be insert during a AFTER
+    * This method is called iteratively for each record to be insert during a BEFORE
     * trigger.
     * @para:sobject record
     */
@@ -187,6 +204,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
         IPM_Milestone__c newMilestone = (IPM_Milestone__c)so;
         IPM_MilestoneHelper.prepareCustomMilestoneName(newMilestone,ipmProjects);
              
+        // Set the values of Due Date fields of standard Milestone before Insert     
         if(newMilestone.IPM_Project__c !=null && ipmProjects.containsKey(newMilestone.IPM_Project__c) && newMilestone.IPM_type_of_Milestone__c != null && newMilestone.IPM_type_of_Milestone__c == IPM_ConstantUtils.STANDARD)
         {
           IPM_Project__c associatedProject = ipmProjects.get(newMilestone.IPM_Project__c);
@@ -210,6 +228,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
     {   
         IPM_Milestone__c newMilestone = (IPM_Milestone__c)so;
         IPM_MilestoneHelper.prepareCustomMilestoneName(newMilestone,ipmProjects);
+        // Set/Update the values of Due Date fields of standard Milestone before update
         if(newMilestone.IPM_Project__c !=null && ipmProjects.containsKey(newMilestone.IPM_Project__c) && newMilestone.IPM_type_of_Milestone__c != null && newMilestone.IPM_type_of_Milestone__c == IPM_ConstantUtils.STANDARD)
         {
           IPM_Project__c associatedProject = ipmProjects.get(newMilestone.IPM_Project__c);
@@ -219,7 +238,9 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
           if(newMilestone.IPM_Due_Date__c !=null){
           	 newMilestone.IPM_Due_Date_For_Sorting__c = newMilestone.IPM_Due_Date__c;
           } 
-        } else if(newMilestone.IPM_Project__c !=null && ipmProjects.containsKey(newMilestone.IPM_Project__c) && newMilestone.IPM_type_of_Milestone__c != null && newMilestone.IPM_type_of_Milestone__c == IPM_ConstantUtils.BET){
+        } 
+        // Set/update the values of Due Date fields of BET Milestone before update	
+        else if(newMilestone.IPM_Project__c !=null && ipmProjects.containsKey(newMilestone.IPM_Project__c) && newMilestone.IPM_type_of_Milestone__c != null && newMilestone.IPM_type_of_Milestone__c == IPM_ConstantUtils.BET){
         	if(newMilestone.IPM_Due_Date__c !=null){
           	 newMilestone.IPM_Due_Date_For_Sorting__c = newMilestone.IPM_Due_Date__c;
           }

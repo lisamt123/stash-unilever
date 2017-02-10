@@ -92,7 +92,7 @@ public class IPM_ChangProjectDocStatusCntrlGKM3_Test {
 
             insert localRolloutList; 
 
-            System.debug('getQueries3>>'+Limits.getQueries());
+            
             system.assertEquals(localRolloutList.size(), 2,'project rollout map cannot be created'); //names cannot be asserted as project and rollout map set in helper class
             
             //assert preparation
@@ -128,7 +128,6 @@ public class IPM_ChangProjectDocStatusCntrlGKM3_Test {
             
             insert countryList;
 
-            //assert on counti is sufficient, additional soql can be a risk for SOQL gov limit as this method has loads of queries.
             system.assert(countryList.size()>0, 'country records not created');
              
             test.stopTest();
@@ -140,7 +139,7 @@ public class IPM_ChangProjectDocStatusCntrlGKM3_Test {
        List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID};
             
         User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
-        System.debug('Users   :  ' + [Select Id,email from User where email in :emailList]);
+        
         for(User linkedUser : [Select Id,email from User where email in :emailList])
         {
             if(linkedUser.email == GLOBAL_PL_EMAIL_ID)
@@ -195,6 +194,8 @@ public class IPM_ChangProjectDocStatusCntrlGKM3_Test {
             chngPro.Status = IPM_ConstantUtils.STATUS_APPROVED;
             chngPro.checkPDLIsApproved();
        		chngPro.approvePDLDocument();
+       		chngpro.isPDLApproved = TRUE;
+       		System.assertEquals(chngPro.isPDLApproved, true,'PDLI Approved');
        		
        		
        	    pRef = Page.IPM_GateDocument;

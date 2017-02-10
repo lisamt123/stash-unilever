@@ -1,0 +1,3 @@
+<apex:page standardController="IPM_Questionnaire__c" recordSetVar="IPM_Questionnaire__c">
+    <c:IPM_sObjectList sObjectName="IPM_Questionnaire__c" fieldSetName="DefaultListView" searchFieldName="Name" />    
+</apex:page>

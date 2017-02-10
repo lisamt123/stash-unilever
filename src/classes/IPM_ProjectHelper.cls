@@ -845,6 +845,9 @@ public with sharing class IPM_ProjectHelper
         }
     }
     
+    /**************************************************************
+    * @description: Used for updating countries local rollouts 
+    */
     private static Map<Id,IPM_Country__c> updateCountriesLocalRollout(IPM_Project__c project, IPM_Project_Rollout__c localRollout, Map<Id,IPM_Country__c> updateCountriesMap){
         if(sourceRollOutToCountryListMap.containsKey(localRollout.Id) && sourceRollOutToCountryListMap.get(localRollout.Id) !=null && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
         {
@@ -868,6 +871,9 @@ public with sharing class IPM_ProjectHelper
         return updateCountriesMap;
     }
     
+    /**************************************************************
+    * @description: Used for updating countries source rollouts 
+    */
     private static Map<Id,IPM_Country__c> updateCountriesSourceRollout(IPM_Project__c project, IPM_Project_Rollout__c sourceRollout, Map<Id,IPM_Country__c> updateCountriesMap){
         if(sourceRollOutToCountryListMap.containsKey(sourceRollout.Id) && sourceRollOutToCountryListMap.get(sourceRollout.Id) !=null)
         {
@@ -1717,14 +1723,16 @@ public with sharing class IPM_ProjectHelper
                                                      IPM_Parent_Project__c,  
                                                      IPM_Parent_Project__r.IPM_Parent_Project__c,
                                                      IPMProject_Span__c,
-                                                     IPM_Parent_Project__r.IPMProject_Span__c
+                                                     IPM_Parent_Project__r.IPMProject_Span__c,IPM_ProjectGKM__c
                                               FROM  IPM_Project__c 
                                               WHERE IPM_Parent_Project__c IN: ipmFastTrackProjectMap.keySet() OR IPM_Parent_Project__r.IPM_Parent_Project__c IN: ipmFastTrackProjectMap.keySet()]){
                                                 
             if(childProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){ // Regional child projects to be updated
                 childProject.IPM_Fast_Track_Project__c = ipmFastTrackProjectMap.get(childProject.IPM_Parent_Project__c).IPM_Fast_Track_Project__c;
-            }else if(childProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL){ // Local child projects to be updated
+            }else if(childProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && childProject.IPM_ProjectGKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3){ // Local child projects to be updated
                 childProject.IPM_Fast_Track_Project__c = ipmFastTrackProjectMap.get(childProject.IPM_Parent_Project__r.IPM_Parent_Project__c).IPM_Fast_Track_Project__c;
+            }else if(childProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && childProject.IPM_ProjectGKM__c == IPM_ConstantUtils.GATE_KEEPING_MODEL_3){ // Local child projects to be updated
+                childProject.IPM_Fast_Track_Project__c = ipmFastTrackProjectMap.get(childProject.IPM_Parent_Project__c).IPM_Fast_Track_Project__c;
             }
             childProjectListToUpdate.add(childProject);                                   
           
@@ -1786,14 +1794,14 @@ public with sharing class IPM_ProjectHelper
            if(bosscardList!=null && !bosscardList.isEmpty()){
                delete bosscardList;
             }
-            List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted OR Local_Project__c in:projectIdSetToBeDeleted OR Regional_Project__c in:projectIdSetToBeDeleted OR IPM_Project_Rollout__c in:associatedRolloutIds  Limit 5000];
-            if(projFinList != null && !projFinList.isEmpty()){
-                delete projFinList;
-            }
+
             deleteProjectWithIds(projectIdSetToBeDeleted);
         } 
     }
     
+     /**************************************************************
+    * @description: Used for deleting the projects with provided Ids. 
+    */
     private static void deleteProjectWithIds(Set<Id> projectIdSetToBeDeleted){
         List<IPM_Project_Document_Section_Content__c>gateDocSecConList=[SELECT ID FROM IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c IN:projectIdSetToBeDeleted LIMIT 5000];
         if(gateDocSecConList!=null && !gateDocSecConList.isEmpty()){
@@ -1803,6 +1811,10 @@ public with sharing class IPM_ProjectHelper
             if(projRolloutList != null && !projRolloutList.isEmpty()){
                 delete projRolloutList;
             }    
+        List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted OR Local_Project__c in:projectIdSetToBeDeleted OR Regional_Project__c in:projectIdSetToBeDeleted Limit 5000];
+            if(projFinList != null && !projFinList.isEmpty()){
+                delete projFinList;
+        }
             List<IPM_Country__c>countryList=[SELECT ID FROM IPM_Country__c WHERE (IPM_Project__c IN:projectIdSetToBeDeleted or IPM_Local_Project__c IN:projectIdSetToBeDeleted or IPM_Regional_Project__c IN:projectIdSetToBeDeleted) LIMIT 5000];
             if(countryList!=null && !countryList.isEmpty()){
                             delete countryList;

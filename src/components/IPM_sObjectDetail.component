@@ -1,0 +1,48 @@
+<apex:component controller="IPM_sObjectRedirectController" allowDML="true">
+
+    <apex:attribute name="sObjectName" description="name of the sObject" type="String" required="true" assignTo="{!selectedSObjectType}"/> 
+    <apex:attribute name="objectId" description="Object Id" type="String" required="false" assignTo="{!selectedSObjectId}"/>
+    
+    {!setUp}
+    
+    <apex:pageBlock rendered="{!NOT(ISBLANK(objectId))}" >
+        
+        <!-- Display the Buttons to the end user -->
+        <apex:pageBlockButtons location="top" rendered="{!OR($Permission[viewActionPermission],$Permission[fullPermission])}">   
+            <apex:repeat value="{!DMLActionList}" var="actionName">   
+                <apex:commandButton action="{!URLFOR($Action[sObjectName][actionName],objectId,null,true)}" value="{!actionName}" rendered="{!OR($Permission[objectActionsToPermissions[actionName]],$Permission[fullPermission])}" />   
+            </apex:repeat>
+        </apex:pageBlockButtons>
+                
+        <apex:detail rendered="{!AND($Permission[viewActionPermission],NOT($Permission[fullPermission]))}" relatedList="false" relatedListHover="false" inlineEdit="false" showChatter="false" />
+        <apex:detail rendered="{!$Permission[fullPermission]}" />
+        
+        <!-- Error Message to be displayed -->
+        
+        <apex:pageBlockSection columns="1" rendered="{!AND(NOT($Permission[viewActionPermission]),NOT($Permission[fullPermission]))}">
+            <apex:pageMessage summary="{!unAuthorizedAccessMessage}" severity="error" strength="3" />
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+
+    <apex:pageBlock rendered="{!ISBLANK(objectId)}" > 
+       
+       <!-- Redirect To Create New Page -->
+       
+       <apex:pageBlockSection columns="1" rendered="{!AND($Permission[newActionPermission],$Permission[fullPermission])}">   
+           <script>
+               window.location.href = "{!URLFOR($Action[sObjectName]['New'],null,null,true)}";
+           </script>
+       </apex:pageBlockSection>
+       
+       <!-- Display Error Page -->
+       <apex:pageBlockSection columns="1" rendered="{!AND(NOT($Permission[newActionPermission]),NOT($Permission[fullPermission]))}" >    
+           <apex:pageMessage summary="{!unAuthorizedAccessMessage}" severity="error" strength="3" /> 
+           <script>
+               window.onload = window.setTimeout(window.location.href = "{!$CurrentPage.parameters.retURL}",5000);
+           </script>
+       </apex:pageBlockSection>
+       
+    </apex:pageBlock>    
+     
+</apex:component>
