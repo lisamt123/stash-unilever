@@ -72,23 +72,15 @@
     </fields>
     <label>Store</label>
     <listViews>
-        <fullName>All</fullName>
+        <fullName>CEC_ANZ</fullName>
         <columns>NAME</columns>
-        <columns>UPDATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CEC_ANZ_Queue_cec_Store</fullName>
-        <columns>Country__c</columns>
-        <columns>NAME</columns>
-        <filterScope>Queue</filterScope>
         <label>CEC ANZ Queue</label>
         <language>en_US</language>
-        <queue>CEC_ANZ_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_Manager_SEAA</role>
+            <role>CEC_User_ANZ</role>
         </sharedTo>
     </listViews>
     <listViews>

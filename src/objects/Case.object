@@ -3998,41 +3998,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>ANZ_My_Open_Cases1</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>PII_Warning_Check__c</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>contains</operation>
-            <value>In Progress,Escalated,Pending with Courier,Awaiting Factory Response,Awaitin</value>
-        </filters>
-        <filters>
-            <field>Case_ISO_Country_Code__c</field>
-            <operation>equals</operation>
-            <value>AU,NZ</value>
-        </filters>
-        <filters>
-            <field>ACCOUNT.NAME</field>
-            <operation>notContain</operation>
-            <value>queue</value>
-        </filters>
-        <label>ANZ My Open Cases</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_ANZ</role>
-            <role>CEC_Manager_SEAA</role>
-            <role>CEC_User_ANZ</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>ANZ_My_closed_cases1</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -4333,6 +4298,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_ANZ_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.PRIORITY</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -7382,14 +7354,60 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.CREATED_DATE</field>
             <operation>greaterOrEqual</operation>
-            <value>12/1/2016 12:00 AM</value>
+            <value>1/1/2017 12:00 AM</value>
         </filters>
         <filters>
             <field>CASES.CREATED_DATE</field>
             <operation>lessOrEqual</operation>
-            <value>12/31/2016 12:00 AM</value>
+            <value>1/31/2017 12:00 AM</value>
         </filters>
         <label>CEC Philippines-CurrentMonth_PRAISES</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>CEC_User_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Philippines_CurrentMonth_COMPLAINTS1</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>Global_Reason_L1_desc__c</columns>
+        <columns>Global_Reason_L5_desc__c</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CASES.CLOSED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Global_Reason_L1_desc__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>1/1/2017 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>lessOrEqual</operation>
+            <value>1/31/2017 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>contains</operation>
+            <value>free,libre,txt,text,load</value>
+        </filters>
+        <label>CEC Philippines-CurrentMonth_No Tag</label>
         <language>en_US</language>
         <sharedTo>
             <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
@@ -7476,12 +7494,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.CREATED_DATE</field>
             <operation>greaterOrEqual</operation>
-            <value>12/1/2016 12:00 AM</value>
+            <value>1/1/2017 12:00 AM</value>
         </filters>
         <filters>
             <field>CASES.CREATED_DATE</field>
             <operation>lessOrEqual</operation>
-            <value>12/31/2016 12:00 AM</value>
+            <value>1/31/2017 12:00 AM</value>
         </filters>
         <label>CEC Philippines-CurrentMonth_QUERIES</label>
         <language>en_US</language>
@@ -7621,17 +7639,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.SUBJECT</field>
             <operation>contains</operation>
-            <value>surf,free,promo,load,code</value>
-        </filters>
-        <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>SMS / Text Messages</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>notContain</operation>
-            <value>club</value>
+            <value>surfiesta</value>
         </filters>
         <label>CEC Philippines Queue - Surfiesta</label>
         <language>en_US</language>
