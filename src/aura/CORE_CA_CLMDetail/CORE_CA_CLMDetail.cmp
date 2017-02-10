@@ -288,12 +288,36 @@
                                 <div>
                                     <div class="slds-text-body--regular DetailData">{!detailData.RequestedBy}</div>
                                 </div>
+                                <aura:if isTrue="{!(detailData.StrategicInt != 'MBS')}">
                                 <div>
                                     <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_CLMLBL_Value}</div>
                                 </div>
                                 <div class="number-class">
-                                    <aura:if isTrue="{!(detailData.NetAmount != null)}">   <span class="slds-text-body--regular DetailData"> {!detailData.Currencies}</span> </aura:if><span><ui:outputNumber class="number number-detail slds-text-body--regular DetailData" value="{!detailData.NetAmount}"/></span>
+                                    <aura:if isTrue="{!(detailData.NetAmount != null)}">   <span class="slds-text-body--regular DetailData"> {!detailData.Currencies}</span> </aura:if><span><ui:outputNumber class="number number-detail slds-text-body--regular DetailData" value="{!detailData.NetAmount}"/>
+                                    
+                                    </span>
                                 </div>
+                                </aura:if>
+                                <aura:if isTrue="{!(detailData.StrategicInt == 'MBS')}">
+                                <div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_CLMLBL_EstimatedSpend}</div>
+                                </div>
+                                <div class="number-class">
+                                    <aura:if isTrue="{!(detailData.NetAmount != null)}">   <span class="slds-text-body--regular DetailData"> {!detailData.Currencies}</span> </aura:if><span><ui:outputNumber class="number number-detail slds-text-body--regular DetailData" value="{!detailData.Currentyear1}"/>
+                                    
+                                    
+                                    </span>
+                                </div>
+                                    <div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_CLMLBL_CommittedSpend}</div>
+                                </div>
+                                <div class="number-class">
+                                    <aura:if isTrue="{!(detailData.NetAmount != null)}">   <span class="slds-text-body--regular DetailData"> {!detailData.Currencies}</span> </aura:if><span><ui:outputNumber class="number number-detail slds-text-body--regular DetailData" value="{!detailData.Cop}"/>
+                                    
+                                    
+                                    </span>
+                                </div>
+                                </aura:if>
                                 <div>
                                     <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_CLMLBL_Effective_Date}</div>
                                 </div>

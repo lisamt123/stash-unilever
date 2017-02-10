@@ -179,6 +179,10 @@ global with sharing class Core_CA_RequestDetail{
                 if(objApprovalHeader.Source_System__c == strSystemClm)
                 {
                     objRequestDetailResponseAribaGTES.RequestType =  strSystemClm;
+                    objRequestDetailResponseAribaGTES.StrategicInt = objApprovalHeader.Delegatee__c;
+                    objRequestDetailResponseAribaGTES.Currentyear1 = objApprovalHeader.Priority__c;
+                    objRequestDetailResponseAribaGTES.Cop  = objApprovalHeader.PreTrip_Id__c;
+                    
                     if(objApprovalHeader.Ledger_Extract__c !=null)
                     {
                     objRequestDetailResponseAribaGTES.DelegationStart = objApprovalHeader.Ledger_Extract__c.format('MMM dd,yyyy'); 
