@@ -12,7 +12,7 @@
     VERSION     AUTHOR          DATE        DETAIL          Description
     1.0         Nicola Tassini  20/12/2016  Initial Dev     Upload Service
 ***************************************************************/
-public without sharing class Win_UploadService implements Win_IUploadService{
+public with sharing class Win_UploadService implements Win_IUploadService{
     public static final String LocalIdPreffix = 'Local_';
     public static final String DELETE_OPERATION = 'DELETE';
     public static final String INSERT_OPERATION = 'INSERT';
@@ -184,7 +184,7 @@ public without sharing class Win_UploadService implements Win_IUploadService{
                         additionalData.put('AttachmentData', dataBlob);
                         dataMap.remove(key);
                     } catch(Exception e) {
-                        // nothing to do...
+                        System.debug('WIN-DEBUG: inside the Win_Attachment_Link__c block exception ' + e);
                     }
                  } else if (key == 'ContentData' && fieldValue != null && fieldValue instanceof String) {
                     System.debug('WIN-DEBUG: inside the deserializeSObject ContentDATA BOOOM ');
@@ -284,8 +284,8 @@ public without sharing class Win_UploadService implements Win_IUploadService{
                 try {
                     if (resultObject.get(fieldName) == null)
                         resultObject.put(fieldName, null);
-                }
-                catch (Exception e){
+                } catch (Exception e) {
+                    System.debug('WIN-DEBUG: inside the getResultSObject field reading exception ' + e);
                 }
         }
         return resultObject;

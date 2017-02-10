@@ -11,7 +11,7 @@
 	VERSION		AUTHOR 			DATE    	DETAIL    		Description
 	1.0     	Nicola Tassini 	20/12/2016	Initial Dev 	Brand Controller
 ***************************************************************/ 
-public class Win_BrandController {
+public with sharing class Win_BrandController {
 
 	/**
 	 *	Brand field

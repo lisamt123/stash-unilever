@@ -12,7 +12,7 @@
 	1.0     	Nicola Tassini 	20/12/2016	Initial Dev 	Chatter deleted feed items 
 ***************************************************************/
 @RestResource(urlMapping='/tqchatter/deleted/*')
-global without sharing class WIN_ChatterDeletedEndpoint {
+global with sharing class WIN_ChatterDeletedEndpoint {
 	
     /**
 	 *	Purpose: Wrapper for the deleted record

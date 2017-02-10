@@ -31,7 +31,8 @@ public with sharing class Win_MetadataEndpoint_Test {
         param.enforceIsCreateable = false;
         param.enforceIsRequired = false;
         param.enforceIsUpdateable = false;
-        Win_TrackingUtils.splitList('Id,Name,OwnerId,CreatedDate,LastModifiedDate');
+        List<String> splitList = Win_TrackingUtils.splitList('Id,Name,OwnerId,CreatedDate,LastModifiedDate');
+        System.assert(splitList != null);
         Test.stopTest();
     }
     
