@@ -1857,8 +1857,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
         <fullName>TEL_Account_Contract_Strategy__c</fullName>
         <description>Telesales - Account Contract strategy for transfer order accounts</description>

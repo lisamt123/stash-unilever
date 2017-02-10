@@ -534,17 +534,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>TEL_Telephone_Extension__c</fullName>
-        <description>Telesales - Telephone Extension</description>
-        <externalId>false</externalId>
-        <label>Telephone Extension</label>
-        <length>10</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>TEL_Updated_Relationship__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -1116,31 +1105,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Sous chef</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-	<fields>
-        <fullName>TEL_Preferred_Contact_Method__c</fullName>
-        <description>Telesales - preferred method of contact</description>
-        <externalId>false</externalId>
-        <label>Preferred Contact Method</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mobile</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Email</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>

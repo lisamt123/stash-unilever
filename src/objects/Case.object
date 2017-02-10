@@ -141,7 +141,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	
+	<fields>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

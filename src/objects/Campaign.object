@@ -310,71 +310,7 @@
         </filters>
         <label>My Active Campaigns</label>
     </listViews>
-    <recordTypes>
-    	<fullName>TEL_Telesales_Campaign</fullName>
-        <active>true</active>
-        <description>Telesales Sales Drive Campaign Record Type</description>
-        <label>Telesales Campaign</label>
-        <picklistValues>
-        	  <picklist>Status</picklist>
-            <values>
-                <fullName>Aborted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Planned</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Type</picklist>
-            <values>
-                <fullName>Advertisement</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Banner Ads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Email</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Partners</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Public Relations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Referral Program</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Seminar %2F Conference</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Telemarketing</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
+      <recordTypes>
         <fullName>Campaign</fullName>
         <active>true</active>
         <description>A standard campaign</description>

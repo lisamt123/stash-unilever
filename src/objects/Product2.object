@@ -70,7 +70,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>CanUseQuantitySchedule</fullName>
         <trackHistory>false</trackHistory>
     </fields>
-	    <fields>
+	<fields>
         <fullName>TEL_Brand_Code__c</fullName>
         <externalId>false</externalId>
         <label>Brand Code</label>
