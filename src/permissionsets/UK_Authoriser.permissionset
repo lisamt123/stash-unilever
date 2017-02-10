@@ -6760,6 +6760,13 @@
         <field>ACCL__Promotion_Template__c.UL_Validate_for_Max_Min_Dates__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	
+		
+	 <fieldPermissions>
+        <editable>true</editable>
+        <field>ACCL__Promotion_Template__c.UL_ShowAttachments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Promotion__c.ACCL__Active__c</field>
