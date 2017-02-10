@@ -1,6 +1,3 @@
 src
 src/labels
 src/labels/IPM.labels
-src/pages
-src/pages/IPM_HomePage.page
-src/pages/IPM_HomePage.page-meta.xml
