@@ -7996,11 +7996,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>UL_UserCustomerProduct__c.AccessType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>UL_UserCustomerProduct__c.Product__c</field>
         <readable>true</readable>
