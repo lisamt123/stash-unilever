@@ -151,6 +151,16 @@
             <field>CreatedBy.Name</field>
             <table>TopicAssignment</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>DerivedRecord</field>
+            <table>TopicAssignment</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Entity</field>
+            <table>TopicAssignment</table>
+        </columns>
         <masterLabel>Topic Assignments</masterLabel>
     </sections>
 </ReportType>
