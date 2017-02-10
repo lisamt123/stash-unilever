@@ -257,39 +257,56 @@ public with sharing class Win_UploadService implements Win_IUploadService{
     //Fetch new sObject data after DML operation was finished successfully
     public sObject getResultSObject(String objectApiName, String objectId){
         List<String> fieldList = fieldListMap.get(objectApiName);
-        if (fieldList == null || fieldList.size() == 0){
+        if (fieldList == null || fieldList.size() == 0) {
             fieldList = new List<String>{'Id'};
         }
         
         //Prepare list of select fields in query
-        String fieldsString = '';
-        for (String fieldName : fieldList){
-            if (fieldsToExclude.contains(fieldName) || (objectApiName == 'Account' && fieldName.endsWith('Address'))) continue;
-            if (fieldsString != '')
-                fieldsString += ', ';
-            fieldsString += fieldName;
-        }
+        String fieldsString = parseFieldNames(fieldList, objectApiName);
         
         // NT: DownloadService not installed
         //String whereClause = downloadService.calculateWhereClauseForObject(objectApiName, false);
         String whereClause = null;
-        String query = 'SELECT ' + fieldsString + ' FROM ' + objectApiName + ' WHERE Id = \'' + objectId + '\'';
-        if (whereClause != null)
-            query += ' AND (' + whereClause + ')';
-            
-        List<sObject> resultObjects = Database.query(query);
+        List<sObject> resultObjects = fetchObjectsFromList(fieldsString, objectApiName, objectId, whereClause);
         sObject resultObject = (resultObjects.size() > 0) ? resultObjects.get(0) : null;
         
         if (resultObject != null) {
             for (String fieldName : fieldList)
                 try {
-                    if (resultObject.get(fieldName) == null)
+                    if(resultObject.get(fieldName) == null) {
                         resultObject.put(fieldName, null);
+                    }
                 } catch (Exception e) {
                     System.debug('WIN-DEBUG: inside the getResultSObject field reading exception ' + e);
                 }
         }
         return resultObject;
+    }
+
+    private String parseFieldNames(List<String> fieldList, String objectApiName) {
+        String fieldsString = '';
+        for(String fieldName : fieldList) {
+            if(fieldsToExclude.contains(fieldName) || (objectApiName == 'Account' && fieldName.endsWith('Address'))) {
+                continue;
+            }
+
+            if(fieldsString != '') {
+                fieldsString += ', ';
+            }
+
+            fieldsString += fieldName;
+        }
+
+        return fieldsString;
+    }
+
+    private List<sObject> fetchObjectsFromList(String fieldsString, String objectApiName, String objectId, String whereClause) {
+        String query = 'SELECT ' + fieldsString + ' FROM ' + objectApiName + ' WHERE Id = \'' + objectId + '\'';
+        if (whereClause != null) {
+            query += ' AND (' + whereClause + ')';
+        }
+            
+        return Database.query(query);
     }
     
     public Boolean shouldForceSharingInDml(sObject sObjectToCheck, String operation){       
