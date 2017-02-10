@@ -11,7 +11,7 @@
 	VERSION		AUTHOR 			DATE    	DETAIL    		Description
 	1.0     	Nicola Tassini 	22/12/2016	Initial Dev 	First version
 ***************************************************************/
-global abstract class Win_WebServiceResponse {
+global class Win_WebServiceResponse {
 	
 	public final static Integer SUCCESS = 0;
 	public final static Integer CLIENT_GENERIC_ERROR = -400;

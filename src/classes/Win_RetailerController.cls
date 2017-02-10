@@ -16,7 +16,7 @@ public with sharing class Win_RetailerController {
 	/**
 	 *	Reailer field
 	 */
-    public static Win_Retailer__c retail;
+    public Win_Retailer__c retail;
 
     /**
 	 *	Default Controller

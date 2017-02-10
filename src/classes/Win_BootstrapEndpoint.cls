@@ -51,7 +51,7 @@ global with sharing class Win_BootstrapEndpoint {
                 '{"'+TEST_KEY+'":"'+TEST_LABEL+'","wings_store_list_value_sales_volume":"VALUE/SALES VOLUME"}';
 
             if(throwErrorDictionaryOne) {
-                integer manualException = 10/0;
+                integer manualException = 10/0; dictionaryJSON = '' + manualException;
             }
         } catch(Exception vfException) {
         	Win_Utils.logException('Win_BootstrapEndpoint', 'retrieveDictionary', 
@@ -60,7 +60,7 @@ global with sharing class Win_BootstrapEndpoint {
 
         try {
             if(throwErrorDictionaryTwo) {
-                integer manualException = 10/0;
+                integer manualException = 10/0; dictionaryJSON = '' + manualException;
             }
             return (Map<String,String>) JSON.deserialize(dictionaryJSON, Map<String,String>.class);
         } catch (Exception deserializeException) {

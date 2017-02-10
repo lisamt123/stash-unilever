@@ -16,7 +16,7 @@ public with sharing class Win_BrandController {
 	/**
 	 *	Brand field
 	 */
-    public static Win_Brand_Configuration__c brand;
+    public Win_Brand_Configuration__c brand;
 
     /**
 	 *	Default Controller

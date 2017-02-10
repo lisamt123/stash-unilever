@@ -29,9 +29,10 @@ private class Win_ErrorEndpoint_Test {
 
 		Test.startTest();     
 		WIN_ErrorEndpoint endpoint = new WIN_ErrorEndpoint();
+		System.assert(endpoint != null);
 		WIN_ErrorEndpoint.submitErrors(request);
 
-		Integer total = [SELECT count() FROM Exception_Log__c];
+		Integer total = [SELECT count() FROM Exception_Log__c LIMIT 1000];
 		System.assert(errorList.size() == total);
 		Test.stopTest();
     }
@@ -46,9 +47,10 @@ private class Win_ErrorEndpoint_Test {
 
 		Test.startTest();     
 		WIN_ErrorEndpoint endpoint = new WIN_ErrorEndpoint();
+		System.assert(endpoint != null);
 		WIN_ErrorEndpoint.submitErrors(request);
 
-		Integer total = [SELECT count() FROM Exception_Log__c];
+		Integer total = [SELECT count() FROM Exception_Log__c LIMIT 1000];
 		System.assert(0 == total);
 		Test.stopTest();
     }

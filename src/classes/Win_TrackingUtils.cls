@@ -121,39 +121,47 @@ public with sharing class Win_TrackingUtils {
                 //Get the fieldSet Map for the particular object
                 Map<String, Schema.FieldSet> fsMap = objectDescribe.fieldSets.getMap();
                 
-                //Return the describe on the fields
-                Map<String,Schema.SObjectField> fieldsDescribe = objectDescribe.fields.getMap();
-                
                 //Check that the field set is ready
                 if(fsMap != null) {
                     //Read all the field set names
                     Schema.FieldSet fieldSetSchema = fsMap.get(params.fieldSetName);
                     
-                    //Iterate on all the fields of the current fieldSet
-                    Schema.DescribeFieldResult fieldDescribe = null;
-                    
                     if(fieldSetSchema != null) {
-                        for(Schema.FieldSetMember f : fieldSetSchema.getFields()) {
-                            //Describe on this field
-                            if(fieldsDescribe.get(f.getFieldPath()) != null) {
-                                fieldDescribe = fieldsDescribe.get(f.getFieldPath()).getDescribe();
-                                
-                                if(fieldDescribe != null && !(  
-                                    (params.enforceIsAccessible && !fieldDescribe.isAccessible()) ||
-                                    (params.enforceIsCreateable && !fieldDescribe.isCreateable()) ||
-                                    (params.enforceIsUpdateable && !fieldDescribe.isUpdateable()) ||
-                                    (params.enforceIsRequired && fieldDescribe.isNillable()) 
-                                )) {
-                                    fields.add(f.getFieldPath());
-                                }
-                            }
-                        }
+                        parseFields(fieldSetSchema, params, objectDescribe, fields);
                     }
                 }
             }
         }
         
         return fields;
+    }
+
+    /**
+     *  Parse the fields and add them to the passed array
+     */
+    private static void parseFields(Schema.FieldSet fieldSetSchema, FieldSetSelectionCriteria params,
+            Schema.DescribeSObjectResult objectDescribe, List<String> fields) {
+        //Return the describe on the fields
+        Map<String,Schema.SObjectField> fieldsDescribe = objectDescribe.fields.getMap();
+        
+        //Iterate on all the fields of the current fieldSet
+        Schema.DescribeFieldResult fieldDescribe = null;
+
+        for(Schema.FieldSetMember f : fieldSetSchema.getFields()) {
+            //Describe on this field
+            if(fieldsDescribe.get(f.getFieldPath()) != null) {
+                fieldDescribe = fieldsDescribe.get(f.getFieldPath()).getDescribe();
+                
+                if(fieldDescribe != null && !(  
+                    (params.enforceIsAccessible && !fieldDescribe.isAccessible()) ||
+                    (params.enforceIsCreateable && !fieldDescribe.isCreateable()) ||
+                    (params.enforceIsUpdateable && !fieldDescribe.isUpdateable()) ||
+                    (params.enforceIsRequired && fieldDescribe.isNillable()) 
+                )) {
+                    fields.add(f.getFieldPath());
+                }
+            }
+        }
     }
     
     /**

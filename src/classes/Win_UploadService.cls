@@ -104,7 +104,7 @@ public with sharing class Win_UploadService implements Win_IUploadService{
         String recordId = (String)record.get('Id');
         Schema.Describesobjectresult objDescribe = record.getSObjectType().getDescribe();
         
-        if (objDescribe.isDeletable() && record.get('isDeleted') != null && record.get('isDeleted') == true){        
+        if (objDescribe.isDeletable() && record.get('isDeleted') != null && Boolean.valueOf(record.get('isDeleted'))) {        
             return DELETE_OPERATION;
         } else if (isLocalId(recordId)){
             return INSERT_OPERATION;
@@ -121,7 +121,7 @@ public with sharing class Win_UploadService implements Win_IUploadService{
         recordObject.put('Id', null);
         Schema.DescribeSObjectResult objectDescribe = recordObject.getSObjectType().getDescribe();
         Map<String, Schema.SObjectField> fieldDescribeMap = objectDescribe.fields.getMap();
-        Type objectType = Type.forName(objectDescribe.getName());
+        //Type objectType = Type.forName(objectDescribe.getName());
 
         for (String fieldName : fieldDescribeMap.keySet()) {
             Schema.DescribeFieldResult fieldDescribe = fieldDescribeMap.get(fieldName).getDescribe();
@@ -129,7 +129,7 @@ public with sharing class Win_UploadService implements Win_IUploadService{
             //Check if field is Lookup or Parent-Child field to replace it
             if (fieldName != 'Id' && fieldDescribe.getType() == Schema.Displaytype.Reference){
                 Object fieldValue = recordObject.get(fieldName);
-                if (fieldValue != null &&  fieldValue instanceof String) {
+                if (fieldValue instanceof String) {
                     String stringValue = String.valueOf(fieldValue);
                     if (isLocalId(stringValue)){
                         if (assignmentMap.containsKey(stringValue)) {
@@ -137,9 +137,10 @@ public with sharing class Win_UploadService implements Win_IUploadService{
                             String assignedId = assignmentMap.get(stringValue);
                             recordObject.put(fieldName, assignedId);
                         } 
-                        else
+                        else {
                             // sObject still does not contains assigned fields so should be processed later
                             assignmentComplete = false;
+                        }
                     }
                 }
             }
@@ -169,7 +170,7 @@ public with sharing class Win_UploadService implements Win_IUploadService{
                 Object fieldValue = dataMap.get(key);
                 System.debug('WIN-DEBUG: inside the deserializeSObject fieldValue ' + fieldValue);
 
-                if (key == 'Win_Attachment_Link__c' && fieldValue != null && fieldValue instanceof String) {
+                if (key == 'Win_Attachment_Link__c' && fieldValue instanceof String) {
                     Blob dataBlob = null;
 
                     try {
@@ -186,14 +187,14 @@ public with sharing class Win_UploadService implements Win_IUploadService{
                     } catch(Exception e) {
                         System.debug('WIN-DEBUG: inside the Win_Attachment_Link__c block exception ' + e);
                     }
-                 } else if (key == 'ContentData' && fieldValue != null && fieldValue instanceof String) {
+                 } else if (key == 'ContentData' && fieldValue instanceof String) {
                     System.debug('WIN-DEBUG: inside the deserializeSObject ContentDATA BOOOM ');
                     prepareAdditionalData(additionalData, dataMap, key, fieldValue);
                 } 
                 
                 
                 if (fieldDescribe != null && fieldDescribe.getType() == Schema.Displaytype.base64 &&
-                    fieldValue != null && fieldValue instanceof String){
+                        fieldValue instanceof String) {
                     Blob DataBlob = EncodingUtil.base64Decode((String) fieldValue);
                     blobDataMap.put(key, DataBlob);
                     dataMap.remove(key);
@@ -233,7 +234,7 @@ public with sharing class Win_UploadService implements Win_IUploadService{
             
         Schema.DescribeSObjectResult objectDescribe = recordObject.getSObjectType().getDescribe();
         Map<String, Schema.SObjectField> fieldDescribeMap = objectDescribe.fields.getMap();
-        Type objectType = Type.forName(objectDescribe.getName());
+        //Type objectType = Type.forName(objectDescribe.getName());
 
         for (String fieldName : fieldDescribeMap.keySet()) {
             Schema.DescribeFieldResult fieldDescribe = fieldDescribeMap.get(fieldName).getDescribe();
@@ -241,7 +242,7 @@ public with sharing class Win_UploadService implements Win_IUploadService{
             //Check if field is Lookup or Parent-Child field to replace it
             if (fieldName != 'Id' && fieldDescribe.getType() == Schema.Displaytype.Reference){
                 Object fieldValue = recordObject.get(fieldName);
-                if (fieldValue != null &&  fieldValue instanceof String) {
+                if (fieldValue instanceof String) {
                     String stringValue = String.valueOf(fieldValue);
                     if (isLocalId(stringValue)){
                         unresolvedFields.put(fieldName, fieldDescribe.getLabel());

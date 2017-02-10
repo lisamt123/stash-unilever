@@ -13,6 +13,8 @@
 ***************************************************************/
 public with sharing class Win_TestUtils {
 
+    private static String CLIENT_APP_ID = 'TquilaONE';
+
 	/*
      * Create some assignment records
      */
@@ -70,7 +72,7 @@ public with sharing class Win_TestUtils {
         
         Win_Tracked_Object_Config__c t1TrackedObjConfig1 = new Win_Tracked_Object_Config__c();
         t1TrackedObjConfig1.Active__c = true;
-        t1TrackedObjConfig1.ClientApp_ID__c = 'TquilaONE';
+        t1TrackedObjConfig1.ClientApp_ID__c = CLIENT_APP_ID;
         t1TrackedObjConfig1.Custom_Index_List__c = '';
         t1TrackedObjConfig1.Displayable__c = true;
         t1TrackedObjConfig1.Fieldset_Name_List__c = '';
@@ -85,7 +87,7 @@ public with sharing class Win_TestUtils {
         
         Win_Tracked_Object_Config__c t1TrackedObjConfig2 = new Win_Tracked_Object_Config__c();
         t1TrackedObjConfig2.Active__c = true;
-        t1TrackedObjConfig2.ClientApp_ID__c = 'TquilaONE';
+        t1TrackedObjConfig2.ClientApp_ID__c = CLIENT_APP_ID;
         t1TrackedObjConfig2.Custom_Index_List__c = '';
         t1TrackedObjConfig2.Displayable__c = true;
         t1TrackedObjConfig2.Fieldset_Name_List__c = '';
@@ -100,7 +102,7 @@ public with sharing class Win_TestUtils {
         
         Win_Tracked_Object_Config__c t1TrackedObjConfig4 = new Win_Tracked_Object_Config__c();
         t1TrackedObjConfig4.Active__c = true;
-        t1TrackedObjConfig4.ClientApp_ID__c = 'TquilaONE';
+        t1TrackedObjConfig4.ClientApp_ID__c = CLIENT_APP_ID;
         t1TrackedObjConfig4.Custom_Index_List__c = '';
         t1TrackedObjConfig4.Displayable__c = false;
         t1TrackedObjConfig4.Fieldset_Name_List__c = '';
@@ -115,7 +117,7 @@ public with sharing class Win_TestUtils {
         
         Win_Tracked_Object_Config__c t1TrackedObjConfig5 = new Win_Tracked_Object_Config__c();
         t1TrackedObjConfig5.Active__c = true;
-        t1TrackedObjConfig5.ClientApp_ID__c = 'TquilaONE';
+        t1TrackedObjConfig5.ClientApp_ID__c = CLIENT_APP_ID;
         t1TrackedObjConfig5.Custom_Index_List__c = '';
         t1TrackedObjConfig5.Displayable__c = false;
         t1TrackedObjConfig5.Fieldset_Name_List__c = 'dummyFieldSet';
@@ -140,7 +142,7 @@ public with sharing class Win_TestUtils {
         
         Win_Tracked_Object_Config__c t1TrackedObjConfig1 = new Win_Tracked_Object_Config__c();
         t1TrackedObjConfig1.Active__c = true;
-        t1TrackedObjConfig1.ClientApp_ID__c = 'TquilaONE';
+        t1TrackedObjConfig1.ClientApp_ID__c = CLIENT_APP_ID;
         t1TrackedObjConfig1.Custom_Index_List__c = '';
         t1TrackedObjConfig1.Displayable__c = true;
         t1TrackedObjConfig1.Fieldset_Name_List__c = '';
@@ -155,7 +157,7 @@ public with sharing class Win_TestUtils {
         
         Win_Tracked_Object_Config__c t1TrackedObjConfig2 = new Win_Tracked_Object_Config__c();
         t1TrackedObjConfig2.Active__c = true;
-        t1TrackedObjConfig2.ClientApp_ID__c = 'TquilaONE';
+        t1TrackedObjConfig2.ClientApp_ID__c = CLIENT_APP_ID;
         t1TrackedObjConfig2.Custom_Index_List__c = '';
         t1TrackedObjConfig2.Displayable__c = true;
         t1TrackedObjConfig2.Fieldset_Name_List__c = '';
@@ -170,7 +172,7 @@ public with sharing class Win_TestUtils {
         
         Win_Tracked_Object_Config__c t1TrackedObjConfig3 = new Win_Tracked_Object_Config__c();
         t1TrackedObjConfig3.Active__c = true;
-        t1TrackedObjConfig3.ClientApp_ID__c = 'TquilaONE';
+        t1TrackedObjConfig3.ClientApp_ID__c = CLIENT_APP_ID;
         t1TrackedObjConfig3.Custom_Index_List__c = '';
         t1TrackedObjConfig3.Displayable__c = true;
         t1TrackedObjConfig3.Fieldset_Name_List__c = '';
@@ -185,7 +187,7 @@ public with sharing class Win_TestUtils {
         
         Win_Tracked_Object_Config__c t1TrackedObjConfig4 = new Win_Tracked_Object_Config__c();
         t1TrackedObjConfig4.Active__c = true;
-        t1TrackedObjConfig4.ClientApp_ID__c = 'TquilaONE';
+        t1TrackedObjConfig4.ClientApp_ID__c = CLIENT_APP_ID;
         t1TrackedObjConfig4.Custom_Index_List__c = '';
         t1TrackedObjConfig4.Displayable__c = false;
         t1TrackedObjConfig4.Fieldset_Name_List__c = '';
@@ -200,7 +202,7 @@ public with sharing class Win_TestUtils {
         
         Win_Tracked_Object_Config__c t1TrackedObjConfig5 = new Win_Tracked_Object_Config__c();
         t1TrackedObjConfig5.Active__c = true;
-        t1TrackedObjConfig5.ClientApp_ID__c = 'TquilaONE';
+        t1TrackedObjConfig5.ClientApp_ID__c = CLIENT_APP_ID;
         t1TrackedObjConfig5.Custom_Index_List__c = '';
         t1TrackedObjConfig5.Displayable__c = false;
         t1TrackedObjConfig5.Fieldset_Name_List__c = 'dummyFieldSet';

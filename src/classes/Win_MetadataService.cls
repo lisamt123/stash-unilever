@@ -19,8 +19,8 @@ public with sharing class Win_MetadataService implements Win_IMetadataService {
     private String ClientAppID;
     
     private final String ACTIVE_FIELD_NAME = 'Active__c';
-    private final String PRIORITY_FIELD_NAME = 'Priority__c';
-    private final String CLIENTAPP_ID_NAME = 'ClientApp_ID__c';
+    //private final String PRIORITY_FIELD_NAME = 'Priority__c';
+    //private final String CLIENTAPP_ID_NAME = 'ClientApp_ID__c';
     public final static String DefaultAppId = 'Win_uilaONE';
 
     /**
@@ -35,6 +35,7 @@ public with sharing class Win_MetadataService implements Win_IMetadataService {
     */
     public Win_MetadataService(String clientAppId) {
         this.ClientAppID = clientAppId;
+        System.debug('Win_MetadataService initialised with clientAppId = ' + this.ClientAppID);
         //Init the custom setting
         objectsSetting = Win_TrackingUtils.getObjects(clientAppId);
         
@@ -57,7 +58,7 @@ public with sharing class Win_MetadataService implements Win_IMetadataService {
                 Win_Tracked_Object_Config__c trackedObjectSetting = objectsSetting.get(objectsSettingKey);
                 
                 //Use only active TrackedObjects
-                if(trackedObjectSetting.get(ACTIVE_FIELD_NAME) == true) { 
+                if(Boolean.valueOf(trackedObjectSetting.get(ACTIVE_FIELD_NAME))) { 
                     //Get the object Name and Layout info
                     String trackedObjectName = trackedObjectSetting.Object_Api_Name__c;
                     if(trackedObjectSetting != null && globalDescribe.containsKey(trackedObjectName)) {
@@ -412,7 +413,7 @@ public with sharing class Win_MetadataService implements Win_IMetadataService {
                 if(!includedFields.contains(fieldName) && fieldDescribe.isAccessible()) {
                     if(systemFieldSet.contains(fieldName) || 
                         fieldDescribe.getType() == Schema.DisplayType.Reference ||
-                        (fieldDescribe.isNillable() == false && fieldDescribe.getType() != Schema.Displaytype.Boolean
+                        (!fieldDescribe.isNillable() && fieldDescribe.getType() != Schema.Displaytype.Boolean
                         && (fieldDescribe.isCreateable() || fieldDescribe.isUpdateable()))) {
                             fullFieldSet.add(fieldName);
                     }

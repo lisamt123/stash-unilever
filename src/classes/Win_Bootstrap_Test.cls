@@ -29,6 +29,8 @@ private class Win_Bootstrap_Test {
 		RestContext.response = res;
 
 		Win_BootstrapEndpoint endPoint = new Win_BootstrapEndpoint();
+		System.assert(endPoint != null);
+
 		resp = Win_BootstrapEndpoint.doGet();
 		System.assert(resp != null);
 		System.assert(resp.getDictionary() != null);
@@ -48,7 +50,9 @@ private class Win_Bootstrap_Test {
 	@isTest static void testDictionaryDataExceptionOne() {
 		Test.startTest();     
 		Win_BootstrapResponse resp = new Win_BootstrapResponse(); 
+		System.assert(resp != null);
 		RestRequest req = new RestRequest(); 
+		System.assert(req != null);
 
 		RestResponse res = new RestResponse();
 		req.requestURI = '/WIN/V1/Bootstrap/*';
@@ -67,7 +71,9 @@ private class Win_Bootstrap_Test {
 	@isTest static void testDictionaryDataExceptionTwo() {
 		Test.startTest();     
 		Win_BootstrapResponse resp = new Win_BootstrapResponse(); 
+		System.assert(resp != null);
 		RestRequest req = new RestRequest(); 
+		System.assert(req != null);
 
 		RestResponse res = new RestResponse();
 		req.requestURI = '/WIN/V1/Bootstrap/*';

@@ -66,7 +66,7 @@ global with sharing class Win_UploadEndpoint {
     private static Boolean processRequestCycle(Boolean reassignmentNeeded, String deviceId) {
     
         Boolean itemsToProcessFouneded = false;
-        Set<String> itemIdsGoingToProcess = new Set<String>();
+        //Set<String> itemIdsGoingToProcess = new Set<String>();
 
         List<Integer> objectRequestIndexesToRemove = new List<Integer>();
         List<sObject> objectReadyToRemove = new List<sObject>();
@@ -81,7 +81,7 @@ global with sharing class Win_UploadEndpoint {
         
         //Go through the all request Items, which were not assigned yet
         for (Integer index = 0; index < requestItemsList.size(); index++) {
-            Win_UploadRequestItem requestItem = requestItemsList.get(index);
+            //Win_UploadRequestItem requestItem = requestItemsList.get(index);
             Win_UploadResponse.Win_UploadResponseItem responseItem = responseItemsList.get(index);
             Integer recordOperationIndex = recordOperationIndexList.get(index);         
             SObject recordSObject = responseItem.record;
@@ -89,7 +89,7 @@ global with sharing class Win_UploadEndpoint {
             String originalRequestId = requestId;
             Map<String, Object> additionalDataMap = recordAdditonalDataList.get(index);
             
-            if (responseItem.executed == true || failedRecordIdSet.contains(requestId)
+            if (Boolean.valueOf(responseItem.executed) || failedRecordIdSet.contains(requestId)
                 || recordOperationIndex != numberOfProcessedOperationsPerRecord.get(requestId)){
                 continue;
             }
@@ -138,7 +138,7 @@ global with sharing class Win_UploadEndpoint {
             }
             else {
                 //Process Upsert operation
-                if (reassignmentNeeded == true){
+                if (reassignmentNeeded) {
                     //Try to replace all references to object with Local Ids to Salesforce Ids
                     Boolean assignmentComplete = service.reassignLocalReferences(recordSObject, assignedIdsMap);
                         
@@ -405,7 +405,7 @@ global with sharing class Win_UploadEndpoint {
     private static void setRelationErrors(){
         //Go through the all request Items, which were not assigned yet
         for (Integer index = 0; index < requestItemsList.size(); index++) {
-            Win_UploadRequestItem requestItem = requestItemsList.get(index);
+            //Win_UploadRequestItem requestItem = requestItemsList.get(index);
             Win_UploadResponse.Win_UploadResponseItem responseItem = responseItemsList.get(index);
             String requestId = responseItem.requestId;
             Integer recordIndex = recordOperationIndexList.get(index);
@@ -500,6 +500,7 @@ global with sharing class Win_UploadEndpoint {
             try {
                 // Try convert JSON string of record to SObject
                 recordObject = service.deserializeSObject(requestItem, additionalData);
+                sObjectConversionSuccess = true;
             } catch(Exception e) {
                 sObjectConversionSuccess = false;
                 responseItem.errorList.add('Wrong data of ' + requestItem.objectApiName +' : ' + e.getMessage());

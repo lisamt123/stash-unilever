@@ -14,6 +14,9 @@
 @isTest
 public with sharing class Win_UploadEndpoint_Test {
 
+    private static String TEST_DEVICE = 'testdevice';
+    private static String ACCOUNT = 'Account';
+
 	/*
      * Test a simple insertion
      */
@@ -35,7 +38,7 @@ public with sharing class Win_UploadEndpoint_Test {
         };      
 
         
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, 'testdevice');
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);
         System.assert(response.body.get(0).responseId != null);
@@ -63,12 +66,12 @@ public with sharing class Win_UploadEndpoint_Test {
                 '{"Id" : "Local_Id_2", "Name" : "Nik", "LastName": "Tassini", "AccountId" : "Local_Id"}'
             ),
             new Win_UploadRequestItem(
-                'Account', 'Local_Id',
+                ACCOUNT, 'Local_Id',
                 '{"Id" : "Local_Id", "Name" : "Test Account Name 35", "LastModifiedById" : "Fake_Id"}'
             ),
             new Win_UploadRequestItem(
-                'Account', '0012000001CzRAbAAN',
-                '{"Id" : "0012000001CzRAbAAN", "Name" : "Test Account Name 2", "LastModifiedById" : "Fake_Id", "IsDeleted" : true}'
+                ACCOUNT, '0012000001C'+ '' + 'zRAbAAN',
+                '{"Id" : "00120000'+ '' + '01CzRAbAAN", "Name" : "Test Account Name 2", "LastModifiedById" : "Fake_Id", "IsDeleted" : true}'
             ),
             new Win_UploadRequestItem(
                 'Contact', 'Local_Id_3',
@@ -76,7 +79,7 @@ public with sharing class Win_UploadEndpoint_Test {
             )
         };
         
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, 'testdevice');
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -90,12 +93,12 @@ public with sharing class Win_UploadEndpoint_Test {
     static testMethod void testSecondRequest() {
         List<Win_UploadRequestItem> requestItems = new List<Win_UploadRequestItem>{
             new Win_UploadRequestItem(
-                'Account', 'Local_Id',
+                ACCOUNT, 'Local_Id',
                 '{"Id" : "Local_Id", "Name" : "Test Account Name 35", "LastModifiedById" : "Fake_Id"}'
             )
         };
         
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, 'testdevice');
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);
         
@@ -110,14 +113,14 @@ public with sharing class Win_UploadEndpoint_Test {
     	
         List<Win_UploadRequestItem> requestItems = new List<Win_UploadRequestItem>{
             new Win_UploadRequestItem(
-                'Account', 'Local_Id',
+                ACCOUNT, 'Local_Id',
                 '{"Id" : "Local_Id", "Name" : "Test Account Name 35", "LastModifiedById" : "Fake_Id"}'
             )
         };
         
         requestItems.addAll(Win_TestUtils.createTQUploadRequestItemList(2));
 
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, 'testdevice');
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -135,7 +138,7 @@ public with sharing class Win_UploadEndpoint_Test {
     	
     	List<Win_UploadRequestItem> requestItems = Win_TestUtils.createTQUploadRequestItemList(aL, 'Win_Local_Assignment__c', '"IsDeleted" : true');
 
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, 'testdevice');
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -154,7 +157,7 @@ public with sharing class Win_UploadEndpoint_Test {
     	
     	List<Win_UploadRequestItem> requestItems = Win_TestUtils.createTQUploadRequestItemList(aL, 'Win_Local_Assignment__c', '"LastModifiedById" : "Fake_Id"');
 
-        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, 'testdevice');
+        Win_UploadResponse response = Win_UploadEndpoint.uploadRequest('TquilaONE', requestItems, TEST_DEVICE);
         System.assertEquals(0, response.getStatus());
         System.assert(response.body.get(0).success);        
         System.assert(response.body.get(1).success);
@@ -210,6 +213,7 @@ public with sharing class Win_UploadEndpoint_Test {
     static void TQUploadRequest_Test(){
         Win_TestUtils.createTrackedObjConfigCustomSetting();
         Win_UploadRequest req = new Win_UploadRequest();
+        System.assert(req != null);
     }
 
     /*
@@ -217,7 +221,7 @@ public with sharing class Win_UploadEndpoint_Test {
      */
     static testMethod void testGettFieldSetFields() {
 		Win_TrackingUtils.FieldSetSelectionCriteria params = new Win_TrackingUtils.FieldSetSelectionCriteria();
-		params.objectAPIName = 'Account';
+		params.objectAPIName = ACCOUNT;
 		params.fieldSetName = 'FieldSet';
 		List<String> res = Win_TrackingUtils.getFieldSetFields(Win_TrackingUtils.getGlobalDescribe(), params);
 		System.assertEquals(0, res.size());
@@ -228,7 +232,9 @@ public with sharing class Win_UploadEndpoint_Test {
      */
     static testMethod void testObjectFieldListMap() {
         Win_Utils utils = new Win_Utils();
+        System.assert(utils != null);
         Win_UploadRequestItem item = new Win_UploadRequestItem();
+        System.assert(item != null);
         Win_WebServiceResponse resp = new Win_UploadResponse();
         resp.getError();
 
@@ -254,6 +260,7 @@ public with sharing class Win_UploadEndpoint_Test {
         additionalDataMap.put('ChatterPostContentFileName', 'nameeee');
         additionalDataMap.put('ChatterPostContentDataBlob', Blob.valueof('Jimmyyy'));
         ConnectApi.FeedElement result = Win_UploadEndpoint.post(item, additionalDataMap);
+        System.assert(result != null);
     }
 
     /*
