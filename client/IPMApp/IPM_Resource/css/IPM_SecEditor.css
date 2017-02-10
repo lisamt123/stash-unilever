@@ -476,7 +476,13 @@
     .alertsIcon{margin-bottom:10px;}
     .SecStatusUpdate.riskModal {text-align:center;cursor:pointer;}
     .ecoDesignCountry th {white-space:nowrap;}
-    
+	.reduparrow{float: left;display: block;margin-left: 10px;margin-top: 5px;width: 0px;height: 0px;border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 10px solid #fe0000;}
+	.greenuparrow{float: left;display: block;margin-left: 10px;margin-top: 5px;width: 0px;height: 0px;border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 10px solid #6c9a40;}
+	.ecoamberleftarrow{float: left;display: block;margin-left: 10px;width: 0px;height: 0px;border-top: 10px solid transparent;border-bottom: 10px solid transparent;border-right: 10px solid #e98824;}
+	.ecoamberrightarrow{float: left;display: block;margin-left: 5px;width: 0px;height: 0px;border-top: 10px solid transparent;border-bottom: 10px solid transparent;border-left: 10px solid #e98824;}
+	.reddownarrow{float: left;display: block;margin-left: 10px;margin-top: 5px;width: 0px;height: 0px;border-left: 10px solid transparent;border-right: 10px solid transparent;border-top: 10px solid #fe0000;}
+	.greendownarrow{float: left;display: block;margin-left: 10px;margin-top: 5px;width: 0px;height: 0px;border-left: 10px solid transparent;border-right: 10px solid transparent;border-top: 10px solid #6c9a40;}
+	    
 /*otif table styling for showing color*/
 	.Red{background:#fe0000;display:block ;border-radius: 1px ;}
 	.Green{background:#6c9a40;border-radius:1px;margin-right:0;display:block;}

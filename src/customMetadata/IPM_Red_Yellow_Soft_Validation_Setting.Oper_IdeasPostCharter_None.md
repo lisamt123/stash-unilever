@@ -6,6 +6,10 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>IPM_Project_GKM__c</field>
+        <value xsi:type="xsd:string">GKM5,GKM6,GKM7</value>
+    </values>
+    <values>
         <field>IPM_Project_Phase__c</field>
         <value xsi:type="xsd:string">Ideas,Feasibility,Capability,Market Ready,Market Deployment,PLE</value>
     </values>

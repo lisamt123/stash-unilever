@@ -1008,6 +1008,11 @@
         <apexClass>IPM_GlobalClaimPDLController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Bosscard__c.Project_Id__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Country_Level_Claim__c.IPM_Claim__c</field>

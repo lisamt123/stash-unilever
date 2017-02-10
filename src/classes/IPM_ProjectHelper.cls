@@ -1592,7 +1592,54 @@ public with sharing class IPM_ProjectHelper
                 projectToCountryMap.put(localProjectID,localCountries);
             }
             updateProjectRolloutMap(projectPhaseChange, oldProjectMap);
+            updateLocalOriginalProjCountryMap(projectPhaseChange, oldProjectMap);
         }
+    }
+    
+    //Specifically for GKM8 projects
+    //Since there are no rollouts we need to populate the country fields directly
+    private static void updateLocalOriginalProjCountryMap(Map<Id,IPM_Project__c> projectPhaseChange,Map<Id,IPM_Project__c> oldProjectMap){
+    	Map<Id,IPM_Country__c> updateProjectCountry = new Map<Id,IPM_Country__c>();
+    	
+    	if(projectToCountryMap.isEmpty()){
+    		return;
+    	}
+    	
+    	for(Id projectId : projectToCountryMap.keySet()){
+                IPM_Project__c oldProject = null;
+                IPM_Project__c newProject = projectPhaseChange.get(projectId);
+                
+                if(oldProjectMap!=null && oldProjectMap.containsKey(projectId) && newProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && newProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+                {
+                    oldProject = oldProjectMap.get(projectId);
+                    
+                    if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
+                    {
+                    	if(projectToCountryMap.containsKey(projectId))
+                    	{
+                    		Map<String,IPM_Country__c> countriesMap = projectToCountryMap.get(projectId);
+                    		
+		                	for(IPM_Country__c country : countriesMap.values())
+                            {
+                               country.IPM_CharterApproved__c = true;
+                               country.IPM_FinancialAtCharter__r = new IPM_Financial__c(Financial_External_ID__c = projectPhaseChange.get(country.IPM_Local_Project__c).IPM_Project_Name__c );
+                               updateProjectCountry.put(country.Id,country);
+                            }                 			
+                    	}
+   
+                    }
+                }
+    	
+    	}
+    	
+    	// Null check of country map
+        if(!updateProjectCountry.isEmpty())
+        { 
+            IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
+            update updateProjectCountry.values();   
+            IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
+        }
+
     }
     
     private static void updateProjectRolloutMap(Map<Id,IPM_Project__c> projectPhaseChange,Map<Id,IPM_Project__c> oldProjectMap){

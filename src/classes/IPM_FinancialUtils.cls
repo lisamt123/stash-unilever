@@ -111,11 +111,11 @@ public with sharing class IPM_FinancialUtils
     
     public static boolean showCountryCheckboxes(String Project_GKM,String IPM_Phase){
     	
-    	if(Project_GKM == 'GKM3')
+    	if(Project_GKM == IPM_ConstantUtils.GKM_3 ||  Project_GKM == IPM_ConstantUtils.GKM_8)
     	{
     		return True;
     	}
-    	else if(IPM_Phase == 'Ideas')
+    	else if(IPM_Phase == IPM_ConstantUtils.PHASE_IDEAS)
     	{
     		return True;
     	}
@@ -128,10 +128,10 @@ public with sharing class IPM_FinancialUtils
     
     public static boolean isCheckboxToBeDisabled(String Project_GKM,String IPM_Phase, String finType){
     	
-    	if(Project_GKM == 'GKM3')
+    	if(Project_GKM == IPM_ConstantUtils.GKM_3)
     	{
 
-    		if(IPM_Phase == 'Feasibility' || IPM_Phase == 'Capability')	{
+    		if(IPM_Phase == IPM_ConstantUtils.PHASE_FEASIBILITY || IPM_Phase == IPM_ConstantUtils.PHASE_CAPABILITY)	{
     			if(finType.equalsIgnoreCase(IPM_ConstantUtils.Nonkey)){
     				return false;
     			}
@@ -140,12 +140,12 @@ public with sharing class IPM_FinancialUtils
     				}
     		}
     		// @description: Used to enable countries checkboxes editable for GKM3 Idea phase.
-    		else if(IPM_Phase == 'Ideas'){
+    		else if(IPM_Phase == IPM_ConstantUtils.PHASE_IDEAS){
     			return false;
     		}
     		return true;
     	}
-    	else if(IPM_Phase != 'Ideas')
+    	else if(IPM_Phase != IPM_ConstantUtils.PHASE_IDEAS)
     	{
     		return true;
     	}

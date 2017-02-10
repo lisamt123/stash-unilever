@@ -94,12 +94,18 @@
                                                 </div>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
+                                       
                                         <div class="SecCurrentStatus pull-right">
                                             {!$Label.IPM_CURENT_BOSSCARD_STATUS}
                                             <span class="{!changeBossStatusCCS}">
                                                 <apex:outputField value="{!bosscard.IPM_Bosscard_Status__c}"/>
                                             </span>
+
                                         </div>
+                                        <div class="gotobtn pull-right">
+                                         <apex:outputLink value="{!bosscard.IPM_Project_Overview_Page_URL__c}" id="goToProj" styleClass="ipmButton primary gotobtn" rendered="{!showGoTOProjButton}">{!$Label.IPM_Go_to_Project}</apex:outputLink>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

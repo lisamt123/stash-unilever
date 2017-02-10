@@ -66,6 +66,8 @@ Global with sharing class IPM_BosscardController {
     public boolean company_Booln{get;set;}
     //*@Description:category mandatory
     public boolean category_Booln{get;set;}
+    //*@Description:flag to show go to proj button
+    public boolean showGoTOProjButton{get;set;}
     //*@Description:geo scope
     @TestVisible private string geoScope_STR{get;set;}
     //To remove duplicate string literals
@@ -120,6 +122,8 @@ Global with sharing class IPM_BosscardController {
         imgurl=System.Label.IPM_image;
         bosscardId = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);
         BossCUrl_ID=ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);
+        showGoTOProjButton = false;
+        
         if(string.isBlank(BossCUrl_ID)){
             isEditable=true;
         }
@@ -136,6 +140,9 @@ Global with sharing class IPM_BosscardController {
             Status=Bosscard.IPM_Bosscard_Status__c;
             geoScope_STR= bosscard.IPM_Region_Shr__c;
             expectedTLD=bosscard.IPM_Target_Launch_Date__c;
+            if(IPM_ConstantUtils.STATUS_APPROVED.equalsIgnoreCase(bosscard.IPM_Bosscard_Status__c) && bosscard.Project_Id__c != null){
+            	showGoTOProjButton = true;
+            }
             
         }
         

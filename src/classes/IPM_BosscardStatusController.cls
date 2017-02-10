@@ -189,6 +189,12 @@ global with sharing class IPM_BosscardStatusController{
             updateProject.IPM_Project_Leader__c=PLId;
             update updateProject;
             
+            //Update the associated project id on the bosscard
+	    IPM_Bosscard__c updateBosscard = new IPM_Bosscard__c();
+            updateBosscard.Id = BOSSCARD_Record.Id;
+            updateBosscard.Project_Id__c = updateProject.Id;
+            update updateBosscard;
+            
         }
         catch(Exception ex){
             // Rollback to the previous  values

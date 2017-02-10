@@ -6,6 +6,10 @@
         <value xsi:type="xsd:string">Launch New Brand, Brand Migration, Brand Extension, New Format, New Platform, Grow the Core, New Channels</value>
     </values>
     <values>
+        <field>IPM_Project_GKM__c</field>
+        <value xsi:type="xsd:string">GKM1,GKM2,GKM3,GKM4</value>
+    </values>
+    <values>
         <field>IPM_Project_Phase__c</field>
         <value xsi:type="xsd:string">Feasibility,Capability,Market Ready,Market Deployment,PLE</value>
     </values>

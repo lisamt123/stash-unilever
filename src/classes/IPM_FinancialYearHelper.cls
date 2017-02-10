@@ -392,8 +392,8 @@ public with sharing class IPM_FinancialYearHelper
                 }   
             }
             //Get phase & type of all original Projects
-            if(!setGlobalProjExtIds.isEmpty() || !setRegionalOrigProjIds.isEmpty()){
-                for(IPM_Project__c proj :[select id, Name, IPM_Phase__c,IPM_ProjectGKM__c, IPM_Project_Type__c from IPM_Project__c where Name in:setGlobalProjExtIds or Name in :setRegionalOrigProjIds LIMIT 50000]){
+            if(!setGlobalProjExtIds.isEmpty() || !setRegionalOrigProjIds.isEmpty() || !setAllFinacials.isEmpty() ){
+                for(IPM_Project__c proj :[select id, Name, IPM_Phase__c,IPM_ProjectGKM__c, IPM_Project_Type__c from IPM_Project__c where Name in:setGlobalProjExtIds or Name in :setRegionalOrigProjIds or Name in :setAllFinacials LIMIT 50000]){ // including setAllFinacials in case of local original projects
 
                     mapProj.put(proj.Name, proj);                       
                 }   
@@ -570,7 +570,10 @@ public with sharing class IPM_FinancialYearHelper
             proj= mapProj.get(finyear.IPM_Financial__r.Regional_External_Id__c);
             if(proj == null){
                 proj= mapProj.get(finyear.IPM_Financial__r.Global_External_Id__c); 
-            } 
+            }
+            if(proj ==  null){
+            	proj= mapProj.get(finyear.IPM_Financial__r.Financial_External_ID__c); // local original project
+            }
             
             
             

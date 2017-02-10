@@ -47,6 +47,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean showRollupTab {get; set;} //Boolean variable to decide when to show the Rollup tab
     public Boolean showKeyFinancial {get;set;} 
     public Boolean globalCharter {get;set;}
+    public Boolean localCharter {get; set;}
     public Boolean topDown {get;set;}
     public IPM_FinancialWrapper financialsInnovation {get; set;} //Wrapper to store the financial values for the Innovation Years for the currentFinancial
     public IPM_FinancialWrapper financialsCalendar {get; set;} //Wrapper to store the financial values for the Calendar Years for the currentFinancial
@@ -451,6 +452,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 
                 //check financial is editable i.e. to show edit button or not
                 isFinEditable = isFinancialEditable(project, currentFinancial);
+                
+                //Calculate whether to show the checkboxes for countries corresponding to the financials
+	            showcheckbox = IPM_FinancialUtils.showCountryCheckboxes(project.IPM_ProjectGKM__c,project.IPM_Phase__c);
+	            //calculate whether show the checkboxes as editable
+	            disablecheckbox =  IPM_FinancialUtils.isCheckboxToBeDisabled(project.IPM_ProjectGKM__c,project.IPM_Phase__c,currentFinancialType);
             }
         } 
         catch (Exception ex)
@@ -566,25 +572,37 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if(currentFinancial !=null)
         { 
             String financialExtID = currentFinancial.Financial_External_ID__c;
-                         
-                    if(globalCharter)
+                     
+                    //for local charter and global charter tabs    
+                    if(globalCharter || localCharter )
                     {
                         associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c,Local_Rollout_Charter__c,Local_Rollout__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID LIMIT 50000];    
                     }
-            else if(topDown)
+               else if(topDown)
                         
                 { 
+                    //if the financial created is Key
                     if(!financialExtID.contains(IPM_ConstantUtils.FINANCIAL_NONKEY))
                     {
-                        ipmProjectList =  [SELECT Id,
+                        //for GKM8 projects
+                        if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && project.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
+                    
+	                    	associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c,Local_Rollout_Charter__c,Local_Rollout__c from IPM_Country__c where IPM_Local_Project__c = :project.Id AND isActive__c = true LIMIT 50000];
+	                    }
+                        
+                        else{
+                        	ipmProjectList =  [SELECT Id,
                                                (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM IPM_Project_Rollout__r 
                                                    WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND IPM_Rollout_Project__c = :financialExtID AND isActive__c = true),
                                                (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM Regional_Project_Rollout__r 
                                                    WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND IPM_Rollout_Project__c = :financialExtID AND isActive__c = true)       
                                             FROM IPM_Project__c WHERE Id =:Project.Id];
+                        }
+                        
                     }
                     else 
                     {
+
                     if(project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS && !IPM_Utils.GATE_KEEPING_MODEL_3.equalsIgnoreCase(currentFinancial.Gate_Keeping_Model__c))
                     {
                         associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c,Local_Rollout_Charter__c,Local_Rollout__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND isActive__c = true LIMIT 50000];    
@@ -711,7 +729,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //Local Project 
         else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
         {
-            if(project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+            if(project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )
             {
                 tabLabelMyView = IPM_ConstantUtils.TAB_MYVIEW_LABEL;
                 tabLabelTopDown = IPM_ConstantUtils.TAB_TOPDOWN_LABEL;
@@ -720,6 +738,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             else 
             {
                 tabLabelMyView = IPM_ConstantUtils.TAB_MYVIEW_LABEL; 
+            }
+            
+            //for GKm8 non Ideas phase the charter tab should be shown
+            if(project.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS )
+            {
+
+                showTopDownTab = true;
+                tabLabelTopDown = IPM_ConstantUtils.TAB_CHARTER_LABEL;
+
             }
          }
     }
@@ -819,6 +846,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
          getRecordtypes();
          showKeyFinancial = false;
          globalCharter = false;
+         localCharter = false;
          topDown = false;
          Id defaultFinancialId = null; 
          
@@ -917,9 +945,20 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     }
                     else if (currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME) 
                     {
-                        getLocalMyViewWrappers();
+                        if(project.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
+                            
+                            getLocalTopDownWrappers();
+                        }
+                        else{
+                            getLocalMyViewWrappers();
+                        }
+                        
                     }
                     
+                    if(project.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME){
+                    	localCharter = true;
+                    }
+
                     RolloutWrapper firstRolloutWrapper = lstRolloutWrappers.get(0);
                     
                     List<IPM_Financial__c> associatedFinancials = firstRolloutWrapper.lstFinancials;
@@ -1394,6 +1433,30 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             )
         );
     }
+    
+    /*******************************************************************************************************
+    * @description  Used to getRollout Wrappers for Local My View & Top Down Tab
+    * @param        NONE
+    * @return       NONE
+    */
+    private void getLocalTopDownWrappers(){
+        List<IPM_Financial__c> lstLocalFinancials = [SELECT Id, Name,recordTypeID, display_Name__c, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
+                                                            FROM IPM_Financial__c
+                                                            WHERE Local_Project__c =: project.Id
+                                                                AND RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Charter_Approved__c = true
+                                                            ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
+        
+        
+        //System.assert(false,lstLocalFinancials);
+        
+        lstRolloutWrappers.add(
+            new RolloutWrapper(
+                lstLocalFinancials[0].Financial_External_ID__c, 
+                lstLocalFinancials
+            )
+        );
+    }
+    
 
       //DEF2676 fix Start
      public PageReference next() {
@@ -1693,7 +1756,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if ( (( !IPM_ConstantUtils.GATE_KEEPING_MODEL_3.equalsIgnoreCase(project.IPM_ProjectGKM__c) &&  !IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c)) ||
               (IPM_ConstantUtils.GATE_KEEPING_MODEL_3.equalsIgnoreCase(project.IPM_ProjectGKM__c) && !IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && currentFinancial!= null && currentFinancial.Local_Project__c != null )) &&
              currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME && 
-            (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT) &&
+            ((project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && !IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(project.IPMProject_Span__c) ) || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT) &&
             (pageName!= null && pageName.equalsIgnoreCase('IPM_Financial')))
         {
             
@@ -2690,7 +2753,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
             else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
             {
-                return project.IPM_Parent_Project__r.IPMProject_Span__c;
+                if(project.IPM_Parent_Project__c != null){
+                    return project.IPM_Parent_Project__r.IPMProject_Span__c;
+                }
+                
+                else{
+                    
+                    return IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
+                }
+                
                 
             }
         }
@@ -3490,10 +3561,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 if(
                     //check for isBlank is also made, since if the particular value is balnk for the metadata type record then
                     //that means that either we need not check that value or all the values are acceptable for the current validation criteria 
-                    (String.isBlank(valSetting.IPM_Threshold_Status__c) || (String.isNotBlank(valSetting.IPM_Threshold_Status__c) && String.isNotBlank(project.IPM_Project_Based_Threshold_Status__c)  &&  project.IPM_Project_Based_Threshold_Status__c == valSetting.IPM_Threshold_Status__c)) &&
-                    (String.isBlank(valSetting.IPM_Project_Sub_Type__c) || (String.isNotBlank(valSetting.IPM_Project_Sub_Type__c) && String.isNotBlank(project.IPM_ProjectSubType__c) && project.IPM_ProjectSubType__c == valSetting.IPM_Project_Sub_Type__c)) &&
+                    (String.isBlank(valSetting.IPM_Threshold_Status__c) || (String.isNotBlank(valSetting.IPM_Threshold_Status__c) && String.isNotBlank(project.IPM_Project_Based_Threshold_Status__c)  &&  project.IPM_Project_Based_Threshold_Status__c.equalsIgnoreCase(valSetting.IPM_Threshold_Status__c))) &&
+                    (String.isBlank(valSetting.IPM_Project_Sub_Type__c) || (String.isNotBlank(valSetting.IPM_Project_Sub_Type__c) && String.isNotBlank(project.IPM_ProjectSubType__c) && project.IPM_ProjectSubType__c.equalsIgnoreCase(valSetting.IPM_Project_Sub_Type__c))) &&
                     (String.isBlank(valSettingPhase) || (String.isNotBlank(valSettingPhase) && String.isNotBlank(project.IPM_Phase__c) && valSettingPhase.deleteWhitespace().containsIgnoreCase(project.IPM_Phase__c.deleteWhitespace()) )) &&
-                    (String.isBlank(valSettingMPA) || (String.isNotBlank(valSettingMPA) && String.isNotBlank(project.IPM_Answer_of_Q1__c) && valSettingMPA.deleteWhitespace().containsIgnoreCase(project.IPM_Answer_of_Q1__c.deleteWhitespace()) ))   
+                    (String.isBlank(valSettingMPA) || (String.isNotBlank(valSettingMPA) && String.isNotBlank(project.IPM_Answer_of_Q1__c) && valSettingMPA.deleteWhitespace().containsIgnoreCase(project.IPM_Answer_of_Q1__c.deleteWhitespace()) )) && 
+                    String.isNotBlank(project.IPM_ProjectGKM__c) && valSetting.IPM_Project_GKM__c.deleteWhitespace().containsIgnoreCase(project.IPM_ProjectGKM__c.deleteWhitespace()) 
                     
                 ){
     
