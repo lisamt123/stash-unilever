@@ -218,14 +218,12 @@
         </aura:iteration>
     </div>
     <aura:if isTrue="{!v.spinnercompClm}">
-        <center>
             <div class="slds-spinner_container">
                 <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
                     <div class="slds-spinner__dot-a"></div>
                     <div class="slds-spinner__dot-b"></div>
                 </div>
             </div>
-        </center>
     </aura:if>
     <!-- Detail Main Content -->
     <aura:if isTrue="{!v.accessStatus}">
@@ -235,7 +233,7 @@
                 <div class="slds-tabs--default">
                     <ul class="slds-tabs--default__nav pending-header" role="tablist">
                         <li class="slds-tabs--default__item  pending" title="Item Two"
-                            role="presentation" onclick="{!c.NavigateToDetail}"><a class="tab-default-2__item slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item" aura:id="item1">{!$Label.c.CORE_LBL_DETAILS}</a></li>
+                            role="presentation" onclick="{!c.navigateToDetail}"><a class="tab-default-2__item slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item" aura:id="item1">{!$Label.c.CORE_LBL_DETAILS}</a></li>
                         <li class="slds-tabs--default__item closed " title="Item Three"
                             role="presentation" ><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item" aura:id="item2">{!$Label.c.CORE_LBL_FEED}</a></li> 
                     </ul>

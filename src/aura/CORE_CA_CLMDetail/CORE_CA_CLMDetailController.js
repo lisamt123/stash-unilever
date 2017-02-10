@@ -53,14 +53,14 @@
         $A.enqueueAction(action);  
     },
     
-    NavigateToFeed : function(component, event, helper) { 
+    navigateToFeed : function(component, event, helper) { 
         component.set("v.spinnercompClm",false);
         $A.util.addClass(component.find('item2'), 'tab-default-2__item');
         $A.util.removeClass(component.find('item1'), 'tab-default-2__item');                
     component.set("v.isFeed",true);
     component.set("v.isDetail",false);
 },
-    NavigateToDetail : function(component, event, helper) {  
+    navigateToDetail : function(component, event, helper) {  
         component.set("v.spinnercompClm",false);
         $A.util.removeClass(component.find('item2'), 'tab-default-2__item');
     if(component.get("v.isDesktop") != 'Lightning Experience'){
