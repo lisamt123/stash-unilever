@@ -116,7 +116,7 @@ global with sharing class Win_UploadEndpoint {
                         objectReadyToRemove.add(recordSObject);
                     }
                     else {
-                        Database.DeleteResult deleteResult = Database.delete(recordSObject, false);
+                        Database.DeleteResult deleteResult = Database.delete(recordSObject, false); //DML inside loop
                         responseItem.requestId = originalRequestId;
                         processItemDeleteResult(responseItem, deleteResult);
                     }
@@ -197,7 +197,7 @@ global with sharing class Win_UploadEndpoint {
                                 if (service.shouldForceSharingInDml(recordSObjectToUpsert,Win_UploadService.INSERT_OPERATION)) {
                                     insertResult = service.insertForceSharing(recordSObjectToUpsert);
                                 } else {
-                                    insertResult = Database.insert(recordSObjectToUpsert, false);
+                                    insertResult = Database.insert(recordSObjectToUpsert, false); //DML inside loop
                                 }
                                 responseItem.requestId = originalRequestId;
                                 processItemInsertResult(responseItem, insertResult, deviceId, newAssignments);
@@ -215,7 +215,7 @@ global with sharing class Win_UploadEndpoint {
                             if (service.shouldForceSharingInDml(recordSObjectToUpsert,Win_UploadService.UPDATE_OPERATION)) {
                                 updateResult = service.updateForceSharing(recordSObjectToUpsert);
                             } else {
-                                updateResult = Database.update(recordSObjectToUpsert, false);
+                                updateResult = Database.update(recordSObjectToUpsert, false); //DML inside loop
                             }
                             responseItem.requestId = originalRequestId;
                             processItemUpdateResult(responseItem, updateResult);  
@@ -231,10 +231,10 @@ global with sharing class Win_UploadEndpoint {
                         attachment.Body = (Blob)additionalDataMap.get('AttachmentData');
                         attachment.Name = String.valueOf(additionalDataMap.get('TQ_Attachment_FileName__c'));
                         attachment.ParentId = responseItem.responseId;
-                        insert attachment;
+                        insert attachment; //DML inside loop
 
                         responseItem.record.put('TQ_Attachment_Link__c', '/services/data/v30.0/sobjects/Attachment/' + attachment.Id + '/Body');
-                        update responseItem.record;
+                        update responseItem.record; //DML inside loop
                     }
                 }
                 catch (Exception e){
@@ -256,8 +256,9 @@ global with sharing class Win_UploadEndpoint {
                 
         processItemsUpdating(objectReadyToUpdate, objectRequestIndexesToUpdate);
         
-        if (newAssignments.size() > 0)
+        if (newAssignments.size() > 0) {
             Database.insert(newAssignments, false);
+        }
         
         return itemsToProcessFouneded;          
     }
@@ -514,6 +515,7 @@ global with sharing class Win_UploadEndpoint {
             }
             responseItemsList.add(responseItem);
             recordAdditonalDataList.add(additionalData);
+            System.debug('Win_UploadEndpoint: sObjectConversionSuccess is ' + sObjectConversionSuccess);
             
             Integer operationsNumber = numberOfOperationsPerRecord.get(requestId);
             if (operationsNumber == null){
