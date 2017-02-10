@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>VPM_WithholdingTaxCode</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>VPM_WithholdingTaxCode</value>
+    </caseValues>
+    <fields>
+        <label><!-- VPM_Country --></label>
+        <name>VPM_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM_PickListValue --></label>
+        <name>VPM_PickListValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM_TaxType --></label>
+        <name>VPM_TaxType__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

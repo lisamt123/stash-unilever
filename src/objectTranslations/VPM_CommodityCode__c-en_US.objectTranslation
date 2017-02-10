@@ -261,6 +261,10 @@
         <name>VPM_CommodityCode__c</name>
     </fields>
     <fields>
+        <label><!-- Commodity Description --></label>
+        <name>VPM_CommodityDescription__c</name>
+    </fields>
+    <fields>
         <label><!-- Commodity Family --></label>
         <name>VPM_CommodityFamily__c</name>
         <picklistValues>

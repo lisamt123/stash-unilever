@@ -3998,41 +3998,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>ANZ_My_Open_Cases1</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>PII_Warning_Check__c</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>contains</operation>
-            <value>In Progress,Escalated,Pending with Courier,Awaiting Factory Response,Awaitin</value>
-        </filters>
-        <filters>
-            <field>Case_ISO_Country_Code__c</field>
-            <operation>equals</operation>
-            <value>AU,NZ</value>
-        </filters>
-        <filters>
-            <field>ACCOUNT.NAME</field>
-            <operation>notContain</operation>
-            <value>queue</value>
-        </filters>
-        <label>ANZ My Open Cases</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_ANZ</role>
-            <role>CEC_Manager_SEAA</role>
-            <role>CEC_User_ANZ</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>ANZ_My_closed_cases1</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -7664,31 +7629,22 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>Search_Phone__c</columns>
+        <columns>Action_Taken__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
+        <columns>CEC_Product__c</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.SUBJECT</field>
             <operation>contains</operation>
-            <value>surf,free,promo,load,code</value>
+            <value>surfiesta 5</value>
         </filters>
         <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>SMS / Text Messages</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>notContain</operation>
-            <value>club</value>
+            <field>CASES.CLOSED</field>
+            <operation>notEqual</operation>
+            <value>1</value>
         </filters>
         <label>CEC Philippines Queue - Surfiesta</label>
         <language>en_US</language>
-        <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
@@ -7957,7 +7913,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>New,In Progress,Reopened</value>
         </filters>
         <label>CEC South Africa Home and Personal Queue</label>
         <language>en_US</language>

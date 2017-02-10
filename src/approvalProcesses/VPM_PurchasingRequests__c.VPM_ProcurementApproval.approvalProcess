@@ -31,7 +31,7 @@
                 <type>relatedUserField</type>
             </approver>
             <approver>
-                <name>VPM_Approver3__c</name>
+                <name>VPM_Approver5__c</name>
                 <type>relatedUserField</type>
             </approver>
             <approver>
@@ -39,15 +39,7 @@
                 <type>relatedUserField</type>
             </approver>
             <approver>
-                <name>VPM_Approver1__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>VPM_Approver10__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>VPM_Approver9__c</name>
+                <name>VPM_Approver3__c</name>
                 <type>relatedUserField</type>
             </approver>
             <approver>
@@ -55,7 +47,7 @@
                 <type>relatedUserField</type>
             </approver>
             <approver>
-                <name>VPM_Approver7__c</name>
+                <name>VPM_Approver9__c</name>
                 <type>relatedUserField</type>
             </approver>
             <approver>
@@ -63,7 +55,15 @@
                 <type>relatedUserField</type>
             </approver>
             <approver>
-                <name>VPM_Approver5__c</name>
+                <name>VPM_Approver7__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver10__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver1__c</name>
                 <type>relatedUserField</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -74,109 +74,146 @@
     <description>VPM - Approval process for Procurement Vendor Requests.</description>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <formula>OR(
-/*MBS/SCS Capex-MRO Vendors Create or Extend*/
-RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos;
-&amp;&amp;
-RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
-TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
-&amp;&amp;
-
-OR(
-(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))),
-CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;)
-)
-&amp;&amp;
-
-VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
-,
-
-/*MBS/SCS Capex-MRO Vendors Maintain*/
-RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;
+        <formula>OR( 
+/*MBS/SCS Capex-MRO Vendors Create or Extend*/ 
+OR(RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; 
 &amp;&amp; 
-RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
-TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
-&amp;&amp;
-OR(
-(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))),
-CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;)
-)
-&amp;&amp;
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp; 
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos; 
+&amp;&amp; 
 
-VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
-&amp;&amp;
-(
-VPM_ProvidedUnblockUndelete__c = TRUE || 
-VPM_ProvidedBlockDelete__c = TRUE || 
+OR( 
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))), 
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;) 
+) 
+&amp;&amp; 
+
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot; ,
+
+RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; 
+&amp;&amp; 
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp; 
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos; 
+&amp;&amp; 
+
+OR( 
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))), 
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;) 
+) 
+&amp;&amp; 
+
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot; 
+
+&amp;&amp; 
+( 
+VPM_ProvidedUnblockUndelete__c|| VPM_ProvidedBlockDelete__c  || VPM_ProvidedPaymentTerms__c 
+)
+)
+, 
+
+/*MBS/SCS Capex-MRO Vendors Maintain*/ 
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; 
+&amp;&amp; 
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp; 
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos; 
+&amp;&amp; 
+OR( 
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))), 
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;) 
+) 
+&amp;&amp; 
+
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot; 
+&amp;&amp; 
+( 
+VPM_ProvidedUnblockUndelete__c  || 
+VPM_ProvidedBlockDelete__c  || 
+VPM_ProvidedPaymentTerms__c  
+) 
+, 
+
+/*SCS Logistics*/ 
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp; 
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos; 
+&amp;&amp; 
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-Logistics&quot;) 
+&amp;&amp; 
 VPM_ProvidedPaymentTerms__c = TRUE 
-)
-,
+, 
 
-/*SCS Logistics*/
-RecordType.DeveloperName == &apos;VPM_VendorReqMaintain&apos;
-&amp;&amp;
-RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
-TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
-&amp;&amp;
-CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-Logistics&quot;)
-&amp;&amp;
-VPM_ProvidedPaymentTerms__c = TRUE
-,
+/*USCC/UASCC related MBS/SCS Capex 2611, 5449, 5496, 5487 Create or Extend*/ 
+OR(RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; 
+&amp;&amp; 
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp; 
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos; 
+&amp;&amp; 
+OR( 
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))), 
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;) 
+) 
+&amp;&amp; 
 
-/*USCC/UASCC related MBS/SCS Capex 2611, 5449, 5496, 5487 Create or Extend*/
-RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos;
-&amp;&amp;
-RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
-TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
-&amp;&amp;
-OR(
-(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))),
-CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;)
-)
-&amp;&amp;
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot; 
+&amp;&amp; 
+( 
+VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; 
+) ,
+RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; 
+&amp;&amp; 
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp; 
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos; 
+&amp;&amp; 
+OR( 
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))), 
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;) 
+) 
+&amp;&amp; 
 
-VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
-&amp;&amp;
-(
-VPM_Company_Code_Value__c = &apos;2611&apos; || 
-VPM_Company_Code_Value__c = &apos;5449&apos; || 
-VPM_Company_Code_Value__c = &apos;5496&apos; || 
-VPM_Company_Code_Value__c = &apos;5487&apos;
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot; 
+&amp;&amp; 
+( 
+VPM_ProvidedUnblockUndelete__c  || 
+VPM_ProvidedBlockDelete__c  || 
+VPM_ProvidedPaymentTerms__c  
+) 
+&amp;&amp; 
+( 
+VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; 
 )
-,
 
-/*USCC/UASCC related MBS/SCS Capex 2611, 5449, 5496, 5487 Maintain*/
-RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;
-&amp;&amp;
-RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
+)
+, 
 
-TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
-&amp;&amp;
-OR(
-(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))),
-CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;)
-)
-&amp;&amp;
+/*USCC/UASCC related MBS/SCS Capex 2611, 5449, 5496, 5487 Maintain*/ 
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; 
+&amp;&amp; 
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp; 
 
-VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
-&amp;&amp;
-(
-VPM_ProvidedUnblockUndelete__c = TRUE || 
-VPM_ProvidedBlockDelete__c = TRUE || 
-VPM_ProvidedPaymentTerms__c = TRUE 
-)
-&amp;&amp;
-(
-VPM_Company_Code_Value__c = &apos;2611&apos; || 
-VPM_Company_Code_Value__c = &apos;5449&apos; || 
-VPM_Company_Code_Value__c = &apos;5496&apos; || 
-VPM_Company_Code_Value__c = &apos;5487&apos;
-)
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos; 
+&amp;&amp; 
+OR( 
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))), 
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;) 
+) 
+&amp;&amp; 
+
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot; 
+&amp;&amp; 
+( VPM_ProvidedUnblockUndelete__c  || VPM_ProvidedBlockDelete__c  || VPM_ProvidedPaymentTerms__c  
+) 
+&amp;&amp; 
+( 
+VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; 
+) 
 )</formula>
     </entryCriteria>
     <finalApprovalActions>
         <action>
             <name>VPM_ApprovalStatusAproval</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ApprovedByProcurementEmail</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -236,6 +273,10 @@ VPM_Company_Code_Value__c = &apos;5487&apos;
         </action>
         <action>
             <name>VPM_ProcurementRejected</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_RejectedByEmail</name>
             <type>FieldUpdate</type>
         </action>
         <action>

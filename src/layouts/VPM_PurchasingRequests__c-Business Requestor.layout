@@ -141,7 +141,7 @@
         <label>Custom Links</label>
         <layoutColumns>
             <layoutItems>
-                <customLink>VPM_HelpUpload</customLink>
+                <customLink>VPM_SupportingDocumentsHelp</customLink>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>

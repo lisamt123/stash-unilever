@@ -8229,7 +8229,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>To display Last Name required message</shortDescription>
-        <value>Last Name:You must enter Last Name to search a Consumer</value>
+        <value>Last Name: You must enter a value</value>
     </labels>
     <labels>
         <fullName>CEC_Latitude</fullName>
@@ -8777,7 +8777,6 @@ This means that they will not have editing rights. You can manage member &lt;br/
     </labels>
     <labels>
         <fullName>CEC_ValidEmailTemplate</fullName>
-        <categories>CEC : Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_ValidEmailTemplate</shortDescription>
@@ -26764,6 +26763,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>Bank Account Number</value>
     </labels>
     <labels>
+        <fullName>VPM_BankAtAGlance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankAtAGlance</shortDescription>
+        <value>Bank At a Glance</value>
+    </labels>
+    <labels>
         <fullName>VPM_BankCountryKeyPageMessage</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -26950,7 +26956,7 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_ClickToolsURL</shortDescription>
-        <value>http://survey.clicktools.com/app/survey/go.jsp?iv=bkg1coehmyn2&amp;q1=</value>
+        <value>http://survey.clicktools.com/app/survey/go.jsp?iv=dq1sdkkcycgw&amp;q1=</value>
     </labels>
     <labels>
         <fullName>VPM_Click_Here</fullName>
@@ -27238,6 +27244,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>VPM ExceptionDetailsError</shortDescription>
         <value>Please enter Exception Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ExistingTradePartnerTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Existing Trade Partner Type Id</shortDescription>
+        <value>Existing Trade Partner Type Id</value>
     </labels>
     <labels>
         <fullName>VPM_Exit</fullName>
@@ -27696,6 +27709,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>Manually Mark as complete</value>
     </labels>
     <labels>
+        <fullName>VPM_MasterDataManagementAtAGlance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Master data Management at a Glance</shortDescription>
+        <value>Master Data Management At a Glance</value>
+    </labels>
+    <labels>
         <fullName>VPM_MultipleRecordFound</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -27714,7 +27734,7 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_NewPartner</shortDescription>
-        <value>For a New Partner - Link to existing Trade Vendor</value>
+        <value>Existing Trade Partner Type</value>
     </labels>
     <labels>
         <fullName>VPM_New_Approver</fullName>
@@ -27800,6 +27820,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>Other</shortDescription>
         <value>Other</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Out_of_Approval_Scope</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Out of Approval Scope</shortDescription>
+        <value>1878</value>
     </labels>
     <labels>
         <fullName>VPM_PIVendorCreationPreRequisites</fullName>
@@ -28341,6 +28368,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>Please select commodity</value>
     </labels>
     <labels>
+        <fullName>VPM_SendToSAPSuccessMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SendToSAPSuccessMessage</shortDescription>
+        <value>Succesfully Sent to SAP</value>
+    </labels>
+    <labels>
         <fullName>VPM_SendWebFormLanguage</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -28642,6 +28676,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>Terms of Paymet : Please select the value</value>
     </labels>
     <labels>
+        <fullName>VPM_TextMessageMasterDataManagement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Text Message for Master data Management</shortDescription>
+        <value>No Additional Fields.</value>
+    </labels>
+    <labels>
         <fullName>VPM_TooManyVendorsRetrieved</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -28936,6 +28977,13 @@ It is recommended that the default values are left as they are, unless you need 
         <protected>false</protected>
         <shortDescription>VPM_WhyExistingSupplierReqHelpText</shortDescription>
         <value>Indicate why an existing Vendor cannot be used</value>
+    </labels>
+    <labels>
+        <fullName>VPM_WithholdingTaxCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Withholding Tax Code</shortDescription>
+        <value>First select Withholding Tax Type to get option in Tax Code</value>
     </labels>
     <labels>
         <fullName>VPM_Withholding_Tax</fullName>

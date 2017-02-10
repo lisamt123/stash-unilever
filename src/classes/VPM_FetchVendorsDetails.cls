@@ -71,8 +71,8 @@ global class VPM_FetchVendorsDetails {
             vendorDetail = new VPM_ECCVendorSearchServiceOutput();
             vendorDetail.message = serviceResponse.message;
             vendorDetail.statusCode = serviceResponse.statusCode;
-            vendorDetail.Blocked=false;
-            vendorDetail.Deleted=false;
+           // vendorDetail.Blocked=false;
+           // vendorDetail.Deleted=false;
             vendorDetail.vendorFoundResult=false;
             vendorDetail.companyCodeMatching = false;
             System.debug('----vendorDetail---'+vendorDetail);
@@ -85,8 +85,8 @@ global class VPM_FetchVendorsDetails {
                 vendorDetail.message = serviceResponse.message;
                 vendorDetail.statusCode = serviceResponse.statusCode;
             }
-            vendorDetail.Blocked=false;
-            vendorDetail.Deleted=false;
+           // vendorDetail.Blocked=false;
+           // vendorDetail.Deleted=false;
             vendorDetail.vendorFoundResult=false;
             vendorDetail.companyCodeMatching = false;
             vendorDetailsOutput.add(vendorDetail);

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Payment Terms</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Payment Terms</value>
+    </caseValues>
+    <fields>
+        <label><!-- VPM_ECC --></label>
+        <name>VPM_ECC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Terms Value --></label>
+        <name>VPM_PaymentTermsValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Type Description --></label>
+        <name>VPM_VendorTypeDescription__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Type --></label>
+        <name>VPM_VendorType__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

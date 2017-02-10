@@ -37,6 +37,7 @@
         <name>VPM_AccountClerkTelephoneNumber__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the Account Group. --></help>
         <label><!-- Account Group --></label>
         <name>VPM_AccountGroup__c</name>
     </fields>
@@ -49,6 +50,7 @@
         <name>VPM_AccountMemo__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the Account Statement. --></help>
         <label><!-- Account Statement --></label>
         <name>VPM_AccountStatement__c</name>
         <picklistValues>
@@ -613,6 +615,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Enter information as to why an existing  supplier cannot be used. --></help>
         <label><!-- Why can&apos;t an Existing Supplier be used? --></label>
         <name>VPM_AlreadyAvailableSupplierUse__c</name>
     </fields>
@@ -730,6 +733,10 @@
     <fields>
         <label><!-- Authorization --></label>
         <name>VPM_Authorization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auto Eval GR Setmt Del --></label>
+        <name>VPM_AutoEvalGRSetmtDel__c</name>
     </fields>
     <fields>
         <label><!-- Auto Eval GR Setmt Ret --></label>
@@ -1828,6 +1835,10 @@
         <name>VPM_BankNumber__c</name>
     </fields>
     <fields>
+        <label><!-- Bank Validation Approved By Email --></label>
+        <name>VPM_BankValidationApprovedByEmail__c</name>
+    </fields>
+    <fields>
         <label><!-- Bank Validator Approval --></label>
         <name>VPM_BankValidatorApproval__c</name>
     </fields>
@@ -2852,6 +2863,10 @@
         <name>VPM_Blocked_Status__c</name>
     </fields>
     <fields>
+        <label><!-- Business Requestor Email --></label>
+        <name>VPM_BusinessRequestorEmail__c</name>
+    </fields>
+    <fields>
         <label><!-- Business Requestor Submitted --></label>
         <name>VPM_BusinessRequestorSubmitted__c</name>
         <picklistValues>
@@ -2896,6 +2911,7 @@
         <name>VPM_CarFreightGroup__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the Cash Management Group. --></help>
         <label><!-- Cash Management Group --></label>
         <name>VPM_CashManagementGroup__c</name>
         <picklistValues>
@@ -3124,6 +3140,7 @@
         <name>VPM_CityInt__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the City. --></help>
         <label><!-- City --></label>
         <name>VPM_City__c</name>
     </fields>
@@ -3205,6 +3222,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
     <fields>
         <label><!-- Company Code Value --></label>
         <name>VPM_Company_Code_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completion Status --></label>
+        <name>VPM_CompletionStatus__c</name>
     </fields>
     <fields>
         <label><!-- Confirmation Control --></label>
@@ -5761,6 +5782,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_CreatedDateFormulaField__c</name>
     </fields>
     <fields>
+        <label><!-- Created Date --></label>
+        <name>VPM_CreatedDate__c</name>
+    </fields>
+    <fields>
         <label><!-- Creation/Maintenance Details Changes --></label>
         <name>VPM_CreationMaintenanceDetailsChanges__c</name>
     </fields>
@@ -6237,6 +6262,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_ExemptionTo__c</name>
     </fields>
     <fields>
+        <label><!-- Existing Trade Partner ID --></label>
+        <name>VPM_ExistingTradePartnerID__c</name>
+    </fields>
+    <fields>
         <label><!-- Ext Manufacturer --></label>
         <name>VPM_ExtManufacturer__c</name>
     </fields>
@@ -6265,12 +6294,20 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_FLSApproval__c</name>
     </fields>
     <fields>
+        <label><!-- FLS Approved By Email --></label>
+        <name>VPM_FLSApprovedByEmail__c</name>
+    </fields>
+    <fields>
         <label><!-- FLS In Country Required --></label>
         <name>VPM_FLSInCountryReqVen__c</name>
     </fields>
     <fields>
         <label><!-- FLS Reworks --></label>
         <name>VPM_FLSReworks__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTR Status --></label>
+        <name>VPM_FTRStatus__c</name>
     </fields>
     <fields>
         <label><!-- Fax Extension --></label>
@@ -6303,6 +6340,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
     <fields>
         <label><!-- Finance Approval --></label>
         <name>VPM_FinanceApproval__c</name>
+    </fields>
+    <fields>
+        <label><!-- Finance Approved By Email --></label>
+        <name>VPM_FinanceApprovedByEmail__c</name>
     </fields>
     <fields>
         <label><!-- Finance Detail Changes --></label>
@@ -6355,6 +6396,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
     <fields>
         <label><!-- Freight Approval --></label>
         <name>VPM_FreightApproval__c</name>
+    </fields>
+    <fields>
+        <label><!-- Freight Approved By Email --></label>
+        <name>VPM_FreightApprovedByEmail__c</name>
     </fields>
     <fields>
         <label><!-- Freight Reworks --></label>
@@ -6697,6 +6742,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_HouseNumberInt__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the House Number. --></help>
         <label><!-- House Number --></label>
         <name>VPM_HouseNumber__c</name>
     </fields>
@@ -6885,6 +6931,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Enter the Industry. --></help>
         <label><!-- Industry --></label>
         <name>VPM_Industry__c</name>
     </fields>
@@ -8026,6 +8073,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- MDMOpsEmail --></label>
+        <name>VPM_MDMOpsEmail__c</name>
+    </fields>
+    <fields>
         <label><!-- MDM Ops First Submitted to SAP --></label>
         <name>VPM_MDMOpsFirstSubmittedToSAP__c</name>
     </fields>
@@ -8050,8 +8101,28 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Master Data Approved By Email --></label>
+        <name>VPM_MasterDataApprovedByEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- MasterData Management Approval Required --></label>
+        <name>VPM_MasterDataManagementApprovalRequired__c</name>
+    </fields>
+    <fields>
         <label><!-- Master Data Management Approval --></label>
         <name>VPM_MasterDataManagementApproval__c</name>
+    </fields>
+    <fields>
+        <label><!-- MasterData Management Submitted --></label>
+        <name>VPM_MasterDataManagementSubmitted__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Minimum Order Value --></label>
@@ -9006,6 +9077,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_OrderAcknowledgmentRequirement__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the Order Currency. --></help>
         <label><!-- Order Currency --></label>
         <name>VPM_OrderCurrency__c</name>
         <picklistValues>
@@ -9830,6 +9902,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Enter the Ordering Email Address. --></help>
         <label><!-- Ordering Email Address --></label>
         <name>VPM_OrderingEmailAddress__c</name>
     </fields>
@@ -10182,6 +10255,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_PaymentMethodWeb__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the Payment Method. --></help>
         <label><!-- Payment Method --></label>
         <name>VPM_PaymentMethod__c</name>
         <picklistValues>
@@ -10782,6 +10856,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Enter the Payment Terms. --></help>
         <label><!-- Payment Terms --></label>
         <name>VPM_PaymentTerms__c</name>
         <picklistValues>
@@ -11256,6 +11331,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
     <fields>
         <label><!-- Procurement Approval --></label>
         <name>VPM_ProcurementApproval__c</name>
+    </fields>
+    <fields>
+        <label><!-- Procurement Approved By Email --></label>
+        <name>VPM_ProcurementApprovedByEmail__c</name>
     </fields>
     <fields>
         <label><!-- Procurement Reworks --></label>
@@ -12912,6 +12991,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Enter the Reconciliation Account. --></help>
         <label><!-- Reconciliation Account --></label>
         <name>VPM_ReconciliationAccount__c</name>
     </fields>
@@ -13220,13 +13300,22 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_RegionalFieldsChanged__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the Region. --></help>
         <label><!-- Region --></label>
         <name>VPM_Regions__c</name>
         <relationshipLabel><!-- Vendor Requests --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Rejected By Email --></label>
+        <name>VPM_RejectedByEmail__c</name>
+    </fields>
+    <fields>
         <label><!-- Relevant for Price Det --></label>
         <name>VPM_RelevantForPriceDet__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Region --></label>
+        <name>VPM_ReportingRegion__c</name>
     </fields>
     <fields>
         <label><!-- Request Completed --></label>
@@ -13266,6 +13355,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <picklistValues>
             <masterLabel>MDM Ops</masterLabel>
             <translation><!-- MDM Ops --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Master Data Management</masterLabel>
+            <translation><!-- Master Data Management --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Procurement</masterLabel>
@@ -13405,6 +13498,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_RunWFRForPaymentTerms__c</name>
     </fields>
     <fields>
+        <label><!-- Russain Custom Tax Approved By Email --></label>
+        <name>VPM_RussainCustomTaxApprovedByEmail__c</name>
+    </fields>
+    <fields>
         <label><!-- Russia Submitted --></label>
         <name>VPM_RussiaSubmitted__c</name>
         <picklistValues>
@@ -13505,6 +13602,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_SearchTerm2__c</name>
     </fields>
     <fields>
+        <help><!-- Enter a Search Term. --></help>
         <label><!-- Search Term 1 --></label>
         <name>VPM_SearchTerm_1__c</name>
     </fields>
@@ -13757,6 +13855,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Enter the Sort Key. --></help>
         <label><!-- Sort Key --></label>
         <name>VPM_SortKey__c</name>
         <picklistValues>
@@ -14187,6 +14286,14 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <picklistValues>
             <masterLabel>MDM Ops Review Requested Re-Work</masterLabel>
             <translation><!-- MDM Ops Review Requested Re-Work --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Master Data Management Approved</masterLabel>
+            <translation><!-- Master Data Management Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Master Data Management Rejected</masterLabel>
+            <translation><!-- Master Data Management Rejected --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Procurement Approved</masterLabel>
@@ -16743,6 +16850,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_TaxNumAtResponsibleTaxAuthority__c</name>
     </fields>
     <fields>
+        <help><!-- Enter a Tax Number. --></help>
         <label><!-- Tax Number 1 --></label>
         <name>VPM_TaxNumber1__c</name>
     </fields>
@@ -16751,6 +16859,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_TaxNumber2__c</name>
     </fields>
     <fields>
+        <help><!-- Enter a Tax Number. --></help>
         <label><!-- Tax Number 3 --></label>
         <name>VPM_TaxNumber3__c</name>
     </fields>
@@ -17031,6 +17140,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_Telephone__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the Terms Of Payment. --></help>
         <label><!-- Terms of Payment --></label>
         <name>VPM_TermsOfPayment__c</name>
         <picklistValues>
@@ -18519,8 +18629,13 @@ Enter the Country to see a list of all available Company Codes, or search using 
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Enter the Tolerance Group. --></help>
         <label><!-- Tolerance Group --></label>
         <name>VPM_ToleranceGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Cycle Time (Hrs) --></label>
+        <name>VPM_TotalCycleTimeHrs__c</name>
     </fields>
     <fields>
         <label><!-- Total Days Worked --></label>
@@ -22850,6 +22965,10 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <name>VPM_fieldUpdated__c</name>
     </fields>
     <fields>
+        <label><!-- VPM_isBR --></label>
+        <name>VPM_isBR__c</name>
+    </fields>
+    <fields>
         <label><!-- VPM isProcureAtAGlanceScreen --></label>
         <name>VPM_isProcureAtAGlanceScreen__c</name>
     </fields>
@@ -23023,5 +23142,9 @@ Enter the Country to see a list of all available Company Codes, or search using 
     <webLinks>
         <label><!-- VPM_Rework --></label>
         <name>VPM_Rework</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- VPM_SupportingDocumentsHelp --></label>
+        <name>VPM_SupportingDocumentsHelp</name>
     </webLinks>
 </CustomObjectTranslation>

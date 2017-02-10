@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>Countries with FLS</value>
+        <value>Countries with FLS/Local MDM</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Countries with FLS</value>
+        <value>Countries with FLS/Local MDM</value>
     </caseValues>
     <fields>
         <label><!-- FLS --></label>
@@ -15,6 +15,10 @@
     <fields>
         <label><!-- Country --></label>
         <name>VPM_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Master Data Management --></label>
+        <name>VPM_LocalMasterDataManagement__c</name>
     </fields>
     <layouts>
         <layout>Countries with FLS Layout</layout>
