@@ -7982,11 +7982,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>UL_UserCustomerProduct__c.AccessType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>UL_UserCustomerProduct__c.Product__c</field>
         <readable>false</readable>
     </fieldPermissions>

@@ -503,6 +503,7 @@ src/classes/UL_PromotionClosureTest.cls-meta.xml
 src/classes/UL_IIBBTax_TriggerHandler.cls
 src/classes/UL_IIBBTax_TriggerHandler.cls-meta.xml
 src/classes/MyRemoteActionUtility.cls
+src/classes/MyRemoteActionUtility.cls-meta.xml
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml

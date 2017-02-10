@@ -1123,10 +1123,6 @@
                 <fullName>box</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>CS</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -1909,10 +1905,6 @@
         <picklistValues>
             <picklist>ACCL__Pack_Size_Unit__c</picklist>
             <values>
-                <fullName>CS</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>box</fullName>
                 <default>false</default>
             </values>
@@ -2369,10 +2361,6 @@
         <picklistValues>
             <picklist>ACCL__Pack_Size_Unit__c</picklist>
             <values>
-                <fullName>CS</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>box</fullName>
                 <default>false</default>
             </values>
@@ -2600,10 +2588,6 @@
         </picklistValues>
         <picklistValues>
             <picklist>ACCL__Pack_Size_Unit__c</picklist>
-            <values>
-                <fullName>CS</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>box</fullName>
                 <default>false</default>

@@ -28535,3 +28535,10 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>TPM_Past Date Validation</shortDescription>
         <value>Date From/Thru should not be in past</value>
     </labels>
+	<labels>
+        <fullName>MSG_ERROR_ALLOCATION_DIFFERENT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MSG_ERROR_ALLOCATION_DIFFERENT</shortDescription>
+        <value>% Allocated needs to match exactly 100% across all funds</value>
+    </labels>
