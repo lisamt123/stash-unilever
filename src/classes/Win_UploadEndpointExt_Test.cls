@@ -17,7 +17,7 @@ private class Win_UploadEndpointExt_Test {
 	private static String ACCOUNT = 'Account';
 	
    	/*
-     * Test tracked objects
+     * Test tracked object
      */
     @isTest(SeeAllData=False)
     static void TQUploadService_Test(){
@@ -79,7 +79,7 @@ private class Win_UploadEndpointExt_Test {
         Map<String, Object> additionalDataMap = new Map<String, Object>();
         additionalDataMap.put('ChatterPostContentFileName', 'nameeee');
         additionalDataMap.put('ChatterPostContentDataBlob', Blob.valueof('Jimmyyy'));
-        Win_UploadEndpoint.post(item, additionalDataMap);
+        Win_UploadEndpointUtils.post(item, additionalDataMap);
         System.assert(additionalDataMap != null);
     }
 

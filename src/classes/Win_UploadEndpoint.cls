@@ -130,14 +130,9 @@ global with sharing class Win_UploadEndpoint {
                     System.debug('using this ' + saveResult);
                         
                     if (isInsert) {
-                        if (useDmlBatches){
-                            objectRequestIndexesToInsert.add(index);
-                            objectReadyToInsert.add(recordSObjectToUpsert);     
-                        }   
-                        else {
-                            insertRecordItem(recordSObjectToUpsert, additionalDataMap, responseItem, 
-                                requestId, deviceId, saveResult, newAssignments, originalRequestId);
-                        }                               
+                        insertRecordItem(recordSObjectToUpsert, additionalDataMap, responseItem, 
+                                requestId, deviceId, saveResult, newAssignments, originalRequestId,
+                                objectReadyToInsert, objectRequestIndexesToInsert, index);
                     }
                     else {
                         if (useDmlBatches){
@@ -195,8 +190,9 @@ global with sharing class Win_UploadEndpoint {
 
     private static void insertRecordItem(sObject recordSObjectToUpsert, Map<String, Object> additionalDataMap,
             Win_UploadResponse.Win_UploadResponseItem responseItem, String requestId, String deviceId, 
-            Database.SaveResult saveResult, List<Win_Local_Assignment__c> newAssignments, String originalRequestId) {
-        if(recordSObjectToUpsert instanceof FeedItem){
+            Database.SaveResult saveResult, List<Win_Local_Assignment__c> newAssignments, String originalRequestId,
+            List<sObject> objectReadyToInsert, List<Integer> objectRequestIndexesToInsert, Integer index) {
+        if(recordSObjectToUpsert instanceof FeedItem) {
             ConnectApi.FeedElement feedElement = Win_UploadEndpointUtils.post((FeedItem) recordSObjectToUpsert, additionalDataMap);
             responseItem.success = true;
             responseItem.executed = true; 
@@ -221,18 +217,20 @@ global with sharing class Win_UploadEndpoint {
             }
             
             Win_UploadEndpointUtils.saveAssignment(responseItem.requestId, responseItem.responseId, deviceId, newAssignments);
-        } else{
-            Database.SaveResult insertResult = null;
-            if (service.shouldForceSharingInDml(recordSObjectToUpsert,Win_UploadService.INSERT_OPERATION)) {
-                insertResult = service.insertForceSharing(recordSObjectToUpsert);
-            } 
-            //TMP Fix to DML inside loop
-            //else {
-            //    insertResult = Database.insert(recordSObjectToUpsert, false); //DML inside loop
-            //}
-            responseItem.requestId = originalRequestId;
-            processItemInsertResult(responseItem, insertResult, deviceId, newAssignments);
-            saveResult = insertResult;
+        } else {
+            //Database.SaveResult insertResult = null;
+            //if (service.shouldForceSharingInDml(recordSObjectToUpsert,Win_UploadService.INSERT_OPERATION)) {
+            //    insertResult = service.insertForceSharing(recordSObjectToUpsert);
+            //} 
+            ////TMP Fix to DML inside loop
+            ////else {
+            ////    insertResult = Database.insert(recordSObjectToUpsert, false); //DML inside loop
+            ////}
+            //responseItem.requestId = originalRequestId;
+            //processItemInsertResult(responseItem, insertResult, deviceId, newAssignments);
+            //saveResult = insertResult;
+            objectRequestIndexesToInsert.add(index);
+            objectReadyToInsert.add(recordSObjectToUpsert);
         }
     }
 
