@@ -675,7 +675,7 @@ public with sharing class IPM_GateDocumentController {
         {
             string sExternalID=project.Source_Rollout_External_Id__c;
             financialForPdf = [SELECT ipm_cpp_local__c,ipm_cpp_regional__c, Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
-                                     Year_3_iTO_MD__c,Business_Impact_Local__c 
+                                     Year_3_iTO_MD__c,Business_Impact_Local__c,IPM_Business_Impact_MD__c
                                      FROM IPM_Financial__c 
                                      WHERE Financial_External_ID__c =: sExternalID limit 1];
             localCPP = financialForPdf.ipm_cpp_local__c;
