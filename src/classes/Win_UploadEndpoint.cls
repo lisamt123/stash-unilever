@@ -493,7 +493,7 @@ global with sharing class Win_UploadEndpoint {
             String requestId = requestItem.Id;
             Win_UploadResponse.Win_UploadResponseItem responseItem;
             responseItem = new Win_UploadResponse.Win_UploadResponseItem(requestItem.objectApiName, requestId);
-            Boolean sObjectConversionSuccess = true;
+            Boolean sObjectConversionSuccess;
             sObject recordObject = null;
             Map<String,Object> additionalData = new Map<String, Object>();
             
