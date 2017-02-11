@@ -12,7 +12,8 @@
     1.0         Nicola Tassini  22/12/2016  Initial Dev     First version
 ***************************************************************/
 @RestResource(urlMapping='/tqupload/*')
-global with sharing class Win_UploadEndpoint {
+global with sharing class Win_UploadEndpoint extends Win_UploadEndpointUtils {
+
     //To do implement one by one execution if total number of items less then described
     @TestVisible static Integer EXECUTE_DML_BY_RECORD_LIMIT = 1;
     
@@ -46,7 +47,8 @@ global with sharing class Win_UploadEndpoint {
                 cycleShouldContinue = processRequestCycle(true, deviceId);
             }
             
-            setRelationErrors();
+            Win_UploadEndpointUtils.setRelationErrors(requestItemsList, responseItemsList, recordOperationIndexList, 
+                failedRecordIdSet, service, numberOfProcessedOperationsPerRecord);
             
             response.body = responseItemsList;
             
@@ -282,16 +284,87 @@ global with sharing class Win_UploadEndpoint {
         Win_UploadEndpointUtils.processItemsDeletion(objectReadyToRemove, objectRequestIndexesToRemove, responseItemsList, 
             numberOfProcessedOperationsPerRecord, failedRecordIdSet);
         
-        Win_UploadEndpointUtils.processItemsInserting(objectReadyToInsert, objectRequestIndexesToInsert, deviceId, newAssignments,
-            responseItemsList, assignedIdsMap, numberOfProcessedOperationsPerRecord, failedRecordIdSet, numberOfOperationsPerRecord, service);
+        //Win_UploadEndpointUtils.processItemsInserting(objectReadyToInsert, objectRequestIndexesToInsert, deviceId, newAssignments,
+        //    responseItemsList, assignedIdsMap, numberOfProcessedOperationsPerRecord, failedRecordIdSet, numberOfOperationsPerRecord, service);
 
-        //processItemsInserting(objectReadyToInsert, objectRequestIndexesToInsert, deviceId, newAssignments);
+        processItemsInserting(objectReadyToInsert, objectRequestIndexesToInsert, deviceId, newAssignments);
                 
         processItemsUpdating(objectReadyToUpdate, objectRequestIndexesToUpdate);
         
         if (newAssignments.size() > 0) {
             Database.insert(newAssignments, false);
         }
+    }
+
+
+    // /**
+    // * Process inserted items
+    // */
+    //private static void processItemInsertResult(Win_UploadResponse.Win_UploadResponseItem responseItem, Database.SaveResult insertResult,
+    //                                            String deviceId, List<Win_Local_Assignment__c> newAssignments){
+    //    if (objectReadyToInsert.size() > 0){
+    //        Database.SaveResult[] insertOperationResults = Database.insert(objectReadyToInsert, false);
+            
+    //        for (Integer index = 0; index < objectReadyToInsert.size(); index++){
+    //            Integer requestIndex = objectRequestIndexesToInsert.get(index);
+    //            Win_UploadResponse.Win_UploadResponseItem responseItem = responseItemsList.get(requestIndex);
+    //            Database.SaveResult insertResult = insertOperationResults.get(index);
+    //            processItemInsertResult(responseItem, insertResult, deviceId, newAssignments, assignedIdsMap, 
+    //              numberOfProcessedOperationsPerRecord, failedRecordIdSet, numberOfOperationsPerRecord, service);
+    //        }
+    //    }       
+    //}
+
+    /**
+     * Process insertion results
+     */
+    private static void processItemInsertResult(Win_UploadResponse.Win_UploadResponseItem responseItem, Database.SaveResult insertResult,
+                                                String deviceId, List<Win_Local_Assignment__c> newAssignments){
+        String requestId = responseItem.requestId;
+        Win_UploadEndpointUtils.saveResultToResponse(insertResult, responseItem);
+        if (responseItem.success){
+            assignedIdsMap.put(responseItem.requestId, responseItem.responseId);
+                                
+            Integer newProcessedCount = numberOfProcessedOperationsPerRecord.get(requestId) + 1;
+            numberOfProcessedOperationsPerRecord.put(requestId, newProcessedCount);
+            
+            if (newProcessedCount == numberOfOperationsPerRecord.get(requestId)){
+                Schema.Describesobjectresult objectDescribe = Win_TrackingUtils.getObjectDescribe(responseItem.objectApiName);
+                if (objectDescribe != null && objectDescribe.isQueryable()){
+                    sObject resultSObject = service.getResultSObject(responseItem.objectApiName, responseItem.responseId);
+                    if (resultSObject != null) {
+                        responseItem.record = resultSObject;
+                    }
+                    else {
+                        //In case when new record doesn't apply for the download criteria, it should be removed locally
+                        responseItem.operation = Win_UploadResponse.OperationDelete;
+                    }
+                }
+            }
+            
+            Win_UploadEndpointUtils.saveAssignment(responseItem.requestId, responseItem.responseId, deviceId, newAssignments);
+        }
+        else {
+            responseItem.record.put('Id', responseItem.requestId);
+            failedRecordIdSet.add(requestId);
+        }       
+    }
+
+    /**
+     * Process inserted items
+     */
+    private static void processItemsInserting(List<sObject> objectReadyToInsert, List<Integer> objectRequestIndexesToInsert, 
+                                              String deviceId, List<Win_Local_Assignment__c> newAssignments){
+        if (objectReadyToInsert.size() > 0){
+            Database.SaveResult[] insertOperationResults = Database.insert(objectReadyToInsert, false);
+            
+            for (Integer index = 0; index < objectReadyToInsert.size(); index++){
+                Integer requestIndex = objectRequestIndexesToInsert.get(index);
+                Win_UploadResponse.Win_UploadResponseItem responseItem = responseItemsList.get(requestIndex);
+                Database.SaveResult insertResult = insertOperationResults.get(index);
+                processItemInsertResult(responseItem, insertResult, deviceId, newAssignments);
+            }
+        }       
     }
     
     /**
@@ -338,43 +411,43 @@ global with sharing class Win_UploadEndpoint {
         }
     }
     
-    /**
-     * bind errors
-     */
-    private static void setRelationErrors(){
-        //Go through the all request Items, which were not assigned yet
-        for (Integer index = 0; index < requestItemsList.size(); index++) {
-            //Win_UploadRequestItem requestItem = requestItemsList.get(index);
-            Win_UploadResponse.Win_UploadResponseItem responseItem = responseItemsList.get(index);
-            String requestId = responseItem.requestId;
-            Integer recordIndex = recordOperationIndexList.get(index);
+    ///**
+    // * bind errors
+    // */
+    //private static void setRelationErrors(){
+    //    //Go through the all request Items, which were not assigned yet
+    //    for (Integer index = 0; index < requestItemsList.size(); index++) {
+    //        //Win_UploadRequestItem requestItem = requestItemsList.get(index);
+    //        Win_UploadResponse.Win_UploadResponseItem responseItem = responseItemsList.get(index);
+    //        String requestId = responseItem.requestId;
+    //        Integer recordIndex = recordOperationIndexList.get(index);
             
-            if (!responseItem.executed && !failedRecordIdSet.contains(requestId) && 
-                recordIndex == numberOfProcessedOperationsPerRecord.get(requestId)) {
-                failedRecordIdSet.add(requestId);
-                SObject recordSObject = responseItem.record;
+    //        if (!responseItem.executed && !failedRecordIdSet.contains(requestId) && 
+    //            recordIndex == numberOfProcessedOperationsPerRecord.get(requestId)) {
+    //            failedRecordIdSet.add(requestId);
+    //            SObject recordSObject = responseItem.record;
                 
-                responseItem.success = false;
-                responseItem.executed = false;
-                responseItem.responseId = requestId;
-                responseItem.operation = Win_UploadResponse.OperationUpsert;
-                Map<String, String> unresolvedFieldsMap = service.getUnresolvedRelatedFields(recordSObject);
-                for (String fieldName : unresolvedFieldsMap.keySet()){
-                    String fieldLabel = unresolvedFieldsMap.get(fieldName);
-                    String relatedId = (String)recordSObject.get(fieldName);
-                    String errorMessage;
-                    if (failedRecordIdSet.contains(relatedId)) {
-                        errorMessage = 'Related record for field ' + fieldLabel + ' has been failed';
-                    } else {
-                        errorMessage = 'Related record for field ' + fieldLabel + ' hasn\'t been founded';
-                    }
-                    responseItem.errorList.add(errorMessage);
-                }
-            } else if (responseItem.operation == null){
-                responseItem.operation = Win_UploadResponse.OperationUpsert;
-            }
-        }       
-    } 
+    //            responseItem.success = false;
+    //            responseItem.executed = false;
+    //            responseItem.responseId = requestId;
+    //            responseItem.operation = Win_UploadResponse.OperationUpsert;
+    //            Map<String, String> unresolvedFieldsMap = service.getUnresolvedRelatedFields(recordSObject);
+    //            for (String fieldName : unresolvedFieldsMap.keySet()){
+    //                String fieldLabel = unresolvedFieldsMap.get(fieldName);
+    //                String relatedId = (String)recordSObject.get(fieldName);
+    //                String errorMessage;
+    //                if (failedRecordIdSet.contains(relatedId)) {
+    //                    errorMessage = 'Related record for field ' + fieldLabel + ' has been failed';
+    //                } else {
+    //                    errorMessage = 'Related record for field ' + fieldLabel + ' hasn\'t been founded';
+    //                }
+    //                responseItem.errorList.add(errorMessage);
+    //            }
+    //        } else if (responseItem.operation == null){
+    //            responseItem.operation = Win_UploadResponse.OperationUpsert;
+    //        }
+    //    }       
+    //} 
     
     /**
      * Initialize all processing variables plus predefine response data
@@ -428,5 +501,6 @@ global with sharing class Win_UploadEndpoint {
                 numberOfOperationsPerRecord.put(requestId, operationsNumber + 1);
             }
         }   
-    }   
+    }
+       
 }
