@@ -279,9 +279,13 @@ global with sharing class Win_UploadEndpoint {
             List<sObject> objectReadyToInsert, List<Integer> objectRequestIndexesToInsert, 
             List<sObject> objectReadyToUpdate, List<Integer> objectRequestIndexesToUpdate, 
             String deviceId, List<Win_Local_Assignment__c> newAssignments) {
-        processItemsDeletion(objectReadyToRemove, objectRequestIndexesToRemove);
+        Win_UploadEndpointUtils.processItemsDeletion(objectReadyToRemove, objectRequestIndexesToRemove, responseItemsList, 
+            numberOfProcessedOperationsPerRecord, failedRecordIdSet);
         
-        processItemsInserting(objectReadyToInsert, objectRequestIndexesToInsert, deviceId, newAssignments);
+        Win_UploadEndpointUtils.processItemsInserting(objectReadyToInsert, objectRequestIndexesToInsert, deviceId, newAssignments,
+            responseItemsList, assignedIdsMap, numberOfProcessedOperationsPerRecord, failedRecordIdSet, numberOfOperationsPerRecord, service);
+
+        //processItemsInserting(objectReadyToInsert, objectRequestIndexesToInsert, deviceId, newAssignments);
                 
         processItemsUpdating(objectReadyToUpdate, objectRequestIndexesToUpdate);
         
@@ -289,67 +293,23 @@ global with sharing class Win_UploadEndpoint {
             Database.insert(newAssignments, false);
         }
     }
+    
+    /**
+     * Process updated items
+     */
+    private static void processItemsUpdating(List<sObject> objectReadyToUpdate, List<Integer> objectRequestIndexesToUpdate){
+        if (objectReadyToUpdate.size() > 0){
+            Database.SaveResult[] updateOperationResults = Database.update(objectReadyToUpdate, false);
+            
+            for (Integer index = 0; index < objectReadyToUpdate.size(); index++){
+                Integer requestIndex = objectRequestIndexesToUpdate.get(index);
+                Win_UploadResponse.Win_UploadResponseItem responseItem = responseItemsList.get(requestIndex);
+                Database.SaveResult updateResult = updateOperationResults.get(index);
+                processItemUpdateResult(responseItem, updateResult);
+            }
+        }  
+    }
 
-    /**
-     * Process deleted results
-     */
-    private static void processItemDeleteResult(Win_UploadResponse.Win_UploadResponseItem responseItem, Database.DeleteResult deleteResult){
-        String requestId = responseItem.requestId;
-        responseItem.success = deleteResult.isSuccess();
-        if (deleteResult.isSuccess()){
-            responseItem.executed = true;
-            responseItem.responseId = null;
-            responseItem.record = null;
-            
-            Integer newProcessedCount = numberOfProcessedOperationsPerRecord.get(requestId) + 1;
-            numberOfProcessedOperationsPerRecord.put(requestId, newProcessedCount);
-        }
-        else {
-            failedRecordIdSet.add(requestId);
-        }
-        
-        if (deleteResult.getErrors() != null) {
-            for (Database.Error error : deleteResult.getErrors()) {
-                responseItem.errorList.add(error.getMessage());         
-            }
-        }
-    }
-    
-    /**
-     * Process insertion results
-     */
-    private static void processItemInsertResult(Win_UploadResponse.Win_UploadResponseItem responseItem, Database.SaveResult insertResult,
-                                                String deviceId, List<Win_Local_Assignment__c> newAssignments){
-        String requestId = responseItem.requestId;
-        Win_UploadEndpointUtils.saveResultToResponse(insertResult, responseItem);
-        if (responseItem.success){
-            assignedIdsMap.put(responseItem.requestId, responseItem.responseId);
-                                
-            Integer newProcessedCount = numberOfProcessedOperationsPerRecord.get(requestId) + 1;
-            numberOfProcessedOperationsPerRecord.put(requestId, newProcessedCount);
-            
-            if (newProcessedCount == numberOfOperationsPerRecord.get(requestId)){
-                Schema.Describesobjectresult objectDescribe = Win_TrackingUtils.getObjectDescribe(responseItem.objectApiName);
-                if (objectDescribe != null && objectDescribe.isQueryable()){
-                    sObject resultSObject = service.getResultSObject(responseItem.objectApiName, responseItem.responseId);
-                    if (resultSObject != null) {
-                        responseItem.record = resultSObject;
-                    }
-                    else {
-                        //In case when new record doesn't apply for the download criteria, it should be removed locally
-                        responseItem.operation = Win_UploadResponse.OperationDelete;
-                    }
-                }
-            }
-            
-            Win_UploadEndpointUtils.saveAssignment(responseItem.requestId, responseItem.responseId, deviceId, newAssignments);
-        }
-        else {
-            responseItem.record.put('Id', responseItem.requestId);
-            failedRecordIdSet.add(requestId);
-        }       
-    }
-    
     /**
      * Process updated results
      */
@@ -376,55 +336,6 @@ global with sharing class Win_UploadEndpoint {
         else {
             failedRecordIdSet.add(requestId);
         }
-    }
-    
-    /**
-     * Process deleted items
-     */    
-    private static void processItemsDeletion(List<sObject> objectReadyToRemove, List<Integer> objectRequestIndexesToRemove){
-        if (objectReadyToRemove.size() > 0){
-            Database.DeleteResult[] deleteOperationResults = Database.delete(objectReadyToRemove, false);
-            
-            for (Integer index = 0; index < objectReadyToRemove.size(); index++){
-                Integer requestIndex = objectRequestIndexesToRemove.get(index);
-                Win_UploadResponse.Win_UploadResponseItem responseItem = responseItemsList.get(requestIndex);
-                Database.DeleteResult deleteResult = deleteOperationResults.get(index);
-                processItemDeleteResult(responseItem, deleteResult);
-            }
-        }       
-    }
-    
-    /**
-     * Process inserted items
-     */
-    private static void processItemsInserting(List<sObject> objectReadyToInsert, List<Integer> objectRequestIndexesToInsert, 
-                                              String deviceId, List<Win_Local_Assignment__c> newAssignments){
-        if (objectReadyToInsert.size() > 0){
-            Database.SaveResult[] insertOperationResults = Database.insert(objectReadyToInsert, false);
-            
-            for (Integer index = 0; index < objectReadyToInsert.size(); index++){
-                Integer requestIndex = objectRequestIndexesToInsert.get(index);
-                Win_UploadResponse.Win_UploadResponseItem responseItem = responseItemsList.get(requestIndex);
-                Database.SaveResult insertResult = insertOperationResults.get(index);
-                processItemInsertResult(responseItem, insertResult, deviceId, newAssignments);
-            }
-        }       
-    }
-    
-    /**
-     * Process updated items
-     */
-    private static void processItemsUpdating(List<sObject> objectReadyToUpdate, List<Integer> objectRequestIndexesToUpdate){
-        if (objectReadyToUpdate.size() > 0){
-            Database.SaveResult[] updateOperationResults = Database.update(objectReadyToUpdate, false);
-            
-            for (Integer index = 0; index < objectReadyToUpdate.size(); index++){
-                Integer requestIndex = objectRequestIndexesToUpdate.get(index);
-                Win_UploadResponse.Win_UploadResponseItem responseItem = responseItemsList.get(requestIndex);
-                Database.SaveResult updateResult = updateOperationResults.get(index);
-                processItemUpdateResult(responseItem, updateResult);
-            }
-        }  
     }
     
     /**
