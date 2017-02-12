@@ -1211,6 +1211,13 @@
         <errorMessage>Payment methods of On Invoice,A&amp;P should not be allowed for the promotion templates- Account Specific Past dated Promotion and Parent Past Dated Promotion</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>TPM_Amount_PaymentMethod_Comp_Mandatory</fullName>
+        <active>true</active>
+        <description>Amount, Payment Method or Compensational model are mandatory</description>
+        <errorConditionFormula>if((ISPICKVAL(ACCL__Tactic_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Tactic_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Tactic_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp;(ISBLANK(ACCL__Amount__c) || ISBLANK(TEXT(ACCL__Payment_Method__c)) || ISBLANK(TEXT(ACCL__Compensation_Model__c)) || ISPICKVAL(ACCL__Payment_Method__c,&apos;Deduction&apos;)), true, false )</errorConditionFormula>
+        <errorMessage>Amount, Payment Method, Compensation Model are Mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>UL_CreateInvestmentOnPromotionRule</fullName>
         <active>true</active>
         <errorConditionFormula>if( ISPICKVAL(ACCL__Promotion__r.UL_Promotion_Type__c, &apos;Volume Only&apos;) ,true,false )</errorConditionFormula>
