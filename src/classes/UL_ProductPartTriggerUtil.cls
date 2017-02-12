@@ -22,29 +22,31 @@ public with sharing class UL_ProductPartTriggerUtil{
         Set<Id> ids = new Set<Id>();
         Map<Id, ACCL__Product_Part__c> prodPartMap = new Map<Id, ACCL__Product_Part__c>();
         try{             
-	        for(ACCL__Product_Part__c prodPart:productParts){
-	            ids.add(prodPart.ACCL__Child_Product__c);
-	            prodPartMap.put(prodPart.ACCL__Child_Product__c, prodPart);
-	        }
-        	ACCL__Product_Part__c prodPartObj = null;
-        
-	        for(ACCL__Unit_of_Measure__c unit:[SELECT Id,
-	                                                UL_UnitsPerCase__c,
-	                                                ACCL__Product__c 
-	                                                    FROM ACCL__Unit_of_Measure__c 
-	                                                    WHERE 
-	                                                ACCL__Unit_Type__c = :UNIT_TYPE
-	                                                    AND
-	                                                ACCL__Product__c =:ids 
-	                                                    LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
-	            	prodPartObj = prodPartMap.get(unit.ACCL__Product__c);
-		            if(prodPartObj != null){
-		                prodPartObj.UL_CU_Quantity__c = integer.valueOf(unit.UL_UnitsPerCase__c) 
-		                								* integer.valueOf(prodPartObj.ACCL__Quantity__C);
-		            }            
-	        }       
-	    }catch(Exception ex){
-	        UL_Utility.logError(ex, UserInfo.getUserId());
-	    }
+            for(ACCL__Product_Part__c prodPart:productParts){
+                ids.add(prodPart.ACCL__Child_Product__c);
+                prodPartMap.put(prodPart.ACCL__Child_Product__c, prodPart);
+            }
+            
+            ACCL__Product_Part__c prodPartObj = null;
+            for(List<ACCL__Unit_of_Measure__c> unitList : [SELECT Id,
+                                                    UL_UnitsPerCase__c,
+                                                    ACCL__Product__c 
+                                                    FROM ACCL__Unit_of_Measure__c 
+                                                    WHERE 
+                                                    ACCL__Unit_Type__c = :UNIT_TYPE AND
+                                                    ACCL__Product__c =:ids 
+                                                    LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
+                for(ACCL__Unit_of_Measure__c unit:unitList){
+                        
+                        prodPartObj = prodPartMap.get(unit.ACCL__Product__c);
+                        if(prodPartObj != null){
+                            prodPartObj.UL_CU_Quantity__c = integer.valueOf(unit.UL_UnitsPerCase__c) 
+                                                            * integer.valueOf(prodPartObj.ACCL__Quantity__C);
+                        }            
+                }
+              }       
+        }catch(Exception ex){
+            UL_Utility.logError(ex, UserInfo.getUserId());
+        }
     }
 }

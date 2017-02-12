@@ -1,24 +1,24 @@
 /***************************************************************
-Name: UL_ProductTriggerHandler
-Copyright © 2015 Salesforce
-======================================================
-Purpose: 
-Handle Product object trigger events
-======================================================
-History
--------
-VERSION     AUTHOR         DATE             DETAIL                 Description
-1.0         Ketan Mehta    24/11/2016       Initial Development    Handles product before insert event
-***************************************************************/
-public with sharing class UL_ProductTriggerHandler{
+    Name: UL_ProductTriggerHandler
+    Copyright Accenture 
+    ======================================================
+    Purpose:
+    Handle Product object trigger events
+    ======================================================
+    History
+    -------
+    VERSION     AUTHOR         DATE             DETAIL                 Description
+    1.0         Ketan Mehta    24/11/2016       Initial Development    Handles product before insert event
+    ***************************************************************/
+    public with sharing class UL_ProductTriggerHandler{
     
     /*******************************************************************
-Purpose: Handles product before insert event 
-Version 1.0
-Parameters: List of Product
-Returns: None
-Throws: None
-********************************************************************/
+    Purpose: Handles product before insert event 
+    Version 1.0
+    Parameters: List of Product
+    Returns: None
+    Throws: None
+    ********************************************************************/
     public static void beforeInsert(List<ACCL__Product__c> productList){
         try{
             //Update product level in case product sent from Mulesoft system.
@@ -40,50 +40,50 @@ Throws: None
                         product.ACCL__Product_Level__c = levelMap.get(key);
                     }
                 }
-                
-                
             }
+            
             //Update external id
             updateExtIdMethod(productList);
         }catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
         }
     }
+
     /*******************************************************************
-Author: Balakrishna Mandula(balakrishna.mandula@accenture.com)
-Purpose: Handles product before update event 
-Version 1.0
-Parameters: List of Product
-Returns: None
-Throws: None
-Date: 22/01/2017
-********************************************************************/
-    public static void beforeUpdate(Map<Id, ACCL__Product__c> oldProductMap, Map<Id, ACCL__Product__c> newProductMap){
+    Author: Balakrishna Mandula(balakrishna.mandula@accenture.com)
+    Purpose: Handles product before update event 
+    Version 1.0
+    Parameters: List of Product
+    Returns: None
+    Throws: None
+    Date: 22/01/2017
+    ********************************************************************/
+        public static void beforeUpdate(Map<Id, ACCL__Product__c> oldProductMap, Map<Id, ACCL__Product__c> newProductMap){
         try{
             updateExtIdMethod(newProductMap.values());
-            
         }
         catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
         }
     }
+    
     /*******************************************************************
-Author: Balakrishna Mandula(balakrishna.mandula@accenture.com)
-Purpose: Updates EXternal Id field on Product when it's empty
-Version 1.0
-Parameters: List of Product
-Returns: None
-Throws: None
-Date: 22/01/2017
-********************************************************************/
-    private static void updateExtIdMethod(List<ACCL__Product__c> productList){
+    Author: Balakrishna Mandula(balakrishna.mandula@accenture.com)
+    Purpose: Updates EXternal Id field on Product when it's empty
+    Version 1.0
+    Parameters: List of Product
+    Returns: None
+    Throws: None
+    Date: 22/01/2017
+    ********************************************************************/
+        private static void updateExtIdMethod(List<ACCL__Product__c> productList){
         try{
             for(ACCL__Product__c product: productList){
                 if(String.isBlank(product.ACCL__ExternalId__c)){
-                    String productDivision = (String.isBlank(product.UL_Division__c)? '' : product.UL_Division__c);
-                    String productCode = (String.isBlank(product.ACCL__Product_Code__c)? '' : product.ACCL__Product_Code__c);
-                    String prodSalesOrg = (String.isBlank(product.ACCL__Sales_Org__c)? '' : product.ACCL__Sales_Org__c);
-                    product.ACCL__ExternalId__c = productCode + '-' + prodSalesOrg;
+                    String productDivision = (String.isBlank(product.UL_Division__c)? UL_Utility.EMPTY_STRING : product.UL_Division__c);
+                    String productCode = (String.isBlank(product.ACCL__Product_Code__c)? UL_Utility.EMPTY_STRING : product.ACCL__Product_Code__c);
+                    String prodSalesOrg = (String.isBlank(product.ACCL__Sales_Org__c)? UL_Utility.EMPTY_STRING : product.ACCL__Sales_Org__c);
+                    product.ACCL__ExternalId__c = productCode + UL_Utility.HYPHEN + prodSalesOrg;
                 }
             }
         }
