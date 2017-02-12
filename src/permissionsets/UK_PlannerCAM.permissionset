@@ -14573,16 +14573,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>UL_Workflow_Threshold_Template__c.UL_Compare_Value_Data_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>UL_Workflow_Threshold_Template__c.UL_Compare_Value__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>UL_Workflow_Threshold_Template__c.UL_Evaluate_Thresholds__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -14594,11 +14584,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>UL_Workflow_Threshold_Template__c.UL_TemplateDescription__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>UL_Workflow_Threshold_Template__c.UL_WorkflowApproval__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
