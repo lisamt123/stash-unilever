@@ -112,19 +112,20 @@
         public static final String PARENT_PROMOTION = 'Parent Promotion';
         public static final String ACCOUNT_SPECIFIC_PROMOTION = 'Account Specific Promotion';
         
-        //Boolean flags for Bypassing Triggers
-        public static boolean bypassAccountTrigger = false;
-        public static boolean bypassApprovalThresholdTrigger = false;
-        public static boolean bypassCannibalisationRateTrigger = false;
-        public static boolean bypassDeliveryProfileTrigger = false;
-        public static boolean bypassFundShareTrigger = false;
-        public static boolean bypassFundTransactionTrigger = false;
-        public static boolean bypassProductTrigger = false;
-        public static boolean bypassProductPartTrigger = false;
-        public static boolean bypassPromotionShareTrigger = false;
-        public static boolean bypassPromotionTrigger = false;
-        public static boolean bypassTacticTrigger = false;
-        public static boolean bypassUserCustomerPromFundShareTriggerTrigger = false;
+        //Boolean flags for enable/disable triggers 
+        public static boolean IS_PRODUCT_TRIGGER_ENABLED = true;
+        public static boolean IS_ACCOUNT_TRIGGER_ENABLED = true;
+        public static boolean IS_APPROVAL_THRESHIOLD_TRIGGER_ENABLED = true;
+        public static boolean IS_CANNIBALISATION_RATE_TRIGGER_ENABLED = true;
+        public static boolean IS_DELIVERY_PROFILE_TRIGGER_ENABLED = true;
+        public static boolean IS_TACTIC_FUND_TRIGGER_ENABLED = true;
+        public static boolean IS_FUND_TRIGGER_ENABLED = true;
+        public static boolean IS_FUND_TRANSACTION_TRIGGER_ENABLED = true;
+        public static boolean IS_PRODUCTPART_TRIGGER_ENABLED = true;
+        public static boolean IS_PROMOTION_CATEGORY_TRIGGER_ENABLED = true;
+        public static boolean IS_PROMOTION_TRIGGER_ENABLED = true;
+        public static boolean IS_USER_CUSTOMER_PROMOTION_SHARE_TRIGGER_ENABLED = true;
+        public static boolean IS_IIBBTAX_TRIGGER_ENABLED = true;
         
         //Heroku webservice setup
         public static final String END_POINT= 'callout:ACSF_Service_Url/ACSF/GetPromotionKPIs';
@@ -159,7 +160,7 @@
         public static final String STATUS_PLANNED = 'Planned';
         public static final String STATUS_REJECTED = 'Rejected';
         public static final String STATUS_REQUIRES_APPROVAL = 'Requires Approval';
-         public static final String STATUS_FINALISED = 'Finalised';
+        public static final String STATUS_FINALISED = 'Finalised';
         public static final String STATUS_INFLIGHT = 'InFlight';
                
         //User Org Role
@@ -179,7 +180,7 @@
             SoCo
         }
         
-        //edo Promotion Picklists for ACCL__Promotion__c.UL_Promotion_Template_Type OR  ACCL__Promotion_Template__c:UL_Promo_Type_ControlView__c
+        //Promotion Templates
         public static final String PROMOTION_TEMPLATE_TYPE_ACCOUNT_PLAN = 'Account Plan';
         public static final String PROMOTION_TEMPLATE_TYPE_ACCOUNT_SPECIFIC_PROMOTION = 'Account Specific Promotion';
         public static final String PROMOTION_TEMPLATE_TYPE_CUSTOMEREVENT = 'CustomerEvent';
@@ -189,8 +190,7 @@
         public static final String PROMOTION_TEMPLATE_TYPE_PAST_DATED_URGENT = 'Past Dated/Urgent';
         public static final String PROMOTION_TEMPLATE_TYPE_SPECIALHOLIDAY = 'SpecialHoliday';
 
-
-        //edo Promotion Picklists for ACCL__Promotion_Template__c.ACCL__Anchor_Type__c
+        //Promotion Template Anchor Types
         public static final String PROMOTION_TEMPLATE_ANCHOR_TYPE_CUSTOMER = 'Customer';        
         public static final String PROMOTION_TEMPLATE_ANCHOR_TYPE_CUSTOMERSET = 'CustomerSet';
         public static final String PROMOTION_TEMPLATE_MOBILITY = 'Mobility';
@@ -198,12 +198,12 @@
         public static final String DEFAULT_PROMOTION_TYPEVALUE = '--None--';
         public static final String RETURL = 'retURL';
 
-        //edo Promotion Picklists for ACCL__Promotion_Template__c.ACCL__Trade_Calendar_Relevant__c 
+        //Promotion Template Trade Calendar Relevants
         public static final String PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_YES = 'Yes';
         public static final String PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_NO = 'No';
         public static final String PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_DEFAULT = 'Default';   
 
-        //edo Promotion Picklists for ACCL__Promotion_Template__c.ACCL__Promotion_Type
+        //Promotion Types
         public static final String PROMOTION_TEMPLATE_PROMOTION_TYPE_PROMOTION = 'Promotion';  
         public static final String PROMOTION_TEMPLATE_PROMOTION_TYPE_SELLABLEPROMOTION = 'SellablePromotion'; 
 
