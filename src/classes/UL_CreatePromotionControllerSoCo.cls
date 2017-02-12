@@ -66,7 +66,7 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         PromotionTemplates.clear();
         Accounts.clear();
         AccountSets.clear();
-        if(promotionTypeValue.equals(UL_Utility.MARKETING_EVENT)){
+        if(promotionTypeValue.equals(UL_Utility.PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT)){
             isMarketType = false;
         }else{
             isMarketType = true;
@@ -193,7 +193,7 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         Accounts= new List<SelectOption>();
         promotionTemplateSalesOrg=salesOrgs.get(relatedRecord.ACCL__Promotion_Template__c);          
         if(relatedRecord.ACCL__Date_From__c != null)
-            if(promotionTypeString == UL_Utility.ACCOUNT_SPECIFIC_PROMOTION||promotionTypeString == UL_Utility.LTA){
+            if(promotionTypeString == UL_Utility.ACCOUNT_SPECIFIC_PROMOTION||promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_LTA){
                 validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.ACCL__Sales_Org__c = :promotionTemplateSalesOrg AND 
                                  UL_Customer_Hierarchy_Level__c = :UL_Utility.LEVEL8 AND account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :relatedRecord.ACCL__Date_From__c) AND account.Id IN (SELECT ACCL__Account__c FROM ACCL__Account_Manager__c WHERE ACCL__Account_Manager__c.ACCL__Active__c = true AND ACCL__Account_Manager__c.ACCL__User__c = :userinfo.getUserId() AND ACCL__Account_Manager__c.ACCL__Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Manager__c.ACCL__Valid_Thru__c>= :relatedRecord.ACCL__Date_From__c)ORDER BY account.Name Limit:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];          
             }
@@ -377,7 +377,7 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         PageReference pr;
         
         try {
-            if(promotionTypeValue.equals(UL_Utility.MARKETING_EVENT)){
+            if(promotionTypeValue.equals(UL_Utility.PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT)){
             List<Account> allCustomers = [select id, name,UL_Customer_Hierarchy_Level__c from Account Where UL_Customer_Hierarchy_Level__c=:UL_Utility.LEVEL1 AND UL_Sales_Organization__c =:promotionTemplateSalesOrg limit 1];
             this.relatedRecord.ACCL__Anchor_Account__c = allCustomers[0].id;
             }
