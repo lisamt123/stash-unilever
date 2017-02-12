@@ -66,7 +66,7 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         PromotionTemplates.clear();
         Accounts.clear();
         AccountSets.clear();
-        if(promotionTypeValue.equals(UL_Utility.MARKETING_EVENT)){
+        if(promotionTypeValue.equals(UL_Utility.PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT)){
             isMarketType = false;
         }else{
             isMarketType = true;
@@ -143,9 +143,8 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         if(relatedRecord.ACCL__Date_From__c != null)
             if(promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_ACCOUNT_SPECIFIC_PROMOTION || 
                promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_LTA || 
-               promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_ACCOUNT_PLAN || 
-               promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_CUSTOMEREVENT){
-                validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.ACCL__Sales_Org__c = :promotionTemplateSalesOrg AND 
+               promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_ACCOUNT_PLAN){
+                validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.ACCL__Sales_Org__c = :promotionTemplateSalesOrg AND UL_Is_Payer__c = TRUE AND
                                  UL_Customer_Hierarchy_Level__c = :UL_Utility.LEVEL8 AND account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :relatedRecord.ACCL__Date_From__c) AND account.Id IN (SELECT ACCL__Account__c FROM ACCL__Account_Manager__c WHERE ACCL__Account_Manager__c.ACCL__Active__c = true AND ACCL__Account_Manager__c.ACCL__User__c = :userinfo.getUserId() AND ACCL__Account_Manager__c.ACCL__Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Manager__c.ACCL__Valid_Thru__c>= :relatedRecord.ACCL__Date_From__c)ORDER BY account.Name Limit:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];          
             }
         else if(promotionTypeString == UL_Utility.PARENT_PROMOTION){
@@ -154,7 +153,8 @@ public with sharing class UL_CreatePromotionControllerSoCo{
                              UL_Customer_Hierarchy_Level__c IN:(Levels) AND account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :relatedRecord.ACCL__Date_From__c) AND account.Id IN (SELECT ACCL__Account__c FROM ACCL__Account_Manager__c WHERE ACCL__Account_Manager__c.ACCL__Active__c = true AND ACCL__Account_Manager__c.ACCL__User__c = :userinfo.getUserId() AND ACCL__Account_Manager__c.ACCL__Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Manager__c.ACCL__Valid_Thru__c>= :relatedRecord.ACCL__Date_From__c)ORDER BY account.Name Limit:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];          
         }
         else if(promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_SPECIALHOLIDAY ||  
-                promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT){
+                promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT || 
+                promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_CUSTOMEREVENT){
             validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.UL_Is_AllCustomer_Level1__c = true AND account.ACCL__Sales_Org__c = :promotionTemplateSalesOrg ];
         
         }
@@ -193,7 +193,7 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         Accounts= new List<SelectOption>();
         promotionTemplateSalesOrg=salesOrgs.get(relatedRecord.ACCL__Promotion_Template__c);          
         if(relatedRecord.ACCL__Date_From__c != null)
-            if(promotionTypeString == UL_Utility.ACCOUNT_SPECIFIC_PROMOTION||promotionTypeString == UL_Utility.LTA){
+            if(promotionTypeString == UL_Utility.ACCOUNT_SPECIFIC_PROMOTION||promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_LTA){
                 validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.ACCL__Sales_Org__c = :promotionTemplateSalesOrg AND 
                                  UL_Customer_Hierarchy_Level__c = :UL_Utility.LEVEL8 AND account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :relatedRecord.ACCL__Date_From__c) AND account.Id IN (SELECT ACCL__Account__c FROM ACCL__Account_Manager__c WHERE ACCL__Account_Manager__c.ACCL__Active__c = true AND ACCL__Account_Manager__c.ACCL__User__c = :userinfo.getUserId() AND ACCL__Account_Manager__c.ACCL__Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Manager__c.ACCL__Valid_Thru__c>= :relatedRecord.ACCL__Date_From__c)ORDER BY account.Name Limit:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];          
             }
@@ -205,7 +205,6 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         }
         
         else{
-            System.debug('>>>>>>>>>else condition called');
             validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.Id != null 
                              AND account.ACCL__Sales_Org__c =:promotionTemplateSalesOrg AND 
                              account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :relatedRecord.ACCL__Date_From__c)
@@ -214,7 +213,6 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         }
         if(validAccounts.size()>0){
             for(Account acnt : validAccounts){
-                system.debug('>>>>>>>>>>>>' + acnt.Name);
                 SelectOption custOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
                 custOption.setValue(acnt.Id);
                 custOption.setLabel(acnt.name + UL_Utility.HYPHEN + acnt.ACCL__Sales_Org__c);
@@ -248,7 +246,6 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         Boolean updateSelectedAccountSetId = true;
         AccountSets = new List<SelectOption>();
         
-        System.debug('Reloading AccountSets');
         Set<ACCL__Account_Set__c> validAccountSets = new Set<ACCL__Account_Set__c>();
         String promotionTemplateSalesOrg=salesOrgs.get(relatedRecord.ACCL__Promotion_Template__c);       
         if(this.relatedRecord.ACCL__Date_From__c != null) {            
@@ -298,7 +295,7 @@ public with sharing class UL_CreatePromotionControllerSoCo{
                 }
         } else {
             this.relatedRecord.ACCL__Anchor_Account_Set__c = null;
-        }  
+        }
        }
        catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
@@ -318,12 +315,11 @@ public with sharing class UL_CreatePromotionControllerSoCo{
                 ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, System.Label.ACCL.ERROR_NO_PROMOTION_TEMPLATE_AVAILABLE);  
                 ApexPages.addMessage(msg);
             } else {
-                AnchorTypeCustomer = isPromotionTemplateAnchorTypeCustomer(this.relatedRecord.ACCL__Promotion_Template__c);
-                system.debug('>>>>>>>>>>>>>>>>>'+ AnchorTypeCustomer);
-                if (AnchorTypeCustomer) {                    
-                    reloadAccounts();   
-                } else {                    
-                    reloadAccountSets();    
+                    AnchorTypeCustomer = isPromotionTemplateAnchorTypeCustomer(this.relatedRecord.ACCL__Promotion_Template__c);
+                    if (AnchorTypeCustomer) {                    
+                        reloadAccounts();   
+                    } else {                    
+                        reloadAccountSets();    
                 }
             }
         }
@@ -381,7 +377,7 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         PageReference pr;
         
         try {
-            if(promotionTypeValue.equals(UL_Utility.MARKETING_EVENT)){
+            if(promotionTypeValue.equals(UL_Utility.PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT)){
             List<Account> allCustomers = [select id, name,UL_Customer_Hierarchy_Level__c from Account Where UL_Customer_Hierarchy_Level__c=:UL_Utility.LEVEL1 AND UL_Sales_Organization__c =:promotionTemplateSalesOrg limit 1];
             this.relatedRecord.ACCL__Anchor_Account__c = allCustomers[0].id;
             }

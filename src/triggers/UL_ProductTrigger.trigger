@@ -11,12 +11,14 @@
     1.0         Ketan Mehta    24/11/2016       Initial Development    Handles product before insert event
     ***************************************************************/
     trigger UL_ProductTrigger on ACCL__Product__c (before insert,before update) {
-        if(trigger.isBefore){
-            if(trigger.isInsert){
-                UL_ProductTriggerHandler.beforeInsert(trigger.new);
-            }
-            if(trigger.isUpdate){
-                UL_ProductTriggerHandler.beforeUpdate(trigger.oldMap,trigger.newMap);
+        if(UL_Utility.IS_PRODUCT_TRIGGER_ENABLED){
+            if(trigger.isBefore){
+                if(trigger.isInsert){
+                    UL_ProductTriggerHandler.beforeInsert(trigger.new);
+                }
+                if(trigger.isUpdate){
+                    UL_ProductTriggerHandler.beforeUpdate(trigger.oldMap,trigger.newMap);
+                }
             }
         }
     }

@@ -75,6 +75,7 @@ Throws : N/A
         Set<String> tacticSet;
          
         try{
+
             /*Remove namespace from the custom fields.*/ 
             //content=content.replace('ACCL__UL_','UL_');
             system.debug('before content-'+content);
@@ -101,7 +102,7 @@ Throws : N/A
                     if(JSON.serialize(UL_ThresholdEngine.thresholdcheck).containsIgnoreCase(UtilityEnum.fail.Name())){
                         Promotionobj.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_ThresholdViolated__c.getName(),true);
                     }
-					else{
+                    else{
                        Promotionobj.put(Schema.SObjectType.ACCL__Promotion__c.fields.UL_ThresholdViolated__c.getName(),false);
                     }
                     
@@ -144,11 +145,13 @@ Throws : N/A
                 System.debug('@@@@content after populate: ' +content);
                 //add new promo_acc_rel__c 
                 writePromoAccRel(txId,content);
+                //populate the UL_Temp_SF_ID__c field for every tactic 
+
                 result = ACCL.PromotionRemoteActionExtension.writeBOPromotion(txId,objectId,content);
                 system.debug('tacticWithTiersList'+tacticWithTiersList);
                 system.debug('content'+content);
                 Map<String,String> tactIdTiersMap = new Map<String,String>();
-         for(Object o:tacticWithTiersList){
+             for(Object o:tacticWithTiersList){
              Map<String,Object> tempMap = (Map<String,Object>) o;
              String tactId = String.valueOf(tempMap.get('tacticId'));
              String tiers = JSON.serialize(tempMap.get('JSONTier'));
@@ -168,9 +171,7 @@ Throws : N/A
             writeLOTacticFund(content);
             System.debug('@@@@Endcall to writeLOTacticFund');
              }
-                
-                
-                
+             
             }
             else{
                  result = ACCL.PromotionRemoteActionExtension.writeBOPromotion(txId,objectId,content);
@@ -192,7 +193,7 @@ Throws : N/A
         }
         
         
-        
+        system.debug('result '+result);
         system.debug('end');
         return result; 
     }
@@ -1255,6 +1256,7 @@ Throws : N/A
                     
                     //populating Category Field
                     if(categorytLevelSet.size()==1){
+                        if(productMap.containsKey(childProductId))
                         category = productMap.get(childProductId).ACCL__Criterion_2_Product__r.Name;
                     }
                     else if(categorytLevelSet.size()>1){
@@ -1787,6 +1789,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
             tactFundsList = Database.query( queryf ); 
             if(!tactFundsList.isEmpty()){
             system.debug('tactFundsList '+tactFundsList);
+            
             for(ACCL__Tactic_Fund__c tactFund : tactFundsList){
                 
                 if(!tactFundsMap.containsKey(tactFund.ACCL__Tactic__c)){
@@ -1909,6 +1912,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         return child;
         
     }
+
     
     @RemoteAction 
     global static void cleanUpPushBOPromotion(String txId,String promoContent){
@@ -2112,7 +2116,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                         }
                     
                         //if(tacticIdSet.size() == 0){
-						if(tacticIdSet.size() > 0){
+                        if(tacticIdSet.size() > 0){
                             result = UL_Utility.BOOLEAN_FALSE;
                         }
                     }
@@ -2251,6 +2255,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
         }
         return tacticFundParams;
     }
+
       
     
         //VERISON OF 23.1
@@ -2340,43 +2345,92 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                     }
                 }
                 /* else{
-				ACCL__Tactic_Fund__c newtac = new ACCL__Tactic_Fund__c();
-				newtac.UL_Allocation__c=Decimal.valueOf(String.valueOf(temp2.get('UL_Allocation__c')));
-				String allocated=String.valueOf(temp2.get('UL_Amount_Allocated__c'));
-				String amountAllocated='';
+                ACCL__Tactic_Fund__c newtac = new ACCL__Tactic_Fund__c();
+                newtac.UL_Allocation__c=Decimal.valueOf(String.valueOf(temp2.get('UL_Allocation__c')));
+                String allocated=String.valueOf(temp2.get('UL_Amount_Allocated__c'));
+                String amountAllocated='';
 
-				if(allocated.contains(','))
-				amountAllocated=allocated.remove(',');
-				else
-				amountAllocated=allocated;
+                if(allocated.contains(','))
+                amountAllocated=allocated.remove(',');
+                else
+                amountAllocated=allocated;
 
-				newtac.UL_Amount_Allocated__c=Decimal.valueOf(amountAllocated);
+                newtac.UL_Amount_Allocated__c=Decimal.valueOf(amountAllocated);
 
-				newtac.ACCL__Tactic__c=tactId;
-				newtac.ACCL__Fund__c=fundId;
-				tacFundToaddOrUpdate.add(newtac);                  
-				}*/
+                newtac.ACCL__Tactic__c=tactId;
+                newtac.ACCL__Fund__c=fundId;
+                tacFundToaddOrUpdate.add(newtac);                  
+                }*/
                 
             }
             
         }
-
+        
         
         For(ACCL__Tactic_Fund__c tacfund : tacFundresult){
             if(!tacfunmap.containsKey(tacfund.id)){
                 tacFundTodelete.add(tacfund);
             }
-
+            
         }
         
         system.debug('tacFundToaddOrUpdate'+tacFundToaddOrUpdate);
         update tacFundToaddOrUpdate;
         delete tacFundTodelete;
-    
-}
         
+        
+    }
 
- /***************************************************************    
+        
+    global class LODeliveryProfile{
+        public String value;
+        public String label;
+    }
+
+    @RemoteAction
+    global static List<LODeliveryProfile> readLODeliveryProfile(String txtID , String objectContent) {
+        List<LODeliveryProfile> deliveryProfileList = new List<LODeliveryProfile>();
+        String salesOrg = UL_UtilityController.usersSalesOrg();
+        List<SelectOption> Customers = new List<SelectOption>();
+       try{        
+       
+        Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(objectContent);
+        Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');
+        Map<Id, UL_Planning_Level__c> planningLevelMap = null;
+     for(String s:boPromotion.keySet()){
+     System.debug('---boPromotion---'+s);
+     }
+        
+        String instoreDate= String.valueOf(boPromotion.get('ACCL__Placement_Date_From__c'));
+        String planingLevelCustomers= String.valueOf(boPromotion.get('ACCL__UL_Account__c'));
+          System.debug('---planingLevelCustomers---'+planingLevelCustomers);
+          System.debug('---instoreDate---'+instoreDate);     
+       if(instoreDate != null && planingLevelCustomers != null){
+            Date dInstoreDate = Ul_Utility.objToDate(boPromotion.get('ACCL__Placement_Date_From__c'));
+            String sPlaningLevelCustomers = String.valueOf(planingLevelCustomers);         
+            Account allCustomers  = [select id,name from account where UL_Generic_Customer__c = true  limit 1];
+            System.debug('---profiles---'+UL_Utility.returnDeliveryProfile(dInstoreDate,sPlaningLevelCustomers,allCustomers.id,salesOrg)); 
+                for(UL_Delivery_Profile__c uDeliveryProfile:UL_Utility.returnDeliveryProfile(dInstoreDate,sPlaningLevelCustomers,allCustomers.id,salesOrg)){
+                    if(uDeliveryProfile.Id != Null && uDeliveryProfile.UL_Delivery_Profile_Name__c != Null){
+                        LODeliveryProfile deliveryProfile = new LODeliveryProfile();
+                        deliveryProfile.value = (string)uDeliveryProfile.Id;
+                        deliveryProfile.label = (string)uDeliveryProfile.UL_Delivery_Profile_Name__c;
+                        deliveryProfileList.add(deliveryProfile); 
+                    }
+                }
+            
+       
+       }
+
+           
+            
+     }catch(Exception ex){
+                UL_Utility.logError(ex, UserInfo.getUserId());
+            }
+        return deliveryProfileList;
+    }
+
+/***************************************************************    
 Name: AuditData
 Copyright © 2016 Accenture
 ======================================================
@@ -2620,7 +2674,7 @@ Throws : N/A
         return result;
     }
     
-    /*******************************************************************
+      /*******************************************************************
     Purpose: Read the Promotions that should be displayed in TradeCalendar and add some 
     SpecialEvents and Event for Trade Calendar 
     Version 1.0
@@ -2631,7 +2685,7 @@ Throws : N/A
     ********************************************************************/     
   @RemoteAction
     public static List<ACCL.PromotionRemoteActionExtension.PromotionGroup> readLOCalPromotions(String txId, String uiview){
-      // system.debug(JSON.serialize(uiview));
+       system.debug(JSON.serialize(uiview));
        ACCL.PromotionRemoteActionExtension.UIViewDefinition incomingParams = ( ACCL.PromotionRemoteActionExtension.UIViewDefinition)JSON.deserialize(uiview, ACCL.PromotionRemoteActionExtension.UIViewDefinition.class);
            
         DateTime dateFromTime =   Ul_Utility.objToDate(incomingParams.date_from);
@@ -2641,7 +2695,7 @@ Throws : N/A
         String currentSalesOrg = Ul_Utility.getSalesOrg(UserInfo.getUserId());
 
         List<ACCL.PromotionRemoteActionExtension.PromotionGroup> result = ACCL.PromotionRemoteActionExtension.readLOCalPromotions(txId, uiview);
-         // system.debug('result: ' + result);
+          system.debug('result: ' + result);
 
         //result = PromotionRemoteActionExtensionEdo.checkRemoveDouplexPromotions(result,currentSalesOrg, dateFrom, dateThru );
       
@@ -2671,7 +2725,7 @@ Throws : N/A
 
          
             
-           //  System.debug('Event ' + event);
+             System.debug('Event ' + event);
             if (event != null){
 
                  ACCL.PromotionRemoteActionExtension.CalendarPromotion calProm =  new ACCL.PromotionRemoteActionExtension.CalendarPromotion(event.ACCL__Phase__c, event.Id, event.ACCL__Date_From__c,event.ACCL__Date_Thru__c ); // prepareDataForPromotion (event);
@@ -2679,7 +2733,7 @@ Throws : N/A
                 //if (!slogan.equals(event.ACCL__Slogan__c)){
                 String currentGroupSlogan = String.format('{0} {1} {2}', new List<String>{event.ACCL__Promotion_Template__r.Id, event.ACCL__Anchor_Account__r.Id, event.ACCL__Slogan__c} ); 
                 if (!lastAddPromGroup.equals(currentGroupSlogan)){
-                  //  System.debug (' Slogan is different of previous');
+                    System.debug (' Slogan is different of previous');
                     if (listCalProm.size()>0 ){
                          ACCL.PromotionRemoteActionExtension.PromotionGroup promGroup = new ACCL.PromotionRemoteActionExtension.PromotionGroup(lastevent.ACCL__Slogan__c, 
                             listCalProm, lastevent.ACCL__Promotion_Template__c, lastevent.ACCL__Anchor_Account__c, null, lastevent.ACCL__Promotion_Template__r.ACCL__Trade_Calendar_Color__c,
@@ -2689,11 +2743,11 @@ Throws : N/A
                          // Ich glaube die Zeile ist doppelt, und kann raus
                          lastAddPromGroup = String.format('{0} {1} {2}', new List<String>{promGroup.Promotion_Template, promGroup.Account_Id, promGroup.Slogan} );
 
-                        // System.debug ('lastAddPromGroup ' + lastAddPromGroup);
+                         System.debug ('lastAddPromGroup ' + lastAddPromGroup);
                          result.add(countGoups,promGroup);
                          countGoups  = countGoups + 1;
 
-                       //  System.debug (' new group created');
+                         System.debug (' new group created');
 
                     }
 
@@ -2712,8 +2766,8 @@ Throws : N/A
 
 
         }  // for 
-        // System.debug('countGoups' + countGoups);
-        // System.debug('result[countGoups-1].Slogan  - ' + result[0].Slogan);
+         System.debug('countGoups' + countGoups);
+         System.debug('result[countGoups-1].Slogan  - ' + result[0].Slogan);
 
         if (listCalProm.size()>0  && result.size() >0 &&  countGoups >0 && result.size() >= countGoups && lastAddPromGroup !=null && !result[countGoups-1].Slogan.equals(lastAddPromGroup) ){
              ACCL.PromotionRemoteActionExtension.PromotionGroup promGroup = new ACCL.PromotionRemoteActionExtension.PromotionGroup(lastevent.ACCL__Slogan__c, 
@@ -2721,7 +2775,7 @@ Throws : N/A
                        null, lastevent.ACCL__Anchor_Account__r.name , null );
                      lastAddPromGroup = lastevent.ACCL__Slogan__c;
 
-                  //   System.debug ('lastAddPromGroup ' + lastAddPromGroup);
+                     System.debug ('lastAddPromGroup ' + lastAddPromGroup);
                      result.add(countGoups,promGroup);
                      countGoups  = countGoups + 1;
 
@@ -2748,6 +2802,7 @@ Throws : N/A
         return result;
     }
 
-   
+
+ 
  
 }

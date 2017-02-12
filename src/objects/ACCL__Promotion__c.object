@@ -2165,6 +2165,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>TPM_Delivery_Profile__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Delivery Profile</label>
+        <referenceTo>UL_Delivery_Profile__c</referenceTo>
+        <relationshipLabel>Promotions</relationshipLabel>
+        <relationshipName>Promotions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>UL_Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -4296,10 +4309,18 @@ Id=VLOOKUP
         <errorMessage>Name should not be edited when the Phase is Committed.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>TPM_Lift_VolumeType_Mandate</fullName>
+        <active>true</active>
+        <description>Life, Volume Type are Mandate</description>
+        <errorConditionFormula>if((ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp;(ISBLANK(UL_Lift__c) || ISBLANK(TEXT(UL_Volume_Type__c))) &amp;&amp; NOT(ISNEW()), true, false )</errorConditionFormula>
+        <errorMessage>Lift %, Volume Type are mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>TPM_Past_Date_Validation_For_SOCO</fullName>
         <active>true</active>
         <errorConditionFormula>IF(NOT( ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c) &amp;&amp; (ACCL__Date_From__c&lt;Today() || ACCL__Date_Thru__c&lt;Today()), true, false)</errorConditionFormula>
-        <errorMessage>Date From/Thru should not be in past</errorMessage>
+        <errorDisplayField>ACCL__Active__c</errorDisplayField>
+        <errorMessage>Only Past Dated/Urgent Promotion template should be used to create past date\urgent promotion (in such case, from date must be in the past, Thru date must be in the future)</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_Default_Sold_To_Mandatory_Rule</fullName>
@@ -4373,22 +4394,13 @@ Id=VLOOKUP
     <validationRules>
         <fullName>UL_PastDated_Urgent_Promotion_Creation</fullName>
         <active>true</active>
-        <description>Past Dated promotion creation validation rule</description>
-        <errorConditionFormula>IF(NOT(ISPICKVAL($User.ACCL__Sales_Org__c , &apos;UK SO&apos;)) 
-&amp;&amp; ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c
-&amp;&amp; NOT(CONTAINS(CreatedBy.UserRole.DeveloperName, &apos;Account_Manager&apos;))
-&amp;&amp; NOT(CONTAINS(CreatedBy.UserRole.DeveloperName, &apos;Finance_Admin&apos;))
+        <description>Past Dated promotion creation based on role validation rule</description>
+        <errorConditionFormula>IF(ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c 
+&amp;&amp; (NOT(CONTAINS($UserRole.Name, &apos;Account Manager&apos;))) 
+&amp;&amp; (NOT(CONTAINS($UserRole.Name, &apos;Category Manager&apos;))) 
 ,TRUE,FALSE)</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
-        <errorMessage>Past Dated promotions can only be created by Account Manager and Finance Manager.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>UL_PastDated_Urgent_Promotion_Validation</fullName>
-        <active>true</active>
-        <description>Past Dated validation rule</description>
-        <errorConditionFormula>IF( NOT(ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;)) &amp;&amp; ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c &amp;&amp;(ACCL__Date_From__c &gt;= TODAY() || ACCL__Date_Thru__c &lt;= TODAY()),TRUE,FALSE )</errorConditionFormula>
-        <errorDisplayField>ACCL__Active__c</errorDisplayField>
-        <errorMessage>From date must be in the past, Thru date must be in the future for Past Dated/Urgent Promotion</errorMessage>
+        <errorMessage>Past Dated promotions can only be created by Account Manager and Category Manager.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_WithIn_DateFrom_DateThru</fullName>

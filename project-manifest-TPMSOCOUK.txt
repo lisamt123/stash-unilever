@@ -206,6 +206,8 @@ src/triggers/UL_DeliveryProfile_MasterTrigger.trigger
 src/triggers/UL_DeliveryProfile_MasterTrigger.trigger-meta.xml
 src/triggers/UL_IIBBTAX_Trigger.trigger
 src/triggers/UL_IIBBTAX_Trigger.trigger-meta.xml
+src/triggers/UL_Tactic_Fund_Trigger.trigger
+src/triggers/UL_Tactic_Fund_Trigger.trigger-meta.xml
 src/layouts
 src/layouts/ACCL__Account_Set__c-SoCo_AccountSetLayout.layout
 src/layouts/ACCL__Account_Set__c-UKI_AccountSetLayout.layout
@@ -504,6 +506,8 @@ src/classes/UL_IIBBTax_TriggerHandler.cls
 src/classes/UL_IIBBTax_TriggerHandler.cls-meta.xml
 src/classes/MyRemoteActionUtility.cls
 src/classes/MyRemoteActionUtility.cls-meta.xml
+src/classes/TPM_AccountRemoteActionExtension.cls
+src/classes/TPM_AccountRemoteActionExtension.cls-meta.xml
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml
@@ -571,6 +575,7 @@ src/permissionsets/SoCo_Finance_Director.permissionset
 src/permissionsets/SoCo_Process_Officer.permissionset
 src/permissionsets/SoCo_System_Admin.permissionset
 src/permissionsets/UK_Admin.permissionset
+src/permissionsets/UK_PlannerCAM.permissionset
 src/sharingRules
 src/sharingRules/ACCL__Fund_Template__c.sharingRules
 src/translations

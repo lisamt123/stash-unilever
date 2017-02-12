@@ -13,8 +13,6 @@ VERSION     AUTHOR             DATE              DETAIL                         
 *****************************************************************/
 public with sharing class UL_CreatePromotionController{
 
-     private final Static String CREATION_PLATFORM = 'Mobility';
-     private final Static String PROMOTION_TYPE= 'SellablePromotion';
      private final static String PROMOTION_REDIRECT_PAGE_KEY = 'UKI after Promotion creation redirect';
      private final static String DEFAULT_STATUS_FOR_PROMOTION = 'Default_Status_for_Promotion';
 
@@ -121,16 +119,49 @@ public with sharing class UL_CreatePromotionController{
     }
 
     /*******************************************************************
-    Purpose: This method feth the accounts assign to Customers variable as well as generic customers.
+    Purpose: This property fetch the accounts of User as well as generic customers.
     Version: 1.0
     Parameters: N/A
-    Returns: Page Reference
+    Returns: List<SelectOption>
     Throws: N/A
     ********************************************************************/
     public List<SelectOption> CustomersAllGeneric{
         get;
         private set;
     }
+    /*******************************************************************
+    Purpose: This poperty hold loaded products level = 2 (CategoryProducts).
+    Version: 1.0
+    Parameters: N/A
+    Returns: List<SelectOption>
+    Throws: N/A
+    ********************************************************************/
+    public List<SelectOption> CategoryProducts {
+        get {
+            if (CategoryProducts == null) {
+                loadListOfCategoryProducts();
+            }
+            return CategoryProducts;
+        }
+        private set;
+    }
+    /*******************************************************************
+    Purpose: This method feth the promotion templates assign to promotiontemplate variable.
+    Version: 1.0
+    Parameters: N/A
+    Returns: List<SelectOption>
+    Throws: N/A
+    ********************************************************************/
+    public List<SelectOption> BrandProducts {
+        get {
+            if (BrandProducts == null) {
+                loadBrandProducts();
+            }
+            return BrandProducts;
+        }
+        private set;
+    }
+
     /*******************************************************************
     Purpose: This method feth the promotion templates.
     Version: 1.0
@@ -152,7 +183,7 @@ public with sharing class UL_CreatePromotionController{
                                                                             AND
                                                                    ACCL__Sales_Org__c =:salesOrg
                                                                             AND
-                                                                   ACCL__Creation_Platform__c <> :CREATION_PLATFORM
+                                                                   ACCL__Creation_Platform__c <> : UL_Utility.PROMOTION_TEMPLATE_MOBILITY
 
                                                                             ORDER BY
                                                                    ACCL__Sort__c
@@ -303,7 +334,8 @@ public with sharing class UL_CreatePromotionController{
                 ApexPages.StandardController ctr = new ApexPages.StandardController(this.relatedRecord);
                 String recordTypeDevName = [SELECT RecordType.DeveloperName FROM ACCL__Promotion__c where
                                                    Id = :this.relatedRecord.Id LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())].RecordType.DeveloperName;
-                if(PROMOTION_TYPE.equals(recordTypeDevName)){
+                
+                if(UL_Utility.PROMOTION_TEMPLATE_PROMOTION_TYPE_SELLABLEPROMOTION.equalsIgnoreCase(recordTypeDevName)){
                     pref = ctr.edit();
                     Map<String, String> params = pref.getParameters();
                     params.clear();
@@ -430,7 +462,7 @@ public with sharing class UL_CreatePromotionController{
         try{
             if(relatedRecord.ACCL__Promotion_Template__c != null){
                 ACCL__Promotion_template__c tempRec = [select id, name,UL_Promo_Type_ControlView__c from ACCL__Promotion_template__c where id=:relatedRecord.ACCL__Promotion_Template__c LIMIT 1];
-                if(tempRec.UL_Promo_Type_ControlView__c.equals(UL_Utility.SPECIAL_HOLIDAY)){
+                if(tempRec.UL_Promo_Type_ControlView__c.equals(UL_Utility.PROMOTION_TEMPLATE_TYPE_SPECIALHOLIDAY)){
                     Account level1Acc = [select id,name from Account where UL_Customer_Hierarchy_Level__c =:UL_Utility.LEVEL1 AND UL_Sales_Organization__c=:salesOrg  LIMIT 1];
                         isForMorket = false;
                         isForPromotion = false;
@@ -445,7 +477,7 @@ public with sharing class UL_CreatePromotionController{
                         isForLTA = false;
                         isForGeneriCust = true; // TPM-2256
                         
-                    } else if(tempRec.UL_Promo_Type_ControlView__c.equals(UL_Utility.LTA)){
+                    } else if(tempRec.UL_Promo_Type_ControlView__c.equals(UL_Utility.PROMOTION_TEMPLATE_TYPE_LTA)){
                         isForLTA = true;
                         isForMorket = false;
                         isForPromotion = false;
@@ -677,4 +709,11 @@ public with sharing class UL_CreatePromotionController{
                 }
             }
      }
+
+    public void loadListOfCategoryProducts(){
+
+    }
+    public void loadBrandProducts(){
+
+    }
 }
