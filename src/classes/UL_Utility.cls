@@ -102,6 +102,7 @@
         Public static final string PROMOTION_STATUS= 'Planning';
         
         //UKI
+		public static final String MARKETING_EVENT= 'MarketingEvent';
         public static final String NONE= 'None';
         public static final String Qulon= ':';
         public static final String UK_SO = 'UK SO';
