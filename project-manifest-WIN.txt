@@ -11,6 +11,9 @@ src/objects/Win_Retailer__c.object
 src/objects/Win_Tracked_Object_Config__c.object
 src/objects/Win_User_Region__c.object
 src
+src/labels
+src/labels/Wings.labels
+src
 src/tabs
 src/tabs/Win_Brand_Configuration__c.tab
 src/tabs/Win_Category__c.tab
