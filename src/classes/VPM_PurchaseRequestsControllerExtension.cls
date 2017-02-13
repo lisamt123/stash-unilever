@@ -32,6 +32,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       public static final string STR_CONST_U2K2='U2K2';
       public static final string STR_CONST_SIRIUS='Sirius';
       public static final string STR_CONST_MDM='MDM';
+      public static final string STR_CONST_MASTERDATA='Master';
       public static final string STR_CONST_FREIGHT='Freight';
       public static final string STR_CONST_FINANCE='Finance';
       public static final string STR_CONST_FLS='FLS';
@@ -42,6 +43,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       public static final string STR_CONST_DRAFT='Draft';
       public static final string STR_CONST_FREIGHTREWORK='Freight Requested Re-Work';
       public static final string STR_CONST_FLSREVIEW='FLS Review';
+      public static final string STR_CONST_SAPBPM = 'SAP BPM Approval Rejected';
       public static final string STR_CONST_COMPLETED='Completed';
       public static final string STR_CONST_YES='Yes';
       public static final string STR_CONST_NO='No';
@@ -50,6 +52,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
     public static final string STR_CONST_INDIA='India';
       public static final string STR_CONST_NEPAL='Nepal';
     public static final string STR_CONST_SRILANKA='Sri Lanka';
+     public static string PIVendorType = '';
 
       public static final string STR_CONST_EXCEPTIONDEBUGMSG='@@Exception ';
       public static final string STR_CONST_CALLJAVASCRIPTMETHOD = '<script> redirectToListView(); </script>';
@@ -72,10 +75,12 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       public boolean isBR {get; set;}
       public boolean isFLS {get; set;}
       public boolean isMDM {get; set;}
+      public boolean isMasterMDM {get;set;}
       public boolean isFinance {get; set;}
       public boolean isProcure {get; set;}
       public boolean isRussian {get; set;}
       public boolean isFreight {get; set;}
+      public boolean isBank {get; set;}
       public boolean isCordillera {get; set;}
       public boolean isIsVendorSMEVisible {get; set;}
       public boolean isGBCountry {get; set;}
@@ -126,6 +131,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           isBR  = false;
           isFLS = false;
           isMDM = false;
+          isMasterMDM = false;
           isFinance = false;
           isProcure = false;
           isRussian = false;
@@ -138,7 +144,6 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           try{
           GstdController =stdController;
           recId = stdController.getRecord().Id; 
-         
           //errorMsg=getError();
           userLanguage = UserInfo.getLanguage();
           this.pr= (VPM_PurchasingRequests__c)stdController.getRecord(); 
@@ -147,17 +152,19 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           isBR  = false;
           isFLS = false;
           isMDM = false;
+          isMasterMDM = false;
           isFinance = false;
           isProcure = false;
           isRussian = false;
           isFreight = false;
+          isBank = false;
           
           this.checkUser();
           venReqStatus = fetchRecordStatus(recId);
           isRequired = false;
         
-          vendorDetailList =[select OwnerId, VPM_IsVendorSME__c,VPM_ECC__c, VPM_PaymentTerms__c,VPM_VendorCode__c,
-          VPM_PaymentTermsIfNoneSelected__c,VPM_Country__c,VPM_CompanyCode__r.VPM_CompanyCode__c, VPM_CompanyCode__r.ECC__c, 
+          vendorDetailList =[select OwnerId,VPM_VendorType__c,VPM_GlobalAuthorisationGroup__c, VPM_IsVendorSME__c,VPM_ECC__c, VPM_PaymentTerms__c,VPM_VendorCode__c,
+          VPM_PaymentTermsIfNoneSelected__c,VPM_Country__c,VPM_CompanyCode__r.VPM_CompanyCode__c, VPM_CompanyCode__r.ECC__c, VPM_isBR__c,
           VPM_ApprovalWorker__c, VPM_ApprovalWorkerID__c, VPM_ExceptionType__c, VPM_InternationalVersion__c, 
           VPM_Status__c, VPM_CountryRequestingVendor__c,VPM_FLSInCountryReqVen__c,VPM_BankKey__c,VPM_BankAccountNumber__c from VPM_PurchasingRequests__c where id =: recId];
           System.debug('%%%%vendorDetailList ===='+vendorDetailList );
@@ -276,6 +283,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
             else if(usrRole ==  'BUR') {
              
                 renderSAPBtn = false;
+                reworkBtn=false;
                 //SubmitRequestBtn = true;
           }
             else if(usrRole ==  'RUS') {
@@ -331,7 +339,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
             /* Changes By Samrin on 28 Nov 2016 - MDM Rework Request */ 
               // if(VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW) &&  vendorDetailList[0].VPM_ECC__c == STR_CONST_FUSION){
               /*Changes By Samrin on 6th Jan 2017 -  IAVMD-2913  Rework fuctionality for MDM Ops (All Countries) */   
-              if(VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW)){
+               if((VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW) || VendorDetailList[0].VPM_Status__c.containsIgnoreCase(STR_CONST_SAPBPM)) && (usrRole == STR_CONST_MDM)){
                    reworkBtn=true;    }
               
               /* End Changes By Samrin on 28 Nov 2016 - MDM Rework Request */   
@@ -363,8 +371,10 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_90DK;
                 }else if((pr.VPM_IsVendorSME__c==STR_CONST_NO || string.isBlank(pr.VPM_IsVendorSME__c)) && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_SIRIUS || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_CORDILLERA)){  
                   vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_P090; 
-                }else if(pr.VPM_IsVendorSME__c==STR_CONST_YES && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_SIRIUS || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_U2K2 || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_CORDILLERA)){
+                }else if(pr.VPM_IsVendorSME__c==STR_CONST_YES && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_SIRIUS || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_CORDILLERA)){
                   vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_P030;
+                }else if(pr.VPM_IsVendorSME__c==STR_CONST_YES && vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_U2K2){
+                  vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_S030;
                 }else if(pr.VPM_IsVendorSME__c==STR_CONST_YES && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_FUSION)){
                   vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_30DK;
                 }                
@@ -375,15 +385,26 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                       vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_90DK;
                     }else if(vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_SIRIUS || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_CORDILLERA){  
                       vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_P090;
-                    }else if(vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_SIRIUS || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_U2K2 || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_CORDILLERA){
-                      vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_P030;  
-                    }else if(vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_FUSION){
-                      vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_30DK;
                     }
     
                }
-           pr.VPM_PaymentTerms__c = vendorPaymentTerms; 
-           paymentTerms = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetailList[0].VPM_CompanyCode__r.ECC__c , PAYMENT_TERMS,vendorPaymentTerms);        
+           pr.VPM_PaymentTerms__c = vendorPaymentTerms;
+            
+            if(string.isNotBlank(vendorDetailList[0].VPM_VendorType__c) && string.isNotBlank(vendorDetailList[0].VPM_GlobalAuthorisationGroup__c)){
+                 if((vendorDetailList[0].VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI)) || (vendorDetailList[0].VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (vendorDetailList[0].VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM)))){
+                                    PIVendorType ='PI';
+                
+                 } else if(!vendorDetailList[0].VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) && (vendorDetailList[0].VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && !vendorDetailList[0].VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))){
+                                    
+                                    PIVendorType ='Non PI';
+                  
+                 } else{
+                                    PIVendorType ='other';
+                   
+                 }
+                                system.debug('@@ PI Vendor Type' + PIVendorType);
+           }
+           paymentTerms = VPM_RecordTypeHelper.paymentTermsMetaData(vendorDetailList[0].VPM_CompanyCode__r.ECC__c,PIVendorType,vendorPaymentTerms);       
     }
    /******************************************************************** 
     
@@ -486,7 +507,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     callJavaScriptAlert='<script>debugger;var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); pageReload();</script>';
               }
               VPM_PurchasingRequests__c vendor = [SELECT id,VPM_MDMOpsFirstSubmittedToSAP__c,VPM_Status__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
-               if(vendor.VPM_Status__c=='MDM Ops Review')
+               if(vendor.VPM_Status__c.contains('MDM Ops Review'))
               {
                   vendor.VPM_MDMOpsFirstSubmittedToSAP__c=system.now();
                   update vendor;
@@ -511,34 +532,42 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           // List<PermissionSetAssignment> lstcurrentUserPerSet= new  List<PermissionSetAssignment>();
           List<PermissionSetAssignment> lstcurrentUserPerSet = [SELECT Id, PermissionSet.Name,PermissionSet.Label, AssigneeId
                                                                 FROM PermissionSetAssignment
-                                                                WHERE AssigneeId = :Userinfo.getUserId() order by PermissionSet.Label DESC];
+                                                                WHERE AssigneeId = :Userinfo.getUserId() AND (NOT PermissionSet.Label like '%Business Requestor%') AND PermissionSet.Name LIKE 'VPM_%'  order by PermissionSet.Label DESC];
           //System.Debug('----list of permission sets assigned to logged in user------' + lstcurrentUserPerSet);
           
-          // for (PermissionSetAssignment psa: lstcurrentUserPerSet) {
+           for (PermissionSetAssignment psa: lstcurrentUserPerSet) {
           // system.debug('---------psa.PermissionSet.Label---------' + psa.PermissionSet.Label);
-          if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) {
+          if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) {
               brUser = false;
               userRole = 'FLS';
-              //return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_MDM)) {
+              map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+              return returnResult;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_MDM)) {
               brUser = false;
               userRole = 'MDM';
-              // return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FINANCE)) {
+               map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+              return returnResult;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FINANCE)) {
               brUser = false;
               userRole = 'FIN';
-              // return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_PROCUREMENT)) {
+               map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+              return returnResult;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_PROCUREMENT)) {
               brUser = false;
               userRole = 'PRO';
-              //return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_BUSREQ)) {
+               map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+              return returnResult;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_BUSREQ)) 
+          {
               brUser = true;
               userRole = 'BUR';
               // System.debug('----is user brUser----'+brUser);
-              //return brUser;
+               map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+              return returnResult;
           }
-          // }
+           }
+            brUser = true;
+             userRole = 'BUR';
           map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
               return returnResult;
       }
@@ -555,28 +584,42 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
        public void checkUser() {
           List<PermissionSetAssignment> lstcurrentUserPerSet = [SELECT Id, PermissionSet.Name,PermissionSet.Label, AssigneeId
                                                                 FROM PermissionSetAssignment
-                                                                WHERE AssigneeId = :Userinfo.getUserId() order by PermissionSet.Label DESC];
+                                                                WHERE AssigneeId = :Userinfo.getUserId() AND (NOT PermissionSet.Label like '%Business Requestor%') order by PermissionSet.Label DESC];
           system.debug('---------------Permission--------------'+lstcurrentUserPerSet[0].PermissionSet.Label);
-          if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) {
+          for (PermissionSetAssignment psa: lstcurrentUserPerSet ) {
+          if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) {
               isFLS = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_MDM)) {
+              return;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_MDM)) {
               isMDM = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FINANCE)) {
+              return ;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FINANCE)) {
               isFinance = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_PROCUREMENT)) {
+               return;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_PROCUREMENT)) {
               isProcure = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_BUSREQ)) {
-              isBR = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase('Russian')) {
+               return;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase('Russian')) {
               isRussian = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FREIGHT)) {
+               return;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FREIGHT)) {
               isFreight = true;
+               return;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_MASTERDATA)){
+              isMAsterMDM = true;
+               return;
+          } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_BANK)){
+              isBank = true;
+              return;
           }
+          }
+          isBR =true;
       }
       
       @RemoteAction
       global static String checkLoggedInUserRole() {
           String userRole='';
+          
           // List<PermissionSetAssignment> lstcurrentUserPerSet= new  List<PermissionSetAssignment>();
           List<PermissionSetAssignment> lstcurrentUserPerSet = [SELECT Id, PermissionSet.Name,PermissionSet.Label, AssigneeId
                                                                 FROM PermissionSetAssignment
@@ -614,7 +657,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                /* End Changes for 490 Bank Data Validation Approver */
               
           }
-          userRole = 'BUR';
+          userRole = 'BUR';          
           return userRole;
       }
        
@@ -705,7 +748,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                                                                  VPM_RussianTaxApprovalRequired__c,VPM_RequestFromFLSOrBR__c, 
                                                                  VPM_RequestGroupTime__c, 
                                                                  VPM_FreightApprovalRequired__c, 
-                                                                 VPM_RequestLastWithGroup__c, 
+                                                                 VPM_RequestLastWithGroup__c,VPM_MDMOpsReworks__c, 
                                                                  VPM_FinanceApprovalRequired__c, 
                                                                  VPM_ProcurementApprovalRequired__c, 
                                                                  CreatedById, OwnerId, VPM_Rework__c,
@@ -964,7 +1007,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
               }/* Start  changes by samrin Shaikh :  28 Nov 2016 : MDM Ops Rework request */ 
               // when BR Create Request 
-                   else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_FLS  && VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW)) 
+                   else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_FLS  && (VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW) || VendorDetailList[0].VPM_Status__c.containsIgnoreCase(STR_CONST_SAPBPM))) 
               { 
                     
                   System.debug('@@@@@ Inside Rework MDM');
@@ -985,11 +1028,12 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                      VendorDetailList[0].VPM_ApprovalWorker__c='';
                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'MDM Ops'; 
+                     VendorDetailList[0].VPM_MDMOpsReworks__c = VendorDetailList[0].VPM_MDMOpsReworks__c +1;
                      update VendorDetailList;
                   }
               }
               // When FLS Create Request 
-               else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c==  STR_CONST_BUSREQ  && VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW)) 
+               else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c==  STR_CONST_BUSREQ  && (VendorDetailList[0].VPM_Status__c.containsIgnoreCase(VPM_RecordTypeHelper.MDM_REVIEW) || VendorDetailList[0].VPM_Status__c.containsIgnoreCase(STR_CONST_SAPBPM))) 
               { 
                       System.debug('@@@@@ Inside Rework MDM');
                       VendorDetailList[0].VPM_Status__c = VPM_RecordTypeHelper.MDM_RE_WROK; 
@@ -1007,6 +1051,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                       VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                       VendorDetailList[0].VPM_RequestLastWithGroup__c = 'MDM Ops'; 
+                       VendorDetailList[0].VPM_MDMOpsReworks__c = VendorDetailList[0].VPM_MDMOpsReworks__c +1;
                      update VendorDetailList;
               }
               
@@ -1181,7 +1226,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
     ********************************************************************/       
         public PageReference saveFromUser(){           
          try{
-          if(string.isBlank(vendorPaymentTerms) && string.isBlank(pr.VPM_PaymentTermsIfNoneSelected__c)){
+          if(!isBR && !isFLS && !isBank && string.isBlank(vendorPaymentTerms) && string.isBlank(pr.VPM_PaymentTermsIfNoneSelected__c)){
                      ApexPages.addmessage(new ApexPages.message(ApexPages.severity.error,System.label.VPM_PaymentTermsIfNoneSelected));
            }  
            /*if(string.isBlank(pr.VPM_BankAccountNumber__c)){
@@ -1260,4 +1305,13 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               }
          
      }
+    
+    public void brStatusMethod() {
+        VPM_PurchasingRequests__c brpr =[select id , vpm_isBr__c from VPM_PurchasingRequests__c where id =: recid];
+         system.debug('@@vpm_isBr__c' + brpr.vpm_isBr__c);
+        if(isBR) {
+          brpr.VPM_isBR__c = true;
+          update brPr;
+        }
+    }
 }

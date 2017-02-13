@@ -7,7 +7,6 @@
         <sharedTo>foodsolutions.integration.user@unilever.com</sharedTo>
         <sharedToType>User</sharedToType>
     </shares>
-	
    <shares>
         <accessLevel>Manage</accessLevel>
         <sharedTo>FS_DailySales_Admin</sharedTo>

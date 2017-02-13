@@ -95,7 +95,7 @@
 	  <runTest>ICB_SetupPhotoMobileChannel_Test</runTest>
 	  <runTest>ICB_SobjectInstance_SP2_Test</runTest>
 	  <runTest>ICB_SobjectInstance_Test</runTest>
-	  <runTest>SurveyManagerController_Test</runTest> -->
+	  <runTest>SurveyManagerController_Test</runTest> 
 	  <runTest>FS_CHDUtilityTest</runTest>
 	  <runTest>FS_AccountPlanningTest</runTest>
 	  <runTest>FS_ContactDetail_Test</runTest>
@@ -111,7 +111,7 @@
 	  <runTest>FS_ContactExtend_CX_Test</runTest>
 	  <runTest>FS_ClaimedCasesForeCastingSchedule_Test</runTest>
 	  <runTest>FS_CentrallyLedChildAccountTest</runTest>
-	  <runTest>FS_MABETest</runTest>	  
+	  <runTest>FS_MABETest</runTest>	  -->
   </sf:deploy>
   <!--<antcall target="generatePackage"/>-->
   </target>

@@ -115,6 +115,7 @@ public without sharing class BFM_CreateUserQueueable implements Queueable {
         u.ProfileId = carrierProfile.Id;
         u.alias = u.username.left(4);
         u.LocaleSidKey = 'pt_BR';
+		u.CurrencyIsoCode = 'BRL';
         u.LanguageLocaleKey = 'pt_BR';
         u.TimeZoneSidKey = 'America/Sao_Paulo';
         u.EmailEncodingKey = 'ISO-8859-1';

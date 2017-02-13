@@ -16,11 +16,11 @@
     </values>
     <values>
         <field>VPM_PaymentMethod1__c</field>
-        <value xsi:type="xsd:string">T_Telepay / K-Link</value>
+        <value xsi:type="xsd:string">H_Non-SEPA Bank Transfer</value>
     </values>
     <values>
         <field>VPM_PaymentMethod2__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">B_OCR Payments</value>
     </values>
     <values>
         <field>VPM_PaymentMethod3__c</field>

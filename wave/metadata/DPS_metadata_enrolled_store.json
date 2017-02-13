@@ -1,165 +1,74 @@
 {
-  "fileFormat": {
-    "charsetName": "UTF-8",
-    "fieldsEnclosedBy": "\"",
-    "fieldsDelimitedBy": ",",
-    "linesTerminatedBy": "\n",
-    "numberOfLinesToIgnore": 1
-  },
   "objects": [
     {
-      "rowLevelSecurityFilter": null,
-      "connector": "Salesforce connector",
-      "description": "Enrolled Store",
-      "label": "Enrolled Store",
-      "name": "edgemartfc3fb5ee",
+      "connector": "CSV",
+      "fullyQualifiedName": "DPS_SEM_ENRL_STR_csv",
+      "label": "DPS_SEM_ENRL_STR.csv",
+      "name": "DPS_SEM_ENRL_STR_csv",
       "fields": [
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Record_Id",
-          "label": "Record_Id",
+          "fullyQualifiedName": "Record_Id",
           "name": "Record_Id",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": true,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Record_Id",
+          "isUniqueId": true
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Date",
-          "label": "Date",
+          "fullyQualifiedName": "Date",
           "name": "Date",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
           "type": "Date",
-          "precision": null,
-          "scale": null,
-          "format": "yyyy-MM-dd",
-          "fiscalMonthOffset": null
+          "label": "Date",
+          "format": "yyyy-MM-dd"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.PS_Standard",
-          "label": "Perfect Store Standard",
+          "fullyQualifiedName": "PS_Standard",
           "name": "PS_Standard",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Perfect Store Standard"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Country",
-          "label": "Country",
+          "fullyQualifiedName": "Country",
           "name": "Country",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Country"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Channel",
-          "label": "Channel",
+          "fullyQualifiedName": "Channel",
           "name": "Channel",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Channel"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Sales_Region",
-          "label": "Sales Region",
+          "fullyQualifiedName": "Sales_Region",
           "name": "Sales_Region",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Sales Region"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Product_Category",
-          "label": "Product category",
+          "fullyQualifiedName": "Product_Category",
           "name": "Product_Category",
-          "isSystemField": null,
-          "defaultValue": null,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
           "type": "Text",
-          "precision": null,
-          "scale": null,
-          "format": null,
-          "fiscalMonthOffset": null
+          "label": "Product category"
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Enrollment_no",
+          "fullyQualifiedName": "Enrollment_No",
+          "name": "Enrollment_No",
+          "type": "Numeric",
           "label": "Enrollment No",
-          "name": "Enrollment_no",
-          "isSystemField": null,
-          "defaultValue": 0,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
-          "type": "Numeric",
           "precision": 18,
-          "scale": 3,
-          "format": null,
-          "fiscalMonthOffset": null
+          "defaultValue": "0",
+          "scale": 3
         },
         {
-          "description": null,
-          "fullyQualifiedName": "edgemartfc3fb5ee.Enrollment_Target",
-          "label": "Enrollment Target",
+          "fullyQualifiedName": "Enrollment_Target",
           "name": "Enrollment_Target",
-          "isSystemField": null,
-          "defaultValue": 0,
-          "isUniqueId": null,
-          "isMultiValue": false,
-          "multiValueSeparator": null,
           "type": "Numeric",
+          "label": "Enrollment Target",
           "precision": 18,
-          "scale": 3,
-          "format": null,
-          "fiscalMonthOffset": null
+          "defaultValue": "0",
+          "scale": 3
         }
-      ],
-      "fullyQualifiedName": "edgemartfc3fb5ee"
+      ]
     }
   ]
 }

@@ -14,7 +14,7 @@ VERSION  AUTHOR              DATE            DETAIL                        Descr
 2.0       samrin Shaikh      15/12/2015      CSC - 2765                    US-009 Letter/Enclosure auto population
 3.0       mahesh konar       2nd june 2016   CSC-4518                      To calculate Total Enclosure Value
                                                                            added method beforeInsUpdCalcEnclosure,
-																		   getEnclosureIds and calcTotalEnclosure
+                                                                           getEnclosureIds and calcTotalEnclosure
 4.0       mahesh konar       25th july 2016   Sonar Issue                      
 ***********************************************************************/
 
@@ -157,8 +157,12 @@ public with sharing class CEC_FulfilmentHelper {
 
 
 
-    /**
-    This method is used to insert records in FulfilmentEnclosure object based on Enclosure details selected on Fulfillment Object.
+    
+     /**
+    This method is used to insert records in FulfilmentEnclosure object based on Enclosure details selected on Fulfillment Object.( Comment as per CSC-5334 )
+    @param : fulfilmentList 
+    @return : Void
+    @Exception : Exception / DML Exception
     */
     public void insertFulfilmentEnclosure(List<cec_Fulfilment__c> fulfilmentList) {
         system.debug(' In insertfulfillmentEnclosure Method');
@@ -239,9 +243,11 @@ public with sharing class CEC_FulfilmentHelper {
 
     }
 
-
     /**
-    This method is used to upsert records in FulfillmentEnclosure object based on Enclosure details selected on Fulfillment Object.
+    This method is used to upsert records in FulfillmentEnclosure object based on Enclosure details selected on Fulfillment Object. ( Comment as per CSC-5334 )
+    @param : fulfilmentList, fulfilmentOldMap
+    @return : Void
+    @Exception : Exception/ DML Exception
     */
     public void upsertFulfilmentEnclosure(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap) {
         system.debug(' In upsertFulfilmentEnclosure Method');
@@ -319,8 +325,12 @@ public with sharing class CEC_FulfilmentHelper {
 
 
 
+    
     /**
-    This method is used to delete records in FulfillmentEnclosure object based on Enclosure details deleted on Fulfillment Object.
+    This method is used to delete records in FulfillmentEnclosure object based on Enclosure details deleted on Fulfillment Object.( Comment as per CSC-5334 )
+    @param : fulfilmentList , fulfilmentOldMap
+    @return : Void
+    @Exception : Exception/ DML Exception
     */
     public void deleteFulfilmentEnclosure(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap) {
         system.debug(' In deleteFulfilmentEnclosure Method');
@@ -372,8 +382,12 @@ public with sharing class CEC_FulfilmentHelper {
 
     }
 
+    
     /**
-    This method is used to convert Refund Value on Fulfilment Object  in words.
+    This method is used to convert Refund Value on Fulfilment Object  in words.( Comment as per CSC-5334 )
+    @param : fulfilmentList , fulfilmentOldMap
+    @return : Void
+    @Exception : Exception
     */
     public void convertRefundValueToWords(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap) {
         system.debug(' In convertRefundValueToWords Method');

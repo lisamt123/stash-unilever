@@ -8,12 +8,13 @@ String valueNull = '';
    }
    public void showPanelsDiv1(){
     code1= Apexpages.currentPage().getParameters().get('firstParams1');
-    system.debug('code1'+code1);
+    
     if(code1 != valueNull && code1 != valueNone){
     Map<string,WWP_Master_Table__c> masterTableValues= WWP_Master_Table__c.getAll();
+    if(masterTableValues.containsKey(code1)){
     if(masterTableValues.get(code1).OR_Tolerance__c != null)
     plantCode= masterTableValues.get(code1).OR_Tolerance__c;
-    showingPanel = true;}
+    showingPanel = true;}}
     else{
     showingPanel = false;}
     system.debug(showingPanel);

@@ -101,6 +101,10 @@ src/classes/BFM_ShipmentHandler.cls
 src/classes/BFM_ShipmentHandler.cls-meta.xml
 src/classes/BFM_ShipmentHandlerTest.cls
 src/classes/BFM_ShipmentHandlerTest.cls-meta.xml
+src/classes/BFM_ShipmentHandlerActions.cls
+src/classes/BFM_ShipmentHandlerActions.cls-meta.xml
+src/classes/BFM_ShipmentHandlerActions_Test.cls
+src/classes/BFM_ShipmentHandlerActions_Test.cls-meta.xml
 src/classes/BFM_ShipmentUpdate_CC.cls
 src/classes/BFM_ShipmentUpdate_CC.cls-meta.xml
 src/classes/BFM_ShipmentUpdate_CCTest.cls
@@ -162,13 +166,12 @@ src/email/BFM_Email_Templates/BFM_Request_Approval.email
 src/email/BFM_Email_Templates/BFM_Request_Approval.email-meta.xml
 src/email/BFM_Email_Templates/BFM_User_Creation_Carrier_Approval.email
 src/email/BFM_Email_Templates/BFM_User_Creation_Carrier_Approval.email-meta.xml
-src/flows/BFM_Create_Carrier_User_and_Share_Accounts-1.flow
-src/flows/BFM_Create_Carrier_User_and_Share_Accounts-2.flow
-src/flows/BFM_Create_Carrier_User_and_Share_Accounts-4.flow
-src/flows/BFM_Free_Freight_update_CTE-1.flow
-src/flows/BFM_Update_Shipment_in_CTe-1.flow
 src/groups/BFM_Governance.group
 src/homePageLayouts/BFM Home Page.homePageLayout
+src/labels/BFM.labels
+src/layouts/Account-BFM Unilever Account.layout
+src/layouts/Account-Carrier.layout
+src/layouts/Contact-Carrier Contact Layout.layout
 src/layouts/BFM_AccountAccessRequest__c-BFM Account Access Request Layout.layout
 src/layouts/BFM_Bank_Information__c-BFM Bank Information Layout.layout
 src/layouts/BFM_Company_Code__c-Company Code Layout.layout
@@ -180,7 +183,9 @@ src/layouts/BFM_SES__c-SES Layout.layout
 src/layouts/BFM_Shipment__c-Shipment Layout.layout
 src/layouts/BFM_Stage__c-Stage Layout.layout
 src/layouts/BFM_User_Creation_Request_Error__c-BFM User Creation Request Error Layout.layout
-src/layouts/BFM_UserCreationRequest__c-BFM User Creation Request Layout.layout
+src/layouts/BFM_UserCreationRequest__c-BFM Carrier User Request Layout.layout
+src/layouts/BFM_Payment_Method__c-Payment Method Layout.layout
+src/layouts/BFM_Withhold_Tax__c-Withhold Tax Layout.layout
 src/objects/BFM_AccountAccessRequest__c.object
 src/objects/BFM_Bank_Information__c.object
 src/objects/BFM_Company_Code__c.object
@@ -194,10 +199,38 @@ src/objects/BFM_Mulesoft_Endpoint__mdt.object
 src/objects/BFM_SES__c.object
 src/objects/BFM_Shipment__c.object
 src/objects/BFM_Stage__c.object
+src/objects/BFM_Payment_Method__c.object
+src/objects/BFM_Withhold_Tax__c.object
 src/objects/Account.object
 src/objects/Contact.object
 src/objects/BFM_User_Creation_Request_Error__c.object
 src/objects/BFM_UserCreationRequest__c.object
+src/objectTranslations/BFM_AccountAccessRequest__c-en_US.objectTranslation
+src/objectTranslations/BFM_AccountAccessRequest__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_Bank_Information__c-en_US.objectTranslation
+src/objectTranslations/BFM_Bank_Information__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_Delivery__c-en_US.objectTranslation
+src/objectTranslations/BFM_Delivery__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_Error_Log__c-en_US.objectTranslation
+src/objectTranslations/BFM_Error_Log__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_NF_e__c-en_US.objectTranslation
+src/objectTranslations/BFM_NF_e__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_Occurrence__c-en_US.objectTranslation
+src/objectTranslations/BFM_Occurrence__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_Payment_Method__c-en_US.objectTranslation
+src/objectTranslations/BFM_Payment_Method__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_SES__c-en_US.objectTranslation
+src/objectTranslations/BFM_SES__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_Shipment__c-en_US.objectTranslation
+src/objectTranslations/BFM_Shipment__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_Stage__c-en_US.objectTranslation
+src/objectTranslations/BFM_Stage__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_UserCreationRequest__c-en_US.objectTranslation
+src/objectTranslations/BFM_UserCreationRequest__c-pt_BR.objectTranslation
+src/objectTranslations/BFM_Withhold_Tax__c-en_US.objectTranslation
+src/objectTranslations/BFM_Withhold_Tax__c-pt_BR.objectTranslation
+src/objectTranslations/Account-en_US.objectTranslation
+src/objectTranslations/Account-pt_BR.objectTranslation
 src/pages/BFM_AccountMoreDetails.page
 src/pages/BFM_AccountMoreDetails.page-meta.xml
 src/pages/BFM_CommunitiesSelfReg_VF.page
@@ -239,11 +272,21 @@ src/permissionsets/BFM_Tax_Unilever.permissionset
 src/permissionsets/BFM_Unilever_Operational_User.permissionset
 src/permissionsets/BFM_Unilever_Tester.permissionset
 src/permissionsets/BFM_View_All_Data_User.permissionset
-src/profiles/BFM Internal User.profile
+src/permissionsets/BFM_Governance_Super_User_SalesforcePlatform.permissionset
+src/permissionsets/BFM_Governance_Super_User_Salesforce.permissionset
 src/profiles/BFM Partner Community User.profile
+src/profiles/Unilever - Force MultiApp Standard.profile
+src/profiles/Unilever - Salesforce MultiApp Standard.profile
 src/queues/BFM_User_Creation_Request_Approvers.queue
 src/quickActions/BFM_Shipment__c.Mark_6th_Flag.quickAction
-src/sites/BrazilFreightCollaborationTool.site
+src/reportTypes
+src/reportTypes/BFM_Shipment_Stage_Delivery_and_NFe.reportType
+src/reportTypes/BFM_OccurrenceSESNFe.reportType
+src/reports
+src/reports/BFM_Reports
+src/reports/BFM_Reports-meta.xml
+src/reports/BFM_Reports/BFM_CT_e_Issueing.report
+src/reports/BFM_Reports/BFM_CT_e_Issuing_Occurrence.report
 src/staticresources/BFM_Bootstrap.resource
 src/staticresources/BFM_Bootstrap.resource-meta.xml
 src/staticresources/BFM_Green.resource
@@ -270,7 +313,11 @@ src/tabs/BFM_Search_Shipment.tab
 src/tabs/BFM_Search_Shipment_Cte.tab
 src/tabs/BFM_Search_Occurrence.tab
 src/tabs/BFM_Stage__c.tab
+src/tabs/BFM_Email_Information__c.tab
 src/tabs/BFM_UserCreationRequest__c.tab
+src/tabs/BFM_Payment_Method__c.tab
+src/tabs/BFM_Withhold_Tax__c.tab
+src/translations/pt_BR.translation
 src/triggers/BFM_Occurrence.trigger
 src/triggers/BFM_Occurrence.trigger-meta.xml
 src/triggers/BFM_Shipment.trigger
@@ -279,6 +326,8 @@ src/triggers/BFM_UserCreationRequest.trigger
 src/triggers/BFM_UserCreationRequest.trigger-meta.xml
 src/triggers/BFM_NFEvalidation.trigger
 src/triggers/BFM_NFEvalidation.trigger-meta.xml
+src/sites/BrazilFreightCollaborationTool.site
+src/networks/BrazilFreightCollaborationTool.network
 src/workflows
 src/workflows/BFM_AccountAccessRequest__c.workflow
 src/workflows/BFM_Bank_Information__c.workflow

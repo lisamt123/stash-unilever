@@ -11,6 +11,16 @@
         <template>BEN_Email_Templates/BEN_Record_Rejection_email1</template>
     </alerts>
     <alerts>
+        <fullName>BEN_CategorydetailrejectedApprover</fullName>
+        <description>BEN CategorydetailrejectedApprover</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>BEN_Email_Templates/BEN_Record_Rejection_email1</template>
+    </alerts>
+    <alerts>
         <fullName>BEN_EMAIL_ALERT_TO_Editor_Deletion_REJECTED</fullName>
         <description>BEN EMAIL ALERT TO Editor - Deletion REJECTED</description>
         <protected>false</protected>
@@ -19,6 +29,16 @@
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>BEN_Email_Templates/BEN_GPLDelete_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>BEN_EmailToRecordCreatorApproved</fullName>
+        <description>BEN EmailToRecordCreatorApproved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>BEN_Email_Templates/BEN_RecordApprovedEmail</template>
     </alerts>
     <alerts>
         <fullName>BEN_Record_has_been_deleted</fullName>
@@ -63,6 +83,15 @@
         <template>BEN_Email_Templates/BEN_GPL_approval_for_deletion</template>
     </alerts>
     <fieldUpdates>
+        <fullName>BEN_Field_Update</fullName>
+        <field>Approval_Status__c</field>
+        <literalValue>In First Step</literalValue>
+        <name>BEN Field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>BEN_Field_Update_SecondStep</fullName>
         <description>BEN fieldupdate to secondstep</description>
         <field>Approval_Status__c</field>
@@ -83,6 +112,16 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>BEN_Is_Approver</fullName>
+        <field>BEN_Is_Approver__c</field>
+        <literalValue>0</literalValue>
+        <name>BEN Is Approver</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>BEN_Mark_for_Deletion_False</fullName>
         <field>bln_Mark_for_Deletion__c</field>
         <literalValue>0</literalValue>
@@ -91,6 +130,33 @@
         <operation>Literal</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>BEN_Overall_Score_Loss</fullName>
+        <field>pkl_Overall_score__c</field>
+        <literalValue>Loss</literalValue>
+        <name>BEN Overall Score Loss</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>BEN_Overall_Score_Parity</fullName>
+        <field>pkl_Overall_score__c</field>
+        <literalValue>Parity</literalValue>
+        <name>BEN Overall Score Parity</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>BEN_Overall_Score_Win</fullName>
+        <field>pkl_Overall_score__c</field>
+        <literalValue>Win</literalValue>
+        <name>BEN Overall Score Win</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>BEN_Record_Type_Approved</fullName>
@@ -176,15 +242,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>BEN_Update_Status_to_Deleted</fullName>
-        <field>pkl_Status__c</field>
-        <literalValue>Deleted</literalValue>
-        <name>BEN Update Status to Deleted</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>BEN_status_Approved</fullName>
         <description>status changed to approved</description>
         <field>pkl_Status__c</field>
@@ -229,6 +286,54 @@
         </criteriaItems>
         <description>To update new category detail record when cloned</description>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>BEN Category Detail Overall Score Loss</fullName>
+        <actions>
+            <name>BEN_Overall_Score_Loss</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>BEN_Category_Details__c.fml_Overall_Score__c</field>
+            <operation>equals</operation>
+            <value>Loss</value>
+        </criteriaItems>
+        <description>To update overall score value</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>BEN Category Detail Overall Score Parity</fullName>
+        <actions>
+            <name>BEN_Overall_Score_Parity</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>BEN_Category_Details__c.fml_Overall_Score__c</field>
+            <operation>equals</operation>
+            <value>Parity</value>
+        </criteriaItems>
+        <description>To update overall score value</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>BEN Category Detail Overall Score Win</fullName>
+        <actions>
+            <name>BEN_Overall_Score_Win</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>BEN_Category_Details__c.fml_Overall_Score__c</field>
+            <operation>equals</operation>
+            <value>win</value>
+        </criteriaItems>
+        <description>To update overall score value</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>BEN Category detail submission</fullName>
