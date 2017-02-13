@@ -901,7 +901,7 @@ This method updates form availability based on Category selection
             if (caseRecord.Case_Market_Tag__c == Label.TO_CaseIdentifier) {
                 query = 'select id, ArticleType, Title, KnowledgeArticleId from TO_Product_Information__kav where language = \'fr\' and publishStatus = \'Online\' and TO_Product_Code__c =: productUPC';
                 if(caseRecord.Country_Name__c != null && caseRecord.Country_Name__c != ''){
-                    query += ' WITH DATA CATEGORY Market__c AT '+caseRecord.Country_Name__c.replaceAll(' ','_')+'__c';                
+                    query += ' WITH DATA CATEGORY Market__c AT '+caseRecord.Country_Name__c.replace(' , ','_').replace(' ,','_').replace(', ','_').replace(',','_').replace(' ','_')+'__c';                
                 }
                 matchingTOProductArticlesList = Database.query(query);
                 if (matchingTOProductArticlesList != null && matchingTOProductArticlesList .size() > 0){
@@ -920,7 +920,7 @@ This method updates form availability based on Category selection
             } else {
                 query = 'select id, ArticleType, Title, KnowledgeArticleId from cec_Product_Information__kav where language = \'en_US\' and publishStatus = \'Online\' and Product_Code__c =: productUPC';
                 if(caseRecord.Country_Name__c != null && caseRecord.Country_Name__c != ''){
-                    query += ' WITH DATA CATEGORY Market__c AT '+caseRecord.Country_Name__c.replaceAll(' ','_')+'__c';                
+                    query += ' WITH DATA CATEGORY Market__c AT '+caseRecord.Country_Name__c.replace(' , ','_').replace(' ,','_').replace(', ','_').replace(',','_').replace(' ','_')+'__c';                
                 }
                 matchingProductArticlesList = Database.query(query);
                 if (matchingProductArticlesList != null && matchingProductArticlesList .size() > 0){
@@ -971,7 +971,7 @@ This method updates form availability based on Category selection
             }
             
             if(caseRecord.Country_Name__c != null && caseRecord.Country_Name__c != ''){
-                query += ' WITH DATA CATEGORY Market__c AT '+caseRecord.Country_Name__c.replaceAll(' ','_')+'__c';                
+                query += ' WITH DATA CATEGORY Market__c AT '+caseRecord.Country_Name__c.replace(' , ','_').replace(' ,','_').replace(', ','_').replace(',','_').replace(' ','_')+'__c';                
             }
             
             matchingReasonArticlesList = Database.query(query);

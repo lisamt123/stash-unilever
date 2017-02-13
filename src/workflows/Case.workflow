@@ -259,6 +259,16 @@
         <protected>false</protected>
     </fieldUpdates>
 	<fieldUpdates>
+        <fullName>CEC_Update_FCR</fullName>
+        <description>CEC Update FCR: To Update FCR to &apos;False&apos;</description>
+        <field>FCR__c</field>
+        <literalValue>0</literalValue>
+        <name>CEC Update FCR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+	<fieldUpdates>
         <fullName>CEC_Update_SMS_Mobile_Number</fullName>
         <field>SMS_Mobile_Number__c</field>
         <formula>Account.Mobile_Phone_No_Special_Char__c</formula>
@@ -391,7 +401,7 @@
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
-            <value>,Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan,Email Korea,Email Taiwan,Email Hong Kong</value>
+            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan,Email Korea,Email Taiwan,Email Hong Kong</value>
         </criteriaItems>
         <criteriaItems>
             <field>Case.Origin</field>
@@ -493,6 +503,37 @@
         </criteriaItems>
         <description>CEC: This workflow is used to update the case origin to social media</description>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+	<rules>
+        <fullName>CEC Update Case FCR%28On Case Status In-Progress%29</fullName>
+        <actions>
+            <name>CEC_Update_FCR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>CEC Update Case FCR - On Case Status In-Progress and Previous Status is Closed</description>
+        <formula>AND( ISPICKVAL( Status , &apos;In Progress&apos;),ISPICKVAL(  PRIORVALUE(Status ) , &apos;Closed&apos;),    OR(RecordType.DeveloperName = &apos;None&apos;,RecordType.DeveloperName = &apos;Spam&apos;)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Update Case FCR%28On Case Status Update%29</fullName>
+        <actions>
+            <name>CEC_Update_FCR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>On Hold,Review Needed,Pending with Courier,Awaiting Knowledge Response,Awaiting Information from Consumer,Awaiting Factory Response,Reopened</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>None,Spam</value>
+        </criteriaItems>
+        <description>CEC Update Case FCR - On Case Status set to &apos;Reopened&apos;, &apos;On Hold&apos;, &apos;Review Needed&apos;, &apos;Pending with Courier&apos;, &apos;Awiating Factory Response&apos;, &apos;Awaiting Knowledge Response&apos;, &apos;Awaiting Information from Consumer&apos;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>CEC_Email_AutoResponse</fullName>
