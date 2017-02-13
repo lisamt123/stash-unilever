@@ -6,19 +6,11 @@
         [disabled]{ cursor : not-allowed; }
     </style>
     <script>
-        var purId="{!VPM_PurchasingRequests__c.Id}";
-        var currentstatus="{!VPM_PurchasingRequests__c.VPM_Status__c}";
-        var ECC="{!VPM_PurchasingRequests__c.VPM_ECC__c}";
-        var VPMAlreadyRework ="{!JSENCODE($Label.VPM_AlreadyRework)}";
-        var VPMCannotSendRework ="{!JSENCODE($Label.VPM_CannotSendRework)}";
-        var VPMOkForRework ="{!JSENCODE($Label.VPM_OkForRework)}";
-        var VPMReworkCancel ="{!JSENCODE($Label.VPM_ReworkCancelled)}";
+        var purId="{!VPM_PurchasingRequests__c.Id}";var currentstatus="{!VPM_PurchasingRequests__c.VPM_Status__c}";var ECC="{!VPM_PurchasingRequests__c.VPM_ECC__c}";var VPMAlreadyRework ="{!JSENCODE($Label.VPM_AlreadyRework)}";
+        var VPMCannotSendRework ="{!JSENCODE($Label.VPM_CannotSendRework)}";var VPMOkForRework ="{!JSENCODE($Label.VPM_OkForRework)}";var VPMReworkCancel ="{!JSENCODE($Label.VPM_ReworkCancelled)}";
         var LastGroup = "{!VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c}"; 
-        var FinanceApproveRequired ="{!VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c}"; 
-        var ProcurementApproveRequired = "{!VPM_PurchasingRequests__c.VPM_ProcurementApprovalRequired__c}"; 
-        var CreatedBy="{!VPM_PurchasingRequests__c.CreatedById}"; 
-        var rework ="{!VPM_PurchasingRequests__c.VPM_Rework__c}";
-        var localhost = document.domain;
+        var FinanceApproveRequired ="{!VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c}"; var ProcurementApproveRequired = "{!VPM_PurchasingRequests__c.VPM_ProcurementApprovalRequired__c}"; var CreatedBy="{!VPM_PurchasingRequests__c.CreatedById}"; 
+        var rework ="{!VPM_PurchasingRequests__c.VPM_Rework__c}";var localhost = document.domain;
     </script>
        <apex:pageBlock tabStyle="VPM_PurchasingRequests__c">
 
