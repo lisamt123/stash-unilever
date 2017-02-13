@@ -7,6 +7,7 @@ public class VPM_SearchVendor1Test{
     public static final string eccFusion = 'Fusion';
     public static final string eccCORDILLERA = 'Cordillera'; 
     public static final string Test_Sirius = 'Test Sirius';
+	public static final string Test_Street = 'Test Street';
 	public static final string ERROR = 'error';
 	public static final string POST_CODE = '54132';
 	public static final string EXTEND = 'Extend' ;  
@@ -60,7 +61,7 @@ public class VPM_SearchVendor1Test{
         vendor.mdm_City__c = 'Andorra';
         vendor.mdm_Country__c ='DZ_Algeria';
         vendor.mdm_Name1__c =Test_Sirius;
-        vendor.mdm_Street__c = 'Test Street';
+        vendor.mdm_Street__c = Test_Street;
         vendor.mdm_Postcode__c = POST_CODE;
         vendor.mdm_Country__c = vpmCompanyCountry;
         vendor.mdm_ID__c = '1234';
@@ -99,7 +100,7 @@ public class VPM_SearchVendor1Test{
         pur.VPM_CompanyCode__c=companyCode.Id;
         //pur.VPM_CompanyCode__r.VPM_CompanyCode__c='PH01';
         //pur.VPM_CompanyCode__r.ECC__c='Sirius';
-        pur.VPM_Street1__c='Test Street';
+        pur.VPM_Street1__c=Test_Street;
         pur.VPM_CountryRequestingVendor__c='Philippines';
         pur.VPM_VendorPhone__c='1234567895';
         pur.VPM_Commodity__c=commodityCode.id;
@@ -134,7 +135,7 @@ public class VPM_SearchVendor1Test{
         vendor.mdm_City__c = 'Andorra';
         vendor.mdm_Country__c ='DZ_Algeria';
         vendor.mdm_Name1__c =Test_Sirius;
-        vendor.mdm_Street__c = 'Test Street';
+        vendor.mdm_Street__c = Test_Street;
         vendor.mdm_Postcode__c = POST_CODE;
         vendor.mdm_Country__c = vpmCompanyCountry;
         vendor.mdm_ID__c = '1234';
@@ -180,7 +181,7 @@ public class VPM_SearchVendor1Test{
         pur.VPM_PurchasingOrg__c = purcOrg.Id; 
         //pur.VPM_CompanyCode__r.VPM_CompanyCode__c='PH01';
         //pur.VPM_CompanyCode__r.ECC__c='Sirius';
-        pur.VPM_Street1__c='Test Street';
+        pur.VPM_Street1__c=Test_Street;
         pur.VPM_CountryRequestingVendor__c = vpmCompanyCountry;
         pur.VPM_VendorPhone__c='1234567895';
         pur.VPM_Commodity__c=commodityCode.id;
@@ -214,7 +215,7 @@ public class VPM_SearchVendor1Test{
         vendor.mdm_City__c = 'Andorra';
         vendor.mdm_Country__c ='DZ_Algeria';
         vendor.mdm_Name1__c =Test_Sirius;
-        vendor.mdm_Street__c = 'Test Street';
+        vendor.mdm_Street__c = Test_Street;
         vendor.mdm_Postcode__c = POST_CODE;
         vendor.mdm_Country__c = vpmCompanyCountry;
         vendor.mdm_ID__c = '1234';
@@ -260,7 +261,7 @@ public class VPM_SearchVendor1Test{
         pur.VPM_PurchasingOrg__c = purcOrg.Id; 
         //pur.VPM_CompanyCode__r.VPM_CompanyCode__c='PH01';
         //pur.VPM_CompanyCode__r.ECC__c='Sirius';
-        pur.VPM_Street1__c='Test Street';
+        pur.VPM_Street1__c=Test_Street;
         pur.VPM_CountryRequestingVendor__c = vpmCompanyCountry;
         pur.VPM_VendorPhone__c='1234567895';
         pur.VPM_Commodity__c=commodityCode.id;

@@ -7,29 +7,31 @@ public class VPM_MaintainGlobalVendorService_Test {
     public static final String VendorCode = '5001010';// MDM status
     public static final String TestData= 'Test';// MDM status
     public static final String TaxDataNumber= '2345';// MDM status
-  public static final string ECC_U2K2 = 'U2K2';
-  public static final string CITY_ANDORRA = 'Andorra';
-  public static final string COUNTRY_ALGERIA = 'DZ_Algeria';
-  public static final string TEST_SIRIUS = 'Test Sirius';
-  public static final string TEST_STREET = 'Test Street';
-  public static final string POST_CODE = '54132';
-  public static final string VENDOR_PHONE = '1234567895';
-  public static final string ERROR = 'Error';
-  public static final string COUNTRYREQ_ALGERIA = 'Algeria';
-  public static final string PH01 = 'PH01';
-  public static final string MBS_Marketing_Services = 'MBS--Marketing Services'; 
-  public static final string Ad_hoc_Research = 'Ad-hoc Research';
-  public static final string Ad_hoc_Qualitative = 'Ad-hoc Market Research - Qualitative';
-  public static final string CODE5702_UN01580115 = '5702 - UN01580115';
-  public static final string Market_Research = 'Market Research';
-  public static final string Test_User2 = 'Test User2';
-  public static final string Draft_Request = 'Draft Request';
-  public static final string ZGS1 = 'ZGS1';
-  public static final string YES = 'Yes';
-  public static final string RCT_Russian = 'RCT_Russian Customs Tax Vendor_G001';
-  public static final string GLOABL_3PM = '3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';  
-  
-  
+    public static final string ECC_U2K2 = 'U2K2';
+    public static final string CITY_ANDORRA = 'Andorra';
+    public static final string COUNTRY_ALGERIA = 'DZ_Algeria';
+    public static final string TEST_SIRIUS = 'Test Sirius';
+    public static final string TEST_STREET = 'Test Street';
+    public static final string POST_CODE = '54132';
+    public static final string VENDOR_PHONE = '1234567895';
+    public static final string ERROR = 'Error';
+    public static final string COUNTRYREQ_ALGERIA = 'Algeria';
+    public static final string PH01 = 'PH01';
+    public static final string MBS_Marketing_Services = 'MBS--Marketing Services'; 
+    public static final string Ad_hoc_Research = 'Ad-hoc Research';
+    public static final string Ad_hoc_Qualitative = 'Ad-hoc Market Research - Qualitative';
+    public static final string CODE5702_UN01580115 = '5702 - UN01580115';
+    public static final string Market_Research = 'Market Research';
+    public static final string Test_User2 = 'Test User2';
+    public static final string Draft_Request = 'Draft Request';
+    public static final string ZGS1 = 'ZGS1';
+    public static final string YES = 'Yes';
+    public static final string RCT_Russian = 'RCT_Russian Customs Tax Vendor_G001';
+    public static final string GLOABL_3PM = '3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';   
+    public static final string VPM_VendorType_CONST ='MBS_Marketing Business Services_G001'; 
+    public static final string VPM_MDM_ID ='1234';
+    
+    
      static testMethod void testCallout()
       {
           setup();
@@ -203,7 +205,7 @@ public class VPM_MaintainGlobalVendorService_Test {
     vendor.mdm_Street__c = TEST_STREET;
     vendor.mdm_Postcode__c = POST_CODE;
     vendor.mdm_Country__c = 'India';
-    vendor.mdm_ID__c = '1234';
+    vendor.mdm_ID__c = VPM_MDM_ID;
     vendor.mdm_vCodeFusion__c=VendorCode;
     vendor.mdm_vCodeCordillera__c=VendorCode;
     vendor.mdm_vCodeSirius__c=VendorCode;
@@ -280,7 +282,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         vendor.mdm_City__c = CITY_ANDORRA;
         vendor.mdm_Country__c =COUNTRY_ALGERIA;
         vendor.mdm_Name1__c =TEST_SIRIUS;
-        vendor.mdm_ID__c = '1234';
+        vendor.mdm_ID__c = VPM_MDM_ID;
         insert vendor;
         system.assert(vendor.Id!=null,ERROR);
         
@@ -292,7 +294,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         system.assert(companyCode.Id!=null,ERROR);
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
-        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_VendorType__c =VPM_VendorType_CONST;
         commodityCode.VPM_AuthorisationGroup__c =MBS_Marketing_Services;
         commodityCode.VPM_CommodityClass__c = Ad_hoc_Research; 
         commodityCode.Name=Ad_hoc_Qualitative;
@@ -394,7 +396,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         vendor.mdm_City__c = CITY_ANDORRA;
         vendor.mdm_Country__c =COUNTRY_ALGERIA;
         vendor.mdm_Name1__c =TEST_SIRIUS;
-        vendor.mdm_ID__c = '1234';
+        vendor.mdm_ID__c = VPM_MDM_ID;
         insert vendor;
         system.assert(vendor.Id!=null,ERROR);
         
@@ -406,7 +408,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         system.assert(companyCode.Id!=null,ERROR);
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
-        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_VendorType__c =VPM_VendorType_CONST;
         commodityCode.VPM_AuthorisationGroup__c =MBS_Marketing_Services;
         commodityCode.VPM_CommodityClass__c = Ad_hoc_Research; 
         commodityCode.Name=Ad_hoc_Qualitative;
@@ -476,7 +478,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         vendor.mdm_City__c = CITY_ANDORRA;
         vendor.mdm_Country__c =COUNTRY_ALGERIA;
         vendor.mdm_Name1__c =TEST_SIRIUS;
-        vendor.mdm_ID__c = '1234';
+        vendor.mdm_ID__c = VPM_MDM_ID;
         insert vendor;
         system.assert(vendor.Id!=null,ERROR);
         
@@ -488,7 +490,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         system.assert(companyCode.Id!=null,ERROR);
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
-        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_VendorType__c =VPM_VendorType_CONST;
         commodityCode.VPM_AuthorisationGroup__c =MBS_Marketing_Services;
         commodityCode.VPM_CommodityClass__c = Ad_hoc_Research; 
         commodityCode.Name=Ad_hoc_Qualitative;
@@ -562,7 +564,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         vendor.mdm_City__c = CITY_ANDORRA;
         vendor.mdm_Country__c =COUNTRY_ALGERIA;
         vendor.mdm_Name1__c =TEST_SIRIUS;
-        vendor.mdm_ID__c = '1234';
+        vendor.mdm_ID__c = VPM_MDM_ID;
         insert vendor;
         system.assert(vendor.Id!=null,ERROR);
         
@@ -574,7 +576,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         system.assert(companyCode.Id!=null,ERROR);
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
-        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_VendorType__c =VPM_VendorType_CONST;
         commodityCode.VPM_AuthorisationGroup__c =MBS_Marketing_Services;
         commodityCode.VPM_CommodityClass__c = Ad_hoc_Research; 
         commodityCode.Name=Ad_hoc_Qualitative;
@@ -639,7 +641,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         vendor.mdm_City__c = CITY_ANDORRA;
         vendor.mdm_Country__c =COUNTRY_ALGERIA;
         vendor.mdm_Name1__c =TEST_SIRIUS;
-        vendor.mdm_ID__c = '1234';
+        vendor.mdm_ID__c = VPM_MDM_ID;
         insert vendor;
         system.assert(vendor.Id!=null,ERROR);
         
@@ -651,7 +653,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         system.assert(companyCode.Id!=null,ERROR);
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
-        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_VendorType__c =VPM_VendorType_CONST;
         commodityCode.VPM_AuthorisationGroup__c =MBS_Marketing_Services;
         commodityCode.VPM_CommodityClass__c = Ad_hoc_Research; 
         commodityCode.Name=Ad_hoc_Qualitative;
@@ -716,7 +718,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         vendor.mdm_City__c = CITY_ANDORRA;
         vendor.mdm_Country__c =COUNTRY_ALGERIA;
         vendor.mdm_Name1__c =TEST_SIRIUS;
-        vendor.mdm_ID__c = '1234';
+        vendor.mdm_ID__c = VPM_MDM_ID;
         insert vendor;
         system.assert(vendor.Id!=null,ERROR);
         
@@ -728,7 +730,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         system.assert(companyCode.Id!=null,ERROR);
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
-        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_VendorType__c =VPM_VendorType_CONST;
         commodityCode.VPM_AuthorisationGroup__c =MBS_Marketing_Services;
         commodityCode.VPM_CommodityClass__c = Ad_hoc_Research; 
         commodityCode.Name=Ad_hoc_Qualitative;
@@ -795,7 +797,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         vendor.mdm_City__c = CITY_ANDORRA;
         vendor.mdm_Country__c =COUNTRY_ALGERIA;
         vendor.mdm_Name1__c =TEST_SIRIUS;
-        vendor.mdm_ID__c = '1234';
+        vendor.mdm_ID__c = VPM_MDM_ID;
         insert vendor;
         system.assert(vendor.Id!=null,ERROR);
         
@@ -807,7 +809,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         system.assert(companyCode.Id!=null,ERROR);
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
-        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_VendorType__c =VPM_VendorType_CONST;
         commodityCode.VPM_AuthorisationGroup__c =MBS_Marketing_Services;
         commodityCode.VPM_CommodityClass__c = Ad_hoc_Research; 
         commodityCode.Name=Ad_hoc_Qualitative;
@@ -873,7 +875,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         vendor.mdm_City__c = CITY_ANDORRA;
         vendor.mdm_Country__c =COUNTRY_ALGERIA;
         vendor.mdm_Name1__c =TEST_SIRIUS;
-        vendor.mdm_ID__c = '1234';
+        vendor.mdm_ID__c = VPM_MDM_ID;
         insert vendor;
         system.assert(vendor.Id!=null,ERROR);
         
@@ -885,7 +887,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         system.assert(companyCode.Id!=null,ERROR);
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
-        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_VendorType__c =VPM_VendorType_CONST;
         commodityCode.VPM_AuthorisationGroup__c =MBS_Marketing_Services;
         commodityCode.VPM_CommodityClass__c = Ad_hoc_Research; 
         commodityCode.Name=Ad_hoc_Qualitative;

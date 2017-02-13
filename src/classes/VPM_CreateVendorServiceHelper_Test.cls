@@ -53,7 +53,7 @@ public static final String VPM_AccountGroup_CONST ='ZGS1';
         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(400));
         VPM_CreateVendorServiceHelper.createVendor(vendorId);
         test.stopTest();
-        List<VPM_PurchasingRequests__c> pur1 = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
+       // List<VPM_PurchasingRequests__c> pur1 = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
         system.assertEquals(pur[0].id , vendorId);
     }
     
