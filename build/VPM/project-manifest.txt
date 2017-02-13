@@ -15,8 +15,6 @@ src/classes/VPM_RegionalMaintainVendor.cls
 src/classes/VPM_RegionalMaintainVendor.cls-meta.xml
 src/classes/VPM_RegionalMaintainVendorTest.cls
 src/classes/VPM_RegionalMaintainVendorTest.cls-meta.xml
-src/labels
-src/labels/VPM.labels
 src/objects
 src/objects/VPM_PurchasingRequests__c.object
 src/pages
