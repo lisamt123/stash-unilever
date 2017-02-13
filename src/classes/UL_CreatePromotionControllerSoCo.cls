@@ -143,7 +143,8 @@ public with sharing class UL_CreatePromotionControllerSoCo{
         if(relatedRecord.ACCL__Date_From__c != null)
             if(promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_ACCOUNT_SPECIFIC_PROMOTION || 
                promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_LTA || 
-               promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_ACCOUNT_PLAN){
+               promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_ACCOUNT_PLAN  || 
+                promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_CUSTOMEREVENT){
                 validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.ACCL__Sales_Org__c = :promotionTemplateSalesOrg AND UL_Is_Payer__c = TRUE AND
                                  UL_Customer_Hierarchy_Level__c = :UL_Utility.LEVEL8 AND account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :relatedRecord.ACCL__Date_From__c) AND account.Id IN (SELECT ACCL__Account__c FROM ACCL__Account_Manager__c WHERE ACCL__Account_Manager__c.ACCL__Active__c = true AND ACCL__Account_Manager__c.ACCL__User__c = :userinfo.getUserId() AND ACCL__Account_Manager__c.ACCL__Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Manager__c.ACCL__Valid_Thru__c>= :relatedRecord.ACCL__Date_From__c)ORDER BY account.Name Limit:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];          
             }
@@ -153,8 +154,7 @@ public with sharing class UL_CreatePromotionControllerSoCo{
                              UL_Customer_Hierarchy_Level__c IN:(Levels) AND account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :relatedRecord.ACCL__Date_From__c) AND account.Id IN (SELECT ACCL__Account__c FROM ACCL__Account_Manager__c WHERE ACCL__Account_Manager__c.ACCL__Active__c = true AND ACCL__Account_Manager__c.ACCL__User__c = :userinfo.getUserId() AND ACCL__Account_Manager__c.ACCL__Valid_From__c <= :relatedRecord.ACCL__Date_From__c AND ACCL__Account_Manager__c.ACCL__Valid_Thru__c>= :relatedRecord.ACCL__Date_From__c)ORDER BY account.Name Limit:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())];          
         }
         else if(promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_SPECIALHOLIDAY ||  
-                promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT || 
-                promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_CUSTOMEREVENT){
+                promotionTypeString == UL_Utility.PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT){
             validAccounts = [SELECT Id, Name, UL_Customer_Hierarchy_Level__c, ACCL__Sales_Org__c FROM account WHERE account.UL_Is_AllCustomer_Level1__c = true AND account.ACCL__Sales_Org__c = :promotionTemplateSalesOrg ];
         
         }
