@@ -1,4 +1,4 @@
-public class Core_LA_BaseController {
+public class CORE_LA_BaseController {
     
     @AuraEnabled
     public static boolean insertFeedback(String ParticipantId, String rating, String comment) {

@@ -88,8 +88,9 @@ public with sharing class CORE_LA_Controller{
     // related to event detail page
     @AuraEnabled
     public static List<CORE_LA_EventWrapperClass.Event> getEventDetail(String eventId){
+    Datetime todaysDate = System.now();
     String loggedInUserId= UserInfo.getUserId();
-     List<CORE_LA_Participant__c > eventData= [SELECT Event__c,Event__r.OwnerId,Event__r.Name,Event__r.No_of_Attendees__c,Event__r.Total_Rating__c,Event__r.Recurring__c,Event__r.Banner__c,Event__r.From_Date__c,Event__r.To_Date__c,Event__r.Location__c,Event__r.Prerequisite__c,Event__r.Agenda__c,Event__r.Details__c,Event__r.Recurring_Details__c,Event__r.Faclities__c,Id,Participant_Name__r.Name,Role__c,Status__c ,Rating__c,Participant_Name__c FROM CORE_LA_Participant__c WHERE Event__c=:eventId AND Participant_Name__c = :loggedInUserId];
+     List<CORE_LA_Participant__c > eventData= [SELECT Event__c,Event__r.Name,Event__r.No_of_Attendees__c,Event__r.Total_Rating__c,Event__r.Recurring__c,Event__r.Banner__c,Event__r.From_Date__c,Event__r.To_Date__c,Event__r.Location__c,Event__r.Prerequisite__c,Event__r.Agenda__c,Event__r.Details__c,Event__r.Recurring_Details__c,Event__r.Faclities__c,Id,Participant_Name__r.Name,Role__c,Status__c ,Rating__c,Participant_Name__c FROM CORE_LA_Participant__c WHERE Event__c=:eventId AND Participant_Name__c = :loggedInUserId];
       List<CORE_LA_EventWrapperClass.Event> eventList = new List<CORE_LA_EventWrapperClass.Event>();
        for (CORE_LA_Participant__c participant : eventData){
         CORE_LA_EventWrapperClass.Event eventDetails= new CORE_LA_EventWrapperClass.Event();
@@ -102,16 +103,26 @@ public with sharing class CORE_LA_Controller{
             eventDetails.fromDate=participant.Event__r.From_Date__c;
             eventDetails.toDate=participant.Event__r.To_Date__c;
             eventDetails.location=participant.Event__r.Location__c;
-            eventDetails.userRole=participant.Role__c;
+           // eventDetails.userRole=participant.Role__c;
             eventDetails.userRegistrationStatus=participant.Status__c;
-            eventDetails.eventRating=participant.Rating__c;
+            //eventDetails.eventRating=participant.Rating__c;
             eventDetails.prerequisite=participant.Event__r.Prerequisite__c;
             eventDetails.agenda=participant.Event__r.Agenda__c;
             eventDetails.details=participant.Event__r.Details__c;
             eventDetails.recurringDetails=participant.Event__r.Recurring_Details__c;
             eventDetails.facilities=participant.Event__r.Faclities__c;
-            Datetime endDate =participant.Event__r.To_Date__c;
-            eventDetails.totalRatingPerEvent= participant.Event__r.Total_Rating__c;
+            //Datetime endDate =participant.Event__r.To_Date__c;
+             Datetime endDate =participant.Event__r.To_Date__c;
+            //Checking if event should be designated  Completed.
+            if(todaysDate > endDate ){ 
+                //designated  Completed
+            eventDetails.userEventStatus=True;
+              }
+            else{
+                eventDetails.userEventStatus=False;
+            }
+            
+            //eventDetails.totalRatingPerEvent= participant.Event__r.Total_Rating__c;
                  eventList.add(eventDetails);
                  
                  List<Attachment> lstAttachment=[SELECT Id FROM Attachment where parentId=:eventId];
@@ -205,6 +216,27 @@ public with sharing class CORE_LA_Controller{
         }
     }
 
+// Related to Save Faculty Detail
+   @AuraEnabled
+   public static void saveTrainerDetail(String role,String EventId,String externalName,String externalTitle,String externalContact,String externalEmail,String externalProfile) {
+    
+    try{
+    CORE_LA_Participant__c  trainerDetail= new CORE_LA_Participant__c ();
+    System.debug('save data @@@@@@'+ trainerDetail.Event__c );
+    trainerDetail.Event__c=EventId;
+    trainerDetail.ExternalTrainerName__c=externalName;
+    trainerDetail.ExternalTrainerContact__c=externalContact;
+    trainerDetail.ExternalTrainerEmail__c=externalEmail;
+    trainerDetail.ExternalTrainerProfile__c=externalProfile;
+    trainerDetail.ExternalTrainerTitle__c=externalTitle;
+    trainerDetail.Role__c=role;
+                  
+    insert trainerDetail;
+    }
+    catch(exception e){}
+    //return trainerDetail;
+    
+}
     
     
 }

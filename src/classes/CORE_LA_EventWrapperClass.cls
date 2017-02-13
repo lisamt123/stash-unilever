@@ -61,6 +61,10 @@ public class CORE_LA_EventWrapperClass{
         public String contentDocumentIdPrerequisite; //Content Document Id prerequisite of the event
         @AuraEnabled
         public String agenda;           //agenda of the event   
+        @AuraEnabled
+        public List<CORE_LA_Agenda__c> agendaList;
+         @AuraEnabled
+        public List<CORE_LA_Participant__c> adminList;
         @AuraEnabled 
         public String contentDocumentIdAgenda; //Content Document Id agenda of the event
         //@AuraEnabled

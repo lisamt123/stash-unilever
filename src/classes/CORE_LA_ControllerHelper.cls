@@ -152,6 +152,7 @@ public with sharing class CORE_LA_ControllerHelper{
         System.debug('Soql Query==>'+soqlQuery);
         List<CORE_LA_Participant__c > EventParticipants =  database.query(soqlquery);
         List<CORE_LA_EventWrapperClass.Event> eventParticipantList = new List<CORE_LA_EventWrapperClass.Event>();
+        System.debug('testclass for loop#####'+EventParticipants);
         for (CORE_LA_Participant__c participant :EventParticipants){
             CORE_LA_EventWrapperClass.Event eventDetails= new CORE_LA_EventWrapperClass.Event();
             eventDetails.eventID=participant.Event__c;
