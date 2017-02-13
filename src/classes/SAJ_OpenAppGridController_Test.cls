@@ -9,40 +9,45 @@ private class SAJ_OpenAppGridController_Test {
         ////////////////////////////////
         ////////////////////////////////
         //
+        
+            String Status = 'IPIX Project';
+            String ClarityID = 'Test';
+            String Prefix = 'SAJ_';
+        
         Business_Solution__c BS1 = new Business_Solution__c(Name ='test app',
                                                             //function__c = fct.id,
-                                                             status__c = 'IPIX Project',
-                                                            Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_');  
+                                                             status__c = Status,
+                                                            Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix);  
      insert BS1;
         Business_Solution__c BS2 = new Business_Solution__c(Name ='test app',       
                                                             //function__c = fct.id,
                                                          Business_Value__c = 'High',
                                                          //Complexity__c ='High'
-                                                          status__c = 'IPIX Project',
-                                                          Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_'); 
+                                                          status__c = Status,
+                                                          Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix); 
       insert BS2;
         Business_Solution__c BS3 = new Business_Solution__c(Name ='test app',       
                                                             //function__c = fct.id,
                                                          Business_Value__c = 'High',
                                                          //Complexity__c ='Medium'
-                                                             status__c = 'IPIX Project',
-                                                            Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_');
+                                                             status__c = Status,
+                                                            Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix);
         insert BS3;
         Business_Solution__c BS4 = new Business_Solution__c(Name ='test app',      
                                                             //function__c = fct.id,
                                                          Business_Value__c = 'High',
                                                          //Complexity__c ='Low'
-                                                                status__c = 'IPIX Project',
-                                                                Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_');
+                                                                status__c = Status,
+                                                                Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix);
          insert BS4;
          //Business_Solution__c BS5 = new Business_Solution__c(Name ='test app',       function__c = fct.id,
          //                                                Business_Value__c = 'High',
          //                                                //Complexity__c ='Unknown'
-         //                                                       status__c = 'IPIX Project',);
+         //                                                       status__c = Status,);
          //insert BS5;
        
         ////////////////////////////////
@@ -54,7 +59,7 @@ private class SAJ_OpenAppGridController_Test {
          //                                    IPIX_Funded__c, Description__c, 
           //                                   Status__c, 
          //                                    Phase__c FROM Business_Solution__c WHERE 
-         //                                    Status__c IN ('Pre-Project','IPIX Project') 
+         //                                    Status__c IN ('Pre-Project',Status) 
          //                                    ORDER BY Name asc]){
 
         
@@ -74,11 +79,17 @@ private class SAJ_OpenAppGridController_Test {
         
            ////////////////////////////////
         ////////////////////////////////
+        
+            String Status = 'IPIX Project';
+            String ClarityID = 'Test';
+            String Prefix = 'SAJ_';
+        
+        
         Business_Solution__c BS6 = new Business_Solution__c(Name ='test app6', 
                                                             //function__c = fct.id,
-                                                             status__c = 'IPIX Project',
-                                                             Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_');  
+                                                             status__c = Status,
+                                                             Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix);  
         try
             {
             insert BS6;
@@ -91,25 +102,25 @@ private class SAJ_OpenAppGridController_Test {
                                                             //function__c = fct.id,
                                                          Business_Value__c = 'Medium',
                                                          //Complexity__c ='High'
-                                                          status__c = 'IPIX Project',
-                                                          Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_'); 
+                                                          status__c = Status,
+                                                          Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix); 
       insert BS7;
         Business_Solution__c BS8 = new Business_Solution__c(Name ='test app8',     
                                                             //function__c = fct.id,
                                                          Business_Value__c = 'Medium',
                                                          //Complexity__c ='Medium'
-                                                             status__c = 'IPIX Project',
-                                                             Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_');
+                                                             status__c = Status,
+                                                             Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix);
         insert BS8;
         Business_Solution__c BS9 = new Business_Solution__c(Name ='test app9',      
                                                             //function__c = fct.id,
                                                          Business_Value__c = 'Medium',
                                                          //Complexity__c ='Low'
-                                                                status__c = 'IPIX Project',
-                                                                Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_');
+                                                                status__c = Status,
+                                                                Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix);
          insert BS9;
        
         ////////////////////////////////
@@ -120,7 +131,7 @@ private class SAJ_OpenAppGridController_Test {
          //                                    IPIX_Funded__c, Description__c, 
           //                                   Status__c, 
          //                                    Phase__c FROM Business_Solution__c WHERE 
-         //                                    Status__c IN ('Pre-Project','IPIX Project') 
+         //                                    Status__c IN ('Pre-Project',Status) 
          //                                    ORDER BY Name asc]){
 
         
@@ -141,35 +152,41 @@ private class SAJ_OpenAppGridController_Test {
         
            ////////////////////////////////
         ////////////////////////////////
+        
+            String Status = 'IPIX Project';
+            String ClarityID = 'Test';
+            String Prefix = 'SAJ_';
+        
+        
         Business_Solution__c BS11 = new Business_Solution__c(Name ='test app11', 
                                                              //function__c = fct.id,
-                                                              status__c = 'IPIX Project',
-                                                              Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_');  
+                                                              status__c = Status,
+                                                              Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix);  
      insert BS11;
         Business_Solution__c BS12 = new Business_Solution__c(Name ='test app12',      
                                                              //function__c = fct.id,
                                                          Business_Value__c = 'Low',
                                                          //Complexity__c ='High'
-                                                          status__c = 'IPIX Project',
-                                                          Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_'); 
+                                                          status__c = Status,
+                                                          Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix); 
       insert BS12;
         Business_Solution__c BS13 = new Business_Solution__c(Name ='test app13',       
                                                              //function__c = fct.id,
                                                          Business_Value__c = 'Low',
                                                          //Complexity__c ='Medium'
-                                                             status__c = 'IPIX Project',
-                                                             Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_');
+                                                             status__c = Status,
+                                                             Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix);
         insert BS13;
         Business_Solution__c BS14 = new Business_Solution__c(Name ='test app14',      
                                                              //function__c = fct.id,
                                                          Business_Value__c = 'Low',
                                                          //Complexity__c ='Low'
-                                                                status__c = 'IPIX Project',
-                                                                Clarity_ID__c = 'Test',
-                                                                 Project_Dev_Prefix__c = 'SAJ_');
+                                                                status__c = Status,
+                                                                Clarity_ID__c = ClarityID,
+                                                                 Project_Dev_Prefix__c = Prefix);
          insert BS14;
        
         ////////////////////////////////
@@ -180,7 +197,7 @@ private class SAJ_OpenAppGridController_Test {
          //                                    IPIX_Funded__c, Description__c, 
           //                                   Status__c, 
          //                                    Phase__c FROM Business_Solution__c WHERE 
-         //                                    Status__c IN ('Pre-Project','IPIX Project') 
+         //                                    Status__c IN ('Pre-Project',Status) 
          //                                    ORDER BY Name asc]){
 
         

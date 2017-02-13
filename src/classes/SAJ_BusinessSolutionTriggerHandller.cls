@@ -15,12 +15,12 @@ Public with sharing class SAJ_BusinessSolutionTriggerHandller
             
             if(idSet.size()>0)
             {
-                List<Business_Solution__c> dcToUpdate = new List<Business_Solution__c>();
+                //List<Business_Solution__c> dcToUpdate = new List<Business_Solution__c>();
                 Map<Id, Business_Solution__c> cst = new Map<Id,Business_Solution__c>([Select Id, Open_Tasks__c, Completed_Tasks__c from Business_Solution__c where Id IN: idSet ]); 
                 if(cst != null && cst.size()>0)
                 {
-                    Integer count1 = 0;
-                    Integer count2 = 0;
+                    //Integer count1 = 0;
+                    //Integer count2 = 0;
                     for( Task tsk : newMap.values())
                     {
                         if(tsk.WhatId != null && cst.containsKey(tsk.WhatId)){
@@ -116,12 +116,12 @@ Public with sharing class SAJ_BusinessSolutionTriggerHandller
             }
             if(idSet.size()>0)
                 {
-                    List<Business_Solution__c> dcToUpdate = new List<Business_Solution__c>();
+                    //List<Business_Solution__c> dcToUpdate = new List<Business_Solution__c>();
                     Map<Id, Business_Solution__c> cst = new Map<Id,Business_Solution__c>([Select Id, Open_Tasks__c, Completed_Tasks__c from Business_Solution__c where Id IN: idSet ]); 
                     if(cst != null && cst.size()>0)
                     {
-                        Integer count1 = 0;
-                        Integer count2 = 0;
+                        //Integer count1 = 0;
+                        //Integer count2 = 0;
                         for( Task tsk : oldMap.values())
                         {
                             if(tsk.WhatId != null && cst.containsKey(tsk.WhatId))

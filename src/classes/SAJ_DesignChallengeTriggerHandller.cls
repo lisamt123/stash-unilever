@@ -15,12 +15,12 @@ Public with sharing class SAJ_DesignChallengeTriggerHandller
             
             if(idSet.size()>0)
             {
-                List<Design_Challenge__c> dcToUpdate = new List<Design_Challenge__c>();
+                //List<Design_Challenge__c> dcToUpdate = new List<Design_Challenge__c>();
                 Map<Id, Design_Challenge__c> cst = new Map<Id,Design_Challenge__c>([Select Id, Open_Tasks__c, Completed_Tasks__c from Design_Challenge__c where Id IN: idSet ]); 
                 if(cst != null && cst.size()>0)
                 {
-                    Integer count1 = 0;
-                    Integer count2 = 0;
+                    //Integer count1 = 0;
+                    //Integer count2 = 0;
                     for( Task tsk : newMap.values())
                     {
                         if(tsk.WhatId != null && cst.containsKey(tsk.WhatId)){
@@ -118,12 +118,12 @@ Public with sharing class SAJ_DesignChallengeTriggerHandller
             }
             if(idSet.size()>0)
                 {
-                    List<Design_Challenge__c> dcToUpdate = new List<Design_Challenge__c>();
+                    //List<Design_Challenge__c> dcToUpdate = new List<Design_Challenge__c>();
                     Map<Id, Design_Challenge__c> cst = new Map<Id,Design_Challenge__c>([Select Id, Open_Tasks__c, Completed_Tasks__c from Design_Challenge__c where Id IN: idSet ]); 
                     if(cst != null && cst.size()>0)
                     {
-                        Integer count1 = 0;
-                        Integer count2 = 0;
+                        //Integer count1 = 0;
+                        //Integer count2 = 0;
                         for( Task tsk : oldMap.values())
                         {
                             if(tsk.WhatId != null && cst.containsKey(tsk.WhatId))
