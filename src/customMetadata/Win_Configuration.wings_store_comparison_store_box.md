@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Win_Homepage_Title</label>
+    <label>wings_store_comparison_store_box</label>
     <values>
         <field>Win_ConfigurationType__c</field>
         <value xsi:type="xsd:string">Dictionary Item</value>

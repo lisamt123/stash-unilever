@@ -1,59 +1,9 @@
     <labels>
-        <fullName>Category</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Wings_Category</shortDescription>
-        <value>Category</value>
-    </labels>
-    <labels>
-        <fullName>Product</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Wings_Product</shortDescription>
-        <value>Product</value>
-    </labels>
-    <labels>
-        <fullName>Win_Homepage_Logout</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Wings_Homepage_Logout</shortDescription>
-        <value>Logout button label</value>
-    </labels>
-    <labels>
-        <fullName>Win_Homepage_Title</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Wings_Homepage_Title</shortDescription>
-        <value>Title for the homepage BOH!</value>
-    </labels>
-    <labels>
-        <fullName>Wings_Example</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Wings_Example</shortDescription>
-        <value>Example for Custom Label</value>
-    </labels>
-    <labels>
-        <fullName>Wings_Turkish_Example</fullName>
-        <language>tr</language>
-        <protected>false</protected>
-        <shortDescription>Wings_Turkish_Example</shortDescription>
-        <value>Türkçe ilk deneme</value>
-    </labels>
-    <labels>
-        <fullName>win_activation_header</fullName>
-        <categories>Activation Page</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>win_activation_header</shortDescription>
-        <value>Activation</value>
-    </labels>
-    <labels>
         <fullName>wings_actions_created</fullName>
         <categories>Actions Page</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>wings_actions_created</shortDescription>
+        <shortDescription>win_actions_created</shortDescription>
         <value>Created</value>
     </labels>
     <labels>
