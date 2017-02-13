@@ -22,7 +22,7 @@ src/tabs/Win_Region__c.tab
 src/tabs/Win_Retailer__c.tab
 src/tabs/Win_User_Region__c.tab
 src
-src/layouts/Account-Stores Layout.layout
+src/layouts/Account-Wings Stores Layout.layout
 src/layouts/Win_Brand_Configuration__c-Brand Configuration Layout.layout
 src/layouts/Win_Category__c-Category Layout.layout
 src/layouts/Win_Configuration__mdt-Win_Configuration Layout.layout
