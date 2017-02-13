@@ -29,7 +29,7 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
         //Integer reqNum = VPM_HttpUtil.generateRandomNumber();
         Map<String,String> mapUserDetails = VPM_HttpUtil.fetchUserDetails();
        // System.debug('-------Random Number------' + reqNum);
-        List<VPM_PurchasingRequests__c> vendorList =[SELECT id,VPM_MDMBPMRequestorName__c,VPM_VendorCodeLookup__r.mdm_ID__c,VPM_fieldUpdated__c,VPM_SAPBPMRequestID__c,VPM_MDMBPMOriginatoEmail__c,VPM_CompanyCode__r.ECC__c,VPM_IsNaturalPerson__c,VPM_TaxType__c, VPM_MDMBPMRequestorPhone__c, VPM_MDMBPMRequestorEmail__c, VPM_CountryRequestingVendor__c,
+        List<VPM_PurchasingRequests__c> vendorList =[SELECT id,VPM_MDMBPMRequestorName__c,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_VendorCodeLookup__r.mdm_Name1__c,VPM_VendorCodeLookup__c,RecordType.DeveloperName,VPM_VendorCodeLookup__r.mdm_ID__c,VPM_fieldUpdated__c,VPM_SAPBPMRequestID__c,VPM_MDMBPMOriginatoEmail__c,VPM_CompanyCode__r.ECC__c,VPM_IsNaturalPerson__c,VPM_TaxType__c, VPM_MDMBPMRequestorPhone__c, VPM_MDMBPMRequestorEmail__c, VPM_CountryRequestingVendor__c,
                                                      VPM_MDMBPMRequestorDepartment__c, VPM_MDMBPMRequestDate__c, VPM_VendorCode__c, VPM_Comments__c, VPM_ECCSystem__c, VPM_VendorName1__c, 
                                                      VPM_VendorName2__c,VPM_Name3__c,VPM_Name4__c, VPM_SearchTerm_1__c,VPM_SearchTerm2__c, VPM_Street1__c,VPM_Street2__c,VPM_Street3__c,
                                                      VPM_Street4__c,VPM_HouseNumber__c,VPM_HouseNumSupplement__c,VPM_ZIPPostCode__c, VPM_Regions__r.VPM_Code__c,VPM_Country__c,VPM_City__c,VPM_District__c, 
@@ -37,11 +37,15 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
                                                      VPM_TaxNumber3__c, VPM_TaxNumber4__c, VPM_VATRegistrationNumber__c, VPM_TaxNumberType__c, VPM_TaxJurisdictionCode__c, 
                                                      VPM_TaxNumAtResponsibleTaxAuthority__c, VPM_CreditInfoNumber__c, VPM_CorporateGrp__c, VPM_IntLocationNumber1__c, VPM_IntLocationNumber2__c, 
                                                      VPM_ExtManufacturer__c, VPM_CheckDigit__c from VPM_PurchasingRequests__c where id =: VendorRequestId LIMIT 1];
+        
+        
+       // mdm_Vendors__c vendor=[SELECT id,mdm_Name1__c from mdm_Vendors__c where id =: vendorList[0].VPM_VendorCodeLookup__c LIMIT 1];
+     
         System.debug('@@VendorRequestId@@'+VendorRequestId);
         System.debug('@@vendorList@@'+vendorList.size());
          String mainJsonObject = '{ ';
  //boolean eccVal = false;
- mainJsonObject =mainJsonObject+ '////#RequestID////# : '+vendorList.get(0).VPM_SAPBPMRequestID__c+', ';
+ mainJsonObject =mainJsonObject+ '////#RequestID////# : '+vendorList.get(0).VPM_SAPBPMRequestID__c+',';
  mainJsonObject =mainJsonObject+ '////#RequestDate////# : ////#'+ String.ValueOf(System.today())+STR_CONST_COMMA;
    if(mapUserDetails != null && mapUserDetails.containsKey('name')) {
                 if(String.isNotBlank(mapUserDetails.get('name'))) {
@@ -85,47 +89,105 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
     } 
   if(vendorList.get(0).VPM_VendorCodeLookup__r.mdm_ID__c != null)
   {
-     mainJsonObject =mainJsonObject+ '////#VendorCode////# :'+Integer.valueOf(vendorList.get(0).VPM_VendorCodeLookup__r.mdm_ID__c)+', ';
+     mainJsonObject =mainJsonObject+ '////#VendorCode////# :'+Integer.valueOf(vendorList.get(0).VPM_VendorCodeLookup__r.mdm_ID__c)+',';
      mainJsonObject =mainJsonObject+ '////#VendorNumber////# :////#'+vendorList.get(0).VPM_VendorCodeLookup__r.mdm_ID__c+STR_CONST_COMMA;
   }
-  if(vendorList.get(0).VPM_VendorName1__c != null)
+  
+  if(vendorList.get(0).VPM_VendorName1__c != null &&  vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_VendorName1__c'))
   {
-      mainJsonObject =mainJsonObject+ '////#VendorName////# :////#'+vendorList.get(0).VPM_VendorName1__c+STR_CONST_COMMA;
+      //mainJsonObject =mainJsonObject+ '////#VendorName////# :////#'+vendorList.get(0).VPM_VendorName1__c+STR_CONST_COMMA;
       mainJsonObject =mainJsonObject+ '////#Name1////# :////#'+vendorList.get(0).VPM_VendorName1__c+STR_CONST_COMMA;
   }
   if(vendorList.get(0).VPM_Comments__c != null){
     mainJsonObject =mainJsonObject+ '////#BpmComments////# :////#'+vendorList.get(0).VPM_Comments__c+STR_CONST_COMMA;
   }if(vendorList.get(0).VPM_VendorName2__c != null  && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_VendorName2__c')){
     mainJsonObject =mainJsonObject+ '////#Name2////# :////#'+vendorList.get(0).VPM_VendorName2__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_Name3__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Name3__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_VendorName2__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#Name2////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_Name3__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Name3__c')){
     mainJsonObject =mainJsonObject+ '////#Name3////# :////#'+vendorList.get(0).VPM_Name3__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_Name4__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Name4__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Name3__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#Name3////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_Name4__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Name4__c')){
     mainJsonObject =mainJsonObject+ '////#Name4////# :////#'+vendorList.get(0).VPM_Name4__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_SearchTerm_1__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_SearchTerm_1__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Name4__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#Name4////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_SearchTerm_1__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_SearchTerm_1__c')){
     mainJsonObject =mainJsonObject+ '////#SearchTerm1////# :////#'+vendorList.get(0).VPM_SearchTerm_1__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_SearchTerm2__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_SearchTerm2__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_SearchTerm_1__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#SearchTerm1////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_SearchTerm2__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_SearchTerm2__c')){
     mainJsonObject =mainJsonObject+ '////#SearchTerm2////# :////#'+vendorList.get(0).VPM_SearchTerm2__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_Street1__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street1__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_SearchTerm2__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#SearchTerm2////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_Street1__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street1__c')){
     mainJsonObject =mainJsonObject+ '////#Street////# :////#'+vendorList.get(0).VPM_Street1__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_Street2__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street2__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street1__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#Street////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_Street2__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street2__c')){
     mainJsonObject =mainJsonObject+ '////#Street2////# :////#'+vendorList.get(0).VPM_Street2__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_Street3__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street3__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street2__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#Street2////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_Street3__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street3__c')){
     mainJsonObject =mainJsonObject+ '////#Street3////# :////#'+vendorList.get(0).VPM_Street3__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_Street4__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street4__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street3__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#Street3////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_Street4__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street4__c')){
     mainJsonObject =mainJsonObject+ '////#Street4////# :////#'+vendorList.get(0).VPM_Street4__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_HouseNumber__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_HouseNumber__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Street4__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#Street4////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_HouseNumber__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_HouseNumber__c')){
     mainJsonObject =mainJsonObject+ '////#HouseNumber ////# :////#'+vendorList.get(0).VPM_HouseNumber__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_HouseNumSupplement__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_HouseNumSupplement__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_HouseNumber__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#HouseNumber////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_HouseNumSupplement__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_HouseNumSupplement__c')){
     mainJsonObject =mainJsonObject+ '////#HouseNumberSupplement ////# :////#'+vendorList.get(0).VPM_HouseNumSupplement__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_Regions__r.VPM_Code__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('vpm_regions__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_HouseNumSupplement__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#HouseNumberSupplement////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_Regions__r.VPM_Code__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('vpm_regions__c')){
     mainJsonObject =mainJsonObject+ '////#Region////# :////#'+vendorList.get(0).VPM_Regions__r.VPM_Code__c+STR_CONST_COMMA;
   //}if(vendorList.get(0).VPM_Country__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Country__c')){
     mainJsonObject =mainJsonObject+ '////#Country////# :////#'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_Country__c)+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_City__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_City__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('vpm_regions__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#Region////# :////#'+STR_CONST_COMMA;
+    mainJsonObject =mainJsonObject+ '////#Country////# :////#'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_Country__c)+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_City__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_City__c')){
     mainJsonObject =mainJsonObject+ '////#City////# :////#'+vendorList.get(0).VPM_City__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_District__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_District__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_City__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#City////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_District__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_District__c')){
     mainJsonObject =mainJsonObject+ '////#District////# :////#'+vendorList.get(0).VPM_District__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IsVendorSME__c'))
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_District__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#District////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IsVendorSME__c'))
     {
    if((vendorList.get(0).VPM_IsVendorSME__c==null || vendorList.get(0).VPM_IsVendorSME__c=='No'))
             {
@@ -149,45 +211,122 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
     }
   if(vendorList.get(0).VPM_POBox__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_POBox__c')){
     mainJsonObject =mainJsonObject+ '////#PoBox////# :////#'+vendorList.get(0).VPM_POBox__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_POBoxPostCode__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_POBoxPostCode__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_POBox__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#PoBox////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_POBoxPostCode__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_POBoxPostCode__c')){
     mainJsonObject =mainJsonObject+ '////#PoPostalCode////# :////#'+vendorList.get(0).VPM_POBoxPostCode__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_TaxNumber1__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber1__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_POBoxPostCode__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#PoPostalCode////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_TaxNumber1__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber1__c')){
     mainJsonObject =mainJsonObject+ '////#TaxNumber1////# :////#'+vendorList.get(0).VPM_TaxNumber1__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_TaxNumber2__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber2__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber1__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#TaxNumber1////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_TaxNumber2__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber2__c')){
     mainJsonObject =mainJsonObject+ '////#TaxNumber2////# :////#'+vendorList.get(0).VPM_TaxNumber2__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_TaxNumber3__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber3__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber2__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#TaxNumber2////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_TaxNumber3__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber3__c')){
     mainJsonObject =mainJsonObject+ '////#TaxNumber3////# :////#'+vendorList.get(0).VPM_TaxNumber3__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_TaxNumber4__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber4__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber3__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#TaxNumber3////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_TaxNumber4__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber4__c')){
     mainJsonObject =mainJsonObject+ '////#TaxNumber4////# :////#'+vendorList.get(0).VPM_TaxNumber4__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_VATRegistrationNumber__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_VATRegistrationNumber__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber4__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#TaxNumber4////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_VATRegistrationNumber__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_VATRegistrationNumber__c')){
     mainJsonObject =mainJsonObject+ '////#VatRegistrationNumber////# :////#'+vendorList.get(0).VPM_VATRegistrationNumber__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_IsNaturalPerson__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IsNaturalPerson__c')){
-    mainJsonObject =mainJsonObject+ '////#IsNaturalPerson////# :'+vendorList.get(0).VPM_IsNaturalPerson__c+', ';
-  }if(vendorList.get(0).VPM_TaxNumberType__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumberType__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_VATRegistrationNumber__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#VPM_VATRegistrationNumber__c////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_IsNaturalPerson__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IsNaturalPerson__c')){
+    mainJsonObject =mainJsonObject+ '////#IsNaturalPerson////# :'+vendorList.get(0).VPM_IsNaturalPerson__c+',';
+  }
+  if(vendorList.get(0).VPM_TaxNumberType__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumberType__c')){
     mainJsonObject =mainJsonObject+ '////#TaxNumberType////# :////#'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_TaxNumberType__c)+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_TaxJurisdictionCode__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxJurisdictionCode__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumberType__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#TaxNumberType////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_TaxJurisdictionCode__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxJurisdictionCode__c')){
     mainJsonObject =mainJsonObject+ '////#TaxJurisdictionCode////# :////#'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_TaxJurisdictionCode__c)+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_TaxNumAtResponsibleTaxAuthority__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumAtResponsibleTaxAuthority__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxJurisdictionCode__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#TaxJurisdictionCode////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_TaxNumAtResponsibleTaxAuthority__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumAtResponsibleTaxAuthority__c')){
     mainJsonObject =mainJsonObject+ '////#taxNumAtResponsibleTaxAuthority////# :////#'+vendorList.get(0).VPM_TaxNumAtResponsibleTaxAuthority__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_CreditInfoNumber__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_CreditInfoNumber__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumAtResponsibleTaxAuthority__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#taxNumAtResponsibleTaxAuthority////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_CreditInfoNumber__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_CreditInfoNumber__c')){
     mainJsonObject =mainJsonObject+ '////#CreditInformationNumber////# :////#'+vendorList.get(0).VPM_CreditInfoNumber__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_CorporateGrp__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_CorporateGrp__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_CreditInfoNumber__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#CreditInformationNumber////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_CorporateGrp__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_CorporateGrp__c')){
     mainJsonObject =mainJsonObject+ '////#corporateGrp////# :////#'+vendorList.get(0).VPM_CorporateGrp__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_IntLocationNumber1__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IntLocationNumber1__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_CorporateGrp__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#corporateGrp////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_IntLocationNumber1__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IntLocationNumber1__c')){
     mainJsonObject =mainJsonObject+ '////#InternationalLocationNumber1////# :////#'+vendorList.get(0).VPM_IntLocationNumber1__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_IntLocationNumber2__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IntLocationNumber2__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IntLocationNumber1__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#InternationalLocationNumber1////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_IntLocationNumber2__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IntLocationNumber2__c')){
     mainJsonObject =mainJsonObject+ '////#InternationalLocationNumber2////# :////#'+vendorList.get(0).VPM_IntLocationNumber2__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_CheckDigit__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_CheckDigit__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IntLocationNumber2__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#InternationalLocationNumber2////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_CheckDigit__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_CheckDigit__c')){
     mainJsonObject =mainJsonObject+ '////#CheckDigit////# :////#'+vendorList.get(0).VPM_CheckDigit__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_ExceptionType__c != null){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_CheckDigit__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#CheckDigit////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_ExceptionType__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_ExceptionType__c')){
      mainJsonObject =mainJsonObject+ '////#ExceptionType////# :////#'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_ExceptionType__c)+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_TaxType__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxType__c')){
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_ExceptionType__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#ExceptionType////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_TaxType__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxType__c')){
     mainJsonObject =mainJsonObject+ '////#TaxType////# :////#'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_TaxType__c)+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_ZIPPostcode__c!= null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_ZIPPostcode__c')){  
+  }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxType__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#TaxType////# :////#'+STR_CONST_COMMA;
+  }
+  if(vendorList.get(0).VPM_ZIPPostcode__c!= null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_ZIPPostcode__c')){  
     mainJsonObject =mainJsonObject+ '////#PostalCode////# :////#'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_ZIPPostcode__c)+STR_CONST_COMMA;
    //F String urlAttach = URL.getSalesforceBaseUrl().toExternalForm()+'/'+vendorList.get(0).Id;
    // mainJsonObject =mainJsonObject+ '////#AttachmentLink////# :////#'+urlAttach+STR_CONST_COMMA;
-    }
+    }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_ZIPPostcode__c'))
+  {
+    mainJsonObject =mainJsonObject+ '////#PostalCode////# :////#'+STR_CONST_COMMA;
+  }
+    
+     if(vendorList[0].RecordType.DeveloperName =='VPM_VendorReqExtend')
+     {
+      if(!(vendorList[0].VPM_VendorCodeLookup__r.mdm_ecc__c.containsIgnoreCase(vendorList[0].VPM_CompanyCode__r.ECC__c)))
+     {
     if(vendorList.get(0).VPM_CompanyCode__r.ECC__c == 'Fusion')
             {
                
@@ -216,16 +355,22 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
             }
             if(vendorList.get(0).VPM_CompanyCode__r.ECC__c == 'Cordillera')
             {
-               mainJsonObject =mainJsonObject+ '////#Cordillera////# :'+True+''; 
+               mainJsonObject =mainJsonObject+ '////#Cordillera////# :'+True+STR_CONST_BOOLEANCOMMA; 
             }
             else
             {
-               mainJsonObject =mainJsonObject+ '////#Cordillera////# :'+False;
+               mainJsonObject =mainJsonObject+ '////#Cordillera////# :'+False+STR_CONST_BOOLEANCOMMA;
             }
+            }
+            }
+            mainJsonObject =mainJsonObject+'////#AttachmentLink////# :////#'+ URL.getSalesforceBaseUrl().toExternalForm()+'/'+ vendorList[0].id+STR_CONST_COMMA;
+            mainJsonObject =mainJsonObject+ '////#VendorName////# :////#'+vendorList[0].VPM_VendorCodeLookup__r.mdm_Name1__c+'////#';
+            mainJsonObject  = mainJsonObject.trim();
+              mainJsonObject  =mainJsonObject.removeEnd(',');
     mainJsonObject =mainJsonObject+ '}'; 
     string addEscapeCharacter =  mainJsonObject.replace('\\','\\\\');
      addEscapeCharacter = addEscapeCharacter.replace('"','\\"');
-     addEscapeCharacter = addEscapeCharacter.replace('\n','\\r\\n');
+      addEscapeCharacter = addEscapeCharacter.replace('\n','\\r\\n');
      addEscapeCharacter = addEscapeCharacter.replace('\r','\\r\\n');
      addEscapeCharacter = addEscapeCharacter.replace('\r\n','\\r\\n');
      addEscapeCharacter = addEscapeCharacter.replace('////#','"');

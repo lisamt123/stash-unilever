@@ -75,7 +75,7 @@ public without sharing class VPM_RegionalMaintainVendor {
          if(Trigger.isUpdate){
             if(companyCode.ECC__c != vendorRequest.VPM_ECC__c && companyCode.ECC__c!=null)
             {
-                system.debug('companyCode.ECC__c '+companyCode.ECC__c);
+               // system.debug('companyCode.ECC__c '+companyCode.ECC__c);
                 vendorRequest.VPM_ECC__c = companyCode.ECC__c;
             }
            }
@@ -125,7 +125,7 @@ public without sharing class VPM_RegionalMaintainVendor {
     
     
     
-     System.debug('M: ' + M);
+    // System.debug('M: ' + M);
     for (String str : M.keyset()) 
     { 
     try 
@@ -140,8 +140,8 @@ public without sharing class VPM_RegionalMaintainVendor {
                 {
                     if(vendorReq.get(str) != OldVendorRequestValueList.get(vendorReq.id).get(str))
                     { 
-                         system.debug(str +' :'+vendorReq.get(str));
-                             system.debug(str +' :'+OldVendorRequestValueList.get(vendorReq.id).get(str));
+                        // system.debug(str +' :'+vendorReq.get(str));
+                         //    system.debug(str +' :'+OldVendorRequestValueList.get(vendorReq.id).get(str));
                         if( vendorReq.VPM_fieldUpdated__c != null){
                         if(!vendorReq.VPM_fieldUpdated__c.contains(str))
                         {
@@ -177,18 +177,29 @@ public without sharing class VPM_RegionalMaintainVendor {
     Description  :  Use to call maintain service when vendor cached or updated by MuleSoft.
     Return Type  : Contructor no return type.
     ********************************************************************/
- public static void InsertVendor(List<VPM_PurchasingRequests__c> venreqList , Map<Id,VPM_PurchasingRequests__c> vendReqOldMap)
+public static void InsertVendor(List<VPM_PurchasingRequests__c> venreqList , Map<Id,VPM_PurchasingRequests__c> vendReqOldMap)
     {
-    List<VPM_PurchasingRequests__c> venReqLst = new List<VPM_PurchasingRequests__c>();
+    List<VPM_PurchasingRequests__c> vendorReqList= new List<VPM_PurchasingRequests__c>();
     //List<String> vendorList = new List<String>();
    // List<mdm_Vendors__c> venList = new List<mdm_Vendors__c>();
    // MAP<String,String> vendorVenReqMap = new MAP<String,String>();
     //MAP<String,String> venReqVendorMap = new MAP<String,String>();
+    //Id devRecordTypeId = Schema.SObjectType.VPM_PurchasingRequests__c.getRecordTypeInfosByName().get('Vendor Request (Create)').getRecordTypeId();
+  
+     final string  STR_CONST_RECORDTYPEMAINTAIN='VPM_VendorReqMaintain';
+    final string  STR_CONST_RECORDTYPECREATE='VPM_VendorReqCreate';
+    final string  STR_CONST_RECORDTYPEEXTEND='VPM_VendorReqExtend';
+      recordType rec =[select id , Name from recordType where developerName=:STR_CONST_RECORDTYPECREATE AND sobjectType='VPM_PurchasingRequests__c' LIMIT 1];
     String whereCon ='';
+    ID RecordTypeVendor=null;
         for(VPM_PurchasingRequests__c venR : venreqList)
         {
+             
             if(venR.VPM_MDMInsertUpdateStatus__c != vendReqOldMap.get(venR.Id).VPM_MDMInsertUpdateStatus__c && venR.VPM_MDMInsertUpdateStatus__c == 'MDM Insert/Update Succeeded')
             {
+            RecordTypeVendor = venR.RecordTypeId;
+             if(venR.RecordTypeId==rec.Id)
+             {
                if(venR.VPM_ECC__c == 'Fusion')
                {
                 //vendorVenReqMap.put(venR.VPM_VendorCode__c,venR.Id);
@@ -207,6 +218,7 @@ public without sharing class VPM_RegionalMaintainVendor {
                   whereCon = 'where mdm_vCodeCordillera__c = \''+venR.VPM_VendorCode__c+'\' Limit 1';
                }
             }
+            }
         }
         
         if(!String.isBlank(whereCon))
@@ -215,27 +227,66 @@ public without sharing class VPM_RegionalMaintainVendor {
                 
                 for(mdm_Vendors__c vend : Database.query(soql))
                 {
+                 system.debug('fddffd');
                    for(VPM_PurchasingRequests__c venR : venreqList)
                     {
                         venR.VPM_VendorCodeLookup__c = vend.Id;
-                        venReqLst.add(venR);
+                        vendorReqList.add(venR);
                     }
                 
                 }
-            if(!venReqLst.isEmpty())
+          }
+            if(!vendorReqList.isEmpty() || (RecordTypeVendor!=rec.id && RecordTypeVendor!=null))
             {
+            //system.debug('ggggggg');
+               Boolean CallRegionalServiceFlag = False;
+               VPM_PurchasingRequests__c venReq = [SELECT Id,RecordTypeId,VPM_isVendorCached__c,VPM_Fieldtype__c ,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c from VPM_PurchasingRequests__c where id=:venreqList[0].Id limit 1];
+               RecordType RecType =[SELECT Id,DeveloperName from RecordType where id=:venreqList[0].RecordTypeId limit 1];
+               system.debug('ggggggg='+venReq+'rssfsg='+RecType);
+               if(RecType.DeveloperName == STR_CONST_RECORDTYPECREATE)
+               {
+                 CallRegionalServiceFlag = True;
+               }
+               else if(RecType.DeveloperName  == STR_CONST_RECORDTYPEEXTEND)
+               {
+                  if(venReq.VPM_VendorCodeLookup__r.mdm_ecc__c.containsIgnoreCase(venReq.VPM_CompanyCode__r.ECC__c))
+                  {
+                    if(venReq.VPM_Fieldtype__c == 'both')
+                    {
+                      CallRegionalServiceFlag = True;
+                    }
+                  }
+                  else
+                  {
+                     CallRegionalServiceFlag = True;
+                  }
+               }
+               else if(RecType.DeveloperName  == STR_CONST_RECORDTYPEMAINTAIN)
+               {
+                   if(venReq.VPM_Fieldtype__c == 'both')
+                    {
+                    system.debug('both');
+                      CallRegionalServiceFlag = True;
+                    }
+               }
                // update venReqLst;
-                //for(VPM_PurchasingRequests__c venR : venReqLst)
+                if(CallRegionalServiceFlag)
                 {
-                    VPM_RegionalMaintainVendor.callRegionalService(venReqLst[0].Id);
+                    VPM_RegionalMaintainVendor.callRegionalService(venReq.Id);
+                }
+                else
+                {
+                  for(VPM_PurchasingRequests__c venR : venreqList)
+                    {
+                      venR.VPM_Status__c =VPM_HttpUtil.successStatusReqCompleted; 
+                    }
                 }
                 
             }
                 
-        }
+        
     
     }
-
 
  /******************************************************************** 
     Created By   : Deepak
@@ -447,8 +498,6 @@ public static void updateChatterFeed(List<VPM_PurchasingRequests__c> updatedVend
 
  public static void createHTMLFormatedFeed(String feedToformat, String SectionName)
  {
-     feedToformat =feedToformat.replace('<','&lt;');
-     feedToformat =feedToformat.replace('>','&gt;');
     if(FormatedFeed.get(SectionName) == '')
     {
       FormatedFeed.put(SectionName,'<p><b>'+SectionName+'</b></p><ul><li>'+feedToformat+'</li>');

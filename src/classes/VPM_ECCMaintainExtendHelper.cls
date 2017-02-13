@@ -44,6 +44,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     string Dunning=',';
     string valueToMatch ='';
     Boolean panNumberCheck = false;
+    String recordTypeName='';
     
     VPM_PurchasingRequests__c vendorReuest;
 
@@ -83,7 +84,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     vendorReuest.VPM_fieldUpdated__c =  vendorReuest.VPM_fieldUpdated__c+'VPM_ReconciliationAccount__c,VPM_CashManagementGroup__c,';
     }
     recordType rec = [select Name, id from recordType where id=: vendorReuest.RecordTypeId limit 1];
-    
+    recordTypeName = rec.Name;
     
          valueToMatch =vendorReuest.VPM_fieldUpdated__c;
          vendorReuest.VPM_fieldUpdated__c =  vendorReuest.VPM_fieldUpdated__c+'VPM_OrderingEmailAddress__c'+'VPM_SRVBasedVendorID__c'+'VPM_GRbasedIV__c'+'VPM_AutomaticPurchaseOrderGeneration__c';
@@ -229,7 +230,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     public string formatFieldToJSONProperty(VPM_listOfRegionalandGlobalField__c field)
     {
         string JSONElement='';
-        recordType rec = [select Name, id from recordType where id=: vendorReuest.RecordTypeId limit 1];
+        
         // Ajya Rawat : Condition to check field type and send boolean as a boolean in JSON string.
         if(field.VPM_fieldDatatype__c == STR_CONST_boolean)
         {
@@ -261,11 +262,11 @@ public with sharing class VPM_ECCMaintainExtendHelper {
             JSONElement = '////#'+field.VPM_JSONFieldName__c+STR_CONST_COLON+vendorReuest.get(field.VPM_ApiName__c)+'////#,'; 
             }
             }
-            else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c)&& !rec.Name.containsIgnoreCase('Create'))
+            else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c)&& !recordTypeName.containsIgnoreCase('Create'))
             {
              JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : ////#////#,';
             }
-             else if(!rec.Name.containsIgnoreCase('Create'))
+             else if(!recordTypeName.containsIgnoreCase('Create'))
              {
               JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : null,';
               }
@@ -277,11 +278,11 @@ public with sharing class VPM_ECCMaintainExtendHelper {
         string finalStringValue =String.valueOf(vendorReuest.get(field.VPM_ApiName__c)) ==null?'':String.valueOf(vendorReuest.get(field.VPM_ApiName__c));
             JSONElement = '////#'+field.VPM_JSONFieldName__c+STR_CONST_COLON+VPM_HttpUtil.valueBeforeUnderscore(finalStringValue)+'////#,';   
             }
-             else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c) && !rec.Name.containsIgnoreCase('Create'))
+             else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c) && !recordTypeName.containsIgnoreCase('Create'))
              {
                 JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : ////#////#,';
              }
-              else if(!rec.Name.containsIgnoreCase('Create'))
+              else if(!recordTypeName.containsIgnoreCase('Create'))
               {
               JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : null,';
               }
@@ -304,11 +305,11 @@ public with sharing class VPM_ECCMaintainExtendHelper {
              
             JSONElement = '////#'+field.VPM_JSONFieldName__c+STR_CONST_COLON+paymentMeth.remove(' ') +'////#,';    
             }
-             else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c)&& !rec.Name.containsIgnoreCase('Create'))
+             else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c)&& !recordTypeName.containsIgnoreCase('Create'))
              {
                 JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : ////#////#,';
             }
-             else if( !rec.Name.containsIgnoreCase('Create'))
+             else if( !recordTypeName.containsIgnoreCase('Create'))
              {
               JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : null,';
               }
@@ -320,11 +321,11 @@ public with sharing class VPM_ECCMaintainExtendHelper {
                {
             JSONElement = '////#'+field.VPM_JSONFieldName__c+STR_CONST_COLON+formatDate(String.valueOf(vendorReuest.get(field.VPM_ApiName__c)))+'////#,'; 
                 }
-             else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c)&& !rec.Name.containsIgnoreCase('Create'))
+             else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c)&& !recordTypeName.containsIgnoreCase('Create'))
                 {
                      JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : ////#////#,';
                 }
-                else if(!rec.Name.containsIgnoreCase('Create'))
+                else if(!recordTypeName.containsIgnoreCase('Create'))
                 {
                  JSONElement = '////#'+field.VPM_JSONFieldName__c+'////# : null,';
                 }
