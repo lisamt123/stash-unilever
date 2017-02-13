@@ -1,0 +1,1196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>CCF Request Application</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fieldSets>
+        <fullName>Incoterms</fullName>
+        <description>For Incoterm related</description>
+        <displayedFields>
+            <field>Plant__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Incoterm_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Incoterms</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Line_Item_Summary_Column</fullName>
+        <description>Form</description>
+        <label>Line Item Summary Column</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Pricing_Conditions</fullName>
+        <description>Pricing Conditions</description>
+        <displayedFields>
+            <field>Incoterm_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Unit_Price_UOM__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Unit_Price_Scale_Range__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Unit_Price_Begin_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Unit_Price_Expiration_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Pricing_Conditions1__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Pricing_Conditions2__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Pricing_Conditions3__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Pricing_Conditions4__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Pricing_Conditions5__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Pricing_Conditions6__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Pricing Conditions</label>
+    </fieldSets>
+    <fields>
+        <fullName>Assigned_Collaborators__c</fullName>
+        <externalId>false</externalId>
+        <label>Assigned Collaborators</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Assigned_User1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Assigned User1</label>
+        <lookupFilter>
+            <active>false</active>
+            <filterItems>
+                <field>User.Country</field>
+                <operation>equals</operation>
+                <valueField>$Source.Country__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Line_Itemsuser1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_User2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Assigned User2</label>
+        <lookupFilter>
+            <active>false</active>
+            <filterItems>
+                <field>$Source.Country__c</field>
+                <operation>equals</operation>
+                <valueField>User.Country</valueField>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Line_Itemsuser2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_User3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Assigned User3</label>
+        <lookupFilter>
+            <active>false</active>
+            <filterItems>
+                <field>$Source.Country__c</field>
+                <operation>equals</operation>
+                <valueField>User.Country</valueField>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Business_System__c</fullName>
+        <externalId>false</externalId>
+        <label>Business System</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Sirius</fullName>
+                    <default>false</default>
+                    <label>Sirius</label>
+                </value>
+                <value>
+                    <fullName>U2K2</fullName>
+                    <default>false</default>
+                    <label>U2K2</label>
+                </value>
+                <value>
+                    <fullName>Fusion</fullName>
+                    <default>false</default>
+                    <label>Fusion</label>
+                </value>
+                <value>
+                    <fullName>Cordillera</fullName>
+                    <default>false</default>
+                    <label>Cordillera</label>
+                </value>
+                <value>
+                    <fullName>Sourcing (Local)</fullName>
+                    <default>false</default>
+                    <label>Sourcing (Local)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CCF_Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CCF Request</label>
+        <referenceTo>CCF_Request_Header__c</referenceTo>
+        <relationshipLabel>Line Items</relationshipLabel>
+        <relationshipName>CCF_Request_Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Collaborator_Assignment_date__c</fullName>
+        <externalId>false</externalId>
+        <label>Collaborator Assignment date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Company_Name_L__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Company Name</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.SAP_System__c</field>
+                <operation>equals</operation>
+                <valueField>Static_Data__c.Business_System__c</valueField>
+            </filterItems>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Company</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Company Name)</relationshipLabel>
+        <relationshipName>Line_Items00DU</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Country__c</fullName>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>India</fullName>
+                    <default>false</default>
+                    <label>India</label>
+                </value>
+                <value>
+                    <fullName>United States</fullName>
+                    <default>false</default>
+                    <label>United States</label>
+                </value>
+                <value>
+                    <fullName>United Kingdom</fullName>
+                    <default>false</default>
+                    <label>United Kingdom</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Delivery_Lead_Time_Days__c</fullName>
+        <externalId>false</externalId>
+        <label>Delivery Lead Time (Days)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Incoterm_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Incoterm Name</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Static_Data__c.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Incoterm</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Incoterm Name)</relationshipLabel>
+        <relationshipName>Line_Items7</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Item_Type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Material: Regular RM/PM Purchases
+Material Unknown: Material Group Contracts
+Subcontracting: Toll Manufacturing Contracts
+Consignment: Currently Inactive – Consignment Contracts</inlineHelpText>
+        <label>Item Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Material</fullName>
+                    <default>false</default>
+                    <label>Material</label>
+                </value>
+                <value>
+                    <fullName>Material Unknown</fullName>
+                    <default>false</default>
+                    <label>Material Unknown</label>
+                </value>
+                <value>
+                    <fullName>Consignment</fullName>
+                    <default>false</default>
+                    <label>Consignment</label>
+                </value>
+                <value>
+                    <fullName>Subcontracting</fullName>
+                    <default>false</default>
+                    <label>Subcontracting</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Line_Item_Request_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Line Item Request Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Add</fullName>
+                    <default>false</default>
+                    <label>Add</label>
+                </value>
+                <value>
+                    <fullName>Delete</fullName>
+                    <default>false</default>
+                    <label>Delete</label>
+                </value>
+                <value>
+                    <fullName>Update</fullName>
+                    <default>false</default>
+                    <label>Update</label>
+                </value>
+                <value>
+                    <fullName>No Change</fullName>
+                    <default>false</default>
+                    <label>No Change</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Line_Item_Selected__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Line Item Selected</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MOQ_c__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This should be in the same unit as the contracted quantity.</inlineHelpText>
+        <label>MOQ</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Material_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Material Group</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Material_Group</value>
+            </filterItems>
+            <filterItems>
+                <field>$Source.SAP_System__c</field>
+                <operation>equals</operation>
+                <valueField>Static_Data__c.Business_System__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Material Group)</relationshipLabel>
+        <relationshipName>Line_Items6</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Material_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Material ID</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Material_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Material Name</label>
+        <referenceTo>Material__c</referenceTo>
+        <relationshipLabel>Line Items</relationshipLabel>
+        <relationshipName>Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Material_Validation_message__c</fullName>
+        <externalId>false</externalId>
+        <label>Material Validation message</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>NIU__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Not In Use</inlineHelpText>
+        <label>NIU</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Terms__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Payment Terms</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Payment_Term</value>
+            </filterItems>
+            <filterItems>
+                <field>$Source.SAP_System__c</field>
+                <operation>equals</operation>
+                <valueField>Static_Data__c.Business_System__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Payment Terms)</relationshipLabel>
+        <relationshipName>Line_Items8</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Plant__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Plant</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Plant</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Plant)</relationshipLabel>
+        <relationshipName>Line_Items9</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Portfolio_instruction__c</fullName>
+        <externalId>false</externalId>
+        <label>Portfolio instruction</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Conditions1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Pricing Conditions1</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Pricing_Condtion</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Pricing Conditions1)</relationshipLabel>
+        <relationshipName>Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Conditions2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Pricing Conditions2</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Pricing_Condtion</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Pricing Conditions2)</relationshipLabel>
+        <relationshipName>Line_Items1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Conditions3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Pricing Conditions3</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Pricing_Condtion</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Pricing Conditions3)</relationshipLabel>
+        <relationshipName>Line_Items2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Conditions4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Pricing Conditions4</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.SAP_System__c</field>
+                <operation>equals</operation>
+                <valueField>Static_Data__c.Business_System__c</valueField>
+            </filterItems>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Pricing_Condtion</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Pricing Conditions4)</relationshipLabel>
+        <relationshipName>Line_Items3</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Conditions5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Pricing Conditions5</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.SAP_System__c</field>
+                <operation>equals</operation>
+                <valueField>Static_Data__c.Business_System__c</valueField>
+            </filterItems>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Pricing_Condtion</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Pricing Conditions5)</relationshipLabel>
+        <relationshipName>Line_Items4</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Conditions6__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Pricing Conditions6</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.SAP_System__c</field>
+                <operation>equals</operation>
+                <valueField>Static_Data__c.Business_System__c</valueField>
+            </filterItems>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Pricing_Condtion</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Pricing Conditions6)</relationshipLabel>
+        <relationshipName>Line_Items5</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Product_Business_System_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Business System ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Purchasing_Organisation__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Purchasing Organisation</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Static_Data__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Purchase_Organisation</value>
+            </filterItems>
+            <filterItems>
+                <field>$Source.SAP_System__c</field>
+                <operation>equals</operation>
+                <valueField>Static_Data__c.Business_System__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Static_Data__c</referenceTo>
+        <relationshipLabel>Line Items (Purchasing Organisation)</relationshipLabel>
+        <relationshipName>Line_Items00Bs</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Quantity_Unit_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity Unit Description</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quantity_Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity Unit</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAP_System__c</fullName>
+        <externalId>false</externalId>
+        <label>SAP System</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Business_System</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open</fullName>
+                    <default>false</default>
+                    <label>Open</label>
+                </value>
+                <value>
+                    <fullName>Assigned</fullName>
+                    <default>false</default>
+                    <label>Assigned</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+                <value>
+                    <fullName>Submitted to Buyers</fullName>
+                    <default>false</default>
+                    <label>Submitted to Buyers</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Supplier_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Supplier Name</label>
+        <referenceTo>CCF_Request_Supplier__c</referenceTo>
+        <relationshipName>Line_Items</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Supplier_Validation_Message__c</fullName>
+        <externalId>false</externalId>
+        <label>Supplier Validation Message</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Trade_Name__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Can be entered either as trade name or global specification number for ease of communication with suppliers.
+Max Length: 25 characters</inlineHelpText>
+        <label>Trade Name</label>
+        <length>25</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_Price_Begin_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Price Begin Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Unit_Price_Expiration_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Price Expiration Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Unit_Price_Scale_Range__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the scale range as per the below example. 
+example &apos;1/ 250; 100 / 240&apos;. means FROM quantity 1 the price is 250 and FROM quantity 100 the price is 240.</inlineHelpText>
+        <label>Unit Price Scale Range</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_Price_UOM__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Price UOM</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Validation_message__c</fullName>
+        <externalId>false</externalId>
+        <label>Validation message</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>CCF Line Item</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CCF_Request__c</columns>
+        <columns>Item_Type__c</columns>
+        <columns>Material_Name__c</columns>
+        <columns>Material_Group__c</columns>
+        <columns>Plant__c</columns>
+        <columns>Supplier_Name__c</columns>
+        <columns>Quantity__c</columns>
+        <columns>Quantity_Unit__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Line Item No</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Line Items</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>CCF_Request__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Item_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Material_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Material_Group__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Supplier_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Plant__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Quantity__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Quantity_Unit__c</customTabListAdditionalFields>
+        <listViewButtons>Mass_Update</listViewButtons>
+        <listViewButtons>crmc_Mass_Update</listViewButtons>
+        <searchFilterFields>Material_Name__c</searchFilterFields>
+        <searchFilterFields>Delivery_Lead_Time_Days__c</searchFilterFields>
+        <searchFilterFields>CCF_Request__c</searchFilterFields>
+        <searchFilterFields>Purchasing_Organisation__c</searchFilterFields>
+        <searchFilterFields>Supplier_Name__c</searchFilterFields>
+        <searchFilterFields>Material_Group__c</searchFilterFields>
+        <searchFilterFields>Incoterm_Name__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <sharingReasons>
+        <fullName>Access_items_with_assidned_Users__c</fullName>
+        <label>Access items with assidned Users</label>
+    </sharingReasons>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Assign_Collaborator</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Assign Collaborator</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/CCF_AssignCollaborator?ids={!CCF_Request_Header__c.Id}
+
+
+//var url2 = &apos;/apex/CCF_AssignCollaborator?ids={!CCF_Request_Header__c.Id}&apos;; 
+//window.open(url2, &quot;Assign Collaborators&quot;, &quot;scrollbars=1,width=1000, height=700&quot;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Download</fullName>
+        <availability>online</availability>
+        <description>This button is used to download the line item based on the header.</description>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Download Line Item</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&apos;/soap/ajax/27.0/connection.js&apos;)} 
+window.location=(&quot;_blank&quot;,&quot;/apex/CCFRHLineItemDownload?id={!CCF_Request_Header__c.Id}&quot;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Import_Line_Item</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Import Line Item</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/CCF_CreateLineItemsDetail?headerRecordId={!CCF_Request_Header__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Mass_Update</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Mass Edit</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/apex.js&quot;)} 
+
+var records = {!GETRECORDIDS($ObjectType.CCF_Line_Item_Request__c)}; 
+var strIDs=&apos;&apos;; 
+if (records[0] == null) 
+{ 
+alert(&apos;Please select a record&apos;); 
+} 
+else 
+{ 
+for (var n=0; n&lt;records.length; n++) 
+{ 
+if(strIDs == &apos;&apos;) 
+strIDs = records[n]; 
+else 
+strIDs = strIDs + &quot;,&quot; + records[n] ; 
+}
+window.location.href = &apos;/apex/CCF_MassEditLineItem?selectedRecords=&apos;+strIDs+&apos;&amp;retURL=&apos;+ window.location.href;
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Upload</fullName>
+        <availability>online</availability>
+        <description>This button is used to upload the line item with respective to the header.</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Upload Line Item</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/CCFRequestLineItemUpdateFromCSV?id={!CCF_Request_Header__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Upload_CSV</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Upload CSV</masterLabel>
+        <openType>newWindow</openType>
+        <page>CCFLineItemUpload</page>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+    </webLinks>
+    <webLinks>
+        <fullName>crmc_Mass_Update</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Update Similar Data</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/apex.js&quot;)} 
+
+var records = {!GETRECORDIDS($ObjectType.CCF_Line_Item_Request__c)}; 
+var strIDs=&apos;&apos;; 
+if (records[0] == null) 
+{ 
+alert(&apos;Please select a record&apos;); 
+} 
+else 
+{ 
+for (var n=0; n&lt;records.length; n++) 
+{ 
+if(strIDs == &apos;&apos;) 
+strIDs = records[n]; 
+else 
+strIDs = strIDs + &quot;,&quot; + records[n] ; 
+} 
+window.location.href = &apos;/apex/CCF_MassUpdateLineItem?selectedRecords=&apos;+strIDs+&apos;&amp;retURL=&apos;+ window.location.href; 
+}</url>
+    </webLinks>
+</CustomObject>
