@@ -97,7 +97,7 @@ with Sharing public class VPM_GoldenDataController2 {
     public Boolean isCreate{get;set;}   
     public boolean isMaintainRecord{get;set;} 
     public static final string VENDOR_COUNTRY = 'BR_Brazil';
-    public static string PIVendorType = '';
+    public static string PIVendorType ;
     public  List<SelectOption> purchasingOrg{get;set;}
     public string vendorPurchasingOrg{get;set;}
     public  List<SelectOption> CashManagementGrp{get;set;}
@@ -270,7 +270,7 @@ with Sharing public class VPM_GoldenDataController2 {
             
         }
         showSaveExit = false;
-        if((recordTypeId==STR_CONST_MAINTAIN || (recordTypeId==STR_CONST_EXTEND && purchReqVar.VPM_ExtensionType__c=='Regional')) && purchReqVar.VPM_FieldType__c=='Global')
+        if((recordTypeId==STR_CONST_MAINTAIN || (recordTypeId==STR_CONST_EXTEND && purchReqVar.VPM_ExtensionType__c==STR_CONST_REGIONAL)) && purchReqVar.VPM_FieldType__c==STR_CONST_GLOBAL)
            {showSaveExit=true;}  
            else{showSaveExit=false;}       
  
@@ -1018,13 +1018,21 @@ public void approvalCallMethod()
         
         // End : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016       
         pr.VPM_AdvancedFormSubmitted__c='YES'; 
-         if(pr.VPM_Status__c.containsIgnoreCase('DRAFT'))
+        /*for(PermissionSetAssignment psa: lstcurrentUserPerSet){
+            if(pr.VPM_Status__c.containsIgnoreCase('DRAFT') && psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)){
+                 
+                 pr.VPM_RequestFromFLSOrBR__c=STR_CONST_FLS;
+                 pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
+            }
+        }*/
+        
+         if(pr.VPM_Status__c.containsIgnoreCase('DRAFT') )
         {
              pr.VPM_RequestFromFLSOrBR__c=STR_CONST_BR;
              pr.VPM_RequestLastWithGroup__c = STR_CONST_BR;
              pr.VPM_RequestGroupTime__c = system.now();
         }
-        else  if(pr.VPM_Status__c.containsIgnoreCase(STR_CONST_FLS))
+        else if(pr.VPM_Status__c.containsIgnoreCase(STR_CONST_FLS))
         {
              pr.VPM_RequestFromFLSOrBR__c=STR_CONST_FLS;
              pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
@@ -1170,8 +1178,8 @@ public void approvalCallMethod()
                  if (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND)
                  {
                   if(pr.VPM_VendorCodeLookup__r.mdm_ecc__c.containsIgnoreCase(pr.VPM_CompanyCode__r.ECC__c))
-                   { ExtendType   ='Regional';}
-                  else{ ExtendType='Global';}
+                   { ExtendType   =STR_CONST_REGIONAL;}
+                  else{ ExtendType=STR_CONST_GLOBAL;}
                  }
         // changes made as per IAVMD-3085 23/1/2016
         if(pr.VPM_Commodity__r.VPM_CommodityCode__c.equals(System.label.VPM_Out_of_Approval_Scope)) {
@@ -1395,7 +1403,7 @@ public void setFinanceApprovalRequired(String ExdType)
                                 pr.VPM_ProvidedBankDetails__c  || pr.VPM_IsChangedVAT__c  || pr.VPM_ProvidedFinancialSensitive__c 
                     ) */ 
                     ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE ||
-                      (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Global' && pr.VPM_IsChangedVAT__c  )
+                      (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType==STR_CONST_GLOBAL && pr.VPM_IsChangedVAT__c  )
                      
                     || ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && (  pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c ) )
                     )
@@ -1466,26 +1474,26 @@ Public void setLevelApproval(string ExdType)
             VPM_L2InculdeApproval__c  approvalRequired = VPM_L2InculdeApproval__c.getInstance(pr.VPM_CountryRequestingVendor__c);
             System.debug('approvalRequired ' + approvalRequired);
             
-           System.debug('@@@@ Reg  '  + (!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Regional' && pr.VPM_ProvidedBankDetails__c ) 
+           System.debug('@@@@ Reg  '  + (!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType==STR_CONST_REGIONAL && pr.VPM_ProvidedBankDetails__c ) 
                        ));
-            System.debug('@@@@ Global  '+  (!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Global' && pr.VPM_IsChangedVAT__c ) ));
+            System.debug('@@@@ Global  '+  (!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType==STR_CONST_GLOBAL && pr.VPM_IsChangedVAT__c ) ));
           if((approvalRequired != null) && (approvalRequired.VPM_L2CreateExtendApproval__c && pr.VPM_NumberofApprovalsRequired__c == 2  && pr.VPM_FinanceApprovalRequired__c )  )
 {
 
                         if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND)
                         {
-                            if(ExdType=='Global')
+                            if(ExdType==STR_CONST_GLOBAL)
                             {
-                              if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Global' && pr.VPM_IsChangedVAT__c ) )
+                              if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType==STR_CONST_GLOBAL && pr.VPM_IsChangedVAT__c ) )
                               {
                                     System.debug('!!! Global ');
                                     pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
                                     pr.VPM_FinanceApprovalRequired__c= false;
                               }
                             }
-                            else if(ExdType=='Regional')
+                            else if(ExdType==STR_CONST_REGIONAL)
                             {
-                                if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Regional' && pr.VPM_ProvidedBankDetails__c ) )
+                                if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType==STR_CONST_REGIONAL && pr.VPM_ProvidedBankDetails__c ) )
                                 {
                                     System.debug('!!! Regional ');
                                     pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
@@ -1505,18 +1513,18 @@ else if(approvalRequired==null && pr.VPM_FinanceApprovalRequired__c) // Changes 
 {
       if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND)
       {
-            if(ExdType=='Global')
+            if(ExdType==STR_CONST_GLOBAL)
             {
-                if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Global' && pr.VPM_IsChangedVAT__c ) )
+                if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType==STR_CONST_GLOBAL && pr.VPM_IsChangedVAT__c ) )
                 {
                      System.debug('!!! 22222  Global ');
                      pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
                      pr.VPM_FinanceApprovalRequired__c= false;
                 }
             }
-            else if(ExdType=='Regional')
+            else if(ExdType==STR_CONST_REGIONAL)
             {
-                if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Regional' && pr.VPM_ProvidedBankDetails__c ) )
+                if(!(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType==STR_CONST_REGIONAL && pr.VPM_ProvidedBankDetails__c ) )
                 {
                     System.debug('!!!  2222   Regional ');
                     pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
@@ -1536,7 +1544,7 @@ else if(approvalRequired==null && pr.VPM_FinanceApprovalRequired__c) // Changes 
         }
     // Set Bank Details Approval for all record Type  for Maintain & Extend of Type : Regional 
         System.debug('1');
-        if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN || (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType=='Regional' )) 
+        if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN || (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND  && ExdType==STR_CONST_REGIONAL )) 
         {
              System.debug('2');
              if((pr.VPM_FinanceApprovalRequired__c)|| (pr.VPM_ProcurementApprovalRequired__c)|| (pr.VPM_FreightApprovalRequired__c))
@@ -1828,7 +1836,7 @@ else if(approvalRequired==null && pr.VPM_FinanceApprovalRequired__c) // Changes 
     {
         string queryString = '&back=' + 'true';
         Pagereference pg =  new Pagereference('/apex/VPM_AdvancedForm_v1?id=' + purid + queryString); 
-        if(recordTypeId=='Create' || (recordTypeId =='Extend' && purchReqVar.VPM_ExtensionType__c=='Global')){
+        if(recordTypeId=='Create' || (recordTypeId =='Extend' && purchReqVar.VPM_ExtensionType__c==STR_CONST_GLOBAL)){
              pg =  new Pagereference('/apex/VPM_GoldenData1?id=' + entity.id + queryString); 
         }else if(recordTypeId==STR_CONST_MAINTAIN){
         
