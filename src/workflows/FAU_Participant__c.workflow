@@ -8,7 +8,8 @@
             <field>FAU_User__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_Fill_Biography_Invitation</template>
     </alerts>
     <alerts>
@@ -30,7 +31,8 @@
             <field>FAU_User__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_eXcel_rator_Invitation</template>
     </alerts>
     <alerts>
@@ -41,7 +43,8 @@
             <field>FAU_User__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_eXcel_rator_Invitation_Reminder</template>
     </alerts>
     <alerts>
@@ -52,7 +55,8 @@
             <field>FAU_Personal_Assistant__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_PA_eXcel_rator_Invitation</template>
     </alerts>
     <alerts>
@@ -63,7 +67,8 @@
             <field>FAU_Personal_Assistant__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_eXcel_rator_Invitation_Reminder</template>
     </alerts>
     <alerts>
@@ -85,7 +90,8 @@
             <field>FAU_Personal_Assistant__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_PA_Introduction</template>
     </alerts>
     <alerts>
@@ -96,7 +102,8 @@
             <field>FAU_User__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation</template>
     </alerts>
     <alerts>
@@ -107,7 +114,8 @@
             <field>FAU_Personal_Assistant__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation</template>
     </alerts>
     <alerts>
@@ -122,7 +130,8 @@
             <field>FAU_User__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation</template>
     </alerts>
     <alerts>
@@ -133,7 +142,8 @@
             <field>FAU_User__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation</template>
     </alerts>
     <alerts>
@@ -144,7 +154,8 @@
             <field>FAU_Personal_Assistant__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Registration_Invitation</template>
     </alerts>
     <fieldUpdates>
@@ -453,6 +464,11 @@
             <operation>notEqual</operation>
             <value>UL2020 Participant</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
         <description>EMAIL: Send Emails to have the Participant Fill the Biography</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
@@ -696,6 +712,11 @@
             <field>FAU_Participant__c.FAU_Invite_State__c</field>
             <operation>equals</operation>
             <value>Accepted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+            <operation>equals</operation>
+            <value>False</value>
         </criteriaItems>
         <description>EMAIL: Send Emails to have the Participant Fill the Biography</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>

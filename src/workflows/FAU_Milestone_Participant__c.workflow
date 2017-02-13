@@ -8,7 +8,8 @@
             <field>FAU_Participant_s_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_Milestone_Reminder</template>
     </alerts>
     <alerts>
@@ -19,7 +20,8 @@
             <field>FAU_Participant_s_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_Milestone_Reminder</template>
     </alerts>
     <alerts>
@@ -30,7 +32,8 @@
             <field>FAU_Participant_s_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_Milestone_Reminder</template>
     </alerts>
     <alerts>
@@ -41,7 +44,8 @@
             <field>FAU_Participant_s_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder</template>
     </alerts>
     <alerts>
@@ -52,7 +56,8 @@
             <field>FAU_Participant_s_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder</template>
     </alerts>
     <alerts>
@@ -63,7 +68,8 @@
             <field>FAU_Participant_s_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>fouracres.learning@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_UL2020_Dynamic_Template/FAU_UL2020_Milestone_Reminder</template>
     </alerts>
     <fieldUpdates>
@@ -164,6 +170,11 @@
             <operation>notEqual</operation>
             <value>UL2020 Participant</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
         <description>EMAIL: This sends a Milestones Participant 1st Reminder.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
@@ -201,6 +212,11 @@
             <field>FAU_Participant__c.RecordTypeId</field>
             <operation>notEqual</operation>
             <value>UL2020 Participant</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+            <operation>equals</operation>
+            <value>False</value>
         </criteriaItems>
         <description>EMAIL: This sends a Milestones Participant 1st Reminder.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -240,6 +256,11 @@
             <operation>notEqual</operation>
             <value>UL2020 Participant</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
         <description>EMAIL: This sends a Milestones Participant Due Date Reminder.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
@@ -277,6 +298,11 @@
             <field>FAU_Participant__c.RecordTypeId</field>
             <operation>equals</operation>
             <value>UL2020 Participant</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+            <operation>equals</operation>
+            <value>False</value>
         </criteriaItems>
         <description>EMAIL: This sends a Milestones Participant 1st Reminder.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -316,6 +342,11 @@
             <operation>equals</operation>
             <value>UL2020 Participant</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
         <description>EMAIL: This sends a Milestones Participant 2nd Reminder.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
@@ -353,6 +384,11 @@
             <field>FAU_Participant__c.RecordTypeId</field>
             <operation>equals</operation>
             <value>UL2020 Participant</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+            <operation>equals</operation>
+            <value>False</value>
         </criteriaItems>
         <description>EMAIL: This sends a Milestones Participant Due Date Reminder.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
