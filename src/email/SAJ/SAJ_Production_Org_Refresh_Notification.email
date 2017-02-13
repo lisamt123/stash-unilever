@@ -1,0 +1,8 @@
+Dear User 
+
+This is to notify you on the last allocation date of {!Environment__c.Org_Type__c} org for your application is nearing.
+Last Allocation date of your org is as per our system is {!Environment__c.Updated_Allocation_End_date__c}.
+Please plan your activities accordingly before {!Environment__c.DayCount__c} days. You can also renew the license to continue using the same org.
+
+Thanks
+Salesforce Support Team
