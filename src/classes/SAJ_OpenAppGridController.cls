@@ -45,7 +45,7 @@ public with sharing class SAJ_OpenAppGridController {
         } else if ( eachApp.Business_Value__c == '' ) {
             System.debug('Added '+eachApp.Name+ ' to undefined list.');
             undefinedBucket.add(eachApp);
-        } else {
+        } //else {
           //  if(eachApp.Business_Value__c == 'High'){
                
             /*  if(eachApp.Complexity__c == 'High')
