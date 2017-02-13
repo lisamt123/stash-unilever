@@ -134,8 +134,14 @@
     <label>Design Decision</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Business_Solution__c</columns>
+        <columns>Design_Challenge__c</columns>
+        <columns>Is_Technical_Debt__c</columns>
+        <columns>Decision__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>DD-{0}</displayFormat>

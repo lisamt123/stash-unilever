@@ -89,25 +89,23 @@
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
-        <fullName>DeliveryPartner__c</fullName>
+        <fullName>DayCount__c</fullName>
         <externalId>false</externalId>
+        <formula>Updated_Allocation_End_date__c - TODAY()</formula>
+        <label>DayCount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delivery_Partner__c</fullName>
+        <externalId>false</externalId>
+        <globalPicklist>SAJ_Delivery_Partner</globalPicklist>
         <label>Delivery Partner</label>
-        <picklist>
-            <picklistValues>
-                <fullName>a</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>b</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>c</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -142,7 +140,7 @@
         <description>Initially agreed termination date for the sandbox</description>
         <externalId>false</externalId>
         <label>Initial Allocation End Date</label>
-        <required>false</required>
+        <required>true</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -175,6 +173,7 @@
     </fields>
     <fields>
         <fullName>Number_of_times_extended__c</fullName>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label>Number of times extended</label>
         <precision>10</precision>
@@ -185,32 +184,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>OrgType__c</fullName>
-        <externalId>false</externalId>
-        <label>Org Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>a</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>b</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>c</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Org_ID__c</fullName>
@@ -224,6 +197,17 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Org_Type__c</fullName>
+        <externalId>false</externalId>
+        <globalPicklist>SAJ_Org_Types</globalPicklist>
+        <label>Org Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Org_URL__c</fullName>
@@ -456,8 +440,16 @@
     </listViews>
     <listViews>
         <fullName>All1</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>Description__c</columns>
+        <columns>Lead_Admin__c</columns>
+        <columns>DayCount__c</columns>
+        <columns>Org_Type__c</columns>
+        <columns>Tier__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>All_Cognizant</fullName>

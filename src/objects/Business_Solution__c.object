@@ -44,7 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
+    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
@@ -108,17 +108,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Business_Platform__c</fullName>
-        <externalId>false</externalId>
-        <globalPicklist>Business_Platforms</globalPicklist>
-        <label>Business Platform</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>Business_Problem__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>What is the business problem to solve? Should set the current environment / situation / context, of the proposal e.g. why has this need arisen? What alternatives have been considered?</inlineHelpText>
@@ -169,27 +158,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Cash_Flow_Period__c</fullName>
-        <externalId>false</externalId>
-        <label>Cash Flow Periods</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Year</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Month</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>Clarity_ID__c</fullName>
         <externalId>true</externalId>
         <label>Clarity ID</label>
@@ -215,6 +183,7 @@
     </fields>
     <fields>
         <fullName>Completed_Tasks__c</fullName>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label>Completed Tasks</label>
         <precision>5</precision>
@@ -225,47 +194,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Complexity__c</fullName>
-        <externalId>false</externalId>
-        <label>Complexity</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Unknown</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Low</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Medium</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>High</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Constraints__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>State any explicit constraints e.g. budgets, resources, project timings, IT, supplier, other</inlineHelpText>
-        <label>Constraints</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>DeliveryInternalPartnerLead__c</fullName>
@@ -284,54 +212,8 @@
         <fullName>Delivery_Partner__c</fullName>
         <description>Prime delivery partner for the technical solution</description>
         <externalId>false</externalId>
+        <globalPicklist>SAJ_Delivery_Partner</globalPicklist>
         <label>Delivery Partner</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Accenture</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cap Gemini</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cognizant</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MindTree</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Salesforce Services</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Unilever Internal</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tquila</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>HCL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Third</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>IBM</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>EY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -363,29 +245,28 @@
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
-        <fullName>Force_com_Suitability__c</fullName>
+        <fullName>Design_Challenges_Complete_Task__c</fullName>
+        <description>It will list all the completed tasks related to Design Challenges record</description>
         <externalId>false</externalId>
-        <label>Platform Fit</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Maybe</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
+        <label>Design Challenge Completed Tasks</label>
+        <summarizedField>Design_Challenge__c.Completed_Tasks__c</summarizedField>
+        <summaryForeignKey>Design_Challenge__c.Business_Solution__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Design_Challenges_Open_Task__c</fullName>
+        <description>This will tell us how many activity are open in the related Design Challenges record</description>
+        <externalId>false</externalId>
+        <label>Design Challenge Open Tasks</label>
+        <summarizedField>Design_Challenge__c.Open_Tasks__c</summarizedField>
+        <summaryForeignKey>Design_Challenge__c.Business_Solution__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Geographies_Impacted__c</fullName>
@@ -416,31 +297,6 @@
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>6</visibleLines>
-    </fields>
-    <fields>
-        <fullName>IPIX_Funded__c</fullName>
-        <externalId>false</externalId>
-        <label>IPIX Funded</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Other Funding</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>ITBusinessInternalPartner__c</fullName>
@@ -509,6 +365,7 @@
     </fields>
     <fields>
         <fullName>Open_Tasks__c</fullName>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label>Open Tasks</label>
         <precision>5</precision>
@@ -676,31 +533,6 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
-    </fields>
-    <fields>
-        <fullName>RAG_Status__c</fullName>
-        <externalId>false</externalId>
-        <label>RAG Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Green</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Amber</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Red</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Remedy_Managed_By_Group__c</fullName>
@@ -888,23 +720,14 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-    <fields>
-        <fullName>TimelineColor__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE( RAG_Status__c, &apos;Green&apos;, &apos;green&apos;, &apos;Amber&apos;, &apos;yellow&apos;, &apos;Red&apos;, &apos;red&apos;, &apos;grey&apos;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>TimelineColor</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>Business Solution</label>
     <listViews>
         <fullName>All_Active</fullName>
         <columns>NAME</columns>
         <columns>Approximate_Budget__c</columns>
+        <columns>Status__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Target_Date__c</columns>
         <filterScope>Everything</filterScope>
         <label>All Active</label>
         <language>en_US</language>
@@ -949,7 +772,6 @@
         <columns>Start_Date__c</columns>
         <columns>Target_Date__c</columns>
         <columns>Project_Manager__c</columns>
-        <columns>Delivery_Partner__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Phase__c</field>
@@ -1118,7 +940,6 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
-        <columns>Delivery_Partner__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Platform__c</field>
@@ -1133,7 +954,6 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
-        <columns>Delivery_Partner__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Phase__c</field>
@@ -1153,7 +973,6 @@
         <columns>Status__c</columns>
         <columns>Phase__c</columns>
         <columns>Target_Date__c</columns>
-        <columns>Delivery_Partner__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Phase__c</field>
@@ -1219,21 +1038,36 @@
         <lookupFilterFields>Status__c</lookupFilterFields>
         <lookupFilterFields>Phase__c</lookupFilterFields>
         <searchFilterFields>NAME</searchFilterFields>
-        <searchFilterFields>Complexity__c</searchFilterFields>
+        <searchFilterFields xsi:nil="true"/>
         <searchFilterFields>Status__c</searchFilterFields>
         <searchFilterFields>Phase__c</searchFilterFields>
         <searchFilterFields xsi:nil="true"/>
         <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields>Complexity__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Phase__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
-        <fullName>Ensure_Project_has_a_Project_Manager</fullName>
+        <fullName>Ensure_Project_has_a_Project_Dev_Prefix</fullName>
         <active>false</active>
-        <errorConditionFormula>IF(ISPICKVAL(Status__c,&quot;IPIX Project&quot;) &amp;&amp;  ISBLANK (Project_Manager__c), true, false)</errorConditionFormula>
-        <errorDisplayField>Project_Manager__c</errorDisplayField>
-        <errorMessage>A Project Manager is required to set the status to IPIX Project. All tasks are assigned to this user.</errorMessage>
+        <errorConditionFormula>IF(ISPICKVAL(Status__c,&quot;IPIX Project&quot;) &amp;&amp;  ISBLANK (Project_Dev_Prefix__c), true, false)</errorConditionFormula>
+        <errorDisplayField>Project_Dev_Prefix__c</errorDisplayField>
+        <errorMessage>A Project Dev Prefix is required to set the status to IPIX Project.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Project_has_Clarity_ID</fullName>
+        <active>false</active>
+        <errorConditionFormula>IF(ISPICKVAL(Status__c,&quot;IPIX Project&quot;) &amp;&amp;  ISBLANK (Clarity_ID__c), true, false)</errorConditionFormula>
+        <errorDisplayField>Clarity_ID__c</errorDisplayField>
+        <errorMessage>A Clarity ID is required to set the status to IPIX Project.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAJ_Business_Solution_Name_Change</fullName>
+        <active>true</active>
+        <description>If Business Solution Name field changes from the existing one then it will through an error.</description>
+        <errorConditionFormula>AND($Permission.SAJ_Standard_User,ISCHANGED(Name))</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>Business Solution Name field can&apos;t be changed.</errorMessage>
     </validationRules>
 </CustomObject>

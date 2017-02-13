@@ -31,41 +31,43 @@ public Business_Solution__c[] valueHighComplexHigh {get;set;}
     valueLowComplexLow = new List<Business_Solution__c>();
     undefinedBucket = new List<Business_Solution__c>();
     
-    for(Business_Solution__c eachApp : [SELECT id, Name, Complexity__c, Business_Value__c, Force_com_Suitability__c, Description__c FROM Business_Solution__c ORDER BY Name asc]){
-        System.debug('App is '+eachApp.Name+', Complexity='+eachApp.Complexity__c+', Business Value='+eachApp.Business_Value__c);
-        if ( eachApp.Business_Value__c == null || eachApp.Complexity__c == null ) {
+    for(Business_Solution__c eachApp : [SELECT id, Name, Business_Value__c, Description__c FROM Business_Solution__c ORDER BY Name asc]){
+        //System.debug('App is '+eachApp.Name+', Complexity='+eachApp.Complexity__c+', Business Value='+eachApp.Business_Value__c);
+        if ( eachApp.Business_Value__c == null  ) //|| eachApp.Complexity__c == null
+         {
             System.debug('Added '+eachApp.Name+ ' to undefined list.');
             undefinedBucket.add(eachApp);
-        } else if ( eachApp.Business_Value__c == '' || eachApp.Complexity__c == '' ) {
+        } else if ( eachApp.Business_Value__c == '') // || eachApp.Complexity__c == '' 
+         {
             System.debug('Added '+eachApp.Name+ ' to undefined list.');
             undefinedBucket.add(eachApp);
         } else {
             if(eachApp.Business_Value__c == 'High'){
                
-              if(eachApp.Complexity__c == 'High')
+            /*  if(eachApp.Complexity__c == 'High')
                 valueHighComplexHigh.add(eachApp);
               if(eachApp.Complexity__c == 'Medium')
                 valueHighComplexMed.add(eachApp);
               if(eachApp.Complexity__c == 'Low')
-                valueHighComplexLow.add(eachApp);
+                valueHighComplexLow.add(eachApp); */
                                  
              } else if(eachApp.Business_Value__c == 'Medium'){
                
-              if(eachApp.Complexity__c == 'High')
+             /* if(eachApp.Complexity__c == 'High')
                 valueMedComplexHigh.add(eachApp);
               if(eachApp.Complexity__c == 'Medium')
                 valueMedComplexMed.add(eachApp);
               if(eachApp.Complexity__c == 'Low')
-                valueMedComplexLow.add(eachApp);         
+                valueMedComplexLow.add(eachApp);  */       
          
              } else if(eachApp.Business_Value__c == 'Low'){
                
-              if(eachApp.Complexity__c == 'High')
+             /* if(eachApp.Complexity__c == 'High')
                 valueLowComplexHigh.add(eachApp);
               if(eachApp.Complexity__c == 'Medium')
                 valueLowComplexMed.add(eachApp);
               if(eachApp.Complexity__c == 'Low')
-                valueLowComplexLow.add(eachApp);    
+                valueLowComplexLow.add(eachApp); */   
              }      
          
          }

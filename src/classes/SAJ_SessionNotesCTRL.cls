@@ -1,6 +1,6 @@
-public class SAJ_SessionNotesCTRL {
+public with sharing  class SAJ_SessionNotesCTRL {
 
-    private Design_Challenge__c designChallenge {get;set;}
+    public Design_Challenge__c designChallenge {get;set;}
     
     public Task newTask {get;set;}
     
@@ -14,7 +14,7 @@ public class SAJ_SessionNotesCTRL {
         return tasks;
     }set;}
     
-    private string string2HTML(blob b){
+    public string string2HTML(blob b){
         string tempString = b.toString();
         
         String retString = tempString.replaceAll('\n','<br/>');
@@ -111,9 +111,9 @@ public class SAJ_SessionNotesCTRL {
     
     public List<Design_Decision__c> DesignDecisions {get{
         if(DesignDecisions == null){
-			DesignDecisions = [select id, name, requirement__c, Design_Challenge__c, Options__c, Decision__c, is_Technical_Debt__c from Design_Decision__c where Design_Challenge__c = :designChallenge.Id];
+            DesignDecisions = [select id, name, requirement__c, Design_Challenge__c, Options__c, Decision__c, is_Technical_Debt__c from Design_Decision__c where Design_Challenge__c = :designChallenge.Id];
         }
-    	return DesignDecisions;
+        return DesignDecisions;
     }set;}
     
     public List<taskWrap> openTasklist {get{
@@ -178,10 +178,10 @@ public class SAJ_SessionNotesCTRL {
         rerenderTaskLists();
         
         
-    	return null;    
+        return null;    
     }
     
-    private void rerenderTaskLists(){
+    public void rerenderTaskLists(){
         tasks = null;
         closedTasklist = null;
         openTasklist = null;
@@ -197,7 +197,8 @@ public class SAJ_SessionNotesCTRL {
         return null;
     }
     
-    private task generateNewTask(){
+    public task generateNewTask(){
+
         
         return new Task(Business_Solution__c = designChallenge.Business_Solution__c, 
                         WhatId = designChallenge.Id, Priority = 'Normal', ownerId=userinfo.getUserId());

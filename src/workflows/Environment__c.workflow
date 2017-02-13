@@ -1,17 +1,212 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>SAJ_Email_Notification</fullName>
+        <description>SAJ Email Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>bibhudananda.dash@accenture.com.new</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com.sfcttafdev</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>SAJ/SAJ_Production_Org_Refresh_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>SAJ_Environment_Refresh_Email_Notification</fullName>
+        <description>SAJ Environment Refresh Email Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>bibhudananda.dash@accenture.com.new</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com.sfcttafdev</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>SAJ/SAJ_Production_Org_Refresh_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>SAJ_Send_Notification</fullName>
+        <description>SAJ Send Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>bibhudananda.dash@accenture.com.new</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com.sfcttafdev</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>SAJ/SAJ_Production_Org_Refresh_Notification</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Update_with_Initial_End_Date</fullName>
+        <field>Updated_Allocation_End_date__c</field>
+        <formula>Initial_Allocation_End_Date__c</formula>
+        <name>Update with Initial End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>countnoextended</fullName>
         <field>Number_of_times_extended__c</field>
-        <formula>BLANKVALUE(0, Number_of_times_extended__c +1 )</formula>
+        <formula>Number_of_times_extended__c +1</formula>
         <name>countnoextended</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <rules>
+        <fullName>SAJ_If_FullCopy</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Environment__c.Org_Type__c</field>
+            <operation>equals</operation>
+            <value>Full Copy</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Environment__c.DayCount__c</field>
+            <operation>lessOrEqual</operation>
+            <value>5</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>5</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>4</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>SAJ_If_PartialCopy</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Environment__c.Org_Type__c</field>
+            <operation>equals</operation>
+            <value>Partial Copy</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Environment__c.DayCount__c</field>
+            <operation>lessOrEqual</operation>
+            <value>3</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>3</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>2</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>SAJ_If_Production</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Environment__c.Org_Type__c</field>
+            <operation>equals</operation>
+            <value>Production</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Environment__c.DayCount__c</field>
+            <operation>lessOrEqual</operation>
+            <value>14</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>14</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>13</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>SAJ_Email_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>12</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
         <fullName>SAJ_Notify_AllocationEndDate</fullName>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Environment__c.Active__c</field>
             <operation>equals</operation>
@@ -47,6 +242,20 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
+        <fullName>SAJ_Update_AU</fullName>
+        <actions>
+            <name>Update_with_Initial_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>Environment__c.Updated_Allocation_End_date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>SAJ_countnoextensions</fullName>
         <actions>
             <name>countnoextended</name>
@@ -55,5 +264,14 @@
         <active>true</active>
         <formula>ISCHANGED( Updated_Allocation_End_date__c )</formula>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Updated allocation date Replace value</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Environment__c.Updated_Allocation_End_date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

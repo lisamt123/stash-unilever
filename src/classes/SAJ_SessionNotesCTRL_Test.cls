@@ -10,18 +10,20 @@ public class SAJ_SessionNotesCTRL_Test {
    
         PageReference pageRef = Page.SAJ_SessionNotes;
         Test.setCurrentPage(pageRef);
-              Business_Solution__c bs = new Business_Solution__c(Name ='test app', 
+             Business_Solution__c bs = new Business_Solution__c(Name ='test app', 
                                                                  //function__c = fct.id, 
-                                                                 status__c = 'IPIX Project');  
+                                                                 status__c = 'IPIX Project',
+                                                                 Clarity_ID__c = 'Test',
+                                                                 Project_Dev_Prefix__c = 'SAJ_');  
    
         insert bs;
         
         Design_Challenge__c dc = new Design_Challenge__c(Business_Solution__c = bs.id);
-    	insert dc;
+        insert dc;
        
         Design_Decision__c dd  = new Design_Decision__c(Design_Challenge__c = dc.Id, 
                                                        Business_solution__c = dc.Business_Solution__c);
-		insert dd;
+        insert dd;
         
         Task t = new Task(Business_Solution__c = dc.Business_Solution__c, 
                         WhatId = dc.Id, 
@@ -57,7 +59,7 @@ public class SAJ_SessionNotesCTRL_Test {
     //}
     
        // String myString = 'testblob \n \r \b';
-		//Blob pB = Blob.valueof(myString);
+        //Blob pB = Blob.valueof(myString);
         //String ret = controller.string2HTML(pB);
         // controller.toggleTask = t.id;
         
@@ -66,30 +68,30 @@ public class SAJ_SessionNotesCTRL_Test {
         System.assertEquals(null, savnextPage);
         
         pageReference copnextPage = controller.copyGuidance2Notes();
-  	    System.assertEquals(null, copnextPage);
+        System.assertEquals(null, copnextPage);
 
         pageReference addnextPage = controller.AddDecision();
-  	    System.assertEquals(null, addnextPage);
+        System.assertEquals(null, addnextPage);
         
          addnextPage = controller.SaveDecisions();
-  	    System.assertEquals(null, addnextPage);
+        System.assertEquals(null, addnextPage);
          controller.designDecisionRowNum  = 0;
          addnextPage = controller.delDesignDecision();
-  	    System.assertEquals(null, addnextPage);
+        System.assertEquals(null, addnextPage);
         
         controller.delTaskId =t.id;
         pageReference crenextPage = controller.createTask();
-  	    System.assertEquals(null, crenextPage);
+        System.assertEquals(null, crenextPage);
     
         crenextPage = controller.removeTask();
-  	    System.assertEquals(null, crenextPage);
+        System.assertEquals(null, crenextPage);
         
         pageReference tognextPage = controller.toggleStatus();
-  	    System.assertEquals(null, tognextPage);
+        System.assertEquals(null, tognextPage);
         
         //controller.rerenderTaskLists();
-  	   
- 	    
+       
+        
         List<SAJ_SessionNotesCTRL.taskWrap> cTlopen = controller.openTasklist;
         List<SAJ_SessionNotesCTRL.taskWrap> cTlclosed = controller.closedTasklist;
         

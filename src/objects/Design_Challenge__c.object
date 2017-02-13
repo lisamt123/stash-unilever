@@ -72,9 +72,10 @@
     </fields>
     <fields>
         <fullName>Completed_Tasks__c</fullName>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label>Completed Tasks</label>
-        <precision>5</precision>
+        <precision>3</precision>
         <required>false</required>
         <scale>0</scale>
         <trackHistory>false</trackHistory>
@@ -103,9 +104,10 @@
     </fields>
     <fields>
         <fullName>Open_Tasks__c</fullName>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label>Open Tasks</label>
-        <precision>5</precision>
+        <precision>3</precision>
         <required>false</required>
         <scale>0</scale>
         <trackHistory>false</trackHistory>
@@ -116,8 +118,7 @@
     <fields>
         <fullName>Session_Notes__c</fullName>
         <externalId>false</externalId>
-        <formula>HYPERLINK(&apos;/apex/SessionNotes?id=&apos;+Id , IMAGE(&quot;/img/icon/form16.png&quot;, &quot;Open Session Notes&quot;))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>HYPERLINK(&apos;/apex/SAJ_SessionNotes?id=&apos;+Id , IMAGE(&quot;/img/icon/form16.png&quot;, &quot;Open Session Notes&quot;))</formula>
         <label>Session Notes</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -143,14 +144,16 @@
         <columns>Business_Solution__c</columns>
         <columns>Title__c</columns>
         <columns>Date__c</columns>
+        <columns>Open_Tasks__c</columns>
+        <columns>Completed_Tasks__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
-        <displayFormat>DC-{0}</displayFormat>
         <label>Design Challenge Name</label>
         <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Design Challenges</pluralLabel>
     <searchLayouts/>
