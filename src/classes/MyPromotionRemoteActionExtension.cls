@@ -1235,10 +1235,12 @@ Throws : N/A
                         System.debug('Market::::'+product.ACCL__Criterion_3_Product__c);
                         if(product.ACCL__Criterion_4_Product__c!=null){
                             brandLevelSet.add(product.ACCL__Criterion_4_Product__c);
+                            brand = product.ACCL__Criterion_4_Product__r.Name;
                         }
                         System.debug('Brand::::'+product.ACCL__Criterion_4_Product__c);
                         if(product.ACCL__Criterion_2_Product__c!=null){
                             categorytLevelSet.add(product.ACCL__Criterion_2_Product__c);
+                            category = product.ACCL__Criterion_2_Product__r.Name;
                         }
                         System.debug('Category::::'+product.ACCL__Criterion_2_Product__c);
                     }
@@ -1257,7 +1259,7 @@ Throws : N/A
                     //populating Category Field
                     if(categorytLevelSet.size()==1){
                         if(productMap.containsKey(childProductId))
-                        category = productMap.get(childProductId).ACCL__Criterion_2_Product__r.Name;
+                        category = category;
                     }
                     else if(categorytLevelSet.size()>1){
                         category = System.Label.UL_Multiple_Categories;
@@ -1268,7 +1270,7 @@ Throws : N/A
                     
                     //populating Brand Field
                     if(brandLevelSet.size()==1){
-                        brand = productMap.get(childProductId).ACCL__Criterion_4_Product__r.Name;
+                        brand = brand;
                     }
                     else if(brandLevelSet.size()>1){
                         brand = System.Label.UL_Multiple_Brands;
@@ -2524,7 +2526,9 @@ Throws : N/A
       promotionContent = UL_PromotionContentReplace.replaceFieldContent(promotionContent);
       return ACCL.PromotionRemoteActionExtension.readLOExtProduct(txId,promotionContent);
     }
-     /**Custom readLOFilteredProducts function to read the Filtered Products
+	
+	
+	/**Custom readLOFilteredProducts function to read the Filtered Products
      *  @name : readLOFilteredProducts
      *  @param : txId GUI id for each transcation we do from UI
      *  @param : promotionContent    JSON containing the current promotion info
@@ -2540,6 +2544,99 @@ Throws : N/A
         
         List<ACCL__Product__c> result = null;
         promotionContent = UL_PromotionContentReplace.replaceFieldContent(promotionContent);
+        SYstem.debug('promotionContent::::::'+promotionContent);
+        String nameSp = 'ACCL__';
+        List<ACCL__Product__c> lstFilteredPrd=new List<ACCL__Product__c>();
+        try {
+            //LoggerUtility.enterMethod(className, 'readLOFilteredProducts', sWatch, txId, new String[] {promotionContent});
+            //Desearlize the Json Content
+            String productApiName = 'ACCL__Product__c';
+            
+            String promotionApiName = ACCL__Promotion__c.sObjectType.getDescribe().getName();
+            Map<String, Object> tacticDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(promotionContent);
+            Map<String, Object> boPromotion = (Map<String, Object>) tacticDeserializedMap.get(UtilityEnum.BOPromotion.Name());
+            //Map<String, Object> boPromotion=(Map<String, Object>) JSON.deserializeUntyped(promotionContent);//RemoteActionUtility.deserializeContent(txId,promotionContent);
+            //validateStructure(txId, boPromotion);
+            //RemoteActionUtility.checkObjectAccessForBO(txId,'ACCL__Promotion__c','view');
+            System.debug('boPromotion::::::'+boPromotion);
+            
+            Datetime commitDateTime = Datetime.newInstance((Long)boPromotion.get(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Commit_Date__c.getName()));
+            Date commitDate = Date.newInstance(commitDateTime.year(), commitDateTime.month(), commitDateTime.day());
+            
+            ACCL__Promotion__c promotion = new ACCL__Promotion__c(Id=(Id)boPromotion.get('Id'), ACCL__Commit_Date__c = commitDate);//initPromotion(txId,boPromotion);
+            System.debug('promotion::::::'+promotion);
+            //Date Prmcommitdate;
+            Id PrmId = promotion.Id;
+            ACCL__Promotion__c setSalesOrg = [Select Id, ACCL__Sales_Org__c from ACCL__Promotion__c Where Id =:PrmId LIMIT 1];
+            String salesOrg=setSalesOrg.ACCL__Sales_Org__c;
+            String recordTypeDevName = '';
+            if(salesOrg == null) {
+                salesOrg='';
+            }
+            if(UL_Sales_Org_Mapping__c.getValues(salesOrg).UL_Sales_Org__c=='UKI'){
+                recordTypeDevName = 'UL_Product_UKI';
+            }
+            else if(UL_Sales_Org_Mapping__c.getValues(salesOrg).UL_Sales_Org__c=='SoCo'){
+                recordTypeDevName = 'UL_Product_SoCo';
+            }
+            // Prmcommitdate=promotion.Commit_Date__c;
+            // String soqlQueryString=null;
+            
+            Map<String, Object> customerAttributes=MyRemoteActionUtility.CheckObjectInJsonContent(promotionContent, 'filterExpressions');
+            // check if the filter expressions are as expected, it'S there and all fields inside are in ACCL__Product__c
+            if(!customerAttributes.isEmpty())
+            {
+                SObjectType objectType = Schema.getGlobalDescribe().get(nameSp+'Product__c');
+                Map<String, Schema.SObjectField> sObjectFieldApiNameMap = objectType.getDescribe().fields.getMap();
+                for (String attributeName : customerAttributes.keyset())
+                {
+                    Boolean res=sObjectFieldApiNameMap.containsKey(attributeName);
+                    if(!res) {
+                        System.debug(LoggingLevel.ERROR, 'The filter with the name: "' + attributeName + '" is not a valid field on the object ACCL__Product__c');
+                        throw new UL_CustomException('InvalidFilters exist in PromotionContent');
+                    }
+                }
+            }
+            // SOQL Query formation
+            List<String> productFields=MyRemoteActionUtility.getFieldsOfObject(txId, ACCL__Product__c.sObjectType.getDescribe().getName());
+            //productFields = SecurityUtil.getFieldListBasedonFLSPermission(ACCL__Product__c.sObjectType.getDescribe().getName(), productFields, 'view');
+            if(ProductFields!=null)
+            {
+                Date Prmcommitdate = promotion.ACCL__Commit_Date__c;
+                String soqlQueryString = 'SELECT ' + string.join(productFields, ', ') + ' FROM ' + nameSp+'Product__c' + ' WHERE '+nameSp+'Sales_Org__c =:salesOrg AND '+nameSp+'KAM_Valid_from__c <=:Prmcommitdate AND '+nameSp+'KAM_Valid_Thru__c >=:Prmcommitdate ';
+                soqlQueryString += 'AND RecordTypeId IN (SELECT Id FROM RecordType WHERE SobjectType = \'' + nameSp+'Product__c' + '\' AND (DeveloperName = \''+recordTypeDevName+'\' OR DeveloperName = \'Product\'))';
+                // soqlQueryString ='SELECT ' + string.join(productFields, ',') + ' FROM ' +nameSp+'Product__c' + ' WHERE '+nameSp+'Sales_Org__c =:salesOrg AND '+nameSp+'KAM_Valid_from__c <=:Prmcommitdate AND '+nameSp+'KAM_Valid_Thru__c >=:Prmcommitdate ';
+                
+                // FixMe: SQL-Injection possible! Not save are the attributes And all values!
+                For (String attributeName : customerAttributes.keyset()) {
+                    If (customerAttributes.get(attributeName)!= '') {
+                        If (attributeName == 'Name' ||  attributeName == nameSp+'Description_1__c'){
+                            String attributeValue = String.valueOf(customerAttributes.get(attributeName));
+                            If (attributeValue.StartsWith('*'))
+                            {
+                                soqlQueryString +='AND'+' '+ attributeName +' '+ 'LIKE ' +'\'%' + attributeValue.Replace('*', '') +'%\'';
+                            }
+                            Else
+                            {
+                                soqlQueryString +='AND'+' '+ attributeName +' '+ 'LIKE ' +'\'' + attributeValue +'%\'';
+                            }
+                        } else if(attributeName != nameSp+'Container_Size__c' && attributeName != nameSp+'Pack_Size__c'){
+                            soqlQueryString +='AND'+' '+ attributeName +' '+ 'IN (' +'\''+ customerAttributes.get(attributeName) +'\''+') ';
+                        } else {
+                            soqlQueryString +='AND'+' '+ attributeName +' '+ 'IN (' +customerAttributes.get(attributeName)+ ') ';
+                        }
+                    }
+                }
+                soqlQueryString+='LIMIT 1000';
+                System.debug('soqlQueryString:::::::::::'+soqlQueryString);
+                lstFilteredPrd = Database.query(soqlQueryString);
+            }
+        }
+        finally{
+            //LoggerUtility.leaveMethod(className, 'readLOFilteredProducts', sWatch, txId, lstFilteredPrd);
+        }
+        result = lstFilteredPrd;
+        
         result = ACCL.PromotionRemoteActionExtension.readLOFilteredProducts(txId,promotionContent);                
         
         //Display only least level products.
