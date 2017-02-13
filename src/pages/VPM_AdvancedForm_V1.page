@@ -436,7 +436,7 @@
                 <apex:selectOptions value="{!venLanguage}"/> 
             </apex:selectList>
            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AddressTimeZone__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AddressTimeZone__c}"/>
-           <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Industry__c.Label}" value="{!industryOptionsDefValue}" rendered="{!Not(isU2k2)}" />
+           <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Industry__c.Label}" value="{!industryOptionsDefValue}" rendered="{!Not(isU2k2)}" maxlength="4"/>
             <apex:selectList value="{!industryOptionsDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Industry__c.Label}" size="1" rendered="{!isU2k2}">
                   <apex:selectOptions value="{!industryOptions}"/>
               </apex:selectList>

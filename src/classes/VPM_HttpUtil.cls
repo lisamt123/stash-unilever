@@ -151,7 +151,7 @@ public with sharing class VPM_HttpUtil {
      public static void updateVendorMDMStatus(String venReqId, String reqStatus, String message, String messageMDM) {
         // Update vendor request record status after send to SAP.
         // Update MDM Ops user fields on vendor request record.
-        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_MDMOpsEmail__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
+        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMOpsEmail__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
        // List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
         if(!vendorList.isEmpty()) {
             VPM_PurchasingRequests__c vendor = vendorList.get(0);
@@ -189,7 +189,10 @@ public with sharing class VPM_HttpUtil {
             vendor.VPM_isVendorCached__c=True;
             vendor.VPM_ECC_InsertUpdateStatusMessage__c = message;
             vendor.VPM_ECC_InsertUpdateStatus__c = messageECC;
-            vendor.VPM_MDMOpsEmail__c = UserInfo.getUserEmail();
+            if(!VPM_RegionalMaintainVendor.FutureCallCheck)
+            {
+                vendor.VPM_MDMOpsEmail__c = UserInfo.getUserEmail();
+            }
             system.debug('inside failkkk'+vendor.VPM_isVendorCached__c);
             update vendor;
              
