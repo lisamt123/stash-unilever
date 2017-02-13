@@ -542,7 +542,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         Test.setCurrentPage(pageRef);
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);        
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-        VPM_GoldenDataController2 goldenData1 = new VPM_GoldenDataController2();
+     //   VPM_GoldenDataController2 goldenData1 = new VPM_GoldenDataController2();
         goldenData.recordTypeId = 'Create';
         goldenData.backToGlobalScreen();
         goldenData.recordTypeId = 'Maintain';
@@ -636,7 +636,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
          goldenData.approvalCallMethod();
         // Ajay
        
-        VPM_GoldenDataController2 goldenData1 = new VPM_GoldenDataController2(vendorDetail);
+        //VPM_GoldenDataController2 goldenData1 = new VPM_GoldenDataController2(vendorDetail);
     }
     
     static testMethod void VPM_GoldenDataControllerCordillera(){
@@ -869,7 +869,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         
        // PageReference pg =null;
         ApexPages.currentPage().getParameters().put('isMaintain2','isMaintain2');
-                    ApexPages.Message msg = null;
+                   // ApexPages.Message msg = null;
         VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
         purId.VPM_DeletionBlockFlag__c='MDM Ops Review - Block';
         update purId;
