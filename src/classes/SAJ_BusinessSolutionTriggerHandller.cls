@@ -1,48 +1,55 @@
-Public class SAJ_BusinessSolutionTriggerHandller
+Public with sharing class SAJ_BusinessSolutionTriggerHandller
     {
+        String Cmp = 'Completed';
+//------------------------------------------------------------Insert Task Method-------------------------------------------------------------------------
         public static void insertTask(Map<Id, Task> newMap)
         {
+            String DCKeyPrefix = Business_Solution__c.sObjectType.getDescribe().getKeyPrefix();
             Set<Id> idSet = new Set<Id>();
             for(Task tk : newMap.values())
             {
-                idSet.add(tk.whatId);
+                if(tk.WhatId != null && String.valueOf(tk.WhatId).startsWith(DCKeyPrefix)){
+                    idSet.add(tk.whatId);
+                }
             }
+            
             if(idSet.size()>0)
             {
-                List<Business_Solution__c> cst = [Select Id, Open_Tasks__c, Completed_Tasks__c from Business_Solution__c where Id IN: idSet ];
-                List<Task> th = Trigger.new;
+                List<Business_Solution__c> dcToUpdate = new List<Business_Solution__c>();
+                Map<Id, Business_Solution__c> cst = new Map<Id,Business_Solution__c>([Select Id, Open_Tasks__c, Completed_Tasks__c from Business_Solution__c where Id IN: idSet ]); 
                 if(cst != null && cst.size()>0)
                 {
                     Integer count1 = 0;
                     Integer count2 = 0;
-                    for( Id tskId : newMap.keySet())
+                    for( Task tsk : newMap.values())
                     {
-                        If (newMap.get(tskId).Status !='Completed')
-                        {
-                            count1++;
-                        }
-                            else if(newMap.get(tskId).Status == 'Completed')
+                        if(tsk.WhatId != null && cst.containsKey(tsk.WhatId)){
+                            If (newMap.get(tsk.Id).Status !='Cmp')
                             {
-                                count2++;
-                            }                
- 
-                    }   
-               
-                    if(cst[0].Completed_Tasks__c == null)
-                    {
-                        cst[0].Completed_Tasks__c = 0;
-                    }
-                    cst[0].Completed_Tasks__c += count2;
-                    if( cst[0].Open_Tasks__c == null)
-                    {
-                        cst[0].Open_Tasks__c = 0;
-                    }
-                    cst[0].Open_Tasks__c += count1;
-                    update cst;                    
+                               if( cst.get(newMap.get(tsk.Id).WhatId).Open_Tasks__c == null)
+                                {
+                                    cst.get(newMap.get(tsk.Id).WhatId).Open_Tasks__c = 0;
+                                }
+                                cst.get(newMap.get(tsk.Id).WhatId).Open_Tasks__c += 1;
+                            }
+                            else if(newMap.get(tsk.Id).Status == 'Cmp')
+                            {
+                                if(cst.get(newMap.get(tsk.Id).WhatId).Completed_Tasks__c == null)
+                                {
+                                    cst.get(newMap.get(tsk.Id).WhatId).Completed_Tasks__c = 0;
+                                }
+                                cst.get(newMap.get(tsk.Id).WhatId).Completed_Tasks__c += 1;
+                            }  
+                        }
+
                 }
+                
+                update cst.values();
             }
         }
-    
+             
+        }
+//-----------------------------------------------------Update Task Method------------------------------------------------------------------------------------------   
         public static void updateTask(Map<Id, Task> newMap, Map<Id, Task> OldMap)
         {
             Set<Id> idSet = new Set<Id>();
@@ -60,7 +67,7 @@ Public class SAJ_BusinessSolutionTriggerHandller
                 for( Id tskId : newMap.keySet())
                 {
                     Task oldTask = OldMap.get(tskId);
-                    if(oldTask.Status != newMap.get(tskId).Status && oldTask.Status == 'Completed')
+                    if(oldTask.Status != newMap.get(tskId).Status && oldTask.Status == 'Cmp')
                     {
                         count1++;
                         if(cst[0].Completed_Tasks__c > 0)
@@ -68,7 +75,7 @@ Public class SAJ_BusinessSolutionTriggerHandller
                             count2--;
                         }
                     }
-                    else if(oldTask.Status != newMap.get(tskId).Status && newMap.get(tskId).Status  == 'Completed' && oldTask.Status != 'Completed')
+                    else if(oldTask.Status != newMap.get(tskId).Status && newMap.get(tskId).Status  == 'Cmp' && oldTask.Status != 'Cmp')
                     {
                         if(cst[0].Open_Tasks__c > 0)
                         {
@@ -77,71 +84,69 @@ Public class SAJ_BusinessSolutionTriggerHandller
                         count2++;
                     }               
                
-                    
+
                 }
-                    if(cst[0].Completed_Tasks__c == null)
-                    {
-                        cst[0].Completed_Tasks__c = 0;
-                    }
-                    cst[0].Completed_Tasks__c += count2;
-                    if( cst[0].Open_Tasks__c == null)
-                    {
-                        cst[0].Open_Tasks__c = 0;
-                    }
-                    cst[0].Open_Tasks__c += count1;
-                    update cst;                
+                if(cst[0].Completed_Tasks__c == null)
+                {
+                    cst[0].Completed_Tasks__c = 0;
+                }
+                cst[0].Completed_Tasks__c += count2;
+                if( cst[0].Open_Tasks__c == null)
+                {
+                    cst[0].Open_Tasks__c = 0;
+                }
+                cst[0].Open_Tasks__c += count1;
+                update cst;
             }
             }
         }
         
-/* This method is added for Deletion trigger */
-       
+//-------------------------------Delete Task Method----------------------------------------------------------------------------
 
-public static void deleteTask(Map<Id, Task> oldMap)
-        {
+    public static void deleteTask(Map<Id, Task> oldMap)
+    {
+            String DCKeyPrefix = Business_Solution__c.sObjectType.getDescribe().getKeyPrefix();
             Set<Id> idSet = new Set<Id>();
             for(Task tk : oldMap.values())
             {
-                idSet.add(tk.whatId);
-            }
-            if(idSet.size()>0)
-            {
-                List<Business_Solution__c> cst = [Select Id, Open_Tasks__c, Completed_Tasks__c from Business_Solution__c where Id IN: idSet ];
-                //List<Task> th = Trigger.old;
-                if(cst != null && cst.size()>0)
+                if(tk.WhatId != null && String.valueOf(tk.WhatId).startsWith(DCKeyPrefix))
                 {
-                    Integer count1 = 0;
-                    Integer count2 = 0;
-                    for( Id tskId : oldMap.keySet())
-                    {
-                        If (oldMap.get(tskId).Status !='Completed')
-                        {
-                            count1--;
-                        }
-                            else if(oldMap.get(tskId).Status == 'Completed')
-                            {
-                                count2--;
-                            }                
-                
-
-
-                    }
-                    if(cst[0].Completed_Tasks__c == null)
-                    {
-                        cst[0].Completed_Tasks__c = 0;
-                    }
-                    cst[0].Completed_Tasks__c += count2;
-                    if( cst[0].Open_Tasks__c == null)
-                    {
-                        cst[0].Open_Tasks__c = 0;
-                    }
-                    cst[0].Open_Tasks__c += count1;
-                    update cst;                    
-                        
+                    idSet.add(tk.whatId);
                 }
             }
-        }
-
-
-        
+            if(idSet.size()>0)
+                {
+                    List<Business_Solution__c> dcToUpdate = new List<Business_Solution__c>();
+                    Map<Id, Business_Solution__c> cst = new Map<Id,Business_Solution__c>([Select Id, Open_Tasks__c, Completed_Tasks__c from Business_Solution__c where Id IN: idSet ]); 
+                    if(cst != null && cst.size()>0)
+                    {
+                        Integer count1 = 0;
+                        Integer count2 = 0;
+                        for( Task tsk : oldMap.values())
+                        {
+                            if(tsk.WhatId != null && cst.containsKey(tsk.WhatId))
+                            {
+                                If (oldMap.get(tsk.Id).Status !='Cmp')
+                                {
+                                    if( cst.get(oldMap.get(tsk.Id).WhatId).Open_Tasks__c == null)
+                                    {
+                                        cst.get(oldMap.get(tsk.Id).WhatId).Open_Tasks__c = 0;
+                                    }
+                                    cst.get(oldMap.get(tsk.Id).WhatId).Open_Tasks__c -= 1;
+                                }
+                                else if(oldMap.get(tsk.Id).Status == 'Cmp')
+                                {
+                                    if(cst.get(oldMap.get(tsk.Id).WhatId).Completed_Tasks__c == null)
+                                    {
+                                        cst.get(oldMap.get(tsk.Id).WhatId).Completed_Tasks__c = 0;
+                                    }
+                                    cst.get(oldMap.get(tsk.Id).WhatId).Completed_Tasks__c -= 1;
+                                }  
+                            } 
+                    }
+                
+                    update cst.values();
+                }
+            }
     }
+}

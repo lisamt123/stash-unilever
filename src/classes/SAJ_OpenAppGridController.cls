@@ -1,4 +1,4 @@
-public class SAJ_OpenAppGridController {
+public with sharing class SAJ_OpenAppGridController {
 
    public Business_Solution__c[] valueHighComplexHigh {get;set;}
     public Business_Solution__c[] valueHighComplexMed {get;set;}
@@ -46,7 +46,7 @@ public class SAJ_OpenAppGridController {
             System.debug('Added '+eachApp.Name+ ' to undefined list.');
             undefinedBucket.add(eachApp);
         } else {
-            if(eachApp.Business_Value__c == 'High'){
+          //  if(eachApp.Business_Value__c == 'High'){
                
             /*  if(eachApp.Complexity__c == 'High')
                 valueHighComplexHigh.add(eachApp);
@@ -57,7 +57,7 @@ public class SAJ_OpenAppGridController {
               if(eachApp.Complexity__c == 'Unknown')
                 valueHighComplexUnkwn.add(eachApp);  */              
                                  
-             } else if(eachApp.Business_Value__c == 'Medium'){
+            // } else if(eachApp.Business_Value__c == 'Medium'){
                
             /*  if(eachApp.Complexity__c == 'High')
                 valueMedComplexHigh.add(eachApp);
@@ -68,7 +68,7 @@ public class SAJ_OpenAppGridController {
               if(eachApp.Complexity__c == 'Unknown')
                 valueMedComplexUnkwn.add(eachApp); */
                          
-             } else if(eachApp.Business_Value__c == 'Low'){
+           //  } else if(eachApp.Business_Value__c == 'Low'){
                
              /* if(eachApp.Complexity__c == 'High')
                 valueLowComplexHigh.add(eachApp);
@@ -78,7 +78,7 @@ public class SAJ_OpenAppGridController {
                 valueLowComplexLow.add(eachApp);    
               if(eachApp.Complexity__c == 'Unknown')
                 valueLowComplexUnkwn.add(eachApp);   */ 
-             }      
+           //  }      
          
          }
         
