@@ -40,9 +40,6 @@ src/pages/Win_BrandLogoPage.page-meta.xml
 src/pages/Win_Retailer_Logo_Page.page
 src/pages/Win_Retailer_Logo_Page.page-meta.xml
 src
-src/labels
-src/labels/Wings.labels
-src
 src/permissionsets
 src/permissionsets/Win_Admin.permissionset
 src/permissionsets/Win_Sales_Rep.permissionset
