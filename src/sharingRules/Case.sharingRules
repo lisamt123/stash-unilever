@@ -10,7 +10,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Australia,New Zealand</value>
+            <value>New Zealand,Australia</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -23,7 +23,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Lithuania,Estonia,Latvia</value>
+            <value>Estonia,Latvia,Lithuania</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -88,7 +88,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Switzerland,Austria,Germany</value>
+            <value>Austria,Switzerland,Germany</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -210,7 +210,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>&quot;Korea, Republic Of&quot;</value>
+            <value>Korea</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -223,7 +223,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Denmark,Finland,Norway,Sweden</value>
+            <value>Finland,Denmark,Norway,Sweden</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -340,7 +340,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Turkey</value>
+            <value>Turkey,Kazakhstan</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
