@@ -155,7 +155,6 @@
           //In case promotion has stored product category, remove unused and add new one  
           Set<Id> insertProductSet = new Set<Id>();
           if(!storedPromotionProduct.isEmpty()){
-              System.debug('>>>>>>1');
               Set<Id> totlaPromotionProduct = new Set<Id>();
               totlaPromotionProduct.addAll(storedPromotionProduct);
               totlaPromotionProduct.addAll(productIdSet);
@@ -177,24 +176,20 @@
                   
               //Remove PromotionCategory added earlier and now not part of promotion 
               if(!removeProductSet.isEmpty()){
-                  List<UL_PromotionCategory__c> removeProductList = new  List<UL_PromotionCategory__c>();
+                  List<Id> removeProductList = new  List<Id>();
                   for(Id storedProductId : removeProductSet){
-                      UL_PromotionCategory__c removeProductCategory = new UL_PromotionCategory__c();
-                      removeProductCategory.id = productCategory.get(storedProductId);
-                      removeProductList.add(removeProductCategory);
+                      removeProductList.add(productCategory.get(storedProductId));
                   }
                   
                   Database.delete(removeProductList, false);
               }
           }else {
               //Adding fresh products
-              System.debug('>>>>>>2');
               insertProductSet.addAll(productIdSet);
           }
           
           //Insert new products to ProductCategory.
           if(!insertProductSet.isEmpty()){
-          System.debug('>>>>>>3');
               List<UL_PromotionCategory__c> insertProductCategoryList = new List<UL_PromotionCategory__c>();
               //Create ProductCategory list to add new products
               for(ACCL__Product__c product : [SELECT id, ACCL__Criterion_4_Product__c FROM ACCL__Product__c WHERE 
@@ -238,10 +233,10 @@
            Schema.SObjectType objectType = promotionId.getSObjectType();
            fieldList.addAll(objectType.getDescribe().fields.getMap().keySet());
            
-           String promotionQuery = 'SELECT ' + String.join(fieldList, UL_Utility.FIELD_SPLITTER);
-           promotionQuery += ' FROM ' + 
+           String promotionQuery = System.label.UL_Query_SELECT + String.join(fieldList, UL_Utility.FIELD_SPLITTER);
+           promotionQuery += System.label.UL_Query_FROM + 
                              objectType.getDescribe().getName() + 
-                             ' WHERE ID = \'' + promotionId + '\'';
+                             SYstem.label.UL_Query_WHERE + SYSTEM.label.UL_Query_ID_Field + System.label.UL_Query_Equals +System.label.UL_Query_StringQuote + promotionId + System.label.UL_Query_StringQuote;
           
           //Prepare tactic query
           fieldList.clear();
@@ -302,8 +297,8 @@
           objectType = ACCL__Tactic_Fund__c.getSObjectType(); 
           fieldList.clear(); 
           fieldList.addAll(objectType.getDescribe().fields.getMap().keySet());
-          String tacticFundQuery = 'SELECT ' + String.join(fieldList, UL_Utility.FIELD_SPLITTER);
-                 tacticFundQuery+= ' FROM ' + objectType.getDescribe().getName() + ' WHERE ACCL__Tactic__c IN:inlineFundSet';
+          String tacticFundQuery = System.label.UL_Query_SELECT + String.join(fieldList, UL_Utility.FIELD_SPLITTER);
+                 tacticFundQuery+= System.label.UL_Query_FROM + objectType.getDescribe().getName() + System.label.UL_Query_WHERE + ' ACCL__Tactic__c IN:inlineFundSet';
                  
                  
           List<ACCL__Tactic_Fund__c> tacticFundSObjectList = Database.query(tacticFundQuery);
@@ -384,13 +379,8 @@
     @future (callout=true) // indicates that this is an asynchronous call
     public static void promotionOutbound(Set<Id> promoIds, String OBAction){
         ACCL__Promotion__c promoObj = new ACCL__Promotion__c() ;
-        ACCL__Promotion__c promoObj1 = new ACCL__Promotion__c() ;
-        Account accObj = new Account() ;
         
-        List<Account> accountLst = new List<Account>() ;
-        List<ACCL__Tactic__c> tacticLst = new List<ACCL__Tactic__c>() ;
-        List<ACCL__Product__c> prodLst = new List<ACCL__Product__c>() ;
-        List<ACCL__Tactic_Product__c> tacProdLst = new List<ACCL__Tactic_Product__c>() ;        
+        List<ACCL__Tactic__c> tacticLst = new List<ACCL__Tactic__c>() ;       
         List<UL_Condition_Codes__c> conditionCodeLst = new List<UL_Condition_Codes__c>() ;    
         
         Set<Id> tacticTemplateIdSet = new Set<Id>() ;
@@ -401,18 +391,21 @@
         String jsonString;
         
         try{
-            system.debug('promoIds '+promoIds) ;
             promoObj =[SELECT Id, Name,
                     ACCL__Anchor_Account__c,ACCL__Anchor_Account__r.Name,ACCL__Anchor_Account__r.ACCL__Sales_Org__c,ACCL__Anchor_Account__r.UL_Distribution_Channel_Code__c
                     ,ACCL__Anchor_Account__r.UL_Activity_Sector_Division_Code__c,ACCL__Anchor_Account__r.AccountNumber,ACCL__Anchor_Account__r.UL_Currency__c
                     ,(SELECT Id,Name,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Amount__c,ACCL__Tactic_Template__c FROM ACCL__Tactics__r)
-                    FROM ACCL__Promotion__c WHERE Id =: promoIds] ;                    
+                    FROM ACCL__Promotion__c WHERE Id =: promoIds 
+                    LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())] ;                    
             
             custWrapObj = new UL_CustomerOBWrapper(promoObj.ACCL__Anchor_Account__c, promoObj.ACCL__Anchor_Account__r.Name, promoObj.ACCL__Anchor_Account__r.ACCL__Sales_Org__c,
                                                 promoObj.ACCL__Anchor_Account__r.UL_Distribution_Channel_Code__c,promoObj.ACCL__Anchor_Account__r.UL_Activity_Sector_Division_Code__c,
                                                 promoObj.ACCL__Anchor_Account__r.AccountNumber,promoObj.ACCL__Anchor_Account__r.UL_Currency__c) ;
             
-            tacticLst = [SELECT Id,Name,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Amount__c,ACCL__Tactic_Template__c,(SELECT ACCL__Product__c,ACCL__Product__r.Name FROM ACCL__Tactic_Products__r) FROM ACCL__Tactic__c WHERE ACCL__Promotion__c =: promoIds];
+            tacticLst = [SELECT Id,Name,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Amount__c,ACCL__Tactic_Template__c,(SELECT ACCL__Product__c,ACCL__Product__r.Name FROM ACCL__Tactic_Products__r) 
+            FROM ACCL__Tactic__c 
+            WHERE ACCL__Promotion__c =: promoIds
+            LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())];
             
             if(tacticLst.size() > 0){
                 for(ACCL__Tactic__c tactic : tacticLst){
@@ -420,7 +413,9 @@
                 }       
             
                 conditionCodeLst = [SELECT UL_Tactic_Template__c,Id,Name,UL_Compensation_Model__c,UL_Payment_Type__c,UL_Price_Condition__c,UL_Table_ID__c 
-                                    FROM UL_Condition_Codes__c WHERE UL_Tactic_Template__c =: tacticTemplateIdSet];
+                                    FROM UL_Condition_Codes__c 
+                                    WHERE UL_Tactic_Template__c =: tacticTemplateIdSet
+                                    LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())];
                                     
                 for(ACCL__Tactic__c tac : tacticLst){
                     tacticTemplateIdSet.add(tac.ACCL__Tactic_Template__c);
@@ -449,24 +444,17 @@
                 }  
             }
             
-            //system.debug('promoLst '+promoLst) ;
-            system.debug('promoObj '+promoObj) ;
-            //system.debug('accObj '+accObj) ;
-            system.debug('tacticLst '+tacticLst) ;
-            system.debug('tacWrapLst '+tacWrapLst) ;
             promoOBWrapper = new UL_PromotionOutboundWrapper(OBAction, promoObj.Id,promoObj.Name,custWrapObj,tacWrapLst) ;
-            system.debug('promoOBWrapper '+promoOBWrapper) ;
             jsonString = JSON.serialize(promoOBWrapper) ;
-            System.debug('jsonString: ' + jsonString);
         }
         catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
         }
         
         HttpRequest req = new HttpRequest();
-        req.setMethod('POST');
-        req.setEndpoint('http://mft-mulesoft-herokuqa.eu.cloudhub.io/api/v1/promotion');
-        req.setHeader('Content-Type', 'application/json');
+        req.setMethod(System.label.UL_HTTP_POST);
+        req.setEndpoint(System.label.UL_Mulesoft_Heroku_URL);
+        req.setHeader(System.label.UL_HTTP_ContentType, System.label.UL_HTTP_Application_JSON);
         req.setBody(jsonString);
         Http http = new Http();
         HTTPResponse res;
@@ -476,9 +464,16 @@
         catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
         }
-        System.debug('Fulfillment service returned '+ res.getBody());
     }
     
+    
+    /***************************************************************
+    Name: UL_PromotionOutboundWrapper
+    Copyright © 2016 Accenture
+    ======================================================
+    Purpose:
+    A class to wrap outbound promotions
+    ***************************************************************/
     public with sharing class UL_PromotionOutboundWrapper{
         String CONDITION_ACTION;
         Id PROMOTION_ID;
@@ -486,6 +481,10 @@
         UL_CustomerOBWrapper CUSTOMER ;
         List<UL_TacticOutboundWrapper> TACTICS = new List<UL_TacticOutboundWrapper>() ;
         
+        
+        /****************************
+        *Class Constructor
+        ****************************/
         public UL_PromotionOutboundWrapper(String OBAction, Id promoId, String promoName,UL_CustomerOBWrapper custWrapObj,List<UL_TacticOutboundWrapper> tacWrapLst){
             this.CONDITION_ACTION = OBAction;
             this.PROMOTION_ID = promoId;
@@ -494,6 +493,14 @@
             this.TACTICS = tacWrapLst;
         }
     }
+    
+    /***************************************************************
+    Name: UL_CustomerOBWrapper
+    Copyright © 2016 Accenture
+    ======================================================
+    Purpose:
+    A class to wrap Customer
+    ***************************************************************/
     public with sharing class UL_CustomerOBWrapper{
         Id CUSTOMER_ID ;
         String CUSTOMER_NAME;
@@ -502,6 +509,10 @@
         String DISTR_CHANNEL_CODE;
         String ACTY_SECTOR_DIV_CODE;
         String CUST_CURRENCY ;
+        
+        /****************************
+        *Class Constructor
+        ****************************/
         public UL_CustomerOBWrapper(Id customerId, String customerName, String salesOrg, String distributionChannelCode, String activitySectorDivisionCode, String accountNumber, String custCurrency ){
             this.CUSTOMER_ID = customerId ;
             this.CUSTOMER_NAME = customerName ;
@@ -511,7 +522,15 @@
             this.ACTY_SECTOR_DIV_CODE = activitySectorDivisionCode ;
             this.CUST_CURRENCY = custCurrency ;
         }
-    } 
+    }
+    
+    /***************************************************************
+    Name: UL_TacticOutboundWrapper
+    Copyright © 2016 Accenture
+    ======================================================
+    Purpose:
+    A class to wrap outbound tactics
+    ***************************************************************/
     public with sharing class UL_TacticOutboundWrapper{
         Id TId ;
         String TName ;
@@ -520,6 +539,10 @@
         Decimal AMOUNT;
         List<UL_ProductOutboundWrapper> PRODUCTS = new List<UL_ProductOutboundWrapper>();
         List<UL_ConditionCodeOutboundWrapper> CONDITION_CODES = new List<UL_ConditionCodeOutboundWrapper>();
+        
+        /****************************
+        *Class Constructor
+        ****************************/
         public UL_TacticOutboundWrapper(Id tacticId, String tacticName,Date FROMDATE,Date TODATE,Decimal tacAMOUNT,List<UL_ProductOutboundWrapper> prodWrapLst,List<UL_ConditionCodeOutboundWrapper> CCWrapLst){
             this.TId = tacticId ;
             this.TName = tacticName ;
@@ -530,14 +553,34 @@
             this.CONDITION_CODES = CCWrapLst ;
         }
     }
+    
+    /***************************************************************
+    Name: UL_ProductOutboundWrapper
+    Copyright © 2016 Accenture
+    ======================================================
+    Purpose:
+    A class to wrap outbound products
+    ***************************************************************/
     public with sharing class UL_ProductOutboundWrapper{
         Id PRODUCT_ID ;
         String PRODUCT_NAME ;
+        
+        /****************************
+        *Class Constructor
+        ****************************/
         public UL_ProductOutboundWrapper(Id productId, String productName){
             this.PRODUCT_ID = productId ;
             this.PRODUCT_NAME = productName ;
         }
     }
+    
+    /***************************************************************
+    Name: UL_ConditionCodeOutboundWrapper
+    Copyright © 2016 Accenture
+    ======================================================
+    Purpose:
+    A class to wrap outbound condition code
+    ***************************************************************/
     public with sharing class UL_ConditionCodeOutboundWrapper{
         Id CONDITIONCODE_ID ;
         String CONDITIONCODE_NAME ;
@@ -545,6 +588,10 @@
         String PAYMENT_TYPE ;
         String PRICE_CONDITION ;
         String TABLE_ID ;
+        
+        /****************************
+        *Class Constructor
+        ****************************/
         public UL_ConditionCodeOutboundWrapper(Id CCId,String CCName,String compModel,String payType,String priceCondition,String tableId){
             this.CONDITIONCODE_ID = CCId ;
             this.CONDITIONCODE_NAME = CCName ;
