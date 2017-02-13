@@ -27029,7 +27029,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Promotion URL after copy</shortDescription>
-        <value>/apex/MyPromotionPlanning?id=</value>
+        <value>/apex/MyPromotionPlanning2?id=</value>
     </labels>
     <labels>
         <fullName>UL_ProductsMandatory</fullName>

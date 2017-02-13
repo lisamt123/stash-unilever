@@ -55,13 +55,17 @@ public with sharing class UL_TeamConcept{
     ********************************************************************/
     public static Boolean isUserAccountManager(Id userId, Date referenceDate) {
         Boolean isManager = false;
-        
+        try{
             if(userId != null && referenceDate != null) {
                 for(ACCL__Account_Manager__c accM : [SELECT Id FROM ACCL__Account_Manager__c WHERE ACCL__User__c = :userId AND ACCL__Valid_From__c <= :referenceDate AND ACCL__Valid_Thru__c >= :referenceDate AND ACCL__Active__c = TRUE LIMIT 1]) {
                     isManager = true;
                     break;
                 }
             }
+            }
+       catch(exception ex){
+        UL_Utility.logError(ex, UserInfo.getUserId());
+       }
         return isManager;
     }
     
@@ -73,8 +77,9 @@ public with sharing class UL_TeamConcept{
     Throws N/A
     ********************************************************************/ 
     public static Boolean isUserAccountSetManager(Id userId, Date referenceDate) {
+      
         Boolean isManager = false;
-       
+         try{
             if( userId != null && referenceDate != null) {
                 for(ACCL__Account_Set_Manager__c accSM : [SELECT Id FROM ACCL__Account_Set_Manager__c WHERE ACCL__User__c = :userId AND ACCL__Valid_From__c <= :referenceDate AND ACCL__Valid_Thru__c >= :referenceDate AND ACCL__Active__c = TRUE LIMIT 1]) {
                     isManager = true;
@@ -82,7 +87,10 @@ public with sharing class UL_TeamConcept{
                 }
             
         }
-
+       }
+       catch(exception ex){
+        UL_Utility.logError(ex, UserInfo.getUserId());
+       }
         return isManager;
     }
     
