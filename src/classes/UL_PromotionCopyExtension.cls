@@ -110,12 +110,12 @@ public with sharing class UL_PromotionCopyExtension {
             if(AnchorTypeCustomer){
                 List<id> accountIds = new List<id>(); 
                 accountIds.add(clonePromotionDetails.ACCL__Anchor_Account__c);
-                promotionCopy = UL_PromotionUtility.clonePromotion(clonePromotionDetails.id, accountIds, UL_Utility.BOOLEAN_TRUE, UL_Utility.BOOLEAN_FALSE, promotionFields, tacticFields, null);
+                promotionCopy = UL_PromotionUtility.clonePromotion(clonePromotionDetails.id, accountIds, UL_Utility.BOOLEAN_TRUE, UL_Utility.BOOLEAN_TRUE, promotionFields, tacticFields, null);
             }
             else{
                 List<id> accountSetIds = new List<id>(); 
                 accountSetIds.add(clonePromotionDetails.ACCL__Anchor_Account_Set__c);            
-                promotionCopy = UL_PromotionUtility.clonePromotion(clonePromotionDetails.id, accountSetIds, UL_Utility.BOOLEAN_TRUE, UL_Utility.BOOLEAN_FALSE, promotionFields, tacticFields, null);   
+                promotionCopy = UL_PromotionUtility.clonePromotion(clonePromotionDetails.id, accountSetIds, UL_Utility.BOOLEAN_TRUE, UL_Utility.BOOLEAN_TRUE, promotionFields, tacticFields, null);   
                 
             }
             if(promotionCopy!=null && !promotionCopy.isEmpty()){                
