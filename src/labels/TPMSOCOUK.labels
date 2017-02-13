@@ -28557,3 +28557,11 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>No Customer Level 1 was found</shortDescription>
         <value>Sorry the record cannot be saved, no Customer with Level 1 was found in Sales Org :</value>
     </labels>
+	<labels>
+        <fullName>UL_WORKFLOW_NOT_SET_ON_TEMPLATE</fullName>
+        <categories>UL Workflow Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UL_WORKFLOW_NOT_SET_ON_TEMPLATE</shortDescription>
+        <value>No Workflow is set on the Promotion Template</value>
+    </labels>
