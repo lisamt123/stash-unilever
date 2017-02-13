@@ -422,7 +422,7 @@
     <layoutAssignments>
         <layout>CORE_NT_Team__c-Project Team Layout</layout>
     </layoutAssignments>
-    <layoutAssignments>
+<layoutAssignments>
         <layout>CPA_CNF_TNF__c-CNF%2FTNF Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -600,31 +600,11 @@
         <recordType>CPA_project_work_order__c.CPA_PWO_CNF_Signed</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Submitted   Layout</layout>
-        <recordType>CPA_project_work_order__c.CPA_PWO_CNF_Submitted</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Cancel  Layout</layout>
-        <recordType>CPA_project_work_order__c.CPA_PWO_Cancel</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Delivered  Layout</layout>
-        <recordType>CPA_project_work_order__c.CPA_PWO_Delivered</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>CPA_project_work_order__c-CPA Project Work Order Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_project_work_order__c-CPA Project Work Order Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Signed  Layout</layout>
-        <recordType>CPA_project_work_order__c.CPA_PWO_Signed</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Submitted  Layout</layout>
-        <recordType>CPA_project_work_order__c.CPA_PWO_Submitted</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_project_work_order__c-CPA Project Work Order TNF Layout</layout>
