@@ -1,4 +1,4 @@
-public class SAJ_AppGridController {
+public with sharing class SAJ_AppGridController {
 
 public Business_Solution__c[] valueHighComplexHigh {get;set;}
     public Business_Solution__c[] valueHighComplexMed {get;set;}
@@ -31,7 +31,7 @@ public Business_Solution__c[] valueHighComplexHigh {get;set;}
     valueLowComplexLow = new List<Business_Solution__c>();
     undefinedBucket = new List<Business_Solution__c>();
     
-    for(Business_Solution__c eachApp : [SELECT id, Name, Business_Value__c, Description__c FROM Business_Solution__c ORDER BY Name asc]){
+    for(Business_Solution__c eachApp : [SELECT id, Name, Business_Value__c, Description__c FROM Business_Solution__c ORDER BY Name asc limits 50]){
         //System.debug('App is '+eachApp.Name+', Complexity='+eachApp.Complexity__c+', Business Value='+eachApp.Business_Value__c);
         if ( eachApp.Business_Value__c == null  ) //|| eachApp.Complexity__c == null
          {
