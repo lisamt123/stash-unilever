@@ -1,0 +1,7 @@
+<apex:page standardController="Win_Brand_Configuration__c" extensions="Win_BrandController" showHeader="false">
+    <apex:form >
+    <apex:pageBlock >
+        <apex:image id="theImage" value="{!Win_Brand_Configuration__c.Logo__c}" width="400" height="400"/>  
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

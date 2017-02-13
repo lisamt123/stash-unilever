@@ -1,0 +1,767 @@
+    <labels>
+        <fullName>wings_actions_created</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>win_actions_created</shortDescription>
+        <value>Created</value>
+    </labels>
+    <labels>
+        <fullName>wings_actions_creationdate</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_actions_creationdate</shortDescription>
+        <value>CREATED</value>
+    </labels>
+    <labels>
+        <fullName>wings_actions_due</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_actions_due</shortDescription>
+        <value>Due</value>
+    </labels>
+    <labels>
+        <fullName>wings_actions_duedate</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_actions_duedate</shortDescription>
+        <value>DUE</value>
+    </labels>
+    <labels>
+        <fullName>wings_actions_filter_all</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_actions_filter_all</shortDescription>
+        <value>Filter All Customers</value>
+    </labels>
+    <labels>
+        <fullName>wings_actions_item</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_actions_item</shortDescription>
+        <value>ITEM</value>
+    </labels>
+    <labels>
+        <fullName>wings_actions_openurl</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_actions_openurl</shortDescription>
+        <value>Open URL</value>
+    </labels>
+    <labels>
+        <fullName>wings_actions_priority</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_actions_priority</shortDescription>
+        <value>PRIORITY</value>
+    </labels>
+    <labels>
+        <fullName>wings_actions_source</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_actions_source</shortDescription>
+        <value>SOURCE</value>
+    </labels>
+    <labels>
+        <fullName>wings_actions_store</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_actions_store</shortDescription>
+        <value>STORE</value>
+    </labels>
+    <labels>
+        <fullName>wings_actions_title</fullName>
+        <categories>Actions Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_actions_title</shortDescription>
+        <value>ACTIONS</value>
+    </labels>
+    <labels>
+        <fullName>wings_activation_last_attempt_text</fullName>
+        <categories>Activation Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_activation_last_attempt_text</shortDescription>
+        <value>Last attempt for user {{username}} at {{date}}</value>
+    </labels>
+    <labels>
+        <fullName>wings_activation_tryagain</fullName>
+        <categories>Activation Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_activation_tryagain</shortDescription>
+        <value>Try Again</value>
+    </labels>
+    <labels>
+        <fullName>wings_brand_comparison</fullName>
+        <categories>store value volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_brand_comparison</shortDescription>
+        <value>Brand Comparison</value>
+    </labels>
+    <labels>
+        <fullName>wings_category_comparison</fullName>
+        <categories>store value volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_category_comparison</shortDescription>
+        <value>Category Comparison</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_addimage</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_addimage</shortDescription>
+        <value>add image</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_allfeed_body</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_allfeed_body</shortDescription>
+        <value>All of the conversations has been listed.</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_allfeed_title</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_allfeed_title</shortDescription>
+        <value>all feed</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_comment</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_comment</shortDescription>
+        <value>Comment</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_comment_button</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_comment_button</shortDescription>
+        <value>Comment</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_comment_placeholder</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_comment_placeholder</shortDescription>
+        <value>Type comment here...</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_comments</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_comments</shortDescription>
+        <value>Comments</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_header</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_header</shortDescription>
+        <value>Chatter</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_like</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_like</shortDescription>
+        <value>Like</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_post</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_post</shortDescription>
+        <value>Post</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_post_placeholder</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_post_placeholder</shortDescription>
+        <value>Type your post here</value>
+    </labels>
+    <labels>
+        <fullName>wings_chatter_unlike</fullName>
+        <categories>Chatter Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_chatter_unlike</shortDescription>
+        <value>Unlike</value>
+    </labels>
+    <labels>
+        <fullName>wings_filters_all</fullName>
+        <categories>Filters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_filters_all</shortDescription>
+        <value>All</value>
+    </labels>
+    <labels>
+        <fullName>wings_filters_check_all</fullName>
+        <categories>Filters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_filters_check_all</shortDescription>
+        <value>Check All</value>
+    </labels>
+    <labels>
+        <fullName>wings_filters_uncheck_all</fullName>
+        <categories>Filters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_filters_uncheck_all</shortDescription>
+        <value>Uncheck All</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_actions</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_actions_todaysactions</shortDescription>
+        <value>TODAY&apos;S ACTIONS</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_actions_categories</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_actions_categories</shortDescription>
+        <value>CATEGORIES</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_actions_noactions</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_actions_noactions</shortDescription>
+        <value>No actions for today...</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_actions_seeall</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_actions_seeall</shortDescription>
+        <value>see all actions</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_news_title</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_news_title</shortDescription>
+        <value>NEWS</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_stores_nextvisit</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_stores_nextvisit</shortDescription>
+        <value>NEXT VISIT</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_stores_priority</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_stores_priority</shortDescription>
+        <value>PRIORITY</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_stores_store</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_stores_store</shortDescription>
+        <value>STORE</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_toggle_actions</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_toggle_actions</shortDescription>
+        <value>Actions</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_toggle_chatter</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_toggle_chatter</shortDescription>
+        <value>Chatter</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_toggle_news</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_toggle_news</shortDescription>
+        <value>News</value>
+    </labels>
+    <labels>
+        <fullName>wings_home_toggle_stores</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_home_toggle_stores</shortDescription>
+        <value>Stores</value>
+    </labels>
+    <labels>
+        <fullName>wings_news_added</fullName>
+        <categories>News</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_news_added</shortDescription>
+        <value>ADDED</value>
+    </labels>
+    <labels>
+        <fullName>wings_news_filter_all</fullName>
+        <categories>News</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_news_filter_all</shortDescription>
+        <value>Filter All Tags</value>
+    </labels>
+    <labels>
+        <fullName>wings_news_headline</fullName>
+        <categories>News</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_news_headline</shortDescription>
+        <value>HEADLINE</value>
+    </labels>
+    <labels>
+        <fullName>wings_news_title</fullName>
+        <categories>News</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_news_title</shortDescription>
+        <value>NEWS</value>
+    </labels>
+    <labels>
+        <fullName>wings_ptr_pulltorefresh</fullName>
+        <categories>Pull to Refresh</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_ptr_pulltorefresh</shortDescription>
+        <value>Pull down to refresh</value>
+    </labels>
+    <labels>
+        <fullName>wings_ptr_refreshing</fullName>
+        <categories>Pull to Refresh</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_ptr_refreshing</shortDescription>
+        <value>Refreshing...</value>
+    </labels>
+    <labels>
+        <fullName>wings_ptr_releasetorefresh</fullName>
+        <categories>Pull to Refresh</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_ptr_releasetorefresh</shortDescription>
+        <value>Release to refresh</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_comparison_differance</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_comparison_differance</shortDescription>
+        <value>sales value evol</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_comparison_national</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_comparison_national</shortDescription>
+        <value>National</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_comparison_nodata</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_comparison_nodata</shortDescription>
+        <value>-</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_comparison_osa</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_comparison_osa</shortDescription>
+        <value>osa</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_comparison_regional</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_comparison_regional</shortDescription>
+        <value>Regional</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_comparison_store</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_comparison_store</shortDescription>
+        <value>Store</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_comparison_store_box</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_comparison_store_box</shortDescription>
+        <value>Store</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_comparison_title</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_comparison_title</shortDescription>
+        <value>Stores</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_comparison_value</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_comparison_value</shortDescription>
+        <value>sales value</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_comparison_value_box</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_comparison_value_box</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_detail_action_due</fullName>
+        <categories>Store Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_detail_action_due</shortDescription>
+        <value>Due</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_detail_action_header</fullName>
+        <categories>Store Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_detail_action_header</shortDescription>
+        <value>Store Actions</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_detail_created</fullName>
+        <categories>Store Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_detail_created</shortDescription>
+        <value>Created</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_detail_due</fullName>
+        <categories>Store Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_detail_due</shortDescription>
+        <value>DUE</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_detail_item</fullName>
+        <categories>Store Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_detail_item</shortDescription>
+        <value>ITEM</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_detail_priority</fullName>
+        <categories>Store Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_detail_priority</shortDescription>
+        <value>PRIORITY</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_detail_source</fullName>
+        <categories>Store Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_detail_source</shortDescription>
+        <value>SOURCE</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_all_retailers</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_all_retailers</shortDescription>
+        <value>All Retailers</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_next</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_next</shortDescription>
+        <value>NEXT</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_perfect_store</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_perfect_store</shortDescription>
+        <value>PERFECT STORE</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_performance_indicators</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_performance_indicators</shortDescription>
+        <value>PERFORMANCE INDICATORS</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_previous</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_previous</shortDescription>
+        <value>PREVIOUS</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_priority</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_priority</shortDescription>
+        <value>PRIORITY</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_sop</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_sop</shortDescription>
+        <value>SOP</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_store</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_store</shortDescription>
+        <value>STORE</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_store_name</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_store_name</shortDescription>
+        <value>STORE NAME</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_target</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_target</shortDescription>
+        <value>TARGET</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_value_sales_volume</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_value_sales_volume</shortDescription>
+        <value>VALUE/SALES VOLUME</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_list_visits</fullName>
+        <categories>Store List Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_list_visits</shortDescription>
+        <value>VISITS</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_actions</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_actions</shortDescription>
+        <value>Actions</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_detail_button</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_detail_button</shortDescription>
+        <value>View Store Details</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_due</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_due</shortDescription>
+        <value>Due</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_kpioverview</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_kpioverview</shortDescription>
+        <value>kpi overview</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_noaction</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_noaction</shortDescription>
+        <value>No actions planned for today</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_perfect_store</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_perfect_store</shortDescription>
+        <value>Perfect Store</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_priority</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_priority</shortDescription>
+        <value>Priority</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_sales</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_sales</shortDescription>
+        <value>Value / Volume Sales</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_sop</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_sop</shortDescription>
+        <value>SOP</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_source</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_source</shortDescription>
+        <value>Source</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_popup_target</fullName>
+        <categories>Home Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_popup_target</shortDescription>
+        <value>Target</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_sku_header</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_sku_header</shortDescription>
+        <value>SKU PERFORMANCE</value>
+    </labels>
+    <labels>
+        <fullName>wings_store_sku_no_data</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_store_sku_no_data</shortDescription>
+        <value>No SKU Data found.</value>
+    </labels>
+    <labels>
+        <fullName>wings_top_oos_products_oos</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_top_oos_products_oos</shortDescription>
+        <value>OOS</value>
+    </labels>
+    <labels>
+        <fullName>wings_top_oos_products_product</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_top_oos_products_product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>wings_top_oos_products_sop</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_top_oos_products_sop</shortDescription>
+        <value>SOP</value>
+    </labels>
+    <labels>
+        <fullName>wings_top_oss_products_title</fullName>
+        <categories>Store Value Volume</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_top_oss_products_title</shortDescription>
+        <value>top 10 oos products</value>
+    </labels>
+    <labels>
+        <fullName>wings_winners_losers_header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>wings_winners_losers_header</shortDescription>
+        <value>EPOS - WINNERS &amp; LOSERS</value>
+    </labels>
