@@ -475,7 +475,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Ades</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Beverages</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Body Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Candles</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -487,11 +499,59 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Cleaners</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Conditioners</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Desinfectants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Detergent</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Direct Aplication</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dishwash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fabric Conditioner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Face Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Frozen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Home Surface Cleaners</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -503,7 +563,71 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>IC Modern trade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IC Traditional Trade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Jams</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ketchup</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mayonesa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NVP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Savory</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Snacks</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Solution Wash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TBB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wash Additives</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>
@@ -2284,39 +2408,127 @@
         <picklistValues>
             <picklist>ACCL__Category__c</picklist>
             <values>
-                <fullName>Accumulators</fullName>
+                <fullName>Ades</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Beverages</fullName>
+                <fullName>Body Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Chips</fullName>
+                <fullName>Candles</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cigarettes</fullName>
+                <fullName>Cleaners</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Detergent</fullName>
+                <fullName>Conditioners</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Frozen</fullName>
+                <fullName>Deo</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HouseholdGoods</fullName>
+                <fullName>Deodorants</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Hygiene</fullName>
+                <fullName>Desinfectants</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Snacks</fullName>
+                <fullName>Direct Aplication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dishwash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fabric Conditioner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Face Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Surface Cleaners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IC Modern trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IC Traditional Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jams</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ketchup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mayonesa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NVP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solution Wash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TBB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wash Additives</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
