@@ -45,7 +45,7 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
         System.debug('@@vendorList@@'+vendorList.size());
          String mainJsonObject = '{ ';
  //boolean eccVal = false;
- mainJsonObject =mainJsonObject+ '////#RequestID////# : '+vendorList.get(0).VPM_SAPBPMRequestID__c+STR_CONST_BOOLEANCOMMA;
+ mainJsonObject =mainJsonObject+ '////#RequestID////# : '+vendorList.get(0).VPM_SAPBPMRequestID__c+',';
  mainJsonObject =mainJsonObject+ '////#RequestDate////# : ////#'+ String.ValueOf(System.today())+STR_CONST_COMMA;
    if(mapUserDetails != null && mapUserDetails.containsKey('name')) {
                 if(String.isNotBlank(mapUserDetails.get('name'))) {
@@ -89,7 +89,7 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
     } 
   if(vendorList.get(0).VPM_VendorCodeLookup__r.mdm_ID__c != null)
   {
-     mainJsonObject =mainJsonObject+ '////#VendorCode////# :'+Integer.valueOf(vendorList.get(0).VPM_VendorCodeLookup__r.mdm_ID__c)+STR_CONST_BOOLEANCOMMA;
+     mainJsonObject =mainJsonObject+ '////#VendorCode////# :'+Integer.valueOf(vendorList.get(0).VPM_VendorCodeLookup__r.mdm_ID__c)+',';
      mainJsonObject =mainJsonObject+ '////#VendorNumber////# :////#'+vendorList.get(0).VPM_VendorCodeLookup__r.mdm_ID__c+STR_CONST_COMMA;
   }
   
@@ -249,10 +249,10 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
     mainJsonObject =mainJsonObject+ '////#VatRegistrationNumber////# :////#'+vendorList.get(0).VPM_VATRegistrationNumber__c+STR_CONST_COMMA;
   }else if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_VATRegistrationNumber__c'))
   {
-    mainJsonObject =mainJsonObject+ '////#VPM_VATRegistrationNumber__c////# :////#'+STR_CONST_COMMA;
+    mainJsonObject =mainJsonObject+ '////#VatRegistrationNumber////# :////#'+STR_CONST_COMMA;
   }
   if(vendorList.get(0).VPM_IsNaturalPerson__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IsNaturalPerson__c')){
-    mainJsonObject =mainJsonObject+ '////#IsNaturalPerson////# :'+vendorList.get(0).VPM_IsNaturalPerson__c+STR_CONST_BOOLEANCOMMA;
+    mainJsonObject =mainJsonObject+ '////#IsNaturalPerson////# :'+vendorList.get(0).VPM_IsNaturalPerson__c+',';
   }
   if(vendorList.get(0).VPM_TaxNumberType__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumberType__c')){
     mainJsonObject =mainJsonObject+ '////#TaxNumberType////# :////#'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_TaxNumberType__c)+STR_CONST_COMMA;
@@ -366,7 +366,7 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
             mainJsonObject =mainJsonObject+'////#AttachmentLink////# :////#'+ URL.getSalesforceBaseUrl().toExternalForm()+'/'+ vendorList[0].id+STR_CONST_COMMA;
             mainJsonObject =mainJsonObject+ '////#VendorName////# :////#'+vendorList[0].VPM_VendorCodeLookup__r.mdm_Name1__c+'////#';
             mainJsonObject  = mainJsonObject.trim();
-              mainJsonObject  =mainJsonObject.removeEnd(STR_CONST_BOOLEANCOMMA);
+              mainJsonObject  =mainJsonObject.removeEnd(',');
     mainJsonObject =mainJsonObject+ '}'; 
     string addEscapeCharacter =  mainJsonObject.replace('\\','\\\\');
      addEscapeCharacter = addEscapeCharacter.replace('"','\\"');

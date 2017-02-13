@@ -35,6 +35,7 @@ public without sharing class VPM_RegionalMaintainVendor {
     final static string STR_CONST_PIVendor = 'PI Vendor Section Changed';
     final static string STR_CONST_SAPBPMError = 'MDM Insert/Update Status Message';
     static boolean feedCreated = false;
+    public static boolean FutureCallCheck = False;
     Static Map<string,string> FormatedFeed=  new Map<string,string>{STR_CONST_PurchasingOrg =>'',STR_CONST_FinancialDetails =>'',STR_CONST_RegionalSpec =>'',STR_CONST_BankDetails=>'', STR_CONST_GeneralVendorDetails => '',STR_CONST_PIVendor =>'',STR_CONST_SAPBPMError  =>''};
     static Set<Id> oldRegionSet = new Set<Id>();
     //static Set<Id> newRegionSet = new Set<Id>();
@@ -300,7 +301,7 @@ public static void callRegionalService(string vendorId)
 {
 
              String responseString= vendorId;
-            
+             FutureCallCheck = True;
              responseString =responseString + VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorId);
              VPM_HttpUtil.updateRecordType(vendorId); 
             
