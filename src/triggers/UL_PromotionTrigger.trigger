@@ -17,7 +17,7 @@
               if(trigger.isUpdate){
                   UL_PromotionInstoreDates.inStoredatesUpdated(trigger.new,trigger.oldMap,trigger.newMap);
                   UL_PromotionInstoreDates.check_LTA_Duration(trigger.new);
-                  UL_PromotionSetIIBBTaxHandler.updateIIBBTax(trigger.new,trigger.oldMap);
+                  UL_PromotionTriggerHandler.updateIIBBTax(trigger.new,trigger.oldMap);
               }
             }
           
@@ -30,7 +30,7 @@
             if(trigger.isBefore){
                 if(trigger.isInsert){
                     UL_PromotionInstoreDates.check_LTA_Duration(trigger.new);
-                    UL_PromotionSetIIBBTaxHandler.updateIIBBTax(trigger.new,null);
+                    UL_PromotionTriggerHandler.updateIIBBTax(trigger.new,null);
                 }
             }
             
