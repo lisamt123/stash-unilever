@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Actions_Module__c</fullName>
+        <description>Actions Module Availability depending on the Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Actions Module Availability depending on the Country</inlineHelpText>
+        <label>Actions Module</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Calendar_End_Time__c</fullName>
+        <description>Calendar End Time</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calendar End Time</inlineHelpText>
+        <label>Calendar End Time</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Calendar_Start_Time__c</fullName>
+        <description>Calendar Start Time</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calendar Start Time</inlineHelpText>
+        <label>Calendar Start Time</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Calendar_Week_Day_Count__c</fullName>
+        <description>Calendar Week Day Count</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calendar Week Day Count</inlineHelpText>
+        <label>Calendar Week Day Count</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Chatter_Module__c</fullName>
+        <description>Chatter Module Availability depending on the Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Chatter Module Availability depending on the Country</inlineHelpText>
+        <label>Chatter Module</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Country_ID__c</fullName>
+        <description>Country ID</description>
+        <externalId>false</externalId>
+        <label>Country ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Currency__c</fullName>
+        <description>Currency</description>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ISO_Code__c</fullName>
+        <description>Country - ISO Code</description>
+        <externalId>false</externalId>
+        <label>ISO Code</label>
+        <length>2</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lower_Modules__c</fullName>
+        <description>Lower Modules to be displayed depending on the Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lower Modules to be displayed depending on the Country</inlineHelpText>
+        <label>Lower Modules</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>News_Module__c</fullName>
+        <description>News Module Availability depending on the Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>News Module Availability depending on the Country</inlineHelpText>
+        <label>News Module</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Perfect_Store__c</fullName>
+        <description>Perfect Store Availability depending on the Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Perfect Store Availability depending on the Country</inlineHelpText>
+        <label>Perfect Store</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SOP__c</fullName>
+        <description>SOP Availability depending on the Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>SOP Availability depending on the Country</inlineHelpText>
+        <label>SOP</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales__c</fullName>
+        <description>Sales Availability depending on the Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sales Availability depending on the Country</inlineHelpText>
+        <label>Sales</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Store_Module__c</fullName>
+        <description>Store Module Availability depending on the Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Store Module Availability depending on the Country</inlineHelpText>
+        <label>Store Module</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Target__c</fullName>
+        <description>Target Availability depending on the Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Target Availability depending on the Country</inlineHelpText>
+        <label>Target</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Time_Zone__c</fullName>
+        <description>Time Zone</description>
+        <externalId>false</externalId>
+        <label>Time Zone</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Upper_Modules__c</fullName>
+        <description>Upper Modules to be displayed depending on the Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Upper Modules to be displayed depending on the Country</inlineHelpText>
+        <label>Upper Modules</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Wings Country</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Country_ID__c</columns>
+        <columns>Time_Zone__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>ISO_Code__c</columns>
+        <columns>Store_Module__c</columns>
+        <columns>Actions_Module__c</columns>
+        <columns>Chatter_Module__c</columns>
+        <columns>Lower_Modules__c</columns>
+        <columns>News_Module__c</columns>
+        <columns>Perfect_Store__c</columns>
+        <columns>Sales__c</columns>
+        <columns>SOP__c</columns>
+        <columns>Target__c</columns>
+        <columns>Upper_Modules__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Country Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Wings Countries</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>
