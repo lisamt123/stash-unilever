@@ -61,7 +61,7 @@ public class VPM_PurchaseRequestsExtensionTest{
        List<VPM_PurchasingRequests__c> purList = [select VPM_CountryRequestingVendor__c,VPM_DeletionBlockFlag__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
        system.assertEquals(pur.Id,pur1.Id);
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-      VPM_PurchaseRequestsControllerExtension VendorDetail1 = new VPM_PurchaseRequestsControllerExtension(new ApexPages.StandardSetController(purList));  
+      //VPM_PurchaseRequestsControllerExtension VendorDetail1 = new VPM_PurchaseRequestsControllerExtension(new ApexPages.StandardSetController(purList));  
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
       VendorDetail.recId=pur.Id;
         VendorDetail.ManuallyMarkAsCompleteAction();
@@ -268,7 +268,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
         VendorDetail.callSendToSAPAPI();
           test.stopTest();
-          VPM_PurchasingRequests__c result = [SELECT Id,VPM_ECC_InsertUpdateStatus__c FROM VPM_PurchasingRequests__c WHERE Id=:pur.Id  LIMIT 1];
+          //VPM_PurchasingRequests__c result = [SELECT Id,VPM_ECC_InsertUpdateStatus__c FROM VPM_PurchasingRequests__c WHERE Id=:pur.Id  LIMIT 1];
           system.assertEquals(pur.VPM_ECC_InsertUpdateStatus__c,null ); 
       }
     
@@ -1180,7 +1180,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         system.assert(vendor.Id!=null,ErrorMsg);
         
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.VPM_CompanyCode__c = Company;
         companyCode.ECC__c = Ecc;
         companyCode.VPM_Country__c =country;
         insert companyCode;
@@ -1294,7 +1294,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         system.assert(vendor.Id!=null,ErrorMsg);
         
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.VPM_CompanyCode__c = Company;
         companyCode.ECC__c = Ecc;
         companyCode.VPM_Country__c =country;
         insert companyCode;
@@ -1376,7 +1376,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         system.assert(vendor.Id!=null,ErrorMsg);
         
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.VPM_CompanyCode__c = Company;
         companyCode.ECC__c = Ecc;
         companyCode.VPM_Country__c =country;
         insert companyCode;
@@ -1462,7 +1462,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         system.assert(vendor.Id!=null,ErrorMsg);
         
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.VPM_CompanyCode__c = Company;
         companyCode.ECC__c = Ecc;
         companyCode.VPM_Country__c =country;
         insert companyCode;
@@ -1539,7 +1539,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         system.assert(vendor.Id!=null,ErrorMsg);
         
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.VPM_CompanyCode__c = Company;
         companyCode.ECC__c = Ecc;
         companyCode.VPM_Country__c =country;
         insert companyCode;
@@ -1616,7 +1616,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         system.assert(vendor.Id!=null,ErrorMsg);
         
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.VPM_CompanyCode__c = Company;
         companyCode.ECC__c = Ecc;
         companyCode.VPM_Country__c =country;
         insert companyCode;
@@ -1695,7 +1695,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         system.assert(vendor.Id!=null,ErrorMsg);
         
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.VPM_CompanyCode__c = Company;
         companyCode.ECC__c = Ecc;
         companyCode.VPM_Country__c =country;
         insert companyCode;
@@ -1773,7 +1773,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         system.assert(vendor.Id!=null,ErrorMsg);
         
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.VPM_CompanyCode__c = Company;
         companyCode.ECC__c = Ecc;
         companyCode.VPM_Country__c =country;
         insert companyCode;
