@@ -41,7 +41,8 @@ public Business_Solution__c[] valueHighComplexHigh {get;set;}
          {
             System.debug('Added '+eachApp.Name+ ' to undefined list.');
             undefinedBucket.add(eachApp);
-        } else {
+        } 
+        //else {
           //  if(eachApp.Business_Value__c == 'High'){
                
             /*  if(eachApp.Complexity__c == 'High')
@@ -70,7 +71,7 @@ public Business_Solution__c[] valueHighComplexHigh {get;set;}
                 valueLowComplexLow.add(eachApp); */   
         //     }      
          
-         }
+         //}
         
       }
   }
