@@ -24,7 +24,16 @@ public class VPM_PurchaseRequestsExtensionTest{
  static string str1234 = '1234';
  static string strPurchasingReqObjectName = 'VPM_PurchasingRequests__c';
  static string strQueue = 'Queue';
- 
+ static string strMBSMarketing= 'MBS--Marketing Services';
+ static string strAdHocResearch = 'ad-hoc research';
+ static string strAdHocMarketResearch =  'ad-hoc market research - qualitative';
+ static string str5702 = '5702 - un01580115';
+ static string strMarketResearch = 'Market Research'; 
+ static string strTestUser2 = 'Test User2';
+ static string strZgs1 = 'ZGS1';
+ static string strRCT = 'RCT_Russian Customs Tax Vendor_G001';
+ static string str3pm = '3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+  
     static void grpmethod() {
         Group grp = new Group(Name=strQueue,Type=strQueue);
         insert grp;
@@ -58,7 +67,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         //insert purList;
      grpmethod();
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_DeletionBlockFlag__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       List<VPM_PurchasingRequests__c> purList = [select VPM_CountryRequestingVendor__c,VPM_DeletionBlockFlag__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       //List<VPM_PurchasingRequests__c> purList = [select VPM_CountryRequestingVendor__c,VPM_DeletionBlockFlag__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
        system.assertEquals(pur.Id,pur1.Id);
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       //VPM_PurchaseRequestsControllerExtension VendorDetail1 = new VPM_PurchaseRequestsControllerExtension(new ApexPages.StandardSetController(purList));  
@@ -1188,11 +1197,11 @@ public class VPM_PurchaseRequestsExtensionTest{
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
         commodityCode.VPM_VendorType__c = mbsMarketing;
-        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
-        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
-        commodityCode.Name='Ad-hoc Market Research - Qualitative';
-        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
-        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_AuthorisationGroup__c =strMBSMarketing;
+        commodityCode.VPM_CommodityClass__c = strAdHocResearch; 
+        commodityCode.Name=strAdHocMarketResearch;
+        commodityCode.VPM_CommodityCode__c=str5702;
+        commodityCode.VPM_CommodityClass__c=strMarketResearch;
         commodityCode.VPM_Region__c=Ecc;
           
         insert commodityCode;
@@ -1201,9 +1210,9 @@ public class VPM_PurchaseRequestsExtensionTest{
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
         pur.VPM_ECC__c = Ecc;
        // pur.VPM_ProvidedBankDetails__c = TRUE;
-        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_VendorName1__c =strTestUser2;
         pur.VPM_Status__c = strDraftRequest;
-        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_AccountGroup__c =strZgs1;
         pur.VPM_VendorCodeLookup__c =vendor.Id;
         pur.recordTypeId=recordTypeId;
         pur.VPM_CompanyCode__c=companyCode.Id;
@@ -1249,7 +1258,7 @@ public class VPM_PurchaseRequestsExtensionTest{
          VPM_PurchasingRequests__c purId = TestDataApprovalMethod();
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-         purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+         purId.VPM_VendorType__c  = strRCT;
         purid.VPM_BusinessRequestorSubmitted__c=reworkStat;
          purid.VPM_Rework__c='No';
         // update purId;
@@ -1302,11 +1311,11 @@ public class VPM_PurchaseRequestsExtensionTest{
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
         commodityCode.VPM_VendorType__c = mbsMarketing;
-        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
-        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
-        commodityCode.Name='Ad-hoc Market Research - Qualitative';
-        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
-        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_AuthorisationGroup__c =strMBSMarketing;
+        commodityCode.VPM_CommodityClass__c = strAdHocResearch; 
+        commodityCode.Name=strAdHocMarketResearch;
+        commodityCode.VPM_CommodityCode__c=str5702;
+        commodityCode.VPM_CommodityClass__c=strMarketResearch;
         commodityCode.VPM_Region__c=Ecc;
           
         insert commodityCode;
@@ -1315,9 +1324,9 @@ public class VPM_PurchaseRequestsExtensionTest{
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
         pur.VPM_ECC__c = Ecc;
        // pur.VPM_ProvidedBankDetails__c = TRUE;
-        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_VendorName1__c =strTestUser2;
         pur.VPM_Status__c = strDraftRequest;
-        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_AccountGroup__c =strZgs1;
         pur.VPM_VendorCodeLookup__c =vendor.Id;
         pur.recordTypeId=recordTypeId;
         pur.VPM_CompanyCode__c=companyCode.Id;
@@ -1329,8 +1338,8 @@ public class VPM_PurchaseRequestsExtensionTest{
         pur.VPM_ZIPPostcode__c =str54132;
         //pur.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR';
         pur.VPM_AdvancedFormSubmitted__c =reworkStat;
-         pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
-         pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+         pur.VPM_VendorType__c  = strRCT;
+         pur.VPM_GlobalAuthorisationGroup__c=str3pm;
          pur.VPM_RussianTaxApprovalRequired__c=false;
         
          pur.VPM_Rework__c='No';
@@ -1384,11 +1393,11 @@ public class VPM_PurchaseRequestsExtensionTest{
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
         commodityCode.VPM_VendorType__c = mbsMarketing;
-        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
-        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
-        commodityCode.Name='Ad-hoc Market Research - Qualitative';
-        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
-        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_AuthorisationGroup__c =strMBSMarketing;
+        commodityCode.VPM_CommodityClass__c = strAdHocResearch; 
+        commodityCode.Name=strAdHocMarketResearch;
+        commodityCode.VPM_CommodityCode__c=str5702;
+        commodityCode.VPM_CommodityClass__c=strMarketResearch;
         commodityCode.VPM_Region__c=Ecc;
           
         insert commodityCode;
@@ -1397,9 +1406,9 @@ public class VPM_PurchaseRequestsExtensionTest{
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
         pur.VPM_ECC__c = Ecc;
        // pur.VPM_ProvidedBankDetails__c = TRUE;
-        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_VendorName1__c =strTestUser2;
         pur.VPM_Status__c = strDraftRequest;
-        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_AccountGroup__c =strZgs1;
         pur.VPM_VendorCodeLookup__c =vendor.Id;
         pur.recordTypeId=recordTypeId;
         pur.VPM_CompanyCode__c=companyCode.Id;
@@ -1411,8 +1420,8 @@ public class VPM_PurchaseRequestsExtensionTest{
         pur.VPM_ZIPPostcode__c =str54132;
         //pur.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR';
         pur.VPM_AdvancedFormSubmitted__c =reworkStat;
-         pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
-         pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+         pur.VPM_VendorType__c  = strRCT;
+         pur.VPM_GlobalAuthorisationGroup__c=str3pm;
          pur.VPM_BankDataValidationRequired__c=false;
       pur.VPM_FinanceApprovalRequired__c=true;
             pur.VPM_Rework__c='No';
@@ -1438,8 +1447,8 @@ public class VPM_PurchaseRequestsExtensionTest{
          VPM_PurchasingRequests__c purId = TestDataBankApprovalMethod();
        //  ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-         purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
-         purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+         purId.VPM_VendorType__c  = strRCT;
+         purid.VPM_GlobalAuthorisationGroup__c=str3pm;
         purId.VPM_BankDataValidationRequired__c=true;
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
@@ -1470,11 +1479,11 @@ public class VPM_PurchaseRequestsExtensionTest{
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
         commodityCode.VPM_VendorType__c = mbsMarketing;
-        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
-        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
-        commodityCode.Name='Ad-hoc Market Research - Qualitative';
-        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
-        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_AuthorisationGroup__c =strMBSMarketing;
+        commodityCode.VPM_CommodityClass__c = strAdHocResearch; 
+        commodityCode.Name=strAdHocMarketResearch;
+        commodityCode.VPM_CommodityCode__c=str5702;
+        commodityCode.VPM_CommodityClass__c=strMarketResearch;
         commodityCode.VPM_Region__c=Ecc;
           
         insert commodityCode;
@@ -1483,9 +1492,9 @@ public class VPM_PurchaseRequestsExtensionTest{
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
         pur.VPM_ECC__c = Ecc;
        // pur.VPM_ProvidedBankDetails__c = TRUE;
-        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_VendorName1__c =strTestUser2;
         pur.VPM_Status__c = strDraftRequest;
-        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_AccountGroup__c =strZgs1;
         pur.VPM_VendorCodeLookup__c =vendor.Id;
         pur.recordTypeId=recordTypeId;
         pur.VPM_CompanyCode__c=companyCode.Id;
@@ -1495,8 +1504,8 @@ public class VPM_PurchaseRequestsExtensionTest{
         pur.VPM_VendorPhone__c=phone;
         pur.VPM_ZIPPostcode__c =str54132;
         pur.VPM_AdvancedFormSubmitted__c =reworkStat;
-        pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
-        pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+        pur.VPM_VendorType__c  = strRCT;
+        pur.VPM_GlobalAuthorisationGroup__c=str3pm;
         pur.VPM_BankDataValidationRequired__c=false;
         pur.VPM_FinanceApprovalRequired__c=true;        
 
@@ -1547,11 +1556,11 @@ public class VPM_PurchaseRequestsExtensionTest{
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
         commodityCode.VPM_VendorType__c = mbsMarketing;
-        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
-        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
-        commodityCode.Name='Ad-hoc Market Research - Qualitative';
-        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
-        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_AuthorisationGroup__c =strMBSMarketing;
+        commodityCode.VPM_CommodityClass__c = strAdHocResearch; 
+        commodityCode.Name=strAdHocMarketResearch;
+        commodityCode.VPM_CommodityCode__c=str5702;
+        commodityCode.VPM_CommodityClass__c=strMarketResearch;
         commodityCode.VPM_Region__c=Ecc;
           
         insert commodityCode;
@@ -1560,9 +1569,9 @@ public class VPM_PurchaseRequestsExtensionTest{
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
         pur.VPM_ECC__c = Ecc;
        // pur.VPM_ProvidedBankDetails__c = TRUE;
-        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_VendorName1__c =strTestUser2;
         pur.VPM_Status__c = strDraftRequest;
-        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_AccountGroup__c =strZgs1;
         pur.VPM_VendorCodeLookup__c =vendor.Id;
         pur.recordTypeId=recordTypeId;
         pur.VPM_CompanyCode__c=companyCode.Id;
@@ -1572,8 +1581,8 @@ public class VPM_PurchaseRequestsExtensionTest{
         pur.VPM_VendorPhone__c=phone;
         pur.VPM_ZIPPostcode__c =str54132;
         pur.VPM_AdvancedFormSubmitted__c =reworkStat;
-        pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
-        pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+        pur.VPM_VendorType__c  = strRCT;
+        pur.VPM_GlobalAuthorisationGroup__c=str3pm;
         pur.VPM_BankDataValidationRequired__c=false;
         pur.VPM_FinanceApprovalRequired__c=true;        
 
@@ -1624,11 +1633,11 @@ public class VPM_PurchaseRequestsExtensionTest{
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
         commodityCode.VPM_VendorType__c = mbsMarketing;
-        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
-        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
-        commodityCode.Name='Ad-hoc Market Research - Qualitative';
-        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
-        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_AuthorisationGroup__c =strMBSMarketing;
+        commodityCode.VPM_CommodityClass__c = strAdHocResearch; 
+        commodityCode.Name=strAdHocMarketResearch;
+        commodityCode.VPM_CommodityCode__c=str5702;
+        commodityCode.VPM_CommodityClass__c=strMarketResearch;
         commodityCode.VPM_Region__c=Ecc;
           
         insert commodityCode;
@@ -1637,9 +1646,9 @@ public class VPM_PurchaseRequestsExtensionTest{
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
         pur.VPM_ECC__c = Ecc;
        // pur.VPM_ProvidedBankDetails__c = TRUE;
-        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_VendorName1__c =strTestUser2;
         pur.VPM_Status__c = strDraftRequest;
-        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_AccountGroup__c =strZgs1;
         pur.VPM_VendorCodeLookup__c =vendor.Id;
         pur.recordTypeId=recordTypeId;
         pur.VPM_CompanyCode__c=companyCode.Id;
@@ -1649,8 +1658,8 @@ public class VPM_PurchaseRequestsExtensionTest{
         pur.VPM_VendorPhone__c=phone;
         pur.VPM_ZIPPostcode__c =str54132;
         pur.VPM_AdvancedFormSubmitted__c =reworkStat;
-        pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
-        pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+        pur.VPM_VendorType__c  = strRCT;
+        pur.VPM_GlobalAuthorisationGroup__c=str3pm;
         pur.VPM_BankDataValidationRequired__c=false;
         pur.VPM_FinanceApprovalRequired__c=true;        
 
@@ -1703,11 +1712,11 @@ public class VPM_PurchaseRequestsExtensionTest{
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
         commodityCode.VPM_VendorType__c = mbsMarketing;
-        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
-        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
-        commodityCode.Name='Ad-hoc Market Research - Qualitative';
-        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
-        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_AuthorisationGroup__c =strMBSMarketing;
+        commodityCode.VPM_CommodityClass__c = strAdHocResearch; 
+        commodityCode.Name=strAdHocMarketResearch;
+        commodityCode.VPM_CommodityCode__c=str5702;
+        commodityCode.VPM_CommodityClass__c=strMarketResearch;
         commodityCode.VPM_Region__c=Ecc;
           
         insert commodityCode;
@@ -1716,9 +1725,9 @@ public class VPM_PurchaseRequestsExtensionTest{
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
         pur.VPM_ECC__c = Ecc;
        // pur.VPM_ProvidedBankDetails__c = TRUE;
-        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_VendorName1__c =strTestUser2;
         pur.VPM_Status__c = strDraftRequest;
-        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_AccountGroup__c =strZgs1;
         pur.VPM_VendorCodeLookup__c =vendor.Id;
         pur.recordTypeId=recordTypeId;
         pur.VPM_CompanyCode__c=companyCode.Id;
@@ -1728,8 +1737,8 @@ public class VPM_PurchaseRequestsExtensionTest{
         pur.VPM_VendorPhone__c=phone;
         pur.VPM_ZIPPostcode__c =str54132;
         pur.VPM_AdvancedFormSubmitted__c =reworkStat;
-        pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
-        pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+        pur.VPM_VendorType__c  = strRCT;
+        pur.VPM_GlobalAuthorisationGroup__c=str3pm;
         pur.VPM_BankDataValidationRequired__c=false;
         pur.VPM_FinanceApprovalRequired__c=true;        
 
@@ -1781,11 +1790,11 @@ public class VPM_PurchaseRequestsExtensionTest{
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
         commodityCode.VPM_VendorType__c = mbsMarketing;
-        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
-        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
-        commodityCode.Name='Ad-hoc Market Research - Qualitative';
-        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
-        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_AuthorisationGroup__c =strMBSMarketing;
+        commodityCode.VPM_CommodityClass__c = strAdHocResearch; 
+        commodityCode.Name=strAdHocMarketResearch;
+        commodityCode.VPM_CommodityCode__c=str5702;
+        commodityCode.VPM_CommodityClass__c=strMarketResearch;
         commodityCode.VPM_Region__c=Ecc;
           
         insert commodityCode;
@@ -1794,9 +1803,9 @@ public class VPM_PurchaseRequestsExtensionTest{
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
         pur.VPM_ECC__c = Ecc;
        // pur.VPM_ProvidedBankDetails__c = TRUE;
-        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_VendorName1__c =strTestUser2;
         pur.VPM_Status__c = strDraftRequest;
-        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_AccountGroup__c =strZgs1;
         pur.VPM_VendorCodeLookup__c =vendor.Id;
         pur.recordTypeId=recordTypeId;
         pur.VPM_CompanyCode__c=companyCode.Id;
