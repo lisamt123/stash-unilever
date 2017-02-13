@@ -72,7 +72,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
                 {
                     valueForQuery = valueForQuery +', '+RegionalandGlobalField.VPM_ApiName__c;
                 }
-                if(RegionalandGlobalField.VPM_parentElement__c == STR_CONST_CompanyData || RegionalandGlobalField.VPM_parentElement__c == 'WtaxType'){
+                if(RegionalandGlobalField.VPM_parentElement__c == STR_CONST_CompanyData || RegionalandGlobalField.VPM_parentElement__c == STR_CONST_WtaxType ){
                     apiForCompantData=apiForCompantData+RegionalandGlobalField.VPM_ApiName__c+',';
                 }if(RegionalandGlobalField.VPM_parentElement__c == STR_CONST_PurchasingData){
                     apiForPurchasingData=apiForPurchasingData+RegionalandGlobalField.VPM_ApiName__c+',';
@@ -149,7 +149,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
             }
             if(objectName == STR_CONST_WtaxType)
             {
-                objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(STR_CONST_CompanyData)+ STR_CONST_COLON1+'WtaxType'+STR_CONST_COLON1+' : {'+objectInJSON.get(objectName).removeEnd(',')+'},');
+                objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(STR_CONST_CompanyData)+ STR_CONST_COLON1+STR_CONST_WtaxType +STR_CONST_COLON1+' : {'+objectInJSON.get(objectName).removeEnd(',')+'},');
             }
            else
            {
@@ -217,7 +217,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
                 }
             
             }else if(field.VPM_parentElement__c == STR_CONST_WtaxType){
-                objectInJSON.put('WtaxType',objectInJSON.get('WtaxType')+formatFieldToJSONProperty(field));
+                objectInJSON.put(STR_CONST_WtaxType ,objectInJSON.get(STR_CONST_WtaxType )+formatFieldToJSONProperty(field));
 
             }else if(field.VPM_parentElement__c == STR_CONST_InternationalVersions){
                 objectInJSON.put(STR_CONST_InternationalVersions,objectInJSON.get(STR_CONST_InternationalVersions)+formatFieldToJSONProperty(field));
