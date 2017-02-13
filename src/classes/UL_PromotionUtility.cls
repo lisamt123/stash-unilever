@@ -155,7 +155,6 @@
           //In case promotion has stored product category, remove unused and add new one  
           Set<Id> insertProductSet = new Set<Id>();
           if(!storedPromotionProduct.isEmpty()){
-              System.debug('>>>>>>1');
               Set<Id> totlaPromotionProduct = new Set<Id>();
               totlaPromotionProduct.addAll(storedPromotionProduct);
               totlaPromotionProduct.addAll(productIdSet);
@@ -188,13 +187,11 @@
               }
           }else {
               //Adding fresh products
-              System.debug('>>>>>>2');
               insertProductSet.addAll(productIdSet);
           }
           
           //Insert new products to ProductCategory.
           if(!insertProductSet.isEmpty()){
-          System.debug('>>>>>>3');
               List<UL_PromotionCategory__c> insertProductCategoryList = new List<UL_PromotionCategory__c>();
               //Create ProductCategory list to add new products
               for(ACCL__Product__c product : [SELECT id, ACCL__Criterion_4_Product__c FROM ACCL__Product__c WHERE 
@@ -401,7 +398,6 @@
         String jsonString;
         
         try{
-            system.debug('promoIds '+promoIds) ;
             promoObj =[SELECT Id, Name,
                     ACCL__Anchor_Account__c,ACCL__Anchor_Account__r.Name,ACCL__Anchor_Account__r.ACCL__Sales_Org__c,ACCL__Anchor_Account__r.UL_Distribution_Channel_Code__c
                     ,ACCL__Anchor_Account__r.UL_Activity_Sector_Division_Code__c,ACCL__Anchor_Account__r.AccountNumber,ACCL__Anchor_Account__r.UL_Currency__c
@@ -449,15 +445,8 @@
                 }  
             }
             
-            //system.debug('promoLst '+promoLst) ;
-            system.debug('promoObj '+promoObj) ;
-            //system.debug('accObj '+accObj) ;
-            system.debug('tacticLst '+tacticLst) ;
-            system.debug('tacWrapLst '+tacWrapLst) ;
             promoOBWrapper = new UL_PromotionOutboundWrapper(OBAction, promoObj.Id,promoObj.Name,custWrapObj,tacWrapLst) ;
-            system.debug('promoOBWrapper '+promoOBWrapper) ;
             jsonString = JSON.serialize(promoOBWrapper) ;
-            System.debug('jsonString: ' + jsonString);
         }
         catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
@@ -476,7 +465,6 @@
         catch(Exception ex){
             UL_Utility.logError(ex, UserInfo.getUserId());
         }
-        System.debug('Fulfillment service returned '+ res.getBody());
     }
     
     public with sharing class UL_PromotionOutboundWrapper{

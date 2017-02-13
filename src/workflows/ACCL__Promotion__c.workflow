@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>UL_Promotion_EndDate_Alert</fullName>
+        <description>UL_Promotion_EndDate_Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/UL_Promotion_End_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>UL_Promotion_StartDate_Alert</fullName>
+        <description>UL_Promotion_StartDate_Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/UL_Promotion_Start_Notification</template>
+    </alerts>
+    <alerts>
         <fullName>UL_SoCo_Workflow_Approved</fullName>
         <description>SoCo Workflow - Approved</description>
         <protected>false</protected>
@@ -167,12 +187,12 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
+   <fieldUpdates>
         <fullName>UL_Update_Slogan</fullName>
         <field>ACCL__Slogan_Language_1__c</field>
-        <formula>IF(  ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c,&apos;LTA&apos; ) ,UL_Account__r.Name+&apos;-&apos;+  UL_Category__c +&apos;-&apos;+   UL_Brand__c +&apos;-&apos;+ TEXT(DAY(ACCL__Date_From__c )) +&apos;/&apos;+ TEXT(MONTH(ACCL__Date_From__c ))+&apos;/&apos;+ TEXT(YEAR(ACCL__Date_From__c ))  +&apos;-&apos;+ 
+        <formula>IF(  ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c,&apos;LTA&apos; ) ,UL_Account__r.Name+&apos;-&apos;+ TEXT(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c)+&apos;-&apos;+ UL_Category__c +&apos;-&apos;+   UL_Brand__c +&apos;-&apos;+ TEXT(DAY(ACCL__Date_From__c )) +&apos;/&apos;+ TEXT(MONTH(ACCL__Date_From__c ))+&apos;/&apos;+ TEXT(YEAR(ACCL__Date_From__c ))  +&apos;-&apos;+ 
 TEXT(DAY(ACCL__Date_Thru__c )) +&apos;/&apos;+ TEXT(MONTH(ACCL__Date_Thru__c ))+&apos;/&apos;+ TEXT(YEAR(ACCL__Date_Thru__c ))  +&apos;-&apos;+
-UL_Free_Text__c, UL_Account__r.Name+&apos;-&apos;+  UL_Category__c +&apos;-&apos;+   UL_Brand__c +&apos;-&apos;+TEXT(UL_Mechanic__c) +&apos;-&apos;+  TEXT(UL_Sub_Mechanic__c) +&apos;-&apos;+  TEXT(UL_Feature__c) +&apos;-&apos;+ TEXT(DAY(ACCL__Placement_Date_From__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_From__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_From__c))  +&apos;-&apos;+ 
+UL_Free_Text__c, UL_Account__r.Name+&apos;-&apos;+ TEXT(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c)+&apos;-&apos;+  UL_Category__c +&apos;-&apos;+   UL_Brand__c +&apos;-&apos;+TEXT(UL_Mechanic__c) +&apos;-&apos;+  TEXT(UL_Sub_Mechanic__c) +&apos;-&apos;+  TEXT(UL_Feature__c) +&apos;-&apos;+ TEXT(DAY(ACCL__Placement_Date_From__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_From__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_From__c))  +&apos;-&apos;+ 
 TEXT(DAY(ACCL__Placement_Date_Thru__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placement_Date_Thru__c))+&apos;/&apos;+ TEXT(YEAR(ACCL__Placement_Date_Thru__c))  +&apos;-&apos;+ UL_Free_Text__c)</formula>
         <name>UL_Update Slogan</name>
         <notifyAssignee>false</notifyAssignee>
@@ -216,6 +236,76 @@ TEXT(DAY(ACCL__Placement_Date_Thru__c)) +&apos;/&apos;+ TEXT(MONTH(ACCL__Placeme
         <description>This workflow is to update all the End dates in a promotion when the Promotion End date is updated in the End Date Status</description>
         <formula>ISCHANGED(  ACCL__Date_Thru__c  )</formula>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>UL_Promotion_StartDate_EndDate_Alert</fullName>
+        <active>false</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>ACCL__Promotion__c.ACCL__Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Promotion__c.UL_Current_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Planning</value>
+        </criteriaItems>
+        <description>It will send the email alert to planner who creates the record 7 days before to start date of promotion and on end date of promotion.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL_Promotion_StartDate_Alert</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>ACCL__Promotion__c.ACCL__Date_From__c</offsetFromField>
+            <timeLength>-7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL_Promotion_EndDate_Alert</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>ACCL__Promotion__c.ACCL__Date_Thru__c</offsetFromField>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>UL_Promotion_StartDate_EndDate_Alert1</fullName>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>ACCL__Promotion__c.ACCL__Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ACCL__Promotion__c.UL_Current_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Planning</value>
+        </criteriaItems>
+        <description>It will send the email alert to planner who creates the record 7 days before to start date of promotion and on end date of promotion.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL_Promotion_EndDate_Alert</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>ACCL__Promotion__c.ACCL__Date_Thru__c</offsetFromField>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UL_Promotion_StartDate_Alert</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>ACCL__Promotion__c.ACCL__Date_From__c</offsetFromField>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
     </rules>
     <rules>
         <fullName>UL_Sharing_ Type_ Update</fullName>

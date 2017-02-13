@@ -359,6 +359,7 @@ public with sharing class UL_CreatePromotionController{
         }
         catch(Exception ex) {
             msgFlag = true;
+            pref = null;
             ApexPages.Message msg;
            /* if(String.valueOf(ex.getDmlType(0)).equals(UL_Utility.FIELD_CUSTOM_VALIDATION_EXCEPTION)){
                 msg = new ApexPages.Message(ApexPages.Severity.ERROR,ex.getdmlMessage(0));
@@ -367,7 +368,7 @@ public with sharing class UL_CreatePromotionController{
            }
           */   //msg = new ApexPages.Message(ApexPages.Severity.ERROR,ex.getMessage()+'=='+ex.getDmlType(0));
             msg = new ApexPages.Message(ApexPages.Severity.ERROR,ex.getMessage());
-            ApexPages.addMessage(msg);
+            //ApexPages.addMessage(msg);
             UL_Utility.logError(Ex, UserInfo.getUserId());
         }
         return pref;

@@ -27029,7 +27029,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Promotion URL after copy</shortDescription>
-        <value>/apex/MyPromotionPlanning?id=</value>
+        <value>/apex/MyPromotionPlanning2?id=</value>
     </labels>
     <labels>
         <fullName>UL_ProductsMandatory</fullName>
@@ -28556,4 +28556,82 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>No Customer Level 1 was found</shortDescription>
         <value>Sorry the record cannot be saved, no Customer with Level 1 was found in Sales Org :</value>
+    </labels>
+	<labels>
+        <fullName>UL_WORKFLOW_NOT_SET_ON_TEMPLATE</fullName>
+        <categories>UL Workflow Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UL_WORKFLOW_NOT_SET_ON_TEMPLATE</shortDescription>
+        <value>No Workflow is set on the Promotion Template</value>
+    </labels>
+	<labels>
+        <fullName>UL_HTTP_Application_JSON</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_HTTP_Application_JSON</shortDescription>
+        <value>application/json</value>
+    </labels>
+    <labels>
+        <fullName>UL_HTTP_ContentType</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_HTTP_ContentType</shortDescription>
+        <value>Content-Type</value>
+    </labels>
+    <labels>
+        <fullName>UL_HTTP_POST</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_HTTP_POST</shortDescription>
+        <value>POST</value>
+    </labels>
+    <labels>
+        <fullName>UL_Mulesoft_Heroku_URL</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Mulesoft_Heroku_URL</shortDescription>
+        <value>http://mft-mulesoft-herokuqa.eu.cloudhub.io/api/v1/promotion</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_Equals</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_Equals</shortDescription>
+        <value>=</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_FROM</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_FROM</shortDescription>
+        <value>FROM</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_ID_Field</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_ID_Field</shortDescription>
+        <value>Id</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_SELECT</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_SELECT</shortDescription>
+        <value>SELECT</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_StringQuote</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_StringQuote</shortDescription>
+        <value>\&apos;</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_WHERE</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_WHERE</shortDescription>
+        <value>WHERE</value>
     </labels>

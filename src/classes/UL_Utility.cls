@@ -46,6 +46,9 @@
         public static final string uiElement = 'UIElement';
         public static final string semiColon = ';';
         
+        public static final string templateActive = 'ACCL__Promotion_Template__r.ACCL__Active__c';
+        public static final string templateAllowPast = 'ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c';
+        
         //Customer Org Hierarchy Levels - SOCO
         public static final String CUSTOMER_ORG_HIERARCHY_LEVEL_REGION = 'Region';
         public static final String CUSTOMER_ORG_HIERARCHY_LEVEL_SUB_REGION = 'Sub Region';
@@ -102,7 +105,7 @@
         Public static final string PROMOTION_STATUS= 'Planning';
         
         //UKI
-		public static final String MARKETING_EVENT= 'MarketingEvent';
+        public static final String MARKETING_EVENT= 'MarketingEvent';
         public static final String NONE= 'None';
         public static final String Qulon= ':';
         public static final String UK_SO = 'UK SO';

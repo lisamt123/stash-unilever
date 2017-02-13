@@ -508,6 +508,8 @@ src/classes/MyRemoteActionUtility.cls
 src/classes/MyRemoteActionUtility.cls-meta.xml
 src/classes/TPM_AccountRemoteActionExtension.cls
 src/classes/TPM_AccountRemoteActionExtension.cls-meta.xml
+src/classes/UL_PromotionTriggerHandler.cls
+src/classes/UL_PromotionTriggerHandler.cls-meta.xml
 src/pages
 src/pages/MyPromotionPlanning.page
 src/pages/MyPromotionPlanning.page-meta.xml

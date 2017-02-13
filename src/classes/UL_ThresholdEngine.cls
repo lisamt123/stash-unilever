@@ -49,8 +49,7 @@
         Map<String,Object> postParameters = new Map<String,Object>();
         postParameters.put(PROMOTION_ID, promId);
         list<string> kpiCodes = new list<string>();
-            list<UL_KPI_Configuration__mdt> KPIData = [select Active__c,KPI_Code__c from UL_KPI_Configuration__mdt where Active__c=true LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())];
-            for(UL_KPI_Configuration__mdt KPIs : KPIData)
+            for(UL_KPI_Configuration__mdt KPIs : [select Active__c,KPI_Code__c from UL_KPI_Configuration__mdt where Active__c=true LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())])
             {
                kpiCodes.add(KPIs.KPI_Code__c); 
             }

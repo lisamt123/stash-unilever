@@ -46,6 +46,9 @@ public with sharing class UL_CannibalisationRateTriggerHandler{
                 else if(smallestFromDate > rate.UL_Valid_From__c){
                     smallestFromDate = rate.UL_Valid_From__c;
                 }
+                else{
+                    smallestFromDate = smallestFromDate;
+                }
                 
                 //Finding largest Thru Date
                 if(largestThruDate==UL_Utility.NULL_DATE){
@@ -54,6 +57,12 @@ public with sharing class UL_CannibalisationRateTriggerHandler{
                 else if(largestThruDate < rate.UL_Valid_Thru__c){
                     largestThruDate = rate.UL_Valid_Thru__c;
                 }
+                
+                else{
+                    largestThruDate = largestThruDate;
+                }
+                
+                
                 if(rate.UL_Customer__c==UL_Utility.NULL_ID){
                    rate.UL_Customer__c = allAccounts.UL_Customer__c; 
                 }
