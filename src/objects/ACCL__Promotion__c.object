@@ -4392,11 +4392,11 @@ Id=VLOOKUP
         <errorMessage>Name should not be edited when the Phase is Committed.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>TPM_Lift_VolumeType_Mandate</fullName>
+        <fullName>TPM_Lift_Mandate</fullName>
         <active>true</active>
-        <description>Life, Volume Type are Mandate</description>
-        <errorConditionFormula>if((ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp;(ISBLANK(UL_Lift__c) || ISBLANK(TEXT(UL_Volume_Type__c))) &amp;&amp; NOT(ISNEW()) &amp;&amp; UL_PromotionTemplateType__c  &lt;&gt; &apos;LTA&apos;, true, false )</errorConditionFormula>
-        <errorMessage>Lift %, Volume Type are mandatory</errorMessage>
+        <description>Lift % is mandatory</description>
+        <errorConditionFormula>if((ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp;ISBLANK(UL_Lift__c) &amp;&amp; NOT(ISNEW()) &amp;&amp; UL_PromotionTemplateType__c &lt;&gt; &apos;LTA&apos;, true, false)</errorConditionFormula>
+        <errorMessage>Lift % is mandatory</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>TPM_Past_Date_Validation_For_SOCO</fullName>
@@ -4404,6 +4404,13 @@ Id=VLOOKUP
         <errorConditionFormula>IF(NOT( ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c) &amp;&amp; (ACCL__Date_From__c&lt;Today() || ACCL__Date_Thru__c&lt;Today()), true, IF(ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c &amp;&amp; (ACCL__Date_From__c &gt;= Today() || ACCL__Date_Thru__c &lt;=Today()), true, false))</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>Only Past Dated/Urgent Promotion template should be used to create past date\urgent promotion (in such case, from date must be in the past, Thru date must be in the future)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TPM_VolumeType_Mandate</fullName>
+        <active>true</active>
+        <description>Volume Type is mandatory</description>
+        <errorConditionFormula>if((ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp; ISBLANK(TEXT(UL_Volume_Type__c)) &amp;&amp; NOT(ISNEW()), true, false)</errorConditionFormula>
+        <errorMessage>Volume Type is mandatory</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_Default_Sold_To_Mandatory_Rule</fullName>
