@@ -9872,8 +9872,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_User_Spain</role>
         </sharedTo>
     </listViews>
-    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>None</fullName>
         <active>true</active>

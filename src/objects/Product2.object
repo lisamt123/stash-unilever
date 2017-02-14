@@ -5536,7 +5536,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>All IceCream Products</label>
         <language>en_US</language>
     </listViews>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>FS_Product</fullName>
         <active>true</active>

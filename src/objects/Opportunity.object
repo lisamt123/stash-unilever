@@ -3520,8 +3520,6 @@ Enter competitor pricing if available</inlineHelpText>
         </filters>
         <label>New This Week</label>
     </listViews>
-    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>FS_ExistingBusiness</fullName>
         <active>true</active>
