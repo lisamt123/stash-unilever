@@ -26000,6 +26000,34 @@ the campaign covers more than 15 countries</value>
         <value>Promotion Id</value>
     </labels>
     <labels>
+        <fullName>PP_LBL_PROMOTIONHISTORY_CREATIONDATE</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PP_LBL_PROMOTIONHISTORY_CREATIONDATE</shortDescription>
+        <value>Change Date</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_PROMOTIONHISTORY_OLDVALUE</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PP_LBL_PROMOTIONHISTORY_OLDVALUE</shortDescription>
+        <value>From State</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_PROMOTIONHISTORY_NEWVALUE</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PP_LBL_PROMOTIONHISTORY_NEWVALUE</shortDescription>
+        <value>To State</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_PROMOTIONHISTORY_NAME</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PP_LBL_PROMOTIONHISTORY_NAME</shortDescription>
+        <value>User</value>
+    </labels>
+    <labels>
         <fullName>PP_LBL_PUSH_ERROR</fullName>
         <language>en_US</language>
         <protected>false</protected>
