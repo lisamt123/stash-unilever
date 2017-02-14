@@ -568,8 +568,8 @@
                                                 </apex:actionRegion>
                                                  </label>
                                                            
-                                                    <!-- If IPM_BET__c field value is true, the below panel will be diplayed  -->
-                                                    <apex:outputpanel rendered="{!coreConfig.IPM_BET__c}"
+                                                    <!-- If IPM_BET__c field value is true, the below panel will be diplayed -->
+                                                    <apex:outputpanel rendered="{!coreConfig.IPM_BET__c && project.IPM_ProjectGKM__c != 'GKM8'}"
                                                         id="betOptions">
                                                         <div class="col-sm-12 noPadleft radioButton">
                                                             <apex:outputLabel value="{!$Label.IPM_BET_Message}"
