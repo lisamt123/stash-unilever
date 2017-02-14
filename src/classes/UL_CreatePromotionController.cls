@@ -29,7 +29,7 @@ public with sharing class UL_CreatePromotionController{
      public Boolean isForLTA{set;get;}
      public Boolean isForGeneriCust {set;get;}
      public List<SelectOption> deliveryProfiles{set;get;}
-     Map<String, UL_Utility__c> utilitySetting = new Map<String, UL_Utility__c>();
+     private Map<String, UL_Utility__c> utilitySetting = new Map<String, UL_Utility__c>();
      public ACCL__Promotion__c relatedRecord { get; 
         set{
             relatedRecord  = new ACCL__Promotion__c ();
@@ -248,7 +248,7 @@ public with sharing class UL_CreatePromotionController{
             //Prepare Customer list from Customer Planning level object.
             planningLevelMap = new Map<Id,UL_Planning_Level__c>();
             unplannedSoldToCustomerMap  = new Map<Id, List<Account>>();
-            for(UL_Planning_Level__c planningLevel : [SELECT UL_Customer__r.UL_Generic_Customer__c,UL_Customer__c,UL_Customer__r.Name,UL_Account__c,UL_Account__r.Name FROM UL_Planning_Level__c WHERE UL_Sales_Organisation__c=:promotionTemplateSalesOrg AND UL_Planning_Level_Start_Date__c <= :instoreDate AND UL_Planning_Level_End_Date__c >=:instoreDate Order By UL_Customer__r.Name]){
+            for(UL_Planning_Level__c planningLevel : [SELECT UL_Customer__r.UL_Generic_Customer__c,UL_Customer__c,UL_Customer__r.Name,UL_Account__c,UL_Account__r.Name FROM UL_Planning_Level__c WHERE UL_Sales_Organisation__c=:promotionTemplateSalesOrg AND UL_Planning_Level_Start_Date__c <= :instoreDate AND UL_Planning_Level_End_Date__c >=:instoreDate Order By UL_Customer__r.Name  LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())]){
                if(!planningLevel.UL_Customer__r.UL_Generic_Customer__c){
                         SelectOption planningLevelOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
                         planningLevelOption.setValue(planningLevel.UL_Customer__c);
@@ -278,7 +278,7 @@ public with sharing class UL_CreatePromotionController{
             
 
    
-            for (Account acc: [Select Id, name  from Account where ACCL__Sales_Org__c=:promotionTemplateSalesOrg and UL_Generic_Customer__c = :Ul_Utility.BOOLEAN_TRUE ] ){
+            for (Account acc: [Select Id, name  from Account where ACCL__Sales_Org__c=:promotionTemplateSalesOrg and UL_Generic_Customer__c = :Ul_Utility.BOOLEAN_TRUE Limit 1] ){
                         //if (acc.size()>0) allCustomers = acc[0].id;
                         
                         SelectOption planningAndGenericCustomersOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
@@ -333,18 +333,18 @@ public with sharing class UL_CreatePromotionController{
                 id promotionId = relatedRecord.id;
                 ApexPages.StandardController ctr = new ApexPages.StandardController(this.relatedRecord);
                 String recordTypeDevName = [SELECT RecordType.DeveloperName FROM ACCL__Promotion__c where
-                                                   Id = :this.relatedRecord.Id LIMIT :(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())].RecordType.DeveloperName;
+                                                   Id = :this.relatedRecord.Id LIMIT 1].RecordType.DeveloperName;
                 
                 if(UL_Utility.PROMOTION_TEMPLATE_PROMOTION_TYPE_SELLABLEPROMOTION.equalsIgnoreCase(recordTypeDevName)){
                     pref = ctr.edit();
                     Map<String, String> params = pref.getParameters();
                     params.clear();
-                    params.put('retURL', ctr.view().getURL());
+                    params.put(UL_Utility.RETURL, ctr.view().getURL());
                 }
                 else{                    
                     if(utilitySetting != null && utilitySetting.get(PROMOTION_REDIRECT_PAGE_KEY) != null){
                         UL_Utility__c pageApiName = utilitySetting.get(PROMOTION_REDIRECT_PAGE_KEY);
-                        String pageRef = '/apex/'+pageApiName.UL_Value__c+'?id='+promotionId;        
+                        String pageRef = UL_Utility.APEX+pageApiName.UL_Value__c+UL_Utility.URL_ID+promotionId;        
                         pref = new pageReference(pageRef);
                     }                    
                    // pref.getParameters().put(Schema.SObjectType.ACCL__Promotion__c.fields.Id.getName(),promotionId);
@@ -610,6 +610,9 @@ public with sharing class UL_CreatePromotionController{
              relatedRecord.ACCL__Delivery_Date_Thru__c = relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Shipment_End_days__c));
              relatedRecord.ACCL__Placement_Date_Thru__c= relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Instore_End_days__c));
              relatedRecord.UL_Delivery_Profile__c = uDelivery.UL_Delivery_Profile_Name__c;
+             
+             relatedRecord.ACCL__Date_From__c = relatedRecord.ACCL__Placement_Date_From__c;
+             relatedRecord.ACCL__Date_Thru__c = relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Instore_End_days__c));
          }
          else{
              //relatedRecord.ACCL__Delivery_Date_From__c = relatedRecord.ACCL__Placement_Date_From__c ;
@@ -617,6 +620,10 @@ public with sharing class UL_CreatePromotionController{
              relatedRecord.ACCL__Delivery_Date_From__c = null ;
              relatedRecord.ACCL__Delivery_Date_Thru__c = null;
              relatedRecord.ACCL__Placement_Date_Thru__c = dateThru;
+             
+             relatedRecord.ACCL__Date_From__c = relatedRecord.ACCL__Placement_Date_From__c;
+             relatedRecord.ACCL__Date_Thru__c = dateThru;
+
          }
          relatedRecord.ACCL__Commit_Date__c= relatedRecord.ACCL__Placement_Date_From__c;
          //relatedRecord.ACCL__Anchor_Account__c = defaultsoldto;
