@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
-        <apexClass>SAJ_AppGridController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SAJ_AppGridController_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>SAJ_BusinessSolutionTriggerHandller</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -18,14 +10,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SAJ_DesignChallengeTriggerHandller</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SAJ_OpenAppGridController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SAJ_OpenAppGridController_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
