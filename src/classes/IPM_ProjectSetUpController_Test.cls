@@ -9,7 +9,8 @@ private class IPM_ProjectSetUpController_Test {
     private static Map<Id,IPM_Company_Card__c> companyCardMap= new Map<Id,IPM_Company_Card__c>();
     private static List<IPM_User_Profile__c> userProfileList= new List<IPM_User_Profile__c>();
     private static string ProjectName='ProjectWithOutBoss';
-    private static IPM_Project__c projectWithOutBoss;
+    private static IPM_Project__c projectWithOutBoss;	
+    private static IPM_Project__c GKM8Project;
     private static User userInitialize; 
     private static IPM_ProjectSetUpController  sic;  
     private static final string GOT_ERROR_STRING='got error while saving a project';
@@ -355,8 +356,44 @@ private class IPM_ProjectSetUpController_Test {
             sic.processProjectSave();
 			List<IPM_Project__c> updatedProjectList = [ SELECT Id,IPM_CompanyCardText__c,IPM_ProjectGKM__c,IPM_Phase__c,IPMProject_Span__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPM_White_Space_Project__c FROM IPM_Project__c WHERE Id=:ProjectWithOutBoss.id LIMIT 1];
             system.assertEquals(updatedProjectList[0].IPM_White_Space_Project__c,false,'Project white space is :'+updatedProjectList[0].IPM_White_Space_Project__c);
+			
+            List<IPM_Project_Metadata__mdt> metadataList = [Select IPM_Project_Naming_Convention__c from IPM_Project_Metadata__mdt where DeveloperName = :sic.project.IPM_ProjectGKM__c];
+            
+            if(!metadataList.isEmpty())
+            {
+                IPM_Project_Metadata__mdt metaObj = metadataList.get(0);
+                System.debug('metaObj-->>'+metaObj);
+                
+                String namingPattern = metaObj.IPM_Project_Naming_Convention__c ;
+                if(String.isNotBlank(namingPattern))
+                {
+                    List<String> patternComponents = namingPattern.split(IPM_ConstantUtils.Colon);
+                    String projectNameTemp = IPM_ConstantUtils.BLANK;
+                    for(String patternComponent : patternComponents)
+                    {
+                        System.Debug('patternComponent >>'+patternComponent);
+                        System.Debug('sic.project.get(patternComponent) >>'+sic.project.get(patternComponent));
+                        if(sic.project.get(patternComponent) !=null)
+                        { 
+                            if(String.isBlank(projectNameTemp)) 
+                            {
+                                projectNameTemp = (String)sic.project.get(patternComponent);
+                            }
+    	                    else
+    	                    {
+    	                        projectNameTemp = projectName + IPM_ConstantUtils.UNDERSCORE +sic.project.get(patternComponent);
+    	                    }
+                        }
+	                }
+	                //project.IPM_Project_Name__c = projectName;
+	                System.Debug('projectNameTemp >>'+projectNameTemp);
+	                System.Debug('project.IPM_Project_Name__c >>'+sic.project.IPM_Project_Name__c);
+	                System.assert(projectNameTemp.equals(sic.project.IPM_Project_Name__c),'Name not set correctly');
+	            } 
+            }
+            
             Test.stopTest();
-			sic.regionShortName();
+			//sic.regionShortName();
 			sic.saveProject();
             
         }

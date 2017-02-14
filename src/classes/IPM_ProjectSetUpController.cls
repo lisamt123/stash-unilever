@@ -922,18 +922,49 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         }
     }
     
-   public void processProjectSave1(){
+   public void processProjectSave1()
+   {
     	if(!projectMetadata.IPM_FastTrackApplicable__c && !projectMetadata.IPM_WhiteSpaceApplicable__c )
         {
             project.IPM_White_Space_Project__c=false;
             project.IPM_Fast_Track_Project__c=false;
         }
-        if(project.IPM_Project_Type__c != isRollout && APPENDREGIONMAP.containsKey(project.IPMProject_Span__c))
+        
+        IPM_Company_Card__c companyCard = [Select Id,IPM_MCO__c,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c where Id = :project.IPM_Company_Card__c];
+        setClusterMCOValues(companyCard);
+
+        // EPIC343 - REQ03661
+        if( project.IPM_Project_Type__c == project.IPM_SourceProjectType__c)
         {
-            String shortNameSTR = regionShortName();
-            if(!String.isBlank(shortNameSTR) && !project.IPM_Project_Name__c.contains(shortNameSTR))
+            // Get the Custom Metadata for Specific GKM Model
+            List<IPM_Project_Metadata__mdt> metadataList = [Select IPM_Project_Naming_Convention__c from IPM_Project_Metadata__mdt where DeveloperName = :project.IPM_ProjectGKM__c];
+            
+            if(!metadataList.isEmpty())
             {
-                project.IPM_Project_Name__c = project.IPM_Project_Name__c + shortNameSTR;
+                IPM_Project_Metadata__mdt metaObj = metadataList.get(0);
+                //System.debug('metaObj-->>'+metaObj);
+                
+                String namingPattern = metaObj.IPM_Project_Naming_Convention__c ;
+                if(String.isNotBlank(namingPattern))
+                {
+                    List<String> patternComponents = namingPattern.split(IPM_ConstantUtils.Colon);
+                    String projectName = IPM_ConstantUtils.BLANK;
+                    for(String patternComponent : patternComponents)
+                    {
+                        if(project.get(patternComponent) !=null)
+                        { 
+                            if(String.isBlank(projectName)) 
+                            {
+                                projectName = (String)project.get(patternComponent);
+                            }
+    	                    else
+    	                    {
+    	                        projectName = projectName + IPM_ConstantUtils.UNDERSCORE +project.get(patternComponent);
+    	                    }
+                        }
+	                }
+	                project.IPM_Project_Name__c = projectName;
+	            } 
             }
         }
         if(project.IPM_Project_Gatekeeper__c==null && project.IPM_Company_Card__c!=null){
@@ -945,21 +976,46 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         }
     } 
     
-    /****************************************************************************
-    @Description : Append project name with region shot name
-    *****************************************************************************/
-    public string regionShortName()
+    //Populating market cluster short name and MCO Short Name
+    public void setClusterMCOValues(IPM_Company_Card__c companyCard)
     {
-        Map<String,IPM_Market_Cluster_Short_Names__c> shortnameMap = IPM_Market_Cluster_Short_Names__c.getAll();
-        String shortNameSTR = IPM_ConstantUtils.BLANK;
-        for(IPM_Market_Cluster_Short_Names__c shortN:shortnameMap.Values())
+        Map<String,String> marketClusterShortNamesMap = new Map<String,String>();
+        Map<String,String> mcosShortNamesMap = new Map<String,String>();
+        
+        // Prepare a Map of Master Cluster Name To Short Names
+        for(IPM_Market_Cluster_Short_Names__c mcShortNameInstance:IPM_Market_Cluster_Short_Names__c.getAll().Values())
         {
-            if(shortN.Unilever_Cluster__c== project.IPM_Region_Shr__c)
-            {
-                shortNameSTR='_'+shortN.Short_Name__c; 
-            }
+            marketClusterShortNamesMap.put(mcShortNameInstance.Unilever_Cluster__c,mcShortNameInstance.Short_Name__c);
         }
-        return shortNameSTR;
+                        
+        // Prepare a Map of MCO Name To Short Names               
+        for(IPM_MCO_Short_Names__c mcoShortNameInstance:IPM_MCO_Short_Names__c.getAll().Values())
+        {
+            mcosShortNamesMap.put(mcoShortNameInstance.Country_Group__c,mcoShortNameInstance.Short_Name__c);
+        }
+        
+        
+        // Get Values for MCO & Cluster Names.
+        String MCOName = companyCard.IPM_MCO__c;
+        String masterClusterName = companyCard.IPM_TxtGeographical_Scope__c;
+        
+        /*System.debug('masterClusterName-->>'+masterClusterName);
+        System.debug('MCOName-->>'+MCOName);
+        
+        System.debug('MCOName-->>'+marketClusterShortNamesMap.get(masterClusterName));
+        System.debug('MCOName-->>'+mcosShortNamesMap.get(MCOName));*/
+        
+        // Validate if MCO Name exists on Company Card and Has a corresponding Short name in Custom Settings.
+        if(marketClusterShortNamesMap.containsKey(masterClusterName) && String.isNotBlank(masterClusterName))
+        {
+            project.MarketClusterShortName__c = marketClusterShortNamesMap.get(masterClusterName);
+        }
+        
+        // Validate if MCO Name exists on Company Card and Has a corresponding Short name in Custom Settings.
+        if(mcosShortNamesMap.containsKey(MCOName)  && String.isnotBlank(MCOName))
+        {
+            project.MCOShortName__c =  mcosShortNamesMap.get(MCOName);
+        }
     }
     
     /****************************************************************************
