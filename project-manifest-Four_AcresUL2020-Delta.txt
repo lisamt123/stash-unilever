@@ -1,3 +1,4 @@
 src
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email
-src/email/FAU_UL2020_Dynamic_Template/FAU_UL2020_Fill_Biography_Invitation.email-meta.xml
+src/workflows/FAU_Milestone_Participant__c.workflow
+src/workflows/FAU_Module_Participant__c.workflow
+src/workflows/FAU_Participant__c.workflow
