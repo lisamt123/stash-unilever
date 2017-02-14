@@ -1497,29 +1497,16 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
     * @description: Prepares a proejct metadata record.
     * @param1 incomingProjectMap : current project(IPM_Project__c) record.
     */ 
-    public static IPM_ProjectMetadata__c getPhasesBasedOnProjectType(IPM_Project__c project)
+    public static IPM_Project_Metadata__mdt getPhasesBasedOnProjectType(IPM_Project__c project)
     {
-        IPM_ProjectMetadata__c selectedProjectMetadata = null;
-        String strProjectType;
-        /*if project has no source type value*/
-        if(project.IPM_SourceProjectType__c != null ){
-            strProjectType = project.IPM_SourceProjectType__c;
-        }else if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){ // if Project type is Operational 
-                strProjectType = IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
-        }else{ // If project type is not operational, It can be Original or Rollout of Original
-            strProjectType = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-        }
         
-        // Get the source Project Type and Source Company card to identify the Phase Sequence.
-        for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
-        {
-            
-            if(projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c && projectMetadata.IPM_Project_Type__c == strProjectType)
-            {
-                selectedProjectMetadata = projectMetadata;
-                break;
-            }
-        }
+        IPM_Project_Metadata__mdt selectedProjectMetadata = null;
+        String projectMetadataQuery = prepareSOQLQuery('IPM_Project_Metadata__mdt',false,null,true); 
+        projectMetadataQuery += ' WHERE MasterLabel =\'' + project.IPM_ProjectGKM__c + '\' limit 1';
+        List<IPM_Project_Metadata__mdt> projectMetadataList = (List<IPM_Project_Metadata__mdt>)database.Query(projectMetadataQuery);
+        if(!projectMetadataList.isEmpty())
+        	selectedProjectMetadata = projectMetadataList[0];
+       
         return selectedProjectMetadata;    
     }
     /**************************************************************

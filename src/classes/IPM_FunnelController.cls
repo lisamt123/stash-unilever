@@ -10,7 +10,7 @@ public with sharing class IPM_FunnelController
                 return ipmProjectclone;
             }
             else {
-                ipmProjectclone = [SELECT id, IPM_Project_Name__c, IPM_Phase__c, IPM_Bosscard_Status__c, IPM_SourceProjectType__c, IPM_Project_Type__c, IPM_CompanyCardText__c FROM IPM_Project__c WHERE id=:ApexPages.currentPage().getParameters().get('Id') limit 1]; return ipmProjectclone;
+                ipmProjectclone = [SELECT id, IPM_ProjectGKM__c, IPMProject_Span__c, IPM_Project_Name__c, IPM_Phase__c, IPM_Bosscard_Status__c, IPM_SourceProjectType__c, IPM_Project_Type__c, IPM_CompanyCardText__c FROM IPM_Project__c WHERE id=:ApexPages.currentPage().getParameters().get('Id') limit 1]; return ipmProjectclone;
             }
         }
         set;
@@ -24,12 +24,12 @@ public with sharing class IPM_FunnelController
     // Array of Phases for that particular project. 
     public String[] getAssociatedProjectPhases()
     {
-        IPM_ProjectMetadata__c projectMetadata = IPM_Utils.getPhasesBasedOnProjectType(ipmProject);
+        IPM_Project_Metadata__mdt projectMetadata = IPM_Utils.getPhasesBasedOnProjectType(ipmProject);
         String phaseSequenceString = IPM_ConstantUtils.BLANK;
         
         if(projectMetadata !=null)
         {
-            phaseSequenceString = projectMetadata.IPM_Applicable_Phases__c; return phaseSequenceString.split(IPM_ConstantUtils.COMMA);
+            phaseSequenceString = projectMetadata.IPM_ApplicablePhases__c; return phaseSequenceString.split(IPM_ConstantUtils.COMMA);
         }
         else
         {

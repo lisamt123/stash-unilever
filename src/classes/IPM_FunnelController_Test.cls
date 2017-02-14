@@ -30,7 +30,7 @@ private with sharing class IPM_FunnelController_Test {
         projectRecord.IPM_SourceProjectType__c=projectRecord.IPM_Project_Type__c;
         insert projectRecord;
         projectList.add(projectRecord);
-        List<IPM_Project__c> projlList=[SELECT ID,Name,IPM_CompanyCardText__c,IPM_Phase__c,IPM_Project_Name__c,IPM_Complexity__c,IPM_GateKeeping_Model__c, IPM_SourceProjectType__c, IPM_Project_Type__c FROM IPM_Project__c WHERE ID=:projectRecord.ID LIMIT 1];
+        List<IPM_Project__c> projlList=[SELECT id, IPM_ProjectGKM__c, IPMProject_Span__c, IPM_Project_Name__c, IPM_Phase__c, IPM_Bosscard_Status__c, IPM_SourceProjectType__c, IPM_Project_Type__c, IPM_CompanyCardText__c FROM IPM_Project__c WHERE ID=:projectRecord.ID LIMIT 1];
         project=projlList[0];
         System.assertEquals(projlList[0].id,projectRecord.id, 'Project insertion failed}');
         
