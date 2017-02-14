@@ -275,15 +275,9 @@ public without sharing   class IPM_AlignDataOnGeographyChange_Batch implements D
                 {
                     finExtIdToParentRegRolloutMap.put(fin.Financial_External_ID__c,fin.IPM_Project_Rollout__c);
                 }
-                try{
-                upsert  mcoCodeToRolloutUpsertMap.values() IPM_Rollout_Project__c ;
-                }
-                catch(Exception ex)
-                {
                 
-                }
-                               
-                
+				upsert  mcoCodeToRolloutUpsertMap.values() IPM_Rollout_Project__c ;
+               
             } 
 
             if( !updateCountryRolloutAssoMap.isEmpty())
