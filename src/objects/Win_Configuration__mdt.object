@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Configurations holder for the Wings2.0 Project</description>
+    <fields>
+        <fullName>Win_ConfigurationType__c</fullName>
+        <description>Type of configuration selected</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Type of configuration selected</inlineHelpText>
+        <label>ConfigurationType</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Dictionary Item</fullName>
+                <default>true</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>true</required>
+        <type>Picklist</type>
+    </fields>
+    <label>Wings Configuration</label>
+    <pluralLabel>Wings Configurations</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,2 @@
+<apex:page controller="Win_Dictionary_CC" contentType="{!contentType}" showHeader="false" sidebar="false" language="{!language}" standardStylesheets="false" action="{!init}"
+><apex:variable value="{!1}" var="rowNum"/>{<apex:repeat value="{!customLabels}" var="customLabel">"{!customLabel}":"{!$Label[customLabel]}"{!if(rowNum<customLabels.size,",","")}<apex:variable var="rowNum" value="{!rowNum + 1}"/></apex:repeat>}</apex:page>
