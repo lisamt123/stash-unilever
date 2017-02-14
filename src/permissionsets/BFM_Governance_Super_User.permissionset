@@ -204,6 +204,14 @@
         <apexClass>BFM_ShipmentHandlerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_ShipmentHandlerActions</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_ShipmentHandlerActions_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_ShipmentUpdate_CC</apexClass>
         <enabled>true</enabled>
@@ -2066,6 +2074,14 @@
         <apexPage>BFM_ShipmentDocumentGeneration</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+	<tabSettings>
+        <tab>standard-Account</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>standard-Contact</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <tabSettings>
         <tab>BFM_AccountAccessRequest__c</tab>
         <visibility>Visible</visibility>
@@ -2104,7 +2120,7 @@
     </tabSettings>
     <tabSettings>
         <tab>BFM_Shipment__c</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>BFM_Stage__c</tab>

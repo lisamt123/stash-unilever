@@ -453,7 +453,8 @@ This method identifies date of manufacture from the daycode
             caseitem.Country_Name__c=caseitem.Case_Market_Mapping_Country__c;
             caseitem.Tag__c=caseitem.Case_Market_Tag__c;
             caseitem.BusinessHoursId = caseitem.Case_Market_Business_Hour__C;
-            
+            System.debug('@@@@@Business hours CMM @@@@'+caseitem.Case_Market_Business_Hour__C);
+            System.debug('@@@@@Business hours @@@@'+caseitem.BusinessHoursId);
             System.debug('Country_Name__c~~~~~~~~~'+ caseitem.Country_Name__c);
         }
         
@@ -571,7 +572,7 @@ This method identifies date of manufacture from the daycode
                 } 
             }
             // parse description for name if name check setting is enabled
-            if(!isMatchFound && caseRecord.Description != null && isAccNameChk && caseRecord.AccountId != NULL && ((accountsMap.get(caseRecord.AccountId).LastName !=null && caseRecord.Description.containsIgnoreCase(accountsMap.get(caseRecord.AccountId).LastName))|| (accountsMap.get(caseRecord.AccountId).FirstName != null && caseRecord.Description.containsIgnoreCase(accountsMap.get(caseRecord.AccountId).FirstName)))){
+            if(!isMatchFound && caseRecord.Description != null && isAccNameChk && caseRecord.AccountId != NULL && ((accountsMap.get(caseRecord.AccountId).LastName !=null && accountsMap.get(caseRecord.AccountId).LastName.length() > 2 && caseRecord.Description.containsIgnoreCase(accountsMap.get(caseRecord.AccountId).LastName))|| (accountsMap.get(caseRecord.AccountId).FirstName != null && accountsMap.get(caseRecord.AccountId).FirstName.length() > 2 && caseRecord.Description.containsIgnoreCase(accountsMap.get(caseRecord.AccountId).FirstName)))){
                 isMatchFound = TRUE;
             }
             // parse description for Address if Address check setting is enabled
@@ -757,10 +758,9 @@ This method identifies date of manufacture from the daycode
                 caseStoreList = [Select Id, Name, Country__r.Name from cec_store__c where Country__r.Name IN :caseCountryMap.values() and Name IN :caseStoreMap.values()];
             }
             // update case fields based on criteria
-            if(caseProdList.size()>0 || caseStoreList.size()>0){
-                
-                for(case newCase: caseList){
-                    
+            for(case newCase: caseList){
+                if(caseProdList.size()>0 || caseStoreList.size()>0){        
+                                    
                     if(newCase.Origin == originNA && newCase.Case_ISO_Country_Code__c != ''){
                         // update case product
                         if(caseUPCMap.get(newCase.Id) != null){
@@ -780,13 +780,11 @@ This method identifies date of manufacture from the daycode
                                 }
                             }                        
                         }
-                        // update case origin
-                        newCase.Origin = 'Web';
                     }
-                    
-                    
+                                        
+                }if(newCase.Origin == OriginNA){
+                    newCase.Origin = 'Web';
                 }
-                
             }
             
         }Catch(Exception e ){

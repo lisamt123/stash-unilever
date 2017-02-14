@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>NF-e</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>NF-es</value>
+    </caseValues>
+    <fields>
+        <label><!-- Address Number Destination --></label>
+        <name>Address_Number_Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Number Goods Sender --></label>
+        <name>Address_Number_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Document --></label>
+        <name>Billing_Document__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNPJ Goods Sender --></label>
+        <name>CNPJ_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- CNPJ destination --></label>
+        <name>CNPJ_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPF destination --></label>
+        <name>CPF_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Code Destination --></label>
+        <name>City_Code_Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Code Goods Sender --></label>
+        <name>City_Code_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Destination --></label>
+        <name>City_Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- City Goods Sender --></label>
+        <name>City_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complement Goods Sender --></label>
+        <name>Complement_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complement destination --></label>
+        <name>Complement_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complementary information --></label>
+        <name>Complementary_information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country Code Goods Sender --></label>
+        <name>Country_Code_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country Name Goods Sender --></label>
+        <name>Country_Name_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country Code Destination --></label>
+        <name>Country_code_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country name destination --></label>
+        <name>Country_name_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery --></label>
+        <name>Delivery__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- District Goods Sender --></label>
+        <name>District_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- District destination --></label>
+        <name>District_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross weight --></label>
+        <name>Gross_weight__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incoterms --></label>
+        <name>Incoterms__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Usage --></label>
+        <name>Material_Usage__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF55 Created? --></label>
+        <name>NF55_Created__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e Total Value --></label>
+        <name>NF_e_Total_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e access key --></label>
+        <name>NF_e_access_key__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e creation date --></label>
+        <name>NF_e_creation_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e item specie --></label>
+        <name>NF_e_item_specie__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e number --></label>
+        <name>NF_e_number__c</name>
+    </fields>
+    <fields>
+        <label><!-- NF-e serie --></label>
+        <name>NF_e_serie__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name Goods Sender --></label>
+        <name>Name_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name destination --></label>
+        <name>Name_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nf-e total quantity --></label>
+        <name>Nf_e_total_quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Occurrence --></label>
+        <name>Occurrence__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Phone Goods Sender --></label>
+        <name>Phone_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone destination --></label>
+        <name>Phone_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code Goods Sender --></label>
+        <name>Postal_Code_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal code destination --></label>
+        <name>Postal_code_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Predominant product --></label>
+        <name>Predominant_product__c</name>
+    </fields>
+    <fields>
+        <label><!-- SES Number --></label>
+        <name>SES_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- SES --></label>
+        <name>SES__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SUFRAMA Registration Goods Sender --></label>
+        <name>SUFRAMA_Registration_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- SUFRAMA Registration Destination --></label>
+        <name>SUFRAMA_registration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipment --></label>
+        <name>Shipment__c</name>
+        <relationshipLabel><!-- NF-es --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- State Goods Sender --></label>
+        <name>State_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Registration Destination --></label>
+        <name>State_Registration_Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Registration Goods Sender --></label>
+        <name>State_Registration_Goods_Sender__c</name>
+    </fields>
+    <fields>
+        <label><!-- State destination --></label>
+        <name>State_destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Destination --></label>
+        <name>Street_Destination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Goods Sender --></label>
+        <name>Street_Goods_Sender__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

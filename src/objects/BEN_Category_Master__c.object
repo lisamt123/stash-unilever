@@ -103,6 +103,7 @@
             <group>BEN_Deodorants_Category_Viewer</group>
             <group>BEN_Dressings_Category_Approver_Editor</group>
             <group>BEN_Dressings_Category_Viewer</group>
+            <group>BEN_GPL_User</group>
             <group>BEN_HHC_Category_Approver_Editor</group>
             <group>BEN_HHC_Category_Viewer</group>
             <group>BEN_Hair_Category_Approver_Editor</group>
@@ -111,6 +112,7 @@
             <group>BEN_Ice_Cream_Category_Viewer</group>
             <group>BEN_Laundry_Category_Approver_Editor</group>
             <group>BEN_Laundry_Category_Viewer</group>
+            <group>BEN_Multi_category_Viewer</group>
             <group>BEN_Oral_Care_Category_Approver_Editor</group>
             <group>BEN_Oral_Care_Category_Viewer</group>
             <group>BEN_Savoury_Category_Approver_Editor</group>

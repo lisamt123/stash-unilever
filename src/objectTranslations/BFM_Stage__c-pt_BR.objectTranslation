@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Etapa</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Etapas</value>
+    </caseValues>
+
+    <fields>
+        <label>Sistema de Entrega</label>
+        <name>Delivery_system__c</name>
+    </fields>
+    <fields>
+        <label>Município do Destino</label>
+        <name>Destination_city__c</name>
+    </fields>
+    <fields>
+        <label>Cód.Postal do Destino</label>
+        <name>Destination_postal_code__c</name>
+    </fields>
+    <fields>
+        <label>Distância (KM)</label>
+        <name>Distance__c</name>
+    </fields>
+    <fields>
+        <label>Tipo de Equipamento</label>
+        <name>Equip_Type__c</name>
+    </fields>
+    <fields>
+        <label>Ind.Frete Grátis</label>
+        <name>Free_freight__c</name>
+    </fields>
+    <fields>
+        <label>Valor Total - Custo Previsto</label>
+        <name>Gross_value_from_cost_preview__c</name>
+    </fields>
+    <fields>
+        <label>Agrupamento de Etapa</label>
+        <name>Grouping__c</name>
+    </fields>
+    <fields>
+        <label>Forma de Carga</label>
+        <name>Load_FM__c</name>
+    </fields>
+    <fields>
+        <label>Tipo de Carga</label>
+        <name>Load_type__c</name>
+    </fields>
+    <fields>
+        <label>Código Transporte OTM</label>
+        <name>OTM_Shipment__c</name>
+    </fields>
+    <fields>
+        <label>Cidade Origem</label>
+        <name>Origin_city__c</name>
+    </fields>
+    <fields>
+        <label>País Origem</label>
+        <name>Origin_country__c</name>
+    </fields>
+    <fields>
+        <label>Planta Origem</label>
+        <name>Origin_plant_code__c</name>
+    </fields>
+    <fields>
+        <label>Descrição Planta Origem</label>
+        <name>Origin_plant_description__c</name>
+    </fields>
+    <fields>
+        <label>CEP Planta de Origem</label>
+        <name>Origin_postal_code__c</name>
+    </fields>
+    <fields>
+        <label>Quantidade de Pallets</label>
+        <name>Pallet_count__c</name>
+    </fields>
+    <fields>
+        <label>Núm.Interno SF-DT</label>
+        <name>Shipment__c</name>
+        <relationshipLabel>Etapas</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Modal de Transporte</label>
+        <name>Shipping_Type__c</name>
+    </fields>
+    <fields>
+        <label>Processo de Entrega</label>
+        <name>Shipping_process__c</name>
+    </fields>
+    <fields>
+        <label>Número da Etapa</label>
+        <name>Stage_Number_Only__c</name>
+    </fields>
+    <fields>
+        <label>DT+Núm.Etapa (Ext.Id)</label>
+        <name>Stage_Number__c</name>
+    </fields>
+    <fields>
+        <label>Pedágio Previsto</label>
+        <name>Toll_from_cost_preview__c</name>
+    </fields>
+    <fields>
+        <label>Peso Bruto</label>
+        <name>Total_Gross_Weight__c</name>
+    </fields>
+    <fields>
+        <label>Depósito</label>
+        <name>Warehouse__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <nameFieldLabel>Núm.Interno SF-Etapa</nameFieldLabel>
+</CustomObjectTranslation>

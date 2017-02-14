@@ -67,6 +67,10 @@
                 <behavior>Edit</behavior>
                 <field>Plant__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Is_Deleted_in_SAP__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Range_of_Extent_of_Occurrence_From__c</field>

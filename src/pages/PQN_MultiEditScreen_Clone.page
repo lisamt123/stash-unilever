@@ -185,7 +185,7 @@
                 if(roaHeader.length>0){
                             
                     if(selectedFile =="Unilever"){
-                       var UnileverHeader= ["Cluster", "Loss Code #", "Description", "Delivery Note Code", "Reported Rep DC Country","Supplier","Supplier Type", "Product Number (SKU)", "Reporting DC", "Date","Supplier"];
+                       var UnileverHeader= ["Cluster", "Loss Code #", "Description", "Delivery Note Code", "Reported Rep DC Country","Supplier","Supplier Type", "Product Number (SKU)", "Reporting DC", "Date","Supplier","No Pallets per SKU non compliant"];
                        checkValidFile(UnileverHeader, roaHeader,totalrecord);
                     }
                     if(selectedFile =="Cannock"){
@@ -337,7 +337,7 @@
                     for(var k=start; k<end; k++){                    
                         var xP= new Object();
                         if(selectedFileType =="Unilever"){
-                            xP.Delivery_Note_Number__c = returnValidStr(OutputData['Data Collection'][k]['Delivery Note Code']); xP.SKU__c = returnValidStr(OutputData['Data Collection'][k]['Product Number (SKU)']); xP.Supplier__c = returnValidStr(OutputData['Data Collection'][k]['Supplier']); xP.Number_of_Pallets_Per_SKU_Non_Compliant__c = 0; xP.Losses__c = ''; xP.Reporting_DC__c = returnValidStr(OutputData['Data Collection'][k]['Reporting DC']); xP.Non_compliance_reason_code__c = parseInt(returnValidStr(OutputData['Data Collection'][k]['Loss Code #'])); xP.Cluster__c = returnValidStr(OutputData['Data Collection'][k]['Cluster']); xP.Description__c = returnValidStr(OutputData['Data Collection'][k]['Description']); xP.DC_Country__c = returnValidStr(OutputData['Data Collection'][k]['Reported Rep DC Country']); xP.Supplier_type__c = returnValidStr(OutputData['Data Collection'][k]['Supplier Type']);    
+                            xP.Delivery_Note_Number__c = returnValidStr(OutputData['Data Collection'][k]['Delivery Note Code']); xP.SKU__c = returnValidStr(OutputData['Data Collection'][k]['Product Number (SKU)']); xP.Supplier__c = returnValidStr(OutputData['Data Collection'][k]['Supplier']); xP.Number_of_Pallets_Per_SKU_Non_Compliant__c = parseInt(returnValidStr(OutputData['Data Collection'][k]['No Pallets per SKU non compliant'])); xP.Losses__c = ''; xP.Reporting_DC__c = returnValidStr(OutputData['Data Collection'][k]['Reporting DC']); xP.Non_compliance_reason_code__c = parseInt(returnValidStr(OutputData['Data Collection'][k]['Loss Code #'])); xP.Cluster__c = returnValidStr(OutputData['Data Collection'][k]['Cluster']); xP.Description__c = returnValidStr(OutputData['Data Collection'][k]['Description']); xP.DC_Country__c = returnValidStr(OutputData['Data Collection'][k]['Reported Rep DC Country']); xP.Supplier_type__c = returnValidStr(OutputData['Data Collection'][k]['Supplier Type']);    
                         }
                         if(selectedFileType =="Cannock" || selectedFileType =="Heilbronn"){
                             if(selectedFileType =="Cannock"){
@@ -405,14 +405,14 @@
                         $("#alert_SuccessId").hide(); $("#alert_ErrorId").hide(); $("#showImportData").empty(); $("#alert_dangerId").hide();
                        if(event.result.Success>0){                            
                             $("#exportSuccess").show(); $("#alert_SuccessId").show();
-                            $("#alert_SuccessId").html('<strong>Successfully inserted</strong> records are '+event.result.Success);
+                            $("#alert_SuccessId").html('<strong>Successfully inserted records are '+event.result.Success+'</strong>');
                             $("#exportSuccess").text("Export Success Records- "+event.result.Success);
                             $("#loaderDiv").hide();
                         }
                         if(event.result.Error>0 && event.result.Error<501){
                              ErrorList(timeStamp);
                              $("#insertErrorId").text("Submit");
-                             $("#alert_ErrorId").show(); $("#alert_ErrorId").html('<strong>Error</strong> records are '+event.result.Error);
+                             $("#alert_ErrorId").show(); $("#alert_ErrorId").html('<strong>Error records are '+event.result.Error+'</strong>');
                              $("#exportError").show();  $("#exportError").text("Export Error Records-"+event.result.Error);
                              $("#loaderDiv").hide();
                         }else{                            

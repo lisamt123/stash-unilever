@@ -205,6 +205,14 @@
         <apexClass>BFM_ShipmentHandlerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_ShipmentHandlerActions</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>BFM_ShipmentHandlerActions_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BFM_ShipmentUpdate_CC</apexClass>
         <enabled>true</enabled>
@@ -1879,7 +1887,7 @@
         <layout>BFM_Stage__c-Stage Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>BFM_UserCreationRequest__c-BFM User Creation Request Layout</layout>
+        <layout>BFM_UserCreationRequest__c-BFM Carrier User Request Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>BFM_User_Creation_Request_Error__c-BFM User Creation Request Error Layout</layout>
@@ -2062,7 +2070,7 @@
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>BFM_AccountAccessRequest__c</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>BFM_Shipment__c</tab>

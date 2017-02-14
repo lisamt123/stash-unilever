@@ -1249,18 +1249,6 @@
         pollWaitMillis="${sfdc.pollWaitMillis}"
         maxPoll="${sfdc.maxPoll}">        
             <runTest>VPM_ApprovalSubmitTest</runTest>
-            <runTest>VPM_CreateVendorServiceHelper_Test</runTest>
-            <runTest>VPM_FetchVendorsDetails_Test</runTest>
-			<runTest>VPM_GoldenDataController2Test</runTest>
-			<runTest>VPM_MaintainGlobalVendorService_Test</runTest>
-			<runTest>VPM_ProcurementCentralController_Test</runTest>
-			<runTest>VPM_PurchaseRequestsExtensionTest</runTest>
-			<runTest>VPM_RegionalMaintainVendorTest</runTest>
-			<runTest>VPM_SearchVendor1Test</runTest>
-			<runTest>VPM_FetchVendorDetailsHttpMock</runTest>
-			<runTest>VPM_FetchVendorDetailsHttpMockCodeMatch</runTest>
-			<runTest>VPM_maintainGlobalVendorCalloutMock</runTest>
-			<runTest>VPM_TestDataFactory</runTest>
         </sf:deploy>
     </target>
 </project>

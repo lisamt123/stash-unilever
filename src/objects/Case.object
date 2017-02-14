@@ -790,6 +790,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Kazakhstan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Korea, Republic Of</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1217,6 +1221,17 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>FCR__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>CEC: Captures First Contact Resolution</description>
+        <externalId>false</externalId>
+        <label>FCR</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>First_Response_Date__c</fullName>
@@ -9562,6 +9577,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Kazakhstan</fullName>
                 <default>false</default>
             </values>
             <values>

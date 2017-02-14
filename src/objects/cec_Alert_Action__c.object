@@ -267,6 +267,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Kazakhstan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Korea, Republic Of</fullName>
                 <default>false</default>
             </picklistValues>

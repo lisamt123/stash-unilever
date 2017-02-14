@@ -149,6 +149,54 @@ public class VPM_RegionalMaintainVendorTest{
         
  }
 
+static testMethod void CreateRecordTypeTestFusion(){
+        //String successStatusMDM = 'ECC Insert / Update Succeeded';
+       VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
+        
+     //purReq.VPM_companyCodeMatch__c = false;
+     //purReq.VPM_purchasingOrgMatch__c = false;
+           recordType VendorReordType  = [select Name, id from recordType where developerName = 'VPM_VendorReqCreate'];
+     purReq.RecordTypeId = VendorReordType.id;
+       
+        purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
+        purReq.VPM_VendorCode__c=VendorCode;
+     purReq.VPM_ReconciliationAccount__c ='9898';
+    purReq.VPM_PaymentMethod__c ='test';
+        test.startTest();
+        update purReq;
+        //Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
+       // VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(purReq.Id);
+        test.stopTest(); 
+        VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
+        VPM_PurchasingRequests__c result = [SELECT Id,VPM_ECC_InsertUpdateStatus__c FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
+        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,result.VPM_ECC_InsertUpdateStatus__c );
+        
+ }
+ 
+  static testMethod void CreateRecordTypeTestCordillera(){
+        //String successStatusMDMCordillera = 'ECC Insert / Update Succeeded';
+       VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
+        purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
+        purReq.VPM_VendorCode__c=VendorCode;
+     purReq.VPM_companyCodeMatch__c = false;
+     purReq.VPM_purchasingOrgMatch__c = false;
+           recordType VendorReordType  = [select Name, id from recordType where developerName = 'VPM_VendorReqCreate'];
+     purReq.RecordTypeId = VendorReordType.id;
+         VPM_CompanyCode__c companyCode =[select ECC__c, id from VPM_CompanyCode__c where Name = 'Company Code 2' limit 1];
+         companyCode.ECC__c ='Cordillera';
+         update companyCode;
+       
+        test.startTest();
+         update purreq;
+       // Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
+        test.stopTest(); 
+        
+        VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
+        VPM_PurchasingRequests__c result = [SELECT Id,VPM_ECC_InsertUpdateStatus__c FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
+        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,result.VPM_ECC_InsertUpdateStatus__c ); 
+        
+ }
+
 
  @testSetup static void setup() {
         String vCode = '5001010'; 

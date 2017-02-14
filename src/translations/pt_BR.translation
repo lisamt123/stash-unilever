@@ -1,4 +1,6 @@
-<customLabels>
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
 <label><!-- Agent Report Success --></label>
 <name>AA_Agent_Report_Success</name>
 </customLabels>
@@ -4141,6 +4143,10 @@
 <customLabels>
 <label><!-- BFM Error Creating Access Request --></label>
 <name>BFM_Error_Creating_Access_Request</name>
+</customLabels>
+<customLabels>
+<label>É necessário um registro de NF-e vinculada a esse Documento de Transporte antes de definir o 6º flag. Por favor, atualize este documento para verificar se a nota ainda não foi aprovada. Para mais informações, por favor entre em contato com o administrator do sistema</label>
+<name>BFM_Error_Setting_6thflag</name>
 </customLabels>
 <customLabels>
 <label><!-- BFM FRS Tax Code --></label>
@@ -18618,3 +18624,16 @@
 <label><!-- User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos; --></label>
 <name>uw_Inoplan_error_nullvalue</name>
 </customLabels>
+<customTabs>
+<label>Buscar DT</label>
+<name>BFM_Search_Shipment_Cte</name>
+</customTabs>
+<customTabs>
+<label>Buscar Ocorrência</label>
+<name>BFM_Search_Occurrence</name>
+</customTabs>
+<customTabs>
+<label>Solicitações de acesso à conta</label>
+<name>BFM_AccountAccessRequest__c</name>
+</customTabs>
+</Translations>

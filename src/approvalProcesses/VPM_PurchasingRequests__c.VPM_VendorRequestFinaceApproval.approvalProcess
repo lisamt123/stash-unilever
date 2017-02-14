@@ -127,6 +127,10 @@ RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || AND(RecordType.
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_ApprovedByFinanceEmail</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangeIsInApprovalProcess</name>
             <type>FieldUpdate</type>
         </action>
@@ -163,6 +167,10 @@ RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || AND(RecordType.
         </action>
         <action>
             <name>VPM_FinanceApprovedTime</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_RejectedByEmail</name>
             <type>FieldUpdate</type>
         </action>
         <action>

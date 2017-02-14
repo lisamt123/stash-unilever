@@ -536,11 +536,11 @@
     </tabSettings>
     <tabSettings>
         <tab>BEN_KPI_Progress</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>BEN_Matrix_Report</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <userPermissions>
         <enabled>true</enabled>

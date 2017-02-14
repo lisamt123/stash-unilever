@@ -1,33 +1,17 @@
-<apex:page standardController="VPM_PurchasingRequests__c" extensions="VPM_PurchaseRequestsControllerExtension" standardStylesheets="true" sidebar="false" showHeader="false">
+<apex:page standardController="VPM_PurchasingRequests__c" extensions="VPM_PurchaseRequestsControllerExtension" standardStylesheets="true" sidebar="false" showHeader="false" action="{!brStatusMethod}">
     <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
     <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
     <apex:includeScript value="{!$Resource.VPM_UserSpecificScript}"/>
      <style>
-        [disabled]{
-            cursor : not-allowed;
-        }
+        [disabled]{ cursor : not-allowed; }
     </style>
     <script>
-        var purId="{!VPM_PurchasingRequests__c.Id}";
-        var currentstatus="{!VPM_PurchasingRequests__c.VPM_Status__c}";
-    	var ECC="{!VPM_PurchasingRequests__c.VPM_ECC__c}";
-   		 var VPMAlreadyRework ="{!JSENCODE($Label.VPM_AlreadyRework)}";
-		var VPMCannotSendRework ="{!JSENCODE($Label.VPM_CannotSendRework)}";
-		var VPMOkForRework ="{!JSENCODE($Label.VPM_OkForRework)}";
-		var VPMReworkCancel ="{!JSENCODE($Label.VPM_ReworkCancelled)}";
-        var LastGroup = "{!VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c}"; 
-        var FinanceApproveRequired ="{!VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c}"; 
-        var ProcurementApproveRequired = "{!VPM_PurchasingRequests__c.VPM_ProcurementApprovalRequired__c}"; 
-        var CreatedBy="{!VPM_PurchasingRequests__c.CreatedById}"; 
-        var rework ="{!VPM_PurchasingRequests__c.VPM_Rework__c}";
-        var localhost = document.domain;
-        
+        var purId="{!VPM_PurchasingRequests__c.Id}";var currentstatus="{!VPM_PurchasingRequests__c.VPM_Status__c}";var FinanceApproveRequired ="{!VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c}"; var ECC="{!VPM_PurchasingRequests__c.VPM_ECC__c}";var VPMAlreadyRework ="{!JSENCODE($Label.VPM_AlreadyRework)}";var VPMCannotSendRework ="{!JSENCODE($Label.VPM_CannotSendRework)}";var VPMOkForRework ="{!JSENCODE($Label.VPM_OkForRework)}";var VPMReworkCancel ="{!JSENCODE($Label.VPM_ReworkCancelled)}";var LastGroup = "{!VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c}"; var ProcurementApproveRequired = "{!VPM_PurchasingRequests__c.VPM_ProcurementApprovalRequired__c}"; var CreatedBy="{!VPM_PurchasingRequests__c.CreatedById}"; var rework ="{!VPM_PurchasingRequests__c.VPM_Rework__c}";var localhost = document.domain;
     </script>
        <apex:pageBlock tabStyle="VPM_PurchasingRequests__c">
 
     <apex:form id="pageForm">
       <div align="center">
-            
             <apex:commandButton action="{!saveFromUser}" value="Save" id="saveButton"/>
             <apex:commandButton action="{!cancelFromUser}" value="Cancel" id="cancelButton"/>
             <apex:commandButton value="{!$Label.VPM_ViewAllFields}" rendered="{!isProcure}" onclick="openProcureAtAGlance()"/>
@@ -43,13 +27,12 @@
             <apex:commandButton value="{!$Label.VPM_Send_to_SAP}" rendered="{!RenderSAPBtn}" disabled="{!NOT(enableSendToSAPBtn)}" action="{!callSendToSAPAPI}"/>
             <apex:commandButton value="{!$Label.VPM_Manually_Mark_as_complete}" rendered="{!showManuallyMarkAsComplete}" disabled="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />          
             <apex:commandButton value="{!$Label.VPM_Rework}"  disabled="{!NOT(ReworkBtn)}" onclick="reworkBtnClick();return false;"/>
-            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  onclick="return confirm('{!AlertMsg}');"   action="{!SubmitRequestAction}" rendered="{!(isDisplay)}"  disabled="{!NOT(SubmitRequestBtn)}"/>   
-            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  action="{!SubmitRequestAction}" rendered="{!NOT(isDisplay)}" disabled="{!NOT(SubmitRequestBtn)}"/>                              
+            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  onclick="return confirm('{!AlertMsg}');"   action="{!SubmitRequestAction}" rendered="{!(isDisplay) && NOT(isBank)}"  disabled="{!NOT(SubmitRequestBtn)}"/>   
+            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  action="{!SubmitRequestAction}" rendered="{!NOT(isDisplay) && NOT(isBank)}" disabled="{!NOT(SubmitRequestBtn)}"/>                              
       </div>
       <apex:pagemessages id="pageMessages1"/><br/> 
       <div id='resultMsg'></div>
       <br/>
-      
       <apex:pageBlockSection rendered="{!isFreight}" id="Freight" title="{!$Label.VPM_FreightAtAGlance}">
             <apex:outputField label="{!$Label.VPM_TradePartnerType}" value="{!VPM_PurchasingRequests__c.VPM_TradePartnerType__c}" id="FreightTPT">
                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
@@ -158,6 +141,22 @@
             <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorCode__c}">
               </apex:outputField>            
          </apex:pageBlockSection>
+         <apex:pageBlockSection rendered="{!isBank}" id="Bank" title="{!$Label.VPM_BankAtAGlance}">
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorCode__c}"/>
+            <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_BankCountryKey__c}"/>
+            <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_BankKey__c}"/>  
+            <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_BankAccountNumber__c}"/>  
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_AccountHolderName__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountHolderName__c}" />
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ReferenceSpecificationsBankDetail__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReferenceSpecificationsBankDetail__c}"  />
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankControlKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankControlKey__c}" />
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_IBAN__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IBAN__c}"  />
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_CollectionAuthorization__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CollectionAuthorization__c}" />
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_PartnerBankType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PartnerBankType__c}"  />
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankName__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankName__c}"  />           
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SwiftKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SwiftKey__c}"/>
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndividualSpec__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndividualSpec__c}" />
+            <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_CorrespondentBank__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CorrespondentBank__c}"/>               
+         </apex:pageBlockSection>  
           <apex:pageBlockSection rendered="{!isFinance}" id="Finance" title="{!$Label.VPM_FinanceAtAGlance}">
              <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorCode__c}">
               </apex:outputField>
@@ -252,6 +251,9 @@
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_E_Invoicing_Agreed__c}"/>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Bypass__c}"/>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_AdoptScanDate__c}"/>
+         </apex:pageBlockSection>
+         <apex:pageBlockSection rendered="{!isMasterMDM}" id="MasterData" title="{!$Label.VPM_MasterDataManagementAtAGlance}">
+         <apex:outputLabel value="{!$Label.VPM_TextMessageMasterDataManagement}"></apex:outputLabel>
          </apex:pageBlockSection>
            <apex:pageBlockSection rendered="{!isMDM}" id="MDM" title="{!$Label.VPM_MDMOpsAtAGlance}">
              <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorCode__c}"/>
@@ -366,8 +368,8 @@
              <apex:commandButton value="{!$Label.VPM_Send_to_SAP}" rendered="{!RenderSAPBtn}" disabled="{!NOT(enableSendToSAPBtn)}" action="{!callSendToSAPAPI}"/>
             <apex:commandButton value="{!$Label.VPM_Manually_Mark_as_complete}" rendered="{!showManuallyMarkAsComplete}" disabled="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />            
             <apex:commandButton value="{!$Label.VPM_Rework}"  disabled="{!NOT(ReworkBtn)}" onclick="reworkBtnClick();return false;"/> 
-            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  onclick="return confirm('{!AlertMsg}');"   action="{!SubmitRequestAction}" rendered="{!(isDisplay)}"  disabled="{!NOT(SubmitRequestBtn)}"/>   
-            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  action="{!SubmitRequestAction}" rendered="{!NOT(isDisplay)}" disabled="{!NOT(SubmitRequestBtn)}"/>               
+            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  onclick="return confirm('{!AlertMsg}');"   action="{!SubmitRequestAction}" rendered="{!(isDisplay) && NOT(isBank)}"  disabled="{!NOT(SubmitRequestBtn)}"/>   
+            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  action="{!SubmitRequestAction}" rendered="{!NOT(isDisplay) && NOT(isBank)}" disabled="{!NOT(SubmitRequestBtn)}"/>               
           </div>    
       </apex:form>
     </apex:pageBlock> 
