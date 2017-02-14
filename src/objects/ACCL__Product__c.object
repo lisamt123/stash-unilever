@@ -1389,39 +1389,11 @@
         <label>Product Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Commodity</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Service</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Advertising</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Empty</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>AssetType</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CountingGroup</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Special Product</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Standard Product</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Banded Pack</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1846,22 +1818,6 @@
                 <fullName>ZFIN</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>TEST1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TEST2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dummy</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Standard</fullName>
-                <default>false</default>
-            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1951,38 +1907,6 @@
         <label>Product</label>
         <picklistValues>
             <picklist>ACCL__Category__c</picklist>
-            <values>
-                <fullName>Accumulators</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Beverages</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chips</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cigarettes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Detergent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Frozen</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HouseholdGoods</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hygiene</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>Snacks</fullName>
                 <default>false</default>
@@ -2163,10 +2087,6 @@
         <picklistValues>
             <picklist>UL_Material_Type__c</picklist>
             <values>
-                <fullName>Dummy</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>FERT</fullName>
                 <default>false</default>
             </values>
@@ -2322,11 +2242,7 @@
         <picklistValues>
             <picklist>ACCL__Product_Type__c</picklist>
             <values>
-                <fullName>Commodity</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Service</fullName>
+                <fullName>Standard Product</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2699,15 +2615,7 @@
         <picklistValues>
             <picklist>UL_Material_Type__c</picklist>
             <values>
-                <fullName>Dummy</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>FERT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Standard</fullName>
                 <default>false</default>
             </values>
             <values>
