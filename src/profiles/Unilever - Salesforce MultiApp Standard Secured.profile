@@ -47526,7 +47526,7 @@
     <layoutAssignments>
         <layout>CORE_NT_Team__c-Project Team Layout</layout>
     </layoutAssignments>
-       <layoutAssignments>
+    <layoutAssignments>
         <layout>CPA_CNF_TNF__c-CNF%2FTNF Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -47539,25 +47539,25 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_CR__c-CPA CR For ULPM ULFT ULPT</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_CR__c-CPA CR For ULPM ULFT ULPT</layout>
         <recordType>CPA_CR__c.CPA_CR_Cancelled</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_CR__c-CPA SMT Sent for Signed and Signed</layout>
-        <recordType>CPA_CR__c.CPA_CR_SIgned</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_CR__c-CPA SMT Sent for Signed and Signed</layout>
-        <recordType>CPA_CR__c.CPA_CR_Submitted</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_CR__c-CR Layout without mandatory fields</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_CR__c-CR Layout without mandatory fields</layout>
+        <layout>CPA_CR__c-CPA CR For ULPM ULFT ULPT</layout>
         <recordType>CPA_CR__c.CPA_CR_Other</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_CR__c-Standalone CR Layout</layout>
+        <layout>CPA_CR__c-CPA CR For ULPM ULFT ULPT</layout>
+        <recordType>CPA_CR__c.CPA_CR_SIgned</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_CR__c-CPA CR For ULPM ULFT ULPT</layout>
+        <recordType>CPA_CR__c.CPA_CR_Submitted</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_CR__c-CPA CR For ULPM ULFT ULPT</layout>
         <recordType>CPA_CR__c.CPA_Standalone_CR</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -47565,68 +47565,68 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_HLE_Request__c-BPE</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_HLE_Request__c-BPE</layout>
+        <recordType>CPA_HLE_Request__c.A_HLE_Request_Saved</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.BPE</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-BPE Answered</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.BPE_Answered</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-BPE Cancelled</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.BPE_Cancelled</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.HLE</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Answered</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.HLE_Answered</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Cancelled</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.HLE_Cancelled</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Request Accepted</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.HLE_Request_Accepted</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Request Cancelled</layout>
+        <layout>CPA_HLE_Request__c-BPE</layout>
         <recordType>CPA_HLE_Request__c.HLE_request_Cancelled</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Request Saved layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_HLE_Request__c-HLE Request Saved layout</layout>
-        <recordType>CPA_HLE_Request__c.A_HLE_Request_Saved</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_Key_Contacts__c-Key Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_LOI__c-LOI Accepted and further</layout>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
         <recordType>CPA_LOI__c.LOI_Accepted</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_LOI__c-LOI Layout without mandatory fields</layout>
-        <recordType>CPA_LOI__c.LOI_Other</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_LOI__c-LOI submitted Layout</layout>
-        <recordType>CPA_LOI__c.LOI_Submitted</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_LOI__c-ULPM LOI without Mandatory Fields</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_LOI__c-ULPM LOI without Mandatory Fields</layout>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
         <recordType>CPA_LOI__c.LOI_Cancael</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_LOI__c-ULPM LOI without Mandatory Fields</layout>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
         <recordType>CPA_LOI__c.LOI_Cancel</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
+        <recordType>CPA_LOI__c.LOI_Other</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
+        <recordType>CPA_LOI__c.LOI_Submitted</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_PWORF_Ageing__c-CPA PWORF Ageing Layout</layout>
@@ -47635,11 +47635,11 @@
         <layout>CPA_PWORF__c-All Project Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_PWORF__c-Other Read Only Layout</layout>
+        <layout>CPA_PWORF__c-All Project Layout</layout>
         <recordType>CPA_PWORF__c.All</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_PWORF__c-RA Read Only Layout</layout>
+        <layout>CPA_PWORF__c-All Project Layout</layout>
         <recordType>CPA_PWORF__c.RA</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -47661,92 +47661,92 @@
         <layout>CPA_TAT__c-CPA TAT Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute CR</layout>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
         <recordType>CPA_User_Defined_Attribute__c.CPA_CR</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute CR Docusign</layout>
-        <recordType>CPA_User_Defined_Attribute__c.CR_docusign</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute HLE Request</layout>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
         <recordType>CPA_User_Defined_Attribute__c.CPA_HLE_Request</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute LOI</layout>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
         <recordType>CPA_User_Defined_Attribute__c.CPA_LOI</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute LOI Docusign</layout>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_PWO</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CPA_PWORF</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
+        <recordType>CPA_User_Defined_Attribute__c.CR_docusign</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
         <recordType>CPA_User_Defined_Attribute__c.LOI_docusign</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute PWO</layout>
-        <recordType>CPA_User_Defined_Attribute__c.CPA_PWO</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute PWO Docusign</layout>
         <recordType>CPA_User_Defined_Attribute__c.PWO_docusign</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_User_Defined_Attribute__c-User Defined Attribute PWORF</layout>
-        <recordType>CPA_User_Defined_Attribute__c.CPA_PWORF</recordType>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
+        <recordType>CPA_project_work_order__c.CPA_PWO</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_CNF</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Signed Layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_CNF_Signed</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Submitted   Layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_CNF_Submitted</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Cancel  Layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_Cancel</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Delivered  Layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_Delivered</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Layout</layout>
-        <recordType>CPA_project_work_order__c.CPA_PWO</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Signed  Layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_Signed</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order Submitted  Layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_Submitted</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order TNF Layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_TNF</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order TNF Signed Layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_TNF_Signed_Layout</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Project Work Order TNF Submitted layout</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_PWO_TNF_Submitted</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CPA_project_work_order__c-CPA Standalone Project Work Order</layout>
+        <layout>CPA_project_work_order__c-CPA Project Work Order CNF Layout</layout>
         <recordType>CPA_project_work_order__c.CPA_Standalone_PWO</recordType>
     </layoutAssignments>
-	<layoutAssignments>
+    <layoutAssignments>
         <layout>Campaign-Campaign Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
