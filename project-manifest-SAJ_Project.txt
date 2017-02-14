@@ -19,6 +19,7 @@ src/email
 src/email/SAJ
 src/email/SAJ/SAJ_Production_Org_Refresh_Notification.email
 src/email/SAJ/SAJ_Production_Org_Refresh_Notification.email-meta.xml
+src/email/SAJ-meta.xml
 src/flows
 src/flows/Business_Solution-1.flow
 src/flows/Business_Solution-2.flow
@@ -82,8 +83,8 @@ src/triggers/SAJ_BusinessSolutionTriggerUpdate.trigger
 src/triggers/SAJ_BusinessSolutionTriggerUpdate.trigger-meta.xml
 src/tabs
 src/tabs/Business_Solution__c.tab
-src/tabs/Design_Challenge__c.tab.tab
-src/tabs/Design_Decision__c.tab.tab
+src/tabs/Design_Challenge__c.tab
+src/tabs/Design_Decision__c.tab
 src/tabs/Environment__c.tab
 src/workflows
 src/workflows/Business_Solution__c.workflow
