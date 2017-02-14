@@ -47526,10 +47526,8 @@
     <layoutAssignments>
         <layout>CORE_NT_Team__c-Project Team Layout</layout>
     </layoutAssignments>
-    <layoutAssignments>
-        <layout>Campaign-Campaign Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>  <layout>CPA_CNF_TNF__c-CNF%2FTNF Layout</layout>
+    <layoutAssignments>  
+	<layout>CPA_CNF_TNF__c-CNF%2FTNF Layout</layout>
     </layoutAssignments>
        <layoutAssignments>
         <layout>CPA_CNF_TNF__c-CNF%2FTNF Layout</layout>
@@ -47751,6 +47749,10 @@
         <layout>CPA_project_work_order__c-CPA Standalone Project Work Order</layout>
         <recordType>CPA_project_work_order__c.CPA_Standalone_PWO</recordType>
     </layoutAssignments>
+	<layoutAssignments>
+        <layout>Campaign-Campaign Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CampaignMember-Campaign Member Page Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
