@@ -21,29 +21,15 @@ src/email/SAJ/SAJ_Production_Org_Refresh_Notification.email
 src/email/SAJ/SAJ_Production_Org_Refresh_Notification.email-meta.xml
 src/email/SAJ-meta.xml
 src/flows
-src/flows/Business_Solution-1.flow
-src/flows/Business_Solution-2.flow
-src/flows/Business_Solution-3.flow
-src/flows/Create_Onboarding-4.flow
-src/flows/Create_Onboarding-5.flow
-src/flows/Create_Onboarding-6.flow
-src/flows/Create_Onboarding-7.flow
-src/flows/Create_Onboarding-8.flow
-src/flows/Create_Onboarding-9.flow
-src/flows/Create_Onboarding-10.flow
-src/flows/Create_Onboarding-11.flow
 src/flows/SAJ_Business_Solution-3.flow
 src/flows/SAJ_Create_Onboarding-9.flow
-src/flows/SAJ_Email_Notification_On_Environment_Expire-1.flow
-src/flows/SAJ_Email_Notification_Process-1.flow
-src/flows/SAJ_Environment_Notification-1.flow
-src/flows/SAJ_Notification_Mail-1.flow
 src/globalPicklists
 src/globalPicklists/SAJ_Business_Platforms.globalPicklist
 src/globalPicklists/SAJ_Delivery_Partner.globalPicklist
 src/globalPicklists/SAJ_Org_Types.globalPicklist
 src/layouts
 src/layouts/Business_Solution__c-Business Solution Layout.layout
+src/layouts/Business_Solution__c-Service Leads Business Solution Layout.layout
 src/layouts/Design_Challenge__c-Design Challenge Layout.layout
 src/layouts/Design_Decision__c-Technical Debt Layout.layout
 src/layouts/Environment__c-Environment Layout.layout
@@ -57,30 +43,16 @@ src/objects/Design_Decision__c.object
 src/objects/Solution_Environment__c.object
 src/objects/Onboarding__c.object
 src/pages
-src/pages/SAJ_AppLandscape.page
-src/pages/SAJ_AppLandscape.page-meta.xml
-src/pages/SAJ_OpenAppLandscape.page
-src/pages/SAJ_OpenAppLandscape.page-meta.xml
-src/pages/SAJ_OpenAppLandscapeOrig.page
-src/pages/SAJ_OpenAppLandscapeOrig.page-meta.xml
 src/pages/SAJ_SessionNotes.page
 src/pages/SAJ_SessionNotes.page-meta.xml
 src/permissionsets
 src/permissionsets/SAJ_Salesforce_AppJourney_Standard.permissionset
 src/permissionsets/SAJ_Salesforce_AppJourney_Advanced.permissionset
 src/triggers
-src/triggers/SAJ_BusinessSolutionTriggerDelete.trigger
-src/triggers/SAJ_BusinessSolutionTriggerDelete.trigger-meta.xml
-src/triggers/SAJ_DesignChallengeTriggerInsert.trigger
-src/triggers/SAJ_DesignChallengeTriggerInsert.trigger-meta.xml
-src/triggers/SAJ_DesignChallengeTriggerDelete.trigger
-src/triggers/SAJ_DesignChallengeTriggerDelete.trigger-meta.xml
-src/triggers/SAJ_BusinessSolutionTriggerInsert.trigger
-src/triggers/SAJ_BusinessSolutionTriggerInsert.trigger-meta.xml
-src/triggers/SAJ_DesignChallengeTriggerUpdate.trigger
-src/triggers/SAJ_DesignChallengeTriggerUpdate.trigger-meta.xml
-src/triggers/SAJ_BusinessSolutionTriggerUpdate.trigger
-src/triggers/SAJ_BusinessSolutionTriggerUpdate.trigger-meta.xml
+src/triggers/SAJ_BusinessSolutionTrigger.trigger
+src/triggers/SAJ_BusinessSolutionTrigger.trigger-meta.xml
+src/triggers/SAJ_DesignChallengeTrigger.trigger
+src/triggers/SAJ_DesignChallengeTrigger.trigger-meta.xml
 src/tabs
 src/tabs/Business_Solution__c.tab
 src/tabs/Design_Challenge__c.tab
@@ -93,10 +65,3 @@ src/workflows/Design_Decision__c.workflow
 src/workflows/Environment__c.workflow
 src/workflows/Onboarding__c.workflow
 src/workflows/Solution_Environment__c.workflow
-src/workflows/SAJ_countnoextensions.workflow
-src/workflows/SAJ_Notify_AllocationEndDate.workflow
-src/workflows/SAJ_Notify_RefreshDate_old.workflow
-src/workflows/SAJ_If_Production.workflow
-src/workflows/SAJ_If_PartialCopy.workflow
-src/workflows/SAJ_If_FullCopy.workflow
-src/workflows/SAJ_Update_AU.workflow
