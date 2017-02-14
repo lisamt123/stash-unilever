@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;aggregateFilters&quot;:[[[&quot;count&quot;,&quot;*&quot;],[[442,504]],&quot;&gt;=&lt;=&quot;]],&quot;groups&quot;:[&quot;SubscriberId.Name&quot;],&quot;order&quot;:[[-1,{&quot;ascending&quot;:false}]],&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]]}","version":-1.0}}
