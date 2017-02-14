@@ -108,6 +108,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Business_Platform__c</fullName>
+        <externalId>false</externalId>
+        <globalPicklist>SAJ_Business_Platforms</globalPicklist>
+        <label>Business Platform</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Business_Problem__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>What is the business problem to solve? Should set the current environment / situation / context, of the proposal e.g. why has this need arisen? What alternatives have been considered?</inlineHelpText>

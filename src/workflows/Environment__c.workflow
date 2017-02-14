@@ -12,6 +12,10 @@
             <recipient>shreyala.ashok@unilever.com</recipient>
             <type>user</type>
         </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com.sfcttafdev</recipient>
+            <type>user</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>SAJ/SAJ_Production_Org_Refresh_Notification</template>
     </alerts>
@@ -21,6 +25,10 @@
         <protected>false</protected>
         <recipients>
             <recipient>bibhudananda.dash@accenture.com.new</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com.sfcttafdev</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
@@ -36,6 +44,10 @@
         </recipients>
         <recipients>
             <recipient>shreyala.ashok@unilever.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com.sfcttafdev</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>

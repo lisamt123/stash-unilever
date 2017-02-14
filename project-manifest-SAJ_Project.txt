@@ -21,7 +21,7 @@ src/email/SAJ/SAJ_Production_Org_Refresh_Notification.email
 src/email/SAJ/SAJ_Production_Org_Refresh_Notification.email-meta.xml
 src/email/SAJ-meta.xml
 src/flows
-src/flows/SAJ_Business_Solution-3.flow
+src/flows/SAJ_Business_Solution_New-1.flow
 src/flows/SAJ_Create_Onboarding-9.flow
 src/globalPicklists
 src/globalPicklists/SAJ_Business_Platforms.globalPicklist
@@ -29,7 +29,6 @@ src/globalPicklists/SAJ_Delivery_Partner.globalPicklist
 src/globalPicklists/SAJ_Org_Types.globalPicklist
 src/layouts
 src/layouts/Business_Solution__c-Business Solution Layout.layout
-src/layouts/Business_Solution__c-Service Leads Business Solution Layout.layout
 src/layouts/Design_Challenge__c-Design Challenge Layout.layout
 src/layouts/Design_Decision__c-Technical Debt Layout.layout
 src/layouts/Environment__c-Environment Layout.layout
