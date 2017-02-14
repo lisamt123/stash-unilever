@@ -2,15 +2,11 @@
 private class PBS_LibraryController_Test {
 
     public static testMethod void testRunAs1() {
-      // Setup test data
-      // This code runs as the system user
+      
       Profile p = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
       PermissionSet ps = [SELECT id, Name FROM PermissionSet where name='PBS_LMS_Admin'];
-      //PBS_LMS_Admin 
-      User u = new User(Alias = 'standt', Email='standarduser@testorg.com', 
-      EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='America/Los_Angeles', UserName='standarduser1@testorg.com', UserPermissionsKnowledgeUser = true );
+      
+      User u = createTestUser(p.Id, 'user', 'testing');   
       insert u;
       
       PermissionSetAssignment psa = new PermissionSetAssignment
@@ -27,6 +23,26 @@ private class PBS_LibraryController_Test {
          
       }
    }
+
+   public static User createTestUser(Id profID, String fName, String lName) {
+    String orgId = UserInfo.getOrganizationId();
+    String dateString = String.valueof(Datetime.now()).replace(' ','').replace(':','').replace('-','');
+    Integer randomInt = Integer.valueOf(math.rint(math.random()*1000000));
+    String uniqueName = orgId + dateString + randomInt;
+    User tuser = new User(  firstname = fName,
+                            lastName = lName,
+                            email = uniqueName + '@test' + orgId + '.org',
+                            Username = uniqueName + '@test' + orgId + '.org',
+                            EmailEncodingKey = 'ISO-8859-1',
+                            Alias = uniqueName.substring(18, 23),
+                            TimeZoneSidKey = 'America/Los_Angeles',
+                            LocaleSidKey = 'en_US',
+                            LanguageLocaleKey = 'en_US',
+                            ProfileId = profId,
+                            UserPermissionsKnowledgeUser = true
+                            );
+    return tuser;
+    }
  
     static void noDataTest()
     {
