@@ -22,9 +22,6 @@ public without sharing class CEC_NewAccountControllerTest{
     
     private static final string acctName = 'Test Account';
     private static final string phoneNo = '0991236785';
-    private static final string email = 'account_test@test00de0000000bblj.com';
-    private static final string localIdentifier = '111.222.333-12';
-    private static final string updLocalIdentifier = '111.222.333-44';
     
     static Case insertCase1(){
         
@@ -37,7 +34,7 @@ public without sharing class CEC_NewAccountControllerTest{
         Id rtId = [select Id, name from RecordType where name = 'Person Account' and SObjectType = 'Account' limit 1].Id;
         
         // Create Account
-        Account accObj = new Account(lastname= CEC_Constants.lastName, Phone = phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail= email, Local_Identifier__c = localIdentifier, Local_Identifier_No_Special_Char__c = localIdentifier);
+        Account accObj = new Account(lastname= CEC_Constants.lastName, Phone = phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail='account_test@test00de0000000bblj.com', Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
         accObj.RecordTypeId = rtId;
         insert accObj;
         
@@ -54,17 +51,17 @@ public without sharing class CEC_NewAccountControllerTest{
         insert accObj4;
         
         // Create Account
-        Account accObj5 = new Account(lastname= CEC_Constants.lastName, PersonHomePhone=phoneNo,PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail= email, Local_Identifier__c = localIdentifier, Local_Identifier_No_Special_Char__c = localIdentifier);
+        Account accObj5 = new Account(lastname= CEC_Constants.lastName, PersonHomePhone=phoneNo,PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail='account_test@test00de0000000bblj.com', Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
         accObj5.RecordTypeId = rtId;
         insert accObj5;
         
         // Create Account
-        Account accObj6 = new Account(lastname= CEC_Constants.lastName,PersonMobilePhone=phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail= email, Local_Identifier__c = localIdentifier, Local_Identifier_No_Special_Char__c = localIdentifier);
+        Account accObj6 = new Account(lastname= CEC_Constants.lastName,PersonMobilePhone=phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail='account_test@test00de0000000bblj.com', Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
         accObj6.RecordTypeId = rtId;
         insert accObj6;
         
         // Create Account
-        Account accObj7 = new Account(lastname= CEC_Constants.lastName, PersonOtherPhone =phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail=email, Local_Identifier__c = localIdentifier, Local_Identifier_No_Special_Char__c = localIdentifier);
+        Account accObj7 = new Account(lastname= CEC_Constants.lastName, PersonOtherPhone =phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail='account_test@test00de0000000bblj.com', Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
         accObj7.RecordTypeId = rtId;
         insert accObj7;
         
@@ -108,10 +105,11 @@ Insert Account, Case Objects and attach Account to Case Obj.
 Test Class to check the Fuzzy Street name + City search for CSC-4073
 */
     static testMethod void searchConsumerStreetCity() {
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
+        //User u = CEC_TestDataFactory.createStandardCECTestUser();
+        User u = [Select Id From User Where UserRole.name != null AND isActive=true limit 1];
         System.runAs(u) {
             
-            Case caseObj = insertCase1();        
+            Case caseObj = insertCase2();        
             ApexPages.currentPage().getParameters().put('Id', caseObj.id); 
             CEC_NewAccountController testController= new CEC_NewAccountController();
             pageReference pr = testController.searchConsumer();
@@ -136,7 +134,7 @@ Test Class to check the Fuzzy Street name + City search for CSC-4073
             //Scenario 3 - Email + Fuzzy Street search with Matching Street (Different House Number) and City. Also to check the order of the returned results
             testController.newConsumer.PersonMailingStreet = '456 Holloway Street';
             testController.newConsumer.PersonMailingCity = 'London';
-            testController.newConsumer.PersonEmail = email;
+            testController.newConsumer.PersonEmail = 'account_test@test00de0000000bblj.com';
             pr = testController.searchConsumer(); 
             System.assertEquals(null,pr);
             system.debug('testController.duplicateConsumerList.size() @@@@' + testController.duplicateConsumerList);
@@ -151,10 +149,11 @@ Test method for Search Consumer
 */
     static testMethod void searchConsumer(){
         
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
+        //User u = CEC_TestDataFactory.createStandardCECTestUser();
+        User u = [Select Id From User Where UserRole.name != null AND isActive=true limit 1];
         System.runAs(u) {
             
-            Case caseObj = insertCase1();
+            Case caseObj = insertCase2();
             
             ApexPages.currentPage().getParameters().put('Id', caseObj.id);      
             
@@ -165,8 +164,8 @@ Test method for Search Consumer
             testController.newConsumer.Phone = phoneNo;
             testController.newConsumer.PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode;
             testController.newConsumer.PersonMailingStreet = 'George Street';
-            testController.newConsumer.PersonEmail = email;
-            testController.newConsumer.Local_Identifier__c = localIdentifier;
+            testController.newConsumer.PersonEmail = 'account_test@test00de0000000bblj.com';
+            testController.newConsumer.Local_Identifier__c = '111.222.333-12';
             
             pageReference pr = testController.searchConsumer();
             
@@ -201,7 +200,7 @@ Test method for Search Consumer
             
             // Scenario 5 - duplicates not found for Local Identifier
             
-            testController.newConsumer.Local_Identifier__c = updLocalIdentifier;
+            testController.newConsumer.Local_Identifier__c = '111.222.333-44';
             
             pr = testController.searchConsumer();
         } 
@@ -211,10 +210,12 @@ Test method for Search Consumer
 Test method for Attach Consumer to Case
 */
     static testMethod void attachConsumerToCase(){
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
+       // User u = CEC_TestDataFactory.createStandardCECTestUser();
+        User u = [Select Id,UserRole.name From User Where UserRole.name != null AND isActive=true limit 1];
+        //System.assertEquals(u.UserRole.name,'CEC User - Brazil');
         System.runAs(u) {
             
-            Case caseObj = insertCase1();
+            Case caseObj = insertCase2();
             
             
             List<CRMfusionDBR101__Scenario__c> dsclist =  [Select Name from CRMfusionDBR101__Scenario__c limit 100];
@@ -230,7 +231,7 @@ Test method for Attach Consumer to Case
             testController.newConsumer.lastname = CEC_Constants.lastName;
             testController.newConsumer.Phone = phoneNo;
             testController.newConsumer.PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode;
-            testController.newConsumer.Local_Identifier__c = updLocalIdentifier;
+            testController.newConsumer.Local_Identifier__c = '111.222.333-44';
             
             pageReference pr = testController.searchConsumer();
             
@@ -260,10 +261,11 @@ Test method for Save Consumer
 */  
     static testMethod void saveConsumer(){
         
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
+        //User u = CEC_TestDataFactory.createStandardCECTestUser();
+        User u = [Select Id From User Where UserRole.name != null AND isActive=true limit 1];
         System.runAs(u) {
             
-            Case caseObj = insertCase1();
+            Case caseObj = insertCase2();
             
             // Scenario 1 - Save account and attach it to a Case
             
@@ -273,7 +275,7 @@ Test method for Save Consumer
             testController.newConsumer.lastname = CEC_Constants.lastName;
             testController.newConsumer.Phone = phoneNo;
             testController.newConsumer.PersonMailingPostalCode = 'TA10 0AC';
-            testController.newConsumer.Local_Identifier__c = updLocalIdentifier;
+            testController.newConsumer.Local_Identifier__c = '111.222.333-44';
             
             testController.getSalutation();
             testController.back();
@@ -299,7 +301,8 @@ Test method for Save Consumer
 Test method for Rollback Save
 */
     static testMethod void rollbackSave(){
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
+        //User u = CEC_TestDataFactory.createStandardCECTestUser();
+        User u = [Select Id From User Where UserRole.name != null AND isActive=true limit 1];
         System.runAs(u) {
             Case caseObj = insertCase2();
             
@@ -308,6 +311,49 @@ Test method for Rollback Save
             
             result = CEC_NewAccountController.rollbackSave(null);
             System.assertEquals(false,result);
+        }
+    }
+    @future
+    public static void InsertSObject(){
+        User u = CEC_TestDataFactory.createStandardCECTestUser();
+        UserRole ur = new UserRole(Name = 'CEC User - Brazil');
+        insert ur;
+        User userObj = [Select Id From User where Id =:u.id];
+        userObj.UserRoleId = ur.id;
+        Update userObj;
+    }
+     /**
+Test method for AttCach Consumer to Case without account and contact
+*/
+    static testMethod void attachConsumerToCaseWithoutAccountCont(){
+       // User u = CEC_TestDataFactory.createStandardCECTestUser();
+        User u = [Select Id,UserRole.name From User Where UserRole.name != null AND isActive=true limit 1];
+        //System.assertEquals(u.UserRole.name,'CEC User - Brazil');
+        System.runAs(u) {
+            
+            Case caseObj = insertCase1();
+            
+            List<CRMfusionDBR101__Scenario__c> dsclist =  [Select Name from CRMfusionDBR101__Scenario__c limit 100];
+            System.debug('~~~dsclist '  + dsclist);
+            
+            List<CRMfusionDBR101__Scenario_Rule__c> dsrlist =  [Select Name from CRMfusionDBR101__Scenario_Rule__c limit 100];
+            System.debug('~~~dsrlist '  + dsrlist);
+            
+            // Scenario 1 - Choose account for a Case without Account
+            
+            ApexPages.currentPage().getParameters().put('Id', caseObj.id);
+            CEC_NewAccountController testController= new CEC_NewAccountController();
+            testController.newConsumer.lastname = CEC_Constants.lastName;
+            testController.newConsumer.Phone = phoneNo;
+            testController.newConsumer.PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode;
+            testController.newConsumer.Local_Identifier__c = '111.222.333-44';
+            
+            pageReference pr = testController.searchConsumer();
+            
+            testController.selectedAccountId = testController.duplicateConsumerList.get(0).consumer.Id;
+            pr = testController.chooseAccount();
+            
+            System.assertEquals(null,pr);
         }
     }
 }
