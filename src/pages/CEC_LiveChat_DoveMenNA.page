@@ -1,0 +1,26 @@
+<apex:page showHeader="false">
+    <apex:stylesheet value="{!$Resource.CEC_LiveChat_DoveMenNA}"/>
+    
+    <div style="top: 0; left: 0; right: 0; bottom: 0; position: absolute;">
+        <liveAgent:clientChat >
+        <liveAgent:clientChatSaveButton />
+        <liveAgent:clientChatEndButton />
+        <div style="top: 25px; left: 5px; right: 5px; bottom: 5px; position: absolute; z-index:0;">
+            <liveAgent:clientChatAlertMessage />
+            <liveAgent:clientChatStatusMessage />
+            <table id="waitingMessage" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>Please wait while you are connected to an available agent.</td>
+                </tr>
+            </table>
+            <div style="top: 0; right: 0; bottom: 41px; left: 0; padding: 0; position: absolute;
+                word-wrap: break-word; z-index: 0;">
+                <liveAgent:clientChatLog />
+            </div>
+            <div style="position: absolute; height: auto; right: 0; bottom: 0; left: 0; margin-right:67px;">
+                <liveagent:clientChatInput /><liveAgent:clientChatSendButton />
+            </div>
+        </div>
+        </liveAgent:clientChat>
+    </div>
+</apex:page>

@@ -50,6 +50,7 @@
 			<runTest>CEC_FulfilmentHelperExtensionTest</runTest>
 			<runTest>CEC_TestAlertActionBatchScheduler</runTest>
 			<runTest>CEC_TestAlertActionTriggerHelper</runTest>
+			<runTest>CEC_NewAccountControllerTest</runTest>
         </sf:deploy>
     </target>
 </project>
