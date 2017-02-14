@@ -4302,7 +4302,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <customTabListAdditionalFields>UL_Current_Status__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Sub_Mechanic__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Feature__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>UL_Free_Text__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCL__Delivery_Date_From__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCL__Placement_Date_From__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Category__c</customTabListAdditionalFields>
