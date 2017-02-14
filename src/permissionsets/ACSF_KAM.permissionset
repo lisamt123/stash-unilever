@@ -48,7 +48,7 @@
         <application>standard__Work</application>
         <visible>false</visible>
     </applicationVisibilities>
-    <classAccesses>
+	<classAccesses>
         <apexClass>MyCRE</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -104,6 +104,10 @@
         <apexClass>UL_FundTransactionTrigger_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>UL_IIBBTax_TriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>UL_ProductPartTriggerUtil</apexClass>
         <enabled>false</enabled>
@@ -111,6 +115,10 @@
     <classAccesses>
         <apexClass>UL_ProductPartTriggerUtil_Test</apexClass>
         <enabled>false</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>UL_PromotionTriggerHandler</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>UL_UpdatePromotionTypeController</apexClass>

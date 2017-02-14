@@ -19,10 +19,10 @@
     <fields>
         <label><!-- Anchor Customer Set --></label>
         <name>ACCL__Anchor_Account_Set__c</name>
-        <relationshipLabel><!-- Promotions --></relationshipLabel>
+        <relationshipLabel><!-- Promotions --></relationshipLabel>9
     </fields>
     <fields>
-        <label>Sold-To</label>
+        <label><!-- Anchor Customer --></label>
         <name>ACCL__Anchor_Account__c</name>
         <relationshipLabel><!-- Promotions --></relationshipLabel>
     </fields>

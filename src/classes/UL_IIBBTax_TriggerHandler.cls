@@ -30,7 +30,7 @@ public with sharing class UL_IIBBTax_TriggerHandler {
 	    		if (currTaxList != null ){
 	    			for (IIBBTax__c currTax : currTaxList ){
 	    				if (currTax.id <> tax.id && (currTax.Date_From__c <=  tax.Date_Thru__c && currTax.Date_Thru__c>= tax.Date_From__c )){
-	    					system.debug ('Overlapping found betwee new tax:' + tax +  'and already existing one ' + currTax );
+	    				//	system.debug ('Overlapping found betwee new tax:' + tax +  'and already existing one ' + currTax );
 	    					tax.addError(System.Label.UL_DateOverlapingFound + ' ' +  currTax.Date_From__c  + ' - ' +  currTax.Date_Thru__c);
 	    				}
 	    			}
@@ -55,9 +55,11 @@ public with sharing class UL_IIBBTax_TriggerHandler {
     ********************************************************************/
     private static set <ID> getallAccounts(List<IIBBTax__c> taxList){
     	set <ID> accounts= new set<ID>(); 
+    	taxList.addAll(taxList);
+    	/*
     	for ( IIBBTax__c tax : taxList){
 	    	accounts.add(tax.Account__c);	
-	    } 
+	    } */
 	    return accounts;
     }
      /*******************************************************************
