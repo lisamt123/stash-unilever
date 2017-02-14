@@ -183,7 +183,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>TUGTIN__c</fullName>
+        <fullName>TEL_TUGTIN__c</fullName>
         <description>Consumer Unit EAN.</description>
         <externalId>true</externalId>
         <label>TUGTIN</label>
