@@ -1,4 +1,21 @@
 src
 src/classes
-src/classes/IPM_GroupManagement.cls
-src/classes/IPM_GroupManagement.cls-meta.xml
+src/classes/IPM_AlignDataOnGeographyChange_Batch.cls
+src/classes/IPM_AlignDataOnGeographyChange_Batch.cls-meta.xml
+
+src/customMetadata
+src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_UFS_Beverages.md
+src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_UFS_Dressings.md
+src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_UFS_Other_Food_Food.md
+src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_UFS_Savoury.md
+src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_UFS_Spreads.md
+src/customMetadata/IPM_Category_Thresholds.IPM_Regional_Threshold_UFS_Beverages.md
+src/customMetadata/IPM_Category_Thresholds.IPM_Regional_Threshold_UFS_Dressings.md
+src/customMetadata/IPM_Category_Thresholds.IPM_Regional_Threshold_UFS_Other_Foods.md
+src/customMetadata/IPM_Category_Thresholds.IPM_Regional_Threshold_UFS_Savoury.md
+src/customMetadata/IPM_Category_Thresholds.IPM_Regional_Threshold_UFS_Spreads.md
+src/layouts
+src/layouts/IPM_Project__c-IPM Project Layout.layout
+src/permissionsets
+src/permissionsets/IPM_Business_Partners.permissionset
+src/permissionsets/IPM_Central_Team.permissionset
