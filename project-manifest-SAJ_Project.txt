@@ -21,6 +21,8 @@ src/classes/SAJ_BusinessSolutionTriggerHandller.cls-meta.xml
 src/components
 src/components/SAJ_SessionNotes.component
 src/components/SAJ_SessionNotes.component-meta.xml
+src/customPermissions
+src/customPermissions/SAJ_Standard_User.customPermission
 src/email
 src/email/SAJ
 src/email/SAJ/SAJ_Production_Org_Refresh_Notification.email
@@ -102,4 +104,4 @@ src/workflows/SAJ_If_Production.workflow
 src/workflows/SAJ_If_PartialCopy.workflow
 src/workflows/SAJ_If_FullCopy.workflow
 src/workflows/SAJ_Update_AU.workflow
-src/workflows/SAJ_DesignChallange__c.workflow
+//src/workflows/SAJ_DesignChallange__c.workflow

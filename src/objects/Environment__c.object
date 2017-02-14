@@ -445,7 +445,6 @@
         <columns>Description__c</columns>
         <columns>Lead_Admin__c</columns>
         <columns>DayCount__c</columns>
-        <columns>Org_Type__c</columns>
         <columns>Tier__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
