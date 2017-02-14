@@ -5,7 +5,7 @@ VERSION AUTHOR         DATE         DETAIL Description
 1.0     Accenture    17/Jan/2017     Draft (FS-1590)
 ***********************************************************************/
 
-Global class FS_UpdateChildAccounts {
+Global with sharing class FS_UpdateChildAccounts {
 
   
     //(label='Update Child Accounts' description='')

@@ -123,9 +123,7 @@
                             </apex:facet>
                         </apex:column>
                     </apex:pageBlockTable>
-                    
                     <script>
-                    // Here we will set the generated subtotals to the footer cells
                     document.getElementsByClassName('t1')[0].innerHTML = '{!total1}';
                     document.getElementsByClassName('t2')[0].innerHTML = '{!total2}';
                     document.getElementsByClassName('t3')[0].innerHTML = '{!total3}';
@@ -137,7 +135,6 @@
                     document.getElementsByClassName('t9')[0].innerHTML = '{!total9}';
                     document.getElementsByClassName('t10')[0].innerHTML = '{!total10}';
                     </script>
-                    
                 </apex:pageBlockSection>
             </apex:pageblock>
         </apex:pageBlock>

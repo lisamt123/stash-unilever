@@ -124,9 +124,9 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
             //Assign value to new monthly planned record            
             monthly_Planner.userName=userRecord.Name;           
             monthly_Planner.actual=tempEvents.size();
-            i=monthStartDate.daysBetween(dateName)-noofHolidaysTillDate-tempDates.size()+1;
-            workingDaysTillDate=monthStartDate.daysBetween(dateName)-noofHolidaysTillDate+1; 
-            achiveToday=((Decimal.valueOf(workingDaysTillDate *100))/workingDays).setScale(2);           
+           
+           
+           achiveToday=achiveTodayFunction(dateName,tempDates.size());
             monthly_Planner.plan=tempDates.size()*8;
             monthly_Planner.actualWorkingDays=tempDates.size();
             If(tempDates.size()>0){
@@ -166,4 +166,12 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
         } 
         return listMonthlyPlanner;
     } 
+    
+    public decimal achiveTodayFunction(Date dateName,Integer tempDatesSize)
+    {
+        i=monthStartDate.daysBetween(dateName)-noofHolidaysTillDate-tempDatesSize +1;
+        workingDaysTillDate=monthStartDate.daysBetween(dateName)-noofHolidaysTillDate+1; 
+        achiveToday=((Decimal.valueOf(workingDaysTillDate *100))/workingDays).setScale(2);  
+        return achiveToday;
+    }
 }
