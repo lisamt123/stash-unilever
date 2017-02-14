@@ -429,10 +429,11 @@
                                             <span>{!$Label.IPM_SELECTING_IPM_LITE}</span>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 yellowBox noPadleft">
+                                    <!-- Below rendered condition is used to provide fast track checkbox for non operational projects -->
+                                    <apex:outputPanel layout="block" styleClass="col-sm-12 yellowBox noPadleft"  rendered="{!!isOperational}">
                                                 <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!!$Permission.EditableFastTrack}"/>
                                             <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
-                                    </div>
+                                    </apex:outputPanel>
                                 </apex:outputPanel>  
 				</apex:outputPanel> 
                            <apex:outputPanel rendered="{!isPDLApproved}">

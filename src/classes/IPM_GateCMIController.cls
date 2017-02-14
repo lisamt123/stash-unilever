@@ -99,8 +99,11 @@ public with sharing class IPM_GateCMIController{
     public List<selectOption> getCountries() { 
         countryList=new List<IPM_Country__c>();
         String soql  =  'SELECT Id,Country_Code__c,Country_Name__c,IPM_Project__c,IPM_Regional_Project__c,isActive__c FROM IPM_Country__c';
-        if((gateType==IPM_ConstantUtils.CHARTER_GATE && projDocSec.IPM_Project_Document__r.IPM_Project_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) || projDocSec.IPM_Project_Document__r.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
+        if((gateType==IPM_ConstantUtils.CHARTER_GATE && projDocSec.IPM_Project_Document__r.IPM_Project_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && projDocSec.IPM_Project_Document__r.IPM_Project__r.IPM_ProjectGKM__c != 'GKM8') || projDocSec.IPM_Project_Document__r.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
             soql += ' WHERE IPM_Project__c = \'' + projectId + '\'';
+        }
+        else if(projDocSec.IPM_Project_Document__r.IPM_Project__r.IPM_ProjectGKM__c == 'GKM8'){
+        	soql += ' WHERE IPM_Local_Project__c = \'' + projectId + '\'';
         }
         else{
             soql += ' WHERE IPM_Regional_Project__c = \'' + projectId + '\'';
@@ -272,7 +275,7 @@ public with sharing class IPM_GateCMIController{
             gateTypes=getPicklistValues(ipmCMIGate ,IPM_ConstantUtils.GATE_FIELD); 
             
             //Getting Project Document Section
-            projDocSec=[SELECT Id,IPM_CMI_Selected_Countries__c,IPM_CMI_Selected_Test_Concepts__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project_Span__c,IPM_Project_Document__r.IPM_GateDocuments__c 
+            projDocSec=[SELECT Id,IPM_CMI_Selected_Countries__c,IPM_CMI_Selected_Test_Concepts__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project_Span__c,IPM_Project_Document__r.IPM_GateDocuments__c, IPM_Project_Document__r.IPM_Project__c, IPM_Project_Document__r.IPM_Project__r.IPM_ProjectGKM__c 
                         FROM IPM_Project_Document_Section__c 
                         WHERE Id=:projDocSecId];
             

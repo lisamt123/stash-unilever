@@ -6785,6 +6785,11 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Template__c.IPM_GKM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_Project__c.IPM_Project_Based_Threshold_Status__c</field>
 		<readable>true</readable>
@@ -7817,6 +7822,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Questionnaire__c.IPM_Project_Document_Section__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Questionnaire__c.IPM_Project_GKM__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

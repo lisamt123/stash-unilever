@@ -464,6 +464,10 @@
                 <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>MKTG</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>

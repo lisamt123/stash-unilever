@@ -40,6 +40,9 @@ public with sharing class IPM_ProjectHelper
     
     public static Set<String> projectTypeSet = new Set<String>(); 
     
+    public static Set<String> projectGKMSet = new Set<String>(); 
+    public static String GKMString = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+    
     /* Project Specific information starts*/
     public static Map<Id,IPM_Project__c> projectMasterMap = new Map<Id,IPM_Project__c>();
     
@@ -121,8 +124,7 @@ public with sharing class IPM_ProjectHelper
     
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
     
-    
-	
+    public static Map<Id,IPM_Project__c> CurrentProjectMap = new Map<Id,IPM_Project__c>();
 	
      /**************************************************************
     * @description: Used for Resetting Cache in case Project Handler is invoked again. 
@@ -213,6 +215,8 @@ public with sharing class IPM_ProjectHelper
         {
             incomingProjectIds = projectMap.keySet();
             
+            CurrentProjectMap = projectMap ;
+            
             for(IPM_Project__c project  : projectMap.values())
             {
                 // Get Bosscard Information to Populate when it is moving in charter Phase.
@@ -291,12 +295,28 @@ public with sharing class IPM_ProjectHelper
             {
                 projectTypeSet.add(project.IPM_SourceProjectType__c);
             }
+            
+            if(!String.isBlank(project.IPM_ProjectGKM__c))
+            {
+                projectGKMSet.add(project.IPM_ProjectGKM__c);
+            }
         }
         
         if(!categorySet.isEmpty())
         {
             List<String> categoryList = new List<String>(categorySet);
-            categoryString = String.join(categoryList,IPM_ConstantUtils.COMMA);
+            
+            categoryString = '';
+            for(String str: categoryList)
+                categoryString += '\''+ str +'\',';
+            categoryString = categoryString.removeEnd(',');
+            
+            List<String> GKMList = new List<String>(projectGKMSet);
+            GKMString = '';
+            for(String str: GKMList)
+                GKMString += '\''+ str +'\',';
+            GKMString = GKMString.removeEnd(',');
+            
         }
     }
     
@@ -336,7 +356,20 @@ public with sharing class IPM_ProjectHelper
                 
                 if(String.isNotEmpty(categoryString) )
                 {
-                    whereCondition  = whereCondition + ' IPM_Category__c includes ( :categoryString ) ';
+                    whereCondition  = whereCondition + ' IPM_Category__c includes ( '+categoryString +') ';
+                }
+            }
+            
+            if(!projectGKMSet.isEmpty())
+            {
+                if(String.isNotEmpty(whereCondition))
+                {
+                    whereCondition  += ' AND ';
+                }
+                
+                if(String.isNotEmpty(GKMString) )
+                {
+                     whereCondition  += ' IPM_GKM__c includes ( '+ GKMString +' ) '; 
                 }
             }
             
@@ -412,7 +445,13 @@ public with sharing class IPM_ProjectHelper
         String masterQuestionnaireQuery = IPM_Utils.prepareSOQLQuery('IPM_Questionnaire__c',false,null,true);
         String masterQuestionnaireWhereClause = 'WHERE Is_Master__c=true '+LIMIT_CLAUSE_STR;
         masterQuestionnaireQuery = masterQuestionnaireQuery + masterQuestionnaireWhereClause;
-        masterQuestionnaireMap = new Map<Id,IPM_Questionnaire__c>( (List<IPM_Questionnaire__c>) database.query(masterQuestionnaireQuery) );
+        // EPIC358 - REQ03738
+        Map<Id,IPM_Questionnaire__c> masterQuestionnaireMapTemp = new Map<Id,IPM_Questionnaire__c>( (List<IPM_Questionnaire__c>) database.query(masterQuestionnaireQuery) );
+        String currentProjectId = (new list<Id>(incomingProjectIds) )[0];
+        For(Id questionIdTemp : masterQuestionnaireMapTemp.keySet()){
+            If( masterQuestionnaireMapTemp.get(questionIdTemp).IPM_Project_GKM__c != null && masterQuestionnaireMapTemp.get(questionIdTemp).IPM_Project_GKM__c != '' && masterQuestionnaireMapTemp.get(questionIdTemp).IPM_Project_GKM__c.containsIgnoreCase(CurrentProjectMap.get(currentProjectId).IPM_ProjectGKM__c))
+                masterQuestionnaireMap.put(questionIdTemp,masterQuestionnaireMapTemp.get(questionIdTemp));
+        }
     }
     
     

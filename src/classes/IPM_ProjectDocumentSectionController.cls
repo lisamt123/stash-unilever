@@ -250,9 +250,14 @@ public with sharing class IPM_ProjectDocumentSectionController {
             queryString = 'SELECT count() FROM IPM_Country__c WHERE ( isActive__c = true OR '+ showEntity +' = true ) AND IPM_Regional_Project__c =: projectId LIMIT 5000';
             countOfCountries = Database.countQuery(queryString); 
 		}
-		else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+		else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && project.IPM_ProjectGKM__c != 'GKM8')
 		{
 			countOfCountries=0;
+		}
+		else if(project.IPM_ProjectGKM__c == 'GKM8')
+		{
+			queryString = 'SELECT count() FROM IPM_Country__c WHERE ( isActive__c = true OR '+ showEntity +' = true ) AND IPM_Local_Project__c =: projectId LIMIT 5000';
+            countOfCountries = Database.countQuery(queryString);
 		}
 		
 		charcterCount();

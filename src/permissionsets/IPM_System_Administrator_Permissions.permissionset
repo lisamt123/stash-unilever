@@ -5353,6 +5353,11 @@
         <field>IPM_Project_Template__c.IPM_Template_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project_Template__c.IPM_GKM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.BET_Archive_Status__c</field>
@@ -6264,6 +6269,11 @@
         <field>IPM_Questionnaire__c.IPM_Project_Document_Section__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Questionnaire__c.IPM_Project_GKM__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Questionnaire__c.IPM_Question_Help_Text__c</field>

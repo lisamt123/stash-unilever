@@ -7,7 +7,7 @@
 global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermediateController{ 
     //*@Description: default sub project type for company card selection
     private static final Map<String,String> COMPANYCARDTODEFAULTSUBPROJECTTYPE = new Map<String,String>
-    {'Global Company Card' => 'Innovation/Renovation','Regional Company Card' => 'Innovation/Renovation','Local Company Card'=>'Operational'};
+    {'Global Company Card' => 'Innovation/Renovation','Regional Company Card' => 'Innovation/Renovation','Local Company Card'=>'Innovation/Renovation'};
     private static final String IPM_PROJECTCONTROLLER_STR = 'IPM_ProjectController';
     private static final Map<String,Boolean> APPENDREGIONMAP = new Map<String,Boolean>{'Regional' => true};
     private static final List<String> DEFAULT_MANDATORY_FIELDS = new List<String>{'IPM_Project_Name__c','IPM_Category_Text__c','IPM_Brand_Positioning__c','IPM_Company_Card__c','IPM_ProjectSubType__c','IPM_Target_Launch_Dates__c'};

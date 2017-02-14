@@ -450,6 +450,51 @@ CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;,
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>IPM_Project_GKM__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Project GKM</label>
+        <picklist>
+            <picklistValues>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM8</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
         <fullName>IPM_Project__c</fullName>
         <description>Detail to to the related Project</description>
         <externalId>false</externalId>
@@ -704,6 +749,9 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
         <columns>Is_Master__c</columns>
         <columns>IPM_Question__c</columns>
         <columns>IPM_Sequence_Number__c</columns>
+        <columns>IPM_RQS_Gate_Type__c</columns>
+        <columns>IPM_Project_GKM__c</columns>
+        <columns>IPM_Section_Sequence_Number__c</columns>
         <columns>RECORDTYPE</columns>
         <columns>IPM_RQS_Question_Type__c</columns>
         <columns>IPM_Project__c</columns>
@@ -714,8 +762,9 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>OBJECT_ID</field>
-            <operation>notEqual</operation>
+            <field>Is_Master__c</field>
+            <operation>equals</operation>
+            <value>1</value>
         </filters>
         <label>All</label>
         <language>en_US</language>
@@ -919,6 +968,41 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Project_GKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_RQS_Gate_Type__c</picklist>
             <values>
                 <fullName>Charter</fullName>
@@ -1083,6 +1167,41 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Project_GKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_RQS_Gate_Type__c</picklist>
             <values>
                 <fullName>Charter</fullName>
@@ -1208,6 +1327,41 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Project_GKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_RQS_Gate_Type__c</picklist>
             <values>
                 <fullName>Charter</fullName>
@@ -1317,6 +1471,41 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
             </values>
             <values>
                 <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Project_GKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM8</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1446,6 +1635,41 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Project_GKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_RQS_Gate_Type__c</picklist>
             <values>
                 <fullName>Charter</fullName>
@@ -1558,6 +1782,41 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
             </values>
             <values>
                 <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Project_GKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM8</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1686,6 +1945,41 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Project_GKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_RQS_Gate_Type__c</picklist>
             <values>
                 <fullName>Charter</fullName>
@@ -1807,6 +2101,41 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
             </values>
             <values>
                 <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Project_GKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM8</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

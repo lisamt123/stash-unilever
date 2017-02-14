@@ -2631,6 +2631,10 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <fullName>GKM7</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>GKM8</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -4436,6 +4440,10 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
                 <fullName>GKM7</fullName>
                 <default>false</default>
             </values>
+	    <values>
+                <fullName>GKM8</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_ProjectJobType__c</picklist>
@@ -5341,6 +5349,10 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
             </values>
             <values>
                 <fullName>GKM7</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>GKM8</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

@@ -323,6 +323,10 @@
                 <fullName>MKTG LOCAL</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>MKTG</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -417,6 +421,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>MKTG LOCAL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MKTG</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -831,6 +839,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>MKTG</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MKTG DEV</fullName>
                 <default>false</default>
             </values>
@@ -891,6 +903,10 @@
             </values>
             <values>
                 <fullName>MKTG LOCAL</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>MKTG</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -987,6 +1003,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>MKTG</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MKTG DEV</fullName>
                 <default>false</default>
             </values>
@@ -1047,6 +1067,10 @@
             </values>
             <values>
                 <fullName>MKTG LOCAL</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>MKTG</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

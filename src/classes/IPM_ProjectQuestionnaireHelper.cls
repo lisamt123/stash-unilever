@@ -512,6 +512,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                 tempQuestionare.IPM_Market_Deployment_Score__c= questionMasterObj.IPM_Market_Deployment_Score__c;
                 tempQuestionare.IPM_Market_Ready_Comments__c= questionMasterObj.IPM_Market_Ready_Comments__c;
                 tempQuestionare.IPM_Market_Ready_Score__c= questionMasterObj.IPM_Market_Ready_Score__c;
+                tempQuestionare.IPM_Project_GKM__c = questionMasterObj.IPM_Project_GKM__c;
             }
            
             projectQuestionareList.add(tempQuestionare);
