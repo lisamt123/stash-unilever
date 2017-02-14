@@ -1,4 +1,4 @@
-/***************************************************************
+	/***************************************************************
 Name: MyPromotionRemoteActionExtension 
 Copyright © 2016 Accenture
 ======================================================
@@ -1532,7 +1532,11 @@ childIdList.add(String.valueOf(oMap.get('ChildAccountID')));
         Map<String, Object> promoContentDeserializedMap = (Map<String, Object>) JSON.deserializeUntyped(objectContent);//deserializing the JSON from UI        
         Map<String, Object> boPromotion = (Map<String, Object>) promoContentDeserializedMap.get('BOPromotion');//Get the promotion in Map format
         String promoID= String.valueOf(boPromotion.get('Id'));
-        String promoSlogan= String.valueOf(boPromotion.get('ACCL__Slogan_Language_1__c'));
+        String salesOrg= String.valueOf(boPromotion.get('ACCL__UL_Sales_Organization__c'));
+        String promoName= String.valueOf(boPromotion.get('Name'));
+      
+      if(salesOrg!=null && salesOrg !='UK SO' && salesOrg != 'Ireland SO'){
+       String promoSlogan= String.valueOf(boPromotion.get('ACCL__Slogan_Language_1__c'));
         
         if(boPromotion.get('ACCL__Anchor_Account__c') !=null){
             parentAccountId=String.valueOf(boPromotion.get('ACCL__Anchor_Account__c'));
@@ -1622,6 +1626,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                 if(includedAccountMap.get(a.id).Child_Promotion__c!=null){
                     child.PushedPromoID = includedAccountMap.get(a.id).Child_Promotion__c;
                     child.PromotionSlogan=promoSlogan;
+                    child.Name=promoName;
                 }
                 
                 
@@ -1632,6 +1637,7 @@ allpromoAccRelMap.put(acc.Child_Account__c,acc);
                 child.ChildAccountName = a.Name;
                 child.CustomerUnique=a.UL_Customer_Unique__c;
                 child.PushedPromoID = null;
+                child.Name=null;
                 
             }
             result.add(child);
