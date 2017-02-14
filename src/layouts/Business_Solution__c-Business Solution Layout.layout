@@ -98,6 +98,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Clarity_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>ITBusinessInternalPartner__c</field>
             </layoutItems>
             <layoutItems>
@@ -106,7 +110,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Clarity_ID__c</field>
+                <field>CTO_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -170,6 +174,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Platform__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Business_Platform__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -276,6 +284,8 @@
         <relatedList>Solution_Environment__c.Business_Solution__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>NewEvent</excludeButtons>
+        <excludeButtons>NewTask</excludeButtons>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>TASK.WHAT_NAME</fields>
