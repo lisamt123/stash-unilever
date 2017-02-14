@@ -607,12 +607,12 @@ public with sharing class UL_CreatePromotionController{
          if(relatedRecord.UL_Delivery_Profile__c != null && relatedRecord.UL_Delivery_Profile__c != UL_Utility.NONE){
              uDelivery = listOfDeliveryProfile.get(relatedRecord.UL_Delivery_Profile__c);
              relatedRecord.ACCL__Delivery_Date_From__c = relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Shipment_Start_days__c));
-             relatedRecord.ACCL__Delivery_Date_Thru__c = relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Shipment_End_days__c));
-             relatedRecord.ACCL__Placement_Date_Thru__c= relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Instore_End_days__c));
+             relatedRecord.ACCL__Delivery_Date_Thru__c = relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Shipment_End_days__c)-1);
+             relatedRecord.ACCL__Placement_Date_Thru__c= relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Instore_End_days__c)-1);
              relatedRecord.UL_Delivery_Profile__c = uDelivery.UL_Delivery_Profile_Name__c;
              
-             relatedRecord.ACCL__Date_From__c = relatedRecord.ACCL__Placement_Date_From__c;
-             relatedRecord.ACCL__Date_Thru__c = relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Instore_End_days__c));
+             relatedRecord.ACCL__Date_From__c = relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Shipment_Start_days__c));
+             relatedRecord.ACCL__Date_Thru__c = relatedRecord.ACCL__Placement_Date_From__c.addDays(Integer.valueOf(uDelivery.UL_Instore_End_days__c)-1);
          }
          else{
              //relatedRecord.ACCL__Delivery_Date_From__c = relatedRecord.ACCL__Placement_Date_From__c ;

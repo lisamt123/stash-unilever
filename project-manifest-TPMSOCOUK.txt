@@ -537,8 +537,6 @@ src/pages/UL_Delivery_Profile.page
 src/pages/UL_Delivery_Profile.page-meta.xml
 src/pages/MyPromotionPlanning2.page
 src/pages/MyPromotionPlanning2.page-meta.xml
-src/pages/myTradeCalendar.page
-src/pages/myTradeCalendar.page-meta.xml
 src/globalPicklists
 src/globalPicklists/UL_Feature.globalPicklist
 src/staticresources
