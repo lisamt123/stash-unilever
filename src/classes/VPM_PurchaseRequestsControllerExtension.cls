@@ -418,7 +418,14 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       public void callSendToSAPAPI() {
           System.debug('-----id of vendor request record is-----'+vendorReqId);
           String responseString='';
-          list<VPM_PurchasingRequests__c> vendorList = [SELECT RecordTypeId,VPM_isVendorCached__c,VPM_Fieldtype__c ,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
+          list<VPM_PurchasingRequests__c> vendorList = [SELECT RecordTypeId,VPM_Status__c,VPM_isVendorCached__c,VPM_Fieldtype__c ,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
+            VPM_PurchasingRequests__c vendor = [SELECT id,VPM_MDMOpsFirstSubmittedToSAP__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1]; 
+               if(vendorList[0].VPM_Status__c =='MDM Ops Review')
+                      {
+                          vendor.VPM_MDMOpsFirstSubmittedToSAP__c=system.now();
+                          
+                      }
+              
               list<RecordType> RecordTypeList =[SELECT Name from RecordType where id=:vendorList[0].RecordTypeId limit 1];
                 system.debug('entering condition 1');
                 system.debug('RecordTypeList[0].Name '+RecordTypeList[0].Name);
@@ -505,13 +512,9 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     system.debug(responseString);
                    //callJavaScriptAlert='<script>alert(\''+responseString+'\'); pageReload();</script>';
                     callJavaScriptAlert='<script>debugger;var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); pageReload();</script>';
-              }
-              VPM_PurchasingRequests__c vendor = [SELECT id,VPM_MDMOpsFirstSubmittedToSAP__c,VPM_Status__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
-               if(vendor.VPM_Status__c.contains('MDM Ops Review'))
-              {
-                  vendor.VPM_MDMOpsFirstSubmittedToSAP__c=system.now();
-                  update vendor;
-              }
+               }
+              update vendor;
+              
       }
       
   /******************************************************************** 
@@ -529,6 +532,8 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           
           boolean brUser = false;
           String userRole = '';
+          String strUserRole = 'userRole';
+          String strBrUser = 'brUser';
           // List<PermissionSetAssignment> lstcurrentUserPerSet= new  List<PermissionSetAssignment>();
           List<PermissionSetAssignment> lstcurrentUserPerSet = [SELECT Id, PermissionSet.Name,PermissionSet.Label, AssigneeId
                                                                 FROM PermissionSetAssignment
@@ -540,35 +545,35 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) {
               brUser = false;
               userRole = 'FLS';
-              map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+              map<string,string> returnResult = new map<string,string>{strBrUser=>brUser?'true':'false',strUserRole=>userRole};
               return returnResult;
           } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_MDM)) {
               brUser = false;
               userRole = 'MDM';
-               map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+               map<string,string> returnResult = new map<string,string>{strBrUser=>brUser?'true':'false',strUserRole=>userRole};
               return returnResult;
           } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FINANCE)) {
               brUser = false;
               userRole = 'FIN';
-               map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+               map<string,string> returnResult = new map<string,string>{strBrUser=>brUser?'true':'false',strUserRole=>userRole};
               return returnResult;
           } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_PROCUREMENT)) {
               brUser = false;
               userRole = 'PRO';
-               map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+               map<string,string> returnResult = new map<string,string>{strBrUser=>brUser?'true':'false',strUserRole=>userRole};
               return returnResult;
           } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_BUSREQ)) 
           {
               brUser = true;
               userRole = 'BUR';
               // System.debug('----is user brUser----'+brUser);
-               map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+               map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false',strUserRole =>userRole};
               return returnResult;
           }
            }
             brUser = true;
              userRole = 'BUR';
-          map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
+          map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false',strUserRole =>userRole};
               return returnResult;
       }
 
@@ -879,7 +884,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   list<Group> queueList = dataBase.query(queryString);
                   if (queueList.size() == 1){                     
                       VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
-                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight'; 
+                      VendorDetailList[0].VPM_RequestLastWithGroup__c = STR_CONST_FREIGHT; 
                       VendorDetailList[0].OwnerId=queueList[0].id;
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
@@ -902,7 +907,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   list<Group> queueList = dataBase.query(queryString);
                   if (queueList.size() == 1){                     
                       VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
-                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight'; 
+                      VendorDetailList[0].VPM_RequestLastWithGroup__c = STR_CONST_FREIGHT; 
                       VendorDetailList[0].OwnerId=queueList[0].Id;
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
@@ -942,7 +947,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ) 
               { 
                      VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
-                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight';
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c = STR_CONST_FREIGHT;
                      VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
                      VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                      VendorDetailList[0].VPM_ApprovalWorkerID__c='';
@@ -963,7 +968,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                      VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ) 
               { 
                      VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
-                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight';
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c = STR_CONST_FREIGHT;
                      VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
                      VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                      VendorDetailList[0].VPM_ApprovalWorkerID__c='';

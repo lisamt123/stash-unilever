@@ -177,7 +177,7 @@ public with sharing class VPM_RecordTypeHelper {
             {
                 OptionWrapper option = new OptionWrapper();
                 option.DetailOption =MDMDetail.VPM_FullDetails__c;
-                option.UniqueId = MDMDetail.id+ CONST_LITERAL1 + VPM_RecordTypeHelper.vendorCodeAssignmentSearchVen(MDMDetail.mdm_vCodeSirius__c,MDMDetail.mdm_vCodeCordillera__c,MDMDetail.mdm_vCodeU2K2__c,MDMDetail.mdm_vCodeFusion__c,ECCValue) 
+                option.UniqueId = MDMDetail.id+ CONST_LITERAL1 + VPM_RecordTypeHelper.vendorCodeAssignmentSearchVen(MDMDetail.mdm_vCodeSirius__c,MDMDetail.mdm_vCodeCordillera__c,MDMDetail.mdm_vCodeU2K2__c,MDMDetail.mdm_vCodeFusion__c,ECCValue,MDMDetail.mdm_ecc__c) 
                                     +CONST_LITERAL1 +MDMDetail.mdm_ecc__c+CONST_LITERAL1 +MDMDetail.mdm_Name1__c+CONST_LITERAL1 +MDMDetail.mdm_Name2__c+CONST_LITERAL1 +MDMDetail.mdm_Name3__c+CONST_LITERAL1 +MDMDetail.mdm_Name4__c+CONST_LITERAL1 +MDMDetail.mdm_Street__c+CONST_LITERAL1 +MDMDetail.mdm_City__c;
                 
                 options.add(option); 
@@ -198,30 +198,45 @@ public with sharing class VPM_RecordTypeHelper {
     Description  : This method assign the vendor code selected on search vendor screen
     Return Type  : boolean
     ********************************************************************/
-    public static string vendorCodeAssignmentSearchVen(string mdm_vCodeSirius, string mdm_vCodeCordillera ,string mdm_vCodeU2K2,string mdm_vCodeFusion,String ECCVal) {
+    public static string vendorCodeAssignmentSearchVen(string mdm_vCodeSirius, string mdm_vCodeCordillera ,string mdm_vCodeU2K2,string mdm_vCodeFusion,String ECCVal, string MDMECC) {
         string vendorCodeInput = '';
+        system.debug('@@coming here' + MDMECC);
         If(string.isNotBlank(mdm_vCodeSirius) && ECCVal.equalsIgnoreCase('Sirius')) {
             vendorCodeInput = mdm_vCodeSirius;
         }else If(string.isNotBlank(mdm_vCodeCordillera) && ECCVal.equalsIgnoreCase('Cordillera')) {
             vendorCodeInput = mdm_vCodeCordillera;
         } else If(string.isNotBlank(mdm_vCodeU2K2) && ECCVal.equalsIgnoreCase('U2K2')) {
+            system.debug('@@coming here' + MDMECC);
             vendorCodeInput = mdm_vCodeU2K2;
         }else If(string.isNotBlank(mdm_vCodeFusion) && ECCVal.equalsIgnoreCase('Fusion')) {
             vendorCodeInput = mdm_vCodeFusion;
         }
         else
         {
-           If(string.isNotBlank(mdm_vCodeSirius)) {
-            vendorCodeInput = mdm_vCodeSirius;
-        }else If(string.isNotBlank(mdm_vCodeCordillera)) {
-            vendorCodeInput = mdm_vCodeCordillera;
-        } else If(string.isNotBlank(mdm_vCodeU2K2)) {
-            vendorCodeInput = mdm_vCodeU2K2;
-        }else If(string.isNotBlank(mdm_vCodeFusion)) {
-            vendorCodeInput = mdm_vCodeFusion;
-        }
+            system.debug('@@coming here' + MDMECC);
+            if(!MDMECC.contains(ECCVal)) {
+                if(string.isNotblank(MDMECC)) {
+                    List<string> eccList = new List<string>();
+                    eccList = MDMECC.split(',');
+                    if(!eccList.isEmpty()) {   
+                        string eccInput = eccList[0];
+                        If(string.isNotBlank(mdm_vCodeSirius) && eccInput.equalsIgnoreCase('Sirius')) {
+                            vendorCodeInput = mdm_vCodeSirius;
+                        }else If(string.isNotBlank(mdm_vCodeCordillera) && eccInput.equalsIgnoreCase('Cordillera')) {
+                            vendorCodeInput = mdm_vCodeCordillera;
+                        } else If(string.isNotBlank(mdm_vCodeU2K2) && eccInput.equalsIgnoreCase('U2K2')) {
+                            vendorCodeInput = mdm_vCodeU2K2;
+                        }else If(string.isNotBlank(mdm_vCodeFusion) && eccInput.equalsIgnoreCase('Fusion')) {
+                            vendorCodeInput = mdm_vCodeFusion;
+                        }
+                    }
+                }               
+                
+            }            
+            
         }
         vendorCodeInput = (string.isNotBlank(vendorCodeInput) ? vendorCodeInput : '');
+        system.debug('@@vendorCodeInput' +vendorCodeInput);
         return vendorCodeInput;
     }
     
@@ -359,13 +374,13 @@ public with sharing class VPM_RecordTypeHelper {
     ********************************************************************/
     public static List<SelectOption> paymentTermsMetaData(string ECC, string PIVendorType,string defaultValue) { 
         List<SelectOption> options = new List<SelectOption>();
-        
+        string eccValue = ECC;
          if(string.isNotBlank(defaultValue)) {
                 options.add(new SelectOption(defaultValue,defaultValue));
          }
             
-        ECC = '%' + ECC +'%';
-        List<VPM_PaymentTerms__mdt> metaValues = [select id,VPM_ECC__c,VPM_VendorType__c,VPM_PaymentTermsValue__c from VPM_PaymentTerms__mdt where VPM_ECC__c LIKE :ECC and (VPM_VendorType__c=: PIVendorType OR VPM_VendorType__c= 'other')];
+        eccValue = '%' + eccValue +'%';
+        List<VPM_PaymentTerms__mdt> metaValues = [select id,VPM_ECC__c,VPM_VendorType__c,VPM_PaymentTermsValue__c from VPM_PaymentTerms__mdt where VPM_ECC__c LIKE :eccValue and (VPM_VendorType__c=: PIVendorType OR VPM_VendorType__c= 'other')];
         
         for(VPM_PaymentTerms__mdt mdtValue : metaValues) {
             
