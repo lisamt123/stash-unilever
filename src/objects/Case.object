@@ -4062,6 +4062,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>PII_Warning_Check__c</columns>
+        <columns>CASES.ORIGIN</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
@@ -5089,6 +5090,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>CORE.USERS.FIRST_NAME</columns>
@@ -5189,6 +5191,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>CORE.USERS.FIRST_NAME</columns>
@@ -6221,7 +6224,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_Canada</fullName>
-        <booleanFilter>1 and 2 and 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>Country__c</columns>
@@ -6238,8 +6240,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Ben</value>
         </filters>
         <filters>
-            <field>Country__c</field>
-            <operation>contains</operation>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
             <value>Canada</value>
         </filters>
         <filters>
@@ -6270,13 +6272,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s Donations</value>
+            <operation>contains</operation>
+            <value>Ben</value>
         </filters>
         <filters>
             <field>CASES.SUBJECT</field>
             <operation>contains</operation>
-            <value>Ben &amp; Jerry&apos;s Donations</value>
+            <value>Donation</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -6292,8 +6294,41 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_North_America_Ben_Jerrys_E_Comm</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>Ben &amp; Jerry&apos;s</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>equals</operation>
+            <value>E-Commerce</value>
+        </filters>
+        <label>CEC North America Ben &amp; Jerrys E-Comm</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_Scoop</fullName>
-        <booleanFilter>(1 or 2) AND 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -6306,13 +6341,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filterScope>Queue</filterScope>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>contains</operation>
-            <value>Scoop</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>contains</operation>
-            <value>Scoop shop</value>
+            <operation>equals</operation>
+            <value>Ben &amp; Jerry&apos;s Scoop</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -6349,8 +6379,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Ben</value>
         </filters>
         <filters>
-            <field>Country__c</field>
-            <operation>contains</operation>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
             <value>United States</value>
         </filters>
         <filters>
@@ -7398,12 +7428,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.CREATED_DATE</field>
             <operation>greaterOrEqual</operation>
-            <value>1/1/2017 12:00 AM</value>
+            <value>2/1/2017 12:00 AM</value>
         </filters>
         <filters>
             <field>CASES.CREATED_DATE</field>
             <operation>lessOrEqual</operation>
-            <value>1/31/2017 12:00 AM</value>
+            <value>2/28/2017 12:00 AM</value>
         </filters>
         <filters>
             <field>CASES.SUBJECT</field>

@@ -67,7 +67,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         System.debug('------HTTP response status and status code are ------'+res.getStatus() + '  ' + res.getStatusCode());
        
 
-       VPM_PurchasingRequests__c VendorReq = [SELECT VPM_Fieldtype__c,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c, RecordType.DeveloperName  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
+       VPM_PurchasingRequests__c VendorReq = [SELECT VPM_Fieldtype__c,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c,RecordType.DeveloperName  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
      try{  
        maintainVenResp = (MaintainGlobalVendorResponse) System.JSON.deserialize(res.getBody(), MaintainGlobalVendorResponse.class);
       }
@@ -76,6 +76,10 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             if(ex.getmessage().containsIgnoreCase('unquoted character'))
             {
             responseString = System.Label.VPM_UnquotedError;
+            }
+            else
+            {
+              responseString = ex.getmessage();
             }
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,responseString,VPM_HttpUtil.failStatusMDM);
             return responseString;
@@ -87,9 +91,11 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             msg = maintainVenResp.status;
         }
         system.debug('%%%% '+maintainVenResp);
+        
          responseString = maintainVenResp.status;
         if(res.getStatusCode() == 200) {
-         if(VendorReq.VPM_Fieldtype__c != 'Both'  && VendorReq.RecordType.DeveloperName == 'VPM_VendorReqMaintain')
+        responseString = System.Label.VPM_SendToSAPSuccessMessage+';'+maintainVenResp.status;
+         /*if(VendorReq.VPM_Fieldtype__c != 'Both'&& VendorReq.RecordType.DeveloperName == 'VPM_VendorReqMaintain')
             {
             responseString = System.Label.VPM_SendToSAPSuccessMessage+';'+maintainVenResp.status;
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatusReqCompleted ,msg,VPM_HttpUtil.successStatusMDM);
@@ -101,7 +107,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             VPM_HttpUtil.updateFieldType(vendorId);
            VPM_HttpUtil.updateVendorMDMStatus(vendorId,null,msg,VPM_HttpUtil.successStatusMDM);
            }
-           else
+           else*/
            {
                 VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
            }
@@ -166,6 +172,10 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             if(ex.getmessage().containsIgnoreCase('unquoted character'))
             {
             responseString = System.Label.VPM_UnquotedError;
+            }
+            else
+            {
+              responseString = ex.getmessage();
             }
             VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.ECCfailStatus,responseString,VPM_HttpUtil.failStatusECC);
             return responseString;

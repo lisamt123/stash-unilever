@@ -127,8 +127,16 @@
         <name>Total_Section_Items__c</name>
     </fields>
     <fields>
+        <label><!-- Training Plan Name URLs --></label>
+        <name>Training_Plan_Name_URLs__c</name>
+    </fields>
+    <fields>
         <label><!-- Training Plan Rating --></label>
         <name>Training_Plan_Rating__c</name>
+    </fields>
+    <fields>
+        <label><!-- Training Plan URLs Name --></label>
+        <name>Training_Plan_URLs_Name__c</name>
     </fields>
     <layouts>
         <layout>Training Plan Layout</layout>
