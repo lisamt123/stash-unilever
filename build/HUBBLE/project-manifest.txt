@@ -1,2 +1,2 @@
 src
-src/objects/CPA_CR__c.object
+src/profiles/Unilever - Salesforce MultiApp Standard.profile
