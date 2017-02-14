@@ -4,6 +4,18 @@
         <fullName>SAJ_Email_Notification</fullName>
         <description>SAJ Email Notification</description>
         <protected>false</protected>
+        <recipients>
+            <recipient>bibhudananda.dash@accenture.com.new</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com.sfcttafdev</recipient>
+            <type>user</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>SAJ/SAJ_Production_Org_Refresh_Notification</template>
     </alerts>
@@ -11,6 +23,14 @@
         <fullName>SAJ_Environment_Refresh_Email_Notification</fullName>
         <description>SAJ Environment Refresh Email Notification</description>
         <protected>false</protected>
+        <recipients>
+            <recipient>bibhudananda.dash@accenture.com.new</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com.sfcttafdev</recipient>
+            <type>user</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>SAJ/SAJ_Production_Org_Refresh_Notification</template>
     </alerts>
@@ -18,6 +38,18 @@
         <fullName>SAJ_Send_Notification</fullName>
         <description>SAJ Send Notification</description>
         <protected>false</protected>
+        <recipients>
+            <recipient>bibhudananda.dash@accenture.com.new</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shreyala.ashok@unilever.com.sfcttafdev</recipient>
+            <type>user</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>SAJ/SAJ_Production_Org_Refresh_Notification</template>
     </alerts>
