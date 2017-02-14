@@ -50,7 +50,8 @@
                     <li class="{!IF(activeItem=='market ready', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Market Ready"><span>{!$Label.IPM_MARKET_READY}</span></a></li>
                     </apex:outputPanel>
                      <!-- Below rendered condition provide link to gate document page-->
-                    <apex:outputPanel layout="block" rendered="{!AND(projSpan='Local',projType!='Operational',OR(projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
+		                     <!-- REQ03666 - Added projType!='Original' in rendered condition avoid for Local Original GKM8 projects -->
+		                    <apex:outputPanel layout="block" rendered="{!AND(projSpan='Local',projType!='Operational', projType!='Original',OR(projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='market deployment', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Market Deployment"><span>{!$Label.IPM_MARKET_DEPLOYMENT}</span></a></li>
                     </apex:outputPanel>
                     </ul>

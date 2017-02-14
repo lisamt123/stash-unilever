@@ -169,6 +169,8 @@ public with sharing class IPM_ProjectsClustersMappingController {
     
     /**************************************************************
     * @description: GET SOQL STRING BASED ON SEARCH CRITERIA
+		REQ03669 - Changed query for Local original projects added Project Span in where clause for Global and Regional 
+		           only
     */
     public string getQueryString(){
         string queryString = 'SELECT Id, IPM_Project_Name__c, IPMProject_Span__c, IPM_Project_Type__c, IPM_Cluster__c, IPM_Clusters__c, IPM_Project_Y3iTO__c '

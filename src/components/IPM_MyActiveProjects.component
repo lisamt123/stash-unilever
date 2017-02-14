@@ -24,7 +24,8 @@
                         <apex:commandLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.bosscardObj.IPM_BosscardName__c != null ),$Page.IPM_Bosscard+'?id='+p.bosscardObj.id,$Page.IPM_ProjectSetupView+'?Pid='+p.projectObj.Id)}"/>
                       </apex:outputPanel> -->
                       <apex:outputPanel >
-                        <apex:commandLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.bosscardObj.IPM_BosscardName__c != null ),$Page.IPM_Bosscard+'?id='+p.bosscardObj.id,if(p.projectObj.IPM_IsSaved__c , $Page.IPM_ProjectOverview+'?id='+p.projectObj.Id, $Page.IPM_ProjectSetupView+'?Pid='+p.projectObj.Id))}"/>
+                          <!-- Added  attribute  <apex:outputLink> for REQ03537 -->
+                      <apex:outputLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),$Page.IPM_Bosscard+'?id='+p.bosscardObj.id,if(p.projectObj.IPM_IsSaved__c , $Page.IPM_ProjectOverview+'?id='+p.projectObj.Id, $Page.IPM_ProjectSetUpView+'?Pid='+p.projectObj.Id))}"> {!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}</apex:outputLink>
                       </apex:outputPanel>
                          <!-- Below rendered condition is used to show original icon -->
                        <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.projectObj.IPM_Project_Type__c='Original'}">
