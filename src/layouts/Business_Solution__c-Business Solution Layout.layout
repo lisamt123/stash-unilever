@@ -288,9 +288,8 @@
         <fields>TASK.PRIORITY</fields>
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.LAST_UPDATE</fields>
-        <relatedList>Task.Business_Solution__c</relatedList>
-        <relatedList>Event.Business_Solution__c</relatedList>
-    </relatedLists>
+        <relatedList>Activities.Business_Solution__c</relatedList>
+        </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
