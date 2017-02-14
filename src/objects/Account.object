@@ -7201,7 +7201,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>UL_Is_AllCustomer_Level1__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>Is All Customer Level1</label>
+        <label>Is All Customer (Level1)</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
@@ -7664,8 +7664,8 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <listViews>
         <fullName>AllAccounts</fullName>
         <columns>ACCOUNT.NAME</columns>
-        <columns>Demandware_ID__c</columns>
         <columns>ACCOUNT.CREATED_DATE</columns>
+        <columns>UL_Customer_Hierarchy_Level__c</columns>
         <filterScope>Everything</filterScope>
         <label>Tous les comptes</label>
         <language>fr</language>
