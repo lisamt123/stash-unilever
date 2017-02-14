@@ -1,0 +1,69 @@
+<apex:page standardController="ACCL__Promotion__c" extensions="ACCL.PromotionPlanningController,MyContractRemoteActionExtension,MyPromotionRemoteActionExtension,ACCL.AccountRemoteActionExtension,ACCL.ContractRemoteActionExtension,ACCL.LogRemoteActionExtension,ACCL.MetaDataRemoteActionExtension,ACCL.PromotionRemoteActionExtension,ACCL.PromotionTemplateRemoteActionExtension,ACCL.TacticTemplateRemoteActionExtension" showHeader="true" standardStylesheets="false" sidebar="true" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0">
+  <apex:pageMessages />  
+    <head>
+        <meta charset="UTF-8"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ACCL__SLDS202, '/assets/styles/salesforce-lightning-design-system.css')}" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.ACCL__appDist, '/dist/vendor.css')}"/>
+        <link rel="stylesheet" href="{!URLFOR($Resource.ACCL__appDist, '/dist/ui.css')}"/>
+ 
+          
+            
+        </head> 
+         <apex:pageMessages />              
+        <body>
+            <div id="modal"></div>
+           <div id="root" class="slds"></div>
+           <script>
+            var i18nURL="{!URLFOR($Resource.ACCL__appDist, '/dist/assets/i18n/')}";
+            var sfldsURL="{!URLFOR($Resource.SLDS202, '/assets')}";
+            var customImageURL = "{!URLFOR($Resource.ACCL__assets, '/assets/images/')}";
+          
+            var promotionId= '{!Id}'  
+            var boPromotion = '';
+            var ACSFNamespace = '{!ACSF_Namespace}';
+       
+            // var i18nURL = 'dist/assets/i18n/';
+           </script>
+
+            <script src="{!URLFOR($Resource.projectDist, '/dist/vendor.js')}">
+            </script> 
+            <script src="{!URLFOR($Resource.projectDist, '/dist/services.js')}">
+            </script>   
+            <script src="{!URLFOR($Resource.projectDist, '/dist/arch.js')}">
+            </script>   
+            <script src="{!URLFOR($Resource.projectDist, '/dist/ui.js')}">
+            </script>  
+               <script src="{!URLFOR($Resource.projectDist, '/dist/contracts.js')}">
+            </script>  
+          
+    <script>
+           
+            UI_EVENT_BUS.subscribe(EVENTS.APP_READY, function(){
+                
+                var appManagerLoadTime = new Date();
+                LogManager.initLogging().then(function() {
+                    AppManager.load(['BOPromotion']).then(function(res) {
+                        console.log('App startup took', (new Date() - appManagerLoadTime), 'ms');
+                        
+                        ReactDOM.render(React.createElement(Modal), document.getElementById('modal'));
+                        
+                        var boLoadTime = new Date();
+                        var BOPromotion = BOFactory.instantiate('BOPromotion').then(function(bo) {
+                            boPromotion = bo;
+                            var uiStartTime = new Date();                 
+                            
+                            ReactDOM.render(React.createElement(PromotionPlanning, {
+                                promotion: bo,
+                            }), document.getElementById('root'));
+                            
+                            console.log('Render of UI took', (new Date() - uiStartTime), 'ms');
+                        });
+                        
+                    });
+                });
+            });
+    </script>
+                  
+  </body>
+   
+</apex:page>
