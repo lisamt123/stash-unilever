@@ -102,7 +102,7 @@ public with sharing class IPM_GateCMIController{
         if((gateType==IPM_ConstantUtils.CHARTER_GATE && projDocSec.IPM_Project_Document__r.IPM_Project_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && projDocSec.IPM_Project_Document__r.IPM_Project__r.IPM_ProjectGKM__c != 'GKM8') || projDocSec.IPM_Project_Document__r.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
             soql += ' WHERE IPM_Project__c = \'' + projectId + '\'';
         }
-        else if(projDocSec.IPM_Project_Document__r.IPM_Project__r.IPM_ProjectGKM__c == 'GKM8'){
+        else if(projDocSec.IPM_Project_Document__r.IPM_Project__r.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_8){
         	soql += ' WHERE IPM_Local_Project__c = \'' + projectId + '\'';
         }
         else{

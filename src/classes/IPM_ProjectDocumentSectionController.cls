@@ -254,7 +254,7 @@ public with sharing class IPM_ProjectDocumentSectionController {
 		{
 			countOfCountries=0;
 		}
-		else if(project.IPM_ProjectGKM__c == 'GKM8')
+		else if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_8)
 		{
 			queryString = 'SELECT count() FROM IPM_Country__c WHERE ( isActive__c = true OR '+ showEntity +' = true ) AND IPM_Local_Project__c =: projectId LIMIT 5000';
             countOfCountries = Database.countQuery(queryString);
