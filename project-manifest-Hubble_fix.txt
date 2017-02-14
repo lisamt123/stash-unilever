@@ -1,2 +1,2 @@
 src
-src/profiles/Unilever - Salesforce MultiApp Standard Secured.profile
+src/profiles/Unilever - Salesforce MultiApp Standard.profile
