@@ -1,18 +1,10 @@
 src
 src/classes
-src/classes/SAJ_AppGridController.cls
-src/classes/SAJ_AppGridController_Test.cls
 src/classes/SAJ_Data.cls
-src/classes/SAJ_OpenAppGridController.cls
-src/classes/SAJ_OpenAppGridController_Test.cls
-src/classes/SAJ_SessionNotesCTRL.cls
-src/classes/SAJ_SessionNotesCTRL_Test.cls
-src/classes/SAJ_AppGridController.cls-meta.xml
-src/classes/SAJ_AppGridController_Test.cls-meta.xml
 src/classes/SAJ_Data.cls-meta.xml
-src/classes/SAJ_OpenAppGridController.cls-meta.xml
-src/classes/SAJ_OpenAppGridController_Test.cls-meta.xml
+src/classes/SAJ_SessionNotesCTRL.cls
 src/classes/SAJ_SessionNotesCTRL.cls-meta.xml
+src/classes/SAJ_SessionNotesCTRL_Test.cls
 src/classes/SAJ_SessionNotesCTRL_Test.cls-meta.xml
 src/classes/SAJ_DesignChallengeTriggerHandller.cls
 src/classes/SAJ_DesignChallengeTriggerHandller.cls-meta.xml
@@ -45,9 +37,12 @@ src/flows/SAJ_Email_Notification_On_Environment_Expire-1.flow
 src/flows/SAJ_Email_Notification_Process-1.flow
 src/flows/SAJ_Environment_Notification-1.flow
 src/flows/SAJ_Notification_Mail-1.flow
+src/globalPicklists
+src/globalPicklists/SAJ_Business_Platforms.globalPicklist
+src/globalPicklists/SAJ_Delivery_Partner.globalPicklist
+src/globalPicklists/SAJ_Org_Types.globalPicklist
 src/layouts
 src/layouts/Business_Solution__c-Business Solution Layout.layout
-src/layouts/Business_Solution__c-Service Leads Business Solution Layout.layout
 src/layouts/Design_Challenge__c-Design Challenge Layout.layout
 src/layouts/Design_Decision__c-Technical Debt Layout.layout
 src/layouts/Environment__c-Environment Layout.layout
@@ -104,4 +99,3 @@ src/workflows/SAJ_If_Production.workflow
 src/workflows/SAJ_If_PartialCopy.workflow
 src/workflows/SAJ_If_FullCopy.workflow
 src/workflows/SAJ_Update_AU.workflow
-//src/workflows/SAJ_DesignChallange__c.workflow
