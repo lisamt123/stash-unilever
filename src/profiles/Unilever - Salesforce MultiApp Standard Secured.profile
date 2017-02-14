@@ -47527,8 +47527,6 @@
         <layout>CORE_NT_Team__c-Project Team Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-      
-    <layoutAssignments>
         <layout>Campaign-Campaign Layout</layout>
     </layoutAssignments>
     <layoutAssignments>  <layout>CPA_CNF_TNF__c-CNF%2FTNF Layout</layout>
