@@ -1176,10 +1176,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Open_Landscape</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>PACV_Answers__c</tab>
         <visibility>None</visibility>
     </tabSettings>
