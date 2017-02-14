@@ -1847,4 +1847,11 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
             return projectFullInfoVar;
         }
     }
+	   /************************************************************************************************
+    @description  Method to Get IPM Category custom setting data
+    @Param No param
+	**********************************/
+    public static List<IPM_Category__c> getCategoryGroup(){			
+    		return IPM_Category__c.getAll().values();
+    }
 }

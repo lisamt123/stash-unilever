@@ -49,5 +49,16 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>IPM_Category_Group_Filter__c</fullName>
+        <description>this field is used to store the category groups that we are used in All project category filter</description>
+        <externalId>false</externalId>
+        <label>Category Group Filter</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>IPM Category</label>
 </CustomObject>

@@ -63,43 +63,111 @@
                                     <a class="ipmButton buttonMarginRight" id="resetFilterBtnNew">{!$Label.IPM_Reset}</a>
                                     <a class="ipmButton green applyFilter" id="applyFilter">{!$Label.IPM_Apply}</a>
                                 </div>
-                                <apex:outputPanel id="filterSideBarMainType" >
-                                    <ul class="docFilter typeLabel">
-                                    <div class="filterTitle">{!$Label.IPM_Type}</div>
-                                    <li>
-                                        
-                                        <div class="row ipmCheckboxDiv">
-                                            <div class="ipmCheckbox">
-                                                <input type="checkbox" value="all" id="typeAll" class="checkAll aPro {!IF(allProjects = 0, 'disable', '')}" />
-                                                <label for="typeAll" class="{!IF(allProjects = 0, 'disabled', '')}"></label>
-                                            </div>
-                                            <div class="checkboxLabel">
-                                                <span class="proTypeLabel">{!$Label.IPM_ALL} </span>
-                                                <apex:outputPanel styleClass="proNumbers" id="allProPanel"> ({!allProjects})</apex:outputPanel>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        
-                                        <div class="row ipmCheckboxDiv">
-                                            <div class="ipmCheckbox">
-                                                <input type="checkbox" value="My Projects" class="my {!IF(myProjects = 0, '', '')}" id="typeMyProjects" />
-                                                <label for="typeMyProjects" class="{!IF(myProjects = 0, '', '')}"></label>
-                                            </div>
-                                            <div class="checkboxLabel">
-                                                <span class="proTypeLabel">{!$Label.IPM_Myprojects} </span> 
-                                                <apex:outputPanel styleClass="proNumbers" id="myProPanel"> ({!myProjects})</apex:outputPanel>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                </apex:outputPanel>
-                                <div class="clearfix"></div>
-                                
-                                
                                 <div class="ipmAccordion">
+                                  <!--  For Category Filter -->
+                                  <apex:outputPanel id="filterSideBarTypeStatusPhasePanel" >
+                                       <div class="projectContainer multilevelFilters">
+                                           <span class="pHead">
+                                               <div class="filterTitle">
+                                                   <span class='expico fa fa-minus'></span>
+                                                   <span>Category</span>
+                                               </div>
+                                           </span>
+                                           <span class="ipmAcrdnExpand"> 
+                                               <ul class="docFilter accordionFilters">
+                                                   <apex:repeat value="{!categoryGroupOrder}" var="categoryGroup">
+                                                       <li class="clusterLi">
+                                                          <div class="projectContainer gfirstLevel">
+                                                               <ul class="docFilter accordionFilters clusterListUl">
+                                                                <span class="pHead accrHead clusterListSpan">
+                                                                    <li class="clusterCheckLi">
+                                                                        <span class='expico-square fa fa-minus'></span>
+                                                                        <div class="row ipmCheckboxDiv">
+                                                                            <div class="ipmCheckbox">
+                                                                                <input type="checkbox" value="{!categoryGroupOrder[categoryGroup]}"  id="CategoryGroup_{!categoryGroupOrder[categoryGroup]}" class="checkAll checkSub category clusterCheck" data-html="{!IF(categoryGroupCountMap[categoryGroupOrder[categoryGroup]] = 0, 'disabled', '')}"/>
+                                                                                <label for="CategoryGroup_{!categoryGroupOrder[categoryGroup]}" class="{!IF(categoryGroupCountMap[categoryGroupOrder[categoryGroup]] = 0, 'disabled', '')}"></label>
+                                                                            </div>
+                                                                            <div class="checkboxLabeltree">
+                                                                                <span class="fClusterCname">
+                                                                                    <span class="proTypeLabel">{!categoryGroupOrder[categoryGroup]} </span>
+                                                                                    <span class="proNumbers">({!categoryGroupCountMap[categoryGroupOrder[categoryGroup]]})</span>
+                                                                                </span>
+                                                                            </div>
+                                                                             
+                                                                        </div>
+                                                                    </li>
+                                                                    </span> 
+                                                                <span class="ipmAcrdnExpand">
+                                                                    <apex:repeat value="{!categoryGroupCategorymap[categoryGroupOrder[categoryGroup]]}" var="category" >
+                                                                        <li class="subCheckLi">
+                                                                            <div class="projectContainer gsecondLevel">
+                                                                                <ul class="docFilter accordionFilters subclusterUI">
+                                                                                    <span class="pHead accrHead subclusterCheckLiSpan">
+                                                                                        <li class="subclusterCheckLi">
+                                                                                                
+                                                                                                <div class="row ipmCheckboxDiv">
+                                                                                                    <div class="ipmCheckbox">
+                                                                                                        <input type="checkbox" value="{!category}" class="checkSub subclusterCheck subcategory {!IF(categoryCountMap[category] = 0, 'disabled', '')}" data-html="{!IF(categoryCountMap[category] = 0, 'disabled', '')}" id="category_{!category}"/>
+                                                                                                        <label class="{!IF(categoryCountMap[category] = 0, 'disabled', '')}" for="category_{!category}"></label>
+                                                                                                    </div>
+                                                                                                    <div class="checkboxLabeltree"><span class="fCountryName">{!category}</span>
+                                                                                                    <apex:outputPanel styleClass="" id="CategoryProTypePanel"> ({!categoryCountMap[category]})</apex:outputPanel></div>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        </span>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </li>                                                                        
+                                                                        </apex:repeat> 
+                                                                      </span>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </apex:repeat>
+                                                    </ul>
+                                                </span>          
+                                            </div>
+                                 
+
+                                                
+                                     <div class="clearfix"></div>
+                                        <apex:outputPanel id="filterSideBarMainType" >
+                                            <div class="projectContainer">
+                                                <ul class="docFilter typeLabel">
+                                                    <div class="filterTitle">{!$Label.IPM_Type}</div>
+                                                    <li>
+                                                        <div class="row ipmCheckboxDiv">
+                                                            <div class="ipmCheckbox">
+                                                                <input type="checkbox" value="all" id="typeAll" class="checkAll aPro {!IF(allProjects = 0, 'disable', '')}" />
+                                                                <label for="typeAll" class="{!IF(allProjects = 0, 'disabled', '')}"></label>
+                                                            </div>
+                                                            <div class="checkboxLabel">
+                                                                <span class="proTypeLabel">{!$Label.IPM_ALL} </span>
+                                                                <apex:outputPanel styleClass="proNumbers" id="allProPanel"> ({!allProjects})</apex:outputPanel>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="row ipmCheckboxDiv">
+                                                            <div class="ipmCheckbox">
+                                                                <input type="checkbox" value="My Projects" class="my {!IF(myProjects = 0, '', '')}" id="typeMyProjects" />
+                                                                <label for="typeMyProjects" class="{!IF(myProjects = 0, '', '')}"></label>
+                                                            </div>
+                                                            <div class="checkboxLabel">
+                                                                <span class="proTypeLabel">{!$Label.IPM_Myprojects} </span> 
+                                                                <apex:outputPanel styleClass="proNumbers" id="myProPanel"> ({!myProjects})</apex:outputPanel>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <div class="clearfix"></div>
+                                
+                                
+                               
                                     <!--  For Project Type -->
-                                    <apex:outputPanel id="filterSideBarTypeStatusPhasePanel" >
+                                
                                         <div class="projectContainer">
                                         <span class="pHead">
                                             <div class="filterTitle">
@@ -258,7 +326,7 @@
                                     </div>
                                     </apex:outputPanel>
                                     <apex:outputpanel id="filterSideBarGeoClusters" >
-                                    <div class="projectContainer geographyFilters">
+                                    <div class="projectContainer multilevelFilters">
                                         <span class="pHead">
                                             <div class="filterTitle"><span class='expico fa fa-minus'></span><span>{!$Label.IPM_Geography}</span></div>
                                         </span> 
@@ -303,13 +371,13 @@
                                                                     <apex:repeat value="{!cluster.mcos}" var="mco">                                                                        
                                                                         <li class="subCheckLi">
                                                                             <div class="projectContainer gsecondLevel">
-                                                                                <ul class="docFilter accordionFilters mcoUl">
-                                                                                    <span class="pHead accrHead mcoCheckLiSpan">
-                                                                                        <li class="mcoCheckLi">
+                                                                                <ul class="docFilter accordionFilters subclusterUI">
+                                                                                    <span class="pHead accrHead subclusterCheckLiSpan">
+                                                                                        <li class="subclusterCheckLi">
                                                                                             <span class='expico-square fa fa-minus'></span>
                                                                                             <div class="row ipmCheckboxDiv">
                                                                                                 <div class="ipmCheckbox">
-                                                                                                    <input type="checkbox" value="{!mco.mcoName}" class="checkSub checkAll mcoCheck" data-html="{!IF(mcoCountMap[cluster.clusterName + '-' + mco.mcoName] = 0 , 'disabled' ,'')}" id="{!mco.mcoName}"/>
+                                                                                                    <input type="checkbox" value="{!mco.mcoName}" class="checkSub checkAll subclusterCheck" data-html="{!IF(mcoCountMap[cluster.clusterName + '-' + mco.mcoName] = 0 , 'disabled' ,'')}" id="{!mco.mcoName}"/>
                                                                                                     <label class="{!IF(mcoCountMap[cluster.clusterName + '-' + mco.mcoName] = 0 , 'disabled' ,'')}" for="{!mco.mcoName}"></label>
                                                                                                 </div>
                                                                                                 <div class="checkboxLabeltree"><span class="fCountryName">{!mco.mcoName}({!mcoCountMap[cluster.clusterName + '-' + mco.mcoName]})</span></div>
@@ -720,6 +788,7 @@
                     <apex:actionFunction name="myProjects" action="{!loadProjects}" rerender="prjPanel,paginationSec" status="myStatus"/>
                     <apex:actionFunction name="applyFltr" action="{!loadProjects}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();chkAll()">
                         <apex:param name="mytsk" assignTo="{!selectedPhase}" value="" />
+                        <apex:param name="selectedCategory" assignTo="{!selectedCategory}" value="" />
                         <apex:param name="tldFrom" assignTo="{!tldFrom}" value="" />
                         <apex:param name="tldTo" assignTo="{!tldTo}" value="" />
                         <apex:param name="myPro" assignTo="{!mProjects}" value="" />

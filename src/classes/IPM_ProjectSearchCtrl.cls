@@ -39,16 +39,21 @@ public with sharing class IPM_ProjectSearchCtrl{
     public Map<String, String> currentSort{get;set;} //sorting variable where the current sort fits in
     public list<String> projectPhases{get;set;} //list of all the phases that can get for projects.
     public String selectedPhase {get;set;} //seleted phase
+    public String selectedCategory {get;set;} //seleted categories
     public String selectedProjType {get;set;} //seleted project type
     public String selectedActiveProject{get;set;}
     public Boolean selectedStoppedProject{get;set;}
     public Map<String, Integer> phasesCountMap{get;set;} //Ordering map phase wise
+    public Map<String, Integer> categoryCountMap{get;set;} // count of projects for each category
+    public Map<String, Integer> categoryGroupCountMap{get;set;} // count of projects for each category group
     public String tldFrom{get;set;} //Target Launch Date lower bound
     public String tldTo{get;set;} // TLD upper bound
     public Integer size{get;set;} //page size
     public Date tFrm; //inputs accepted from user for TLD FROm
     public Date tTo; //inputs accepted from user for TLD TO
     public transient list<IPM_ClusterMCO> clusterMCOList{get;set;} //Wrapped data of Cluster MCO & Country
+    public map<String, list<String>> categoryGroupCategoryMap{get; set;} // map of category group with respective category list
+    public map<Integer, String> categoryGroupOrder{get; set;}   
     public Boolean isAsc{get;set;}//bool value for ascending or descending othterwise
     public Integer noOfRecords{get; set;} //Total number of records used for pagination
     public boolean isEditable{get;set;}  //used by security
@@ -109,6 +114,7 @@ public with sharing class IPM_ProjectSearchCtrl{
         
         selectedProjType = 'All';
         selectedPhase = 'all';
+        selectedCategory = '';
         selectedActiveProject = TRUE_STR;
         selectedStoppedProject = true;
         unassigned = TRUE_STR;
@@ -119,6 +125,8 @@ public with sharing class IPM_ProjectSearchCtrl{
 	
         currentSort = new Map<String, String>{THISFLD_STR => IPM_PROJECT_NAME_C_STR}; //this field will actually define what is the current sorting column applies to, default is Project name
         phasesCountMap = new Map<String, Integer>();
+        categoryCountMap = new Map<String, Integer>();
+        categoryGroupCountMap = new Map<String, Integer>();
         projectPhases = new list<String>();
         allProjects = 0;myProjects = 0;bcPendings=0;originalProjects = 0; rolloutProjects = 0; operationalProjects = 0; activeProjects =0; stoppedProjects=0;unAssignedCount=0;
         projectForTLDFrom = new IPM_Project__c();
@@ -232,6 +240,7 @@ public with sharing class IPM_ProjectSearchCtrl{
         shareProjIdSet.remove(null);
         shareProjIdSet.remove('');
         //Initialise everything to the projectList variable from the query
+        getCategoryFiltersCount();
         getFiltersCountForLoop();
     }
     //Method created to avoid NPATH complexity
@@ -255,6 +264,12 @@ public with sharing class IPM_ProjectSearchCtrl{
         allProjects++;
         Integer cnt = phasesCountMap != null && phasesCountMap.get(eachProject.IPM_Phase__c) != null ? phasesCountMap.get(eachProject.IPM_Phase__c)+1 : 0;
         phasesCountMap.put(eachProject.IPM_Phase__c, cnt);
+        
+        Integer categoryCnt = categoryCountMap != null && categoryCountMap.get(eachProject.IPM_Category_Text__c) != null ? categoryCountMap.get(eachProject.IPM_Category_Text__c)+1 : 0; 
+    	categoryCountMap.put(eachProject.IPM_Category_Text__c, categoryCnt);
+
+	Integer categoryGropuCnt = categoryGroupCountMap != null && categoryGroupCountMap.get(eachProject.Category_Group_Filter__c) != null ? categoryGroupCountMap.get(eachProject.Category_Group_Filter__c)+1 : 0; 
+	categoryGroupCountMap.put(eachProject.Category_Group_Filter__c, categoryGropuCnt);
     }
     
     /*******************************************************************************************************
@@ -301,7 +316,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     public string countQuery() {
         string tSoql = query();
         string xsoql = 'SELECT IPM_Project_Y3iTO__c,IPM_Project_Name__c,IPM_Phase__c,IPM_IsSaved__c, IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name,ownerId,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Type__c, IPM_Stopped_Date_Time__c,';
-           xsoql +=  'IPM_Sub_Category__c,IPM_Category_Text__c,IPM_Project_Logo__c,IPM_Bosscard__c,IPM_Bosscard_Status__c, IPM_Bosscard__r.Name,IPMProject_Span__c,Is_Archieved__c,IPM_Brand_Positioning__c,';
+           xsoql +=  'IPM_Sub_Category__c,IPM_Category_Text__c,Category_Group_Filter__c,IPM_Project_Logo__c,IPM_Bosscard__c,IPM_Bosscard_Status__c, IPM_Bosscard__r.Name,IPMProject_Span__c,Is_Archieved__c,IPM_Brand_Positioning__c,';
            xsoql +=  '(SELECT Year3_ITO__c,Year_3_iTO_Charter__c,Year_3_iTO_Global__c FROM IPM_Financials_Consolidated__r WHERE RecordTypeId = \'' + IPM_Utils.getFinancialRecordType('Consolidated') + '\' LIMIT 1),';
            xsoql += 'IPM_Target_Launch_Dates__c,IPM_Project_Description__c, (Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries1__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries2__r)';
         tSoql = tSoql.removeStart(xsoql);
@@ -332,7 +347,7 @@ public with sharing class IPM_ProjectSearchCtrl{
        Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
     
     String soql  =  'SELECT IPM_Project_Y3iTO__c,IPM_Project_Name__c,IPM_Phase__c,IPM_IsSaved__c, IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name,ownerId,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Type__c, IPM_Stopped_Date_Time__c,';
-           soql +=  'IPM_Sub_Category__c,IPM_Category_Text__c,IPM_Project_Logo__c,IPM_Bosscard__c,IPM_Bosscard_Status__c, IPM_Bosscard__r.Name,IPMProject_Span__c,Is_Archieved__c,IPM_Brand_Positioning__c,';
+           soql +=  'IPM_Sub_Category__c,IPM_Category_Text__c,Category_Group_Filter__c,IPM_Project_Logo__c,IPM_Bosscard__c,IPM_Bosscard_Status__c, IPM_Bosscard__r.Name,IPMProject_Span__c,Is_Archieved__c,IPM_Brand_Positioning__c,';
            soql +=  '(SELECT Year3_ITO__c,Year_3_iTO_Charter__c,Year_3_iTO_Global__c FROM IPM_Financials_Consolidated__r WHERE RecordTypeId = \'' + IPM_Utils.getFinancialRecordType('Consolidated') + '\' LIMIT 1),';
            soql += 'IPM_Target_Launch_Dates__c,IPM_Project_Description__c, (Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries1__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries2__r) FROM IPM_Project__c ';
            soql += 'WHERE (IPM_Stopped_Date_Time__c = THIS_MONTH OR IPM_Stopped_Date_Time__c = LAST_N_MONTHS:' +noOfMonths+ ' OR IPM_Stopped_Date_Time__c = null) ';
@@ -346,6 +361,18 @@ public with sharing class IPM_ProjectSearchCtrl{
            soql += ' OR IPM_Bosscard__r.Name LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\'';
            soql += ' OR IPM_Project_Description__c LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\' OR IPM_Phase__c LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\')';
        } 
+       /*******************************************************
+       =>Prepare the search query for Category Filter
+       1) If individual Category options are selected, prepare the filter clause
+       2) If nothing is selected from Category filter, give no records.
+       *******************************************************/ 
+
+       if(string.isNotBlank(selectedCategory)) {
+            list<string> projCategoryList = IPM_Utils.convertJSArrayToLsArray(selectedCategory);
+            set <string> projCategorySet = new set <string> ();
+            noRecords = !noRecords ? false : noRecords;
+            soql += ' AND IPM_Category_Text__c IN ' + IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(selectedCategory));
+       }
        
         /*******************************************************
        Prepare the search query for type filter 
@@ -780,6 +807,42 @@ public with sharing class IPM_ProjectSearchCtrl{
         }
     }
     
+    /**************************************************************
+    * @description: this is action fuction gets the map of Category and category group and count of each project related this 
+    * @param: No parameter    */
+    public void  getCategoryFiltersCount(){
+   
+        List<IPM_Category__c> categoryList = IPM_Utils.getCategoryGroup();
+        List<String> listCategory;
+        categoryGroupCategorymap = new Map<String, List<String>>(); 
+        categoryGroupOrder = new Map<Integer, String>();
+            
+        for(IPM_Category__c  categoryObj : categorylist)
+        {  
+            categoryCountMap.put(categoryObj.Name, 0);
+            categoryGroupCountMap.put(categoryObj.IPM_Category_Group_Filter__c, 0);
+            if(categoryObj.IPM_Sequence_number__c != null && !categoryGroupOrder.containsKey( (Integer) categoryObj.IPM_Sequence_number__c))
+            {
+                Integer SequenceNumber = (Integer) categoryObj.IPM_Sequence_number__c;
+                categoryGroupOrder.put(SequenceNumber, categoryObj.IPM_Category_Group_Filter__c);
+            }
+            if (!categoryGroupCategorymap.containsKey(categoryObj.IPM_Category_Group_Filter__c)){
+                categoryGroupCategorymap.put(categoryObj.IPM_Category_Group_Filter__c, new List<String>{categoryObj.Name});
+            }
+            else{
+                categoryGroupCategorymap.get(categoryObj.IPM_Category_Group_Filter__c).add(categoryObj.Name);
+            }
+        }
+        
+        for(String categoryGroup : categoryGroupCategorymap.keySet()){
+    
+            listCategory = categoryGroupCategorymap.get(categoryGroup);
+            listCategory.sort();
+            categoryGroupCategorymap.put(categoryGroup, listCategory);
+        }
+    
+   
+}
     public class IPM_GeoWrapper {
         
         private Map<String, Set<String>> clusterMCOMap; //internally used map to store mcos cluster wise

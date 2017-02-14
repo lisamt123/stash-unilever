@@ -590,5 +590,23 @@ private class IPM_ProjectSearchCtrl_Test {
         Test.stopTest();
     }
      
-    
+ // Test method to test the category filter 
+   static testMethod void testgetCategoryFiltersCount()
+    {
+    	createTestUsers();
+    	List<IPM_Category__c> listCategory = IPM_TestFactory_Helper.createIPMCategory();
+    	System.assertNotEquals(null, listCategory);
+    	  System.runAs(platformUserFirst)
+    	  {
+    	  	IPM_ProjectSearchCtrl projectSerchObj = new IPM_ProjectSearchCtrl();
+    	  	Test.startTest();
+    	  	projectSerchObj.getCategoryFiltersCount();
+    	  	System.assertNotEquals(null, projectSerchObj.categoryGroupCategorymap, 'category group and realted sub categories not found');
+    	  	System.assertNotEquals(null, projectSerchObj.categoryGroupOrder, 'category group order for filter is not found');
+    	  	System.assertNotEquals(null, projectSerchObj.categoryCountMap, 'Sub category is not found for Count projects' );
+    	  	System.assertNotEquals(null, projectSerchObj.categoryGroupCountMap, 'category Group is not found for Count projects');
+    	  	Test.stopTest();
+    	  }
+    	
+    }
 }

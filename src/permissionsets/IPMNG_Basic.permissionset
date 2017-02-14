@@ -2774,9 +2774,15 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Project__c.Category_Group_Filter__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Project__c.IPM_LocalProject_Brand__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Country__c.IPM_Project__c</field>
