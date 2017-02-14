@@ -33,11 +33,13 @@ public with sharing class IPM_Resource_Allocation {
     private static final string MID_QUERY_TEAM =' IPM_User__r.SmallPhotoUrl,';
     private static final string PERCENTAGE_SLASH='%\'';
 	private static final String MCO_STRING = ' IPM_Company_Card__r.IPM_MCO__c = \'';
+    private static final String Ccard_STRING = ' IPM_Company_Card__c = \'';
 	private static final String BCKWRD_SLASH = '\'';  
     private static final string QUERY_LIMIT=' limit 100';
     private static final string GKM3_CAT='Personal Care' ;
     private static final string MY_MCO='myMCO' ;
 	private static final string GKM3=IPM_ConstantUtils.GATE_KEEPING_MODEL_3;
+    private static final string GKM8=IPM_ConstantUtils.GKM_8;
 	private static final string AND_STRING =' AND ';
 	private static final string OLD_SRC_FLTR = '  ) AND IPM_User__r.id NOT IN :oldresourceid';
 	private static final string SOQL_INCLUDES = ' IPM_User_Category__c INCLUDES ';
@@ -168,7 +170,7 @@ public with sharing class IPM_Resource_Allocation {
         }
         
         searchTeambyCat= (!isInvokedFromRollouts && ipmproject.IPM_ProjectGKM__c == GKM3 && ipmproject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) 
-           ||( ipmproject.IPM_ProjectGKM__c!=GKM3)?IPM_ConstantUtils.TEAM_MYCATEGORY :MY_MCO;
+           ||( ipmproject.IPM_ProjectGKM__c!=GKM3 && ipmproject.IPM_ProjectGKM__c!=GKM8)?IPM_ConstantUtils.TEAM_MYCATEGORY :MY_MCO;
         
         Set<String> excludeCatSelGKMs  = new Set<String>{IPM_ConstantUtils.GKM_1,IPM_ConstantUtils.GKM_2,IPM_ConstantUtils.GKM_4};
         
@@ -262,7 +264,7 @@ public with sharing class IPM_Resource_Allocation {
     /*************************************************************************************************************
     * @description:Get all members FROM same category for functional role.
     */
-    public void getSameCategoryPartOne()
+    public void getProjectResources()
     {
       list<IPM_Project_Resource__c>lstoldres=[SELECT IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE IPM_Project__c=:projectID LIMIT 50000];
         for(IPM_Project_Resource__c res:lstoldres)
@@ -272,14 +274,14 @@ public with sharing class IPM_Resource_Allocation {
             }
             oldresourceid.add(res.IPM_User__c);
         }
-        getSameCategoryPartThree();
+        getProjectLeaders();
         
        
     }
     /*************************************************************************************************************
     * @description:Get all members FROM same category for functional role.
     */
-    public void getSameCategoryPartThree()
+    public void getProjectLeaders()
     {
       if(!dupPLDPLSet.isEmpty()&& String.IsNotBlank(String.valueOf(ipmproject.Deputy_Project_Leader__c)) && !dupPLDPLSet.isEmpty() && !dupPLDPLSet.contains(ipmproject.Deputy_Project_Leader__c)){
            projectPLDPLSet.add(ipmproject.Deputy_Project_Leader__c);   
@@ -297,7 +299,7 @@ public with sharing class IPM_Resource_Allocation {
   /*************************************************************************************************************
     * @description:Get all members FROM same category for functional role.
     */
-    public void getSameCategoryPartTwo(string UQuery)
+    public void getFunctionalTeamMembers(string UQuery)
     {
     list<IPM_User_Profile__c>lstuser=new list<IPM_User_Profile__c>();
     map<id,id>uniqueUsers=new map<id,id>();
@@ -312,9 +314,12 @@ public with sharing class IPM_Resource_Allocation {
             if(!projectPLDPLSet.isEmpty()){
                 List<IPM_user_profile__c>lstPLUser=new List<IPM_user_profile__c>();
                 lstPLUser=[SELECT IPM_User__c FROM IPM_user_profile__c WHERE IPM_User__c IN:projectPLDPLSet LIMIT 1000];
-                for(IPM_User_Profile__c u:lstPLUser){
-                    uniqueUsers.put(u.IPM_User__c,u.id);
-                }
+                // get the users from same functional group only	
+                if(ipmproject.IPM_ProjectGKM__c!=GKM8){
+	                for(IPM_User_Profile__c u:lstPLUser){
+	                    uniqueUsers.put(u.IPM_User__c,u.id);
+		                }
+	                }
             }
             lstuser=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,
             IPM_User__r.email,IPM_User__r.SmallPhotoUrl,
@@ -330,25 +335,30 @@ public with sharing class IPM_Resource_Allocation {
     */
     public void getSameCategory()
     {
-        getSameCategoryPartOne();
-    teamMembers=new list<wrapperclass>();
+    	getProjectResources();
+    	teamMembers=new list<wrapperclass>();
         string UQuery=IPM_ConstantUtils.BLANK;
         
         filterCategoriesString();
-              
-       if(searchTeambyCat==MY_MCO)  
+        // get users based on selection of MY MCO checkbox
+        if(searchTeambyCat==MY_MCO)  
           {
-        String QUERY_STRING = BEGIN_QUERY_TEAM + MID_QUERY_TEAM + QUERY_STRING_PROFILE ; 
-          String resolvedField =  ipmproject.IPM_Project_Rollout__r.MCO_Name__c;
-        UQuery = QUERY_STRING +MCO_STRING + resolvedField+BCKWRD_SLASH ; 
-          
-          if(String.IsNotBlank(String.valueOf(changeRoleType)))
-              {
-                  UQuery=UQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
-              }
-              
-              UQuery= UQuery + OLD_SRC_FLTR+QUERY_LIMIT;
-          }  
+          	if(ipmproject.IPM_ProjectGKM__c==GKM8){
+          		String QUERY_STRING = BEGIN_QUERY_TEAM + MID_QUERY_TEAM + QUERY_STRING_PROFILE ; 
+		        string CompanyCard = ipmproject.IPM_Company_Card__c;
+		        UQuery = QUERY_STRING +Ccard_STRING+CompanyCard+BCKWRD_SLASH ; 
+		    }
+          	else{
+		        String QUERY_STRING = BEGIN_QUERY_TEAM + MID_QUERY_TEAM + QUERY_STRING_PROFILE ; 
+		        String resolvedField =  ipmproject.IPM_Project_Rollout__r.MCO_Name__c;
+		        UQuery = QUERY_STRING +MCO_STRING + resolvedField+BCKWRD_SLASH ; 
+          	}  
+		          if(String.IsNotBlank(String.valueOf(changeRoleType)))
+		              {
+		                  UQuery=UQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
+		              }
+		              UQuery= UQuery + OLD_SRC_FLTR+QUERY_LIMIT;
+	      }    
      
      else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY)
           {
@@ -393,8 +403,7 @@ public with sharing class IPM_Resource_Allocation {
         }
         try
         {
-      getSameCategoryPartTwo(UQuery);
-            
+      		getFunctionalTeamMembers(UQuery);
         }
         catch(QueryException ex)
         {
@@ -417,13 +426,18 @@ public with sharing class IPM_Resource_Allocation {
         uQuery=uQuery+QUERY_PORTION1;
         
         filterCategoriesString();
-          
+         
+         // get the list of users related to the project MCO 
          if(searchTeambyCat==MY_MCO) 
           {
-             
-        String resolvedField =  ipmproject.IPM_Project_Rollout__r.MCO_Name__c; 
-        uQuery = uQuery  + MCO_STRING + resolvedField+BCKWRD_SLASH ; 
-          
+         	if(ipmproject.IPM_ProjectGKM__c==GKM8){
+          		string CompanyCard = ipmproject.IPM_Company_Card__c;
+		        UQuery = UQuery +Ccard_STRING+CompanyCard+BCKWRD_SLASH ; 
+          	}	
+         	else{ 
+		        String resolvedField =  ipmproject.IPM_Project_Rollout__r.MCO_Name__c; 
+		        uQuery = uQuery  + MCO_STRING + resolvedField+BCKWRD_SLASH ; 
+         	} 
           if(String.IsNotBlank(String.valueOf(changeRoleType)))
               {
                   uQuery=uQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
@@ -436,15 +450,15 @@ public with sharing class IPM_Resource_Allocation {
           }
           else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY)
           {
-            uQuery = partialFilterTeamMember1(uQuery); 
+            uQuery = myCategoryTeamMemberFilter(uQuery); 
           }
         else if(searchTeambyCat==IPM_ConstantUtils.TEAM_ALLCATEGORY )
         {
-            uQuery = partialFilterTeamMember2(uQuery);
+            uQuery = allCategoryTeamMemberFilter(uQuery);
         }
         try
         {
-            partialFilterTeamMember3(uQuery,lstuser,querySearchTeamMem,uniqueUsers);
+            getFinalFliterTeamMember(uQuery,lstuser,querySearchTeamMem,uniqueUsers);
         }
         catch(QueryException ex)
         {
@@ -458,7 +472,7 @@ public with sharing class IPM_Resource_Allocation {
         @Description: This method is created to resolve nPath Complexity issue  
         @Return: Void
     *****************************************************************************/
-    private String  partialFilterTeamMember1(string uQuery){
+    private String  myCategoryTeamMemberFilter(string uQuery){
         
         if(ipmproject.IPM_ProjectGKM__c==GKM3 )
             {
@@ -501,7 +515,7 @@ public with sharing class IPM_Resource_Allocation {
         @Description: This method is created to resolve nPath Complexity issue  
         @Return: Void
     *****************************************************************************/
-    private String partialFilterTeamMember2(string uQuery)
+    private String allCategoryTeamMemberFilter(string uQuery)
     {
         if(roleType==IPM_ConstantUtils.TEAM_GUEST)
             {
@@ -524,7 +538,7 @@ public with sharing class IPM_Resource_Allocation {
         @Description: This method is created to resolve nPath Complexity issue  
         @Return: Void
     *****************************************************************************/
-    private void partialFilterTeamMember3(string uQuery,list<IPM_User_Profile__c>lstuser,string querySearchTeamMem,map<id,id>uniqueUsers)
+    private void getFinalFliterTeamMember(string uQuery,list<IPM_User_Profile__c>lstuser,string querySearchTeamMem,map<id,id>uniqueUsers)
     {
             lstuser=database.query(uQuery);
             List<IPM_User_Profile__c>plDPLUserList=new List<IPM_User_Profile__c>();
@@ -532,9 +546,11 @@ public with sharing class IPM_Resource_Allocation {
             
                 plDPLUserList=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE (IPM_User__r.name LIKE :querySearchTeamMem  OR 
                                 IPM_User__r.email LIKE :querySearchTeamMem OR  IPM_User_Role__c LIKE :querySearchTeamMem) AND IPM_User__c IN:projectPLDPLSet LIMIT 1000];
-                for(IPM_User_Profile__c u:plDPLUserList)
-        {
-                    uniqueUsers.put(u.IPM_User__c,u.id);
+                if(ipmproject.IPM_ProjectGKM__c!=GKM8){
+	                for(IPM_User_Profile__c u:plDPLUserList)
+	        		{
+	                    uniqueUsers.put(u.IPM_User__c,u.id);
+	                }
                 }
         }
             if(lstuser.isEmpty() && plDPLUserList.isEmpty())

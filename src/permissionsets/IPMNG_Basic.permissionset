@@ -4960,6 +4960,11 @@
         <field>IPM_Milestone__c.IPM_Active__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Milestone__c.excludeGKM8__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Milestone__c.IPM_Actual_Target_Launch_Month__c</field>
@@ -10368,3 +10373,7 @@
     </tabSettings>
     
 </PermissionSet>
+
+
+    
+

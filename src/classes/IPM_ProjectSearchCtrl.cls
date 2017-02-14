@@ -21,7 +21,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     public set<String> masterBrandArr{get;set;} //Brings out the master data from the brand
     public transient list<IPM_Country__c> allCountries{get;set;}
     public String bPositionings{get;set;} //Array of selected brand positionings to be selected for a project.
-    
+    public String y3ITORegex{get;set;} // get y3ITO Regex value from custom setting
     public Map<String, Integer> clusterCountMap{get;set;}//Counter collection which counts the number of projects per cluster
     public Map<String, Integer> mcoCountMap{get;set;}//Counter collection which counts the number of projects per mco
     public Map<String, Integer> countryCountMap{get;set;}//Counter collection which counts the number of projects per country
@@ -132,6 +132,8 @@ public with sharing class IPM_ProjectSearchCtrl{
         projectForTLDFrom = new IPM_Project__c();
         projectForTLDTo = new IPM_Project__c(); 
         mainProjSectionBool = false;        
+        IPM_RegExp_Format__c regex = IPM_RegExp_Format__c.getOrgDefaults();
+        y3ITORegex = regex.Y3Ito_RegExp__c; 
     }
         
     /*******************************************************************************************************

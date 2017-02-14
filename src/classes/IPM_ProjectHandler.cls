@@ -63,6 +63,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             for(IPM_Project__c project : (List<IPM_Project__c>)Trigger.New)
             {
                 
+                // For Local Original Project make IPM BET Toolkit field "No BET"
+                if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_8){
+                	project.IPM_BET_Toolkit__c = IPM_ConstantUtils.NO_BET;
+                }
                 // Check if Project has a  Name, if yes it came from child Projects, else Initial Creation of Global Project.       
                 if(Trigger.isInsert &&  project.IPM_Project_Name__c !=null && !String.isBlank(project.IPM_Project_Name__c) && project.IPM_Company_Card__c !=null && project.IPM_ProjectSubType__c !=null && !String.isBlank(project.IPM_ProjectSubType__c) )
                 {
@@ -78,6 +82,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 //Process BET flow
                 if(Trigger.isUpdate){
                 	
+                	// For Local Original Project make IPM BET Toolkit field "No BET"
+	                if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_8){
+	                	project.IPM_BET_Toolkit__c = IPM_ConstantUtils.NO_BET;
+	                }
                 	// Set category picklist value from category text value
                     project.IPM_Category_Picklist__c = project.IPM_Category_Text__c;
                     
