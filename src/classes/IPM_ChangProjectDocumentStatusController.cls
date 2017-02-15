@@ -253,7 +253,15 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         List<selectOption> options = new List<selectOption>();
         
         for (Schema.PicklistEntry a : pick_list_values) {
-            options.add(new selectOption(a.getLabel(), a.getValue()));
+            if(project.IPM_Category_Group__c.equalsIgnoreCase(IPM_ConstantUtils.IPM_UFS_CATEGORY_GROUP) && (project.IPM_ProjectGKM__c.equalsIgnoreCase(IPM_ConstantUtils.GKM_2)))
+	        {
+	        	if(a.getValue().equalsIgnoreCase(IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT)){
+	        		options.add(new selectOption(a.getLabel(), a.getValue()));
+	        		break;
+	        	}
+	        }else{
+            	options.add(new selectOption(a.getLabel(), a.getValue()));
+	        }
         }
         return options;
     }  
