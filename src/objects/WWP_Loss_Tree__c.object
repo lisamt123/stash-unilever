@@ -818,7 +818,7 @@
         <fullName>Material_Group__c</fullName>
         <externalId>false</externalId>
         <label>Material Group</label>
-        <length>20</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -829,7 +829,7 @@
         <fullName>Material_Type__c</fullName>
         <externalId>false</externalId>
         <label>Material Type</label>
-        <length>18</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -840,7 +840,7 @@
         <fullName>Material__c</fullName>
         <externalId>false</externalId>
         <label>Material</label>
-        <length>18</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -887,12 +887,24 @@
         <fullName>OVERALL_SUPPLIER_OTIF_COMPLIANCE__c</fullName>
         <externalId>false</externalId>
         <label>OVERALL SUPPLIER OTIF COMPLIANCE</label>
-        <precision>10</precision>
+        <precision>12</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>4</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Otif_qty_compliance_text__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( SUPPLIER_OTIF_QTY_COMPLIANCE__c*100 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Otif qty compliance_text</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PO_Delivery_Date_as_per_Current_PO__c</fullName>
@@ -909,7 +921,7 @@
         <fullName>PO_Line_Item_Number__c</fullName>
         <externalId>false</externalId>
         <label>PO Line Item Number</label>
-        <length>18</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -931,7 +943,7 @@
         <fullName>PO_Schedule_Line_Item_Number__c</fullName>
         <externalId>false</externalId>
         <label>PO Schedule Line Item Number</label>
-        <length>18</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -942,7 +954,7 @@
         <fullName>PO__c</fullName>
         <externalId>false</externalId>
         <label>PO</label>
-        <length>50</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1132,9 +1144,9 @@
         <fullName>SUPPLIER_OTIF_QTY_COMPLIANCE__c</fullName>
         <externalId>false</externalId>
         <label>SUPPLIER OTIF QTY COMPLIANCE</label>
-        <precision>10</precision>
+        <precision>12</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>4</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1143,9 +1155,9 @@
         <fullName>SUPPLIER_OTIF_TIME_COMPLIANCE__c</fullName>
         <externalId>false</externalId>
         <label>SUPPLIER OTIF TIME COMPLIANCE</label>
-        <precision>10</precision>
+        <precision>12</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>4</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1217,7 +1229,31 @@
         <fullName>material_Description__c</fullName>
         <externalId>false</externalId>
         <label>material Description</label>
-        <length>20</length>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>otif_time_compliance_text__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( SUPPLIER_OTIF_TIME_COMPLIANCE__c*100 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>otif time compliance_text</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>overall_suplier_compiance_text_text__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(OVERALL_SUPPLIER_OTIF_COMPLIANCE__c*100)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>overall suplier compiance text_text</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

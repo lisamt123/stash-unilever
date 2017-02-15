@@ -178,7 +178,7 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
                 selectbox2all.addAll(listbox2all);
                 selectbox3all.addAll(listbox3all);
                 
-                integer y=-1;
+                //integer y=-1;
         /* if(listLossTree!=null && !listLossTree.isEmpty()){
              for(WWP_Loss_Tree__c lt: listLossTree){             
                 LossTreeWrapper ltW = new LossTreeWrapper(lt,listbox1all,listbox2all,listbox3all,y);  

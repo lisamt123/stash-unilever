@@ -50,6 +50,7 @@ public with sharing class WWP_LossTree_CC21{
         lossTree.Loss_Type__c = 'Supplier OTIF';
         date myDate = date.today();
         date weekStart = myDate.toStartofWeek();
+        string nones = '--None--';
         // lossTree = new WWP_Loss_Tree__c(); 
          //listPlantCodes = new List<SelectOption>();
          listUvendorcode = new List<SelectOption>(); 
@@ -64,17 +65,17 @@ public with sharing class WWP_LossTree_CC21{
          listUvendorcodeuser = [Select name,user__c,U_Vendor_code__c from WWP_Uvendor_code_mapping__c where user__c =: userinfo.getuseremail() limit 50000];
          //listSnpvendorcodeUsers = [Select name,user__c,SNP_Vendor_code__c from WWP_SNPVendor_code_mapping__c where user__c =: userinfo.getuseremail() limit 50000];
         // listPlantCodes.add(new SelectOption(valueNull,'--None--'));
-         listWeekCodes.add(new SelectOption(valueNull,'--None--'));
-         listUvendorcode.add(new SelectOption(valueNull,'--None--'));
-         listSnpvendorcode.add(new SelectOption(valueNull,'--None--'));
-         listPlantdescription.add(new SelectOption(valueNull,'--None--'));
-         listcountrydescription.add(new SelectOption(valueNull,'--None--'));
+         listWeekCodes.add(new SelectOption(valueNull,nones));
+         listUvendorcode.add(new SelectOption(valueNull,nones));
+         listSnpvendorcode.add(new SelectOption(valueNull,nones));
+         listPlantdescription.add(new SelectOption(valueNull,nones));
+         listcountrydescription.add(new SelectOption(valueNull,nones));
          showpickVal = false;
          shwmsg = false;
          selectbox1all = new List<selectOption>();
          selectbox2all = new List<selectOption>();
          selectbox3all = new List<selectOption>();
-         Set<string> uniqueCodes = new Set<String>();
+         //Set<string> uniqueCodes = new Set<String>();
          Set<string> uniqueUvendorCodes = new Set<String>();
        
          if(!listUvendorcodeuser.isEmpty()){             
@@ -93,7 +94,7 @@ public with sharing class WWP_LossTree_CC21{
          //List<WWP_Loss_Tree__c>   weeklistLossTree = [select id,name,Week__c from WWP_Loss_Tree__c where plant_code__c IN :uniqueCodes order by createddate Limit 50000 ];
         List<WWP_Loss_Tree__c>   DesclistLossTree = [select id,name,plant_description__c,Plant_Country__c,SAP_vendor_code__c from WWP_Loss_Tree__c where Ultimate_Supplier_code__c IN :uniqueUvendorCodes and createddate>=:weekStart order by createddate Limit 50000 ];
            //system.debug('dddddddddddddddd'+weeklistLossTree.size());
-           Map<String,String> weekMap = new Map<String,String>();
+           //Map<String,String> weekMap = new Map<String,String>();
            Map<String,String> descMap= new Map<String,String>();
            Map<String,String> countryMap= new Map<String,String>();
            Map<String,String> SAPvMap= new Map<String,String>();
@@ -262,13 +263,19 @@ SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIE
           shwmsg = true;
               message1 = label.WWP_Norecords_Err;
           }else{
-            message = valueNull;
+           generateListboxes(lossTree.Loss_Type__c);
+    } 
+    } 
+    public void generateListboxes(string lttype){
+    
+    
+    message = valueNull;
             List<WWP_LossTree_Suppliers__c> listCodes = WWP_LossTree_Suppliers__c.getAll().values();
             set<string> setbox1all = new set<string>();
             set<string> setbox2all = new set<string>();
             set<string> setbox3all = new set<string>();
             for(WWP_LossTree_Suppliers__c w: listCodes){
-            if(w.loss_type__c == lossTree.Loss_Type__c){               
+            if(w.loss_type__c == lttype){               
                 setbox1all.add(w.loss_name__c);
                 setbox2all.add(w.loss_sub_family__c);
                 setbox3all.add(w.Loss_Description__c);                
@@ -327,10 +334,7 @@ SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIE
         }
         fetchLossTreeExt(setbox1all, setbox2all, setbox3all);        
          }
-         //WWP_Losstree_Copy_Component_Ctrl cmp = new WWP_Losstree_Copy_Component_Ctrl();
-         //system.debug('called');
-        //cmp.fetchLossTree1();
-     }    
+      
     public void fetchLossTreeExt(set<string> setbox1all, set<string> setbox2all, set<string> setbox3all){
         listbox1all.add(new SelectOption(valueNone,valueNone));
         listbox2all.add(new SelectOption(valueNone,valueNone));
@@ -548,7 +552,7 @@ SUPPLIER_OTIF_QTY_COMPLIANCE__c,SUPPLIER_OTIF_TIME_COMPLIANCE__c,OVERALL_SUPPLIE
      }    
     public void updateLossTree(){
     Map<string,string> lm = new Map<string,string>();
-    list<WWP_losslevel_code_maping__c> sm = [select level__c,code__c from WWP_losslevel_code_maping__c]; 
+    list<WWP_losslevel_code_maping__c> sm = [select level__c,code__c from WWP_losslevel_code_maping__c limit 50000]; 
         for(WWP_losslevel_code_maping__c cm:sm){
           lm.put(cm.level__c,cm.code__c) ; 
         }
