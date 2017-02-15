@@ -428,7 +428,7 @@
         <criteriaItems>
             <field>ISO_Country_Code__c</field>
             <operation>equals</operation>
-            <value>TR</value>
+            <value>TR,KZ</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>

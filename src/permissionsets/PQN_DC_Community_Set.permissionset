@@ -626,6 +626,15 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>PQN_Pallet_Quality_Non_Conformance__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
@@ -783,6 +792,10 @@
     </tabSettings>
     <tabSettings>
         <tab>PQN_User_Creation_Request__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Pallet_Quality_Non_Conformance_VF</tab>
         <visibility>None</visibility>
     </tabSettings>
 </PermissionSet>

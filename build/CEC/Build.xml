@@ -43,12 +43,14 @@
         <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" checkOnly="true" logType="Debugonly" testLevel="RunSpecifiedTests" allowMissingFiles="true" autoUpdatePackage="true" ignoreWarnings="true" deployRoot="src" pollWaitMillis="${sfdc.pollWaitMillis}" maxPoll="${sfdc.maxPoll}">
             <runTest>CEC_FulfilmentHelperTest</runTest>
             <runTest>CEC_CaseInlineControllerTest</runTest>
+			<runTest>CEC_CaseTriggerHelperTest</runTest>
             <runTest>CEC_AlertActionHelperTest</runTest>
 			<runTest>CEC_FufilmentProductInlineControllerTest</runTest>
 			<runTest>CEC_Test_FulfilmentQualityCheckHelper</runTest>
 			<runTest>CEC_FulfilmentHelperExtensionTest</runTest>
 			<runTest>CEC_TestAlertActionBatchScheduler</runTest>
 			<runTest>CEC_TestAlertActionTriggerHelper</runTest>
+			<runTest>CEC_NewAccountControllerTest</runTest>
         </sf:deploy>
     </target>
 </project>
