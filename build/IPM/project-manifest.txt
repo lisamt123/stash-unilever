@@ -253,7 +253,7 @@ src/groups
 src/groups/IPM_Food_Solutions.group
 src/groups/IPM_PC_Deodorants_N_Fragrances_BP.group
 src/labels
-src/labels/CustomLabels.labels
+src/labels/IPM.labels
 src/layouts
 src/layouts/IPM_Bosscard__c-Bosscard Layout.layout
 src/layouts/IPM_Clusters__c-IPM Project Clusters Layout.layout
