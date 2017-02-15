@@ -73,10 +73,6 @@ public with sharing class IPM_RolloutPlansAddLocalController extends IPM_Project
         isCompleted = false;
         selectedMCO = null;
         initializeRollouts();
-        // To disable the MCO selection on Add/Manage Rollout Screen
-        IPM_Project_Type__c currentProjecttype = IPM_Utils.retrieveProjectType(project);
-
-        
     }
     /**
      *  @Description Method invoked from class constructor
@@ -257,8 +253,6 @@ public with sharing class IPM_RolloutPlansAddLocalController extends IPM_Project
 
         lstClusterWrappers = new List < GeographyWrapper > ();
 
-        Map < String, String > mapClusterToMCOCode = new map < String, String > ();
-        
         setCountryCodesGlobal = new Set < String > ();
         
         for (MDO_Geography__c country: mapUnileverCountries.values()) { 

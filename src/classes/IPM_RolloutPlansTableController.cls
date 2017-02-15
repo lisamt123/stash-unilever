@@ -172,7 +172,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         
         try
         {
-            String editMode='';
+            
             projectId = ApexPages.currentPage().getParameters().get(ID_PARAMETER);
             if (projectId != null)
             {
@@ -220,48 +220,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     isSpanRegional = true;
                 }
                 
-                getProjectRollouts();
-                
-                getUserList(); 
-                
-                editMode=ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.EDITMODE);
-                
-                if(IPM_ConstantUtils.EDITMODE_TRUE.equalsIgnoreCase(editMode)) 
-                {
-                    isEditMode = true;
-                }
-                else
-                {
-                    isEditMode = false;
-                }
-                
-                Id currLoggedinUserId = UserInfo.getUserId();
-                
-                List<IPM_User_Profile__c> lstIPMCurrentUserProfile = [SELECT IPM_User__c, IPM_User__r.Name, IPM_User__r.UserRole.Name, ipm_user__r.smallphotourl, ipm_user__r.Email, IPM_User_Function__c,IPM_User_Role__c, IPM_Region__c, IPM_Company_Card__c 
-                                                            FROM IPM_User_Profile__c 
-                                                            WHERE IPM_User__c =: currLoggedinUserId AND IPM_User__r.IsActive = true AND IPM_User_Role__c =: IPM_ConstantUtils.PROJECT_LEADER LIMIT 1];
-                                               
-                if(lstIPMCurrentUserProfile != NULL && !lstIPMCurrentUserProfile.isEmpty() && isEditMode )
-                {
-                    isEligibleToAddRollout = true;
-                }
-                else
-                {
-                    isEligibleToAddRollout = false;
-                }
-                
-                rolloutCount = 0;
-                
-                projectType = IPM_Utils.retrieveProjectType(project);
-                
-                showAllignAllMCOChoice= projectType.Allign_All_MCO_Choice__c;
-                
-                //check for isRolloutEditable
-                // call to check rollout editable or not
-                isRolloutEditable(isEditMode,isEditable);
-                // set PLName and FLName
-                doShowPLandFLName(isPLAllocated,isFLAllocated,isEditMode);
-                getAllbrands();
+                initializeHelper();
             }
         } 
         catch (Exception ex) 
@@ -269,7 +228,58 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             isError = TRUE;
             errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
         }          
-    }           
+    }  
+    /*******************************************************************************************************
+    * @description  Helper method for initialization
+    * @param        NONE
+    * @return       NONE
+    */
+    private void initializeHelper(){
+        String editMode='';
+        getProjectRollouts();
+        
+        getUserList(); 
+        
+        editMode=ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.EDITMODE);
+        
+        if(IPM_ConstantUtils.EDITMODE_TRUE.equalsIgnoreCase(editMode)) 
+        {
+            isEditMode = true;
+        }
+        else
+        {
+            isEditMode = false;
+        }
+        
+        Id currLoggedinUserId = UserInfo.getUserId();
+        
+        List<IPM_User_Profile__c> lstIPMCurrentUserProfile = [SELECT IPM_User__c, IPM_User__r.Name, IPM_User__r.UserRole.Name, ipm_user__r.smallphotourl, ipm_user__r.Email, IPM_User_Function__c,IPM_User_Role__c, IPM_Region__c, IPM_Company_Card__c 
+                                                    FROM IPM_User_Profile__c 
+                                                    WHERE IPM_User__c =: currLoggedinUserId AND IPM_User__r.IsActive = true AND IPM_User_Role__c =: IPM_ConstantUtils.PROJECT_LEADER LIMIT 1];
+                                       
+        if(lstIPMCurrentUserProfile != NULL && !lstIPMCurrentUserProfile.isEmpty() && isEditMode )
+        {
+            isEligibleToAddRollout = true;
+        }
+        else
+        {
+            isEligibleToAddRollout = false;
+        }
+        
+        rolloutCount = 0;
+        
+        projectType = IPM_Utils.retrieveProjectType(project);
+        
+        showAllignAllMCOChoice= projectType.Allign_All_MCO_Choice__c;
+        
+        //check for isRolloutEditable
+        // call to check rollout editable or not
+        isRolloutEditable(isEditMode,isEditable);
+        // set PLName and FLName
+        doShowPLandFLName(isPLAllocated,isFLAllocated,isEditMode);
+        getAllbrands();
+    }  
+           
     
     /******************************************************************************************************
     * @description Method to check the whether rollout is editable or not
@@ -842,7 +852,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         populatenonKeyMcoTLDMisalignedMap(lstcompleteRollout);
         
         Map<Id,List<IPM_Country__c>> localRolloutToCountryMap = getLocalRolloutToCountryMapping(localRolloutIdSet);
-                  
+        
+        regionalRolloutProcessing(projectRolloutMap,localRolloutToCountryMap);     
+    }
+    
+	private void regionalRolloutProcessing(Map<Id,IPM_Project_Rollout__c> projectRolloutMap,Map<Id,List<IPM_Country__c>> localRolloutToCountryMap ){
         if(!projectRolloutMap.isEmpty())
         {
             if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
@@ -993,46 +1007,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                             rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
                         }
                     }
-                    
-                    Date minimalDate = null;
-                    // Check for child Rollouts if any. In case of regional Rollout Assignment, you will get local Projects.
-                    if(rollOut.Local_Rollouts__r!=null && !rollOut.Local_Rollouts__r.isEmpty() && projectType!=null)  
-                    {
-                        for(IPM_Project_Rollout__c tempLocalRollout : rollOut.Local_Rollouts__r)
-                        {
-                            Id localRolloutId = tempLocalRollout.Id;
-                            IPM_Project_Rollout__c localRollout = lstcompleteRollout.get(localRolloutId);
-                            if(projectType!=null &&  projectType.IPM_CreateLocalProjects__c && checkToLogicToCreateProject(projectType,tempLocalRollout) && localRollout.Local_Project__c==null)
-                            {
-                                localRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-                                localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
-                            } 
-                            
-                            
-                        
-                            // No Date has been set. Set the first Date.
-                            if(minimalDate == null || localRollout.Target_Launch_Date__c < minimalDate)
-                            {
-                                minimalDate = localRollout.Target_Launch_Date__c;
-                            }  
-                        
-                            updaterolloutsMap.put(localRollout.Id,localRollout);
-                        }   
-                    }
-                    
-                    if(minimalDate !=null)
-                    {
-                       rollout.Target_Launch_Date__c = minimalDate;  
-                        
-                    }
-                    
-                    
-                                    
-                    updaterolloutsMap.put(rolloutId,rollout); 
+                    processLocalRollout(rolloutId, rollout, updaterolloutsMap);
+                   
                 }
             }  
-            saveRolloutHelper(updaterolloutsMap);	
-			processValidationError(validationError);   
+            saveRolloutHelperUpdate(updaterolloutsMap,validationError);
         }
         catch (Exception ex)
         {
@@ -1042,7 +1021,46 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         }
         
     }
-	/*******************************************************************************************************
+    public void processLocalRollout(id rolloutId,IPM_Project_Rollout__c rollOut,Map<Id,IPM_Project_Rollout__c> updaterolloutsMap) { 
+        Date minimalDate = null;
+                    
+        // Check for child Rollouts if any. In case of regional Rollout Assignment, you will get local Projects.
+        if(rollOut.Local_Rollouts__r!=null && !rollOut.Local_Rollouts__r.isEmpty() && projectType!=null)  
+        {
+            for(IPM_Project_Rollout__c tempLocalRollout : rollOut.Local_Rollouts__r)
+            {
+                Id localRolloutId = tempLocalRollout.Id;
+                IPM_Project_Rollout__c localRollout = lstcompleteRollout.get(localRolloutId);
+                if(projectType!=null &&  projectType.IPM_CreateLocalProjects__c && checkToLogicToCreateProject(projectType,tempLocalRollout) && localRollout.Local_Project__c==null)
+                {
+                    localRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+                    localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
+                } 
+                
+                
+            
+                // No Date has been set. Set the first Date.
+                if(minimalDate == null || localRollout.Target_Launch_Date__c < minimalDate)
+                {
+                    minimalDate = localRollout.Target_Launch_Date__c;
+                }  
+            
+                updaterolloutsMap.put(localRollout.Id,localRollout);
+            }   
+        }
+        
+        if(minimalDate !=null)
+        {
+           rollout.Target_Launch_Date__c = minimalDate;  
+            
+        }               
+        updaterolloutsMap.put(rolloutId,rollout);
+    }
+    public void saveRolloutHelperUpdate(Map<Id,IPM_Project_Rollout__c> updaterolloutsMapLocal,String validationErrorLocal){
+        saveRolloutHelper(updaterolloutsMapLocal);  
+        processValidationError(validationErrorLocal);
+    }  
+    /*******************************************************************************************************
     * @description  Helper Method for SaveRollout method, perform functionality to save rollout
     * @param        updaterolloutsMap
     * @return       None

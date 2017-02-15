@@ -1012,6 +1012,10 @@
         <apexClass>IPM_RolloutPlansAddLocalController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>IPM_RolloutPlansAddLocalController_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_Bosscard__c.Project_Id__c</field>

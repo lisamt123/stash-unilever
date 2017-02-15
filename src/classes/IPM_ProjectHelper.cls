@@ -32,6 +32,8 @@ public with sharing class IPM_ProjectHelper
     
     public static final String IPM_PROJECT_ROLLOUT = 'IPM_Project_Rollout__c';
     
+    public static String whereCondition = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+    
     public static Set<Id> incomingProjectIds = new Set<Id>();
     public static Set<Id> resultantProjectIds = new Set<Id>();
     public static Set<String> projectComplexitySet = new Set<String>();
@@ -330,9 +332,8 @@ public with sharing class IPM_ProjectHelper
             // Get complexity Template Specific information based on Available list of Complexity
             String templateQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Template__c',true,new Set<String>{'IPM_Document_Template__c'},true);
             String templateWhereClause = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
-            String whereCondition = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             
-            whereCondition = getWhereCondition(whereCondition);
+            getWhereCondition();
             
             if(String.isNotEmpty( whereCondition) )
             {
@@ -385,7 +386,7 @@ public with sharing class IPM_ProjectHelper
     /**************************************************************
     * @description: Used for computing the where clause 
     */
-    private static String getWhereCondition(String whereCondition){
+    private static String getWhereCondition(){
         if(!projectComplexitySet.isEmpty())
             {
                 whereCondition  += ' IPM_Template_Complexity__c in :projectComplexitySet ';
