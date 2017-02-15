@@ -1,0 +1,236 @@
+<apex:page controller="CCF_Landing_CC" docType="html-5.0">
+    <apex:form id="formid">
+        
+        <!-- Jquery -->
+        <apex:includeScript value="//code.jquery.com/jquery-1.11.3.min.js"/>
+        <apex:stylesheet value="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>
+        
+        <!-- DataTable -->
+        <apex:includeScript value="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"/>
+        <apex:stylesheet value="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"/>
+        
+        <!-- Search Highlight -->
+        <apex:includeScript value="//bartaz.github.io/sandbox.js/jquery.highlight.js"/>
+        <apex:includeScript value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.min.js"/>
+        <apex:stylesheet value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.css"/>
+        
+        <!-- DataTable buttons -->
+        <apex:includeScript value="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"/>
+        <apex:includeScript value="//cdn.datatables.net/buttons/1.0.3/js/buttons.flash.min.js"/>
+        <apex:includeScript value="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"/>
+        <apex:includeScript value="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"/>
+        <apex:includeScript value="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"/>
+        <apex:includeScript value="//cdn.datatables.net/buttons/1.0.3/js/buttons.html5.min.js"/>
+        <apex:includeScript value="//cdn.datatables.net/buttons/1.0.3/js/buttons.print.min.js"/>
+        <apex:stylesheet value="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css"/>
+        <style>
+            .filterMatches{
+            background-color: #BFFF00;
+            }
+            .tertiaryPalette{
+            color: #000 !important;
+            }
+            .dt-buttons{
+            margin-left: 10px;
+            }
+             .custPopup{
+            background-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: absolute;
+            /* These are the 3 css properties you will need to change so the popup 
+            displays in the center of the screen. First set the width. Then set 
+            margin-left to negative half of what the width is. You can add 
+            the height property for a fixed size pop up if you want.*/
+            width: 500px;
+            margin-left: -250px;
+            top:100px;
+        }
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+
+        </style>
+        
+        <script type="text/javascript">
+        $(document).ready(function(){
+                
+    tableApply();
+});
+        
+     
+        
+        function tableApply()
+        {
+            //  alert("in tableApply function");
+            var accountsTable = $('[cid$="CCFHeaderTable"]').parent('table').eq(0).DataTable({
+                //enables results highlight
+                searchHighlight: true,
+                //sets record lengths to show in picklist
+                aLengthMenu: [
+                    [5,10, 25, 50, 100, 200, -1],
+                    [5,10, 25, 50, 100, 200, "All"]
+                ],
+                "iDisplayLength": 10,
+                //adds copy, print buttons...
+                dom: 'lBfrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls
+                buttons: [
+                    
+                    {
+                        extend: 'print',
+                        customize: function(win) {
+                            $(win.document.body)
+                            .css( 'font-size', '10pt' )
+                            .prepend('<img src="http://datatables.net/media/images/logo-fade.png" style="position:absolute; top:0; left:0;" />');
+                            
+                            $(win.document.body).find( 'table' )
+                            .addClass( 'compact' )
+                            .css( 'font-size', 'inherit' );
+                        }
+                    }
+                ],
+            });
+        }
+        function OpenVfpage()
+        {
+            window.open('/apex/CCF_RecordTypePopup','Popup','height=400,width=1000,left=100,top=100,scrollbars=yes,toolbar=no,status=no');
+        }
+        </script>
+        <html xml:lang='en' lang='en' xmlns='http://www.w3.org/1999/xhtml'> 
+            <apex:includeScript value="{!URLFOR($Resource.CCF_ClientSideResource, '/js/jquery-ui.js')}"/> 
+            <apex:includeScript value="{!URLFOR($Resource.CCF_ClientSideResource, '/js/angular.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.CCF_ClientSideResource, '/js/angular-route.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.CCF_ClientSideResource, '/js/bootstrap.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.CCF_ClientSideResource, '/js/underscore.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.CCF_ClientSideResource, '/js/ui-bootstrap-tpls-2.5.0.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.CCF_ClientSideResource, '/js/angular-ui-bootstrap-modal.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.CCF_ClientSideResource, '/js/script.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.CCF_ClientSideResource, '/css/style.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.CCF_ClientSideResource, '/css/jquery-ui.css')}"/>
+             <body >
+             
+                <!-- body start --> 
+                <div class="ccf_pageContent" ng-app="ccfApp">
+                    <div class="mainWrapper">
+                        <div class="tableMainContent">
+                            <div class="tablePreHeader">
+                                <h1>In Progress Forms</h1>
+                                <div class="buttonContainer">
+                                    <!--<input type="submit" class="createNew_ccf"  onclick="return newccf();"  value="Create New CCF"/>-->
+                                    <apex:commandButton value="Create New CCF" action="{!showPopup}" styleClass="createNew_ccf" rerender="tstpopup"/>
+                                </div>
+                                
+                                <apex:outputPanel id="tstpopup">
+                                    <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+                                    <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp}">
+                                        <apex:outputLabel value="Select Contract Type" ></apex:outputLabel><br/>
+                                        <apex:repeat value="{!recordTypes}" var="r">
+                                            <apex:outputLink value="/apex/CCF_Formv2?">{!r.name}</apex:outputLink><br/>
+                                        </apex:repeat>
+                                        <br/><br/>
+                                        <apex:commandButton value="Close" action="{!closePopup}" rerender="tstpopup"/>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <div class="filter_ccf"></div>
+                             </div>
+                            <!-- filter start --> 
+                            <apex:pageBlock id="filterBlock">
+                            <div class="tableFilter" style="display: none;">
+                                
+                                <div class="tableFilter_section">
+                                    <div class="tableFilter_section_search">
+                                        <label>Valid From</label><br/><br/>
+                                        <apex:inputField value="{!ccfHeader.Effective_Date__c}"/>
+                                    </div>
+                                    <div class="tableFilter_section_search">
+                                         <label>Valid To</label><br/><br/>
+                                        <apex:inputField value="{!ccfHeader.Expiration_Date__c}"  />
+                                    </div>
+                                    <div class="tableFilter_section_search">
+                                         <label>status</label><br/><br/>
+                                        <apex:inputField value="{!ccfHeader.Status__c}"  />
+                                    </div>
+                                </div>
+                                <div class="tableFilter_button">
+                                    <span>
+                                        <apex:commandButton styleClass="applyButton" value="Apply" action="{!searchResults}" rerender="pgblock" oncomplete="tableApply();"/>
+                                    </span>
+                                 	<span class="tableFilter_button">
+                                    	<apex:commandButton styleClass="applyButton" value="Clear" action="{!searchClear}" rerender="filterBlock,pgblock" oncomplete="tableApply();"/>
+                                    </span>
+                                </div>
+                            </div>
+                            </apex:pageBlock>
+                        </div>
+                    </div>
+                    <div>
+                                                          <apex:actionFunction name="newccf"  action="{!newCCF}"/>
+
+                        <apex:pageBlock id="pgblock">
+                            <apex:pageBlockTable value="{!ccfHeaderList}" var="headerVar" id="detail" html-cid="CCFHeaderTable" >
+                                
+                                
+                                <apex:column headerValue="Contractor Name">
+                                 <apex:outputLink value="/apex/CCF_Formv2?headerRecordId={!headerVar.Id}&role={!headerVar.Role__c}" target="_blank">{!headerVar.Contract_Name__c}</apex:outputLink>
+                                </apex:column>
+                                <apex:column headerValue="Supplier">
+                                    <apex:outputField value="{!headerVar.Supplier_Name__r.Name}"/>
+                                </apex:column>
+                                <apex:column headerValue="Role">
+                                    <apex:outputField value="{!headerVar.Role__c}"/>
+                                </apex:column>
+                                <apex:column headerValue="Portfolio">
+                                    <apex:outputField value="{!headerVar.Portfolio__c}"/>
+                                </apex:column>
+                                <apex:column headerValue="Validity From">
+                                    <apex:outputField value="{!headerVar.Effective_Date__c}"/>
+                                </apex:column>
+                                <apex:column headerValue="Validity To">
+                                     <apex:outputField value="{!headerVar.Expiration_Date__c}"/>
+                                </apex:column>
+                                <apex:column headerValue="Contract owner">
+                                    <apex:outputField value="{!headerVar.Contract_Owner__r.name}"/>
+                                </apex:column>
+                                <apex:column headerValue="Status" styleClass="tableBodyContentText {!headerVar.Status__c}">
+                                    <apex:outputField value="{!headerVar.Status__c}"/> 
+                                </apex:column>
+                                <apex:column headerValue="Amend/Clone">
+                                <div class="buttonContainer">
+                                    <apex:outputPanel rendered="{!headerVar.Status__c='Contract Created'}">
+                                    <!-- <button class="amend_ccf">Amend CCF</button> -->
+                                   <apex:outputLink value="/apex/CCF_Formv2?headerRecordId={!headerVar.Id}&action=amend" style="text-decoration: underline;" styleClass="amend_ccf" >Amend</apex:outputLink>
+                                   &nbsp;
+                                   &nbsp;
+                                   <apex:outputLink value="/apex/CCF_Formv2?headerRecordId={!headerVar.Id}&action=clone" style="text-decoration: underline;" styleClass="amend_ccf" >Clone</apex:outputLink>
+                                    
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!headerVar.Status__c!='Contract Created'}">
+                                        <apex:outputText value="No Action"/>
+                                    </apex:outputPanel>
+                                </div>
+                                </apex:column>
+                            </apex:pageBlockTable>                
+                        </apex:pageBlock>    
+                    </div>
+                </div>
+            </body>
+            <!-- footer start --> 
+            <footer class="footer">
+                
+            </footer>
+            <!-- footer end --> 
+        </html>
+     </apex:form>
+</apex:page>
