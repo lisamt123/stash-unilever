@@ -476,6 +476,24 @@ private class IPM_BosscardController_Test{
             sic.isBosscardNameBlank=false;
             sic.hideBosscardSuggetion();
             System.assertEquals(sic.isBosscardNameBlank,true,'Bosscard Name is not Blank');//positive test
+	
+            IPM_Project__c ipmProjects = IPM_TestFactory_Helper.createIPMProject(true);
+            
+            List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Status__c,Project_Id__c FROM IPM_Bosscard__c WHERE ID=:ipmBosscards.id LIMIT 1];
+            System.AssertEquals(bossList[0].IPM_Bosscard_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS, 'Bosscard status is:'+bossList[0].IPM_Bosscard_Status__c);
+            
+            bossList[0].IPM_Bosscard_Status__c = IPM_ConstantUtils.STATUS_APPROVED;
+            bossList[0].Project_Id__c=ipmProjects.id;
+               
+            update bossList;      
+            
+            PageReference pageRef = Page.IPM_Bosscard;
+       	    Test.setCurrentPageReference(pageRef);
+            ApexPages.CurrentPage().getparameters().put('id', bossList[0].id);
+            ApexPages.StandardController scBosscard = new ApexPages.standardController(ipmBosscards);
+            Ipm_BosscardController sicCtrl = new Ipm_BosscardController (scBosscard);
+            			
+	    System.assertEquals(true, sicCtrl.showGoTOProjButton,'Go to Project button is not visible');
         } 
         Test.stopTest(); 
         
