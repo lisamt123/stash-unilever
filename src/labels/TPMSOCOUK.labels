@@ -28663,3 +28663,11 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>UL_Query_WHERE</shortDescription>
         <value>WHERE</value>
     </labels>
+	<labels>
+        <fullName>UL_Fund_Overspent_Error</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fund Overspent Error</shortDescription>
+        <value>The fund amount used in the Tactic is exceeding the amount available in the fund</value>
+    </labels>
