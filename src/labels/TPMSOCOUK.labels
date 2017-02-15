@@ -28678,3 +28678,11 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>PP_FIELD_NULL</shortDescription>
         <value>Null</value>
     </labels>
+    <labels>
+        <fullName>UL_Fund_Open_Transaction_Error</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fund Open Transaction Error</shortDescription>
+        <value>This fund is present in a transaction which is pending for Approval and cannot be closed</value>
+    </labels>
