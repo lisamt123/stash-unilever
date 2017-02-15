@@ -375,6 +375,81 @@
         <label>PromotionWorkflowPending</label>
     </fieldSets>
     <fieldSets>
+        <fullName>TPM_UKI_LTA_Read_Only_Fileds</fullName>
+        <description>This is used for to disable the edit functionality in Smart UI</description>
+        <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Promotion_ID__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Anchor_Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>TPM_UKI_LTA_Read Only Fileds</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>TPM_UKI_ShortTerm_Read_Only_Fileds</fullName>
+        <description>This is used to disable the fields in Smart  UI</description>
+        <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Promotion_ID__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Current_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Category__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Brand__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Cannibalisation_Override__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Cannibalisation_Rate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Market__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>TPM_UKI_ShortTerm_Read Only Fileds</label>
+    </fieldSets>
+    <fieldSets>
         <fullName>UL_SoCo_Approved</fullName>
         <description>In promotion planning workflow when the promotion is in the Approved status</description>
         <displayedFields>
@@ -1718,6 +1793,11 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>TPM_Delivery_Profile__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>UL_Sub_Mechanic__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1743,81 +1823,6 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <label>UKI_LTA_Specific</label>
-    </fieldSets>
-	  <fieldSets>
-        <fullName>TPM_UKI_LTA_Read_Only_Fileds</fullName>
-        <description>This is used for to disable the edit functionality in Smart UI</description>
-        <displayedFields>
-            <field>ACCL__Slogan__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Promotion_ID__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Account__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>ACCL__Anchor_Account__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <label>TPM_UKI_LTA_Read Only Fileds</label>
-    </fieldSets>
-    <fieldSets>
-        <fullName>TPM_UKI_ShortTerm_Read_Only_Fileds</fullName>
-        <description>This is used to disable the fields in Smart  UI</description>
-        <displayedFields>
-            <field>ACCL__Slogan__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Promotion_ID__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Account__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Current_Status__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Category__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Brand__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Cannibalisation_Override__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Cannibalisation_Rate__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Market__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <label>TPM_UKI_ShortTerm_Read Only Fileds</label>
     </fieldSets>
     <fields>
         <fullName>ACCL__Active__c</fullName>
@@ -4291,10 +4296,10 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
     <searchLayouts>
         <customTabListAdditionalFields>UL_Promotion_ID__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Promotion_Name_URL__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Anchor_Account__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Current_Status__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Sub_Mechanic__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Feature__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>UL_Free_Text__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCL__Delivery_Date_From__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCL__Placement_Date_From__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Category__c</customTabListAdditionalFields>
@@ -4384,18 +4389,25 @@ Id=VLOOKUP
         <errorMessage>Name should not be edited when the Phase is Committed.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>TPM_Lift_VolumeType_Mandate</fullName>
+        <fullName>TPM_Lift_Mandate</fullName>
         <active>true</active>
-        <description>Life, Volume Type are Mandate</description>
-        <errorConditionFormula>if((ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp;(ISBLANK(UL_Lift__c) || ISBLANK(TEXT(UL_Volume_Type__c))) &amp;&amp; NOT(ISNEW()) &amp;&amp; UL_PromotionTemplateType__c  &lt;&gt; &apos;LTA&apos;, true, false )</errorConditionFormula>
-        <errorMessage>Lift %, Volume Type are mandatory</errorMessage>
+        <description>Lift % is mandatory</description>
+        <errorConditionFormula>if((ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp;ISBLANK(UL_Lift__c) &amp;&amp; NOT(ISNEW()) &amp;&amp; UL_PromotionTemplateType__c &lt;&gt; &apos;LTA&apos;, true, false)</errorConditionFormula>
+        <errorMessage>Lift % is mandatory</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>TPM_Past_Date_Validation_For_SOCO</fullName>
-        <active>true</active>
-        <errorConditionFormula>IF(NOT( ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c) &amp;&amp; (ACCL__Date_From__c&lt;Today() || ACCL__Date_Thru__c&lt;Today()), true, false)</errorConditionFormula>
+        <active>false</active>
+        <errorConditionFormula>IF(NOT( ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c) &amp;&amp; (ACCL__Date_From__c&lt;Today() || ACCL__Date_Thru__c&lt;Today()), true, IF(ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c &amp;&amp; (ACCL__Date_From__c &gt;= Today() || ACCL__Date_Thru__c &lt;=Today()), true, false))</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>Only Past Dated/Urgent Promotion template should be used to create past date\urgent promotion (in such case, from date must be in the past, Thru date must be in the future)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TPM_VolumeType_Mandate</fullName>
+        <active>true</active>
+        <description>Volume Type is mandatory</description>
+        <errorConditionFormula>if((ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp; ISBLANK(TEXT(UL_Volume_Type__c)) &amp;&amp; NOT(ISNEW()), true, false)</errorConditionFormula>
+        <errorMessage>Volume Type is mandatory</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_Default_Sold_To_Mandatory_Rule</fullName>

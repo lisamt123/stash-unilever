@@ -108,6 +108,6 @@
     </userPermissions>
 	<tabVisibilities>
         <tab>My_Trade_Promoton_Calendar</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
 </Profile>

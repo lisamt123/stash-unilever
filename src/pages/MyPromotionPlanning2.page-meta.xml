@@ -6,7 +6,7 @@
     <label>MyPromotionPlanning2</label>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>0</minorNumber>
+        <minorNumber>4</minorNumber>
         <namespace>ACCL</namespace>
     </packageVersions>
 </ApexPage>

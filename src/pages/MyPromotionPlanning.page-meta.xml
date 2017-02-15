@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>38.0</apiVersion>
-    <available>true</available>
-    <encodingKey>ISO-8859-1</encodingKey>
-    <name>SoCo_Promotion_Approved</name>
+    <availableInTouch>false</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <label>MyPromotionPlanning</label>
     <packageVersions>
         <majorNumber>1</majorNumber>
         <minorNumber>4</minorNumber>
@@ -14,7 +14,4 @@
         <minorNumber>7</minorNumber>
         <namespace>sf_com_apps</namespace>
     </packageVersions>
-    <style>none</style>
-    <subject>Promotion submitted for Approval</subject>
-    <type>visualforce</type>
-</EmailTemplate>
+</ApexPage>

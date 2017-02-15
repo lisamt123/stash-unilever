@@ -390,7 +390,7 @@
         <criteriaItems>
             <field>UL_Promo_Type_ControlView__c</field>
             <operation>equals</operation>
-            <value>SpecialHoliday</value>
+            <value>CustomerEvent,MarketingEvent,LTA,SpecialHoliday,Promotion,Past Dated/Urgent,Account Specific Promotion,Parent Promotion,Account Plan</value>
         </criteriaItems>
         <criteriaItems>
             <field>ACCL__Sales_Org__c</field>
@@ -408,7 +408,7 @@
         <criteriaItems>
             <field>UL_Promo_Type_ControlView__c</field>
             <operation>equals</operation>
-            <value>SpecialHoliday</value>
+            <value>CustomerEvent,MarketingEvent,LTA,SpecialHoliday,Promotion,Past Dated/Urgent,Account Specific Promotion,Parent Promotion,Account Plan</value>
         </criteriaItems>
         <criteriaItems>
             <field>ACCL__Sales_Org__c</field>
@@ -426,7 +426,7 @@
         <criteriaItems>
             <field>UL_Promo_Type_ControlView__c</field>
             <operation>equals</operation>
-            <value>SpecialHoliday</value>
+            <value>CustomerEvent,MarketingEvent,LTA,SpecialHoliday,Promotion,Past Dated/Urgent,Account Specific Promotion,Parent Promotion,Account Plan</value>
         </criteriaItems>
         <criteriaItems>
             <field>ACCL__Sales_Org__c</field>

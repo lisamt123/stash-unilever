@@ -85,6 +85,19 @@
             Product
         }
         
+        //Product Levels PicklistValues of Accl__Product_Level__c 14_02_2017
+       
+        public static final String PRODUCTLEVEL1 ='1';
+        public static final String PRODUCTLEVEL2 ='2';   
+        public static final String PRODUCTLEVEL3 ='3';   
+        public static final String PRODUCTLEVEL4 ='4';    
+        public static final String PRODUCTLEVEL5 ='5';   
+        public static final String PRODUCTLEVEL6 ='6';
+        public static final String PRODUCTLEVEL7 ='7';    
+        public static final String PRODUCTLEVEL8 ='8';   
+        public static final String PRODUCTLEVELPRODUCT ='Product';    
+        
+
         // The API Name of the Permission Set
         public static final String ACSF_FM_PERMISSION_SET = 'ACSF_FM';    
         public static final String ACSF_FA_PERMISSION_SET = 'ACSF_FA';    
@@ -161,7 +174,7 @@
         public static final String STATUS_INCOMPLETE = 'Incomplete';
         public static final String STATUS_PLANNED = 'Planned';
         public static final String STATUS_REJECTED = 'Rejected';
-        public static final String STATUS_REQUIRES_APPROVAL = 'Requires Approval';
+        public static final String STATUS_REQUIRES_APPROVAL = 'Submitted For Approval';
         public static final String STATUS_FINALISED = 'Finalised';
         public static final String STATUS_INFLIGHT = 'InFlight';
                
@@ -179,7 +192,8 @@
             AR01,
             CL01,
             CL03,
-            SoCo
+            SoCo,
+            UKI
         }
         
         //Promotion Templates

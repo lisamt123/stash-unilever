@@ -3,7 +3,7 @@
     <apiVersion>39.0</apiVersion>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>3</minorNumber>
+        <minorNumber>4</minorNumber>
         <namespace>ACCL</namespace>
     </packageVersions>
     <status>Active</status>
