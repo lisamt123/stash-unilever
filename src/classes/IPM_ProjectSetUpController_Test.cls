@@ -10,7 +10,6 @@ private class IPM_ProjectSetUpController_Test {
     private static List<IPM_User_Profile__c> userProfileList= new List<IPM_User_Profile__c>();
     private static string ProjectName='ProjectWithOutBoss';
     private static IPM_Project__c projectWithOutBoss;	
-    private static IPM_Project__c GKM8Project;
     private static User userInitialize; 
     private static IPM_ProjectSetUpController  sic;  
     private static final string GOT_ERROR_STRING='got error while saving a project';

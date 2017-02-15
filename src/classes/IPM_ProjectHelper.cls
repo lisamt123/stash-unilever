@@ -332,46 +332,7 @@ public with sharing class IPM_ProjectHelper
             String templateWhereClause = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             String whereCondition = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             
-            if(!projectComplexitySet.isEmpty())
-            {
-                whereCondition  += ' IPM_Template_Complexity__c in :projectComplexitySet ';
-            }
-            
-            if(!projectTypeSet.isEmpty() )
-            {
-                if(String.isNotEmpty( whereCondition))
-                {
-                    whereCondition  += ' AND ';
-                }
-                
-                whereCondition  += ' IPM_Project_Type__c in :projectTypeSet ';
-            }
-            
-            if(String.isNotEmpty(categoryString))
-            {
-                if(String.isNotEmpty( whereCondition))
-                {
-                    whereCondition  += ' AND ';
-                }
-                
-                if(String.isNotEmpty(categoryString) )
-                {
-                    whereCondition  = whereCondition + ' IPM_Category__c includes ( '+categoryString +') ';
-                }
-            }
-            
-            if(!projectGKMSet.isEmpty())
-            {
-                if(String.isNotEmpty(whereCondition))
-                {
-                    whereCondition  += ' AND ';
-                }
-                
-                if(String.isNotEmpty(GKMString) )
-                {
-                     whereCondition  += ' IPM_GKM__c includes ( '+ GKMString +' ) '; 
-                }
-            }
+            whereCondition = getWhereCondition(whereCondition);
             
             if(String.isNotEmpty( whereCondition) )
             {
@@ -420,6 +381,56 @@ public with sharing class IPM_ProjectHelper
         // Get OTIF Specific information
         gateToOTIFCustomSetting = IPM_Utils.getOTIFMapping();   
     }
+    
+    /**************************************************************
+    * @description: Used for computing the where clause 
+    */
+    private static String getWhereCondition(String whereCondition){
+        if(!projectComplexitySet.isEmpty())
+            {
+                whereCondition  += ' IPM_Template_Complexity__c in :projectComplexitySet ';
+            }
+            
+            if(!projectTypeSet.isEmpty() )
+            {
+                if(String.isNotEmpty( whereCondition))
+                {
+                    whereCondition  += ' AND ';
+                }
+                
+                whereCondition  += ' IPM_Project_Type__c in :projectTypeSet ';
+            }
+            
+            if(String.isNotEmpty(categoryString))
+            {
+                if(String.isNotEmpty( whereCondition))
+                {
+                    whereCondition  += ' AND ';
+                }
+                
+                if(String.isNotEmpty(categoryString) )
+                {
+                    whereCondition  = whereCondition + ' IPM_Category__c includes ( '+categoryString +') ';
+                }
+            }
+            
+            if(!projectGKMSet.isEmpty())
+            {
+                if(String.isNotEmpty(whereCondition))
+                {
+                    whereCondition  += ' AND ';
+                }
+                
+                if(String.isNotEmpty(GKMString) )
+                {
+                     whereCondition  += ' IPM_GKM__c includes ( '+ GKMString +' ) '; 
+                }
+            }
+        return whereCondition;       
+    }
+    
+    
+    
     
     /**************************************************************
     * @description: Used for putting Document Template Specific Section and getting Master Questionnaire Map 

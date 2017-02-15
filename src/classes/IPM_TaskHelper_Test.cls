@@ -5,7 +5,7 @@ private class IPM_TaskHelper_Test{
     private static User platformUserPL1;
     private static User platformUserPL2;
     private static User userBDRole;
-
+    public static final String GEN_PL_LASTNAME = 'GENERIC_PL';
     private static list<IPM_Project__c> projectList;
     private static list<IPM_Project__c> projectDetailList;
     private static list<IPM_Task__c> taskDetailList;
@@ -13,7 +13,10 @@ private class IPM_TaskHelper_Test{
     private static final String  GLOBAL_PL2 ='GLOBAL_PL2';
     private static final String  GLOBAL_BD_OWNER ='GLOBAL_BD_OWNER';
     private static final Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
-    
+    private static User genericProjectLeader;
+    public static final String EMPTY_STRING=''; 
+    public static final String ASSERT_ERROR_STR = 'Projects not Created Properly';
+    public static List<IPM_Project__c> projectListGKM8;
     /***********************************
       @name: projectSetUpData
       @Description: Project Test Data Creation
@@ -24,7 +27,7 @@ private class IPM_TaskHelper_Test{
     @testSetup static void projectSetUpData() 
      {
         System.runAs(adminUser){
-        	
+        	genericProjectLeader = IPM_TestFactory_Helper.createIPMGenericPlatformProfileUser(EMPTY_STRING);
         	platformUserPL1 = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
             platformUserPL1.lastname = GLOBAL_PL1;
             platformUserPL2  = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER);
@@ -42,6 +45,13 @@ private class IPM_TaskHelper_Test{
             list<User> userUpdatedList3 = [SELECT lastname FROM User WHERE lastname=:GLOBAL_PL1];
             system.assertEquals(userUpdatedList3.size(),1,'Global BD is not created');
             
+        }
+        
+        System.runAs(genericProjectLeader){
+            Map<String,List<Object>> projectFieldToValueMap = New Map<String,List<Object>>();
+            List<String> lstGKMs = new List<String> {'GKM8'};
+            projectListGKM8 = IPM_TestFactory_Helper.genericProjectSetUp(1,genericProjectLeader, lstGKMs, projectFieldToValueMap);   
+            //insert projectListGKM8;
         }
         
         // Create Company Card information 
@@ -71,6 +81,7 @@ private class IPM_TaskHelper_Test{
          // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(new List<User>{platformUserPL1,platformUserPL2,userBDRole}); 
         projectList = new list<IPM_Project__c> ();
+        projectList.addAll(projectListGKM8);
         
         System.runAs(platformUserPL1)
         {
@@ -478,5 +489,32 @@ private class IPM_TaskHelper_Test{
         }  
      
      }
+     
+     private static testmethod void processGKM8SetUpForTasks(){
+    	 // Create an instances of standard Users for Allocation to Project Leaders.
+    	
+	        
+    	List<User> userList = [Select Id,Name,lastName from User where LastName =: GEN_PL_LASTNAME limit 1];
+        genericProjectLeader = userList.get(0);
+	    
+	    system.RunAs(genericProjectLeader){
+	        Test.startTest();
+	        // Get the list of user's for project leaders.
+       
+	            List<IPM_Project__c> lstProjects= [select id, name, IPM_ProjectGKM__c
+	                                                FROM IPM_Project__c Where Name != 'IPM_MasterProject' and IPM_ProjectGKM__c = 'GKM8'];
+	           
+	            list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_TaskSpan__c,IPM_Type_of_Task__c,IPM_Task_Complexity__c,IPM_Project_Document_Section__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,
+            							  IPM_Assignee__c,IPM_Active__c,IPM_Phase__c,IPM_Project__r.Name,IPM_Completed__c
+                                          FROM IPM_Task__c WHERE IPM_Project__c IN :lstProjects];
+	            
+	            
+	            system.assert(lstProjects.size()>0, ASSERT_ERROR_STR );
+	            system.assert(taskList.size()>0,'Tasks not Created Properly.' );
+            
+    		Test.stopTest(); 
+	    }
+             
+    }
      
 }
