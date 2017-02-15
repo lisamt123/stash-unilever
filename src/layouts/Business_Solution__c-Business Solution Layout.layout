@@ -296,7 +296,7 @@
         <fields>TASK.PRIORITY</fields>
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.LAST_UPDATE</fields>
-        <relatedList>Activities.Design_Challenge__c</relatedList>
+        <relatedList>Activities.Business_Solution__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
