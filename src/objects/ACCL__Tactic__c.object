@@ -408,19 +408,11 @@
                 <default>true</default>
             </picklistValues>
             <picklistValues>
-                <fullName>PerCase</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>% Per Case</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Percentage</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Weekly Lump Sum</fullName>
+                <fullName>$ Per Case</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
