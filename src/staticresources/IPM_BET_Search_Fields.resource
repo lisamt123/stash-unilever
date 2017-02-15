@@ -1,0 +1,6 @@
+"Field_Label__c","Field_Name__c","Is_Date__c","Name"
+"Current Status","Status","false","Column3"
+"Brand Positioning","brandPos","false","Column4"
+"Target Launch Date","targetLaunchDate","true","Column2"
+"Owner","OwnerName","false","Column5"
+"Name","betName","false","Column1"
