@@ -370,8 +370,6 @@ public with sharing class IPM_ProjectSearchCtrl{
        *******************************************************/ 
 
        if(string.isNotBlank(selectedCategory)) {
-            list<string> projCategoryList = IPM_Utils.convertJSArrayToLsArray(selectedCategory);
-            set <string> projCategorySet = new set <string> ();
             noRecords = !noRecords ? false : noRecords;
             soql += ' AND IPM_Category_Text__c IN ' + IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(selectedCategory));
        }
