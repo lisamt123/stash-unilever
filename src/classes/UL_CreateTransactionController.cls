@@ -352,8 +352,12 @@ global with sharing class UL_CreateTransactionController {
                             
                             /**Query the Customer Marketing director for the Sales org**/
                               permissionset permissionId =[SELECT Id FROM PermissionSet WHERE Name = 'SoCo_Customer_Marketing_Director'];
-                              PermissionSetAssignment userid = [SELECT AssigneeId FROM PermissionSetAssignment WHERE PermissionSetId =:permissionId.id Limit 1];
-                              userLst = [SELECT Id, Name FROM User WHERE id=:userid.AssigneeId and ACCL__Sales_Org__c=:salesOrg Limit 1];
+                              list<PermissionSetAssignment> userid = [SELECT AssigneeId FROM PermissionSetAssignment WHERE PermissionSetId =:permissionId.id LIMIT :(Limits.getLimitQueryRows()-Limits.getQueryRows())];
+                              list<id> userIdList=new list<id>();
+                              for(PermissionSetAssignment userIdLoop:userid){
+                                  userIdList.add(userIdLoop.AssigneeId);
+                              }
+                              userLst = [SELECT Id, Name FROM User WHERE id In:userIdList and ACCL__Sales_Org__c=:salesOrg Limit 1];
                             
                             /**Create an approval request for the Cross Category Transfer transaction**/                               
                             Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
