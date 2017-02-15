@@ -9354,6 +9354,10 @@
         <object>UL_Workflow_Threshold_Template__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+	<pageAccesses>
+        <apexPage>myTradeCalendar</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>ACCL__Account_Set__c.SOCO_Customer_Set</recordType>
         <visible>true</visible>
@@ -9536,6 +9540,10 @@
     </recordTypeVisibilities>
     <tabSettings>
         <tab>standard-Account</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>My_Trade_Promoton_Calendar</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

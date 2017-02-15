@@ -944,7 +944,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Off-Invoice</fullName>
+                <fullName>OffInvoice</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1070,7 +1070,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Off-Invoice</fullName>
+                <fullName>OffInvoice</fullName>
                 <default>false</default>
             </values>
             <values>
