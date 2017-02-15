@@ -465,7 +465,7 @@ public without sharing class IPM_Utils {
                                                      AND  id =: projectId AND Is_Archieved__c=false  LIMIT 1];
         if(lstProjectUser!=null && !lstProjectUser.isEmpty())
         {
-             if(!IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(lstProjectUser[0].IPMProject_Span__c)){
+             if((!IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(lstProjectUser[0].IPMProject_Span__c))||(lstProjectUser[0].IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && lstProjectUser[0].IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
                  return true;
              }
          }

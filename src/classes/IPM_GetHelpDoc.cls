@@ -77,6 +77,10 @@ public with sharing class IPM_GetHelpDoc {
         this();
     }
     
+    public IPM_GetHelpDoc(IPM_RolloutPlansAddLocalController addRolloutLocalCtrl){
+        this();
+    }
+    
     public IPM_GetHelpDoc(IPM_RolloutPlansTableController rolloutTableCtrl){
         this();
     }

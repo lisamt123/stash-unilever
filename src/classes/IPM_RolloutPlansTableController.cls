@@ -20,20 +20,23 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
   
     public Map<Id,Map<Id,List<IPM_Country__c>>> projectTolocalRolloutToCountryMap{get;set;}
     public Map<Id,Map<Id,List<IPM_Country__c>>> rolloutTolocalRolloutToCountryMap{get;set;}
+    public Map<Id,List<IPM_Country__c>> localProjectToCountryMap{get;set;}
     public List<IPM_Company_Card__c> lstUserLocalCompanyCards{get;set;} // local company card
     public List<IPM_Company_Card__c> lstUserRegionalCompanyCards{get;set;} // reginal company card
     // contains Regional Plus Local Project as well as Rollout List
     public Map<Id,IPM_Project__c> lstcompleteProjects {get; set;} //List of Regional Rollouts after they have been converted to Projects  
-    public Map<Id,IPM_Project_Rollout__c> lstcompleteRollout {get; set;} //List of local Rollouts after they have been converted to Projects  
+    public Map<Id,IPM_Project_Rollout__c> lstcompleteRollout {get; set;} //List of local Rollouts after they have been converted to Projects
+    public Map<Id,IPM_Country__c> lstcompleteCountry {get;set;} ////List of local Countries for GKM8
     public String selectedMCORollout {get; set;} //Selected MCO Rollout - used for deletion
     public String cancelRedirect;
     public Boolean isPLAllocated {get; set;} //Boolean variable to define if PL is allocated for regional rollout
     public Boolean doShowPLName {get; set;} //Boolean variable to define if PL is name should be shown for regional rollout
     public Boolean isFLAllocated {get; set;} //Boolean variable to define if PL is allocated for regional rollout
     public Boolean doShowFLName {get; set;} //Boolean variable to define if PL is name should be shown for regional rollout
-    
+    public String MCOLocalOriginal{get;set;}// String variable to get the MCO name for Local Original Projects
     public Boolean isSpanGlobal {get; set;} //Boolean variable to define if project span is Global
     public Boolean isSpanRegional {get; set;} //Boolean variable to define if project span is Regional
+    public Boolean countryListEmpty{get; set;}//Boolean variable to check the country list size for gkm8 project.
     public Boolean isEditMode {get; set;} //Boolean variable to define if the page is in edit mode
     public Boolean isEditable{get;set;} //Boolean Variable to define if the record is editable by the current logged in user
     public Boolean isStatusEditable {get; set;} //If the Rollout Status can be edited
@@ -84,7 +87,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public transient final string strIPM_RolloutPlansTablePage{get;set;}
     public transient final string strIPM_LocalRolloutPlansTablePage{get;set;}
     public transient final string strIPM_RolloutPlansTable_GKM3Page{get;set;}
-	
+    public transient final string strIPM_RolloutPlansTable_LocalOriginal{get;set;}
+    
     /*******************************************************************************************************
     * @description  Constructor
     * @param        NONE
@@ -96,6 +100,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         strIPM_RolloutPlansTablePage = 'IPM_RolloutPlansTablePage';
         strIPM_LocalRolloutPlansTablePage = 'IPM_LocalRolloutPlansTablePage';
         strIPM_RolloutPlansTable_GKM3Page = 'IPM_RolloutPlansTable_GKM3Page';
+        strIPM_RolloutPlansTable_LocalOriginal = 'IPM_RolloutPlansTable_LocalOriginal';
         IPM_IECompatible.ieFix();//Added for compatibility fix
         
         baseUrl = httpsStr + string.valueOf(ApexPages.currentPage().getHeaders().get(hostStr));
@@ -116,7 +121,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {
             cancelRedirect = ApexPages.currentPage().getParameters().get(CANCEL_REDIRECT);
  
-            if( (lstcompleteProjects.isEmpty() && lstcompleteRollout.isEmpty())  && (cancelRedirect != BOOLEAN_TRUE))
+            if(((lstcompleteProjects.isEmpty() && lstcompleteRollout.isEmpty() && !(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)) || (((project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)) && lstcompleteCountry.isEmpty()))  && (cancelRedirect != BOOLEAN_TRUE))
             {
                 if( !( project.IPM_PrepareForArchival__c || project.Is_Archieved__c ) )
                 {
@@ -142,7 +147,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     * @return       NONE
     */
     private void initialise()
-    {
+    {	
+    	countryListEmpty = false;
         isPLAllocated = false; 
         isEditMode = false;
         isFLAllocated=false;
@@ -156,12 +162,13 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             projectTolocalRolloutToCountryMap.clear();
             rolloutTolocalRolloutToCountryMap.clear();
         }
-        
+        localProjectToCountryMap = new Map<Id,List<IPM_Country__c>>();
         projectTolocalRolloutToCountryMap = new Map<Id,Map<Id,List<IPM_Country__c>>>();
         rolloutTolocalRolloutToCountryMap = new Map<Id,Map<Id,List<IPM_Country__c>>>();
 
         lstcompleteProjects = new Map<Id,IPM_Project__c>();   
         lstcompleteRollout = new Map<Id,IPM_Project_Rollout__c>();
+        lstcompleteCountry = new Map<Id,IPM_Country__c>();
         
         try
         {
@@ -179,7 +186,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                            IPM_Parent_Project__c,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_Phase__c,IPM_PM_Approach__c,IPM_Project_Description__c,
                            IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPM_Project_Logo_Id__c,IPM_Project_Logo__c,IPM_Project_Name__c,
                            IPM_Project_Type__c,IPM_Sector__c,IPM_Strategic_Intent__c,IPM_Sub_Category__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c,
-                           IPM_Target_Launch_Date__c,IPM_Technical_Project_Leader__c,IPM_UserCategory__c,IPM_PrepareForArchival__c,Is_Archieved__c,Name,Sustainability_Period__c,IPM_ProjectSubType__c,IPM_Data_Migrated_Gate__c,  
+                           IPM_Target_Launch_Date__c,IPM_Technical_Project_Leader__c,IPM_UserCategory__c,IPM_PrepareForArchival__c,Is_Archieved__c,Name,Sustainability_Period__c,IPM_ProjectSubType__c,IPM_Data_Migrated_Gate__c,IPM_Company_Card__r.IPM_MCO__c,  
                            (SELECT Id, Is_Archieved__c,IPM_Project_Name__c FROM IPM_Projects__r),
                            (SELECT Id, IPM_Document_Status__c, IPM_GateDocuments__c, IPM_Project__c, IPM_Project_Template__c, IPM_Contract_GateKeeper_Model__c, IPM_Project__r.IPMProject_Span__c, IPM_Project__r.IPM_Project_Name__c FROM Project_Documents__r)
                            FROM IPM_Project__c 
@@ -188,6 +195,12 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 if(!projectList.isEmpty())
                 {
                     project = projectList[0];
+                }
+                //Added to get the List of Countries corrosponding to local Project.
+                if((project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL))
+                {
+                  MCOLocalOriginal = project.IPM_Company_Card__r.IPM_MCO__c; 
+                  getLocalProjectCountries(projectId);
                 }
                 
                 showEntity = String.format(Label.IPM_ShowEntity,new String[]{project.IPMProject_Span__c});
@@ -264,6 +277,20 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     *  @return   NONE
     */           
     
+    private void getLocalProjectCountries(Id projectId){
+      
+      List <IPM_Country__c> countryList = new List <IPM_Country__c>();
+      
+      if(projectId!=null)
+      {
+        countryList = [select Country_Name__c,Country_Code__c,MCO_Name__c from IPM_country__c where IPM_Local_Project__c =:projectId];
+      }
+      If(countryList.size()==0)
+      {
+      	countryListEmpty = true;
+      }
+      localProjectToCountryMap.put(projectId,countryList);
+    }
     
     private void isRolloutEditable(Boolean editMode,Boolean editable){
 	   //check for isRolloutEditable
@@ -586,6 +613,45 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             }
             
         }
+        else if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(project.IPMProject_Span__c))
+        {
+          String queryString = 'SELECT Id,IPM_Rollout_Status__c,Name,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Project_Name__c,IPM_Phase__c,IPM_Target_Launch_Dates__c, IPM_Project_Leader__c,IPM_Finance_Lead__c, Rollout_Plan_Target_Launch_Date__c, ';
+
+            queryString+= ' (SELECT ';
+            for (String field : Schema.SObjectType.IPM_Country__c.fields.getMap().KeySet())
+            {
+                if (!(field.equalsignoreCase(ID_PARAMETER)))
+                {
+                    queryString+= field + ', ';
+                }
+            }
+            queryString+= ' Id from IPM_Countries2__r) ';
+          
+            queryString+= ' FROM IPM_Project__c WHERE Id =: projectId';
+            if(project.Is_Archieved__c)
+            {
+                queryString+= '  AND Is_Archieved__c = true AND IPM_StoppedByProject__c = :projectId ';      
+            } 
+            else
+            {
+                queryString+= '  AND Is_Archieved__c =: isArchiveFalse '; 
+            } 
+            queryString+= ' ORDER BY IPM_Project_Name__c LIMIT 50000';
+            System.debug(LoggingLevel.Error,'queryStringqueryString::'+queryString);
+            
+            associatedProjectMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>)Database.query(queryString) );  
+            
+            for(IPM_Project__c localProject : associatedProjectMap.values())
+            {
+                //Check Leader Status
+                for(IPM_Country__c localCountry : localProject.IPM_Countries2__r)
+                {
+                  lstcompleteCountry.put(localCountry.id,localCountry);     
+                }
+           }
+           System.debug(LoggingLevel.Error,'lstcompleteCountrylstcompleteCountry::'+lstcompleteCountry);
+           //System.assert(false);       
+        }
             
             
         // Map of Local Rollouts against corresponding Countries. It would only contain Local Rollouts which have associated Countries.
@@ -732,7 +798,19 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
             queryString+= ' Id,Local_Project__r.IPM_No_Rollout_Disabled__c,IPM_Regional_PL__r.Name,Finance_Member__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE (Regional_Project__c =: projectId OR IPM_Project__c =: projectId)  AND RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setLocalProjectNames) AND ( isActive__c = true OR '+ showEntity + ' = true )'; 
-        }       
+        }    
+        else if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(project.IPMProject_Span__c))
+        {
+            //IPM PROJECT ROLLOUT
+            for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
+            {
+                if (!(field.equalsignoreCase(ID_PARAMETER))) 
+                {
+                    queryString+= field + ', ';
+                }
+            }
+            queryString+= ' Id,Local_Project__r.IPM_No_Rollout_Disabled__c,IPM_Regional_PL__r.Name,Finance_Member__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE (Local_Project__c =: projectId OR IPM_Project__c =: projectId)  AND RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND ( isActive__c = true OR '+ showEntity + ' = true )'; 
+        }   
         
         queryString+= ' ORDER BY IPM_Rollout_Project__c LIMIT 50000';
             
@@ -848,6 +926,12 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 addRollouts = Page.IPM_RolloutPlansRegional;
                 addRollouts.getParameters().put(ID_PARAMETER, projectId);                
                 addRollouts.setRedirect(true);
+            }
+	    else if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+            {   //For Local Original Updated
+                addRollouts = Page.IPM_RolloutPlansLocalOriginal;
+                addRollouts.getParameters().put(ID_PARAMETER, projectId);                
+                addRollouts.setRedirect(true);
             }           
             addRolloutUrlStr = baseUrl + addRollouts.getUrl();
             
@@ -879,6 +963,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         validationError='';
         // CR0355 - clear 'nonKeyMcoTLDMisalignedMap'
+        
+        If((project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
+        	update project;
+        }
         for(String key: nonKeyMcoTLDMisalignedMap.keySet())
         {
             nonKeyMcoTLDMisalignedMap.put(key,false);

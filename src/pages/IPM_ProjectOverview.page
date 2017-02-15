@@ -431,35 +431,41 @@
 							</apex:outputpanel>
 							<apex:outputpanel layout="block"
 								styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}"
-								rendered="{!AND(isOrgPrjRLplancreated,isOriginal)}">
+                                        rendered="{!OR(AND(isOrgPrjRLplancreated,isOriginal),NOT(isCategoryThresholdApplicable))}">
 								<div class="row">
 									<div class="col-sm-6 pr0">
 										<div class="keycontent">{!$Label.IPM_Threshold_Status}</div>
 									</div>
 									<div
 										class="col-sm-6 pl0 txtalright {!if(project.IPM_Threshold_Status__c==$Label.IPM_Above_Threshold ,'thGreenClr' ,if(project.IPM_Threshold_Status__c==$Label.IPM_Exempt ,'thBlueClr',''))}">
-										{!project.IPM_Threshold_Status__c}</div>
-								</div>
-							</apex:outputpanel>
-							<apex:outputpanel layout="block"
-								styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}"
-								rendered="{!isOriginal}">
-								<div class="row">
-									<div class="col-sm-6 pr0">
-										<div class="keycontent">{!$Label.IPM_Category_Threshold}</div>
-									</div>
-									<div class="col-sm-6 pl0 txtalright">
-										&euro;{!project.IPM_Category_Thresh__c}mn</div>
-								</div>
-							</apex:outputpanel>
-							<!-- Display below outputPanel when isExemptFromThresholdITO is true-->
-							<apex:outputPanel layout="block" styleClass=""
-								rendered="{!isExemptFromThresholdITO}">
-								<div class="greyborder"></div>
-								<div class="row">
-									<div class="col-sm-12 pr0">
-										<div class="keycontent">{!$Label.IPM_Exempt_from_Threshold}</div>
-									</div>
+                                                <apex:outputpanel > {!if(isCategoryThresholdApplicable, project.IPM_Threshold_Status__c, $Label.IPM_NA)} </apex:outputpanel>
+                                                </div>
+                                        </div>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel layout="block"
+                                        styleClass="{!if( AND(project.IPM_Threshold_Status__c==$Label.IPM_BelowThreshold ,isOrgPrjRLplancreated,isOriginal)  ,'thRedBg','')}"
+                                        rendered="{!isOriginal}">
+                                        <div class="row">
+                                            <div class="col-sm-6 pr0">
+                                                <div class="keycontent">{!$Label.IPM_Category_Threshold}</div>
+                                            </div>
+                                            <div class="col-sm-6 pl0 txtalright">
+                                                <apex:outputpanel rendered="{!isCategoryThresholdApplicable}" >  &euro; </apex:outputpanel>
+                                                <apex:outputpanel > {!if(isCategoryThresholdApplicable, project.IPM_Category_Thresh__c, $Label.IPM_NA)} </apex:outputpanel>
+                                                <apex:outputpanel rendered="{!isCategoryThresholdApplicable}" > mn </apex:outputpanel>
+                                                </div>
+                                        </div>
+                                    </apex:outputpanel>
+                            </apex:outputpanel> 
+
+                            <!-- Display below outputPanel when isExemptFromThresholdITO is true-->
+                            <apex:outputPanel layout="block" styleClass=""
+                                rendered="{!isExemptFromThresholdITO}">
+                                <div class="greyborder"></div>
+                                <div class="row">
+                                    <div class="col-sm-12 pr0">
+                                        <div class="keycontent">{!$Label.IPM_Exempt_from_Threshold}</div>
+                                    </div>
 
 
 								</div>

@@ -23,15 +23,33 @@ private class IPM_RolloutPlansTableController_Test{
     private static Set<Id> regRolloutIds = New Set<Id>();
     private static final String ID_PARAMETER = 'Id';
     private static  PageReference pageRef = Page.ipm_rolloutplansadd;
+    private static final String EMPTY_STRING = '';
 
     
     @testSetup static void projectSetUp()  
-    {
+    {    
+    	User globalProjectLeader = null;
+        User regionalProjectLeader = null;
+        User localProjectLeader = null;
         test.startTest();
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 
-            stdUserForRollout = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            stdUserForRollout = IPM_TestFactory_Helper.createIPMPlatformProfileUser(EMPTY_STRING);
+            globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser(EMPTY_STRING);
+            regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(EMPTY_STRING);
+            localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(EMPTY_STRING);
+            
+            // Update LastNames to match functionalRoles
+            globalProjectLeader.lastname = 'GLOBAL_PL';
+            regionalProjectLeader.lastname = 'REGIONAL_PL';
+            localProjectLeader.lastname = 'LOCAL_PL'; 
+            
+            List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
+            update userList;         
+            List<User> dbUserList =  [Select Id from User where id in :userList];
+            System.assertEquals(dbUserList.size(),userList.size(),'Users not Created Properly.Actual no of Users should be'+userList.size());
+            
         }   
         // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -44,7 +62,8 @@ private class IPM_RolloutPlansTableController_Test{
         List<IPM_Company_Card__c> companyCardAssertList = [select id from IPM_Company_Card__c where id in : companyCardList];
         system.assertEquals(3,companyCardAssertList.size(),'Number of company card inserted is not 3 ');
 
-        IPM_TestFactory_Helper.getProjectMasterData();
+        IPM_TestFactory_Helper.loadMasterData();
+        
         IPM_TestFactory_Helper.shareMasterProject(new List<User>{stdUserForRollout}); 
         System.runAs(stdUserForRollout)
         {
@@ -54,7 +73,7 @@ private class IPM_RolloutPlansTableController_Test{
             
             Test.stopTest();
             List<IPM_Milestone__c> masterMilestones = [Select Id, IPM_Phase__c from IPM_Milestone__c WHERE IPM_Project__c =: ProjectList[0].Id];
-            System.assert(masterMilestones.size() > 0, 'Milestone successfully not created');
+            System.assert(!masterMilestones.isEmpty(), 'Milestone successfully not created');
             
             set<Id> projId = new set<Id>();
             for(IPM_Project__c proj : projectList)
@@ -73,58 +92,51 @@ private class IPM_RolloutPlansTableController_Test{
     } 
 	private static void createRolloutCountry(List<IPM_Project__c> projectListTmp, User stdUser){
 		regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectListTmp,new List<User>{stdUser,stdUser});
-            insert regionalRolloutList; // this will give me all regional rollout
-            
-            
-            Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
-            for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
+        insert regionalRolloutList; // this will give me all regional rollout
+        
+        
+        Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+        for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
+        {
+            List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+            if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
             {
-                List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
-                if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
-                {
-                    projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
-                }
-                projectRolloutList.add(projectRollout);
-                projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
-                mapNewProjectRollouts.put(projectRollout.IPM_Project__c,projectRollout);
-                regRolloutIds.add(projectRollout.Id);
-             }
-            
-            // Create local Rollouts for Created regional Rollouts.
-            localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{stdUserForRollout});  
-            insert localRolloutList; 
-           
-            // Create Country specific information.
-            List <IPM_Country__c> countryList= new List<IPM_Country__c>();
-         
-            for(IPM_Project_Rollout__c localRollout : localRolloutList)
+                projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
+            }
+            projectRolloutList.add(projectRollout);
+            projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
+            mapNewProjectRollouts.put(projectRollout.IPM_Project__c,projectRollout);
+            regRolloutIds.add(projectRollout.Id);
+         }
+        // Create local Rollouts for Created regional Rollouts.
+        localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{stdUserForRollout});  
+        insert localRolloutList; 
+       
+        // Create Country specific information.
+        List <IPM_Country__c> countryList= new List<IPM_Country__c>();
+     
+        for(IPM_Project_Rollout__c localRollout : localRolloutList)
+        {
+            String geoExternalId = EMPTY_STRING;
+            if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
             {
-                String geoExternalId = '';
-                if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
-                {
-                    geoExternalId = 'AG';
-                }
-                else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
-                {
-                    geoExternalId = 'BR';
-                }
-                
-                MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId);
-                
-                
-                IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo.id,
-                                                                 IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
-                
-                countryList.add(tempCountry);
+                geoExternalId = 'AG';
+            }
+            else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
+            {
+                geoExternalId = 'BR';
             }
             
-            insert countryList;
+            MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId);            
             
+            IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo.id,IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
             
+            countryList.add(tempCountry);
         }
         
-        
-
+        insert countryList;               
+    }
+    
     public static testmethod void testRolloutProject()
     {
         Set<String> projectNameSet = new Set<String>{TESTPROJECT};
@@ -144,7 +156,7 @@ private class IPM_RolloutPlansTableController_Test{
             
             List<String> milestoneNames = new List<String>{IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE};
             List<IPM_Milestone__c> milestones = [Select Id,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: projectList[0].Id and IPM_Active__c = true and IPM_Due_Date_isNull__c = :IPM_ConstantUtils.IPM_false and IPM_Name__c in: milestoneNames limit 50000];
-            System.assert(milestones.size()>0,'Milestone not Created');
+            System.assert(!milestones.isEmpty(),'Milestone not Created');
             
             System.assertEquals(projectList[0].IPM_Phase__c,'Ideas','Project Phase is not ideas');
             
@@ -191,7 +203,7 @@ private class IPM_RolloutPlansTableController_Test{
     /********************************************************************
     * @Description: This method is used to add method of the main class           
     * *******************************************************************/
-    static testMethod void RolloutMethodTest()
+    static testMethod void rolloutMethodTest()
     {
         
         
@@ -205,11 +217,11 @@ private class IPM_RolloutPlansTableController_Test{
             String bool  = IPM_RolloutPlansTableController.BOOLEAN_TRUE;
             System.assertEquals('true', bool,'It is false');
             
-            String ChkRollout =IPM_RolloutPlansTableController.CHECK_ROLLOUTS ;
-            System.assertEquals('checkRollouts', ChkRollout,'CheckRollout not called');
+            String chkRollout =IPM_RolloutPlansTableController.CHECK_ROLLOUTS ;
+            System.assertEquals('checkRollouts', chkRollout,'CheckRollout not called');
             
             String idParam = IPM_RolloutPlansTableController.ID_PARAMETER ;
-            System.assertEquals('Id', idParam,'Id not matched');
+            System.assertEquals(ID_PARAMETER, idParam,'Id not matched');
             
             String addRollout = IPM_RolloutPlansTableController.ADD_ROLLOUT;
             System.assertEquals('addRollout', addRollout,'Add Rollout not called');
@@ -270,7 +282,7 @@ private class IPM_RolloutPlansTableController_Test{
     }
     
     
-    static testMethod void RegionalOrignalTest()
+    static testMethod void regionalOrignalTest()
     {    
         User regionalUser = [Select Id, Name,LastName from User where LastName='PLATFORM_USER' limit 1];
         System.runAs(regionalUser)
@@ -303,7 +315,7 @@ private class IPM_RolloutPlansTableController_Test{
             Test.stopTest();
         }
     }
-    static testMethod void RegionalOrignalTest2()
+    static testMethod void regionalOrignalTest2()
     {    
         User regionalUser = [Select Id, Name, LastName from User where LastName='PLATFORM_USER' limit 1];
         Set<String> projectNameSet = new Set<String>{TESTPROJECT};
@@ -371,5 +383,41 @@ private class IPM_RolloutPlansTableController_Test{
         }
         
     }
+    
+    public static testmethod void createGKM8Project(){
+
+        User localProjectLeader = null;
+        
+        List<IPM_Project__c> projectListGKM8;
+
+        // Get the list of user's for project leaders.
+        List<User> userList = [Select Id,Name,lastName from User where LastName in('LOCAL_PL')];
+        
+        // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+        IPM_TestFactory_Helper.shareMasterProject(userList); 
+        
+        localProjectLeader = userList[0];
+        
+        Test.startTest();
+        
+	        System.RunAs(localProjectLeader){
+	        
+	            Map<String,List<Object>> projectFieldToValueMap = New Map<String,List<Object>>();
+
+	            List<String> lstGKMs = new List<String> {'GKM8'};
+	            projectListGKM8 = IPM_TestFactory_Helper.genericProjectSetUp(1,localProjectLeader, lstGKMs, projectFieldToValueMap);
+	            insert projectListGKM8;
+	        }
+   			
+   		system.assertEquals(!projectListGKM8.isEmpty(), true);
+   			
+	        ApexPages.currentPage().getParameters().put(ID_PARAMETER,projectListGKM8[0].id);
+	        system.assertEquals(ApexPages.currentPage().getParameters().get(ID_PARAMETER) == projectListGKM8[0].id,  true);
+	        IPM_RolloutPlansTableController irp = new IPM_RolloutPlansTableController();
+	        irp.addRollout();
+	        irp.saveRollout();
+        
+        Test.stopTest();
+    } 
 
 }

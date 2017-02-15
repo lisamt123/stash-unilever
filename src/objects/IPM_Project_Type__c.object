@@ -502,6 +502,14 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IsCategoryThresholdApplicable__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>IsCategoryThresholdApplicable</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Source_Project_Type__c</fullName>
         <description>Source project type</description>
         <externalId>false</externalId>

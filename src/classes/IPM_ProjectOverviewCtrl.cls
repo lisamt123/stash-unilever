@@ -162,10 +162,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
     
     public Boolean isBrandVisible{get;set;} //to display brand value
+    public Boolean isCategoryThresholdApplicable{get;set;} //to display CategoryThresholdApplicable value
     
     //SD constructor
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
-       
+    	
+        isCategoryThresholdApplicable = true;
         //variables/properties initialisation
         intializeVariables();
         lstprojecthistory=[SELECT ParentId,Parent.Name,Parent.IPM_Fast_Track_Project__c 
@@ -260,6 +262,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
 			currGateToDisplay +=IPM_ConstantUtils.PDLAMP;
            }
        }
+       if(currentProjecttype != null)	
+       	 isCategoryThresholdApplicable = currentProjecttype.IsCategoryThresholdApplicable__c;
        
        /*** Logic to Display the "Reactivate Project" button on Project Overview page for IPM Business Partner   
    			For Stopped project in Ideas phase for 38 months, "Reactivate Project" button will be displayed for IPM Business Partner
