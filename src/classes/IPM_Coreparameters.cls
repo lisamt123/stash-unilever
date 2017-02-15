@@ -242,7 +242,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             bLinkBET = false;
         }
         
-        IPM_Coreparameter.IPM_BET_Toolkit__c = 'No BET';
+    
         
         resetBEToption = IPM_Coreparameter.IPM_BET_Toolkit__c;
         

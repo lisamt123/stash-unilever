@@ -86,6 +86,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     	
                     	project.IPM_Category_Platform__c = IPM_ConstantUtils.PLATFORM_NA;
                     } 
+		   // Set BET Toolkit field to "NO BET" for GKM8 and Food Solutions project 
+                    if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_8 || project.IPM_Category_Group__c == IPM_ConstantUtils.IPM_UFS_CATEGORY_GROUP){
+                         project.IPM_BET_Toolkit__c = IPM_ConstantUtils.NO_BET ;
+               	    }
                     //Set default BET value
                     if(String.isBlank(project.IPM_BET_Toolkit__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
                         project.IPM_BET_Toolkit__c = IPM_ConstantUtils.CREATE_NEW_BET ;

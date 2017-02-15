@@ -130,7 +130,7 @@ var headerRenderer = function(instance, td, row, col, prop, value, cellPropertie
         td.style.fontWeight = 'bold';
         td.style.textAlign = 'center';
     };
-    var ReadOnlyRenderer = function(instance, td, row, col, prop, value, cellProperties) {
+    var readOnlyRenderer = function(instance, td, row, col, prop, value, cellProperties) {
         Handsontable.renderers.TextRenderer.apply(this, arguments);
         td.style.backgroundColor = '#FBFBF9';
     };
@@ -141,7 +141,7 @@ var headerRenderer = function(instance, td, row, col, prop, value, cellPropertie
         td.style.textAlign = 'left';
     };
     
-    var FinanceValidationFunction = function(changes, source, isValid) {
+    var financeValidationFunction = function(changes, source, isValid) {
                 
             Validationflag7 = 'false';
             if (cleanCalled) {
@@ -267,16 +267,16 @@ jq(document).ready(function() {
             }
             if ([0, 1, 2, 3, 14, 18, 22, 23, 24, 25, 26, 27, 38].indexOf(row) !== -1 && col >= 0) {
                 cellProperties.readOnly = true;
-                cellProperties.renderer = ReadOnlyRenderer;
+                cellProperties.renderer = readOnlyRenderer;
             } else if ([19, 20].indexOf(row) !== -1 && [4, 6, 7, 9].indexOf(col) !== -1) {
                 cellProperties.readOnly = true;
-                cellProperties.renderer = ReadOnlyRenderer;
+                cellProperties.renderer = readOnlyRenderer;
             } else if ([21].indexOf(row) !== -1 && [4, 6, 7, 8, 9].indexOf(col) !== -1) {
                 cellProperties.readOnly = true;
-                cellProperties.renderer = ReadOnlyRenderer;
+                cellProperties.renderer = readOnlyRenderer;
             } else if (sustPeriod === '3' && [8, 9, 13, 14].indexOf(col) !== -1 && [19, 20].indexOf(row) === -1) {
                 cellProperties.readOnly = true;
-                cellProperties.renderer = ReadOnlyRenderer;
+                cellProperties.renderer = readOnlyRenderer;
             } else if ([0, 1, 2, 3].indexOf(col) !== -1) {
                 cellProperties.readOnly = true;
                 cellProperties.renderer = headerRenderer2;
@@ -314,7 +314,7 @@ jq(document).ready(function() {
             return cellProperties;
         },
         mergeCells: cellsArray,
-        afterChange: FinanceValidationFunction,
+        afterChange: financeValidationFunction,
         
         
         afterValidate: function(isValid, value, row, prop, source) {

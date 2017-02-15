@@ -691,6 +691,7 @@ public class IPM_ConstantUtils {
     public static final string IPM_GEOGRAPHY_UFS_COUNTRYGROUP = 'UFS Country Group';
     Public static final string IPM_Excluded_Apps = 'IPM';
     public static final String IPM_PROJECT_LEGACY = 'Legacy';
+    public static final String IPM_UFS_CATEGORY_GROUP = 'Food Solutions';
     
     //ipm company card
     //Constant Declaration
