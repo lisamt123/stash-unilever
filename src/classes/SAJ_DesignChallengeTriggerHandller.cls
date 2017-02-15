@@ -54,14 +54,17 @@ Public with sharing class SAJ_DesignChallengeTriggerHandller
         public static void updateTask(Map<Id, Task> newMap, Map<Id, Task> OldMap)
         {
             String Cmp = 'Completed';
+           String DCKeyPrefix = Design_Challenge__c.sObjectType.getDescribe().getKeyPrefix();
             Set<Id> idSet = new Set<Id>();
             for(Task tk : newMap.values())
             {
-                idSet.add(tk.whatId);
+                if(tk.WhatId != null && String.valueOf(tk.WhatId).startsWith(DCKeyPrefix)){
+                    idSet.add(tk.whatId);
+                }
             }
             if(idSet.size()>0)
             {
-            List<Design_Challenge__c> cst = [Select Id, Open_Tasks__c, Completed_Tasks__c from Design_Challenge__c where Id IN: idSet ];
+            Map<Id, Design_Challenge__c> cst = new Map<Id,Design_Challenge__c>([Select Id, Open_Tasks__c, Completed_Tasks__c from Design_Challenge__c where Id IN: idSet ]); 
             Integer count1 = 0;
             Integer count2 = 0;
             if(cst != null && cst.size()>0)
@@ -72,39 +75,38 @@ Public with sharing class SAJ_DesignChallengeTriggerHandller
                     if(oldTask.Status != newMap.get(tskId).Status && oldTask.Status == Cmp)
                     {
                         count1++;
-                        if(cst[0].Completed_Tasks__c > 0)
+                        if(cst.get(newMap.get(tskId).WhatId).Completed_Tasks__c > 0)
                         {
                             count2--;
                         }
                     }
                     else if(oldTask.Status != newMap.get(tskId).Status && newMap.get(tskId).Status  == Cmp && oldTask.Status != Cmp)
                     {
-                        if(cst[0].Open_Tasks__c > 0)
+                        if(cst.get(newMap.get(tskId).WhatId).Open_Tasks__c > 0)
                         {
                             count1--;
                         }
                         count2++;
-                    }               
+                                  
                
 
                 }
-                if(cst[0].Completed_Tasks__c == null)
+                if(cst.get(newMap.get(tskId).WhatId).Completed_Tasks__c == null)
                 {
-                    cst[0].Completed_Tasks__c = 0;
+                    cst.get(newMap.get(tskId).WhatId).Completed_Tasks__c = 0;
                 }
-                cst[0].Completed_Tasks__c += count2;
-                if( cst[0].Open_Tasks__c == null)
+                cst.get(newMap.get(tskId).WhatId).Completed_Tasks__c += count2;
+                if( cst.get(newMap.get(tskId).WhatId).Open_Tasks__c == null)
                 {
-                    cst[0].Open_Tasks__c = 0;
+                    cst.get(newMap.get(tskId).WhatId).Open_Tasks__c = 0;
                 }
-                cst[0].Open_Tasks__c += count1;
-                update cst;
+                cst.get(newMap.get(tskId).WhatId).Open_Tasks__c += count1;
+                }
+                update cst.Values();
             }
             }
         }
-        
-/* This method is added for Deletion trigger */
-       
+
 //-------------------------------Method For Delete Task----------------------------------------------------------------------------
 
     public static void deleteTask(Map<Id, Task> oldMap)
