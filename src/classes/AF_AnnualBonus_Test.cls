@@ -12,7 +12,8 @@ public class AF_AnnualBonus_Test
     Private Static Integer IcurrYear = System.Today().year();
     Private Static string currYear=string.valueof(IcurrYear);
     private static user userforAnnualBonus;
-    private static String bonusMeasure ='BM1';
+    //private static String bonusMeasure ='BM1';
+    private static string measure='Business Measure';
     private static String Brandid = 'Brandid';
     private static String Agencyid = 'Agencyid';
     private static String Year = AF_Constants.YEAR;
@@ -168,7 +169,7 @@ public class AF_AnnualBonus_Test
                 sr.AF_Minimum__c = 1;
                 sr.AF_Outstanding__c = 3;
                 sr.AF_Stretching__c = 2;
-                sr.Bonus_Measure__c ='Business Measure';
+                sr.Bonus_Measure__c =measure;
                 subResultlist.add(sr);
             }
             insert subResultlist;
@@ -565,7 +566,7 @@ public class AF_AnnualBonus_Test
                 sr.AF_Digital__c = true;
                 sr.AF_Traditional__c = false;
                 sr.AF_Adaptation__c = false;
-                sr.Bonus_Measure__c ='Business Measure';
+                sr.Bonus_Measure__c =measure;
                 subResultlist.add(sr);
             }
             update subResultlist;
@@ -716,7 +717,7 @@ public class AF_AnnualBonus_Test
             }
             insert AgencyEsitmatelist1 ;
             List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmatelist1  limit 1];
-            //System.assertEquals(AgencyQuery[0].AF_Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
+            System.assert(AgencyQuery !=null, AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
             //Insert OOPS Estimate.
             List<AF_OOPS_Estimate__c> OOPSEstimateList = AF_TestFactory_Helper.InsertOOPsEstimate(1,true);
             List<AF_OOPS_Estimate__c> OOPSEstimateListQuery =[SELECT ID,AF_OOPS_Actual__c FROM AF_OOPS_Estimate__c WHERE ID IN :OOPSEstimateList LIMIT 1];
@@ -761,7 +762,7 @@ public class AF_AnnualBonus_Test
                 sr.AF_Digital__c = false;
                 sr.AF_Traditional__c = true;
                 sr.AF_Adaptation__c = false;
-                sr.Bonus_Measure__c ='Business Measure';
+                sr.Bonus_Measure__c =measure;
                 sr.AF_Qual__c=1;
                 sr.AF_Country__c=AFUnileverEntityQuery[0].id;
                 sr.Bonus_Measure__c=AF_Constants.TEST_COMMUNICATION;
@@ -963,7 +964,7 @@ public class AF_AnnualBonus_Test
             }
             insert AgencyEsitmatelist1 ;
             List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmatelist1  limit 1];
-            //System.assertEquals(AgencyQuery[0].AF_Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
+            System.assert(AgencyQuery!=null,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
             //Insert OOPS Estimate.
             List<AF_OOPS_Estimate__c> OOPSEstimateList = AF_TestFactory_Helper.InsertOOPsEstimate(1,true);
             List<AF_OOPS_Estimate__c> OOPSEstimateListQuery =[SELECT ID,AF_OOPS_Actual__c FROM AF_OOPS_Estimate__c WHERE ID IN :OOPSEstimateList LIMIT 1];
@@ -994,7 +995,7 @@ public class AF_AnnualBonus_Test
             //insert sub Results.
             List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,true);
             AF_QuarterlyBonus__c  quart=new AF_QuarterlyBonus__c ();
-            quart.Name='Business Measure';
+            quart.Name=measure;
             quart.Minimum__c=5;
             quart.Outstanding__c=10;
             quart.Stretching__c=23;
@@ -1007,7 +1008,7 @@ public class AF_AnnualBonus_Test
                 sub.AF_Digital__c = false;
                 sub.AF_Traditional__c = true;
                 sub.AF_Adaptation__c = false;
-                sub.Bonus_Measure__c ='Business Measure';
+                sub.Bonus_Measure__c =measure;
                 sub.AF_Qual__c=1;
                 sub.AF_Bonus_Threshold__c=BonusThresholdlist[0].id;
                 sub.AF_country__c=AFUnileverEntityQuery[0].id;
@@ -1208,7 +1209,7 @@ public class AF_AnnualBonus_Test
             }
             insert AgencyEsitmatelist1 ;
             List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmatelist1  limit 1];
-            //System.assertEquals(AgencyQuery[0].AF_Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
+            System.assert(AgencyQuery!=null,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
             //Insert OOPS Estimate.
             List<AF_OOPS_Estimate__c> OOPSEstimateList = AF_TestFactory_Helper.InsertOOPsEstimate(1,true);
             List<AF_OOPS_Estimate__c> OOPSEstimateListQuery =[SELECT ID,AF_OOPS_Actual__c FROM AF_OOPS_Estimate__c WHERE ID IN :OOPSEstimateList LIMIT 1];
@@ -1251,7 +1252,7 @@ public class AF_AnnualBonus_Test
                 sr1.AF_Digital__c = false;
                 sr1.AF_Traditional__c = true;
                 sr1.AF_Adaptation__c = false;
-                sr1.Bonus_Measure__c ='Business Measure';
+                sr1.Bonus_Measure__c =measure;
                 sr1.AF_Qual__c=1;
                 sr1.AF_Quant__c=23;
                 sr1.AF_Country__c=AFUnileverEntity1[0].id;

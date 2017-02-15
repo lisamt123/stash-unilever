@@ -327,6 +327,7 @@ public with sharing class AF_BonusMatrixSummary {
                 {
                    // AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,Submit_for_status,e.getMessage(),e.getTypeName(),e.getStackTraceString());
                     //apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+                    system.debug(e);
                 }
             for(AF_Bonus_Matrix__c BM:bonusSummaryObj.Bonus_Matrix__r){
                 if(ButtonValue == 'Approve'){
@@ -352,6 +353,7 @@ public with sharing class AF_BonusMatrixSummary {
                 {
                     //AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,Submit_for_status,e.getMessage(),e.getTypeName(),e.getStackTraceString());
                     //apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+                    system.debug(e);
                 }
             }
             

@@ -591,7 +591,7 @@ public class AF_AgencyHomePageController_Test
             }
             insert AgencyEsitmateNew;
             List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate and AF_Brand_Estimate__c !=:BrandEstNew[0].id limit 1];
-            //System.assertEquals(AgencyQuery[0].AF_Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
+            System.assert(AgencyQuery[0].id!=null,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
             //insert OOPS Actual.
             List<AF_OOPS_Actual__c> OopsactualList = AF_TestFactory_Helper.insertOOPSActual(1,true);
             List<AF_OOPS_Actual__c> OopsactualListQuery = [SELECT ID,AF_Agency__c FROM AF_OOPS_Actual__c WHERE ID IN : OopsactualList LIMIT 1];

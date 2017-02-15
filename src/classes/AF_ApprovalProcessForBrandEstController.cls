@@ -8,7 +8,7 @@
 @Version : 1.0
 @reference : none
 ****************************************************************************************************************************/
-public class AF_ApprovalProcessForBrandEstController
+public with sharing class AF_ApprovalProcessForBrandEstController
 {
     public String brandEstimateId {get;set;}
     public String ParentId {get;set;}
