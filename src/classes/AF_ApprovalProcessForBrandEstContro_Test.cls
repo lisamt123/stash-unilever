@@ -76,6 +76,7 @@ public class AF_ApprovalProcessForBrandEstContro_Test
             System.Assert(AFCurrencyQuery[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
             //insert controller review
             List<AF_Controller_Review__c> AFCurrenc = AF_TestFactory_Helper.AfcontrollerReview(1,true);
+            System.Assert(AFCurrenc[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
             List<AF_Controller_Review__c> AFCurrencyQuer = [SELECT Id FROM AF_Controller_Review__c where Brand_Estimate__c IN:BrandEstlist LIMIT 1];
             System.Assert(AFCurrencyQuer[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
             //insert agency estimate
@@ -239,7 +240,7 @@ public class AF_ApprovalProcessForBrandEstContro_Test
             AF_CountryBreakdownCheck  check=new AF_CountryBreakdownCheck();
             check.CheckCountryBreakdown(bandestiamteid);
             
-            
+           
         
             AF_ApprovalProcessForBrandEstController approvProceBrandEst=new AF_ApprovalProcessForBrandEstController();
             approvProceBrandEst.Actoridset.add(u.id);
