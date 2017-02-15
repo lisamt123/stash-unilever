@@ -27,7 +27,6 @@
         <value>Please make sure at least one Country is added to your Rollout Plan to continue.</value>
     </labels>
 <labels>
-<labels>
         <fullName>IPM_Global_Claims_Table</fullName>
         <language>en_US</language>
         <protected>false</protected>
