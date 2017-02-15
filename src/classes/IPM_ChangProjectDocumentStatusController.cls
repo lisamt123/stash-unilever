@@ -6,7 +6,6 @@
 ******************************************************************/ 
 public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_ProjectIntermediateController
 {  
-    // Variables Declaration
     public Id projectId{get; set;} //used to fetch current projectId 
     public IPM_Project_Document__c projectDoc {get; set;} //used to store query result from IPM_Project_Document__c object
     public List<IPM_Project_Document_Section__c> projSectionList {get; set;} //used to store query result from IPM_Project_Document_Section__c object
@@ -23,17 +22,14 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public List<IPM_Milestone__c> pendingMilestoneList{get;set;} // List of milestones which are not completed, it will be used to show on Postponed Tab Screen
     public IPM_Project__C ParentProject{get;set;} //used to fetch parent id of current project
     public string isCapability{get;set;} 
-    public IPM_Project_Type__c associatedProjectType{get;set;}
-    //upto here
-    //To replace duplicate string literals
-    private static final String IPM_CHANGEPROJDOCSTATUSCONT_STR = IPM_ChangProjectDocumentStatusController.class.getName();
+    public IPM_Project_Type__c associatedProjectType{get;set;} //upto here
+    private static final String IPM_CHANGEPROJDOCSTATUSCONT_STR = IPM_ChangProjectDocumentStatusController.class.getName(); //To replace duplicate string literals
     public static final String SUBMIT_STR = 'submit';
     public static final String LINEBREAK_STR = '</a><br/>';
     public static final String TARGET_STR = '" target="_top">';
     public static final String HREF_STR = '<a href="';
     public static final String PRINTDOC_STR = 'printDoc'; 
-    //For Showing Validation Error Messages
-    public Boolean milestoneError{get; set;}
+    public Boolean milestoneError{get; set;}   //For Showing Validation Error Messages
     public Boolean riskError{get; set;}
     public Boolean financialError{get; set;}
     public Boolean rolloutNotExistsError{get; set;}
@@ -85,8 +81,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     /*****************************************************************
     @Description :Constructor Fetch the Page parameters and retrieve lists
     *****************************************************************/
-    public IPM_ChangProjectDocumentStatusController()
-    {
+    public IPM_ChangProjectDocumentStatusController(){
         super();     
 		isPDLApproved = true;    
         isDefaultAvailable=false;
@@ -113,8 +108,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         String printDocUrlParam = ApexPages.currentPage().getParameters().get(PRINTDOC_STR); 
         Boolean checkPDL = printDocUrlParam!=null && printDocUrlParam.EqualsIgnoreCase(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT);
         isPDL=false;
-        if(projectId!=null)
-        { 
+        if(projectId!=null){ 
             associatedProjectType = IPM_Utils.retrieveProjectType(project);
             if(associatedProjectType!=null){
                 String currentGate = associatedProjectType.IPM_Gate_Document__c;
@@ -166,17 +160,14 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_8){
                 	hideGCLTRCLTQuestions = true;
                 }
-                
                 // Show all Validations on selecting Propose
                 showValidationMethod();               
-                
                 // Logic to prepare the incomplete standard milestone list 
                 if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){ // for original projects
                     tldMilestoneName = IPM_ConstantUtils.Original_SHIPTO_TRADE_TLD;
                 }else if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){ // for Operational projects
                     tldMilestoneName = IPM_ConstantUtils.SHIPTO_TRADE_TLD;
                 }
-                
                 pendingMilestoneList = new List<IPM_Milestone__c>();
                 if(!MilestoneList.isEmpty()){
                     for(IPM_Milestone__c milestone : milestoneList){
@@ -188,15 +179,13 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }
         }
     }
-    
     /***********************************************************************
     @Description :Used on click of the Submit Button. 
     Based on the selected Status perform the Actions
     @param: Not Applicable
     @Referenced: ipmChangeCurrenDocumentStatus(Page)
     **********************************************************************/
-    public void submit()
-    {   
+    public void submit(){   
         if(!String.isBlank(Status)){
             projectDoc.IPM_Document_Status__c=Status;//setting the project document status
             IPM_Project_Metadata__mdt  projectMetadata = IPM_Utils.retrieveProjectMetadata(project);
@@ -241,8 +230,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     Created By: Kannan and Samrat
     Referenced: ipmChangeCurrenDocumentStatus Page
     ******************************************************************/
-    public void updateStatus()
-    {
+    public void updateStatus(){
 		checkPDLIsApproved();	//Method invoked from IPM_ChangeCurrenDocumentStatus page
     } 
     
@@ -288,8 +276,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     @return: Void
     Referenced: ipmChangeCurrenDocumentStatus Page
     ******************************************************************/
-    public void ecoDesignAssessmentValidate()
-    {
+    public void ecoDesignAssessmentValidate(){
         String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
         String projectWhereClause = ' WHERE id  =: projectId limit 1';
         projectWhereClause = projectQuery + projectWhereClause;
@@ -306,8 +293,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     @return: Void
     @Referenced:showValidationMethod function
     **********************************************************************/
-    public void validateMilestone()
-    {
+    public void validateMilestone(){
         if(project!=null && !milestoneList.isEmpty()){
         	dueMilestones = new List<IPM_Milestone__c>();
         	// FOR GKM2 RCLT DUE Date is mandatory only for IDEAS Milestone for IDEAS Phase.
@@ -319,8 +305,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     				}
                 }
             }
-            else
-            {     // Default Check for Due Date is mandatory of all standard Milestone.
+            else{     // Default Check for Due Date is mandatory of all standard Milestone.
                 for(IPM_Milestone__c mileStone : milestoneList){
                     if(milestone.IPM_Due_Date__c == null ){
                         dueMilestones.add(milestone);
@@ -336,35 +321,27 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     @return: Void
     @Referenced:showValidationMethod function
     **********************************************************************/
-    public void validateRolloutAndFin()
-    {
+    public void validateRolloutAndFin(){
         DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
-        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
-        {
+        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
         	finExternalID=project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
             //Check for Global level
             rolloutCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND  isActive__c=true];
-
             if(project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3){
             	rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true];
             }
-            else
-            {
+            else{
             	Set<String> phaseToBeExcluded = new Set<String>{IPM_ConstantUtils.FEASIBILITY_PHASE};
-            	if(project.IPM_Phase__c==IPM_Utils.Ideas)
-            	{
+            	if(project.IPM_Phase__c==IPM_Utils.Ideas){
             		rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND Target_Launch_Date__c=null AND  isActive__c=true AND KeyMCO__c = true];
             	}
-            	else if(phaseToBeExcluded.contains(project.IPM_Phase__c))
-            	{
+            	else if(phaseToBeExcluded.contains(project.IPM_Phase__c)){
             		rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true AND KeyMCO__c = true];
             	}
-            	else
-            	{
+            	else{
             		rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true];
             	}
             }
-                    
             if(rolloutCount>0 && (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS || project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3)){
             	invalidFinancialsCount = [Select count() FROM IPM_Financial__c where IsFinancialInvalidGlobal__c=true AND Global_External_Id__c=:project.IPM_Project_Name__c AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
             }
@@ -375,30 +352,22 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             //Check for Regional level
             rolloutCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE Regional_Project__c=:projectId AND  isActive__c=true];           	
             rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE Regional_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true];
-
-            if(rolloutCount>0)
-            {
+            if(rolloutCount>0){
             	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalidRegional__c=true AND Regional_Project__c=:projectId AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
             }      
          }
          //for local projects or for local operational projects
-         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL ))
-         {
-                  
+         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL )) {
             finExternalID=project.Source_Rollout_External_Id__c;
         	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalidLocal__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
          }
          //for regional operational projects
-         else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
-         {
-                  
+         else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL ){
             finExternalID=project.Source_Rollout_External_Id__c;
         	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalidRegional__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
          }
          //for gloabl operational projects
-         else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL )
-         {
-                  
+         else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL ){
             finExternalID=project.Source_Rollout_External_Id__c;
         	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalidGlobal__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
          }
@@ -411,8 +380,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     @return: Void
     @Referenced:showValidationMethod function
     **********************************************************************/
-    public void validateRisk()
-    {
+    public void validateRisk(){
         // Risk Question Validation Check
         riskQuesList=[SELECT Id,IPM_Charter_Comments__c,IPM_Charter_Score__c,IPM_Contract_Comments__c,IPM_Contract_Score__c,IPM_Market_Ready_Score__c,IPM_Market_Ready_Comments__c,IPM_Project_Document_Section__c,IPM_Project__c 
                       FROM IPM_Questionnaire__c 
@@ -425,7 +393,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }       
         }
     }
-    
     /***********************************************************************
     @Description :Used on page load and on submit of the Change Button      
     @param: Not Applicable
@@ -433,8 +400,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     @return: Void
     @Referenced:submit function
     **********************************************************************/
-    public void showNotFilledSections()
-    {
+    public void showNotFilledSections(){
     	 if(projSectionList != NULL && !projSectionList.isEmpty()){
     	 	showSkipSections=true;
             oldSize=projSectionList.size();
@@ -480,18 +446,12 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }
          }    
          if(projectId!=null){
-     		  //check for Filled in Sections
-     		  showNotFilledSections();
-             // Milestone Validation Check            
-               validateMilestone();
-            // Rollouts and Financials Validation Check
-               validateRolloutAndFin();
-            // Risk Question Validation Check
-               validateRisk();
-            //ecoDesign validation check
-               ecoDesignAssessmentValidate(); 
-			//Regional project propose validation check
-			   getLocalProjectDetails(); 
+     		  showNotFilledSections(); //check for Filled in Sections
+               validateMilestone(); // Milestone Validation Check
+               validateRolloutAndFin(); // Rollouts and Financials Validation Check
+               validateRisk(); // Risk Question Validation Check
+               ecoDesignAssessmentValidate();  //ecoDesign validation check
+			   getLocalProjectDetails();  //Regional project propose validation check
         }
             
         //All the validation Messages to be displayed on the UI. The below code base will be updated based on the NEW UI (after refactoring is over)
@@ -559,8 +519,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             showValidation=false;
             discriptionError=true;
         }
-        if(!project.Exempt_from_Threshold__c  && project.IPM_Threshold_Status__c ==System.Label.IPM_BelowThreshold && project.IPM_Current_Gate_Name__c==IPM_ConstantUtils.FIELD_SUFFIX_CHARTER && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )
-        {
+        if(!project.Exempt_from_Threshold__c  && project.IPM_Threshold_Status__c ==System.Label.IPM_BelowThreshold && project.IPM_Current_Gate_Name__c==IPM_ConstantUtils.FIELD_SUFFIX_CHARTER && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ) {
             belowThresholdError=true;   
         }
     }
@@ -628,8 +587,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     }
     
     /******************getStopDisclaimer*************/
-	public void getStopDisclaimer(String currentGate)
-	{
+	public void getStopDisclaimer(String currentGate){
 		if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS){
 			if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
 				stopDisclaimer = Label.IPM_StopDisclaimer2;
@@ -667,22 +625,16 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         IPM_Milestone__c currentPhaseMilestone = null;
         String currentPhase = project.IPM_Phase__c;
         Integer currentProjectPhaseSequence = 0;
-        
         try{
-            if(String.isBlank(projectDoc.IPM_Postponed_Comments__c))
-            {
+            if(String.isBlank(projectDoc.IPM_Postponed_Comments__c)){
                 showErrorMsg=IPM_ConstantUtils.BLANK;
                 validPostpone=false;
             }
-			
-            if(String.isBlank(showErrorMsg))
-            {
-                if(currentPhase!=null && IPM_ConstantUtils.phaseSequence.containsKey(currentPhase))
-                {
+            if(String.isBlank(showErrorMsg)){
+                if(currentPhase!=null && IPM_ConstantUtils.phaseSequence.containsKey(currentPhase)){
                     currentProjectPhaseSequence = IPM_ConstantUtils.phaseSequence.get(currentPhase);
                 }
-                for(IPM_Milestone__c milestone : pendingMilestoneList)
-                {
+                for(IPM_Milestone__c milestone : pendingMilestoneList){
                     String milestonePhase = milestone.IPM_Phase__c;
                     Integer mileStonePhaseSequence = 0;
                     if(milestonePhase!=null && IPM_ConstantUtils.phaseSequence.containsKey(milestonePhase)){
@@ -703,10 +655,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     }
                     previousPhases.add(phase);      
                 }
-                
                 chkMilestoneError(pendingMilestoneList, previousPhases); //Created to remove N-Path complexity             
             }
-            
             postponeProjNoError(currentPhaseMilestone, validPostpone); //Created to remove N-Path complexity
         } 
         catch (Exception ex){
@@ -728,7 +678,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         }
         // Adding the list of pending milestones
         combinedmilestoneList.addAll(pendingMilestoneList);
-    	
     	for(IPM_Milestone__c pendingMilestone : pendingMilestoneList){
     		Boolean flag = false;
             if(pendingMilestone.IPM_Planned_Date__c == null){
@@ -761,13 +710,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }
         }
     }
-    
     //Created to remove N-Path complexity
     public void postponeProjNoError(IPM_Milestone__c currentPhaseMilestone, Boolean validPostpone){
-    	Boolean validPostponed = false;
-    	if(String.isBlank(showErrorMsg) && currentPhaseMilestone !=null && validPostpone)
-        {
-        	validPostponed = validPostpone;
+    	if(String.isBlank(showErrorMsg) && currentPhaseMilestone !=null && validPostpone){
             project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
             project.IPM_Document_Update_Comments__c = projectDoc.IPM_Postponed_Comments__c;  
             project.IPM_Postponed_Comments__c=projectDoc.IPM_Postponed_Comments__c;
@@ -780,7 +725,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             showPostpone = true;    
         }
     }
-    
     /***********************************************************************
     @Description :Used on click of the Submit Button if approve with Edits     
     @param: Not Applicable
@@ -801,7 +745,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
        }   
     }
-    
     /***********************************************************************
     @Description :Used on click of the Submit Button if Approved     
     @param: Not Applicable
@@ -817,21 +760,17 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             projectDoc.IPM_Approval_Date__c=dt;
             projectDoc.IPM_Updated_User_By__c=UserInfo.getUserId();
             showApprove = true;
-                
             IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(project);
             IPM_Project_Type__c nextPhaseProjectType = IPM_Utils.getNextPhase(currentProjectType,false);
-            
             List<IPM_Project_Rollout__c> regionalRolloutList = new List<IPM_Project_Rollout__c>();
             List<IPM_Project_Rollout__c> localRolloutList = new List<IPM_Project_Rollout__c>();
-             
             if(currentProjectType!=null && nextPhaseProjectType !=null && nextPhaseProjectType.IPM_Phase__c!=null)
             {
                 project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
                 project.IPM_Document_Update_Date__c = Date.today();
                 project.IPM_Document_Update_Comments__c = projectDoc.IPM_Approved_Comments__c;
                 project.IPM_Phase__c = nextPhaseProjectType.IPM_Phase__c;
-                if(currentProjectType.IPM_CreateRegionalProjectOnStatusChange__c)
-                {
+                if(currentProjectType.IPM_CreateRegionalProjectOnStatusChange__c){
                     Id currentProjectId = project.Id;// used in teh query Below NO SONAR
                     String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
                     String rolloutWhereClause = ' WHERE IPM_Project__c =:currentProjectId  AND recordTypeId = :REGIONAL_ROLLOUT_RECORDTYPE limit 10000';
@@ -881,8 +820,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }
     }
 	/***********************************************************************
-    @Description :validation of regional project.if all local project of BB document got confirmed 
-    then only capability phase(Regional project) will proposed.
+    @Description :validation of regional project.if all local project of BB document got confirmed then only capability phase(Regional project) will proposed.
     @param: Not Applicable
     @Referenced: ipmChangeCurrenDocumentStatus(Page)
     @Release:1.2
@@ -891,11 +829,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         localBCProjectName=new set<String>();
         localFinProjectName=new set<String>();
         localTLDProjectName=new set<String>();
-        localBCProjectNameStr = localFinProjectNameStr = localTLDProjectNameStr = '';
+        localBCProjectNameStr = localFinProjectNameStr = localTLDProjectNameStr = IPM_ConstantUtils.BLANK;
         documentSectionId=null;
         String localProjects, localProjectsTLD, localProjectBC;
-        localProjects = localProjectsTLD = localProjectBC = '';      
-        
+        localProjects = localProjectsTLD = localProjectBC = IPM_ConstantUtils.BLANK;      
         if((IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(project.IPMProject_Span__c) || IPM_ConstantUtils.GATE_KEEPING_MODEL_3.equals(project.IPM_ProjectGKM__c)) && (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c)))
         {
             finList=new List<IPM_Financial__c>();
@@ -918,8 +855,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                         localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
 			 localProjectBC = localProjectBC + fin.Local_Project__r.IPM_Project_Name__c + ',';
                     } 
-						//Financial alignment
-						//bypassed the check for GKM3 - Interim
+						//Financial alignment, bypassed the check for GKM3 - Interim
 						if(fin.Misaligned__c){
 							localFinProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
   							localProjects = localProjects + fin.Local_Project__r.IPM_Project_Name__c + ',';
@@ -959,7 +895,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 	              localTLDProjectNameStr = System.Label.IPM_TDL_Align;
 	              localBCProjectNameStr =  System.Label.IPM_confirm_business_case_in_gate;
             }
-    	
     }
     public void approvePDLDocument()
     {
@@ -972,18 +907,15 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                         oMilestone.IPM_Completed_On__c=dt;
                     	oMilestone.IPM_Completed__c=true; 
                         oPDLMilestone.add(oMilestone);
-                       
                     }           
                 }
-
-                    update oPDLMilestone;
-                
+                update oPDLMilestone;
 		    	projectDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_APPROVED;		    	
 	    		projectDoc.IPM_Approval_Date__c = dt;
 	    		projectDoc.IPM_Updated_User_By__c = UserInfo.getUserId();
 		    	update projectDoc;
 		    	
-		    		List<IPM_Project_Document__c> projectDocList = [SELECT ID,IPM_Document_Status__c,IPM_Approved_Comments__c,IPM_Updated_User_By__r.Name FROM IPM_Project_Document__c where ID = :projectDoc.ID ];
+		    	List<IPM_Project_Document__c> projectDocList = [SELECT ID,IPM_Document_Status__c,IPM_Approved_Comments__c,IPM_Updated_User_By__r.Name FROM IPM_Project_Document__c where ID = :projectDoc.ID ];
 	    		if(!projectDocList.isEmpty())
 	    		{
 		    			IPM_project_Document__c tempProjectDoc = projectDocList[0];
