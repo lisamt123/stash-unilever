@@ -26,6 +26,10 @@ src/email/unfiled$public/UL_SoCo_Promotion_Rejected.email
 src/email/unfiled$public/UL_SoCo_Promotion_Rejected.email-meta.xml
 src/email/unfiled$public/UL_SoCo_Promotion_Submit.email
 src/email/unfiled$public/UL_SoCo_Promotion_Submit.email-meta.xml
+src/email/unfiled$public/UL_Fund_Transaction_Approved_Email.email
+src/email/unfiled$public/UL_Fund_Transaction_Approved_Email.email-meta.xml
+src/email/unfiled$public/UL_Fund_Transaction_Rejected_Email.email
+src/email/unfiled$public/UL_Fund_Transaction_Rejected_Email.email-meta.xml
 src/email/Approval_Templates-meta.xml
 src/objects
 src/objects/ACCL__Account_Extension__c.object
