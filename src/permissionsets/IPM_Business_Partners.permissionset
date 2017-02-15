@@ -802,7 +802,7 @@
         <apexClass>IPM_ExportTeamMembersReportController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-	<classAccesses>
+    <classAccesses>
         <apexClass>IPM_ProjectsClustersMappingController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
