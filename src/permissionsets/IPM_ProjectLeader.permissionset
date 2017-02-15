@@ -1008,6 +1008,10 @@
         <apexClass>IPM_GlobalClaimPDLController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>IPM_RolloutPlansAddLocalController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_Bosscard__c.Project_Id__c</field>
@@ -9172,7 +9176,14 @@
         <apexPage>IPM_ExportTeamMembersReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
+	<pageAccesses>
+        <apexPage>IPM_RolloutPlansLocalOriginal</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>IPM_RolloutPlansTable_LocalOriginal</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
 
     <recordTypeVisibilities>
         <recordType>IPM_Company_Card__c.IPM_Global_Company_Card</recordType>

@@ -1095,6 +1095,10 @@
 		<apexClass>IPM_UpdateBETOnProject_Queueable</apexClass>
 		<enabled>true</enabled>
 	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_RolloutPlansAddLocalController</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_Bosscard__c.Project_Id__c</field>
@@ -10266,6 +10270,14 @@
 	</pageAccesses>
 	<pageAccesses>
 		<apexPage>IPM_ViewAssortmentStrategyPage</apexPage>
+		<enabled>true</enabled>
+	</pageAccesses>
+	<pageAccesses>
+		<apexPage>IPM_RolloutPlansLocalOriginal</apexPage>
+		<enabled>true</enabled>
+	</pageAccesses>
+	<pageAccesses>
+		<apexPage>IPM_RolloutPlansTable_LocalOriginal</apexPage>
 		<enabled>true</enabled>
 	</pageAccesses>
 
