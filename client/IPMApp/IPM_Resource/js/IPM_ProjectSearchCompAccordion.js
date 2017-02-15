@@ -7,7 +7,7 @@
 */ 
 function rerenderAccordion(){
         /*accordion All checkbox Checked Geography*/
-        jq('.geographyFilters input:checkbox').attr('checked', 'checked');
+        jq('.multilevelFilters input:checkbox').attr('checked', 'checked');
         jq('.ipmCheckbox input[type=checkbox]').each(function(){
             if(jq(this).attr('data-html') === 'disabled')
             {
@@ -23,7 +23,7 @@ function rerenderAccordion(){
         jq(document).on('click', 'li.clusterCheckLi', function(){
          jq( "div.projectContainer.gfirstLevel ul" ).addClass( "docFilter accordionFilters clusterListUl" );
        });
-        jq('.geographyFilters input:checkbox, .projectContainer input:checkbox, ul.docFilter.typeLabel input:checkbox').each(function(){
+        jq('.multilevelFilters input:checkbox, .projectContainer input:checkbox, ul.docFilter.typeLabel input:checkbox').each(function(){
             var mvalue = jq(this).attr('id');
             var cvalue = mvalue.replace('amp;','&');
             jq(this).attr('id',cvalue);
@@ -58,7 +58,7 @@ function rerenderAccordion(){
         /* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. It also adds the + mark for the collapsed one's and adds - for the expanded one */
             jq(".ipmAcrdnExpand").show();
             //jq(".ipmAcrdnExpand:first, .ipmAcrdnExpand:first .ipmAcrdnExpand").not(':empty').show();
-            jq(".projectContainer.geographyFilters .ipmAcrdnExpand .projectContainer.gfirstLevel .ipmAcrdnExpand").hide();
+            jq(".projectContainer.multilevelFilters .ipmAcrdnExpand .projectContainer.gfirstLevel .ipmAcrdnExpand").hide();
             ipmAccordion.find(".pHead .expico-square").addClass("fa-plus");
             ipmAccordion.find(".pHead .expico-square").removeClass("fa-minus");
             ipmAccordion.find(".pHead span.expico").removeClass("fa-plus");

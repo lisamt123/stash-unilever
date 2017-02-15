@@ -150,5 +150,32 @@ window.onbeforeunload = unloadPage;
 /* Below code is to skip the unsaved changes*/
 function skipValidation() {
     unsaved = false;
-}    
-                  
+}
+
+function overlayOrRedirect() 
+{   
+    var noCountrySelection = IPMRollOutAdd.nocntryselected;
+    var updateRollouts = IPMRollOutAdd.updatedRollouts;
+    if(noCountrySelection === 'true' && updateRollouts === 'true'){  
+        nocountryselected(IPMRollOutAdd.nocountriestitle,IPMRollOutAdd.nocountriestext);
+    }
+    else{
+        scriptPanelLoad();
+        setRedirect();
+    }
+}
+
+function nocountryselected(title,description) {
+    jq('<div class="modal-backdrop in noCountries"></div>').appendTo(document.body);
+    jq('#ipmNocountriesModal').show();
+    jq('#ipmNocountriesModal .modal-dialog').width('40%');
+    jq('#ipmNocountriesModal .modal-dialog').height('200px');                        
+    jq('#ipmNocountriesModal .modal-dialog').css({'margin-top':'10%','z-index':'999'});
+    jq('#ipmNocountriesModal .modal-title').html(title);
+    jq('#ipmNocountriesModal .modal-body .moddescription').html(description);
+    jq('#ipmNocountriesModal').on('click', '.modclose', function(e){
+        jq('#ipmNocountriesModal').hide();
+        jq(".modal-backdrop.noCountries").remove();
+    });
+   scriptPanelLoad(); 
+}                 
