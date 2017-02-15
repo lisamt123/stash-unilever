@@ -9,5 +9,6 @@
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
+        <template>unfiled$public/New_Bus_Solution</template>
     </alerts>
 </Workflow>
