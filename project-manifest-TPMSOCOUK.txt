@@ -578,6 +578,9 @@ src/permissionsets/UK_Admin.permissionset
 src/permissionsets/UK_PlannerCAM.permissionset
 src/sharingRules
 src/sharingRules/ACCL__Fund_Template__c.sharingRules
+src/sharingRules/ACCL__Promotion_Template__c.sharingRules
 src/translations
 src/translations/en_GB.translation
 src/translations/en_US.translation
+src/customPermissions
+src/customPermissions/Soco_Admin.customPermission

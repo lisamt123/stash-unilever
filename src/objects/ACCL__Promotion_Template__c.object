@@ -1348,6 +1348,16 @@
       ($ObjectType.ACCL__Promotion_Template__c.Fields.Id , $ObjectType.ACCL__Promotion_Template__c.Fields.Name, Name )))</errorConditionFormula>
         <errorMessage>Promotion Template Name already exists, please enter different Name.</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>UL_SoCo_Admin_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+$Permission.Soco_Admin,
+NOT(ISPICKVAL(UL_Promo_Type_ControlView__c , &apos;SpecialHoliday&apos;)),
+ISNEW()
+)</errorConditionFormula>
+        <errorMessage>SoCo Admin can create templates only with Sharing Type as SpecialHoliday</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>ACCL__Update_Product_Filter_Cache</fullName>
         <availability>online</availability>
