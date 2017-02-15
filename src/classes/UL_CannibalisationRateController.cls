@@ -33,7 +33,9 @@ public with sharing class UL_CannibalisationRateController{
                 this.record.UL_Product__c = allProducts.Id;
             }
         }
-        catch(Exception e){}
+        catch(Exception e){
+            throw new UL_CustomException(System.Label.UL_ERROR_MESSAGE);
+        }
     }
     
     /*******************************************************************

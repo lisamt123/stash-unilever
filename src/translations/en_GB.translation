@@ -100,6 +100,11 @@
         <label><!-- cB4L --></label>
         <name>cB4L</name>
     </customApplications>
+	
+	  <customLabels>
+        <label>Add Investment</label>
+        <name>PP_BTN_ADDTACTIC</name>
+    </customLabels>
     <customLabels>
         <label><!-- AF Adjust Quarters --></label>
         <name>AF_Adjust_Quarters</name>
@@ -10873,44 +10878,8 @@
             <name>Core Tasks</name>
         </sections>
     </reportTypes>
-    <reportTypes>
-        <description><!-- Course with Course Occurence and Occurence Member --></description>
-        <label><!-- Course with Course Occurence and Occurence Member --></label>
-        <name>Course_with_Course_Occurence_and_Occurence_Member</name>
-        <sections>
-            <label><!-- Course Occurence --></label>
-            <name>Course Occurence</name>
-        </sections>
-        <sections>
-            <label><!-- Courses --></label>
-            <name>Courses</name>
-        </sections>
-        <sections>
-            <label><!-- Occurence Member --></label>
-            <name>Occurence Member</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Courses with Course Occurence with Feedback with Feedback Questionnaire --></description>
-        <label><!-- Courses with Course Occurence with Feedback with Feedback Questionnaire --></label>
-        <name>Courses_with_Course_Occurence_with_Feedback_with_Feedback_Questionnaire</name>
-        <sections>
-            <label><!-- Course Occurence --></label>
-            <name>Course Occurence</name>
-        </sections>
-        <sections>
-            <label><!-- Courses --></label>
-            <name>Courses</name>
-        </sections>
-        <sections>
-            <label><!-- Feedback --></label>
-            <name>Feedback</name>
-        </sections>
-        <sections>
-            <label><!-- Feedback Questionnaire --></label>
-            <name>Feedback Questionnaire</name>
-        </sections>
-    </reportTypes>
+     
+    
     <reportTypes>
         <description><!-- Custom Objects Usage --></description>
         <label><!-- Custom Objects Usage --></label>
@@ -10933,40 +10902,7 @@
             <name>Dashboards</name>
         </sections>
     </reportTypes>
-    <reportTypes>
-        <description><!-- Detailed Report of Course Occurrence --></description>
-        <label><!-- Detailed Report of Course Occurrence --></label>
-        <name>Detailed_Report_of_Course_Occurrence</name>
-        <sections>
-            <label><!-- Course Occurence --></label>
-            <name>Course Occurence</name>
-        </sections>
-        <sections>
-            <label><!-- Occurence Member --></label>
-            <name>Occurence Member</name>
-        </sections>
-        <sections>
-            <label><!-- User Preferences --></label>
-            <name>User Preferences</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Detailed Report of Occurence Member Tasks --></description>
-        <label><!-- Detailed Report of Occurence Member Tasks --></label>
-        <name>Detailed_Report_of_Occurence_Member_Tasks</name>
-        <sections>
-            <label><!-- Course Occurence --></label>
-            <name>Course Occurence</name>
-        </sections>
-        <sections>
-            <label><!-- Occurence Member --></label>
-            <name>Occurence Member</name>
-        </sections>
-        <sections>
-            <label><!-- Pre Work Tasks --></label>
-            <name>Pre Work Tasks</name>
-        </sections>
-    </reportTypes>
+     
     <reportTypes>
         <description><!-- Events with ULE --></description>
         <label><!-- Events with ULE --></label>

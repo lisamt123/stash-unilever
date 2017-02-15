@@ -36,6 +36,18 @@
         public static final String FIELD_SPLITTER = ',';
         public static final String BOM_PRODUCT = 'BoM';
         public static final String DATE_FORMAT_YYYY_MM_DD = 'yyyy-MM-dd';
+        public static final String APEX = '/apex/';
+        public static final String URL_ID = '?id=';
+        public static final String idname = 'id';
+        public static final String level = 'level';
+        public static final String kpiid = 'kpiId';
+        public static final String value = 'value';
+        public static final string finance = 'finance';
+        public static final string uiElement = 'UIElement';
+        public static final string semiColon = ';';
+        
+        public static final string templateActive = 'ACCL__Promotion_Template__r.ACCL__Active__c';
+        public static final string templateAllowPast = 'ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c';
         
         //Customer Org Hierarchy Levels - SOCO
         public static final String CUSTOMER_ORG_HIERARCHY_LEVEL_REGION = 'Region';
@@ -58,6 +70,34 @@
         public static final String LEVEL8= 'Level 8';
         public static final String LEVEL9= 'Level 9';
         
+        //Product Levels
+        public enum ProductLevel{
+            Level0,
+            Level1,
+            Level2,
+            Level3,
+            Level4,
+            Level5,
+            Level6,
+            Level7,
+            Level8,
+            Level9,
+            Product
+        }
+        
+        //Product Levels PicklistValues of Accl__Product_Level__c 14_02_2017
+       
+        public static final String PRODUCTLEVEL1 ='1';
+        public static final String PRODUCTLEVEL2 ='2';   
+        public static final String PRODUCTLEVEL3 ='3';   
+        public static final String PRODUCTLEVEL4 ='4';    
+        public static final String PRODUCTLEVEL5 ='5';   
+        public static final String PRODUCTLEVEL6 ='6';
+        public static final String PRODUCTLEVEL7 ='7';    
+        public static final String PRODUCTLEVEL8 ='8';   
+        public static final String PRODUCTLEVELPRODUCT ='Product';    
+        
+
         // The API Name of the Permission Set
         public static final String ACSF_FM_PERMISSION_SET = 'ACSF_FM';    
         public static final String ACSF_FA_PERMISSION_SET = 'ACSF_FA';    
@@ -78,9 +118,8 @@
         Public static final string PROMOTION_STATUS= 'Planning';
         
         //UKI
-        public static final String NONE= 'None';
-        public static final String SPECIAL_HOLIDAY= 'SpecialHoliday';
         public static final String MARKETING_EVENT= 'MarketingEvent';
+        public static final String NONE= 'None';
         public static final String Qulon= ':';
         public static final String UK_SO = 'UK SO';
         public static final String Ireland_SO = 'Ireland SO';
@@ -88,19 +127,20 @@
         public static final String PARENT_PROMOTION = 'Parent Promotion';
         public static final String ACCOUNT_SPECIFIC_PROMOTION = 'Account Specific Promotion';
         
-        //Boolean flags for Bypassing Triggers
-        public static boolean bypassAccountTrigger = false;
-        public static boolean bypassApprovalThresholdTrigger = false;
-        public static boolean bypassCannibalisationRateTrigger = false;
-        public static boolean bypassDeliveryProfileTrigger = false;
-        public static boolean bypassFundShareTrigger = false;
-        public static boolean bypassFundTransactionTrigger = false;
-        public static boolean bypassProductTrigger = false;
-        public static boolean bypassProductPartTrigger = false;
-        public static boolean bypassPromotionShareTrigger = false;
-        public static boolean bypassPromotionTrigger = false;
-        public static boolean bypassTacticTrigger = false;
-        public static boolean bypassUserCustomerPromFundShareTriggerTrigger = false;
+        //Boolean flags for enable/disable triggers 
+        public static boolean IS_PRODUCT_TRIGGER_ENABLED = true;
+        public static boolean IS_ACCOUNT_TRIGGER_ENABLED = true;
+        public static boolean IS_APPROVAL_THRESHIOLD_TRIGGER_ENABLED = true;
+        public static boolean IS_CANNIBALISATION_RATE_TRIGGER_ENABLED = true;
+        public static boolean IS_DELIVERY_PROFILE_TRIGGER_ENABLED = true;
+        public static boolean IS_TACTIC_FUND_TRIGGER_ENABLED = true;
+        public static boolean IS_FUND_TRIGGER_ENABLED = true;
+        public static boolean IS_FUND_TRANSACTION_TRIGGER_ENABLED = true;
+        public static boolean IS_PRODUCTPART_TRIGGER_ENABLED = true;
+        public static boolean IS_PROMOTION_CATEGORY_TRIGGER_ENABLED = true;
+        public static boolean IS_PROMOTION_TRIGGER_ENABLED = true;
+        public static boolean IS_USER_CUSTOMER_PROMOTION_SHARE_TRIGGER_ENABLED = true;
+        public static boolean IS_IIBBTAX_TRIGGER_ENABLED = true;
         
         //Heroku webservice setup
         public static final String END_POINT= 'callout:ACSF_Service_Url/ACSF/GetPromotionKPIs';
@@ -120,6 +160,7 @@
         //Status
         public static final String STATUS_APPROVE = 'Approve';
         public static final String STATUS_REJECT = 'Reject';
+        public static final String STATUS_CLOSED = 'Close';
         public static final String STATUS_ACTIVE = 'Active';
         public static final String STATUS_APPROVED = 'Approved';
         public static final String STATUS_SUBMIT = 'Submit';
@@ -128,7 +169,14 @@
         public static final String STATUS_PLANNING = 'Planning';
         public static final String STATUS_FINANCE_CHECK = 'Finance Check';
         public static final String STATUS_MANAGER_CHECK = 'Manager Check';
-		public static final String STATUS_SUBMITTED_FOR_APPROVAL = 'Submitted for Approval';		
+        public static final String STATUS_DIRECTOR_CHECK = 'Director Check'; 
+        public static final String STATUS_SUBMITTED_FOR_APPROVAL = 'Submitted for Approval'; 
+        public static final String STATUS_INCOMPLETE = 'Incomplete';
+        public static final String STATUS_PLANNED = 'Planned';
+        public static final String STATUS_REJECTED = 'Rejected';
+        public static final String STATUS_REQUIRES_APPROVAL = 'Submitted For Approval';
+        public static final String STATUS_FINALISED = 'Finalised';
+        public static final String STATUS_INFLIGHT = 'InFlight';
                
         //User Org Role
         public static final String ROLE_CATEGORY_MANAGER = 'category manager';
@@ -144,9 +192,37 @@
             AR01,
             CL01,
             CL03,
-            SoCo
+            SoCo,
+            UKI
         }
         
+        //Promotion Templates
+        public static final String PROMOTION_TEMPLATE_TYPE_ACCOUNT_PLAN = 'Account Plan';
+        public static final String PROMOTION_TEMPLATE_TYPE_ACCOUNT_SPECIFIC_PROMOTION = 'Account Specific Promotion';
+        public static final String PROMOTION_TEMPLATE_TYPE_CUSTOMEREVENT = 'CustomerEvent';
+        public static final String PROMOTION_TEMPLATE_TYPE_LTA = 'LTA';
+        public static final String PROMOTION_TEMPLATE_TYPE_MARKETINGEVENT = 'MarketingEvent';
+        public static final String PROMOTION_TEMPLATE_TYPE_PARENT_PROMOTION = 'Parent Promotion';
+        public static final String PROMOTION_TEMPLATE_TYPE_PAST_DATED_URGENT = 'Past Dated/Urgent';
+        public static final String PROMOTION_TEMPLATE_TYPE_SPECIALHOLIDAY = 'SpecialHoliday';
+
+        //Promotion Template Anchor Types
+        public static final String PROMOTION_TEMPLATE_ANCHOR_TYPE_CUSTOMER = 'Customer';        
+        public static final String PROMOTION_TEMPLATE_ANCHOR_TYPE_CUSTOMERSET = 'CustomerSet';
+        public static final String PROMOTION_TEMPLATE_MOBILITY = 'Mobility';
+        public static final String DEFAULT_PROMOTION_TYPELABEL = 'None';
+        public static final String DEFAULT_PROMOTION_TYPEVALUE = '--None--';
+        public static final String RETURL = 'retURL';
+
+        //Promotion Template Trade Calendar Relevants
+        public static final String PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_YES = 'Yes';
+        public static final String PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_NO = 'No';
+        public static final String PROMOTION_TEMPLATE_TRADE_CALENDAR_RELEVANT_DEFAULT = 'Default';   
+
+        //Promotion Types
+        public static final String PROMOTION_TEMPLATE_PROMOTION_TYPE_PROMOTION = 'Promotion';  
+        public static final String PROMOTION_TEMPLATE_PROMOTION_TYPE_SELLABLEPROMOTION = 'SellablePromotion'; 
+
     /** ------------------------------------------------------------------ Public methods Section  ------------------------------------------------------------------/** 
     
     /*******************************************************************
@@ -174,6 +250,62 @@
     }
    }
    
+      /*******************************************************************
+    Purpose: Get SalesOrg of current User 
+    Version: 1.0
+    Parameters: String userId
+    Returns: String
+    Throws N/A
+    ********************************************************************/
+   public static String getSalesOrg (String userId){
+        String salesOrg = '';
+        try{
+           
+            List<User> user = [ SELECT ACCL__Sales_Org__c, Id FROM User where Id = : userId];
+            if (user.size()>0){
+                return user[0].ACCL__Sales_Org__c;
+            }
+            else return salesOrg;
+        } 
+        catch(Exception o ){
+            logError(o, UserInfo.getUserId() );
+        }
+        return salesOrg;
+    }
+
+    /*******************************************************************
+    Purpose: Convert Object to Date 
+    Version: 1.0
+    Parameters: 
+    Returns: Date
+    Throws N/A
+    ********************************************************************/
+    public static Date objToDate(Object o){
+        if (o == null){
+            return null;
+        }
+        else if (o instanceof Date){
+            return (Date)o;
+        }
+        else if (o instanceof Long) {
+            Long i = (Long)o;
+            DateTime dt = DateTime.newInstance(i);
+            return dt.dateGmt();
+        }
+        else if (o instanceof Integer) {
+            Integer i = (Integer)o;
+            DateTime dt = DateTime.newInstance(i);
+            return dt.dateGmt();
+        }
+        else if (o instanceof String) {
+            String s = (String)o;
+            return Date.valueOf(s);
+        }
+        else{
+            return  null; //Constants.MIN_DATE;}
+        }
+    }
+ 
    /*******************************************************************
     Purpose: Generic method to create SFDC object
     Version: 1.0
@@ -258,5 +390,16 @@
     ******************************/
     public static UL_Planning_Level__c returnGenericCustomer(){
         return [SELECT Id, Name, UL_Customer__c FROM UL_Planning_Level__c WHERE UL_Customer__r.UL_Generic_Customer__c=TRUE LIMIT 1];
+    }
+    
+    /*****************************
+    Purpose: Get generic customer planning level from system
+    Version: 1.0
+    Parameters: N/A
+    Returns: Product Record
+    Throws: N/A
+    ******************************/
+    public static List<UL_Delivery_Profile__c> returnDeliveryProfile(Date instoreDate, String planingLevelCustomers,Id allCustomers,String salesOrg){
+        return [SELECT Id, UL_Delivery_Profile_Name__c, Name, UL_Shipment_Start_days__c, UL_Shipment_End_days__c, UL_Instore_End_days__c FROM UL_Delivery_Profile__c where UL_Valid_From__c<=:instoreDate AND UL_Valid_Thru__c>=:instoreDate AND UL_Sales_Organisation__c=:salesOrg AND (UL_Account__c =:planingLevelCustomers OR UL_Account__c =:allCustomers ) Order By UL_Delivery_Profile_Name__c Limit:LIMITS.getLimitQueryRows()-LIMITS.getQueryRows()];
     }
   }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>TPM Argentina AR01 Category Planner</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>TPM_Argentina_AR01_Category_Manager</parentRole>
+</Role>

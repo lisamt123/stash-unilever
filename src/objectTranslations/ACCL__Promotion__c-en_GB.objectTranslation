@@ -22,7 +22,7 @@
         <relationshipLabel><!-- Promotions --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Anchor Customer --></label>
+        <label>Sold-To</label>
         <name>ACCL__Anchor_Account__c</name>
         <relationshipLabel><!-- Promotions --></relationshipLabel>
     </fields>

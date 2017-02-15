@@ -4266,6 +4266,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>ACCL__Promotion_Template_Tactic_Template__c.promo_temp_name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ACCL__Promotion_Template_Tactic_Template__c.tactic_temp_name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Promotion_Template__c.ACCL__Active_Policy__c</field>
         <readable>true</readable>
@@ -4416,6 +4426,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>ACCL__Promotion_Template__c.UL_Is_Tactic_Fund_Required__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>ACCL__Promotion_Template__c.UL_Is_Tactic_Fund_Required__c</field>
         <readable>true</readable>
@@ -4424,6 +4439,11 @@
         <editable>true</editable>
         <field>ACCL__Promotion_Template__c.UL_Promotion_Template_Type__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ACCL__Promotion_Template__c.UL_ShowAttachments__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4703,11 +4723,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ACCL__Promotion__c.UL_PromotionTemplateType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ACCL__Promotion__c.UL_PromotionTemplate_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5534,6 +5549,11 @@
         <editable>true</editable>
         <field>ACCL__Tactic__c.UL_Investment_Method__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ACCL__Tactic__c.UL_IsPushed__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -7642,6 +7662,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>IIBBTax__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Promotion_Acc_Rel__c.Child_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -7953,31 +7978,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>UL_PromotionCategory__c.Account__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
+        <field>UL_PromotionCategory__c.Heroku_Product_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>UL_PromotionCategory__c.Product__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>UL_UserCustomerProduct__c.AccessType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>UL_UserCustomerProduct__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>UL_UserCustomerProduct__c.Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>UL_UserCustomerProduct__c.Product__c</field>
+        <field>UL_PromotionCategory__c.Promotion__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7988,16 +8003,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>UL_Workflow_Threshold_Template__c.UL_Active__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>UL_Workflow_Threshold_Template__c.UL_Compare_Value_Data_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>UL_Workflow_Threshold_Template__c.UL_Compare_Value__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8013,11 +8018,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>UL_Workflow_Threshold_Template__c.UL_TemplateDescription__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>UL_Workflow_Threshold_Template__c.UL_WorkflowApproval__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9312,6 +9312,15 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>IIBBTax__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
@@ -9321,18 +9330,18 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Promotion_Attachment_Link__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Promotion_Attachment__c</object>
@@ -9345,6 +9354,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>UL_Condition_Codes__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>UL_PromotionCategory__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -9463,6 +9481,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>ACCL__Product__c.ACCL__Product_Group</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>ACCL__Product__c.UL_Product_SoCo</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -9552,7 +9574,7 @@
     </recordTypeVisibilities>
     <tabSettings>
         <tab>standard-Account</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>standard-UserProvisioningRequest</tab>

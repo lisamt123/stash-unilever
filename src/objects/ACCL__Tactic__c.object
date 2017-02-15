@@ -1211,6 +1211,13 @@
         <errorMessage>Payment methods of On Invoice,A&amp;P should not be allowed for the promotion templates- Account Specific Past dated Promotion and Parent Past Dated Promotion</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>TPM_Amount_PaymentMethod_Comp_Mandatory</fullName>
+        <active>true</active>
+        <description>Amount, Payment Method or Compensational model are mandatory</description>
+        <errorConditionFormula>if((ISPICKVAL(ACCL__Tactic_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Tactic_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Tactic_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp;(ISBLANK(ACCL__Amount__c) || ISBLANK(TEXT(ACCL__Payment_Method__c)) || ISBLANK(TEXT(ACCL__Compensation_Model__c)) || ISPICKVAL(ACCL__Payment_Method__c,&apos;Deduction&apos;)), true, false )</errorConditionFormula>
+        <errorMessage>Amount, Payment Method, Compensation Model are Mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>UL_CreateInvestmentOnPromotionRule</fullName>
         <active>true</active>
         <errorConditionFormula>if( ISPICKVAL(ACCL__Promotion__r.UL_Promotion_Type__c, &apos;Volume Only&apos;) ,true,false )</errorConditionFormula>
@@ -1224,10 +1231,10 @@
         <errorMessage>Order Date From cannot be later than Order Date Thru</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Ul_Validate_Promotion_Dates</fullName>
+        <fullName>Ul_Validate_TacticDates_Promotion_Dates</fullName>
         <active>true</active>
         <description>This is used to validate Tactic dates with in the promotion dates range.</description>
-        <errorConditionFormula>iF(ACCL__Tactic_Template__r.UL_Validate_Promotion_Dates__c&amp;&amp; (ACCL__Date_From__c &lt; ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Date_From__c&gt; ACCL__Promotion__r.ACCL__Date_Thru__c|| ACCL__Date_Thru__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Date_Thru__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c || ACCL__Instore_Date_From__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Instore_Date_From__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c || ACCL__Instore_Date_Thru__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Instore_Date_Thru__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c || UL_Order_Date_From__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || UL_Order_Date_From__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c ||  UL_Order_Date_Thru__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || UL_Order_Date_Thru__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c || ACCL__Shipment_Date_From__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Shipment_Date_From__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c || ACCL__Shipment_Date_Thru__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Shipment_Date_Thru__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c), true, false)</errorConditionFormula>
+        <errorConditionFormula>iF(ACCL__Tactic_Template__r.UL_Validate_Promotion_Dates__c &amp;&amp; (ISPICKVAL(ACCL__Tactic_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Tactic_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Tactic_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp; (ACCL__Date_From__c &lt; ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Date_From__c&gt; ACCL__Promotion__r.ACCL__Date_Thru__c|| ACCL__Date_Thru__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Date_Thru__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c || ACCL__Instore_Date_From__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Instore_Date_From__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c || ACCL__Instore_Date_Thru__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Instore_Date_Thru__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c || UL_Order_Date_From__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || UL_Order_Date_From__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c ||  UL_Order_Date_Thru__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || UL_Order_Date_Thru__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c || ACCL__Shipment_Date_From__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Shipment_Date_From__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c || ACCL__Shipment_Date_Thru__c&lt;ACCL__Promotion__r.ACCL__Date_From__c || ACCL__Shipment_Date_Thru__c&gt;ACCL__Promotion__r.ACCL__Date_Thru__c), true, false)</errorConditionFormula>
         <errorMessage>Tactic Dates(Shipment or Order or Instore) are not with in Promotion dates range.</errorMessage>
     </validationRules>
 </CustomObject>

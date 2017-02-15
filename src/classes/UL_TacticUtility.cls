@@ -134,7 +134,7 @@ Throws : N/A
             list<ACCL__Tactic_Template__c> tacticTemp = [select UL_TacticOverlap__c,UL_Product_Mandate__c from ACCL__Tactic_Template__c where id=:LOTactics[0].ACCL__Tactic_Template__c limit 1];
             TacticsOverlap =tacticTemp[0].UL_TacticOverlap__c;
             productsEnable = tacticTemp[0].UL_Product_Mandate__c;
-            existTactics = [select id,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Tactic_Template__c from ACCL__Tactic__c where ACCL__Tactic_Template__c=:LOTactics[0].ACCL__Tactic_Template__c and id!=:LOTactics[0].id ];
+            existTactics = [select id,ACCL__Date_From__c,ACCL__Date_Thru__c,ACCL__Tactic_Template__c,ACCL__Promotion__r.name,ACCL__Tactic_Template__r.name from ACCL__Tactic__c where ACCL__Tactic_Template__c=:LOTactics[0].ACCL__Tactic_Template__c and id!=:LOTactics[0].id and ACCL__Promotion__c in (select Promotion__c from UL_PromotionCategory__c where Heroku_Product_Id__c in:newTacticprodIdSet)];
                  }
         
         if(productsMandate && productsEnable){
@@ -150,12 +150,12 @@ Throws : N/A
                         
                         if((TacticsOverlap && checkExist.ACCL__Tactic_Template__c==newTactic.ACCL__Tactic_Template__c && newTactic.ACCL__Date_From__c >= checkExist.ACCL__Date_From__c && newTactic.ACCL__Date_From__c <= checkExist.ACCL__Date_Thru__c) || (TacticsOverlap && checkExist.ACCL__Tactic_Template__c==newTactic.ACCL__Tactic_Template__c && newTactic.ACCL__Date_Thru__c >= checkExist.ACCL__Date_From__c && newTactic.ACCL__Date_Thru__c <= checkExist.ACCL__Date_Thru__c)){
                             //Verify new\edit\duplicate Tactic product id contains in the existing tactics.
-                            for(String newProdIds : newTacticprodIdSet){
+                          /*  for(String newProdIds : newTacticprodIdSet){
                                 if(prodIdTacticSet.containskey(newProdIds) && prodIdTacticSet.get(newProdIds).contains(checkExist.id)){
                                   throw new CustomException(label.UL_TacticsOverlap);  
                                 }
-                            } 
-                            
+                            } */ 
+                           throw new CustomException(checkExist.ACCL__Promotion__r.name+UL_Utility.hyphen+checkExist.ACCL__Tactic_Template__r.name+UL_Utility.hyphen+label.UL_TacticsOverlap);  
                         }
                     }
                 }
@@ -459,8 +459,11 @@ Throws : N/A
         Datetime lastModified = Datetime.now();
         Boolean active = Boolean.valueOf(boPromotion.get('ACCL__Active__c'));
         String phase = (String)boPromotion.get('ACCL__Phase__c');
-        system.debug('account--'+(String)boPromotion.get('ACCL__Anchor_Account__c'));
-        Id anchorAccountId = Id.valueOf((String)boPromotion.get('ACCL__Anchor_Account__c'));
+        Id anchorAccountId;
+        if((String)boPromotion.get('ACCL__Anchor_Account__c')!=null){
+        //system.debug('account--'+(String)boPromotion.get('ACCL__Anchor_Account__c'));
+        anchorAccountId = Id.valueOf((String)boPromotion.get('ACCL__Anchor_Account__c'));
+        }
         String salesOrgName = (String)boPromotion.get('ACCL__Sales_Org__c');
         Object manualCalculationInput = JSON.deserializeUntyped((string)boPromotion.get('ACCL__Manual_Calculation_Input__c'));
         System.debug(manualCalculationInput);

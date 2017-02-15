@@ -44,23 +44,41 @@ public without sharing class UL_ThresholdTemplateExtensions {
           viewMode = true;
           editMode = false;
       }
-      
-      approvalProcessList = new list<selectoption>();
      
-      for(ProcessDefinition process : [SELECT Name,id FROM ProcessDefinition where state=:Activ and TableEnumOrId=:Schema.SObjectType.ACCL__Promotion__c.getName() limit 1000]){
+    }
+    /*******************************************************************
+    Purpose: Load all the Promotion object related approval processes 
+    Version: 1.0
+    Parameters: N/A
+    Returns: N\A
+    Throws N/A
+    ********************************************************************/
+    public void onLoadPage(){
+       approvalProcessList = new list<selectoption>();
+     
+      for(ProcessDefinition process : [SELECT Name,id FROM ProcessDefinition where state=:Activ and TableEnumOrId=:Schema.SObjectType.ACCL__Promotion__c.getName() limit :(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
       approvalids.put(process.name,process.id);
-          approvalProcessList.add(new selectoption(process.name,process.name));
+               SelectOption custOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
+                custOption.setValue(process.name);
+                custOption.setLabel(process.name);
+          approvalProcessList.add(custOption);
       }
       
-      for(ProcessInstanceNode processsteps : [select processnodename from ProcessInstanceNode where ProcessInstanceId in (select id FROM ProcessInstance where processdefinitionid=:approvalids.get(thrtemp.UL_Workflow__c)) limit 5000]){
-          stepNames.add(processsteps.processnodename);
+      for(processnode processsteps : [select description from processnode where processdefinitionid=:approvalids.get(thrtemp.UL_Workflow__c) limit:(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
+          stepNames.add(processsteps.description);
       }
+       if(!stepNames.isempty()){
        
        for(String steps : stepNames){
-          approvalProcessSteps.add(new selectoption(steps, steps));
+       if(steps!=null){
+          SelectOption custOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
+                custOption.setValue(steps);
+                custOption.setLabel(steps);
+          approvalProcessSteps.add(custOption);
+          }
+       }
        }
     }
-    
     /*******************************************************************
     Purpose: On Edit Workflow Threshold template
     Version: 1.0
@@ -112,6 +130,11 @@ public without sharing class UL_ThresholdTemplateExtensions {
     ********************************************************************/
     public pagereference save(){
         try{
+            if(thrtemp.UL_Workflow__c==null || thrtemp.UL_TemplateDescription__c==null || thrtemp.UL_Next_Status__c==null){
+               ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.TPM_ThresholdTemplate_MandatoryFields);  
+                ApexPages.addMessage(msg);
+                return null;
+            } 
             database.upsert(thrtemp);
             viewMode = true;
             editMode = false;
@@ -142,11 +165,14 @@ public without sharing class UL_ThresholdTemplateExtensions {
             stepNames = new set<String>();
             approvalProcessSteps = new list<selectoption>();
            
-            for(processnode processsteps : [select description from processnode where processdefinitionid=:approvalids.get(thrtemp.UL_Workflow__c) limit 5000]){
+            for(processnode processsteps : [select description from processnode where processdefinitionid=:approvalids.get(thrtemp.UL_Workflow__c) limit:(Limits.getLimitQueryRows()-Limits.getQueryRows())]){
               stepNames.add(processsteps.description);
             }
             for(String steps : stepNames){
-              approvalProcessSteps.add(new selectoption(steps, steps));
+              SelectOption custOption = UL_Utility.getNewOption(UL_Utility.BOOLEAN_FALSE);
+              custOption.setValue(steps);
+              custOption.setLabel(steps);
+              approvalProcessSteps.add(custOption);
                 
             }
         }catch(Exception ex){

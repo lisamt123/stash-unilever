@@ -15,49 +15,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>ACCL__Description_1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ACCL__Description_2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>ACCL__Short_Description__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Competitive_Product__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ACCL__Sales_Org__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Main_Group__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Group__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Sub_Group__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Fill__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Dummy__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>ACCL__Product_Template__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -65,11 +23,41 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ACCL__Product_Short_Code__c</field>
+                <field>ACCL__ExternalId__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ACCL__Tax_Classification__c</field>
+                <field>ACCL__UPC__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Dummy__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ACCL__Category__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Distribution_Channel__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Division__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>ACCL__Product_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Material_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ACCL__State__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -82,6 +70,52 @@
         <layoutColumns/>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Unilever Specific Attributes</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ACCL__Criterion_1_Product__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ACCL__Criterion_2_Product__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ACCL__Criterion_3_Product__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ACCL__Criterion_4_Product__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ACCL__Criterion_5_Product__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ACCL__Criterion_6_Product__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Criterion_7_Product__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Criterion_8_Product__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>UL_Criterion_9_Product_Description__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns/>
+        <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -101,95 +135,8 @@
                 <behavior>Edit</behavior>
                 <field>ACCL__Pack_Size_Unit__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Product_Form__c</field>
-            </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Container_Size__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Container_Size_Unit__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Container_Type__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsTopToBottom</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Description</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>ACCL__Description_1_Language_1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Description_1_Language_2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Description_1_Language_3__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Description_1_Language_4__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Description_2_Language_1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Description_2_Language_2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Description_2_Language_3__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Description_2_Language_4__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsTopToBottom</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Short Description</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Short_Description_Language_1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Short_Description_Language_2__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Short_Description_Language_3__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Short_Description_Language_4__c</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -200,19 +147,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ACCL__Delivery_Valid_From__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Field_Valid_From__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ACCL__KAM_Valid_From__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__New_Item_Valid_From__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -222,98 +157,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ACCL__Delivery_Valid_Thru__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Field_Valid_Thru__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ACCL__KAM_Valid_Thru__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ACCL__New_Item_Valid_Thru__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ACCL__Fund_Valid_Thru__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Unilever Specific Attributes</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Category__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Criterion_1_Product__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Criterion_2_Product__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Criterion_3_Product__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Product_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Material_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Material_Description__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Sales_Organization__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Criterion_5_Product__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__Criterion_6_Product__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Criterion_7_Product__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Criterion_8_Product__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__UPC__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ACCL__State__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Distribution_Channel__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UL_Division__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -356,35 +204,6 @@
     </relatedLists>
     <relatedLists>
         <fields>ACCL__Record_Link__c</fields>
-        <fields>ACCL__Child_Product__c</fields>
-        <fields>UL_Product_Code__c</fields>
-        <fields>ACCL__Quantity__c</fields>
-        <fields>ACCL__Valid_From__c</fields>
-        <fields>ACCL__Valid_Thru__c</fields>
-        <relatedList>ACCL__Product_Part__c.ACCL__Parent_Product__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>ACCL__Record_Link__c</fields>
-        <fields>ACCL__Parent_Product__c</fields>
-        <fields>UL_Product_Code__c</fields>
-        <fields>UL_Alternative_Description__c</fields>
-        <fields>ACCL__Quantity__c</fields>
-        <fields>UL_CU_Quantity__c</fields>
-        <fields>ACCL__Valid_From__c</fields>
-        <fields>ACCL__Valid_Thru__c</fields>
-        <relatedList>ACCL__Product_Part__c.ACCL__Child_Product__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>ACCL__Record_Link__c</fields>
-        <fields>ACCL__Parent_Product_Description__c</fields>
-        <fields>ACCL__Parent_Product_Code__c</fields>
-        <fields>ACCL__Valid_From__c</fields>
-        <fields>ACCL__Valid_Thru__c</fields>
-        <fields>ACCL__Structure_Type__c</fields>
-        <relatedList>ACCL__Product_Hierarchy__c.ACCL__Child_Product__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>ACCL__Record_Link__c</fields>
         <fields>ACCL__Condition_Template__c</fields>
         <fields>ACCL__Price_Type__c</fields>
         <fields>ACCL__Price_List_Type__c</fields>
@@ -406,73 +225,6 @@
         <relatedList>ACCL__Account_Specific_Product_Condition__c.ACCL__Product__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>ACCL__Record_Link__c</fields>
-        <fields>NAME</fields>
-        <relatedList>ACCL__Order_Item__c.ACCL__Product__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>ACCL__Record_Link__c</fields>
-        <fields>Account.NAME</fields>
-        <fields>ACCL__Call_Template__c</fields>
-        <relatedList>ACCL__Historic_Product__c.ACCL__Product__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>ACCL__Record_Link__c</fields>
-        <fields>ACCL__View_Attachment__c</fields>
-        <fields>ACCL__File_Name__c</fields>
-        <fields>ACCL__Usage__c</fields>
-        <fields>ACCL__Creation_Date__c</fields>
-        <relatedList>ACCL__Product_Attachment__c.ACCL__Product__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>ACCL__Product_Code__c</fields>
-        <fields>ACCL__Description_1__c</fields>
-        <fields>ACCL__Product_Type__c</fields>
-        <fields>ACCL__UPC__c</fields>
-        <relatedList>ACCL__Product__c.UL_Main_Group__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>ACCL__Product_Code__c</fields>
-        <fields>ACCL__Description_1__c</fields>
-        <fields>ACCL__Product_Type__c</fields>
-        <fields>ACCL__UPC__c</fields>
-        <relatedList>ACCL__Product__c.UL_Group__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>ACCL__Product_Code__c</fields>
-        <fields>ACCL__Description_1__c</fields>
-        <fields>ACCL__Product_Type__c</fields>
-        <fields>ACCL__UPC__c</fields>
-        <relatedList>ACCL__Product__c.UL_Sub_Group__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>UL_Sales_Organization__c</fields>
-        <fields>UL_Customer__c</fields>
-        <fields>UL_Cannibalisation_Rate__c</fields>
-        <fields>UL_Valid_From__c</fields>
-        <fields>UL_Valid_Thru__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>UL_Cannibalisation_Rate__c.UL_Product__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>UL_Delivery_Profile_Name__c</fields>
-        <fields>UL_Account__c</fields>
-        <fields>UL_Valid_From__c</fields>
-        <fields>UL_Valid_Thru__c</fields>
-        <fields>UL_Sales_Organisation__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <relatedList>UL_Delivery_Profile__c.UL_Product__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>UL_Workflow_Threshold__c.UL_Product__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
         <relatedList>UL_PromotionCategory__c.Heroku_Product_Id__c</relatedList>
     </relatedLists>
@@ -482,7 +234,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h58000001pUbV</masterLabel>
+        <masterLabel>00h4C000000ZTqr</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

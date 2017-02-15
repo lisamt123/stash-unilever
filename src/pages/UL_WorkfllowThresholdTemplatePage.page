@@ -1,11 +1,11 @@
-<apex:page standardController="UL_Workflow_Threshold_Template__c" extensions="UL_ThresholdTemplateExtensions" tabStyle="UL_Workflow_Threshold_Template__c">
+<apex:page standardController="UL_Workflow_Threshold_Template__c" extensions="UL_ThresholdTemplateExtensions" tabStyle="UL_Workflow_Threshold_Template__c" action="{!onLoadPage}">
     <apex:form >
     <apex:pageBlock rendered="{!viewMode}">
         <apex:pageBlockButtons >
-            <apex:commandButton action="{!editClick}" value="Edit">
+            <apex:commandButton action="{!editClick}" value="{!$Label.UL_EDIT}">
            
             </apex:commandButton>
-          <apex:commandButton action="{!delete}" value="delete"/> 
+          <apex:commandButton action="{!delete}" value="{!$Label.UL_DELETE}"/> 
         <!-- <button type="button" onclick="location.reload()">Delete</button> -->
            
         </apex:pageBlockButtons>
@@ -20,11 +20,13 @@
         </apex:pageBlockSection>
     </apex:pageBlock>
         <apex:pageBlock rendered="{!editMode}">
+        <apex:pagemessages />
             <apex:pageBlockButtons >
-        <apex:commandButton action="{!Save}" value="Save"/>
-                <apex:commandButton action="{!cancel1}" value="cancel"/>
+        <apex:commandButton action="{!Save}" value="{!$Label.UL_SAVE}"/>
+                <apex:commandButton action="{!cancel1}" value="{!$Label.UL_CANCEL}"/>
             </apex:pageBlockButtons>
         <apex:pageBlockSection >
+        
            <apex:inputField value="{!UL_Workflow_Threshold_Template__c.UL_Active__c}"/>
           <!--<apex:inputField value="{!UL_Workflow_Threshold_Template__c.UL_Compare_Value__c}"/> -->
             <apex:inputField value="{!UL_Workflow_Threshold_Template__c.UL_Evaluate_Thresholds__c}"/>

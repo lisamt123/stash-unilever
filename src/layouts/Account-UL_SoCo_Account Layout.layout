@@ -37,6 +37,14 @@
                 <behavior>Edit</behavior>
                 <field>ACCL__ExternalId__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Is_Payer__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Is_AllCustomer_Level1__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -178,7 +186,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>UL_Market_Channel_Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>UL_Market_Channel_Description__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UL_Market_Code__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -303,6 +319,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Date_From__c</fields>
+        <fields>Date_Thru__c</fields>
+        <fields>IIBB_Tax__c</fields>
         <relatedList>IIBBTax__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>

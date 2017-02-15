@@ -35,3 +35,7 @@ global.Tree = require("../ui/calculationgrid/tree.js");
 global.LOExtChildAccountsMock = require('./loextchildaccountsmock');
 global.LOExtPromotionAttachmentMock = require('./loextpromotionattachmentmock');
 global.LOExtTacticTiersMock = require('./loexttactictiersmock');
+
+//PMA - START CODE - TPM-1498 - Audit Trail
+global.LOPromotionHistoryMock = require('./lopromotionhistorymock');
+//PMA - END CODE - TPM-1498 - Audit Trail */

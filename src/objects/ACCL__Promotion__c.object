@@ -18,8 +18,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
+        <content>MyPromotionPlanning2</content>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Standard</type>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -118,6 +119,16 @@
         </displayedFields>
         <displayedFields>
             <field>ACCL__Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Lift__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Volume_Type__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -364,10 +375,100 @@
         <label>PromotionWorkflowPending</label>
     </fieldSets>
     <fieldSets>
+        <fullName>TPM_UKI_LTA_Read_Only_Fileds</fullName>
+        <description>This is used for to disable the edit functionality in Smart UI</description>
+        <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Promotion_ID__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Anchor_Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>TPM_UKI_LTA_Read Only Fileds</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>TPM_UKI_ShortTerm_Read_Only_Fileds</fullName>
+        <description>This is used to disable the fields in Smart  UI</description>
+        <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Promotion_ID__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Current_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Category__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Brand__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Cannibalisation_Override__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Cannibalisation_Rate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Market__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>TPM_UKI_ShortTerm_Read Only Fileds</label>
+    </fieldSets>
+    <fieldSets>
         <fullName>UL_SoCo_Approved</fullName>
         <description>In promotion planning workflow when the promotion is in the Approved status</description>
         <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Promotion_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Parent_Promotion__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_ThresholdViolated__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -378,6 +479,11 @@
         </displayedFields>
         <displayedFields>
             <field>ACCL__Phase__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -516,6 +622,16 @@
     <fieldSets>
         <fullName>UL_SoCo_Branded_Pack_Approved</fullName>
         <description>In promotion planning workflow when the promotion is in the Branded Pack Approved status</description>
+        <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <displayedFields>
             <field>ACCL__Promotion_Template__c</field>
             <isFieldManaged>false</isFieldManaged>
@@ -682,6 +798,11 @@
         <fullName>UL_SoCo_Director_check</fullName>
         <description>In promotion planning workflow when the promotion is in the Director check status</description>
         <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>UL_Current_Status__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -698,6 +819,11 @@
         </displayedFields>
         <displayedFields>
             <field>ACCL__Active__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -917,6 +1043,11 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Placement_Date_Thru__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1012,6 +1143,11 @@
         <fullName>UL_SoCo_Finance_Check</fullName>
         <description>In promotion planning workflow when the promotion is in the Finance check status</description>
         <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Promotion_Template__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1033,6 +1169,11 @@
         </displayedFields>
         <displayedFields>
             <field>UL_Lift__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -1207,6 +1348,11 @@
         <fullName>UL_SoCo_Manager_Check</fullName>
         <description>In promotion planning workflow when the promotion is in the Manager check status</description>
         <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>UL_Current_Status__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1218,6 +1364,11 @@
         </displayedFields>
         <displayedFields>
             <field>ACCL__Phase__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -1372,6 +1523,11 @@
         <fullName>UL_SoCo_PendingApproved</fullName>
         <description>This field set is used for the fields which should not be edit when promotion is in approved/Finance Check/Manager check state</description>
         <displayedFields>
+            <field>ACCL__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>ACCL__Promotion_Template__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -1398,6 +1554,11 @@
         </displayedFields>
         <displayedFields>
             <field>ACCL__Placement_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_IIBB_Tax__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -1527,7 +1688,22 @@
         <fullName>UL_SoCo_Planning</fullName>
         <description>Field sets refer when Promotion is in Planning status</description>
         <displayedFields>
+            <field>ACCL__Anchor_Account_Set__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>UL_Current_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Anchor_Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_ThresholdViolated__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -1537,6 +1713,116 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <label>SoCo Planning</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>UL_UKI_LTA_Disabled_Fields</fullName>
+        <description>we are using this filed set for disabling fields in Smart UI for UKI</description>
+        <displayedFields>
+            <field>UL_Market__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Feature__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Cannibalisation_Override__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Secondary_Objective__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Post_Dip_End_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Cannibalisation_Rate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Brand__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Delivery_Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Category__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Primary_Objective__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Delivery_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Placement_Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Placement_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Mechanic__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Delivery_Profile__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TPM_Delivery_Profile__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Sub_Mechanic__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Promotion_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>UL_UKI_LTA_Disabled_Fields</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>UL_UKI_LTA_Specific</fullName>
+        <description>Fields which should be visible only for UKI LTA</description>
+        <displayedFields>
+            <field>ACCL__Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACCL__Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>UKI_LTA_Specific</label>
     </fieldSets>
     <fields>
         <fullName>ACCL__Active__c</fullName>
@@ -1959,6 +2245,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>TPM_Delivery_Profile__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Delivery Profile</label>
+        <referenceTo>UL_Delivery_Profile__c</referenceTo>
+        <relationshipLabel>Promotions</relationshipLabel>
+        <relationshipName>Promotions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>UL_Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -2260,7 +2559,7 @@
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -2303,7 +2602,7 @@
     <fields>
         <fullName>UL_Pre_Evaluation_Comment__c</fullName>
         <externalId>false</externalId>
-        <label>Pre Evaluation Comment</label>
+        <label>Pre-Evaluation Comment</label>
         <length>80</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2356,18 +2655,6 @@
         <externalId>false</externalId>
         <formula>TEXT(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c)</formula>
         <label>UL_PromotionTemplateType</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UL_PromotionTemplate_Type__c</fullName>
-        <externalId>false</externalId>
-        <formula>ACCL__Promotion_Template__r.Name</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>UL_PromotionTemplateType~</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2917,6 +3204,7 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
     <label>Promotion</label>
     <listViews>
         <fullName>ACCL__All</fullName>
+        <columns>ACCL__Anchor_Account__c</columns>
         <columns>NAME</columns>
         <columns>UL_Promotion_Name_URL__c</columns>
         <columns>ACCL__Parent_Promotion__c</columns>
@@ -2927,7 +3215,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         <columns>UL_Current_Status__c</columns>
         <columns>ACCL__Date_From__c</columns>
         <columns>ACCL__Date_Thru__c</columns>
-        <columns>ACCL__Anchor_Account__c</columns>
         <columns>ACCL__Anchor_Account_Set__c</columns>
         <columns>ACCL__Sales_Org__c</columns>
         <columns>CREATEDBY_USER</columns>
@@ -2976,6 +3263,31 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
         </filters>
         <label>Category</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Event_and_Special</fullName>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>ACCL__Promotion_Template_Description__c</columns>
+        <columns>UL_Promotion_Template_Type__c</columns>
+        <columns>ACCL__Sales_Org__c</columns>
+        <columns>ACCL__Slogan_Language_1__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCL__Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>contains</operation>
+            <value>UK</value>
+        </filters>
+        <label>Event and Special</label>
+        <language>en_GB</language>
+        <sharedTo>
+            <group>UK_Planner_CAM</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Finance_Check_Dynamic_Queue_Promotion</fullName>
@@ -3329,10 +3641,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
             </values>
             <values>
                 <fullName>Parent Promotion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Past Dated%2FUrgent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3913,10 +4221,6 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Past Dated%2FUrgent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SpecialHoliday</fullName>
                 <default>false</default>
             </values>
@@ -3992,10 +4296,10 @@ HYPERLINK(&quot;/&quot; &amp; Id,ACCL__Slogan__c,&apos;_self&apos;)</formula>
     <searchLayouts>
         <customTabListAdditionalFields>UL_Promotion_ID__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Promotion_Name_URL__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCL__Anchor_Account__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Current_Status__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Sub_Mechanic__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Feature__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>UL_Free_Text__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCL__Delivery_Date_From__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCL__Placement_Date_From__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UL_Category__c</customTabListAdditionalFields>
@@ -4085,24 +4389,42 @@ Id=VLOOKUP
         <errorMessage>Name should not be edited when the Phase is Committed.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>TPM_Lift_Mandate</fullName>
+        <active>true</active>
+        <description>Lift % is mandatory</description>
+        <errorConditionFormula>if((ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp;ISBLANK(UL_Lift__c) &amp;&amp; NOT(ISNEW()) &amp;&amp; UL_PromotionTemplateType__c &lt;&gt; &apos;LTA&apos;, true, false)</errorConditionFormula>
+        <errorMessage>Lift % is mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TPM_Past_Date_Validation_For_SOCO</fullName>
+        <active>false</active>
+        <errorConditionFormula>IF(NOT( ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c) &amp;&amp; (ACCL__Date_From__c&lt;Today() || ACCL__Date_Thru__c&lt;Today()), true, IF(ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c &amp;&amp; (ACCL__Date_From__c &gt;= Today() || ACCL__Date_Thru__c &lt;=Today()), true, false))</errorConditionFormula>
+        <errorDisplayField>ACCL__Active__c</errorDisplayField>
+        <errorMessage>Only Past Dated/Urgent Promotion template should be used to create past date\urgent promotion (in such case, from date must be in the past, Thru date must be in the future)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TPM_VolumeType_Mandate</fullName>
+        <active>true</active>
+        <description>Volume Type is mandatory</description>
+        <errorConditionFormula>if((ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;AR01&apos;)||ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL01&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.ACCL__Sales_Org__c,&apos;CL03&apos;)) &amp;&amp; ISBLANK(TEXT(UL_Volume_Type__c)) &amp;&amp; NOT(ISNEW()), true, false)</errorConditionFormula>
+        <errorMessage>Volume Type is mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>UL_Default_Sold_To_Mandatory_Rule</fullName>
         <active>true</active>
-        <errorConditionFormula>IF(  ACCL__Promotion_Template__r.UL_Calculate_Slogan_Name__c &amp;&amp; ISBLANK( ACCL__Anchor_Account__c) , true, false)</errorConditionFormula>
+        <errorConditionFormula>IF( (  ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;) || ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Promotion&apos;))&amp;&amp; ACCL__Promotion_Template__r.UL_Calculate_Slogan_Name__c &amp;&amp; ISBLANK( ACCL__Anchor_Account__c) , true, false)</errorConditionFormula>
         <errorMessage>All promotions must have a sold-to assigned to them. If no sold-to appears in the list for your account, please contact your support team for guidance.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_End_Date_Validation</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Validates End Date workflow state conditions.</description>
-        <errorConditionFormula>IF((ACCL__Sales_Org__c == &apos;AR01&apos; || ACCL__Sales_Org__c == &apos;CL01&apos; || ACCL__Sales_Org__c == &apos;CL03&apos;)
-&amp;&amp; ACCL__Date_From__c &lt;=  TODAY() 
-&amp;&amp; ACCL__Date_Thru__c &gt;=  TODAY()
-&amp;&amp;  TEXT(PRIORVALUE(UL_Current_Status__c )) == &apos;Approved&apos; 
-&amp;&amp;  TEXT( UL_Current_Status__c ) != &apos;End Date&apos; 
-,true
+        <errorConditionFormula>IF((ACCL__Sales_Org__c == &apos;AR01&apos; || ACCL__Sales_Org__c == &apos;CL01&apos; || ACCL__Sales_Org__c == &apos;CL03&apos;) 
+&amp;&amp; TEXT( UL_Current_Status__c ) == &apos;End Date&apos; 
+&amp;&amp; (ACCL__Date_Thru__c &lt; TODAY() || ACCL__Date_Thru__c &gt; PRIORVALUE(ACCL__Date_Thru__c )) 
+,true 
 ,false )</errorConditionFormula>
-        <errorDisplayField>ACCL__Active__c</errorDisplayField>
-        <errorMessage>You can set Workflow State to &apos;End Date&apos; only if the Promotion is currently running</errorMessage>
+        <errorMessage>For an End Dated promotion, Thru Date can&apos;t be a date in the past OR can&apos;t be extended beyond the original Thru Date.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_FromDate_Planning</fullName>
@@ -4118,17 +4440,18 @@ Id=VLOOKUP
     </validationRules>
     <validationRules>
         <fullName>UL_LTA_StartDate_Should_Not_Be_PastDate</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>The start date on LTAs should be greater than or equal to today</description>
         <errorConditionFormula>AND( ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;), ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), ACCL__Date_From__c &lt; TODAY() )</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
-        <errorMessage>The start date on LTAs should be greater than or equal to today</errorMessage>
+        <errorMessage>UL_UtilityController.errorMessage(&apos;The start date on LTAs should be greater than or equal to today&apos;)</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_LTA_Time_Period_of_Longer_Than_a_Year</fullName>
         <active>false</active>
         <description>(TPM 1759) - If a time period of longer than a year is defined within the date fields then a validation should be returned and the user is warned that a LTA cannot be created which is longer than one year.</description>
         <errorConditionFormula>AND(VALUE(ACCL__Promotion_Template__r.LTA_Days_Counter__c)  &lt;&gt; 0, ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;),ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;LTA&apos;), (ACCL__Date_Thru__c - ACCL__Date_From__c) + 1 &gt; VALUE(ACCL__Promotion_Template__r.LTA_Days_Counter__c))</errorConditionFormula>
+        <errorDisplayField>ACCL__Active__c</errorDisplayField>
         <errorMessage>LTA duration is exceeding maximum permissible value</errorMessage>
     </validationRules>
     <validationRules>
@@ -4158,22 +4481,21 @@ Id=VLOOKUP
     <validationRules>
         <fullName>UL_PastDated_Urgent_Promotion_Creation</fullName>
         <active>true</active>
-        <description>Past Dated promotion creation validation rule</description>
-        <errorConditionFormula>IF(NOT(ISPICKVAL($User.ACCL__Sales_Org__c , &apos;UK SO&apos;)) 
-&amp;&amp; ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;)
-&amp;&amp; NOT(CONTAINS(CreatedBy.UserRole.DeveloperName, &apos;Account_Manager&apos;))
-&amp;&amp; NOT(CONTAINS(CreatedBy.UserRole.DeveloperName, &apos;Finance_Admin&apos;))
+        <description>Past Dated promotion creation based on role validation rule</description>
+        <errorConditionFormula>IF(ACCL__Promotion_Template__r.UL_Allow_past_Promotions__c 
+&amp;&amp; (NOT(CONTAINS($UserRole.Name, &apos;Account Manager&apos;))) 
+&amp;&amp; (NOT(CONTAINS($UserRole.Name, &apos;Category Manager&apos;))) 
 ,TRUE,FALSE)</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
-        <errorMessage>Past Dated promotions can only be created by Account Manager and Finance Manager.</errorMessage>
+        <errorMessage>Past Dated promotions can only be created by Account Manager and Category Manager.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>UL_PastDated_Urgent_Promotion_Validation</fullName>
+        <fullName>UL_WithIn_DateFrom_DateThru</fullName>
         <active>true</active>
-        <description>Past Dated validation rule</description>
-        <errorConditionFormula>IF( NOT(ISPICKVAL( $User.ACCL__Sales_Org__c , &apos;UK SO&apos;)) &amp;&amp; ISPICKVAL(ACCL__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;)&amp;&amp;(ACCL__Date_From__c &gt;= TODAY() || ACCL__Date_Thru__c &lt;= TODAY()),TRUE,FALSE )</errorConditionFormula>
+        <description>Promotion dates should be with in from and thru dates.</description>
+        <errorConditionFormula>IF(NOT(ISNEW()) &amp;&amp; ( ISPICKVAL($User.ACCL__Sales_Org__c , &apos;AR01&apos;) || ISPICKVAL($User.ACCL__Sales_Org__c , &apos;CL02&apos;) || ISPICKVAL($User.ACCL__Sales_Org__c , &apos;CL01&apos;) ) &amp;&amp; (ACCL__Placement_Date_From__c	&lt; ACCL__Date_From__c ||ACCL__Placement_Date_Thru__c	&gt; ACCL__Date_Thru__c || ACCL__Delivery_Date_From__c &lt; ACCL__Date_From__c || ACCL__Delivery_Date_Thru__c &gt; ACCL__Date_Thru__c), true, false)</errorConditionFormula>
         <errorDisplayField>ACCL__Active__c</errorDisplayField>
-        <errorMessage>From date must be in the past, Thru date must be in the future for Past Dated/Urgent Promotion</errorMessage>
+        <errorMessage>Dates(Shipment or Instore) are not with in Promotion dates range.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>in_store_date_from_validation</fullName>
@@ -4190,14 +4512,13 @@ Id=VLOOKUP
     <validationRules>
         <fullName>validation_for_date_ranges</fullName>
         <active>true</active>
-        <errorConditionFormula>IF(ACCL__Promotion_Template__r.Calculate_In_store_Dates__c = true,
+        <errorConditionFormula>AND(  IF(ACCL__Promotion_Template__r.Calculate_In_store_Dates__c = true,
  IF((ACCL__Placement_Date_Thru__c - ACCL__Placement_Date_From__c)&gt;ACCL__Promotion_Template__r.UL_Calculate_for_Max_Min_Dates__c || 
  (ACCL__Placement_Date_Thru__c - ACCL__Placement_Date_From__c)&lt;0 , true, false), false) || 
  IF(ACCL__Promotion_Template__r.UL_Validate_for_Max_Min_Dates__c = true, 
  IF((ACCL__Date_Thru__c - ACCL__Date_From__c)&gt; ACCL__Promotion_Template__r.UL_Calculate_for_Max_Min_Dates__c || 
- (ACCL__Date_Thru__c - ACCL__Date_From__c)&lt;0 , true, false),false)</errorConditionFormula>
-        <errorDisplayField>ACCL__Active__c</errorDisplayField>
-        <errorMessage>In store dates range should be more than 1 day or below 91 days</errorMessage>
+ (ACCL__Date_Thru__c - ACCL__Date_From__c)&lt;0 , true, false),false) )</errorConditionFormula>
+        <errorMessage>Dates range should be more than 1 day or below 91 days</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>ACCL__Derive</fullName>
@@ -4241,6 +4562,17 @@ else {
 else{
 alert(&quot;Access Denied&quot;);
 }</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Derive2</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Derive</masterLabel>
+        <openType>replace</openType>
+        <page>ACCL__DerivePromotion</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
     </webLinks>
     <webLinks>
         <fullName>UL_Close_Promotion</fullName>

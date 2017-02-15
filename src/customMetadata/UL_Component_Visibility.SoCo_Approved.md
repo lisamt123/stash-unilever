@@ -12,11 +12,11 @@
     </values>
     <values>
         <field>UL_Components__c</field>
-        <value xsi:type="xsd:string">TOOLBAR_BTN_ADDTACTIC;TACTIC_BTN_MANAGE_PRODS;TACTIC_BTN_MANAGE_FUNDS;TACTIC_BTN_MANAGE_TIERS;TACTIC_FUNDS_CHECKBOX;TOOLBAR_BTN_SUBMIT;TOOLBAR_BTN_APPROVE</value>
+        <value xsi:type="xsd:string">TOOLBAR_BTN_ADDTACTIC;TACTIC_BTN_MANAGE_PRODS;TACTIC_BTN_MANAGE_FUNDS;TACTIC_BTN_MANAGE_TIERS;TOOLBAR_BTN_SUBMIT;TOOLBAR_BTN_APPROVE;TOOLBAR_BTN_DUPLICATE;TOOLBAR_BTN_DELETE</value>
     </values>
     <values>
         <field>UL_Sales_Org__c</field>
-        <value xsi:type="xsd:string">AR01</value>
+        <value xsi:type="xsd:string">SoCo</value>
     </values>
     <values>
         <field>UL_Status__c</field>
@@ -25,5 +25,9 @@
     <values>
         <field>UL_Visible_Components__c</field>
         <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>UL_is_Child_Promotion__c</field>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
 </CustomMetadata>

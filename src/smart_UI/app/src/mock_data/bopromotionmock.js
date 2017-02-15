@@ -10,6 +10,9 @@ global.BOPromotionEAR = [
     {"Type": "UIElement", "Name": "TOOLBAR_BTN_REJECT", "Visible": false},
     {"Type": "UIElement", "Name": "TOOLBAR_BTN_PUSH", "Visible": true},
     {"Type": "UIElement", "Name": "TOOLBAR_BTN_RELEASE", "Visible": true},
+    {"Type": "UIElement", "Name": "TOOLBAR_BTN_CLOSE", "Visible": true},
+    {"Type": "UIElement", "Name": "TOOLBAR_BTN_DUPLICATE", "Visible": true},
+    {"Type": "UIElement", "Name": "TOOLBAR_BTN_DELETE", "Visible": true},
     //PMA - END CODE - 2017-01-12 - Toolbar buttons visibility
     //PMA - START CODE - 2017-01-16 - New UK Button
     {"Type": "UIElement", "Name": "TOOLBAR_BTN_SIMULATION", "Visible": false},
@@ -22,9 +25,15 @@ global.BOPromotionEAR = [
     {"Type": "UIElement", "Name": "TOOLBAR_BTN_STOPPED", "Visible": false},
     {"Type": "UIElement", "Name": "TOOLBAR_BTN_AUDITTRAIL", "Visible": true},
     {"Type": "UIElement", "Name": "TOOLBAR_BTN_ADDTACTIC", "Visible": true},
+    {"Type": "UIElement", "Name": "TOOLBAR_BTN_THRESHOLD", "Visible": true},
     //PMA - END CODE - 2017-01-16 - New UK Button
     {"Type": "UIElement", "Name": "DELETE_BUTTON", "Editable": true},
-    {"Type": "UIElement", "Name": "DERIVE_BUTTON", "Editable": true}
+    {"Type": "UIElement", "Name": "DERIVE_BUTTON", "Editable": true},
+    //API - START CODE - TPM-1499 - New Promo Layout
+    {"Type": "UIElement", "Name": "TILE_PROMO_MAIN_UKI", "Visible": true},
+    {"Type": "UIElement", "Name": "TILE_PROMO_MAIN_CORE", "Visible": false},
+    {"Type": "UIElement", "Name": "TILE_PROMO_MAIN_SOCO", "Visible": false}
+    //API - END CODE - TPM-1499 - New Promo Layout
 ];
 
 var boPromotionMock = {
@@ -76,7 +85,6 @@ var boPromotionMock = {
                 'UL_Market__c' : 'UL Market',
                 //PMA - END CODE - 2017-01-12 - New custom field
                 //UKI
-    
                 'UL_Delivery_Profile__c' : '',
                 'UL_Feature__c' : '',
                 'UL_Mechanic__c': '',
@@ -85,12 +93,12 @@ var boPromotionMock = {
                 'UL_Primary_Objective__c': '',
                 'UL_Secondary_Objective__c': '',
                 'UL_Promotion_Type__c':'',
-
                 'UL_Category__c' : '', 
                 'UL_Brand__c' : '', 
                 'UL_Cannibalisation_Override__c' : '' ,
                 'UL_Post_Dip_End_Date__c' : '',
-                'UL_Account__c': '' ,
+                'UL_Account__c': '0013600000KGy48AAD' ,
+                'UL_Promotion_ID__c': '<a href="/aER4C0000004CC9" target="_self">P-00000021</a>',
             }]
         };
 

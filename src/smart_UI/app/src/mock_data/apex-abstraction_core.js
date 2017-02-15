@@ -11,6 +11,7 @@ apexAbstractionCore.prototype = {
     metaDataAPEX: {},
 
     read: function (objectId, className, extension) {
+        console.info("@#@:" + className +  extension);
         const result = when.defer();
 
         let objectContent;

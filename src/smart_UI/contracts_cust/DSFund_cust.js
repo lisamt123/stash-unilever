@@ -5,7 +5,7 @@ var DSFund = {
     'SFObject': 'Fund__c',
     'Attributes': [], // Attributes are not explictly listed in release 3
     'APEX': [
-        {'Type': 'read', 'Extension': 'MyPromotionRemoteActionExtension','Managed': false},
+        {'Type': 'read', 'Extension': 'MyPromotionRemoteActionExtension', 'Managed': false},
         {'Type': 'write', 'Extension': 'MyPromotionRemoteActionExtension'},
         {'Type': 'create', 'Available': false},
         {'Type': 'delete', 'Available': false},

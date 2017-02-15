@@ -26,6 +26,13 @@
         <shortDescription>AF_Adaptation_Value</shortDescription>
         <value>Adaptation:</value>
     </labels>
+	<labels>
+        <fullName>Attachment_Count_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attachment_Count_Error_Message</shortDescription>
+        <value>A Long Term Agreement cannot be submitted without an attachment</value>
+    </labels>
     <labels>
         <fullName>AF_Add_Comment</fullName>
         <language>en_US</language>
@@ -22682,7 +22689,7 @@ If you discover that stopping this project was a mistake you can undo this actio
         <language>en_GB</language>
         <protected>false</protected>
         <shortDescription>Maximum_LTA_Duration</shortDescription>
-        <value>LTA duration is exceeding maximum permissible value</value>
+        <value>LTA duration cannot be more than</value>
     </labels>
     <labels>
         <fullName>NEW</fullName>
@@ -25370,6 +25377,13 @@ the campaign covers more than 15 countries</value>
         <value>Add</value>
     </labels>
     <labels>
+        <fullName>PP_BTN_ADDTACTIC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_BTN_ADDTACTIC</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
         <fullName>PP_BTN_ADD2</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -25623,7 +25637,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PP_BTN_SUBMITTEDFORAPPROVAL</shortDescription>
-        <value>Sumitted for Approval</value>
+        <value>Submitted for Approval</value>
     </labels>
     <labels>
         <fullName>PP_DELETE_VALIDATION_ERROR</fullName>
@@ -25984,6 +25998,34 @@ the campaign covers more than 15 countries</value>
         <protected>true</protected>
         <shortDescription>PP_LBL_PROMOTION_ID</shortDescription>
         <value>Promotion Id</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_PROMOTIONHISTORY_CREATIONDATE</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PP_LBL_PROMOTIONHISTORY_CREATIONDATE</shortDescription>
+        <value>Change Date</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_PROMOTIONHISTORY_OLDVALUE</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PP_LBL_PROMOTIONHISTORY_OLDVALUE</shortDescription>
+        <value>From State</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_PROMOTIONHISTORY_NEWVALUE</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PP_LBL_PROMOTIONHISTORY_NEWVALUE</shortDescription>
+        <value>To State</value>
+    </labels>
+    <labels>
+        <fullName>PP_LBL_PROMOTIONHISTORY_NAME</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PP_LBL_PROMOTIONHISTORY_NAME</shortDescription>
+        <value>User</value>
     </labels>
     <labels>
         <fullName>PP_LBL_PUSH_ERROR</fullName>
@@ -26348,6 +26390,22 @@ the campaign covers more than 15 countries</value>
         <protected>true</protected>
         <shortDescription>Promotion Access Read</shortDescription>
         <value>Read</value>
+    </labels>
+	<labels>
+        <fullName>Close_Promotion_FailedSingle</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close_Promotion_FailedSingle</shortDescription>
+        <value>The promotion can not be closed as the closing conditions are not fulfilled (end date must be passed and workflow state must be approved).</value>
+    </labels>
+	<labels>
+        <fullName>Close_Promotion_Missing_SharingSingle</fullName>
+        <categories>Promotions_Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close_Promotion_Missing_SharingSingle</shortDescription>
+        <value>You can not close the promotion due to missing sharing access.</value>
     </labels>
     <labels>
         <fullName>Promotion_Closure_Failed</fullName>
@@ -26871,13 +26929,13 @@ the campaign covers more than 15 countries</value>
         <shortDescription>UL_MaxStoreDate</shortDescription>
         <value>91</value>
     </labels>
-    <labels>
+    <!--<labels>
         <fullName>UL_Multiple_Brands</fullName>
         <language>en_GB</language>
         <protected>false</protected>
         <shortDescription>UL_Multiple_Brands</shortDescription>
         <value>Multiple Brands</value>
-    </labels>
+    </labels>-->
     <labels>
         <fullName>UL_Multiple_Categories</fullName>
         <language>en_GB</language>
@@ -26986,12 +27044,20 @@ the campaign covers more than 15 countries</value>
         <shortDescription>Planning Start And End Date</shortDescription>
         <value>Please enter Planning Start and End Dates, then set Planning Level</value>
     </labels>
+	<labels>
+        <fullName>UL_DateOverlapingFound</fullName>
+        <categories>UL_IIBBTax_TriggerHandler</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>	Overalaping of periods was found</shortDescription>
+        <value>System has found an overlapping of time frames. Please check and correct the time frame</value>
+    </labels>
     <labels>
         <fullName>UL_Pomotion_URL</fullName>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Promotion URL after copy</shortDescription>
-        <value>/apex/MyPromotionPlanning?id=</value>
+        <value>/apex/MyPromotionPlanning2?id=</value>
     </labels>
     <labels>
         <fullName>UL_ProductsMandatory</fullName>
@@ -27133,7 +27199,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Users data not setup properly</shortDescription>
-        <value>Finance analyst/Finance managers not setup properly</value>
+        <value>Role User is not setup properly</value>
     </labels>
     <labels>
         <fullName>UW_ASSET_IN_TOOLKIT</fullName>
@@ -28478,8 +28544,122 @@ Which Communications team do you represent? You must be associated to one Planne
     <labels>
         <fullName>weekShare</fullName>
         <categories>KPI</categories>
-        <language>en_US</language>
+        <language>en_US</language> 
         <protected>false</protected>
         <shortDescription>Weekly Split</shortDescription>
         <value>Weekly Split</value>
+    </labels>
+	<labels>
+        <fullName>TPM_ThresholdTemplate_MandatoryFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>refere in VF page</shortDescription>
+        <value>Fields-Workflow, Next Status and Description are mandatory fields</value>
+    </labels>
+		<labels>
+        <fullName>TPM_Past_Date_Validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TPM_Past Date Validation</shortDescription>
+        <value>Date From/Thru should not be in past</value>
+    </labels>
+	<labels>
+        <fullName>MSG_ERROR_ALLOCATION_DIFFERENT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MSG_ERROR_ALLOCATION_DIFFERENT</shortDescription>
+        <value>% Allocated needs to match exactly 100% across all funds</value>
+    </labels>
+	<labels>
+        <fullName>MSG_ALLOCATION_ERROR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MSG_ALLOCATION_ERROR</shortDescription>
+        <value>% Allocated value needs to match exactly 100% across all funds</value>
+    </labels>
+	<labels>
+        <fullName>UL_NOT_FOUND_CUSTOMER_LEVEL_1</fullName>
+        <categories>UL_CreatePromotionController</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Customer Level 1 was found</shortDescription>
+        <value>Sorry the record cannot be saved, no Customer with Level 1 was found in Sales Org :</value>
+    </labels>
+	<labels>
+        <fullName>UL_WORKFLOW_NOT_SET_ON_TEMPLATE</fullName>
+        <categories>UL Workflow Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UL_WORKFLOW_NOT_SET_ON_TEMPLATE</shortDescription>
+        <value>No Workflow is set on the Promotion Template</value>
+    </labels>
+	<labels>
+        <fullName>UL_HTTP_Application_JSON</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_HTTP_Application_JSON</shortDescription>
+        <value>application/json</value>
+    </labels>
+    <labels>
+        <fullName>UL_HTTP_ContentType</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_HTTP_ContentType</shortDescription>
+        <value>Content-Type</value>
+    </labels>
+    <labels>
+        <fullName>UL_HTTP_POST</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_HTTP_POST</shortDescription>
+        <value>POST</value>
+    </labels>
+    <labels>
+        <fullName>UL_Mulesoft_Heroku_URL</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Mulesoft_Heroku_URL</shortDescription>
+        <value>http://mft-mulesoft-herokuqa.eu.cloudhub.io/api/v1/promotion</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_Equals</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_Equals</shortDescription>
+        <value>=</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_FROM</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_FROM</shortDescription>
+        <value>FROM</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_ID_Field</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_ID_Field</shortDescription>
+        <value>Id</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_SELECT</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_SELECT</shortDescription>
+        <value>SELECT</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_StringQuote</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_StringQuote</shortDescription>
+        <value>\&apos;</value>
+    </labels>
+    <labels>
+        <fullName>UL_Query_WHERE</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>UL_Query_WHERE</shortDescription>
+        <value>WHERE</value>
     </labels>

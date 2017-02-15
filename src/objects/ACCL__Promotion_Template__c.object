@@ -628,7 +628,7 @@
         <defaultValue>false</defaultValue>
         <description>While promotion is set for approval process, this flag triggers a validation to check if all tactic is aligned with at least one fund</description>
         <externalId>false</externalId>
-        <label>UL Is Tactic Fund Required</label>
+        <label>Tactic Fund Required</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -668,6 +668,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>SpecialHoliday</fullName>
                 <default>false</default>
             </picklistValues>
@@ -704,6 +708,15 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_ShowAttachments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Template flag used to activate the Promotion Attachments section by default, during opening of the promotion, without clicking the Attachment button.</description>
+        <externalId>false</externalId>
+        <label>Show Attachments</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>UL_Validate_for_Max_Min_Dates__c</fullName>
@@ -1334,6 +1347,16 @@
       Id=VLOOKUP
       ($ObjectType.ACCL__Promotion_Template__c.Fields.Id , $ObjectType.ACCL__Promotion_Template__c.Fields.Name, Name )))</errorConditionFormula>
         <errorMessage>Promotion Template Name already exists, please enter different Name.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_SoCo_Admin_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+$Permission.Soco_Admin,
+NOT(ISPICKVAL(UL_Promo_Type_ControlView__c , &apos;SpecialHoliday&apos;)),
+ISNEW()
+)</errorConditionFormula>
+        <errorMessage>SoCo Admin can create templates only with Sharing Type as SpecialHoliday</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>ACCL__Update_Product_Filter_Cache</fullName>

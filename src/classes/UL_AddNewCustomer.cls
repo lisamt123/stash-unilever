@@ -174,11 +174,12 @@ public with sharing class UL_AddNewCustomer{
     public PageReference backToParent(){
         PageReference pageRef = null; 
         try{ 
-        pageRef = new PageReference(referer);
-        pageRef.setRedirect(true);
+            pageRef = new PageReference(referer);
+            pageRef.setRedirect(true);
         }catch(Exception ex){
             UL_Utility.logError(ex, userInfo.getUserId());
         }
+        
         return pageRef;
     }
 
@@ -222,7 +223,7 @@ public with sharing class UL_AddNewCustomer{
     Throws N/A
     ********************************************************************/
     private void setCustomerSetParam(){
-        ACCL__Account_Set__c customerSet = [SELECT Name, ACCL__Sales_Org__c FROM ACCL__Account_Set__c WHERE id=:setId]; 
+        ACCL__Account_Set__c customerSet = [SELECT Name, ACCL__Sales_Org__c FROM ACCL__Account_Set__c WHERE id=:setId LIMIT 1]; 
         salesOrgId = customerSet.ACCL__Sales_Org__c;
         setName = customerSet.Name;
         referer = ApexPages.currentPage().getParameters().get(Params.retURL.name());
@@ -236,7 +237,9 @@ public with sharing class UL_AddNewCustomer{
     Throws N/A
     ********************************************************************/
     private String getFilterClause(){
-       String result = ' WHERE ACCL__Sales_Org__c=:salesOrgId';
+       //String result = ' WHERE ACCL__Sales_Org__c=:salesOrgId and UL_Customer_Hierarchy_Level__c=:'+ '\'+UL_Utility.level8 +'\'';
+       //String result = ' WHERE ACCL__Sales_Org__c=:salesOrgId and UL_Customer_Hierarchy_Level__c=:ul_utility.level8';
+       String result = ' WHERE ACCL__Sales_Org__c=:salesOrgId and UL_Is_Payer__c=true and UL_Customer_Hierarchy_Level__c='+'\'level 8'+'\'';
        String filterClause=UL_Utility.EMPTY_STRING;
        if(string.isNotEmpty(field1)){
          filterClause += ' UL_Customer_Group_Description__c LIKE ' + LIKE_CLAUSE_START + String.escapeSingleQuotes(field1.trim()) + LIKE_CLAUSE_END;
@@ -298,7 +301,14 @@ public with sharing class UL_AddNewCustomer{
     public With Sharing class AccountSetWrapper{
         public Account acc{get; set;}
         public boolean selected {get; set;}
-    
+        
+        /*******************************************************************
+        Purpose: Wrapper class default constructor
+        Version: 1.0
+        Parameters: Instance of Account object
+        Returns: Void
+        Throws N/A
+        ********************************************************************/
         public AccountSetWrapper(Account acc) {
             this.acc= acc;
             selected = false;     

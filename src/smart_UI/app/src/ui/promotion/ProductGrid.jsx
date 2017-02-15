@@ -84,7 +84,7 @@ module.exports = React.createClass({
     },
 
     scrollTable: function (e) {
-        var offset = - e.target.scrollLeft;
+        var offset = 8 - e.target.scrollLeft;
         var headers = e.target.querySelectorAll('table thead th');
 
         for (var i = 0; i < headers.length; i++) {

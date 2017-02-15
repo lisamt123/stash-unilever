@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>UL_Sales_Org__c</field>
-        <value xsi:type="xsd:string">AR01</value>
+        <value xsi:type="xsd:string">SoCo</value>
     </values>
     <values>
         <field>UL_Status__c</field>
@@ -25,5 +25,9 @@
     <values>
         <field>UL_Visible_Components__c</field>
         <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>UL_is_Child_Promotion__c</field>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
 </CustomMetadata>

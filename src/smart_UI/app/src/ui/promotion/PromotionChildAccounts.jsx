@@ -106,7 +106,7 @@ module.exports = React.createClass({
                 <td>
                     <div className="slds-truncate">
                         <div className="slds-button-group" role="group">
-                            {!(this.props.editMode) ? ((childAccount.Included) ?
+                            {!(this.props.editMode && this.props.promotion.UL_Current_Status__c == "Planning") ? ((childAccount.Included) ?
                                     <Icon className="slds-m-right--medium" category="standard" fillColor="none"
                                           icon="task2" size="x-medium"/> : null) :
                                 <Checkbox checked={(childAccount.Included)}
@@ -136,7 +136,7 @@ module.exports = React.createClass({
     },
 
     scrollTable: function (e) {
-        var offset = - e.target.scrollLeft;
+        var offset = 8 - e.target.scrollLeft;
         var headers = e.target.querySelectorAll('table thead th');
 
         for (var i = 0; i < headers.length; i++) {
@@ -171,7 +171,7 @@ module.exports = React.createClass({
                                             title={(this.props.editMode && ix == 0) ? AppManager.getLabel("PP_TIT_INCLUDE_EXCLUDE_ALL") || 'Include/Exclude All': title}>
                                             {title}
                                             <div className="slds-truncate">
-                                                {(this.props.editMode && ix == 0) ?
+                                                {(this.props.editMode && this.props.promotion.UL_Current_Status__c == "Planning" && ix == 0) ?
                                                     <Checkbox checked={this.allChildAccountsIncluded()}
                                                               onChange={(e) => this.toggleAllChildAccounts(this.allChildAccountsIncluded())}/> :
                                                     title}

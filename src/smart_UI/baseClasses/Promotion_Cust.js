@@ -22,6 +22,14 @@ var Promotion_Cust = {
         for (let key of Object.keys(promoObject.BOPromotion)) if (key.match(/Promotion_ID__c$/)) delete promoObject.BOPromotion[key];
         for (let tactic of promoObject.BOPromotion.LOTactic) for (let key of Object.keys(tactic)) if (key.match(/Record_Link__c$/)) delete tactic[key];
 
+        //PMA - START CODE - TPM-1498 - Audit Trail
+        this.LOPromotionHistory.apex_read(this.getId()).then(line => {
+            this.LOPromotionHistory.removeAllItems();
+            this.LOPromotionHistory.addItems(line.data || []);
+            this.changeHandler();
+        });
+        //PMA - END CODE - TPM-1498 - Audit Trail */
+
         this.LOExtChildAccounts.apex_read(JSON.stringify(
             AppManager.addACSFNamespace(promoObject)
         )).then(children => {
@@ -46,7 +54,11 @@ var Promotion_Cust = {
 
         this.LOExtTacticTiers.load().then(() => this.changeHandler());
 
-        this.LOFilteredFunds.load().then(() => this.changeHandler());
+        this.LOFilteredFunds.apex_read(JSON.stringify(promoObject)).then(children => {
+            this.LOFilteredFunds.removeAllItems();
+            this.LOFilteredFunds.addItems(children.data || []);
+            this.changeHandler();
+        });
 
         return instantiatePromises;
     },
@@ -79,6 +91,10 @@ var Promotion_Cust = {
                 };
             });
 
+        //PMA - START CODE - TPM-1498 - Audit Trail
+        serializedObject.LOPromotionHistory = this.LOPromotionHistory.getAllItems();
+        //PMA - END CODE - TPM-1498 - Audit Trail */
+
         return serializedObject;
     },
     /**
@@ -102,6 +118,9 @@ var Promotion_Cust = {
             UL_Cannibalisation_Rate__c: this.getUL_Cannibalisation_Rate__c(),
             UL_Market__c: this.getUL_Market__c(),
             //PMA - END CODE - 2017-01-12 - New custom field
+             //API - START CODE - TPM-1499 - New Layout + TPM-2436
+            UL_Promotion_ID__c: this.getName(),
+            //API - END CODE - TPM-1499 - New Layout
             //uki
             UL_Delivery_Profile__c: this.getUL_Delivery_Profile__c(),
             UL_Mechanic__c: this.getUL_Mechanic__c(),
@@ -114,13 +133,23 @@ var Promotion_Cust = {
             UL_Category__c: this.getUL_Category__c(),
             UL_Brand__c: this.getUL_Brand__c(),
             UL_Cannibalisation_Override__c: this.getUL_Cannibalisation_Override__c(),
-            UL_Post_Dip_End_Date__c: this.getUL_Post_Dip_End_Date__c(),
+            UL_Post_Dip_End_Date__c: new Date(this.getUL_Post_Dip_End_Date__c()),
             UL_Account__c: this.getUL_Account__c(),
         };
         //Adding child accounts
         //WARNING: Remove get all items below and use the serialize method once the metadata for ExtChildAccount is implemented.
         promotionJSON.ChildAccounts = this.LOExtChildAccounts.getAllItems();
         promotionJSON.attachments = this.LOExtPromotionAttachment.getItems();
+        //PMA - START CODE - TPM-1498 - Audit Trail
+        promotionJSON.PromotionHistory = this.LOPromotionHistory.getAllItems();
+        //PMA - END CODE - TPM-1498 - Audit Trail */
+        //API - START CODE - TPM-2436 - Customer name fetch fix
+        //Adding the promotion Account
+        var account = _.find(this.LOAccount.getAllItems(), {Id: this.UL_Account__c});
+        console.log("Accounts List", account);
+        promotionJSON.UL_Account__c = (account) ? account.Name : '';
+        //API - END CODE
+        
         Object.assign(serializedObject, promotionJSON);
 
         return serializedObject;
@@ -137,27 +166,41 @@ var Promotion_Cust = {
         var tacticJSON = {
             UL_Off_On_Invoice__c: tactic.getUL_Off_On_Invoice__c(),
             UL_Take_Up_Rate__c: tactic.getUL_Take_Up_Rate__c(),
-            UL_Order_Date_From__c: tactic.getUL_Order_Date_From__c(),
-            UL_Order_Date_Thru__c: tactic.getUL_Order_Date_Thru__c(),
+            UL_Order_Date_From__c: new Date(tactic.getUL_Order_Date_From__c()),
+            UL_Order_Date_Thru__c: new Date(tactic.getUL_Order_Date_Thru__c()),
             UL_Payment_Method__c: tactic.getUL_Payment_Method__c(),
             UL_Condition_Type__c: tactic.getUL_Condition_Type__c(),
             UL_Investment_Method__c: tactic.getUL_Investment_Method__c(),
             UL_Redemption__c: tactic.getUL_Redemption__c(),
             RecordTypeId: tactic.getRecordTypeId(),
-            InvalidTacticTiers: tactic.InvalidTacticTiers || false,
+            UL_IsPushed__c: tactic.getUL_IsPushed__c(),
+            InvalidTiers: tactic.InvalidTiers || false,
             InvalidFunds: tactic.InvalidFunds || false
         };
         var currentTacticTiers = _.find(this.LOExtTacticTiers.getAllItems(), (tacticTiers) => {
             return tacticTiers.tacticId == tactic.Id;
         });
-        tacticJSON.TacticTiers = currentTacticTiers ? JSON.parse(currentTacticTiers.JSONTier || '[]') : [];
 
-        tacticJSON.availableFunds = [];
-        tacticJSON.availableFunds = _.unionBy(this.LOFund.getAllItems().filter(
+        tacticJSON.TacticTiers = (currentTacticTiers && currentTacticTiers.JSONTier ? JSON.parse(currentTacticTiers.JSONTier).tier : []);
+
+        tacticJSON.AvailableFunds = [];
+        tacticJSON.AvailableFunds = _.unionBy(this.LOFund.getAllItems().filter(
             fund => !!_.find(fund.Tactics, item => item.tacticId == tactic.Id)
         ).map(
             fund => Object.assign(fund, _.find(fund.Tactics, item => item.tacticId == tactic.Id))
         ), this.LOFilteredFunds.getItems(), 'Id');
+
+        //UL_Allocation__c & UL_Amount_Allocated__c (string -> float):
+        if (tacticJSON.AvailableFunds && tacticJSON.AvailableFunds.length > 0) {
+            _.forEach(tacticJSON.AvailableFunds, (fund) => {
+                if (fund.Tactics && fund.Tactics.length > 0) {
+                    _.forEach(fund.Tactics, (tacticFund) => {
+                        tacticFund.UL_Allocation__c = parseFloat(tacticFund.UL_Allocation__c);
+                        tacticFund.UL_Amount_Allocated__c = parseFloat(tacticFund.UL_Amount_Allocated__c);
+                    });
+                }
+            });
+        }
 
         Object.assign(serializedObject, tacticJSON);
 
@@ -196,10 +239,10 @@ var Promotion_Cust = {
                     totalChildAccounts = _.filter(promoContent.BOPromotion.LOExtChildAccounts, function (childAccount) {
                         return childAccount.Included;
                     }).length,
+
                     {uploadId} = action.payload,
                     cancelled = false,
                     i = 0;
-
                 this.uploads[uploadId] = () => {
                     cancelled = true;
                     UI_EVENT_BUS.put(uploadId, {
@@ -220,12 +263,12 @@ var Promotion_Cust = {
                         promoContent.BOPromotion.LOExtChildAccounts = [promoContent.BOPromotion.LOExtChildAccounts[i]];
                         let json = JSON.stringify(promoContent);
                         promoContent.BOPromotion.LOExtChildAccounts = temp;
-
                         this.apex_CreatePush(json).then((result) => {
                             if (result) {
                                 if (cancelled) return;
                                 i++;
                                 push();
+
                             } else {
                                 let showError = () => UI_EVENT_BUS.put(EVENTS.UI_ERROR, {
                                     title: AppManager.getLabel('PP_TIT_PUSH_ERROR') || 'Error pushing child promotion',
@@ -362,7 +405,7 @@ var Promotion_Cust = {
 
             case PromotionActionConstants.ATTACHMENT_DELETE: {
                 let attachmentId = action.payload,
-                    attachment = _.find(me.LOExtPromotionAttachment.getAllItems(), {Id: attachmentId});
+                    attachment = _.find(this.LOExtPromotionAttachment.getAllItems(), {Id: attachmentId});
 
                 attachment.setObjectStatus(STATE.DELETED);
                 this.changeHandler();
@@ -521,7 +564,7 @@ var Promotion_Cust = {
             case PromotionActionConstants.VALIDATE_TACTIC_TIERS: {
                 let newTacticTiers = action.payload.TacticTiers;
                 console.log("PERFORMED ACTION Validate Tactic Tiers for Tactic ID:" + action.payload.TacticId);
-                this.LOExtTacticTiers.apex_validate(JSON.stringify(newTacticTiers)).then((response) => {
+                this.LOExtTacticTiers.apex_validate(JSON.stringify({"tier": newTacticTiers})).then((response) => {
                     if (response.__Status) {
 
                         let tacticTiers = _.find(this.LOExtTacticTiers.getAllItems(), (item) => {
@@ -533,17 +576,17 @@ var Promotion_Cust = {
                                     tacticTiers.JSONTier = value;
                                     tacticTiers.objectStatus |= STATE.DIRTY;
                                 };
-                            tacticTiers.setJSONTier(JSON.stringify(newTacticTiers));
+                            tacticTiers.setJSONTier(JSON.stringify({"tier": newTacticTiers}));
                         } else {
                             this.LOExtTacticTiers.addItem({
                                 tacticId: action.payload.TacticId,
-                                JSONTier: JSON.stringify(newTacticTiers)
+                                JSONTier: JSON.stringify({"tier": newTacticTiers})
                             });
                         }
 
                         this.LOTactic.getAllItems().map(tactic => {
                             if (tactic.Id === action.payload.TacticId)
-                                tactic.InvalidTacticTiers = false;
+                                tactic.InvalidTiers = false;
                         });
 
                         this.changeHandler();
@@ -551,7 +594,7 @@ var Promotion_Cust = {
 
                         this.LOTactic.getAllItems().map(tactic => {
                             if (tactic.Id === action.payload.TacticId)
-                                tactic.InvalidTacticTiers = true;
+                                tactic.InvalidTiers = true;
                         });
 
                         this.changeHandler();
@@ -563,10 +606,50 @@ var Promotion_Cust = {
             case PromotionActionConstants.VALIDATE_FUNDS: {
                 let newFunds = action.payload.funds;
                 console.log("PERFORMED ACTION Validate Funds for Tactic ID:" + action.payload.tacticId);
-                this.LOFund.apex_validate(JSON.stringify(newFunds)).then((response) => {
+                this.LOFund.apex_validate(JSON.stringify(_.filter(newFunds, 'selected'))).then((response) => {
                     if (response.__Status) {
 
-                        //TODO Prepare data into BOPromotion object (For writeBOPromotion)
+                        newFunds.map((fund) => {
+
+                            let existingFund = this.LOFund.getItemById(fund.Id),
+                                tactics = {
+                                    'tacticId': action.payload.tacticId,
+                                    'UL_Allocation__c': fund.UL_Allocation__c,
+                                    'UL_Amount_Allocated__c': fund.UL_Amount_Allocated__c
+                                };
+
+                            if (fund.selected) {
+                                //Add
+                                if (existingFund) {
+                                    if (existingFund.objectStatus === STATE.DELETED) {
+                                        existingFund.objectStatus = STATE.PERSISTED;
+                                        existingFund.Tactics = [tactics];
+                                    }
+                                    else {
+                                        _.remove(existingFund.Tactics, {'tacticId': tactics.tacticId});
+                                        existingFund.Tactics.push(tactics);
+                                    }
+                                    this.LOFund.applyFilters();
+                                }
+                                else {
+                                    delete fund.selected;
+                                    fund.Tactics = [tactics];
+                                    this.LOFund.addItem(fund);
+                                }
+                            }
+                            else {
+                                //Delete
+                                if (existingFund) {
+                                    _.remove(existingFund.Tactics, {'tacticId': tactics.tacticId});
+                                    if (existingFund.Tactics.length > 0) {
+                                        this.LOFund.applyFilters();
+                                    } else {
+                                        existingFund.setObjectStatus(STATE.DELETED);
+                                    }
+                                }
+                            }
+
+                        });
 
                         this.LOTactic.getAllItems().map(tactic => {
                             if (tactic.Id === action.payload.tacticId)

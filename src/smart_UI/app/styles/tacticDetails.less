@@ -93,7 +93,7 @@
 }
 
 .funds-grid {
-    max-height: 268px;
+    max-height: 232px;
 }
 
 .funds-link {
@@ -120,7 +120,7 @@
 }
 
 .kpi-tile tr:nth-child(odd) {
-    background: #FFF
+    background: @white;
 }
 
 .kpi-tile tbody td.mainTitle {
@@ -147,81 +147,103 @@
     position: relative;
     padding-top: 35px;
     width: 100%;
-}
 
-.table--fixed-header section {
-    border-top: 1px solid #d8dde6;
-    height: 355px;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-
-    &::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
+    .slds-table--bordered {
+        border-top: none;
     }
-    &::-webkit-scrollbar:window-inactive {
-        opacity: 0;
+
+    section {
+        height: 355px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        &::-webkit-scrollbar:window-inactive {
+            opacity: 0;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #e0e5ee;
+            border-radius: 0.5rem;
+            box-shadow: #a8b7c7 0 0 0 1px inset;
+        }
+        &::-webkit-scrollbar-track {
+            background: #a8b7c7;
+        }
     }
-    &::-webkit-scrollbar-thumb {
-        background: #e0e5ee;
-        border-radius: 0.5rem;
-        box-shadow: #a8b7c7 0 0 0 1px inset;
+
+    table {
+        border-spacing: 0;
+
+        tr > th:first-child, tr > td:first-child {
+            padding-left: 8px;
+        }
+
+        td, th {
+            padding: 8px;
+        }
+
+        td {
+            height: 50px;
+            vertical-align: middle !important;
+        }
+
+        td.slds-is-selected,
+        td.slds-is-selected:hover,
+        th.slds-is-selected,
+        th.slds-is-selected:hover {
+            box-shadow: @science-blue 0 0 0 1px inset;
+        }
+
+        thead {
+
+            tr:first-child {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+
+                th {
+                    height: 0;
+                    line-height: 0;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    color: transparent;
+                    border: none;
+                    white-space: nowrap;
+
+                    > div {
+                        font-weight: 400;
+                        position: absolute;
+                        background: transparent;
+                        color: @biscay;
+                        padding: 9px 25px;
+                        top: 0;
+                        margin-left: -25px;
+                        line-height: normal;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+
+        &:not(.slds-no-row-hover) tbody tr:hover > td,
+        &:not(.slds-no-row-hover) tbody tr:hover > th {
+            background-color: @main-background-color;
+        }
+
+        tbody tr.slds-is-selected > td,
+        tbody tr.slds-is-selected > th,
+        &:not(.slds-no-row-hover) tr.slds-is-selected:hover > td,
+        &:not(.slds-no-row-hover) tr.slds-is-selected:hover > th {
+            background-color: @state-active;
+        }
+
+        tbody tr:first-child td {
+            border-top: 2px solid @border-color;
+        }
     }
-    &::-webkit-scrollbar-track {
-        background: #a8b7c7;
-    }
-}
-
-.table--fixed-header table {
-    border-spacing: 0;
-}
-
-.table--fixed-header table td,
-.table--fixed-header table th {
-    padding: 0.5rem;
-}
-
-.table--fixed-header table td {
-    vertical-align: middle !important;
-}
-
-.table--fixed-header table:not(.slds-no-row-hover) tbody tr:hover > td,
-.table--fixed-header table:not(.slds-no-row-hover) tbody tr:hover > th {
-    background-color: #f4f6f9;
-}
-
-.table--fixed-header table tbody tr.slds-is-selected > td,
-.table--fixed-header table tbody tr.slds-is-selected > th,
-.table--fixed-header table:not(.slds-no-row-hover) tr.slds-is-selected:hover > td,
-.table--fixed-header table:not(.slds-no-row-hover) tr.slds-is-selected:hover > th {
-    background-color: #f0f8fc;
-}
-
-.table--fixed-header table td.slds-is-selected,
-.table--fixed-header table td.slds-is-selected:hover,
-.table--fixed-header table th.slds-is-selected,
-.table--fixed-header table th.slds-is-selected:hover {
-    box-shadow: #0070d2 0 0 0 1px inset;
-}
-
-.table--fixed-header table th {
-    font-weight: 400;
-    height: 0;
-    line-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    color: transparent;
-    border: none;
-    white-space: nowrap;
-}
-
-.table--fixed-header table th div {
-    position: absolute;
-    background: transparent;
-    color: #16325c;
-    padding: 9px 25px;
-    top: 0;
-    margin-left: -25px;
-    line-height: normal;
-    vertical-align: middle;
 }

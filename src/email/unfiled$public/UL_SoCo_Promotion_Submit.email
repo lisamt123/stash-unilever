@@ -1,5 +1,5 @@
 <messaging:emailTemplate subject="Promotion {!relatedTo.Name} - {!relatedTo.ACCL__Slogan__c} submitted for Approval" recipientType="User" relatedToType="ACCL__Promotion__c">
-<messaging:plainTextEmailBody >
+<!--<messaging:plainTextEmailBody >
 Hello {!recipient.name},
 
 The Promotion {!relatedTo.Id} - {!relatedTo.ACCL__Slogan__c}, is submitted for your approval.
@@ -8,27 +8,20 @@ Kindly take necessary action.
 
 Thanks,
 {!relatedTo.CreatedBY.Name}.
-
-</messaging:plainTextEmailBody>
+</messaging:plainTextEmailBody>-->
 
 <messaging:htmlEmailBody >
     <html>
         <body>
-        <!--<p>Hello {!recipient.name}--</p>
-        <p>Here is a list of the cases we currently have for account {!relatedTo.name}:</p>
-        <apex:datatable cellpadding="5" var="cx" value="{!relatedTo.Cases}">
-            <apex:column value="{!cx.CaseNumber}" headerValue="Case Number"/>
-            <apex:column value="{!cx.Subject}" headerValue="Subject"/>
-            <apex:column value="{!cx.Contact.email}" headerValue="Creator's Email" />
-            <apex:column value="{!cx.Status}" headerValue="Status" />
-        </apex:datatable>-->
         <p>Hello {!recipient.name},</p>
-
-<p>The Promotion {!relatedTo.Name} - {!relatedTo.ACCL__Slogan__c}, is submitted for your approval.
-<a href='/{!relatedTo.Id}'>Click Here</a>
- <apex:outputLink value="/{!relatedTo.id}">{!relatedTo.name}</apex:outputLink>
-Kindly take necessary action. </p>
-
+<p>The Promotion {!relatedTo.Name} - {!relatedTo.ACCL__Slogan__c}, is submitted for your approval. To approve or reject this item  &nbsp; 
+<apex:outputLink value="/{!relatedTo.id}">click this link</apex:outputLink> </p>
+ 
+<p>You can also approve / reject via email. To do so, click on following link &nbsp; 
+<a href="mailto:ul_promotionworkflowemails@150zi0pl7453qkdn99u3h2xv5bm59r7qfkvp38xos5vmrkhlsi.4c-ojruai.cs61.apex.sandbox.salesforce.com?Subject=Promotion {!relatedTo.Name} - {!relatedTo.ACCL__Slogan__c} submitted for Approval" target="_top">Approve / Reject</a> <br/>
+In the first line of the email message mention one of these words accordingly: APPROVE, APPROVED, YES, REJECT, REJECTED, NO <br/>
+You can mention approval / rejection comments on the second line, which will be stored in the Free Text field of the promotion record . </p>
+ 
 Thanks, <br/>
 {!relatedTo.CreatedBY.Name}.
 

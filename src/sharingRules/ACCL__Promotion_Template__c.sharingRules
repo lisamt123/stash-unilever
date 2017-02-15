@@ -20,6 +20,60 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>UL_AR01_Finance_Analyst</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AR01 - Finance Analyst</label>
+        <sharedTo>
+            <group>UL_AR01_Finance_Analyst</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Parent Promotion,CustomerEvent,Account Plan,LTA,Past Dated/Urgent,Account Specific Promotion</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_CL01_Finance_Analyst</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CL01 - Finance Analyst</label>
+        <sharedTo>
+            <group>UL_CL01_Finance_Analyst</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL01</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Parent Promotion,CustomerEvent,Account Plan,LTA,Past Dated/Urgent,Account Specific Promotion</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_CL03_Finance_Analyst</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CL03 - Finance Analyst</label>
+        <sharedTo>
+            <group>UL_CL03_Finance_Analyst</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>ACCL__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>CL03</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>UL_Promo_Type_ControlView__c</field>
+            <operation>equals</operation>
+            <value>Parent Promotion,CustomerEvent,Account Plan,LTA,Past Dated/Urgent,Account Specific Promotion</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>UL_Promotion_Templates_for_Ireland_SO_Admin</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Promotion Templates for Ireland SO Admin</label>
@@ -336,7 +390,7 @@
         <criteriaItems>
             <field>UL_Promo_Type_ControlView__c</field>
             <operation>equals</operation>
-            <value>SpecialHoliday</value>
+            <value>CustomerEvent,MarketingEvent,LTA,SpecialHoliday,Promotion,Past Dated/Urgent,Account Specific Promotion,Parent Promotion,Account Plan</value>
         </criteriaItems>
         <criteriaItems>
             <field>ACCL__Sales_Org__c</field>
@@ -354,7 +408,7 @@
         <criteriaItems>
             <field>UL_Promo_Type_ControlView__c</field>
             <operation>equals</operation>
-            <value>SpecialHoliday</value>
+            <value>CustomerEvent,MarketingEvent,LTA,SpecialHoliday,Promotion,Past Dated/Urgent,Account Specific Promotion,Parent Promotion,Account Plan</value>
         </criteriaItems>
         <criteriaItems>
             <field>ACCL__Sales_Org__c</field>
@@ -372,7 +426,7 @@
         <criteriaItems>
             <field>UL_Promo_Type_ControlView__c</field>
             <operation>equals</operation>
-            <value>SpecialHoliday</value>
+            <value>CustomerEvent,MarketingEvent,LTA,SpecialHoliday,Promotion,Past Dated/Urgent,Account Specific Promotion,Parent Promotion,Account Plan</value>
         </criteriaItems>
         <criteriaItems>
             <field>ACCL__Sales_Org__c</field>

@@ -12,8 +12,7 @@ global with sharing class UL_PromotionShareTriggerHandler{
      * @version         1.0
      * @date            06/12/2016
      * @description     Method for call Promotion Share Trigger to Enable on Promotion record.
-     */
-    //@future (callout=true)
+     */    
     public static void enableApexSharing(list<id> lstpromCatId){
         List<UL_PromotionCategory__c> newlstPromCat = [select id,Promotion__c,Product__c,Account__c from UL_PromotionCategory__c where  id=:lstpromCatId limit 49999];
         /*Getting the Product and account for promotion*/

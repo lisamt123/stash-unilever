@@ -37,8 +37,9 @@ public with sharing class UL_PromotionCopyExtension {
     ********************************************************************/
     public UL_PromotionCopyExtension(ApexPages.StandardController stdController){
         if(!Test.isRunningTest()){
-            List<String> additionalFields = new List<String>();
-            additionalFields.add('ACCL__Promotion_Template__r.ACCL__Active__c'); 
+            List<String> additionalFields = new List<String>();           
+            additionalFields.add(ul_utility.templateActive); 
+            additionalFields.add(ul_utility.templateAllowPast); 
             stdController.addFields(additionalFields);
         }
         PromDetails=(ACCL__Promotion__c)stdController.getRecord();
@@ -63,8 +64,13 @@ public with sharing class UL_PromotionCopyExtension {
     ********************************************************************/
     public pagereference save(){
         pagereference pageReturn=null;
-        
-        clonePromotionDetails = PromDetails;
+        try{
+      if(PromDetails.ACCL__Promotion_Template__c != null){
+           ACCL__Promotion_Template__c promotionTemp = [select id,UL_Allow_past_Promotions__c from ACCL__Promotion_Template__c where id=:PromDetails.ACCL__Promotion_Template__c limit 1];
+           if(!promotionTemp.UL_Allow_past_Promotions__c && (PromDetails.ACCL__Date_From__c<system.today()|| PromDetails.ACCL__Date_Thru__c<system.today())){
+               ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.TPM_Past_Date_Validation)); 
+           }
+         else{ clonePromotionDetails = PromDetails;
         if(anchorCustomer!=UL_Utility.NULL_ID){            
             clonePromotionDetails.ACCL__Anchor_Account__c = anchorCustomer;
             PromDetails.ACCL__Anchor_Account_Set__c = anchorSetCustomer;
@@ -81,7 +87,7 @@ public with sharing class UL_PromotionCopyExtension {
             }
             
         }
-        try{
+        
             Map<String, object> promotionFields = new Map<String, object>();
             promotionFields.put(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Date_From__c.getName(), clonePromotionDetails.ACCL__Date_From__c);
             promotionFields.put(Schema.SObjectType.ACCL__Promotion__c.fields.ACCL__Anchor_Account__c.getName(), clonePromotionDetails.ACCL__Anchor_Account__c);
@@ -104,18 +110,23 @@ public with sharing class UL_PromotionCopyExtension {
             if(AnchorTypeCustomer){
                 List<id> accountIds = new List<id>(); 
                 accountIds.add(clonePromotionDetails.ACCL__Anchor_Account__c);
-                promotionCopy = UL_PromotionUtility.clonePromotion(clonePromotionDetails.id, accountIds, UL_Utility.BOOLEAN_TRUE, UL_Utility.BOOLEAN_FALSE, promotionFields, tacticFields, null);
+                promotionCopy = UL_PromotionUtility.clonePromotion(clonePromotionDetails.id, accountIds, UL_Utility.BOOLEAN_TRUE, UL_Utility.BOOLEAN_TRUE, promotionFields, tacticFields, null);
             }
             else{
                 List<id> accountSetIds = new List<id>(); 
                 accountSetIds.add(clonePromotionDetails.ACCL__Anchor_Account_Set__c);            
-                promotionCopy = UL_PromotionUtility.clonePromotion(clonePromotionDetails.id, accountSetIds, UL_Utility.BOOLEAN_TRUE, UL_Utility.BOOLEAN_FALSE, promotionFields, tacticFields, null);   
+                promotionCopy = UL_PromotionUtility.clonePromotion(clonePromotionDetails.id, accountSetIds, UL_Utility.BOOLEAN_TRUE, UL_Utility.BOOLEAN_TRUE, promotionFields, tacticFields, null);   
                 
             }
             if(promotionCopy!=null && !promotionCopy.isEmpty()){                
                 pageReturn = new pagereference(Label.UL_Pomotion_URL+ promotionCopy[0].Id);                
                 pageReturn.setRedirect(true);
-            }            
+            } 
+           
+           }
+        }
+
+                  
         }
         catch(Exception Ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Ex.getMessage()));
@@ -245,7 +256,7 @@ public with sharing class UL_PromotionCopyExtension {
                 ]);    
                 
             } else {
-                //System.debug('Cannot search for account sets without a reference Date');
+                
             }
             
             // Process account sets
@@ -317,12 +328,11 @@ public with sharing class UL_PromotionCopyExtension {
                 
                 string testquery = 'SELECT Id, Name, ACCL__Sales_Org__c FROM account WHERE account.Id != null AND account.Id IN (SELECT ACCL__Account__c From ACCL__Account_Extension__c WHERE ACCL__Account_Extension__c.ACCL__Promotion_Valid_From__c <= :this.PromDetails.ACCL__Date_From__c AND ACCL__Account_Extension__c.ACCL__Promotion_Valid_Thru__c >= :this.PromDetails.ACCL__Date_From__c) AND account.Id IN (SELECT ACCL__Account__c FROM ACCL__Account_Manager__c WHERE ACCL__Account_Manager__c.ACCL__Active__c = true AND ACCL__Account_Manager__c.ACCL__User__c = :userinfo.getUserId() AND ACCL__Account_Manager__c.ACCL__Valid_From__c <= :this.PromDetails.ACCL__Date_From__c AND ACCL__Account_Manager__c.ACCL__Valid_Thru__c>= :this.PromDetails.ACCL__Date_From__c) ORDER BY account.Name Limit:(LIMITS.getLimitQueryRows() - LIMITS.getQueryRows()';
                 if(validAccounts.size()>0){
-                    System.debug('Found '+ validAccounts.size() + ' Accounts-'+validAccounts[0].ACCL__Sales_Org__c);   
+                       
                 }
                 
             } else {
-                System.debug('Cannot search for accounts without a reference Date');
-            }        
+                            }        
             String promotionTemplateSalesOrg=this.PromDetails.ACCL__Promotion_Template__c;
             
             for(Account account: [select id,name, ACCL__Sales_Org__c from account where id=:this.PromDetails.ACCL__Anchor_Account__c LIMIT:(LIMITS.getLimitQueryRows()-LIMITS.getQueryRows())]){

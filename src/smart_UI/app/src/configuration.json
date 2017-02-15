@@ -1,9 +1,9 @@
 {
   "locale": "en-EN",
   "mode": "dev",
-  "sfuser": "sascha.stier@accenture.com.devorg007",
-  "sfloginurl": "",
-  "unsed": "https://login.salesforce.com",
-  "sfpwd": "Accenture2017!",
+  "sfuser": "pasquale.maio@accenture.com.actpmdev1",
+  "sfloginurl": "https://unilever--actpmdev.cs61.my.salesforce.com/",
+  "unsed": "https://unilever--actpmdev.cs61.my.salesforce.com/",
+  "sfpwd": "Unilever2017!IZyYEiuVYeq36B9n89OQGOgpl",
   "metadataMock": false
 }

@@ -80,7 +80,7 @@ module.exports = React.createClass({
         return (
             <div>
                 {me.state.addingFund ? <FundLookup addHandler={this.addFunds} cancelHandler={this.cancelAddFunds}
-                                                   availableFunds={this.props.item.availableFunds}/> : null}
+                                                   AvailableFunds={this.props.item.AvailableFunds}/> : null}
                 <div className="tactic-tile">
                     {/*<div className="subtile funds">*/}
                     <div className="title slds-grid">

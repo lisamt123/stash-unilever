@@ -341,6 +341,96 @@
     </fieldSets>
     <fieldSets>
         <fullName>ACCL__TacticFilterCriteria</fullName>
+        <availableFields>
+            <field>ACCL__Container_Size_Unit__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Container_Size__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Container_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Criterion_1_Product_Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Criterion_1_Product__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Criterion_2_Product_Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Criterion_2_Product__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Criterion_3_Product_Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Criterion_3_Product__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Criterion_4_Product_Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Criterion_4_Product__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Criterion_5_Product_Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Criterion_6_Product_Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Pack_Size_Unit__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Pack_Size__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Product_Form__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__State__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>ACCL__Tax_Classification__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
         <description>This field set is used to main the filter criteria for tactic.</description>
         <displayedFields>
             <field>ACCL__Category__c</field>
@@ -348,42 +438,27 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Criterion_3_Product__c</field>
+            <field>ACCL__Criterion_5_Product__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Pack_Size_Unit__c</field>
+            <field>ACCL__Criterion_6_Product__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Pack_Size__c</field>
+            <field>UL_Criterion_7_Product__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Container_Size__c</field>
+            <field>UL_Criterion_8_Product__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>ACCL__Container_Size_Unit__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>ACCL__Product_Form__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>ACCL__Container_Type__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>UL_Material_Type__c</field>
+            <field>ACCL__Product_Type__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -400,7 +475,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Ades</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Beverages</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Body Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Candles</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -412,11 +499,59 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Cleaners</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Conditioners</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Desinfectants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Detergent</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Direct Aplication</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dishwash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fabric Conditioner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Face Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Frozen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Home Surface Cleaners</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -428,7 +563,71 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>IC Modern trade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IC Traditional Trade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Jams</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ketchup</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mayonesa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NVP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Savory</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Snacks</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Solution Wash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TBB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wash Additives</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>
@@ -443,14 +642,6 @@
         <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Competitor Product</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-	<fields>
-        <fullName>UL_Generic_Product__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Generic Product</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1056,10 +1247,6 @@
                 <fullName>box</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>CS</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -1123,7 +1310,7 @@
                 <fullName>Product</fullName>
                 <default>false</default>
             </picklistValues>
-                        <picklistValues>
+            <picklistValues>
                 <fullName>1</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1202,39 +1389,11 @@
         <label>Product Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Commodity</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Service</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Advertising</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Empty</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>AssetType</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CountingGroup</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Special Product</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Standard Product</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Banded Pack</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1563,6 +1722,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>UL_Generic_Product__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Generic Product</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>UL_Group_Code__c</fullName>
         <externalId>false</externalId>
         <label>Group Code</label>
@@ -1649,22 +1816,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>ZFIN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TEST1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TEST2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dummy</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Standard</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -1757,38 +1908,6 @@
         <picklistValues>
             <picklist>ACCL__Category__c</picklist>
             <values>
-                <fullName>Accumulators</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Beverages</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chips</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cigarettes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Detergent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Frozen</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HouseholdGoods</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hygiene</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Snacks</fullName>
                 <default>false</default>
             </values>
@@ -1833,10 +1952,6 @@
         </picklistValues>
         <picklistValues>
             <picklist>ACCL__Pack_Size_Unit__c</picklist>
-            <values>
-                <fullName>CS</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>box</fullName>
                 <default>false</default>
@@ -1983,7 +2098,7 @@
     </recordTypes>
     <recordTypes>
         <fullName>ACCL__Product_Group</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>This record type is for creating ACSF Product Groups</description>
         <label>Product Group</label>
         <picklistValues>
@@ -2127,11 +2242,7 @@
         <picklistValues>
             <picklist>ACCL__Product_Type__c</picklist>
             <values>
-                <fullName>Commodity</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Service</fullName>
+                <fullName>Standard Product</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2197,460 +2308,6 @@
             <picklist>UL_Material_Type__c</picklist>
             <values>
                 <fullName>FERT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ZFIN</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Product_Grouping</fullName>
-        <active>false</active>
-        <label>Product Grouping</label>
-        <picklistValues>
-            <picklist>ACCL__Category__c</picklist>
-            <values>
-                <fullName>Accumulators</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Beverages</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chips</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cigarettes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Detergent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Frozen</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HouseholdGoods</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hygiene</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Snacks</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Container_Size_Unit__c</picklist>
-            <values>
-                <fullName>gal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>l</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>m%C2%B3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ml</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>oz</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Container_Type__c</picklist>
-            <values>
-                <fullName>Bottle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Can</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Plastic</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Pack_Size_Unit__c</picklist>
-            <values>
-                <fullName>box</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>pk</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Product_Form__c</picklist>
-            <values>
-                <fullName>Liquid</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Solid</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Product_Level__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Product</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Product_Type__c</picklist>
-            <values>
-                <fullName>Special Product</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__State__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>9</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Tax_Classification__c</picklist>
-            <values>
-                <fullName>f</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>n</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>r</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Material_Type__c</picklist>
-            <values>
-                <fullName>FERT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TEST1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TEST2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ZFIN</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>SKU</fullName>
-        <active>false</active>
-        <label>SKU</label>
-        <picklistValues>
-            <picklist>ACCL__Category__c</picklist>
-            <values>
-                <fullName>Accumulators</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Beverages</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chips</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cigarettes</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Detergent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Frozen</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HouseholdGoods</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hygiene</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Snacks</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Container_Size_Unit__c</picklist>
-            <values>
-                <fullName>gal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>l</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>m%C2%B3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ml</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>oz</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Container_Type__c</picklist>
-            <values>
-                <fullName>Bottle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Can</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Plastic</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Pack_Size_Unit__c</picklist>
-            <values>
-                <fullName>box</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>pk</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Product_Form__c</picklist>
-            <values>
-                <fullName>Liquid</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Solid</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Product_Level__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Product</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Product_Type__c</picklist>
-            <values>
-                <fullName>Special Product</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__State__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>9</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Tax_Classification__c</picklist>
-            <values>
-                <fullName>f</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>n</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>r</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Material_Type__c</picklist>
-            <values>
-                <fullName>FERT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TEST1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TEST2</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2667,39 +2324,127 @@
         <picklistValues>
             <picklist>ACCL__Category__c</picklist>
             <values>
-                <fullName>Accumulators</fullName>
+                <fullName>Ades</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Beverages</fullName>
+                <fullName>Body Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Chips</fullName>
+                <fullName>Candles</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cigarettes</fullName>
+                <fullName>Cleaners</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Detergent</fullName>
+                <fullName>Conditioners</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Frozen</fullName>
+                <fullName>Deo</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HouseholdGoods</fullName>
+                <fullName>Deodorants</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Hygiene</fullName>
+                <fullName>Desinfectants</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Snacks</fullName>
+                <fullName>Direct Aplication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dishwash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fabric Conditioner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Face Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Surface Cleaners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IC Modern trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IC Traditional Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jams</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ketchup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mayonesa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NVP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solution Wash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TBB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wash Additives</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2743,10 +2488,6 @@
         </picklistValues>
         <picklistValues>
             <picklist>ACCL__Pack_Size_Unit__c</picklist>
-            <values>
-                <fullName>CS</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>box</fullName>
                 <default>false</default>
@@ -2874,15 +2615,7 @@
         <picklistValues>
             <picklist>UL_Material_Type__c</picklist>
             <values>
-                <fullName>Dummy</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>FERT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Standard</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2976,10 +2709,6 @@
         <picklistValues>
             <picklist>ACCL__Pack_Size_Unit__c</picklist>
             <values>
-                <fullName>CS</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>box</fullName>
                 <default>false</default>
             </values>
@@ -3047,13 +2776,6 @@
             <values>
                 <fullName>Standard Product</fullName>
                 <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ACCL__Sales_Org</picklist>
-            <values>
-                <fullName>0001</fullName>
-                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
