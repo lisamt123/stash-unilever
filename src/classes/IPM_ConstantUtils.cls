@@ -1283,6 +1283,11 @@ public class IPM_ConstantUtils {
     public static final String ADDITIONAL_MILESTONE_PDL = 'Product Design Lock Milestone (Mandatory for Personal Care)';
     public static final String PERSONAL_CARE = 'Personal Care';
     public static final String SHIPTO_TLD ='Target Launch Date (Ship to Trade)';
+    public static final String PDL ='Product Design Lock';
+    public static final String MARKET_DEPLOYMENT_GATE_APPROVAL_MILESTONE ='Market Deployment Gate Approval';
+    public static final String TLD_MD_Milestone_ExternalID ='IPM_MasterProject-Target Launch Date (Ship to Trade)-Market Deployment-Original';
+    public static final String TLD_MR_Milestone_ExternalID ='IPM_MasterProject-Target Launch Date (Ship to Trade)-Market Ready-Original';
+    
     
     //Release-03:REQ03839/REQ03840
     public static final string ROLLUP_MILESTONES ='Contract Gate Approval;Market Ready Gate Approval';

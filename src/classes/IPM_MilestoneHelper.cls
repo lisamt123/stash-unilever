@@ -149,6 +149,9 @@ public with sharing class IPM_MilestoneHelper
                     else
                     {
                         // Start Creating Milestone Records 
+                        // For GKM8 Except PDL & MD gate Approval milestone create rest of the milestones 
+                        excludeMilestonesforGKMs(project);
+                        
                         for(IPM_Milestone__c masterMilestone : IPM_ProjectHelper.masterMilestoneMap.values() )
                         {
                             if(String.isNotBlank(masterMilestone.IPM_Category__c) && masterMilestone.IPM_Category__c.contains(project.IPM_Category_Group__c ) && masterMilestone.IPM_Project_Type__c == project.IPM_SourceProjectType__c)
@@ -677,5 +680,17 @@ public static void milestonesOtherDateCalc(IPM_Milestone__c targetMilestone,Bool
             update lstUpdateMiles;
             IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION = false;
         }
+    }
+    // Exclude milestones for GKM8 based on excludeGKM8__c value 
+    
+    public static void excludeMilestonesforGKMs (IPM_Project__c project){
+    	for (IPM_Milestone__c Miles : IPM_ProjectHelper.masterMilestoneMap.values()){
+			if(project.IPM_ProjectGKM__c==IPM_ConstantUtils.GKM_8 && (Miles.excludeGKM8__c == true)){
+					IPM_ProjectHelper.masterMilestoneMap.remove(Miles.id);
+			}
+			else if(project.IPM_ProjectGKM__c!=IPM_ConstantUtils.GKM_8 && Miles.ExternalField__c == IPM_ConstantUtils.TLD_MR_Milestone_ExternalID){
+					IPM_ProjectHelper.masterMilestoneMap.remove(Miles.id);
+			}
+		}
     }
 }

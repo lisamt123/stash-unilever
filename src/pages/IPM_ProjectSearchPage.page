@@ -465,9 +465,18 @@
                                         <span class="ipmAcrdnExpand"> 
                                             <ul class="docFilter accordionFilters">
                                                 <li>
-                                                    <span class="mr5">{!$Label.IPM_From}</span><input class="iTORange1" type="text" onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));" /><span>{!$Label.IPM_mn}</span></li>
-                                                <li> <span class="mr12">{!$Label.IPM_To}</span><input class="iTORange2" type="text" onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));" /><span>{!$Label.IPM_mn}</span>
+                                                    <span class="mr5">{!$Label.IPM_From}</span>
+                                                    <!-- method validateITORange1(this,event) is used to accept number and decimal point -->
+                                                    <input  class="iTORange1" type="text" id="iTORange1" oninput="return validateITORange1(this,event);" />
+                                                    <span>{!$Label.IPM_mn}</span>
                                                 </li>
+                                                <li> 
+                                                    <span class="mr12">{!$Label.IPM_To}</span>
+                                                    <!-- method validateITORange2(this,event) is used to accept number and decimal point -->
+                                                    <input  class="iTORange2" type="text" id="iTORange2" oninput="return validateITORange2(this,event);"/>
+                                                    <span>{!$Label.IPM_mn}</span>
+                                                </li>
+                                                
                                             </ul>
                                         </span> 
                                     </div>
@@ -845,6 +854,26 @@
     function searchProjects() {
         loadProjects(jq('#srchTxt').val());
     }
+    
+    validRangeRegex = new RegExp({!y3ITORegex});
+    lastValidRange1 = document.getElementById("iTORange1").value;
+    lastValidRange2 = document.getElementById("iTORange2").value;
+    
+    function validateITORange1(elem,eve){
+        if (eve.charCode === 0 || validRangeRegex.test(elem.value)) {
+                lastValidRange1 = elem.value;
+        } else {
+                elem.value = lastValidRange1;
+        }
+    }
+    function validateITORange2(elem,eve){
+        if (eve.charCode === 0 || validRangeRegex.test(elem.value)) {
+                lastValidRange2 = elem.value;
+        } else {
+                elem.value = lastValidRange2;
+        }
+    }
+    
     </script>
     <script type="text/javascript">
     var __sfdcSessionId = '{!GETSESSIONID()}';

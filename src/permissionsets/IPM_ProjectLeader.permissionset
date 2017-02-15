@@ -5828,6 +5828,12 @@
         <field>IPM_Project_Document_Section__c.IPM_FunctionalRole__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.excludeGKM8__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project_Document_Section__c.IPM_Functional_Input_Status__c</field>

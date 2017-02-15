@@ -173,14 +173,16 @@
                                     <apex:repeat value="{!IPM_User_Role}" var="uRole">
                                         <div class="teamContainer">
                                             <div class="pHead">
-                                                <span class='expico fa fa-minus'></span>
+                                                <span class="expico fa fa-minus"></span>
                                                 <span class="teamHead">
                                                     <apex:outputtext value="{!$Label.IPM_BD_Marketing}" rendered="{! if(uRole='MKTG DEV','true','false')}"/>
-                                                    <apex:outputtext value="{!$Label.IPM_Brand_Builders_BB}" rendered="{! if(uRole='MKTG LOCAL','true','false')}"/>
+                                                    <apex:outputtext value="{!$Label.IPM_Brand_Builders_BB}" rendered="{! if(AND(uRole='MKTG LOCAL',IPM_proj.IPM_ProjectGKM__c!='GKM8'),'true','false')}" />
                                                     <apex:outputtext value="{!$Label.IPM_Customer_Development_CD}" rendered="{! if(uRole='CD','true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Consumer_Marketing_Insight_CMI}" rendered="{! if(uRole='CMI','true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Brand_Development_Finance_BD_Finance}" rendered="{! if(AND(uRole='Finance',IPM_proj.IPMProject_Span__c!='Local'),'true','false')}"/>
-                                                    <apex:outputtext value="{!$Label.IPM_BRAND_BUILDING_FINANCE}" rendered="{! if(AND(uRole='Finance',IPM_proj.IPMProject_Span__c='Local'),'true','false')}"/>
+                                                    <apex:outputtext value="{!$Label.IPM_BRAND_BUILDING_FINANCE}" rendered="{! if(AND(uRole='Finance',IPM_proj.IPMProject_Span__c='Local',IPM_proj.IPM_ProjectGKM__c!='GKM8'),'true','false')}"/>
+                                                    <apex:outputtext value="{!$Label.IPM_Marketing}" rendered="{! if(AND(uRole='MKTG LOCAL',IPM_proj.IPM_ProjectGKM__c='GKM8'),'true','false')}"/>
+                                                    <apex:outputtext value="{!$Label.IPM_FINANCE}" rendered="{! if(AND(uRole='Finance',IPM_proj.IPM_ProjectGKM__c='GKM8'),'true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Supply_Chain_SC}" rendered="{! if(uRole='Supply Chain','true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Research_and_Development_R_D}" rendered="{! if(uRole='R&D','true','false')}"/> 
                                                     <apex:outputtext value="{!$Label.IPM_Guest}" rendered="{! if(uRole='Guest','true','false')}"/>

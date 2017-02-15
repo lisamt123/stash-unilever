@@ -65,10 +65,18 @@
                                     <input id="mycategory" checked="checked" class="rbutton" type="radio" name="category" onclick="callsearch({!isInvokedFromRollouts});"></input>
                                     <label for="mycategory"></label>
                                 </div>
-                                <apex:actionFunction action="{!getSameCategory}" name="searchTeamMem" reRender="SameCat,mycatNallcat">
+                                <apex:actionFunction action="{!getSameCategory}" name="searchTeamMem" reRender="SameCat,mycatNallcat" rendered="{! if(ipmproject.IPM_ProjectGKM__c='GKM8','false','true') }">
                                     <apex:param name="mycateg" assignTo="{!SearchTeambyCat}" value="mycategory"/>
+                                </apex:actionFunction>  
+                                <apex:actionFunction action="{!getSameCategory}" name="searchTeamMem" reRender="SameCat,mycatNallcat" rendered="{! if(ipmproject.IPM_ProjectGKM__c='GKM8','true','false') }">
+                                    <apex:param name="mycateg" assignTo="{!SearchTeambyCat}" value="myMCO"/>
                                 </apex:actionFunction>
-                                <span class="categoryLabel">{!$Label.IPM_FROM_MY_CATAGRY}</span>
+                                <apex:outputPanel rendered="{! if(ipmproject.IPM_ProjectGKM__c='GKM8','false','true') }">
+                                <span class="categoryLabel" >{!$Label.IPM_FROM_MY_CATAGRY}</span>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!if(ipmproject.IPM_ProjectGKM__c='GKM8','true','false')}">
+                                <span class="categoryLabel" >{!$Label.From_My_MCO}</span>
+                                </apex:outputPanel>
                             </div>
                             <div class="categoryButtons">    
                                 <div class="ipmRadioButton">
@@ -78,7 +86,12 @@
                                 <apex:actionFunction action="{!getSameCategory}" name="searchallTeamMem" reRender="SameCat,mycatNallcat">
                                     <apex:param name="allcateg" assignTo="{!SearchTeambyCat}" value="allcategory"/>
                                 </apex:actionFunction>
+                                <apex:outputPanel rendered="{!if(ipmproject.IPM_ProjectGKM__c='GKM8','false','true')}">
                                 <span class="categoryLabel">{!$Label.IPM_FROM_ALL_CATAGRY}</span>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!if(ipmproject.IPM_ProjectGKM__c='GKM8','true','false')}">
+                                <span class="categoryLabel" >{!$Label.From_All_of_Unilever}</span>
+                                </apex:outputPanel>
                             </div>
                         </div>
                     </apex:outputPanel>
