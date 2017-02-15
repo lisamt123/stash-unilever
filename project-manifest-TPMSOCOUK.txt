@@ -308,6 +308,7 @@ src/tabs/UL_Approval_Threshold__c.tab
 src/tabs/UL_Workflow_Threshold_Template__c.tab
 src/tabs/UL_Delivery_Profile__c.tab
 src/tabs/UL_Cannibalisation_Rate__c.tab
+src/tabs/My_Trade_Promoton_Calendar.tab
 src/labels
 src/labels/TPMSOCOUK.labels
 src/classes

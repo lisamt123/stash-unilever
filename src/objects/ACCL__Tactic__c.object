@@ -948,7 +948,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>On-Invoice</fullName>
+                <fullName>OnInvoice</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1074,7 +1074,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>On-Invoice</fullName>
+                <fullName>OnInvoice</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
