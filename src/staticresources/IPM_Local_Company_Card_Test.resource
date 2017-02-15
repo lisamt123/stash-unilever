@@ -1,0 +1,2 @@
+Id,IPM_Managed_Category__c,IPM_Market_Cluster__c,IPM_MCO__c,IPM_TxtGeographical_Scope__c,IPM_Unique_Company_Card_Name__c,Name
+CCL001,Ice Cream;Laundry;Skin Cleansing;Spreads;Household Care;Skin Care;Dressings;Oral Care;Savoury;Hair Care;Deodorants & Fragrances;Other Foods;Tea and Soy & Fruit Beverages;Coffee & Snacks;Water Purification Category,SEAA,ANZ,Australia;New Zealand;,Local Company Card,Local Company Card

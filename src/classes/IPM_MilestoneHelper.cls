@@ -685,7 +685,7 @@ public static void milestonesOtherDateCalc(IPM_Milestone__c targetMilestone,Bool
     
     public static void excludeMilestonesforGKMs (IPM_Project__c project){
     	for (IPM_Milestone__c Miles : IPM_ProjectHelper.masterMilestoneMap.values()){
-			if(project.IPM_ProjectGKM__c==IPM_ConstantUtils.GKM_8 && (Miles.excludeGKM8__c == true)){
+			if(project.IPM_ProjectGKM__c==IPM_ConstantUtils.GKM_8 && Miles.excludeGKM8__c){
 					IPM_ProjectHelper.masterMilestoneMap.remove(Miles.id);
 			}
 			else if(project.IPM_ProjectGKM__c!=IPM_ConstantUtils.GKM_8 && Miles.ExternalField__c == IPM_ConstantUtils.TLD_MR_Milestone_ExternalID){
