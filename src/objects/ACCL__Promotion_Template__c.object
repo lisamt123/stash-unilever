@@ -1353,8 +1353,7 @@
         <active>true</active>
         <errorConditionFormula>AND(
 $Permission.Soco_Admin,
-NOT(ISPICKVAL(UL_Promo_Type_ControlView__c , &apos;SpecialHoliday&apos;)),
-ISNEW()
+NOT(ISPICKVAL(UL_Promo_Type_ControlView__c , &apos;SpecialHoliday&apos;))
 )</errorConditionFormula>
         <errorMessage>SoCo Admin can create templates only with Sharing Type as SpecialHoliday</errorMessage>
     </validationRules>
