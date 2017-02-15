@@ -26102,7 +26102,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>PP_LBL_UPLOAD_ATTACHMENTS</shortDescription>
-        <value>Upload Files</value>
+        <value>Insert Attachments</value>
     </labels>
     <labels>
         <fullName>PP_LBL_UPLOAD_ATTACHMENT_FILENAME_SIZE_ERROR</fullName>
@@ -28670,4 +28670,11 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>Fund Overspent Error</shortDescription>
         <value>The fund amount used in the Tactic is exceeding the amount available in the fund</value>
+    </labels>
+    <labels>
+        <fullName>PP_FIELD_NULL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PP_FIELD_NULL</shortDescription>
+        <value>Null</value>
     </labels>
