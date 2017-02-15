@@ -16086,6 +16086,10 @@
         <apexPage>MyPromotionPlanning2</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+	<pageAccesses>
+        <apexPage>myTradeCalendar</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>TH1__WIDGET_Main</apexPage>
         <enabled>true</enabled>
@@ -16480,6 +16484,10 @@
     </tabSettings>
     <tabSettings>
         <tab>UL_Workflow_Threshold_Template__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>My_Trade_Promoton_Calendar</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
