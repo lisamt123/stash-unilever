@@ -802,6 +802,10 @@
         <apexClass>IPM_ExportTeamMembersReportController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>IPM_ProjectsClustersMappingController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>Exception_Log__c.Age__c</field>
@@ -8247,6 +8251,10 @@
     </pageAccesses>
 	<pageAccesses>
         <apexPage>IPM_ExportTeamMembersReport</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>IPM_ProjectsClustersMapping</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
