@@ -2,6 +2,7 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>Send_notification_email</fullName>
+        <description>Send notification email</description>
         <protected>false</protected>
         <recipients>
             <recipient>bherudek@salesforce.com.sfcttafdev</recipient>
