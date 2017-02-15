@@ -41,6 +41,7 @@ src/objects/Design_Challenge__c.object
 src/objects/Design_Decision__c.object
 src/objects/Solution_Environment__c.object
 src/objects/Onboarding__c.object
+src/objects/Activity.object
 src/pages
 src/pages/SAJ_SessionNotes.page
 src/pages/SAJ_SessionNotes.page-meta.xml
