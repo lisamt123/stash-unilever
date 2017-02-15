@@ -27,7 +27,7 @@
          .gfirstLevel .accrHead{border-bottom:0 ;min-height: 30px; }
          .gfirstLevel .ipmCheckboxDiv{float: left;  width: 85%;}
          .gfirstLevel .checkboxLabeltree{float: left;  width: 72%;  margin-left: 10px;}
-         .geographyFilters li{float:left;width:100%;}
+         .multilevelFilters li{float:left;width:100%;}
 		 .gsecondLevel .ipmCheckboxDiv{float: left;  width: 75%;}
 		 .gsecondLevel .checkboxLabeltree{float: left;  width: 63%;  margin-left: 10px;}
 		 .gfirstLevel .accordionFilters{border-top:1px solid #c0d3bf;}
